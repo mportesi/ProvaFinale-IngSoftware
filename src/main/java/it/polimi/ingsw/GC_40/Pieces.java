@@ -1,5 +1,5 @@
 package it.polimi.ingsw.GC_40;
 
-public class Pieces {
+public abstract class Pieces {
 
 }
