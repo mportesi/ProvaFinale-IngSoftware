@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_40;
 
+import java.util.Random;
+
 public class Floor {
 	private int cost;
-	private Card currentCard;
+	public Card currentCard;
 	private Pieces bonus;
 	private Player player;
 	
@@ -24,9 +26,6 @@ public class Floor {
 		return player;
 	}
 	
-	public void changeCard(){
-		currentCard=rnd
-	}
 	
 
 }
