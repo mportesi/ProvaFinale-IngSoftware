@@ -1,11 +1,11 @@
 package it.polimi.ingsw.GC_40;
 
 public class MarketBuilding {
-	private Pieces bonus;
+	private Piece bonus;
 	private boolean isOccupied;
 	private int cost;
 	
-	public Resource getBonus(){
+	public Piece getBonus(){
 		return bonus;
 	}
 	
@@ -15,6 +15,10 @@ public class MarketBuilding {
 	
 	public int getCost(){
 		return cost;
+	}
+	
+	public void giveBonus(){
+		
 	}
 
 }

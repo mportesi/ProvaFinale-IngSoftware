@@ -24,5 +24,9 @@ public class Floor {
 		return player;
 	}
 	
+	public void changeCard(){
+		currentCard=rnd
+	}
+	
 
 }

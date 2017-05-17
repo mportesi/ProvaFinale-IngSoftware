@@ -7,8 +7,9 @@ public class CouncilPalace {
 		order= new Player[4];
 	}
 	
-	public Pieces giveBonus(Pieces r){
-		return r;
+	public void giveBonus(Piece r){
+		Player.incrementCoin(1);
+		PrivilegeCouncil.giveBonus(r);
 	}
 
 }
