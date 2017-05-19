@@ -11,8 +11,7 @@
         "servant":0
       },
       "immediateEffect":{
-        "victoryPoint":1,
-        "faithPoint":0
+        "GainVictoryPoint":1,
       },
       "permanentEffect":{
         "activationValue":1,
