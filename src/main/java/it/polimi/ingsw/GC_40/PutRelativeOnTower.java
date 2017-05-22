@@ -9,7 +9,7 @@ public class PutRelativeOnTower extends PutRelative  {
 	@Override
 	public void apply(){
 		if (!tower.isPresent(player)){
-			if(tower.floors[floor].isFree()){
+			if(tower.floors[floor].isFree()&& relative.getValue()>= tower.floors[floor].getCost()){
 				tower.floors[floor].setPlayer(player);
 				cardtogive= tower.floors[floor].giveCard();
 				player.getCard(cardtogive); //need to add getCard method to player, to set a given card in the current player deck based on type.
