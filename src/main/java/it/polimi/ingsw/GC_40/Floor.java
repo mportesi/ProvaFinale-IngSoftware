@@ -7,7 +7,7 @@ public class Floor {
 	public Card currentCard;
 	private Pieces bonus;
 	private Player player;
-	
+	private boolean isFree = true; 
 	public int getCost(){
 		return cost;
 	}
@@ -26,6 +26,14 @@ public class Floor {
 		return player;
 	}
 	
-	
-
+	public void setPlayer(Player player){
+		this.player= player;
+		isFree= false;
+	}
+	public void setFree(){
+		isFree= true;
+	}
+	public boolean isFree(){
+		return isFree;
+	}
 }

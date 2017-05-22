@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Tower {
 	private String type;
-	private Floor[] floors;
+	public Floor[] floors = new Floor[4];
 	private ArrayList<Card> deck1;
 	private ArrayList<Card> deck2;
 	private ArrayList<Card> deck3;
@@ -13,7 +13,6 @@ public class Tower {
 	
 	public Tower(String type, ArrayList<Card> deck1,ArrayList<Card> deck2, ArrayList<Card> deck3){
 		this.type=type;
-		Floor[] floors= new Floor[4];
 		this.deck1=deck1;
 		this.deck2=deck2;
 		this.deck3=deck3;
@@ -48,6 +47,7 @@ public class Tower {
 		}
 		return false;
 	}
+	
 	
 	
 	
