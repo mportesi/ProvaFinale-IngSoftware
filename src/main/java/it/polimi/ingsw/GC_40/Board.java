@@ -15,6 +15,7 @@ public class Board {
 	public Dice blackDice;
 	public Dice whiteDice;
 	public Dice orangeDice;
+	public Card[] deck;
 	
 	
 	public Board(){
@@ -68,6 +69,8 @@ public class Board {
 					}
 			}
 		}
+	
+	public void 
 		
 
 }

@@ -15,6 +15,7 @@ public class Card {
 			e.apply();
 		}
 	}
+	
 
 	public String getType(){
 		return type;

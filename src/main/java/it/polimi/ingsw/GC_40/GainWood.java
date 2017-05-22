@@ -9,5 +9,6 @@ public class GainWood extends Effect {
 		Player.incrementWood(wood);
 
 	}
+	
 
 }
