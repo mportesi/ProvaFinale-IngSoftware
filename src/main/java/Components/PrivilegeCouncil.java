@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_40.Player;
 public class PrivilegeCouncil extends Piece {
 	
 	public static void giveBonus(String piece, Player player){
+		//piece.increment(player, n)
 		switch(piece){
 		case "coin": player.incrementCoin(2);
 					break;

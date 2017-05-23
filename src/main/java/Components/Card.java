@@ -2,15 +2,18 @@ package Components;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import Effects.Effect;
 
 public class Card {
-	private String type;
-	private String name;
-	private int period;
-	private List<Effect> immediateEffects;
-	private List<Effect> permanentEffects;
+	protected String type;
+	protected String name;
+	protected Long period;
+	protected Map<String, Long> immediateEffect;
+	protected List<Effect> permanentEffect;
+	
+	
 	
 	public void applyEffect(){
 		for (Effect e: immediateEffects){

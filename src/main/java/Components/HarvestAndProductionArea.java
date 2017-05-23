@@ -4,7 +4,7 @@ import it.polimi.ingsw.GC_40.Player;
 
 public class HarvestAndProductionArea {
 	private Player leftPlayer;
-	private Player[] rightPlayer;
+	private Player rightPlayer;
 	private int cost;
 	private int penalty;
 	private int type;
