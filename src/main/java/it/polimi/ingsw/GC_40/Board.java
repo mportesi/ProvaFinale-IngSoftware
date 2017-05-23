@@ -3,37 +3,33 @@ package it.polimi.ingsw.GC_40;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import Components.Card;
+import Components.CouncilPalace;
+import Components.Dice;
+import Components.HarvestAndProductionArea;
+import Components.Market;
+import Components.MarketBuilding;
+import Components.Tower;
+
 public class Board {
 	public static Tower territoryTower;
 	public static Tower characterTower;
 	public static Tower buildingTower;
 	public static Tower ventureTower;
-	public CouncilPalace councilPalace;
-	public Market market;
-	public HarvestAndProductionArea harvestArea;
-	public HarvestAndProductionArea productionArea;
-	public Dice blackDice;
-	public Dice whiteDice;
-	public Dice orangeDice;
-	public Card[] deck;
+	public static CouncilPalace councilPalace;
+	public static Market market1;
+	public static Market market2;
+	public static Market market3;
+	public static Market market4;
+	public static HarvestAndProductionArea harvestArea;
+	public static HarvestAndProductionArea productionArea;
+	public static Dice blackDice;
+	public static Dice whiteDice;
+	public static Dice orangeDice;
+	public static Card[] deck;
 	
 	
 	public Board(){
-		Tower territoryTower= new Tower("territory", territory1, territory2, territory3);
-		Tower buildingTower= new Tower("building", building1, building2, building3);
-		Tower characterTower= new Tower("character", character1, character2, character3);
-		Tower ventureTower= new Tower("venture", venture1, venture2, venture3);
-		councilPalace= new CouncilPalace();
-		
-		market= new Market();
-		
-		harvestArea= new HarvestAndProductionArea();
-		productionArea= new HarvestAndProductionArea();
-		
-		blackDice= new Dice(BLACK);
-		whiteDice= new Dice(WHITE);
-		orangeDice= new Dice(ORANGE);
-		
 		ArrayList<Card> territory1= createDeck(1, "territory");
 		ArrayList<Card> territory2= createDeck(2, "territory");
 		ArrayList<Card> territory3= createDeck(3, "territory");
@@ -59,18 +55,38 @@ public class Board {
 		Collections.shuffle(venture1);
 		Collections.shuffle(venture2);
 		Collections.shuffle(venture3);
+		
+		territoryTower= new Tower("territory", territory1, territory2, territory3);
+		buildingTower= new Tower("building", building1, building2, building3);
+		characterTower= new Tower("character", character1, character2, character3);
+		ventureTower= new Tower("venture", venture1, venture2, venture3);
+		councilPalace= new CouncilPalace();
+		
+		market1= new MarketBuilding();
+		market2= new MarketBuilding();
+		market3= new MarketBuilding();
+		market4= new MarketBuilding();
+		
+		harvestArea= new HarvestAndProductionArea();
+		productionArea= new HarvestAndProductionArea();
+		
+		
+		blackDice= new Dice(ColorDice.BLACK);
+		whiteDice= new Dice(ColorDice.WHITE);
+		orangeDice= new Dice(ColorDice.ORANGE);
 	}
 	
 	public ArrayList<Card> createDeck(int period, String type){
+			ArrayList<Card> newDeck= new ArrayList<Card>();
 			for(Card c:deck){
 				if (c.getType().equals(type) && c.getPeriod()==period){
-					ArrayList<Card> newDeck= new ArrayList<Card>();
 					newDeck.add(c);
 					}
 			}
+			return newDeck;
+			
 		}
-	
-	public void 
+
 		
 
 }

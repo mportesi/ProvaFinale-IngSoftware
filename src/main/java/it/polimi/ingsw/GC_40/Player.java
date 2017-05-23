@@ -1,5 +1,12 @@
 package it.polimi.ingsw.GC_40;
 
+import Components.Building;
+import Components.Card;
+import Components.LeaderTile;
+import Components.Territory;
+import Components.Venture;
+import Components.Character;
+
 public class Player {
 	private ColorPlayer color;
 	private int coin;
@@ -9,10 +16,10 @@ public class Player {
 	private int faithPoint;
 	private int victoryPoint;
 	private int militaryPoint;
-	private TerritoryCard[] territory;
-	private CharacterCard[] character;
-	private BuildingCard[] building;
-	private VentureCard[] venture;
+	private Territory[] territory;
+	private Character[] character;
+	private Building[] building;
+	private Venture[] venture;
 	private LeaderTile[] leader;
 	private boolean blackRelative;
 	private boolean whiteRelative;
@@ -104,25 +111,26 @@ public class Player {
 		String type=c.getType();
 		int i=0;
 		if(type.equals(building)){
-		   for(each card:building[]){ 
-			if (building[]!=null){ i+=1;}
+		   for(Card card:building){ 
+			if (card!=null){ i+=1;}
 		   }
 		}
 		if(type.equals(territory)){
-			   for(each card:territory[]){ 
-				if (territory[]!=null){ i+=1;}
+			for(Card card:territory){ 
+				if (card!=null){ i+=1;}
 			}
 		}
 		if(type.equals(venture)){
-			   for(each card:venture[]){ 
-				if (venture[]!=null){ i+=1;}
+			   for(Card card:venture){ 
+				if (card!=null){ i+=1;}
 			}
 		}
 		if(type.equals(character)){
-			   for(each card:character[]){ 
-				if (character[]!=null){ i+=1;}
+			   for(Card card:character){ 
+				if (card!=null){ i+=1;}
 			}
 		} 
+		return i;
 	}
 	
 	

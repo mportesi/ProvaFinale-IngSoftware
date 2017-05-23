@@ -10,8 +10,8 @@ public class Play {
 	
 	public void changeTurnOrder(){
 		
-		Player[] nextTurnOrder;
-		Player[] councilPalaceOrder=Board.councilPalace.order;
+		Player[] nextTurnOrder = null;
+		Player[] councilPalaceOrder=Board.councilPalace.getOrder();
 		
 		for (int j=0; j<councilPalaceOrder.length; j++){
 			Player checkedPlayer=councilPalaceOrder[j];
@@ -45,14 +45,14 @@ public class Play {
 				i++;
 				
 			}
-			if (i=currentTurnOrder.length-1){
+			if (i==(currentTurnOrder.length)-1){
 				currentPlayer=currentTurnOrder[0];
 				n+=1;
 			}else{
 			currentPlayer=currentTurnOrder[i+1];
 			}
 			
-			if (n=4) {
+			if (n==4) {
 				changeRound();
 			}
 		}
@@ -71,8 +71,9 @@ public class Play {
 			
 			
 			
-			
-			
+		}
+		
+		public void changePeriod(){
 			
 		}
 		
