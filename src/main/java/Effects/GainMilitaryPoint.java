@@ -6,9 +6,9 @@ public class GainMilitaryPoint extends Effect {
 	int militaryPoint;
 
 	@Override
-	public void apply(Player player) {
+	public void apply() {
 		// TODO Auto-generated method stub7
-		player.incrementMilitaryPoint(militaryPoint);
+		Player.incrementMilitaryPoint(militaryPoint);
 
 	}
 
