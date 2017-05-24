@@ -1,7 +1,12 @@
 package Effects;
 
 public class GainProductionValue extends Effect {
-	int productionValue;
+	Long productionValue;
+
+	
+	public GainProductionValue(Long productionValue){
+		this.productionValue=productionValue;
+	}
 
 	@Override
 	public void apply() {
