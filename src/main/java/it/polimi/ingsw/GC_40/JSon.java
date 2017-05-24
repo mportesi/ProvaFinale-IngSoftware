@@ -27,9 +27,11 @@ import org.json.simple.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-import Components.Building;
+import Components.BuildingCard;
 import Components.Card;
-import Components.Territory;
+import Components.CharacterCard;
+import Components.TerritoryCard;
+import Components.VentureCard;
 
 
 public class JSon {
@@ -83,7 +85,7 @@ public class JSon {
 	        immediateEffectMap.put(typeImmediateEffect, amount);
 	    }
 	    
-	    Card c= new Building(type, name, period, costMap, immediateEffectMap);
+	    Card c= new BuildingCard(type, name, period, costMap, immediateEffectMap);
 	   
 		buildingDeck.add(c);
 	  }
@@ -110,7 +112,7 @@ public class JSon {
 		        immediateEffectMap.put(typeImmediateEffect, amount);
 		    }
 		    
-		    Card c= new Territory(type, name, period, immediateEffectMap);
+		    Card c= new TerritoryCard(type, name, period, immediateEffectMap);
 		   
 			territoryDeck.add(c);
 		  }
@@ -126,8 +128,9 @@ public class JSon {
 			    String type = (String) card.get("type");
 			    Long period = (Long) card.get("period");
 			    String name = (String) card.get("name");
-			    Long alternativeCost= (Long) card.get("alternativeCost");
-			    
+			    Long alternativeCostBoolean= (Long) card.get("alternativeCostBoolean");
+			    Long militaryRequirement=(Long) card.get("militaryRequirement");
+			    Long militaryCost=(Long) card.get("militaryCost");
 			    JSONArray cost= (JSONArray) ventureParser.parse (card.get("cost").toString());
 			    
 			    JSONArray immediateEffect=(JSONArray) ventureParser.parse (card.get("immediateEffect").toString());
@@ -141,17 +144,6 @@ public class JSon {
 			        costMap.put(typeCost, amount);
 			    }
 			    
-			    if(alternativeCost==1){
-			    	JSONArray alternativeCostArray= (JSONArray) ventureParser.parse (card.get("alternativeCost").toString());
-			    	Map<String, Long> alternativeCostMap = new LinkedHashMap();
-				    for (int i = 0; i < alternativeCostArray.size(); i++) {  
-				    	JSONObject costObject = (JSONObject) alternativeCostArray.get(i);
-				        String typeCost = (String) costObject.get("type");
-				        Long amount = (Long) costObject.get("amount");
-				        alternativeCostMap.put(typeCost, amount);
-				    }
-			    }
-			    
 			    Map<String, Long> immediateEffectMap = new LinkedHashMap();
 			    for (int i = 0; i < immediateEffect.size(); i++) {  
 			    	JSONObject immediateEffectObject = (JSONObject) immediateEffect.get(i);
@@ -159,13 +151,12 @@ public class JSon {
 			        Long amount = (Long) immediateEffectObject.get("amount");
 			        immediateEffectMap.put(typeImmediateEffect, amount);
 			    }
-			    
-			    if(alternativeCost==1){
-			    	Card c= new Venture(type, name, period, costMap, alternativeCostMap, immediateEffectMap);
-			    	
-			    }else{
-			    	Card c= new Venture(type, name, period, costMap, immediateEffectMap);
-			    }
+			    Card c;
+			    if(alternativeCostBoolean==1){
+			    	 c= new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost, immediateEffectMap);
+			    }else if(militaryRequirement==0 && militaryCost==0){
+			    	c= new VentureCard(type, name, period, costMap, immediateEffectMap);
+			    }else {c=new VentureCard(type, name, period, militaryRequirement, militaryCost, immediateEffectMap);}
 			    
 			   
 				ventureDeck.add(c);
@@ -182,7 +173,7 @@ public class JSon {
 				    String type = (String) card.get("type");
 				    Long period = (Long) card.get("period");
 				    String name = (String) card.get("name");
-				    Long costCoin= (Long) card.get("costCoin")
+				    Long costCoin= (Long) card.get("costCoin");
 				  
 				    
 				    JSONArray immediateEffect=(JSONArray) buildingParser.parse (card.get("immediateEffect").toString());
@@ -195,7 +186,7 @@ public class JSon {
 				        immediateEffectMap.put(typeImmediateEffect, amount);
 				    }
 				    
-				    Card c= new Character(type, name, period, costCoin, immediateEffectMap);
+				    Card c= new CharacterCard(type, name, period, costCoin,  immediateEffectMap);
 				   
 					characterDeck.add(c);
 				  }
@@ -209,4 +200,3 @@ public class JSon {
 	}
 	
 	}
-

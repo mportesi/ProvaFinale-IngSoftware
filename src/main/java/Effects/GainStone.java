@@ -3,12 +3,16 @@ package Effects;
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainStone extends Effect {
-	int stone;
+	Long stone;
+	
+	public GainStone(Long stone){
+		this.stone=stone;
+	}
 
 	@Override
-	public void apply() {
+	public void apply(){
 		// TODO Auto-generated method stub
-		Player.incrementStone(stone);
+		player.incrementStone(stone);
 
 	}
 

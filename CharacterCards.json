@@ -1,0 +1,10 @@
+[{
+  "name":"noble",
+  "type":"character",
+  "period":3,
+  "costCoin":1,
+  "conditionToGain":"territoryCard",
+  "immediateEffect":[
+    {"type":"GainVictoryPoint", "amount":0}
+  ]
+}]

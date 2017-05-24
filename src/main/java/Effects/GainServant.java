@@ -3,7 +3,12 @@ package Effects;
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainServant extends Effect {
-	int servant;
+	Long servant;
+	
+	public GainServant(Long servant){
+		this.servant=servant;
+	}
+	
 
 	@Override
 	public void apply() {

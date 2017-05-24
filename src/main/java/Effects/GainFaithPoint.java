@@ -3,7 +3,12 @@ package Effects;
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainFaithPoint extends Effect {
-	int faithPoint;
+	Long faithPoint;
+	
+	public GainFaithPoint(Long faithPoint){
+		this.faithPoint=faithPoint;
+	}
+
 
 	@Override
 	public void apply() {
