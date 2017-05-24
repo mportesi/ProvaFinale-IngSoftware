@@ -9,7 +9,7 @@ Long victoryPoint;
 	}
 
 	@Override
-	public void apply() {
+	public void apply(Player player) {
 		// TODO Auto-generated method stub
 		int counter= player.counter(VentureCard);
 		player.incrementVictoryPoint(victoryPoint*counter);

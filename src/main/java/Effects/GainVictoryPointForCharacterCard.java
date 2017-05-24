@@ -8,7 +8,7 @@ public class GainVictoryPointForCharacterCard extends Effect {
 		this.victoryPoint=victoryPoint;
 	}
 	@Override
-	public void apply() {
+	public void apply(Player player) {
 		// TODO Auto-generated method stub
 		int counter= player.counter(CharacterCard);
 		player.incrementVictoryPoint(victoryPoint*counter);

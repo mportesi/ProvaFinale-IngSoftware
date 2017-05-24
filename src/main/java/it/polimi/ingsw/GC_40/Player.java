@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_40;
 
+import java.util.ArrayList;
+
 import Components.BuildingCard;
 import Components.Card;
 import Components.LeaderTile;
@@ -16,11 +18,11 @@ public class Player {
 	private int faithPoint;
 	private int victoryPoint;
 	private int militaryPoint;
-	private TerritoryCard[] territoryCard;
-	private CharacterCard[] characterCard;
-	private BuildingCard[] buildingCard;
-	private VentureCard[] ventureCard;
-	private LeaderTile[] leader;
+	private ArrayList<TerritoryCard> territoryCard;
+	private ArrayList<CharacterCard> characterCard;
+	private ArrayList<BuildingCard> buildingCard;
+	private ArrayList<VentureCard> ventureCard;
+	private ArrayList<LeaderTile> leader;
 	private boolean blackRelative;
 	private boolean whiteRelative;
 	private boolean orangeRelative;
@@ -50,23 +52,23 @@ public class Player {
 	public int getMilitaryPoint() {
 		return militaryPoint;
 	}
-	public Card[] getTerritory() {
+	public ArrayList<TerritoryCard> getTerritory() {
 		return territoryCard;
 	}
-	public Card[] getCharacter() {
+	public ArrayList<CharacterCard> getCharacter() {
 		return characterCard;
 	}
-	public Card[] getBuilding() {
+	public ArrayList<BuildingCard> getBuilding() {
 		return buildingCard;
 	}
-	public Card[] getVenture() {
+	public ArrayList<VentureCard> getVenture() {
 		return ventureCard;
 	}
-	public LeaderTile[] getLeader() {
+	public ArrayList<LeaderTile> getLeader() {
 		return leader;
 	}
-	public void incrementCoin(int n){
-		coin+=n;
+	public void incrementCoin(Long coin2){
+		coin+=coin2;
 	}
 	public void decrementCoin(int n){
 		coin-=n;
@@ -89,13 +91,13 @@ public class Player {
 	public void decrementServant(int n){
 		coin-=n;
 	}
-	public void incrementMilitaryPoint(int n){
+	public void incrementMilitaryPoint(Long n){
 		coin+=n;
 	}
 	public void decrementMilitaryPoint(int n){
 		coin-=n;
 	}
-	public void incrementFaithPoint(int n){
+	public void incrementFaithPoint(Long n){
 		coin+=n;
 	}
 	public void decrementFaithPoint(int n){
@@ -133,5 +135,28 @@ public class Player {
 		return i;
 	}
 	
-	
-}
+	public void getCard(Card card){
+		String type=card.getType();
+		switch(type){
+		case "territoryCard": {
+			territoryCard.add((TerritoryCard) card);
+			break;
+		}
+		case "buildingCard": {
+			buildingCard.add((BuildingCard) card);
+
+			break;
+		}
+		case "characterCard": {
+			characterCard.add((CharacterCard) card);
+			break;
+		}
+		case "ventureCard": {
+			ventureCard.add((VentureCard) card);
+			break;
+		}
+		}
+		
+		}
+	}
+

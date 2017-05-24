@@ -22,7 +22,8 @@ public class PutRelativeOnTower extends PutRelative  {
 		if(isApplicable()){
 				tower.floors[floor].setPlayer(player);
 				cardtogive= tower.floors[floor].giveCard();
-				player.getCard(cardtogive); //need to add getCard method to player, to set a given card in the current player deck based on type.
+				player.getCard(cardtogive);
+				cardtogive.applyEffect(player);
 			}
 		return;
 	}

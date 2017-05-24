@@ -9,7 +9,7 @@ public class GainProductionValue extends Effect {
 	}
 
 	@Override
-	public static void apply() {
+	public static void apply(Player player) {
 		// TODO Auto-generated method stub
 
 	}

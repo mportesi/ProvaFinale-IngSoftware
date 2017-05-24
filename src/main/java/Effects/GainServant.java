@@ -11,7 +11,7 @@ public class GainServant extends Effect {
 	
 
 	@Override
-	public void apply() {
+	public void apply(Player player) {
 		// TODO Auto-generated method stub
 		Player.incrementServant(servant);
 		

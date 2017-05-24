@@ -6,6 +6,9 @@ import java.util.Map;
 
 import Effects.Effect;
 import Effects.GainCoin;
+import Effects.GainFaithPoint;
+import Effects.GainMilitaryPoint;
+import Effects.GainServant;
 import Effects.GainStone;
 import Effects.GainVictoryPoint;
 import Effects.GainVictoryPointForBuildingCard;
@@ -83,24 +86,24 @@ public class Card {
 			}
 			case "GainFaithPoint":{
 				GainFaithPoint gainFaithPoint= new GainFaithPoint(costImmediateEffect);
-				iEffect.add(gainWood);
+				iEffect.add(gainFaithPoint);
 				break;
 			}
 			case "GainMilitaryPoint":{
 				GainMilitaryPoint gainMilitaryPoint= new GainMilitaryPoint(costImmediateEffect);
-				iEffect.add(gainStone);
+				iEffect.add(gainMilitaryPoint);
 				break;
 			}
 		}
 		}
 	}
 	
-	public void applyEffect(){
+	public void applyEffect(Player player){
 		createListOfEffect();
 	
 		for (Effect e: iEffect){
 			if(e!=null){
-			e.apply();}
+			e.apply(player);}
 			else{return;}
 		}
 	}
