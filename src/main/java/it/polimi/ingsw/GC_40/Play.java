@@ -69,7 +69,6 @@ public class Play {
 			Board.ventureTower.refreshTower(period);
 			
 			//refresh harvest and production area
-			//TODO refresh 
 			Board.harvestArea.refresh();
 			Board.productionArea.refresh();
 			//refresh market
