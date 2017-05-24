@@ -1,7 +1,11 @@
 package Effects;
 
 public class GainHarvestValue extends Effect {
-	int harvestValue;
+	Long harvestValue;
+	
+	public GainHarvestValue(Long harvestValue){
+		this.harvestValue=harvestValue;
+	}
 
 	@Override
 	public void apply() {
