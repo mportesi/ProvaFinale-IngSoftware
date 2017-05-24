@@ -1,5 +1,7 @@
 package Components;
 
+import java.util.Arrays;
+
 import it.polimi.ingsw.GC_40.Player;
 
 public class CouncilPalace {
@@ -16,7 +18,9 @@ public class CouncilPalace {
 	public Player[] getOrder() {
 		return order;
 	}
-
+	public void refresh(){
+		Arrays.fill(order, 0);
+	}
 	
 
 }
