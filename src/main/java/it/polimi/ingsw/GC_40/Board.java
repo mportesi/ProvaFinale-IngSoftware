@@ -75,6 +75,7 @@ public class Board {
 		orangeDice= new Dice(ColorDice.ORANGE);
 	}
 	
+	
 	public ArrayList<Card> createDeck(int period, String type){
 			ArrayList<Card> newDeck= new ArrayList<Card>();
 			for(Card c:deck){
@@ -85,7 +86,8 @@ public class Board {
 			return newDeck;
 			
 		}
-
+	//ciao
+public
 		
 
 }
