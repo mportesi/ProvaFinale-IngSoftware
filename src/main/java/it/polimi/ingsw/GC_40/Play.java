@@ -10,7 +10,7 @@ public class Play {
 	
 	public void changeTurnOrder(){
 		
-		Player[] nextTurnOrder = null;
+		Player[] nextTurnOrder = new Player[4];
 		Player[] councilPalaceOrder=Board.councilPalace.getOrder();
 		
 		for (int j=0; j<councilPalaceOrder.length; j++){
@@ -62,15 +62,28 @@ public class Play {
 			round+=1;
 			changeTurnOrder();
 			
+			//refresh tower( place new card and remove family member)
 			Board.territoryTower.refreshTower(period);
 			Board.buildingTower.refreshTower(period);
 			Board.characterTower.refreshTower(period);
 			Board.ventureTower.refreshTower(period);
 			
+			//refresh harvest and production area ciao ciao
+			Board.harvestArea.refresh();
+			Board.productionArea.refresh();
+			//refresh market
+			Board.market1.setFree();
+			Board.market2.setFree();
+			Board.market3.setFree();
+			Board.market4.setFree();
 			
+			//refresh council palace
+			Board.councilPalace.refresh();
 			
-			
-			
+			//roll dice
+			Board.blackDice.setValue();
+			Board.orangeDice.setValue();
+			Board.whiteDice.setValue();
 		}
 		
 		public void changePeriod(){

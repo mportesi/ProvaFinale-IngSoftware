@@ -27,3 +27,4 @@ public class MarketBuilding extends Market{
 		isOccupied= false;
 	}
 }
+
