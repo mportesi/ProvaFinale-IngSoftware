@@ -32,7 +32,8 @@ public class HarvestAndProductionArea {
 		return type;
 	}
 	public void refresh() {
-		
+		leftPlayer= null;
+		rightPlayer.clear();
 	}
 
 }
