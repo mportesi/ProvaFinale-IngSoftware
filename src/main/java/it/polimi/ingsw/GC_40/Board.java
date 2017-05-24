@@ -86,8 +86,6 @@ public class Board {
 			return newDeck;
 			
 		}
-	//ciao
-public
-		
+
 
 }
