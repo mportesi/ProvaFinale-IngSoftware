@@ -1,16 +1,31 @@
 package Actions;
-
+import Components.Relative;
+import Components.HarvestAndProductionArea;
+import Effects.GainProductionValue;
 public class PutRelativeOnProductionArea extends PutRelative {
-
+	Relative relative;
+	HarvestAndProductionArea productionArea;
+	Player player;
+	
 	@Override
-	public Boolean isApplicable() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean isApplicable() {
+		if(relative.getValue()>=productionArea.getCost()){
+		return true;}
+		else{ return false;} 
 	}
 
 	@Override
 	public void apply() {
-		// TODO Auto-generated method stub
+		if(isApplicable()){
+			if(productionArea.getLeftPlayer()==null){
+				productionArea.setLeftPlayer(player);
+				GainProductionValue.apply();
+			}
+			else{
+				productionArea.setRightPlayer(player);
+				GainProductionValue.apply();
+			}
+		}
 
 	}
 

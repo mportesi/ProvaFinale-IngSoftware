@@ -1,5 +1,5 @@
 package Actions;
-
+import Components.CouncilPalace;
 public class PutRelativeOnCouncil extends PutRelative {
 
 	@Override

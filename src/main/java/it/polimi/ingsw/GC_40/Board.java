@@ -7,7 +7,6 @@ import Components.Card;
 import Components.CouncilPalace;
 import Components.Dice;
 import Components.HarvestAndProductionArea;
-import Components.Market;
 import Components.MarketBuilding;
 import Components.Tower;
 
@@ -17,10 +16,10 @@ public class Board {
 	public static Tower buildingTower;
 	public static Tower ventureTower;
 	public static CouncilPalace councilPalace;
-	public static Market market1;
-	public static Market market2;
-	public static Market market3;
-	public static Market market4;
+	public static MarketBuilding market1;
+	public static MarketBuilding market2;
+	public static MarketBuilding market3;
+	public static MarketBuilding market4;
 	public static HarvestAndProductionArea harvestArea;
 	public static HarvestAndProductionArea productionArea;
 	public static Dice blackDice;
