@@ -8,7 +8,6 @@ public class CouncilPalace {
 	public void setOrder(){
 		order= new Player[4];
 	}
-	
 	public void giveBonus(String r, Player player){
 		player.incrementCoin(1);
 		PrivilegeCouncil.giveBonus(r, player);

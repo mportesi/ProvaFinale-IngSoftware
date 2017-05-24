@@ -9,7 +9,7 @@ public class MarketBuilding extends Market{
 		return bonus;
 	}
 	
-	public boolean getIsOccupied(){
+	public boolean IsOccupied(){
 		return isOccupied;
 	}
 	
@@ -17,8 +17,13 @@ public class MarketBuilding extends Market{
 		return cost;
 	}
 	
-	public void giveBonus(){
+	public void giveBonus(Player player){ //TODO finish method
 		
 	}
-
+	public void setOccupied(){
+		isOccupied=true;
+	}
+	public void setFree(){
+		isOccupied= false;
+	}
 }
