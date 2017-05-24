@@ -1,7 +1,13 @@
 package Effects;
 
+import it.polimi.ingsw.GC_40.Player;
+
 public class GainCoin extends Effect {
-	int coin;
+	Long coin;
+	
+	public GainCoin(Long coin){
+		this.coin=coin;
+	}
 
 	@Override
 	public void apply() {

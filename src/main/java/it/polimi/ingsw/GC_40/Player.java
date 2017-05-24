@@ -1,11 +1,11 @@
 package it.polimi.ingsw.GC_40;
 
-import Components.Building;
+import Components.BuildingCard;
 import Components.Card;
 import Components.LeaderTile;
-import Components.Territory;
-import Components.Venture;
-import Components.Character;
+import Components.TerritoryCard;
+import Components.VentureCard;
+import Components.CharacterCard;
 
 public class Player {
 	private ColorPlayer color;
@@ -16,10 +16,10 @@ public class Player {
 	private int faithPoint;
 	private int victoryPoint;
 	private int militaryPoint;
-	private Territory[] territory;
-	private Character[] character;
-	private Building[] building;
-	private Venture[] venture;
+	private TerritoryCard[] territoryCard;
+	private CharacterCard[] characterCard;
+	private BuildingCard[] buildingCard;
+	private VentureCard[] ventureCard;
 	private LeaderTile[] leader;
 	private boolean blackRelative;
 	private boolean whiteRelative;
@@ -51,16 +51,16 @@ public class Player {
 		return militaryPoint;
 	}
 	public Card[] getTerritory() {
-		return territory;
+		return territoryCard;
 	}
 	public Card[] getCharacter() {
-		return character;
+		return characterCard;
 	}
 	public Card[] getBuilding() {
-		return building;
+		return buildingCard;
 	}
 	public Card[] getVenture() {
-		return venture;
+		return ventureCard;
 	}
 	public LeaderTile[] getLeader() {
 		return leader;
@@ -110,23 +110,23 @@ public class Player {
 	public int counter(Card c){
 		String type=c.getType();
 		int i=0;
-		if(type.equals(building)){
-		   for(Card card:building){ 
+		if(type.equals(buildingCard)){
+		   for(Card card:buildingCard){ 
 			if (card!=null){ i+=1;}
 		   }
 		}
-		if(type.equals(territory)){
-			for(Card card:territory){ 
+		if(type.equals(territoryCard)){
+			for(Card card:territoryCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(type.equals(venture)){
-			   for(Card card:venture){ 
+		if(type.equals(ventureCard)){
+			   for(Card card:ventureCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(type.equals(character)){
-			   for(Card card:character){ 
+		if(type.equals(characterCard)){
+			   for(Card card:characterCard){ 
 				if (card!=null){ i+=1;}
 			}
 		} 
