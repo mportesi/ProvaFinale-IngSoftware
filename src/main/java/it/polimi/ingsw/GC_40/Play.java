@@ -68,7 +68,7 @@ public class Play {
 			Board.characterTower.refreshTower(period);
 			Board.ventureTower.refreshTower(period);
 			
-			//refresh harvest and production area ciao ciao
+			//refresh harvest and production area
 			Board.harvestArea.refresh();
 			Board.productionArea.refresh();
 			//refresh market
@@ -87,10 +87,16 @@ public class Play {
 		}
 		
 		public void changePeriod(){
+			period+=1;
+			if(period>4){
+				checkWinner(); //TODO define checkwinner
+			}
 			
 		}
 		
-		
+		public void checkWinner(){
+			return;
+		}
 }
 
 
