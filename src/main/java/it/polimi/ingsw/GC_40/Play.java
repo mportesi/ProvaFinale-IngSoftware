@@ -1,55 +1,70 @@
 package it.polimi.ingsw.GC_40;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import Components.CouncilPalace;
 
 public class Play {
 	private int period;
 	private int round;
 	private Player currentPlayer;
-	private Player[] currentTurnOrder;
+	private ArrayList<Player> currentTurnOrder;
+	
+	
+	public Play(int period, int round, ArrayList<Player> currentTurnOrder){
+		this.period=period;
+		this.round=round;
+		this.currentTurnOrder=currentTurnOrder;
+		currentPlayer=currentTurnOrder.get(0);
+	}
+	
 	
 	public void changeTurnOrder(){
 		
-		Player[] nextTurnOrder = new Player[4];
-		Player[] councilPalaceOrder=Board.councilPalace.getOrder();
+		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
+		ArrayList<Player> councilPalaceOrder= Board.councilPalace.getOrder();
 		
-		for (int j=0; j<councilPalaceOrder.length; j++){
-			Player checkedPlayer=councilPalaceOrder[j];
-			nextTurnOrder[j]=checkedPlayer;
+		for (Player checkedPlayer : councilPalaceOrder){
+			nextTurnOrder.add(checkedPlayer);
 		
-			for(int i=0; i<currentTurnOrder.length; i++){
-			if (currentTurnOrder[i].equals(checkedPlayer)){
-				currentTurnOrder[i]=null;
-				}
+		
+		
+			for(Player nowPlayer : currentTurnOrder){
+				if (nowPlayer.equals(checkedPlayer)){
+					currentTurnOrder.remove(nowPlayer);
+					}
+				
 			}
+					
 		}
 		
-		for (int i=0; i<currentTurnOrder.length; i++){
-			if (currentTurnOrder[i]!=null){
-				int j=0;
-				while (nextTurnOrder[j]!=null){
-					j++;
-				}
-				nextTurnOrder[j]=currentTurnOrder[i];
-				currentTurnOrder[i]=null;
-			}}
-		currentTurnOrder= Arrays.copyOf(nextTurnOrder, nextTurnOrder.length);
-		Arrays.fill(nextTurnOrder, 0);
+		
+		for (Player p : currentTurnOrder){
+				nextTurnOrder.add(p);
+				currentTurnOrder.remove(p);
+			}
+		
+		
+	
+		
+		currentTurnOrder.addAll(nextTurnOrder);
+		nextTurnOrder.clear();
 	}
 	
 		public void changeCurrentPlayer(){
 			int i=0;
 			int n=0;
 			
-			while(currentTurnOrder[i]!=currentPlayer){
-				i++;
-				
-			}
-			if (i==(currentTurnOrder.length)-1){
-				currentPlayer=currentTurnOrder[0];
+			while(currentTurnOrder.get(i)!=currentPlayer){
+				i++;}
+			
+			if (i==(currentTurnOrder.size()-1)){
+				currentPlayer=currentTurnOrder.get(0);
 				n+=1;
-			}else{
-			currentPlayer=currentTurnOrder[i+1];
+			}
+			else {
+			currentPlayer=currentTurnOrder.get(i+1);
 			}
 			
 			if (n==4) {
@@ -58,7 +73,9 @@ public class Play {
 		}
 		
 		public void changeRound(){
-			if (round==2 || round ==4 || round==6){changePeriod();}
+			if (round==2 || round ==4 || round==6){
+				changePeriod();
+				}
 			round+=1;
 			changeTurnOrder();
 			

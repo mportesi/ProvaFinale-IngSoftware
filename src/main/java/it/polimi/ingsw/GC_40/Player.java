@@ -28,6 +28,15 @@ public class Player {
 	private boolean orangeRelative;
 	private boolean neutralRelative;
 	
+	
+	
+	public Player (ColorPlayer color){
+		this.color=color;
+	}
+	
+	
+	
+	
 	public int getCoin() {
 		return coin;
 	}
@@ -67,8 +76,8 @@ public class Player {
 	public ArrayList<LeaderTile> getLeader() {
 		return leader;
 	}
-	public void incrementCoin(Long coin2){
-		coin+=coin2;
+	public void incrementCoin(int i){
+		coin+=i;
 	}
 	public void decrementCoin(int n){
 		coin-=n;
