@@ -1,14 +1,358 @@
 [
   {
     "name":"supportToTheBishop",
-    "type":"venture",
+    "type":"ventureCard",
     "period":1,
     "alternativeCostBoolean":1,
-    "militaryPointRequirement":4,
+    "militaryRequirement":4,
+    "militaryCost":2,
     "cost":[
       {"type":"coin", "amount":2},
       {"type":"wood", "amount":1},
       {"type":"stone", "amount":1}],
-    "alternativeCost":[
-      {"type":"militaryPoint", "amount":2}]
-  }]
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":3}
+    ]
+  },
+  {
+    "name":"raisingAStatue",
+    "type":"ventureCard",
+    "period":1,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"wood", "amount":2},
+      {"type":"stone", "amount":2}],
+    "immediateEffect":[
+      {"type":"GainPrivilegeCouncil", "amount":2}
+    ]
+  },
+  {
+    "name":"repairingTheChurch",
+    "type":"ventureCard",
+    "period":1,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"coin", "amount":1},
+      {"type":"wood", "amount":1},
+      {"type":"stone", "amount":1}],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":1}
+    ]
+  },
+  {
+    "name":"hostingBeggars",
+    "type":"ventureCard",
+    "period":1,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"wood", "amount":3}],
+    "immediateEffect":[
+      {"type":"GainServant", "amount":4}
+    ]
+  },
+  {
+    "name":"fightingHeresy",
+    "type":"ventureCard",
+    "period":1,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":5,
+    "militaryCost":3,
+    "cost":[
+      ],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":2}
+    ]
+  },
+  {
+    "name":"hiringRecruits",
+    "type":"ventureCard",
+    "period":1,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"coin", "amount":4}],
+    "immediateEffect":[
+      {"type":"GainMilitaryPoint", "amount":5}
+    ]
+  },
+  {
+    "name":"militaryCampaign",
+    "type":"ventureCard",
+    "period":1,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":3,
+    "militaryCost":2,
+    "cost":[
+      {"type":"wood", "amount":3}],
+    "immediateEffect":[
+      {"type":"GainCoin", "amount":3}
+    ]
+  },
+  {
+    "name":"buildingTheWalls",
+    "type":"ventureCard",
+    "period":1,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"stone", "amount":3}],
+    "immediateEffect":[
+      {"type":"GainPrivilegeCouncil", "amount":1},
+      {"type":"GainMilitaryPoint", "amount":2}
+    ]
+  },
+  {
+    "name":"supportToTheCardinal",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":1,
+    "militaryRequirement":7,
+    "militaryCost":4,
+    "cost":[
+      {"type":"coin", "amount":3},
+      {"type":"wood", "amount":2},
+      {"type":"stone", "amount":2}
+    ],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":4}
+    ]
+  },
+  {
+    "name":"militaryCampaign",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":3,
+    "militaryCost":2,
+    "cost":[
+      {"type":"wood", "amount":3}],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":4}
+    ]
+  },
+  {
+    "name":"buildingTheRamparts",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"stone", "amount":4}],
+    "immediateEffect":[
+      {"type":"GainPrivilegeCouncil", "amount":1},
+      {"type":"GainMilitaryPoint", "amount":3}
+    ]
+  },
+  {
+    "name":"crusuade",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":8,
+    "militaryCost":4,
+    "cost":[
+      ],
+    "immediateEffect":[
+      {"type":"GainCoin", "amount":5},
+      {"type":"GainFaithPoint", "amount":1}
+    ]
+  },
+  {
+    "name":"hiringSoldiers",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"coin", "amount":6}],
+    "immediateEffect":[
+      {"type":"GainMilitaryPoint", "amount":6}
+    ]
+  },
+  {
+    "name":"welcomingForeigners",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"wood", "amount":4}],
+    "immediateEffect":[
+      {"type":"GainServant", "amount":5}
+    ]
+  },
+  {
+    "name":"diggingFunnels",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"coin", "amount":3},
+      {"type":"servant", "amount":2}],
+    "immediateEffect":[
+      {"type":"GainHarvestValue", "amount":4}
+    ]
+  },
+  {
+    "name":"supportToTheKing",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":6,
+    "militaryCost":3,
+    "cost":[
+     ],
+    "immediateEffect":[
+      {"type":"GainPrivilegeCouncil", "amount":1},
+      {"type":"GainCoin", "amount":5}
+    ]
+  },
+  {
+    "name":"repairingTheAbbey",
+    "type":"ventureCard",
+    "period":2,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"coin", "amount":2},
+      {"type":"wood", "amount":2},
+      {"type":"stone", "amount":4}],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":3}
+    ]
+  },
+  {
+    "name":"saintWar",
+    "type":"ventureCard",
+    "period":3,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":15,
+    "militaryCost":8,
+    "cost":[
+    ],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":4}
+    ]
+  },
+  {
+    "name":"commissioningSacredArt",
+    "type":"ventureCard",
+    "period":3,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"wood", "amount":6}
+    ],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":3}
+    ]
+  },
+  {
+    "name":"repairingTheCathedral",
+    "type":"ventureCard",
+    "period":3,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"coin", "amount":3},
+      {"type":"wood", "amount":3},
+      {"type":"stone", "amount":3}
+    ],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":1},
+      {"type":"GetCard", "amount":7}
+    ]
+  },
+  {
+    "name":"buildingTheTowers",
+    "type":"ventureCard",
+    "period":3,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"stone", "amount":6}
+    ],
+    "immediateEffect":[
+      {"type":"GainPrivilegeCouncil", "amount":1},
+      {"type":"GainMilitaryPoint", "amount":4}
+    ]
+  },
+  {
+    "name":"hiringMecenaries",
+    "type":"ventureCard",
+    "period":3,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"coin", "amount":8}
+    ],
+    "immediateEffect":[
+      {"type":"GainMilitaryPoint", "amount":7}
+    ]
+  },
+  {
+    "name":"improvingTheRoads",
+    "type":"ventureCard",
+    "period":3,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":0,
+    "militaryCost":0,
+    "cost":[
+      {"type":"coin", "amount":4},
+      {"type":"servant", "amount":3}
+    ],
+    "immediateEffect":[
+      {"type":"GainProductionValue", "amount":3}
+    ]
+  },
+  {
+    "name":"militaryConquest",
+    "type":"ventureCard",
+    "period":3,
+    "alternativeCostBoolean":0,
+    "militaryRequirement":12,
+    "militaryCost":6,
+    "cost":[
+    ],
+    "immediateEffect":[
+      {"type":"GainCoin", "amount":3},
+      {"type":"GainWood", "amount":3},
+      {"type":"GainStone", "amount":3}
+    ]
+  },
+  {
+    "name":"supportToThePope",
+    "type":"ventureCard",
+    "period":3,
+    "alternativeCostBoolean":1,
+    "militaryRequirement":10,
+    "militaryCost":5,
+    "cost":[
+      {"type":"coin", "amount":4},
+      {"type":"wood", "amount":3},
+      {"type":"stone", "amount":3}
+    ],
+    "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":3}
+    ]
+  }
+  
+]

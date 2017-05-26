@@ -156,7 +156,7 @@ public class JSon {
 			    	 c= new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost, immediateEffectMap);
 			    }else if(militaryRequirement==0 && militaryCost==0){
 			    	c= new VentureCard(type, name, period, costMap, immediateEffectMap);
-			    }else {c=new VentureCard(type, name, period, militaryRequirement, militaryCost, immediateEffectMap);}
+			    }else {c=new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap, immediateEffectMap);}
 			    
 			   
 				ventureDeck.add(c);
