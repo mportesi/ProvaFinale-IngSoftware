@@ -28,12 +28,13 @@ public class VentureCard extends Card {
 		militaryCost=(long) 0;
 	}
 	
-	public VentureCard(String type,String name,Long period,Long militaryRequirement,Long militaryCost,Map<String,Long> immediateEffectMap){
+	public VentureCard(String type,String name,Long period,Long militaryRequirement,Long militaryCost,Map<String,Long> cost, Map<String,Long> immediateEffectMap){
 		this.type=type;
 		this.name=name;
 		this.period=period;
 		this.militaryRequirement=militaryRequirement;
 		this.militaryCost=militaryCost;
+		this.cost=cost;
 		this.immediateEffect=immediateEffect;
 		cost=null;
 	};
