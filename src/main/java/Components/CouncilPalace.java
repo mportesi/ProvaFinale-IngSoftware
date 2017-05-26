@@ -6,11 +6,12 @@ import it.polimi.ingsw.GC_40.Player;
 
 public class CouncilPalace {
 	private Player[] order;
+	private int orderIndex=0;
 	
 	public void setOrder(){
 		order= new Player[4];
 	}
-	public void giveBonus(String r, Player player){
+	public void giveBonus(Piece r, Player player){
 		player.incrementCoin(1);
 		PrivilegeCouncil.giveBonus(r, player);
 	}
@@ -20,6 +21,12 @@ public class CouncilPalace {
 	}
 	public void refresh(){
 		Arrays.fill(order, 0);
+		orderIndex=0;
+	}
+	
+	public void addPlayer(Player player) {
+		order[orderIndex]=player;
+		orderIndex+=1;
 	}
 	
 
