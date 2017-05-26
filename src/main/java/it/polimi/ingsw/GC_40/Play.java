@@ -61,7 +61,7 @@ public class Play {
 			
 			if (i==(currentTurnOrder.size()-1)){
 				currentPlayer=currentTurnOrder.get(0);
-				n+=1;
+				n++;
 			}
 			else {
 			currentPlayer=currentTurnOrder.get(i+1);
@@ -104,8 +104,8 @@ public class Play {
 		}
 		
 		public void changePeriod(){
-			period+=1;
-			if(period>4){
+			period++;
+			if(period==4){
 				checkWinner(); //TODO define checkwinner
 			}
 			
