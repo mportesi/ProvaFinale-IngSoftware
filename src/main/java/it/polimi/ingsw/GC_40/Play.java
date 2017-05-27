@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_40;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import Components.CouncilPalace;
 
 public class Play {
@@ -20,10 +19,10 @@ public class Play {
 	}
 	
 	
-	public void changeTurnOrder(){
+	public void changeTurnOrder() {
 		
 		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
-		ArrayList<Player> councilPalaceOrder= Board.councilPalace.getOrder();
+		ArrayList<Player> councilPalaceOrder = Board.councilPalace.getOrder();
 		
 		for (Player checkedPlayer : councilPalaceOrder){
 			nextTurnOrder.add(checkedPlayer);
@@ -43,10 +42,7 @@ public class Play {
 		for (Player p : currentTurnOrder){
 				nextTurnOrder.add(p);
 				currentTurnOrder.remove(p);
-			}
-		
-		
-	
+		}
 		
 		currentTurnOrder.addAll(nextTurnOrder);
 		nextTurnOrder.clear();
@@ -57,15 +53,15 @@ public class Play {
 			int n=0;
 			
 			while(currentTurnOrder.get(i)!=currentPlayer){
-				i++;}
-			
-			if (i==(currentTurnOrder.size()-1)){
-				currentPlayer=currentTurnOrder.get(0);
-				n+=1;
+				i++;
 			}
-			else {
-			currentPlayer=currentTurnOrder.get(i+1);
-			}
+				if (i==(currentTurnOrder.size()-1)){
+					currentPlayer=currentTurnOrder.get(0);
+					n++;
+				}
+				else {
+					currentPlayer=currentTurnOrder.get(i+1);
+				}
 			
 			if (n==4) {
 				changeRound();
