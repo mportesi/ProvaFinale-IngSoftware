@@ -76,13 +76,9 @@ public class Player {
 	public ArrayList<LeaderTile> getLeader() {
 		return leader;
 	}
-<<<<<<< HEAD
+
 	public void incrementCoin(int n){
 		coin+=n;
-=======
-	public void incrementCoin(int i){
-		coin+=i;
->>>>>>> Sara
 	}
 	public void decrementCoin(int n){
 		coin-=n;

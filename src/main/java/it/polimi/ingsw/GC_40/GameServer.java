@@ -41,12 +41,10 @@ public class GameServer {
 	}
 	
 	public static void initializePlayer(int numberOfPlayer){
-<<<<<<< HEAD
-=======
 		for (ColorPlayer color : ColorPlayer.values()){
 			colors.add(color);
 		}
->>>>>>> Sara
+
 		for(int i=0; i<numberOfPlayer; i++){
 			Player player=new Player(colors.get(i));
 			players.add(player);
