@@ -35,8 +35,6 @@ public class Player {
 	}
 	
 	
-	
-	
 	public int getCoin() {
 		return coin;
 	}
