@@ -17,12 +17,13 @@ import Effects.GainVictoryPointForMilitaryPoint;
 import Effects.GainVictoryPointForTerritoryCard;
 import Effects.GainVictoryPointForVentureCard;
 import Effects.GainWood;
+import it.polimi.ingsw.GC_40.Player;
 
 public class Card {
 	protected String type;
 	protected String name;
-	protected Long period;
-	protected Map<String, Long> immediateEffect;
+	protected int period;
+	protected Map<String, Integer> immediateEffect;
 	protected List<Effect> iEffect;
 	
 	public void createListOfEffect(){
@@ -33,7 +34,7 @@ public class Card {
 		}
 		for(int i=0; i<keys.size(); i++){
 			String effect= keys.get(i);
-			Long costImmediateEffect= immediateEffect.get(effect);
+			int costImmediateEffect= immediateEffect.get(effect);
 			switch(effect){
 			case "GainCoin":{
 				GainCoin gainCoin= new GainCoin(costImmediateEffect);
@@ -117,7 +118,7 @@ public class Card {
 		return name;
 	}
 	
-	public Long getPeriod(){
+	public int getPeriod(){
 		return period;
 	}
 	

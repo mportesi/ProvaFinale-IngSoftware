@@ -76,8 +76,9 @@ public class Player {
 	public ArrayList<LeaderTile> getLeader() {
 		return leader;
 	}
-	public void incrementCoin(int i){
-		coin+=i;
+
+	public void incrementCoin(int n){
+		coin+=n;
 	}
 	public void decrementCoin(int n){
 		coin-=n;
@@ -100,13 +101,13 @@ public class Player {
 	public void decrementServant(int n){
 		coin-=n;
 	}
-	public void incrementMilitaryPoint(Long n){
+	public void incrementMilitaryPoint(int n){
 		coin+=n;
 	}
 	public void decrementMilitaryPoint(int n){
 		coin-=n;
 	}
-	public void incrementFaithPoint(Long n){
+	public void incrementFaithPoint(int n){
 		coin+=n;
 	}
 	public void decrementFaithPoint(int n){

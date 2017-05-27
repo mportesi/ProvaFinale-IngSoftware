@@ -1,5 +1,6 @@
 package Actions;
 import Components.Relative;
+import it.polimi.ingsw.GC_40.Player;
 import Components.MarketBuilding;
 
 public class PutRelativeOnMarket extends PutRelative {
@@ -16,13 +17,14 @@ public class PutRelativeOnMarket extends PutRelative {
 		else if(relative.getValue() >= market.getCost()){
 			return true;
 		}
+		else return false;
 	}
 
 	@Override
 	public void apply() {
 		if(isApplicable()){
 			market.setOccupied();
-			market.giveBonus(player);
+			market.giveBonus(player, market);
 		}
 	}
 

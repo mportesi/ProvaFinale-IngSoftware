@@ -1,9 +1,9 @@
 package Effects;
 
 public class GainVictoryPointForTerritoryCard extends Effect {
-	Long victoryPoint;
+	int victoryPoint;
 	
-	public GainVictoryPointForTerritoryCard(Long victoryPoint){
+	public GainVictoryPointForTerritoryCard(int victoryPoint){
 		this.victoryPoint=victoryPoint;
 	}
 
