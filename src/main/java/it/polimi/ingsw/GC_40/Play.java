@@ -11,7 +11,7 @@ public class Play {
 	private ArrayList<Player> currentTurnOrder;
 	
 	
-	public Play(int period, int round, ArrayList<Player> currentTurnOrder){
+	public Play (int period, int round, ArrayList<Player> currentTurnOrder){
 		this.period=period;
 		this.round=round;
 		this.currentTurnOrder=currentTurnOrder;
