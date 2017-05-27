@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Components.BuildingCard;
 import Components.Card;
 import Components.LeaderTile;
+import Components.Relative;
 import Components.TerritoryCard;
 import Components.VentureCard;
 import Components.CharacterCard;
@@ -23,15 +24,20 @@ public class Player {
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
 	private ArrayList<LeaderTile> leader;
-	private boolean blackRelative;
-	private boolean whiteRelative;
-	private boolean orangeRelative;
-	private boolean neutralRelative;
+	public Relative blackRelative;
+	public Relative whiteRelative;
+	public Relative orangeRelative;
+	public Relative neutralRelative;
 	
 	
 	
 	public Player (ColorPlayer color){
 		this.color=color;
+		Relative blackRelative= new Relative(ColorDice.BLACK);
+		Relative whiteRelative= new Relative(ColorDice.WHITE);
+		Relative orangeRelative= new Relative(ColorDice.ORANGE);
+		Relative neutralRelative= new Relative(null);
+		
 	}
 	
 	

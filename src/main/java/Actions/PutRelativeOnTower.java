@@ -12,6 +12,13 @@ public class PutRelativeOnTower extends PutRelative  {
 	Player player;
 	Card cardtogive;
 	
+	public PutRelativeOnTower(Player player, Tower tower, int floor, Relative relative){
+		this.relative=relative;
+		this.player=player;
+		this.tower=tower;
+		this.floor=floor;
+	}
+	
 	public boolean isApplicable(){
 		if(tower.floors[floor].isFree()&& relative.getValue()>= tower.floors[floor].getCost() && tower.isPresent(player)==false)
 			 {return true;}

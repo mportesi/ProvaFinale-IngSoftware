@@ -11,7 +11,7 @@ public class Play {
 	private ArrayList<Player> currentTurnOrder;
 	
 	
-	public Play(int period, int round, ArrayList<Player> currentTurnOrder){
+	public Play (int period, int round, ArrayList<Player> currentTurnOrder){
 		this.period=period;
 		this.round=round;
 		this.currentTurnOrder=currentTurnOrder;
@@ -100,8 +100,8 @@ public class Play {
 		}
 		
 		public void changePeriod(){
-			period+=1;
-			if(period>4){
+			period++;
+			if(period==4){
 				checkWinner(); //TODO define checkwinner
 			}
 			
