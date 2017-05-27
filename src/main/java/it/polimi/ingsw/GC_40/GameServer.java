@@ -15,7 +15,7 @@ public class GameServer {
 		
 	}
 	
-	public void initializePlayer(int numberOfPlayer){
+	public static void initializePlayer(int numberOfPlayer){
 		for(int i=0; i<numberOfPlayer; i++){
 			Player player=new Player();
 		}

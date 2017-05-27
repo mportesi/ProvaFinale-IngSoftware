@@ -3,11 +3,11 @@ package Effects;
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainVictoryPoint extends Effect {
-	Long victoryPoint;
+	int victoryPoint;
 	
 	
-	public GainVictoryPoint(Long victoryPoint){
-		this.victoryPoint=victoryPoint;
+	public GainVictoryPoint(int costImmediateEffect){
+		this.victoryPoint=costImmediateEffect;
 	}
 
 	@Override

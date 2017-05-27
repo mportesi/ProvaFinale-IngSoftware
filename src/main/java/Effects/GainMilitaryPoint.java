@@ -3,10 +3,10 @@ package Effects;
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainMilitaryPoint extends Effect {
-	Long militaryPoint;
+	int militaryPoint;
 	
-	public GainMilitaryPoint(Long militaryPoint){
-		this.militaryPoint=militaryPoint;
+	public GainMilitaryPoint(int costImmediateEffect){
+		this.militaryPoint=costImmediateEffect;
 	}
 
 	@Override
