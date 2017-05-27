@@ -1,7 +1,9 @@
 package Actions;
 import Components.CouncilPalace;
 import Components.Relative;
+import it.polimi.ingsw.GC_40.Player;
 import Components.Piece;
+
 public class PutRelativeOnCouncil extends PutRelative {
 
 	Relative relative;

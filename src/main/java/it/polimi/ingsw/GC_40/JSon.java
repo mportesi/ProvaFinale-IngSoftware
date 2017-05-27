@@ -53,7 +53,7 @@ public class JSon {
 	 
 	    
 	    String type = (String) card.get("type");
-	    Long period = (Long) card.get("period");
+	    int period = (int) card.get("period");
 	    String name = (String) card.get("name");
 
 	    JSONArray cost= (JSONArray) buildingParser.parse (card.get("cost").toString());
@@ -61,11 +61,11 @@ public class JSon {
 	    JSONArray immediateEffect=(JSONArray) buildingParser.parse (card.get("immediateEffect").toString());
 	    
 
-	    Map<String, Long> costMap = new LinkedHashMap();
+	    Map<String, Integer> costMap = new LinkedHashMap();
 	    for (int i = 0; i < cost.size(); i++) {  
 	    	JSONObject costObject = (JSONObject) cost.get(i);
 	        String typeCost = (String) costObject.get("type");
-	        Long amount = (Long) costObject.get("amount");
+	        int amount = (int) costObject.get("amount");
 	        costMap.put(typeCost, amount);
 	    }
 	    
@@ -77,11 +77,11 @@ public class JSon {
         	
         } va in card*/
 	   
-	    Map<String, Long> immediateEffectMap = new LinkedHashMap();
+	    Map<String, Integer> immediateEffectMap = new LinkedHashMap();
 	    for (int i = 0; i < immediateEffect.size(); i++) {  
 	    	JSONObject immediateEffectObject = (JSONObject) immediateEffect.get(i);
 	        String typeImmediateEffect = (String) immediateEffectObject.get("type");
-	        Long amount = (Long) immediateEffectObject.get("amount");
+	        int amount = (int) immediateEffectObject.get("amount");
 	        immediateEffectMap.put(typeImmediateEffect, amount);
 	    }
 	    
@@ -99,16 +99,16 @@ public class JSon {
 		 
 		    
 		    String type = (String) card.get("type");
-		    Long period = (Long) card.get("period");
+		    int period = (int) card.get("period");
 		    String name = (String) card.get("name");
 		    
 		    JSONArray immediateEffect=(JSONArray) territoryParser.parse (card.get("immediateEffect").toString());
 		    
-		    Map<String, Long> immediateEffectMap = new LinkedHashMap();
+		    Map<String, Integer> immediateEffectMap = new LinkedHashMap();
 		    for (int i = 0; i < immediateEffect.size(); i++) {  
 		    	JSONObject immediateEffectObject = (JSONObject) immediateEffect.get(i);
 		        String typeImmediateEffect = (String) immediateEffectObject.get("type");
-		        Long amount = (Long) immediateEffectObject.get("amount");
+		        int amount = (int) immediateEffectObject.get("amount");
 		        immediateEffectMap.put(typeImmediateEffect, amount);
 		    }
 		    
@@ -126,29 +126,29 @@ public class JSon {
 			 
 			    
 			    String type = (String) card.get("type");
-			    Long period = (Long) card.get("period");
+			    int period = (int) card.get("period");
 			    String name = (String) card.get("name");
-			    Long alternativeCostBoolean= (Long) card.get("alternativeCostBoolean");
-			    Long militaryRequirement=(Long) card.get("militaryRequirement");
-			    Long militaryCost=(Long) card.get("militaryCost");
+			    int alternativeCostBoolean= (int) card.get("alternativeCostBoolean");
+			    int militaryRequirement=(int) card.get("militaryRequirement");
+			    int militaryCost=(int) card.get("militaryCost");
 			    JSONArray cost= (JSONArray) ventureParser.parse (card.get("cost").toString());
 			    
 			    JSONArray immediateEffect=(JSONArray) ventureParser.parse (card.get("immediateEffect").toString());
 			    
 
-			    Map<String, Long> costMap = new LinkedHashMap();
+			    Map<String, Integer> costMap = new LinkedHashMap();
 			    for (int i = 0; i < cost.size(); i++) {  
 			    	JSONObject costObject = (JSONObject) cost.get(i);
 			        String typeCost = (String) costObject.get("type");
-			        Long amount = (Long) costObject.get("amount");
+			        int amount = (int) costObject.get("amount");
 			        costMap.put(typeCost, amount);
 			    }
 			    
-			    Map<String, Long> immediateEffectMap = new LinkedHashMap();
+			    Map<String, Integer> immediateEffectMap = new LinkedHashMap();
 			    for (int i = 0; i < immediateEffect.size(); i++) {  
 			    	JSONObject immediateEffectObject = (JSONObject) immediateEffect.get(i);
 			        String typeImmediateEffect = (String) immediateEffectObject.get("type");
-			        Long amount = (Long) immediateEffectObject.get("amount");
+			        int amount =(int) immediateEffectObject.get("amount");
 			        immediateEffectMap.put(typeImmediateEffect, amount);
 			    }
 			    Card c;
@@ -171,18 +171,18 @@ public class JSon {
 				 
 				    
 				    String type = (String) card.get("type");
-				    Long period = (Long) card.get("period");
+				    int period = (int) card.get("period");
 				    String name = (String) card.get("name");
-				    Long costCoin= (Long) card.get("costCoin");
+				    int costCoin= (int) card.get("costCoin");
 				  
 				    
 				    JSONArray immediateEffect=(JSONArray) buildingParser.parse (card.get("immediateEffect").toString());
 				    
-				    Map<String, Long> immediateEffectMap = new LinkedHashMap();
+				    Map<String, Integer> immediateEffectMap = new LinkedHashMap();
 				    for (int i = 0; i < immediateEffect.size(); i++) {  
 				    	JSONObject immediateEffectObject = (JSONObject) immediateEffect.get(i);
 				        String typeImmediateEffect = (String) immediateEffectObject.get("type");
-				        Long amount = (Long) immediateEffectObject.get("amount");
+				        int amount = (int) immediateEffectObject.get("amount");
 				        immediateEffectMap.put(typeImmediateEffect, amount);
 				    }
 				    

@@ -3,8 +3,9 @@ import Components.Relative;
 import Components.HarvestAndProductionArea;
 import Effects.GainHarvestValue;
 import Effects.GainProductionValue;
+import it.polimi.ingsw.GC_40.Player;
 
-public class PutRelativeOnMarket extends PutRelative {
+public class PutRelativeOnHarvestArea extends PutRelative {
 
 	Relative relative;
 	HarvestAndProductionArea harvestArea;
@@ -22,11 +23,13 @@ public class PutRelativeOnMarket extends PutRelative {
 		if(isApplicable()){
 			if(harvestArea.getLeftPlayer()==null){
 				harvestArea.setLeftPlayer(player);
-				GainProductionValue.apply();
+				GainHarvestValue gainHarvestValue= new GainHarvestValue(1); //???
+				gainHarvestValue.apply(player);
 			}
 			else{
 				harvestArea.setRightPlayer(player);
-				GainProductionValue.apply();
+				GainHarvestValue gainHarvestValue= new GainHarvestValue(-3); //???
+				gainHarvestValue.apply(player);
 			}
 		}
 	}

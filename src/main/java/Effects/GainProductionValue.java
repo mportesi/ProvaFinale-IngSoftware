@@ -1,10 +1,10 @@
 package Effects;
 
 public class GainProductionValue extends Effect {
-	Long productionValue;
+	int productionValue;
 
 	
-	public GainProductionValue(Long productionValue){
+	public GainProductionValue(int productionValue){
 		this.productionValue=productionValue;
 	}
 

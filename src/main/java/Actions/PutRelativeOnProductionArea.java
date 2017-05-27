@@ -2,6 +2,7 @@ package Actions;
 import Components.Relative;
 import Components.HarvestAndProductionArea;
 import Effects.GainProductionValue;
+import it.polimi.ingsw.GC_40.Player;
 public class PutRelativeOnProductionArea extends PutRelative {
 	Relative relative;
 	HarvestAndProductionArea productionArea;
@@ -19,11 +20,13 @@ public class PutRelativeOnProductionArea extends PutRelative {
 		if(isApplicable()){
 			if(productionArea.getLeftPlayer()==null){
 				productionArea.setLeftPlayer(player);
-				GainProductionValue.apply();
+				GainProductionValue gainProductionValue=new GainProductionValue(1); //??
+				gainProductionValue.apply(player);
 			}
 			else{
 				productionArea.setRightPlayer(player);
-				GainProductionValue.apply();
+				GainProductionValue gainProductionValue=new GainProductionValue(-3);
+				gainProductionValue.apply(player);
 			}
 		}
 

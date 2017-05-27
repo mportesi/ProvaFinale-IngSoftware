@@ -11,14 +11,12 @@ import Effects.GainVictoryPoint;
 import Effects.GainWood;
 
 public class CharacterCard extends Card {
-	public Long costCoin;
-	public String conditionToGain;
+	public int costCoin;
 	
-	public CharacterCard(String type,String name,Long period,Long costCoin,String conditionToGain, Map<String, Long> immediateEffect){
+	public CharacterCard(String type,String name,int period,int costCoin, Map<String, Integer> immediateEffect){
 		this.type=type;
 		this.name=name;
 		this.costCoin=costCoin;
-		this.conditionToGain=conditionToGain;
 		this.immediateEffect=immediateEffect;
 	}
 	

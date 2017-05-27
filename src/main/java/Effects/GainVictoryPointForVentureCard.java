@@ -1,17 +1,21 @@
 package Effects;
 
+import Components.Card;
+import Components.VentureCard;
+import it.polimi.ingsw.GC_40.Player;
+
 public class GainVictoryPointForVentureCard extends Effect {
-Long victoryPoint;
+int victoryPoint;
 	
 	
-	public GainVictoryPointForVentureCard(Long victoryPoint){
-		this.victoryPoint=victoryPoint;
+	public GainVictoryPointForVentureCard(int costImmediateEffect){
+		this.victoryPoint=costImmediateEffect;
 	}
 
 	@Override
 	public void apply(Player player) {
-		// TODO Auto-generated method stub
-		int counter= player.counter(VentureCard);
+		VentureCard ventureCard;
+		int counter= player.counter(ventureCard);
 		player.incrementVictoryPoint(victoryPoint*counter);
 
 	}
