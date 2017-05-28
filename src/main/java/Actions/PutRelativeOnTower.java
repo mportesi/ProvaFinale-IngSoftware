@@ -5,7 +5,7 @@ import Components.Relative;
 import Components.Tower;
 import it.polimi.ingsw.GC_40.Player;
 
-public class PutRelativeOnTower extends PutRelative  {
+public class PutRelativeOnTower extends PutRelative {
 	Tower tower;
 	Relative relative;
 	int floor;
