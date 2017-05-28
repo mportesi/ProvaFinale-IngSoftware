@@ -6,6 +6,7 @@ public class PrivilegeCouncil extends Piece {
 	
 	public static void giveBonus(Piece piece, Player player){
 		piece.incrementPrivilegeCouncil(player);
+		
 		}
 
 	@Override
