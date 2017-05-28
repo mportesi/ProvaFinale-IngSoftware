@@ -14,8 +14,7 @@ int victoryPoint;
 
 	@Override
 	public void apply(Player player) {
-		VentureCard ventureCard;
-		int counter= player.counter(ventureCard);
+		int counter= player.counter("ventureCard");
 		player.incrementVictoryPoint(victoryPoint*counter);
 
 	}

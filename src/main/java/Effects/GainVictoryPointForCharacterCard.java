@@ -11,8 +11,7 @@ public class GainVictoryPointForCharacterCard extends Effect {
 	}
 	@Override
 	public void apply(Player player) {
-		CharacterCard characterCard;
-		int counter= player.counter(characterCard);
+		int counter= player.counter("characterCard");
 		player.incrementVictoryPoint(victoryPoint*counter);
 
 	}

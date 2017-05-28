@@ -15,7 +15,7 @@ public class GainVictoryPointForBuildingCard extends Effect {
 	public void apply(Player player) {
 		// TODO Auto-generated method stub
 		BuildingCard buildingCard;
-		int counter= player.counter(buildingCard);
+		int counter= player.counter("buildingCard");
 		player.incrementVictoryPoint(victoryPoint*counter);
 
 	}

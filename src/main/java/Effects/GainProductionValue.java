@@ -1,5 +1,7 @@
 package Effects;
 
+import it.polimi.ingsw.GC_40.Player;
+
 public class GainProductionValue extends Effect {
 	int productionValue;
 
@@ -9,7 +11,7 @@ public class GainProductionValue extends Effect {
 	}
 
 	@Override
-	public static void apply(Player player) {
+	public void apply(Player player) {
 		// TODO Auto-generated method stub
 
 	}
