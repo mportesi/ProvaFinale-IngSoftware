@@ -1,25 +1,32 @@
 package Components;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import it.polimi.ingsw.GC_40.Player;
 
 public class CouncilPalace {
-	private Player[] order;
+	private ArrayList<Player> order=new ArrayList<Player>();
+	private int orderIndex=0;
 	
-	public void setOrder(){
-		order= new Player[4];
-	}
-	public void giveBonus(String r, Player player){
+	
+	public void giveBonus(Piece r, Player player){
 		player.incrementCoin(1);
 		PrivilegeCouncil.giveBonus(r, player);
 	}
 
-	public Player[] getOrder() {
+	public ArrayList<Player> getOrder() {
 		return order;
 	}
+	
 	public void refresh(){
-		Arrays.fill(order, 0);
+		order.clear();
+		orderIndex=0;
+	}
+	
+	public void addPlayer(Player player) {
+		order.add(orderIndex, player);
+		orderIndex+=1;
 	}
 	
 

@@ -1,8 +1,11 @@
 package it.polimi.ingsw.GC_40;
 
+import java.util.ArrayList;
+
 import Components.BuildingCard;
 import Components.Card;
 import Components.LeaderTile;
+import Components.Relative;
 import Components.TerritoryCard;
 import Components.VentureCard;
 import Components.CharacterCard;
@@ -16,15 +19,27 @@ public class Player {
 	private int faithPoint;
 	private int victoryPoint;
 	private int militaryPoint;
-	private TerritoryCard[] territoryCard;
-	private CharacterCard[] characterCard;
-	private BuildingCard[] buildingCard;
-	private VentureCard[] ventureCard;
-	private LeaderTile[] leader;
-	private boolean blackRelative;
-	private boolean whiteRelative;
-	private boolean orangeRelative;
-	private boolean neutralRelative;
+	private ArrayList<TerritoryCard> territoryCard;
+	private ArrayList<CharacterCard> characterCard;
+	private ArrayList<BuildingCard> buildingCard;
+	private ArrayList<VentureCard> ventureCard;
+	private ArrayList<LeaderTile> leader;
+	public Relative blackRelative;
+	public Relative whiteRelative;
+	public Relative orangeRelative;
+	public Relative neutralRelative;
+	
+	
+	
+	public Player (ColorPlayer color){
+		this.color=color;
+		Relative blackRelative= new Relative(ColorDice.BLACK);
+		Relative whiteRelative= new Relative(ColorDice.WHITE);
+		Relative orangeRelative= new Relative(ColorDice.ORANGE);
+		Relative neutralRelative= new Relative(null);
+		
+	}
+	
 	
 	public int getCoin() {
 		return coin;
@@ -50,21 +65,22 @@ public class Player {
 	public int getMilitaryPoint() {
 		return militaryPoint;
 	}
-	public Card[] getTerritory() {
+	public ArrayList<TerritoryCard> getTerritory() {
 		return territoryCard;
 	}
-	public Card[] getCharacter() {
+	public ArrayList<CharacterCard> getCharacter() {
 		return characterCard;
 	}
-	public Card[] getBuilding() {
+	public ArrayList<BuildingCard> getBuilding() {
 		return buildingCard;
 	}
-	public Card[] getVenture() {
+	public ArrayList<VentureCard> getVenture() {
 		return ventureCard;
 	}
-	public LeaderTile[] getLeader() {
+	public ArrayList<LeaderTile> getLeader() {
 		return leader;
 	}
+
 	public void incrementCoin(int n){
 		coin+=n;
 	}
@@ -107,25 +123,24 @@ public class Player {
 	public void decrementVictoryPoint(int n){
 		coin-=n;
 	}
-	public int counter(Card c){
-		String type=c.getType();
+	public int counter(String cardType){
 		int i=0;
-		if(type.equals(buildingCard)){
+		if(cardType.equals(buildingCard)){
 		   for(Card card:buildingCard){ 
 			if (card!=null){ i+=1;}
 		   }
 		}
-		if(type.equals(territoryCard)){
+		if(cardType.equals(territoryCard)){
 			for(Card card:territoryCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(type.equals(ventureCard)){
+		if(cardType.equals(ventureCard)){
 			   for(Card card:ventureCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(type.equals(characterCard)){
+		if(cardType.equals(characterCard)){
 			   for(Card card:characterCard){ 
 				if (card!=null){ i+=1;}
 			}
@@ -133,5 +148,28 @@ public class Player {
 		return i;
 	}
 	
-	
-}
+	public void getCard(Card card){
+		String type=card.getType();
+		switch(type){
+		case "territoryCard": {
+			territoryCard.add((TerritoryCard) card);
+			break;
+		}
+		case "buildingCard": {
+			buildingCard.add((BuildingCard) card);
+
+			break;
+		}
+		case "characterCard": {
+			characterCard.add((CharacterCard) card);
+			break;
+		}
+		case "ventureCard": {
+			ventureCard.add((VentureCard) card);
+			break;
+		}
+		}
+		
+		}
+	}
+

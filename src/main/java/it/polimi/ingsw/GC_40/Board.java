@@ -25,7 +25,7 @@ public class Board {
 	public static Dice blackDice;
 	public static Dice whiteDice;
 	public static Dice orangeDice;
-	public static Card[] deck;
+	public static ArrayList<Card> deck;
 	
 	
 	public Board(){
@@ -75,7 +75,23 @@ public class Board {
 		orangeDice= new Dice(ColorDice.ORANGE);
 	}
 	
+	
+	
+	
 	public ArrayList<Card> createDeck(int period, String type){
+		for (Card card : JSon.characterDeck){
+			 deck.add(card);
+		}
+		for (Card card : JSon.buildingDeck){
+			 deck.add(card);
+		}
+		for (Card card : JSon.territoryDeck){
+			 deck.add(card);
+		}
+		for (Card card : JSon.ventureDeck){
+			 deck.add(card);
+		}
+		
 			ArrayList<Card> newDeck= new ArrayList<Card>();
 			for(Card c:deck){
 				if (c.getType().equals(type) && c.getPeriod()==period){
@@ -86,6 +102,5 @@ public class Board {
 			
 		}
 
-		
 
 }

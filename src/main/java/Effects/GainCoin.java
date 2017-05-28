@@ -3,15 +3,14 @@ package Effects;
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainCoin extends Effect {
-	Long coin;
+	int coin;
 	
-	public GainCoin(Long coin){
-		this.coin=coin;
+	public GainCoin(int costImmediateEffect){
+		this.coin=costImmediateEffect;
 	}
 
 	@Override
-	public void apply() {
-		// TODO Auto-generated method stub
+	public void apply(Player player) {
 		player.incrementCoin(coin);
 	}
 

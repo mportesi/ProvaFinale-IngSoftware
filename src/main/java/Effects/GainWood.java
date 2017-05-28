@@ -3,15 +3,14 @@ package Effects;
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainWood extends Effect {
-	Long wood;
+	int wood;
 	
-	public GainWood(Long wood){
-		this.wood=wood;
+	public GainWood(int costImmediateEffect){
+		this.wood=costImmediateEffect;
 	}
 
 	@Override
-	public void apply() {
-		// TODO Auto-generated method stub
+	public void apply(Player player) {
 		player.incrementWood(wood);
 
 	}

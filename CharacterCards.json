@@ -1,10 +1,211 @@
 [{
-  "name":"noble",
-  "type":"character",
-  "period":3,
-  "costCoin":1,
-  "conditionToGain":"territoryCard",
+  "name":"abbess",
+  "type":"characterCard",
+  "period":1,
+  "costCoin":3, "getCard":"anyone", "valueGetCard":4, "discount":[],
   "immediateEffect":[
-    {"type":"GainVictoryPoint", "amount":0}
+    {"type":"GainFaithPoint", "amount":1}]
+},
+{
+  "name":"preacher",
+  "type":"characterCard",
+  "period":1,
+  "costCoin":2,
+  "immediateEffect":[
+    {"type":"GainFaithPoint", "amount":4}
   ]
-}]
+},
+{
+  "name":"dame",
+  "type":"characterCard",
+  "period":1,
+  "costCoin":4,
+  "immediateEffect":[
+  ]
+},
+{
+  "name":"knight",
+  "type":"characterCard",
+  "period":1,
+  "costCoin":2,
+  "immediateEffect":[
+    {"type":"GainPrivilegeCouncil", "amount":1}
+  ]
+},
+{
+  "name":"farmer",
+  "type":"characterCard",
+  "period":1,
+  "costCoin":3,
+  "immediateEffect":[
+  ]
+},
+{
+  "name":"artisan",
+  "type":"characterCard",
+  "period":1,
+  "costCoin":3,
+  "immediateEffect":[
+  ]
+},
+{
+  "name":"builder",
+  "type":"characterCard",
+  "period":1,
+  "costCoin":4,
+  "immediateEffect":[
+  ]
+},
+{
+  "name":"leader",
+  "type":"characterCard",
+  "period":1,
+  "costCoin":2,
+  "immediateEffect":[
+    {"type":"GainMilitaryPoint", "amount":3}
+  ]
+},
+{
+  "name":"papalMessenger",
+  "type":"characterCard",
+  "period":2,
+  "costCoin":5,
+  "immediateEffect":[
+    {"type":"GainFaithPoint", "amount":3}
+  ]
+},
+{
+  "name":"farmer",
+  "type":"characterCard",
+  "period":2,
+  "costCoin":4,
+  "immediateEffect":[
+  ]
+},
+{
+  "name":"royalMessenger",
+  "type":"characterCard",
+  "period":2,
+  "costCoin":5,
+  "immediateEffect":[
+    {"type":"GainPrivilegeCouncil", "amount":3}
+  ]
+},
+{
+  "name":"patron",
+  "type":"characterCard",
+  "period":2,
+  "costCoin":3,
+ "getCard":"characterCard", "valueGetCard":6, "discount":[{"typeDiscount":"coin", "amount":2}],  "immediateEffect":[
+ ]
+},
+{
+  "name":"captain",
+  "type":"characterCard",
+  "period":2,
+  "costCoin":4,
+ "getCard":"territoryCard", "valueGetCard":6, "discount":[], "immediateEffect":[
+    {"type":"GainMilitaryPoint", "amount":2}]
+},
+{
+  "name":"scholar",
+  "type":"characterCard",
+  "period":2,
+  "costCoin":4,
+  "immediateEffect":[
+  ]
+},
+{
+  "name":"architect",
+  "type":"characterCard",
+  "period":2,
+  "costCoin":4,
+ "getCard":"buildingCard", "valueGetCard":6, "discount":[{"type":"wood", "amount":1}, {"type":"stone", "amount":1}], "immediateEffect":[
+]
+},
+{
+  "name":"hero",
+  "type":"characterCard",
+  "period":2,
+  "costCoin":4,
+ "getCard":"ventureCard", "valueGetCard":6, "discount":[], "immediateEffect":[
+    {"type":"GivePrivilegeCouncil", "amount":1}]
+},
+{
+  "name":"cardinal",
+  "type":"characterCard",
+  "period":3,
+  "costCoin":4,
+  "immediateEffect":[
+    {"type":"GiveFaithPoint", "amount":2},
+    {"type":"GainHarvestValue", "amount":4}
+  ]
+},
+{
+  "name":"herald",
+  "type":"characterCard",
+  "period":3,
+  "costCoin":6,
+  "immediateEffect":[
+    {"type":"GiveVictoryPointForVentureCard", "amount":2}
+  ]
+},
+{
+  "name":"bishop",
+  "type":"characterCard",
+  "period":3,
+  "costCoin":5,
+  "immediateEffect":[
+    {"type":"GiveFaithPoint", "amount":1},
+    {"type":"GiveProductionValue", "amount":4}
+  ]
+},
+{
+  "name":"ambassador",
+  "type":"characterCard",
+  "period":3,
+  "costCoin":6,
+ "getCard":"anyone", "valueGetCard":7, "discount":[], "immediateEffect":[
+    {"type":"GivePrivilegeCouncil", "amount":1} ]
+},
+{
+  "name":"courtesan",
+  "type":"characterCard",
+  "period":3,
+  "costCoin":7,
+  "immediateEffect":[
+    {"type":"GainVictoryPointForCharacterCard", "amount":2}
+  ]
+},
+{
+  "name":"general",
+  "type":"characterCard",
+  "period":3,
+  "costCoin":5,
+  "immediateEffect":[
+    {"type":"GiveVictoryPointForMilitaryPoint", "amount":1}
+  ]
+},
+{
+  "name":"noble",
+  "type":"characterCard",
+  "period":3,
+  "costCoin":6,
+  "immediateEffect":[
+    {"type":"GiveVictoryPointForTerritoryCard", "amount":2}
+  ]
+},
+{
+  "name":"governor",
+  "type":"characterCard",
+  "period":3,
+  "costCoin":6,
+  "immediateEffect":[
+    {"type":"GainVictoryPointForBuildingCard", "amount":2}
+  ]
+}
+
+
+
+
+]

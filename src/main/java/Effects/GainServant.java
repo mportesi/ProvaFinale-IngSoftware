@@ -3,17 +3,17 @@ package Effects;
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainServant extends Effect {
-	Long servant;
+	int servant;
 	
-	public GainServant(Long servant){
-		this.servant=servant;
+	public GainServant(int costImmediateEffect){
+		this.servant=costImmediateEffect;
 	}
 	
 
 	@Override
-	public void apply() {
+	public void apply(Player player) {
 		// TODO Auto-generated method stub
-		Player.incrementServant(servant);
+		player.incrementServant(servant);
 		
 
 	}

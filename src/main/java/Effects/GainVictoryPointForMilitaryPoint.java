@@ -1,17 +1,19 @@
 package Effects;
 
+import it.polimi.ingsw.GC_40.Player;
+
 public class GainVictoryPointForMilitaryPoint extends Effect {
-	Long victoryPoint;
+	int victoryPoint;
 	
 	
-	public GainVictoryPointForMilitaryPoint(Long victoryPoint){
-		this.victoryPoint=victoryPoint;
+	public GainVictoryPointForMilitaryPoint(int costImmediateEffect){
+		this.victoryPoint=costImmediateEffect;
 	}
 
 	@Override
-	public void apply() {
+	public void apply(Player player) {
 		// TODO Auto-generated method stub
-		counter=player.getMilitaryPoint();
+		int counter=player.getMilitaryPoint();
 		player.incrementVictoryPoint(victoryPoint*counter);
 
 	}

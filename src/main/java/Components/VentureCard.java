@@ -3,12 +3,12 @@ package Components;
 import java.util.Map;
 
 public class VentureCard extends Card {
-	private Long alternativeCostBoolean;
-	private Map<String,Long> cost;
-	private Long militaryRequirement;
-	private Long militaryCost;
+	private int alternativeCostBoolean;
+	private Map<String,Integer> cost;
+	private int militaryRequirement;
+	private int militaryCost;
 	
-	public VentureCard(String type,String name,Long period,Map<String,Long> costMap,Long militaryRequirement,Long militaryCost,Map<String,Long> immediateEffectMap){
+	public VentureCard(String type,String name,int period,Map<String,Integer> costMap,int militaryRequirement,int militaryCost,Map<String,Integer> immediateEffectMap){
 		this.type=type;
 		this.name=name;
 		this.period=period;
@@ -18,22 +18,23 @@ public class VentureCard extends Card {
 		this.immediateEffect=immediateEffect;
 	};
 	
-	public VentureCard(String type,String name,Long period,Map<String,Long> cost, Map<String,Long> immediateEffect){
+	public VentureCard(String type,String name,int period,Map<String,Integer> cost, Map<String,Integer> immediateEffect){
 		this.type=type;
 		this.name=name;
 		this.period=period;
 		this.cost=cost;
 		this.immediateEffect=immediateEffect;
-		militaryRequirement=(long) 0;
-		militaryCost=(long) 0;
+		militaryRequirement= 0;
+		militaryCost=0;
 	}
 	
-	public VentureCard(String type,String name,Long period,Long militaryRequirement,Long militaryCost,Map<String,Long> immediateEffectMap){
+	public VentureCard(String type,String name,int period,int militaryRequirement,int militaryCost,Map<String,Integer> cost, Map<String,Integer> immediateEffectMap){
 		this.type=type;
 		this.name=name;
 		this.period=period;
 		this.militaryRequirement=militaryRequirement;
 		this.militaryCost=militaryCost;
+		this.cost=cost;
 		this.immediateEffect=immediateEffect;
 		cost=null;
 	};

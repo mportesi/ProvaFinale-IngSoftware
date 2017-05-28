@@ -6,6 +6,9 @@ import java.util.Map;
 
 import Effects.Effect;
 import Effects.GainCoin;
+import Effects.GainFaithPoint;
+import Effects.GainMilitaryPoint;
+import Effects.GainServant;
 import Effects.GainStone;
 import Effects.GainVictoryPoint;
 import Effects.GainVictoryPointForBuildingCard;
@@ -14,12 +17,13 @@ import Effects.GainVictoryPointForMilitaryPoint;
 import Effects.GainVictoryPointForTerritoryCard;
 import Effects.GainVictoryPointForVentureCard;
 import Effects.GainWood;
+import it.polimi.ingsw.GC_40.Player;
 
 public class Card {
 	protected String type;
 	protected String name;
-	protected Long period;
-	protected Map<String, Long> immediateEffect;
+	protected int period;
+	protected Map<String, Integer> immediateEffect;
 	protected List<Effect> iEffect;
 	
 	public void createListOfEffect(){
@@ -30,7 +34,7 @@ public class Card {
 		}
 		for(int i=0; i<keys.size(); i++){
 			String effect= keys.get(i);
-			Long costImmediateEffect= immediateEffect.get(effect);
+			int costImmediateEffect= immediateEffect.get(effect);
 			switch(effect){
 			case "GainCoin":{
 				GainCoin gainCoin= new GainCoin(costImmediateEffect);
@@ -83,24 +87,24 @@ public class Card {
 			}
 			case "GainFaithPoint":{
 				GainFaithPoint gainFaithPoint= new GainFaithPoint(costImmediateEffect);
-				iEffect.add(gainWood);
+				iEffect.add(gainFaithPoint);
 				break;
 			}
 			case "GainMilitaryPoint":{
 				GainMilitaryPoint gainMilitaryPoint= new GainMilitaryPoint(costImmediateEffect);
-				iEffect.add(gainStone);
+				iEffect.add(gainMilitaryPoint);
 				break;
 			}
 		}
 		}
 	}
 	
-	public void applyEffect(){
+	public void applyEffect(Player player){
 		createListOfEffect();
 	
 		for (Effect e: iEffect){
 			if(e!=null){
-			e.apply();}
+			e.apply(player);}
 			else{return;}
 		}
 	}
@@ -114,7 +118,7 @@ public class Card {
 		return name;
 	}
 	
-	public Long getPeriod(){
+	public int getPeriod(){
 		return period;
 	}
 	
