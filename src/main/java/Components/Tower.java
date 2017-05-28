@@ -5,7 +5,6 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_40.Player;
 
-
 public class Tower {
 	private String type;
 	public ArrayList <Floor> floors;
@@ -21,22 +20,25 @@ public class Tower {
 		this.deck3=deck3;
 		this.floors=floors;
 	}
-	
-	public String getType(){
+
+	public String getType() {
 		return type;
 	}
-	
-	
-	
-	public void refreshTower(int period){
-		ArrayList<Card> deck=new ArrayList<Card>();
-		switch(period){
-		case 1: deck=deck1;
-				break;
-		case 2: deck=deck2;
-				break;
-		case 3: deck=deck3;
-				break;
+
+	// To empty the towers at the end of the round and to recharge them with new
+	// cards
+	public void refreshTower(int period) {
+		ArrayList<Card> deck = new ArrayList<Card>();
+		switch (period) {
+		case 1:
+			deck = deck1;
+			break;
+		case 2:
+			deck = deck2;
+			break;
+		case 3:
+			deck = deck3;
+			break;
 		}
 		
 		for(Floor f : floors){
@@ -55,8 +57,5 @@ public class Tower {
 		}
 		return false;
 	}
-	
-	
-	
-	
+
 }

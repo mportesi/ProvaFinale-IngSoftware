@@ -1,5 +1,7 @@
 package Effects;
 
+import it.polimi.ingsw.GC_40.Player;
+
 public class GainVictoryPointForTerritoryCard extends Effect {
 	int victoryPoint;
 	
@@ -9,8 +11,7 @@ public class GainVictoryPointForTerritoryCard extends Effect {
 
 	@Override
 	public void apply(Player player) {
-		// TODO Auto-generated method stub
-		counter=player.counter(TerritoryCard);
+		int counter=player.counter("territoryCard");
 		player.incrementVictoryPoint(victoryPoint*counter);
 
 	}

@@ -25,103 +25,110 @@ public class Card {
 	protected int period;
 	protected Map<String, Integer> immediateEffect;
 	protected List<Effect> iEffect;
-	
-	public void createListOfEffect(){
-		iEffect= new ArrayList<Effect>();
-		List<String> keys= new ArrayList<String>();
-		for(String key: immediateEffect.keySet()){
+
+	// This method create the list of the Effect of the card from a Map<String,
+	// Integer>
+	public void createListOfEffect() {
+		iEffect = new ArrayList<Effect>();
+		List<String> keys = new ArrayList<String>();
+		for (String key : immediateEffect.keySet()) {
 			keys.add(key);
 		}
-		for(int i=0; i<keys.size(); i++){
-			String effect= keys.get(i);
-			int costImmediateEffect= immediateEffect.get(effect);
-			switch(effect){
-			case "GainCoin":{
-				GainCoin gainCoin= new GainCoin(costImmediateEffect);
+		for (int i = 0; i < keys.size(); i++) {
+			String effect = keys.get(i);
+			int costImmediateEffect = immediateEffect.get(effect);
+			switch (effect) {
+			case "GainCoin": {
+				GainCoin gainCoin = new GainCoin(costImmediateEffect);
 				iEffect.add(gainCoin);
 				break;
 			}
-			case "GainWood":{
-				GainWood gainWood= new GainWood(costImmediateEffect);
+			case "GainWood": {
+				GainWood gainWood = new GainWood(costImmediateEffect);
 				iEffect.add(gainWood);
 				break;
 			}
-			case "GainStone":{
-				GainStone gainStone= new GainStone(costImmediateEffect);
+			case "GainStone": {
+				GainStone gainStone = new GainStone(costImmediateEffect);
 				iEffect.add(gainStone);
 				break;
 			}
-			case "GainServant":{
-				GainServant gainServant= new GainServant(costImmediateEffect);
+			case "GainServant": {
+				GainServant gainServant = new GainServant(costImmediateEffect);
 				iEffect.add(gainServant);
 			}
-			case "GainVictoryPoint":{
-				GainVictoryPoint gainVictoryPoint= new GainVictoryPoint(costImmediateEffect);
+			case "GainVictoryPoint": {
+				GainVictoryPoint gainVictoryPoint = new GainVictoryPoint(costImmediateEffect);
 				iEffect.add(gainVictoryPoint);
 				break;
 			}
-			case "GainVictoryPointForMilitaryPoint":{
-				GainVictoryPointForMilitaryPoint gainVictoryPointForMilitaryPoint= new GainVictoryPointForMilitaryPoint(costImmediateEffect);
+			case "GainVictoryPointForMilitaryPoint": {
+				GainVictoryPointForMilitaryPoint gainVictoryPointForMilitaryPoint = new GainVictoryPointForMilitaryPoint(
+						costImmediateEffect);
 				iEffect.add(gainVictoryPointForMilitaryPoint);
 				break;
 			}
-			case "GainVictoryPointForTerritoryCard":{
-				GainVictoryPointForTerritoryCard gainVictoryPointForTerritoryCard= new GainVictoryPointForTerritoryCard(costImmediateEffect);
+			case "GainVictoryPointForTerritoryCard": {
+				GainVictoryPointForTerritoryCard gainVictoryPointForTerritoryCard = new GainVictoryPointForTerritoryCard(
+						costImmediateEffect);
 				iEffect.add(gainVictoryPointForTerritoryCard);
 				break;
 			}
-			case "GainVictoryPointForBuildingCard":{
-				GainVictoryPointForBuildingCard gainVictoryPointForBuildingCard= new GainVictoryPointForBuildingCard(costImmediateEffect);
+			case "GainVictoryPointForBuildingCard": {
+				GainVictoryPointForBuildingCard gainVictoryPointForBuildingCard = new GainVictoryPointForBuildingCard(
+						costImmediateEffect);
 				iEffect.add(gainVictoryPointForBuildingCard);
 				break;
 			}
-			case "GainVictoryPointForVentureCard":{
-				GainVictoryPointForVentureCard gainVictoryPointForVentureCard= new GainVictoryPointForVentureCard(costImmediateEffect);
+			case "GainVictoryPointForVentureCard": {
+				GainVictoryPointForVentureCard gainVictoryPointForVentureCard = new GainVictoryPointForVentureCard(
+						costImmediateEffect);
 				iEffect.add(gainVictoryPointForVentureCard);
 				break;
 			}
-			case "GainVictoryPointForCharacterCard":{
-				GainVictoryPointForCharacterCard gainVictoryPointForCharacterCard= new GainVictoryPointForCharacterCard(costImmediateEffect);
+			case "GainVictoryPointForCharacterCard": {
+				GainVictoryPointForCharacterCard gainVictoryPointForCharacterCard = new GainVictoryPointForCharacterCard(
+						costImmediateEffect);
 				iEffect.add(gainVictoryPointForCharacterCard);
 				break;
 			}
-			case "GainFaithPoint":{
-				GainFaithPoint gainFaithPoint= new GainFaithPoint(costImmediateEffect);
+			case "GainFaithPoint": {
+				GainFaithPoint gainFaithPoint = new GainFaithPoint(costImmediateEffect);
 				iEffect.add(gainFaithPoint);
 				break;
 			}
-			case "GainMilitaryPoint":{
-				GainMilitaryPoint gainMilitaryPoint= new GainMilitaryPoint(costImmediateEffect);
+			case "GainMilitaryPoint": {
+				GainMilitaryPoint gainMilitaryPoint = new GainMilitaryPoint(costImmediateEffect);
 				iEffect.add(gainMilitaryPoint);
 				break;
 			}
-		}
-		}
-	}
-	
-	public void applyEffect(Player player){
-		createListOfEffect();
-	
-		for (Effect e: iEffect){
-			if(e!=null){
-			e.apply(player);}
-			else{return;}
+			}
 		}
 	}
-	
 
-	public String getType(){
+	// to apply immediate effects
+	public void applyEffect(Player player) {
+		createListOfEffect();
+
+		for (Effect e : iEffect) {
+			if (e != null) {
+				e.apply(player);
+			} else {
+				return;
+			}
+		}
+	}
+
+	public String getType() {
 		return type;
 	};
-	
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
-	
-	public int getPeriod(){
+
+	public int getPeriod() {
 		return period;
 	}
-	
-	
 
 }

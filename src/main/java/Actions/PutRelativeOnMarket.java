@@ -1,4 +1,5 @@
 package Actions;
+
 import Components.Relative;
 import it.polimi.ingsw.GC_40.Player;
 import Components.MarketBuilding;
@@ -8,22 +9,24 @@ public class PutRelativeOnMarket extends PutRelative {
 	Relative relative;
 	MarketBuilding market;
 	Player player;
-	
+
 	@Override
 	public boolean isApplicable() {
-		if(market.IsOccupied()){
+		if (market.IsOccupied()) {
 			return false;
-		}
-		else if(relative.getValue() >= market.getCost()){
+		} else if (relative.getValue() >= market.getCost()) {
 			return true;
-		}
-		else return false;
+		} else
+			return false;
 	}
 
 	@Override
 	public void apply() {
-		if(isApplicable()){
+		if (isApplicable()) {
+			// set the market as occupied because none can put other relatives
+			// in that space
 			market.setOccupied();
+			// take the bonus
 			market.giveBonus(player, market);
 		}
 	}

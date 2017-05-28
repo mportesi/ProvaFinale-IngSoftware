@@ -77,7 +77,7 @@ public class GameServer {
 			 //dimmi torre e piano [color;piano]
 			 
 			 //case per torre
-			 PutRelativeOnTower
+			 
 			 					
 			 
 		 }

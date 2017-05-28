@@ -6,7 +6,6 @@ public class Stone extends Resource {
 
 	@Override
 	public void incrementPrivilegeCouncil(Player player) {
-		// TODO Auto-generated method stub
 		player.incrementStone(1);
 		player.incrementWood(1);
 		

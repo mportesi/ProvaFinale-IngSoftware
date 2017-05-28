@@ -128,22 +128,22 @@ public class Player {
 	public int counter(Card c){
 		String type=c.getType();
 		int i=0;
-		if(type.equals(buildingCard)){
+		if(cardType.equals(buildingCard)){
 		   for(Card card:buildingCard){ 
 			if (card!=null){ i+=1;}
 		   }
 		}
-		if(type.equals(territoryCard)){
+		if(cardType.equals(territoryCard)){
 			for(Card card:territoryCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(type.equals(ventureCard)){
+		if(cardType.equals(ventureCard)){
 			   for(Card card:ventureCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(type.equals(characterCard)){
+		if(cardType.equals(characterCard)){
 			   for(Card card:characterCard){ 
 				if (card!=null){ i+=1;}
 			}
