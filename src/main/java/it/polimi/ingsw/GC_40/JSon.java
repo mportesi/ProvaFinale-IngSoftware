@@ -178,7 +178,7 @@ public class JSon {
 			}
 
 			if (bonusCard != null) {
-				int value = (int) card.get("value");
+				int valueGetCard = (int) card.get("valueGetCard");
 				JSONArray discount = (JSONArray) buildingParser.parse(card.get("discount").toString());
 
 				Map<String, Integer> discountMap = new LinkedHashMap();
@@ -189,14 +189,16 @@ public class JSon {
 					discountMap.put(typeDiscount, amount);
 				}
 
-				Card c = new CharacterCard(type, name, period, costCoin, bonusCard, value, discountMap,
+				Card c = new CharacterCard(type, name, period, costCoin, bonusCard, valueGetCard, discountMap,
 						immediateEffectMap);
+				characterDeck.add(c);
 			} else {
 
 				Card c = new CharacterCard(type, name, period, costCoin, immediateEffectMap);
+				characterDeck.add(c);
 			}
 
-			characterDeck.add(c); 
+			 
 		}
 
 	}

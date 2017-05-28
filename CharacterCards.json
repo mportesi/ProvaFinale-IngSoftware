@@ -2,11 +2,9 @@
   "name":"abbess",
   "type":"characterCard",
   "period":1,
-  "costCoin":3,
+  "costCoin":3, "getCard":"anyone", "valueGetCard":4, "discount":[],
   "immediateEffect":[
-    {"type":"GainFaithPoint", "amount":1},
-    {"type":"GetCard", "amount":4}
-  ]
+    {"type":"GainFaithPoint", "amount":1}]
 },
 {
   "name":"preacher",
@@ -98,19 +96,16 @@
   "type":"characterCard",
   "period":2,
   "costCoin":3,
-  "immediateEffect":[
-    {"type":"GetCharacterCard", "amount":6}
-  ]
+ "getCard":"characterCard", "valueGetCard":6, "discount":[{"typeDiscount":"coin", "amount":2}],  "immediateEffect":[
+ ]
 },
 {
   "name":"captain",
   "type":"characterCard",
   "period":2,
   "costCoin":4,
-  "immediateEffect":[
-    {"type":"GainMilitaryPoint", "amount":2},
-    {"type":"GetCard", "amount":6}
-  ]
+ "getCard":"territoryCard", "valueGetCard":6, "discount":[], "immediateEffect":[
+    {"type":"GainMilitaryPoint", "amount":2}]
 },
 {
   "name":"scholar",
@@ -125,19 +120,16 @@
   "type":"characterCard",
   "period":2,
   "costCoin":4,
-  "immediateEffect":[
-    {"type":"GetCard", "amount":6}
-  ]
+ "getCard":"buildingCard", "valueGetCard":6, "discount":[{"type":"wood", "amount":1}, {"type":"stone", "amount":1}], "immediateEffect":[
+]
 },
 {
   "name":"hero",
   "type":"characterCard",
   "period":2,
   "costCoin":4,
-  "immediateEffect":[
-    {"type":"GivePrivilegeCouncil", "amount":1},
-    {"type":"GetCard", "amount":6}
-  ]
+ "getCard":"ventureCard", "valueGetCard":6, "discount":[], "immediateEffect":[
+    {"type":"GivePrivilegeCouncil", "amount":1}]
 },
 {
   "name":"cardinal",
@@ -173,10 +165,8 @@
   "type":"characterCard",
   "period":3,
   "costCoin":6,
-  "immediateEffect":[
-    {"type":"GivePrivilegeCouncil", "amount":1},
-    {"type":"GiveProductionValue", "amount":4}
-  ]
+ "getCard":"anyone", "valueGetCard":7, "discount":[], "immediateEffect":[
+    {"type":"GivePrivilegeCouncil", "amount":1} ]
 },
 {
   "name":"courtesan",
