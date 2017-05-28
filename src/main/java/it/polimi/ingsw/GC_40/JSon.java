@@ -288,7 +288,7 @@ public class JSon {
 			  }*/
 			  
 		  //CharacterCard
-			/*
+			
 			  JSONParser characterParser = new JSONParser();
 				JSONArray characterArray = (JSONArray) characterParser.parse(new FileReader("C:/Users/Sara/Desktop/Polimi/III anno/II semestre/Ingegneria del software_Gianpaolo Cugola/Workspace/Lab1/ProvaFinale-IngSoftware/Carte Torri.json"));
 				  for (Object o : characterArray)
@@ -315,7 +315,7 @@ public class JSon {
 				    Card c= new CharacterCard(type, name, period, costCoin,  immediateEffectMap);
 				   
 					characterDeck.add(c);
-				  }*/
+				  }
 				 
 		 
 	  
