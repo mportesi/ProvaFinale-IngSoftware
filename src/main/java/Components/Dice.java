@@ -17,6 +17,7 @@ public class Dice {
 		return value;
 	}
 	
+	//to throw the dices when the round is finished
 	public int roll(){
 		return (int) (Math.random()*6)+1;
 	}

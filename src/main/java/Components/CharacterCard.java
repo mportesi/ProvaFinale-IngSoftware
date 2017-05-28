@@ -16,6 +16,7 @@ public class CharacterCard extends Card {
 	int value;
 	Map<String, Integer> discount;
 	
+	
 	public CharacterCard(String type,String name,int period,int costCoin, Map<String, Integer> immediateEffect){
 		this.type=type;
 		this.name=name;

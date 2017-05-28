@@ -9,6 +9,7 @@ public class PrivilegeCouncil extends Piece {
 		
 		}
 
+	//It is useless in this class but this class extend Piece
 	@Override
 	public void incrementPrivilegeCouncil(Player player) {
 		return;
