@@ -62,7 +62,7 @@ public class GameServer {
 		int action = in.nextInt();
 		 switch(action){
 		 case 1: {
-			 PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(currentPlayer, currentRelative, )
+			 PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(currentPlayer, currentRelative);
 			 
 		 }
 		 }

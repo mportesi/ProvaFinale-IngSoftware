@@ -6,6 +6,7 @@ import java.util.Collections;
 import Components.Card;
 import Components.CouncilPalace;
 import Components.Dice;
+import Components.Floor;
 import Components.HarvestAndProductionArea;
 import Components.MarketBuilding;
 import Components.Tower;
@@ -26,6 +27,7 @@ public class Board {
 	public static Dice whiteDice;
 	public static Dice orangeDice;
 	public static ArrayList<Card> deck;
+	
 	
 	
 	public Board(){
@@ -55,10 +57,11 @@ public class Board {
 		Collections.shuffle(venture2);
 		Collections.shuffle(venture3);
 		
-		territoryTower= new Tower("territory", territory1, territory2, territory3);
-		buildingTower= new Tower("building", building1, building2, building3);
-		characterTower= new Tower("character", character1, character2, character3);
-		ventureTower= new Tower("venture", venture1, venture2, venture3);
+	
+		territoryTower= new Tower("territory", territory1, territory2, territory3, JSon.territoryFloors);
+		buildingTower= new Tower("building", building1, building2, building3, JSon.buildingFloors);
+		characterTower= new Tower("character", character1, character2, character3, JSon.characterFloors);
+		ventureTower= new Tower("venture", venture1, venture2, venture3, JSon.ventureFloors);
 		councilPalace= new CouncilPalace();
 		
 		market1= new MarketBuilding();

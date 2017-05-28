@@ -10,7 +10,7 @@ public class PutRelativeOnTower extends PutRelative  {
 	Relative relative;
 	int floor;
 	Player player;
-	Card cardtogive;
+	Card cardToGive;
 	
 	public PutRelativeOnTower(Player player, Tower tower, int floor, Relative relative){
 		this.relative=relative;
@@ -20,17 +20,22 @@ public class PutRelativeOnTower extends PutRelative  {
 	}
 	
 	public boolean isApplicable(){
-		if(tower.floors[floor].isFree()&& relative.getValue()>= tower.floors[floor].getCost() && tower.isPresent(player)==false)
-			 {return true;}
+		if(tower.floors.get(floor).isFree() && relative.getValue()>= tower.floors.get(floor).getCost() && tower.isPresent(player)==false)
+			 {
+			return true;
+			 }
 		else return false;
 	}
+	
+	
 	@Override
 	public void apply(){
 		if(isApplicable()){
-				tower.floors[floor].setPlayer(player);
-				cardtogive= tower.floors[floor].giveCard();
-				player.getCard(cardtogive);
-				cardtogive.applyEffect(player);
+				tower.floors.get(floor).setPlayer(player);
+				cardToGive= tower.floors.get(floor).giveCard();
+				player.getCard(cardToGive);
+				cardToGive.applyEffect(player);
+				tower.floors.get(floor).bonusEffect.apply(player);
 			}
 		return;
 	}
