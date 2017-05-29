@@ -138,25 +138,24 @@ public class Player {
 		coin-=n;
 	}
 	
-	public int counter(Card c){
-		String cardType=c.getType();
+	public int counter(String cardType){
 		int i=0;
-		if(cardType.equals(buildingCard)){
+		if(cardType.equals("buildingCard")){
 		   for(Card card:buildingCard){ 
 			if (card!=null){ i+=1;}
 		   }
 		}
-		if(cardType.equals(territoryCard)){
+		if(cardType.equals("territoryCard")){
 			for(Card card:territoryCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(cardType.equals(ventureCard)){
+		if(cardType.equals("ventureCard")){
 			   for(Card card:ventureCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(cardType.equals(characterCard)){
+		if(cardType.equals("characterCard")){
 			   for(Card card:characterCard){ 
 				if (card!=null){ i+=1;}
 			}
@@ -164,7 +163,7 @@ public class Player {
 		return i;
 	}
 	
-	public void getCard(Card card){
+	public void addCard(Card card){
 		String type=card.getType();
 		switch(type){
 		case "territoryCard": {

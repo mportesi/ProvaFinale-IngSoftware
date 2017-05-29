@@ -33,7 +33,7 @@ public class PutRelativeOnTower extends PutRelative {
 		if(isApplicable()){
 				tower.floors.get(floor).setPlayer(player);
 				cardToGive= tower.floors.get(floor).giveCard();
-				player.getCard(cardToGive);
+				player.addCard(cardToGive);
 				cardToGive.applyEffect(player);
 				tower.floors.get(floor).bonusEffect.apply(player);
 			}
