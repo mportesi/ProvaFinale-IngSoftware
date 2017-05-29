@@ -65,14 +65,6 @@ public class JSon {
 				costMap.put(typeCost, amount);
 			}
 
-			/*
-			 * List <String> cost = new ArrayList<String>(); for (String key:
-			 * cost1.keySet()){ System.out.println( key );
-			 * 
-			 * keys.add(key);
-			 * 
-			 * } va in card
-			 */
 
 			Map<String, Integer> immediateEffectMap = new LinkedHashMap();
 			for (int i = 0; i < immediateEffect.size(); i++) {
