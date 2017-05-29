@@ -27,11 +27,15 @@ import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 
 import Components.BuildingCard;
 import Components.Card;
 import Components.CharacterCard;
 import Components.Floor;
+import Components.Market;
+import Components.MarketBuilding;
+import Components.PersonalBonusTile;
 import Components.TerritoryCard;
 import Components.VentureCard;
 import Effects.Effect;
@@ -49,6 +53,8 @@ public class JSon {
 	public static ArrayList<Floor> characterFloors = new ArrayList<Floor>();
 	public static ArrayList<Floor> buildingFloors = new ArrayList<Floor>();
 	public static ArrayList<Floor> ventureFloors = new ArrayList<Floor>();
+	public static ArrayList <MarketBuilding> marketBuilding = new ArrayList <MarketBuilding>();
+	public static ArrayList <PersonalBonusTile> personalBonusTiles = new ArrayList <PersonalBonusTile>();
 
 	public static void importCards() throws FileNotFoundException, IOException, ParseException {
 
@@ -88,6 +94,65 @@ public class JSon {
 			}
 			}
 		}
+		
+		JSONParser marketParser = new JSONParser();
+		JSONArray marketArray = (JSONArray) marketParser.parse(new FileReader("target/MarketBonus.json"));
+		for (Object o : marketArray){
+			
+			JSONObject market = (JSONObject) o;
+			String type = (String) market.get("type");
+			int cost= ((Long) market.get("cost")).intValue();
+			
+			JSONArray bonus = (JSONArray) marketParser.parse(market.get("bonus").toString());
+			
+			Map<String, Integer> bonusMap = new LinkedHashMap();
+			for (int i = 0; i < bonus.size(); i++) {
+				JSONObject bonusObject = (JSONObject) bonus.get(i);
+				String typeBonus = (String) bonusObject.get("type");
+				int amount = ((Long) bonusObject.get("amount")).intValue();
+				bonusMap.put(typeBonus, amount);
+			
+			MarketBuilding m = new MarketBuilding (type, bonusMap, cost);
+			marketBuilding.add(m);
+			
+		}
+		}
+		
+		JSONParser personalBonusTileParser = new JSONParser();
+		JSONArray personalBonusTileArray = (JSONArray) personalBonusTileParser.parse(new FileReader("target/MarketBonus.json"));
+		for (Object o : personalBonusTileArray){
+			
+			JSONObject personalBonusTile = (JSONObject) o;
+			String type = (String) personalBonusTile.get("type");
+			int costProduction = ((Long) personalBonusTile.get("costProduction")).intValue();
+			int costHarvest = ((Long) personalBonusTile.get("costHarvest")).intValue();
+			
+			JSONArray bonusProduction = (JSONArray) personalBonusTileParser.parse(personalBonusTile.get("bonusProduction").toString());
+			JSONArray bonusHarvest = (JSONArray) personalBonusTileParser.parse(personalBonusTile.get("bonusHarvest").toString());
+			
+			Map<String, Integer> bonusProductionMap = new LinkedHashMap();
+			for (int i = 0; i < bonusProduction.size(); i++) {
+				JSONObject bonusObject = (JSONObject) bonusProduction.get(i);
+				String typeBonus = (String) bonusObject.get("type");
+				int amount = ((Long) bonusObject.get("amount")).intValue();
+				bonusProductionMap.put(typeBonus, amount);
+			}
+				
+		
+			Map<String, Integer> bonusHarvestMap = new LinkedHashMap();
+			for (int j = 0; j < bonusHarvest.size(); j++) {
+				JSONObject bonusObject1 = (JSONObject) bonusHarvest.get(j);
+				String typeBonus1 = (String) bonusObject1.get("type");
+				int amount1 = ((Long) bonusObject1.get("amount")).intValue();
+				bonusHarvestMap.put(typeBonus1, amount1);
+			
+			}
+			
+			PersonalBonusTile personalBonusTile1 = new PersonalBonusTile (type, bonusProductionMap, bonusHarvestMap, costProduction, costHarvest);
+			personalBonusTiles.add(personalBonusTile1);
+			}
+		
+		
 
 		// BuildingCards
 		JSONParser buildingParser = new JSONParser();

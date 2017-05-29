@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Components.BuildingCard;
 import Components.Card;
 import Components.LeaderTile;
+import Components.PersonalBonusTile;
 import Components.Relative;
 import Components.TerritoryCard;
 import Components.VentureCard;
@@ -30,11 +31,11 @@ public class Player {
 	public Relative whiteRelative;
 	public Relative orangeRelative;
 	public Relative neutralRelative;
+	public PersonalBonusTile personalBonusTile;
 	public boolean hasBlackRelative;
 	public boolean hasWhiteRelative;
 	public boolean hasOrangeRelative;
 	public boolean hasNeutralRelative;
-	
 	
 	
 	public Player (ColorPlayer color){

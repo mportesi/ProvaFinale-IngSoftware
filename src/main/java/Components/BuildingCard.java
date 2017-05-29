@@ -11,5 +11,6 @@ public class BuildingCard extends Card {
 		this.cost=cost;
 		this.immediateEffect=immediateEffect;
 	}
+	
 
 }

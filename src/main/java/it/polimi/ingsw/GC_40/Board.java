@@ -9,6 +9,7 @@ import Components.Dice;
 import Components.Floor;
 import Components.HarvestAndProductionArea;
 import Components.MarketBuilding;
+import Components.PersonalBonusTile;
 import Components.Tower;
 
 public class Board {
@@ -64,10 +65,16 @@ public class Board {
 		ventureTower= new Tower("venture", venture1, venture2, venture3, JSon.ventureFloors);
 		councilPalace= new CouncilPalace();
 		
-		market1= new MarketBuilding();
-		market2= new MarketBuilding();
-		market3= new MarketBuilding();
-		market4= new MarketBuilding();
+		MarketBuilding market1 = JSon.marketBuilding.get(0);
+		MarketBuilding market2 = JSon.marketBuilding.get(1);
+		MarketBuilding market3 = JSon.marketBuilding.get(2);
+		MarketBuilding market4 = JSon.marketBuilding.get(3);
+		
+		
+		PersonalBonusTile personalBonusTileSimple = JSon.personalBonusTiles.get(0);
+		PersonalBonusTile personalBonusTileAdvanced = JSon.personalBonusTiles.get(1);
+		
+		
 		
 		harvestArea= new HarvestAndProductionArea();
 		productionArea= new HarvestAndProductionArea();

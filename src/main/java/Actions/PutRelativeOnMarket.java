@@ -1,7 +1,11 @@
 package Actions;
 
 import Components.Relative;
+import Effects.Effect;
 import it.polimi.ingsw.GC_40.Player;
+
+import java.util.List;
+
 import Components.MarketBuilding;
 
 public class PutRelativeOnMarket extends PutRelative {
@@ -36,7 +40,9 @@ public class PutRelativeOnMarket extends PutRelative {
 			// in that space
 			market.setOccupied();
 			// take the bonus
-			market.giveBonus(player, market);
+			//market.giveBonus(player, market);
+			market.applyEffect(player);
+			
 		}
 	}
 
