@@ -2,17 +2,27 @@ package Components;
 
 import java.util.Random;
 
+import Effects.Effect;
 import it.polimi.ingsw.GC_40.Player;
 
 public class Floor {
+	private String type;
 	private int cost;
 	public Card currentCard;
-	private Piece bonus;
+//	private Piece bonus;
 	private Player player;
+	public Effect bonusEffect;
 	private boolean isFree = true; 
 	public int getCost(){
 		return cost;
 	}
+	
+	public Floor (String type, int cost, Effect bonusEffect){
+		this.bonusEffect=bonusEffect;
+		this.type=type;
+		this.cost=cost;
+	}
+	
 	
 	public Card giveCard(){
 		Card current= currentCard;
@@ -20,9 +30,11 @@ public class Floor {
 		return current;
 	}
 	
-	public Piece getBonus(){
+	/*public Piece getBonus(){
 		return bonus;
-	}
+	}*/
+	
+	
 	
 	public Player getPlayer(){
 		return player;

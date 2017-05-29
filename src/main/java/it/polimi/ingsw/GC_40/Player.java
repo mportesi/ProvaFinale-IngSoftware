@@ -11,6 +11,7 @@ import Components.VentureCard;
 import Components.CharacterCard;
 
 public class Player {
+	
 	private ColorPlayer color;
 	private int coin;
 	private int wood;
@@ -123,7 +124,9 @@ public class Player {
 	public void decrementVictoryPoint(int n){
 		coin-=n;
 	}
-	public int counter(String cardType){
+	
+	public int counter(Card c){
+		String type=c.getType();
 		int i=0;
 		if(cardType.equals(buildingCard)){
 		   for(Card card:buildingCard){ 
