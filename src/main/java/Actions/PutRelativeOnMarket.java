@@ -9,6 +9,15 @@ public class PutRelativeOnMarket extends PutRelative {
 	Relative relative;
 	MarketBuilding market;
 	Player player;
+	
+	public PutRelativeOnMarket(Player player,Relative relative){
+		this.player=player;
+		this.relative=relative;
+	}
+	
+	public void setMarket(MarketBuilding market){
+		this.market=market;
+	}
 
 	@Override
 	public boolean isApplicable() {

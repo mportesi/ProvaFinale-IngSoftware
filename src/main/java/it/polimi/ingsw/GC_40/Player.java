@@ -25,10 +25,15 @@ public class Player {
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
 	private ArrayList<LeaderTile> leader;
+	/*public ArrayList<Relative> relatives;*/
 	public Relative blackRelative;
 	public Relative whiteRelative;
 	public Relative orangeRelative;
 	public Relative neutralRelative;
+	public boolean hasBlackRelative;
+	public boolean hasWhiteRelative;
+	public boolean hasOrangeRelative;
+	public boolean hasNeutralRelative;
 	
 	
 	
@@ -38,7 +43,14 @@ public class Player {
 		Relative whiteRelative= new Relative(ColorDice.WHITE);
 		Relative orangeRelative= new Relative(ColorDice.ORANGE);
 		Relative neutralRelative= new Relative(null);
-		
+		/*relatives.add(blackRelative);
+		relatives.add(whiteRelative);
+		relatives.add(orangeRelative);
+		relatives.add(neutralRelative);*/
+		hasBlackRelative=true;
+		hasWhiteRelative=true;
+		hasOrangeRelative=true;
+		hasNeutralRelative=true;
 	}
 	
 	
@@ -126,7 +138,7 @@ public class Player {
 	}
 	
 	public int counter(Card c){
-		String type=c.getType();
+		String cardType=c.getType();
 		int i=0;
 		if(cardType.equals(buildingCard)){
 		   for(Card card:buildingCard){ 

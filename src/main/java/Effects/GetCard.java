@@ -1,6 +1,8 @@
 package Effects;
 
-public class GetTerritoryCardWithBonus extends Effect {
+import it.polimi.ingsw.GC_40.Player;
+
+public class GetCard extends Effect {
 	
 	
 
@@ -10,5 +12,7 @@ public class GetTerritoryCardWithBonus extends Effect {
 		
 
 	}
+
+	
 
 }

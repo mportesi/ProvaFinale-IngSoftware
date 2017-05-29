@@ -2,6 +2,10 @@ package it.polimi.ingsw.GC_40;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import Components.CouncilPalace;
 
 public class Play {
@@ -101,7 +105,19 @@ public class Play {
 
 	}
 
-	public void checkWinner() {
-		return;
+	public ArrayList<Player> checkWinner() {
+		ArrayList<Player> winners = new ArrayList<>();
+		int max = 0;
+		for (Player p : currentTurnOrder) {
+			if (p.getVictoryPoint() > max) {
+				max = p.getVictoryPoint();
+				winners.clear();
+				winners.add(p);
+			} else if (p.getVictoryPoint() == max) {
+				winners.add(p);
+			}
+		}
+		return winners;
+
 	}
 }

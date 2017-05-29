@@ -12,6 +12,11 @@ public class PutRelativeOnHarvestArea extends PutRelative {
 	HarvestAndProductionArea harvestArea;
 	Player player;
 
+	public PutRelativeOnHarvestArea(Player player, Relative relative){
+		this.player=player;
+		this.relative=relative;
+	}
+	
 	@Override
 	public boolean isApplicable() {
 		// ??

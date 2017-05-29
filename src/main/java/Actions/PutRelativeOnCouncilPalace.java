@@ -11,6 +11,15 @@ public class PutRelativeOnCouncilPalace extends PutRelative {
 	Player player;
 	CouncilPalace councilPalace;
 	Piece piece;
+	
+	public PutRelativeOnCouncilPalace(Player player, Relative relative){
+		this.player=player;
+		this.relative=relative;
+	}
+	
+	public void setPiece(Piece piece){
+		this.piece=piece;
+	}
 
 	@Override
 	public boolean isApplicable() {
