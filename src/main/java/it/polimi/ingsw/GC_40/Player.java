@@ -2,15 +2,17 @@ package it.polimi.ingsw.GC_40;
 
 import java.util.ArrayList;
 
-import Components.BuildingCard;
-import Components.Card;
-import Components.LeaderTile;
-import Components.Relative;
-import Components.TerritoryCard;
-import Components.VentureCard;
-import Components.CharacterCard;
+import it.polimi.ingsw.components.BuildingCard;
+import it.polimi.ingsw.components.Card;
+import it.polimi.ingsw.components.CharacterCard;
+import it.polimi.ingsw.components.LeaderTile;
+import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.components.TerritoryCard;
+import it.polimi.ingsw.components.VentureCard;
 
 public class Player {
+	
 	private ColorPlayer color;
 	private int coin;
 	private int wood;
@@ -24,11 +26,16 @@ public class Player {
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
 	private ArrayList<LeaderTile> leader;
+	/*public ArrayList<Relative> relatives;*/
 	public Relative blackRelative;
 	public Relative whiteRelative;
 	public Relative orangeRelative;
 	public Relative neutralRelative;
-	
+	public PersonalBonusTile personalBonusTile;
+	public boolean hasBlackRelative;
+	public boolean hasWhiteRelative;
+	public boolean hasOrangeRelative;
+	public boolean hasNeutralRelative;
 	
 	
 	public Player (ColorPlayer color){
@@ -37,7 +44,14 @@ public class Player {
 		Relative whiteRelative= new Relative(ColorDice.WHITE);
 		Relative orangeRelative= new Relative(ColorDice.ORANGE);
 		Relative neutralRelative= new Relative(null);
-		
+		/*relatives.add(blackRelative);
+		relatives.add(whiteRelative);
+		relatives.add(orangeRelative);
+		relatives.add(neutralRelative);*/
+		hasBlackRelative=true;
+		hasWhiteRelative=true;
+		hasOrangeRelative=true;
+		hasNeutralRelative=true;
 	}
 	
 	
@@ -123,24 +137,25 @@ public class Player {
 	public void decrementVictoryPoint(int n){
 		coin-=n;
 	}
+	
 	public int counter(String cardType){
 		int i=0;
-		if(cardType.equals(buildingCard)){
+		if(cardType.equals("buildingCard")){
 		   for(Card card:buildingCard){ 
 			if (card!=null){ i+=1;}
 		   }
 		}
-		if(cardType.equals(territoryCard)){
+		if(cardType.equals("territoryCard")){
 			for(Card card:territoryCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(cardType.equals(ventureCard)){
+		if(cardType.equals("ventureCard")){
 			   for(Card card:ventureCard){ 
 				if (card!=null){ i+=1;}
 			}
 		}
-		if(cardType.equals(characterCard)){
+		if(cardType.equals("characterCard")){
 			   for(Card card:characterCard){ 
 				if (card!=null){ i+=1;}
 			}
@@ -148,7 +163,7 @@ public class Player {
 		return i;
 	}
 	
-	public void getCard(Card card){
+	public void addCard(Card card){
 		String type=card.getType();
 		switch(type){
 		case "territoryCard": {

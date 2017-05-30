@@ -3,12 +3,14 @@ package it.polimi.ingsw.GC_40;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import Components.Card;
-import Components.CouncilPalace;
-import Components.Dice;
-import Components.HarvestAndProductionArea;
-import Components.MarketBuilding;
-import Components.Tower;
+import it.polimi.ingsw.components.Card;
+import it.polimi.ingsw.components.CouncilPalace;
+import it.polimi.ingsw.components.Dice;
+import it.polimi.ingsw.components.Floor;
+import it.polimi.ingsw.components.HarvestAndProductionArea;
+import it.polimi.ingsw.components.MarketBuilding;
+import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.Tower;
 
 public class Board {
 	public static Tower territoryTower;
@@ -26,6 +28,7 @@ public class Board {
 	public static Dice whiteDice;
 	public static Dice orangeDice;
 	public static ArrayList<Card> deck;
+	
 	
 	
 	public Board(){
@@ -55,16 +58,23 @@ public class Board {
 		Collections.shuffle(venture2);
 		Collections.shuffle(venture3);
 		
-		territoryTower= new Tower("territory", territory1, territory2, territory3);
-		buildingTower= new Tower("building", building1, building2, building3);
-		characterTower= new Tower("character", character1, character2, character3);
-		ventureTower= new Tower("venture", venture1, venture2, venture3);
+	
+		territoryTower= new Tower("territory", territory1, territory2, territory3, JSon.territoryFloors);
+		buildingTower= new Tower("building", building1, building2, building3, JSon.buildingFloors);
+		characterTower= new Tower("character", character1, character2, character3, JSon.characterFloors);
+		ventureTower= new Tower("venture", venture1, venture2, venture3, JSon.ventureFloors);
 		councilPalace= new CouncilPalace();
 		
-		market1= new MarketBuilding();
-		market2= new MarketBuilding();
-		market3= new MarketBuilding();
-		market4= new MarketBuilding();
+		MarketBuilding market1 = JSon.marketBuilding.get(0);
+		MarketBuilding market2 = JSon.marketBuilding.get(1);
+		MarketBuilding market3 = JSon.marketBuilding.get(2);
+		MarketBuilding market4 = JSon.marketBuilding.get(3);
+		
+		
+		PersonalBonusTile personalBonusTileSimple = JSon.personalBonusTiles.get(0);
+		PersonalBonusTile personalBonusTileAdvanced = JSon.personalBonusTiles.get(1);
+		
+		
 		
 		harvestArea= new HarvestAndProductionArea();
 		productionArea= new HarvestAndProductionArea();
@@ -78,7 +88,7 @@ public class Board {
 	
 	
 	
-	public ArrayList<Card> createDeck(int period, String type){
+	public ArrayList<Card> createDeck(int period, String type) {
 		for (Card card : JSon.characterDeck){
 			 deck.add(card);
 		}
