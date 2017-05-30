@@ -29,20 +29,20 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-import Components.BuildingCard;
-import Components.Card;
-import Components.CharacterCard;
-import Components.Floor;
-import Components.Market;
-import Components.MarketBuilding;
-import Components.PersonalBonusTile;
-import Components.TerritoryCard;
-import Components.VentureCard;
-import Effects.Effect;
-import Effects.GainCoin;
-import Effects.GainMilitaryPoint;
-import Effects.GainStone;
-import Effects.GainWood;
+import it.polimi.ingsw.components.BuildingCard;
+import it.polimi.ingsw.components.Card;
+import it.polimi.ingsw.components.CharacterCard;
+import it.polimi.ingsw.components.Floor;
+import it.polimi.ingsw.components.Market;
+import it.polimi.ingsw.components.MarketBuilding;
+import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.TerritoryCard;
+import it.polimi.ingsw.components.VentureCard;
+import it.polimi.ingsw.effects.Effect;
+import it.polimi.ingsw.effects.GainCoin;
+import it.polimi.ingsw.effects.GainMilitaryPoint;
+import it.polimi.ingsw.effects.GainStone;
+import it.polimi.ingsw.effects.GainWood;
 
 public class JSon {
 	public static List<Card> buildingDeck = new ArrayList<Card>();

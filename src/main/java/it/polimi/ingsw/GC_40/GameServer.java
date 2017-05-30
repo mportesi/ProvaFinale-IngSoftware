@@ -5,21 +5,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import Actions.PutRelativeOnCouncilPalace;
-import Actions.PutRelativeOnHarvestArea;
-import Actions.PutRelativeOnMarket;
-import Actions.PutRelativeOnProductionArea;
-import Actions.PutRelativeOnTower;
-import Components.Coin;
-import Components.FaithPoint;
-import Components.MarketBuilding;
-import Components.MilitaryPoint;
-import Components.Piece;
-import Components.Relative;
-import Components.Servant;
-import Components.Stone;
-import Components.Tower;
-import Components.Wood;
+import it.polimi.ingsw.actions.PutRelativeOnCouncilPalace;
+import it.polimi.ingsw.actions.PutRelativeOnHarvestArea;
+import it.polimi.ingsw.actions.PutRelativeOnMarket;
+import it.polimi.ingsw.actions.PutRelativeOnProductionArea;
+import it.polimi.ingsw.actions.PutRelativeOnTower;
+import it.polimi.ingsw.components.Coin;
+import it.polimi.ingsw.components.FaithPoint;
+import it.polimi.ingsw.components.MarketBuilding;
+import it.polimi.ingsw.components.MilitaryPoint;
+import it.polimi.ingsw.components.Piece;
+import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.components.Servant;
+import it.polimi.ingsw.components.Stone;
+import it.polimi.ingsw.components.Tower;
+import it.polimi.ingsw.components.Wood;
 
 import java.util.ArrayList;
 
