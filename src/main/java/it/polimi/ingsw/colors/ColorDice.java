@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_40;
+package it.polimi.ingsw.colors;
 
 public enum ColorDice {
 	BLACK, ORANGE, WHITE;

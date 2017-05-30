@@ -1,4 +1,5 @@
-package it.polimi.ingsw.GC_40;
+package it.polimi.ingsw.colors;
+
 
 public enum ColorPlayer {
 	GREEN, YELLOW, BLUE, RED;
