@@ -52,6 +52,7 @@ public class MarketBuilding extends Market {
 			case "servant": {
 				GainServant gainServant = new GainServant(bonusEffect);
 				marketEffect.add(gainServant);
+				break;
 			}
 			
 			case "militaryPoint": {

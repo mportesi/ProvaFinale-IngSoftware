@@ -64,6 +64,7 @@ public class PersonalBonusTile{
 			case "GainServant": {
 				GainServant gainServant = new GainServant(costProductionEffect);
 				productionEffect.add(gainServant);
+				break;
 			}
 			case "GainVictoryPoint": {
 				GainVictoryPoint gainVictoryPoint = new GainVictoryPoint(costProductionEffect);
@@ -115,6 +116,7 @@ public class PersonalBonusTile{
 			case "GainServant": {
 				GainServant gainServant = new GainServant(costHarvestEffect);
 				harvestEffect.add(gainServant);
+				break;
 			}
 			case "GainVictoryPoint": {
 				GainVictoryPoint gainVictoryPoint = new GainVictoryPoint(costHarvestEffect);

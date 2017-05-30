@@ -208,10 +208,12 @@ public class GameServer {
 				case 4: {
 					PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(currentPlayer,
 							currentRelative);
+					break;
 				}
 				case 5: {
 					PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
 							currentPlayer, currentRelative);
+					break;
 				}
 
 				}
