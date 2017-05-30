@@ -1,9 +1,9 @@
 package it.polimi.ingsw.actions;
 
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.components.Card;
+import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.components.Relative;
-import it.polimi.ingsw.components.Tower;
 
 public class PutRelativeOnTower implements PutRelative {
 	Tower tower;

@@ -6,15 +6,15 @@ import java.util.HashMap;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
-import it.polimi.ingsw.components.CouncilPalace;
+import it.polimi.ingsw.areas.CouncilPalace;
 
-public class Play {
+public class PlayState {
 	private int period;
 	private int round;
 	private Player currentPlayer;
 	private ArrayList<Player> currentTurnOrder;
 
-	public Play(int period, int round, ArrayList<Player> currentTurnOrder) {
+	public PlayState(int period, int round, ArrayList<Player> currentTurnOrder) {
 		this.period = period;
 		this.round = round;
 		this.currentTurnOrder = currentTurnOrder;

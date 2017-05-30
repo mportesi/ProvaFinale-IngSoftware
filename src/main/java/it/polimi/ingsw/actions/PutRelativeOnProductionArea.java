@@ -1,7 +1,7 @@
 package it.polimi.ingsw.actions;
 
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.components.HarvestAndProductionArea;
+import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainProductionValue;
 

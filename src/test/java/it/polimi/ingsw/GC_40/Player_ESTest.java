@@ -17,11 +17,13 @@ import org.evosuite.runtime.EvoRunnerParameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import Components.BuildingCard;
-import Components.Card;
-import Components.CharacterCard;
-import Components.TerritoryCard;
-import Components.VentureCard;
+import it.polimi.ingsw.components.*;
+import it.polimi.ingsw.cards.BuildingCard;
+import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.CharacterCard;
+import it.polimi.ingsw.cards.TerritoryCard;
+import it.polimi.ingsw.cards.VentureCard;
+import it.polimi.ingsw.colors.ColorPlayer;
 
 @RunWith(EvoRunner.class) @EvoRunnerParameters(useVNET = true, separateClassLoader = true, useJEE = true) 
 public class Player_ESTest extends Player_ESTest_scaffolding {

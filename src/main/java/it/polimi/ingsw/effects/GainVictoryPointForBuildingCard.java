@@ -1,7 +1,7 @@
 package it.polimi.ingsw.effects;
 
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.components.BuildingCard;
+import it.polimi.ingsw.cards.BuildingCard;
 
 public class GainVictoryPointForBuildingCard extends Effect {
 	int victoryPoint;

@@ -3,14 +3,15 @@ package it.polimi.ingsw.GC_40;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import it.polimi.ingsw.components.Card;
-import it.polimi.ingsw.components.CouncilPalace;
+import it.polimi.ingsw.areas.CouncilPalace;
+import it.polimi.ingsw.areas.Floor;
+import it.polimi.ingsw.areas.HarvestAndProductionArea;
+import it.polimi.ingsw.areas.MarketBuilding;
+import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.Dice;
-import it.polimi.ingsw.components.Floor;
-import it.polimi.ingsw.components.HarvestAndProductionArea;
-import it.polimi.ingsw.components.MarketBuilding;
 import it.polimi.ingsw.components.PersonalBonusTile;
-import it.polimi.ingsw.components.Tower;
 
 public class Board {
 	public static Tower territoryTower;
@@ -65,6 +66,7 @@ public class Board {
 		ventureTower= new Tower("venture", venture1, venture2, venture3, JSon.ventureFloors);
 		councilPalace= new CouncilPalace();
 		
+		//lista di market
 		MarketBuilding market1 = JSon.marketBuilding.get(0);
 		MarketBuilding market2 = JSon.marketBuilding.get(1);
 		MarketBuilding market3 = JSon.marketBuilding.get(2);
@@ -101,6 +103,7 @@ public class Board {
 		for (Card card : JSon.ventureDeck){
 			 deck.add(card);
 		}
+		
 		
 			ArrayList<Card> newDeck= new ArrayList<Card>();
 			for(Card c:deck){

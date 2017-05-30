@@ -1,7 +1,7 @@
 package it.polimi.ingsw.actions;
 
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.components.CouncilPalace;
+import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.components.Piece;
 import it.polimi.ingsw.components.Relative;
 

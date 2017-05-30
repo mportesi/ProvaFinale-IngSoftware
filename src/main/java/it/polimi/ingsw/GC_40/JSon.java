@@ -25,25 +25,20 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-
-import it.polimi.ingsw.components.BuildingCard;
-import it.polimi.ingsw.components.Card;
-import it.polimi.ingsw.components.CharacterCard;
-import it.polimi.ingsw.components.Floor;
-import it.polimi.ingsw.components.Market;
-import it.polimi.ingsw.components.MarketBuilding;
+import it.polimi.ingsw.areas.Floor;
+import it.polimi.ingsw.areas.MarketBuilding;
+import it.polimi.ingsw.cards.BuildingCard;
+import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.CharacterCard;
+import it.polimi.ingsw.cards.TerritoryCard;
+import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.components.PersonalBonusTile;
-import it.polimi.ingsw.components.TerritoryCard;
-import it.polimi.ingsw.components.VentureCard;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainMilitaryPoint;
 import it.polimi.ingsw.effects.GainStone;
 import it.polimi.ingsw.effects.GainWood;
-
+//da dividere 
 public class JSon {
 	public static List<Card> buildingDeck = new ArrayList<Card>();
 	public static List<Card> territoryDeck = new ArrayList<Card>();

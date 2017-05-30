@@ -1,6 +1,6 @@
 package it.polimi.ingsw.components;
 
-import it.polimi.ingsw.GC_40.ColorDice;
+import it.polimi.ingsw.colors.ColorDice;
 
 public class Dice {
 	private ColorDice color;

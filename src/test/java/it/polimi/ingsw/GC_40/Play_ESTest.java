@@ -17,6 +17,8 @@ import org.evosuite.runtime.EvoRunnerParameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import it.polimi.ingsw.colors.ColorPlayer;
+
 @RunWith(EvoRunner.class) @EvoRunnerParameters(useVNET = true, separateClassLoader = true, useJEE = true) 
 public class Play_ESTest extends Play_ESTest_scaffolding {
 
@@ -26,7 +28,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       ColorPlayer colorPlayer0 = ColorPlayer.BLUE;
       Player player0 = new Player(colorPlayer0);
       arrayList0.add(player0);
-      Play play0 = new Play(4, 0, arrayList0);
+      PlayState play0 = new PlayState(4, 0, arrayList0);
       play0.changePeriod();
   }
 
@@ -34,7 +36,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
   public void test01()  throws Throwable  {
       ArrayList<Player> arrayList0 = new ArrayList<Player>();
       arrayList0.add((Player) null);
-      Play play0 = new Play(0, 0, arrayList0);
+      PlayState play0 = new PlayState(0, 0, arrayList0);
       // Undeclared exception!
       try { 
         play0.changeRound();
@@ -57,7 +59,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       arrayList0.add(player1);
       arrayList0.add(player0);
       arrayList0.add(player1);
-      Play play0 = new Play(0, 0, arrayList0);
+      PlayState play0 = new PlayState(0, 0, arrayList0);
       play0.changeCurrentPlayer();
       play0.changeCurrentPlayer();
   }
@@ -68,7 +70,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       ColorPlayer colorPlayer0 = ColorPlayer.RED;
       Player player0 = new Player(colorPlayer0);
       arrayList0.add(player0);
-      Play play0 = new Play(0, 0, arrayList0);
+      PlayState play0 = new PlayState(0, 0, arrayList0);
       ArrayList<String> arrayList1 = new ArrayList<String>();
       arrayList0.retainAll(arrayList1);
       ArrayList<Player> arrayList2 = play0.checkWinner();
@@ -79,7 +81,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
   public void test04()  throws Throwable  {
       ArrayList<Player> arrayList0 = new ArrayList<Player>();
       arrayList0.add((Player) null);
-      Play play0 = new Play(0, 0, arrayList0);
+      PlayState play0 = new PlayState(0, 0, arrayList0);
       // Undeclared exception!
       try { 
         play0.checkWinner();
@@ -99,7 +101,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       ColorPlayer colorPlayer0 = ColorPlayer.GREEN;
       Player player0 = new Player(colorPlayer0);
       arrayList0.add(player0);
-      Play play0 = new Play(0, 0, arrayList0);
+      PlayState play0 = new PlayState(0, 0, arrayList0);
       // Undeclared exception!
       try { 
         play0.changeTurnOrder();
@@ -119,7 +121,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       ColorPlayer colorPlayer0 = ColorPlayer.BLUE;
       Player player0 = new Player(colorPlayer0);
       arrayList0.add(player0);
-      Play play0 = new Play(0, 0, arrayList0);
+      PlayState play0 = new PlayState(0, 0, arrayList0);
       arrayList0.removeAll(arrayList0);
       // Undeclared exception!
       try { 
@@ -136,9 +138,9 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
 
   @Test(timeout = 4000)
   public void test07()  throws Throwable  {
-      Play play0 = null;
+      PlayState play0 = null;
       try {
-        play0 = new Play(0, 0, (ArrayList<Player>) null);
+        play0 = new PlayState(0, 0, (ArrayList<Player>) null);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
@@ -155,7 +157,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       ColorPlayer colorPlayer0 = ColorPlayer.GREEN;
       Player player0 = new Player(colorPlayer0);
       arrayList0.add(player0);
-      Play play0 = new Play(0, 0, arrayList0);
+      PlayState play0 = new PlayState(0, 0, arrayList0);
       ArrayList<Player> arrayList1 = play0.checkWinner();
       assertEquals(1, arrayList1.size());
   }
@@ -164,7 +166,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
   public void test09()  throws Throwable  {
       ArrayList<Player> arrayList0 = new ArrayList<Player>();
       arrayList0.add((Player) null);
-      Play play0 = new Play(2, 0, arrayList0);
+      PlayState play0 = new PlayState(2, 0, arrayList0);
       play0.changePeriod();
       // Undeclared exception!
       try { 
@@ -183,7 +185,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
   public void test10()  throws Throwable  {
       ArrayList<Player> arrayList0 = new ArrayList<Player>();
       arrayList0.add((Player) null);
-      Play play0 = new Play(0, 6, arrayList0);
+      PlayState play0 = new PlayState(0, 6, arrayList0);
       // Undeclared exception!
       try { 
         play0.changeRound();
@@ -203,7 +205,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       ColorPlayer colorPlayer0 = ColorPlayer.RED;
       Player player0 = new Player(colorPlayer0);
       arrayList0.add(player0);
-      Play play0 = new Play(0, 4, arrayList0);
+      PlayState play0 = new PlayState(0, 4, arrayList0);
       // Undeclared exception!
       try { 
         play0.changeRound();
@@ -223,7 +225,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       ColorPlayer colorPlayer0 = ColorPlayer.GREEN;
       Player player0 = new Player(colorPlayer0);
       arrayList0.add(0, player0);
-      Play play0 = new Play(0, 2, arrayList0);
+      PlayState play0 = new PlayState(0, 2, arrayList0);
       // Undeclared exception!
       try { 
         play0.changeRound();
@@ -245,7 +247,7 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
       Player player1 = new Player(colorPlayer0);
       arrayList0.add(player1);
       arrayList0.add(player0);
-      Play play0 = new Play(0, 0, arrayList0);
+      PlayState play0 = new PlayState(0, 0, arrayList0);
       play0.changeCurrentPlayer();
       play0.changeCurrentPlayer();
   }
@@ -253,9 +255,9 @@ public class Play_ESTest extends Play_ESTest_scaffolding {
   @Test(timeout = 4000)
   public void test14()  throws Throwable  {
       ArrayList<Player> arrayList0 = new ArrayList<Player>();
-      Play play0 = null;
+      PlayState play0 = null;
       try {
-        play0 = new Play(0, 0, arrayList0);
+        play0 = new PlayState(0, 0, arrayList0);
         fail("Expecting exception: IndexOutOfBoundsException");
       
       } catch(IndexOutOfBoundsException e) {

@@ -1,8 +1,8 @@
 package it.polimi.ingsw.effects;
 
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.components.Card;
-import it.polimi.ingsw.components.VentureCard;
+import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.VentureCard;
 
 public class GainVictoryPointForVentureCard extends Effect {
 int victoryPoint;
