@@ -88,7 +88,7 @@ public class Board {
 	
 	
 	
-	public ArrayList<Card> createDeck(int period, String type){
+	public ArrayList<Card> createDeck(int period, String type) {
 		for (Card card : JSon.characterDeck){
 			 deck.add(card);
 		}

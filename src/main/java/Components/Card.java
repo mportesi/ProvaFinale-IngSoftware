@@ -119,6 +119,9 @@ public class Card {
 			}
 		}
 	}
+	
+	public void payCost(Player player){
+	};
 
 	public String getType() {
 		return type;
