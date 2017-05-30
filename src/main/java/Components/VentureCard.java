@@ -2,6 +2,8 @@ package Components;
 
 import java.util.Map;
 
+import it.polimi.ingsw.GC_40.Player;
+
 public class VentureCard extends Card {
 	private int alternativeCostBoolean;
 	private Map<String,Integer> cost;
@@ -38,5 +40,36 @@ public class VentureCard extends Card {
 		this.immediateEffect=immediateEffect;
 		cost=null;
 	};
+	
+	@Override
+	public void payCost(Player player){
+		if (militaryRequirement==0 && militaryCost==0){
+			for(String key: cost.keySet()){
+				switch(key){
+				case "coin":{
+					player.decrementCoin(cost.get(key));
+				}
+				case "wood":{
+					player.decrementWood(cost.get(key));
+				}
+				case "stone":{
+					player.decrementStone(cost.get(key));
+				}
+				case "servant":{
+					player.decrementServant(cost.get(key));
+				}
+				}
+			}
+		}
+		else if(cost.isEmpty()){
+			player.decrementMilitaryPoint(militaryCost);
+		}
+		else chooseCost(player);
+	}
+	
+	//????
+	public void chooseCost(Player player){
+		return ;
+	}
 	
 }

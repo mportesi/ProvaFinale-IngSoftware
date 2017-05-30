@@ -9,6 +9,7 @@ import Effects.GainCoin;
 import Effects.GainStone;
 import Effects.GainVictoryPoint;
 import Effects.GainWood;
+import it.polimi.ingsw.GC_40.Player;
 
 public class CharacterCard extends Card {
 	public int costCoin;
@@ -33,7 +34,10 @@ public class CharacterCard extends Card {
 		this.discount=discount;
 		this.immediateEffect=immediateEffect;
 	}
-
 	
+	@Override
+	public void payCost(Player player){
+		player.decrementCoin(costCoin);
+	}
 
 }
