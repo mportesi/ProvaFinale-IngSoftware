@@ -4,7 +4,7 @@
  * Tue May 30 13:43:53 CEST 2017
  */
 
-package Actions;
+package it.polimi.ingsw.actions;
 
 import org.evosuite.runtime.annotation.EvoSuiteClassExclude;
 import org.junit.BeforeClass;

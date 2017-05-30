@@ -2,6 +2,7 @@ package it.polimi.ingsw.cards;
 
 import java.util.Map;
 
+import it.polimi.ingsw.GC_40.GameServer;
 import it.polimi.ingsw.GC_40.Player;
 
 public class VentureCard extends Card {
@@ -43,33 +44,39 @@ public class VentureCard extends Card {
 	
 	@Override
 	public void payCost(Player player){
-		if (militaryRequirement==0 && militaryCost==0){
+		if (militaryRequirement==0 && militaryCost==0 || chooseCost(player)=="otherCost"){
 			for(String key: cost.keySet()){
 				switch(key){
 				case "coin":{
 					player.decrementCoin(cost.get(key));
+					break;
 				}
 				case "wood":{
 					player.decrementWood(cost.get(key));
+					break;
 				}
 				case "stone":{
 					player.decrementStone(cost.get(key));
+					break;
 				}
 				case "servant":{
 					player.decrementServant(cost.get(key));
+					break;
 				}
 				}
 			}
 		}
-		else if(cost.isEmpty()){
+		else if(cost.isEmpty() || chooseCost(player)=="militaryCost"){
 			player.decrementMilitaryPoint(militaryCost);
 		}
-		else chooseCost(player);
+	return;
+		
 	}
 	
-	//????
-	public void chooseCost(Player player){
-		return ;
+	public String chooseCost(Player player){
+		String chosenCost= GameServer.chooseCost(player);
+		return chosenCost;
+		
 	}
 	
 }

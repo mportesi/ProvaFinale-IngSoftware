@@ -3,7 +3,7 @@
  * Tue May 30 13:45:08 CEST 2017
  */
 
-package Actions;
+package it.polimi.ingsw.actions;
 
 import static org.evosuite.runtime.EvoAssertions.verifyException;
 import static org.junit.Assert.assertFalse;
@@ -17,14 +17,14 @@ import org.evosuite.runtime.EvoRunnerParameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import Components.Card;
-import Components.Floor;
-import Components.HarvestAndProductionArea;
-import Components.Relative;
-import Components.Tower;
-import it.polimi.ingsw.GC_40.ColorDice;
-import it.polimi.ingsw.GC_40.ColorPlayer;
+import it.polimi.ingsw.components.*;
+import it.polimi.ingsw.cards.*;
+import it.polimi.ingsw.colors.*;
+
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.areas.Floor;
+import it.polimi.ingsw.areas.HarvestAndProductionArea;
+import it.polimi.ingsw.areas.Tower;
 
 @RunWith(EvoRunner.class) @EvoRunnerParameters(useVNET = true, separateClassLoader = true, useJEE = true) 
 public class PutRelative_ESTest extends PutRelative_ESTest_scaffolding {
