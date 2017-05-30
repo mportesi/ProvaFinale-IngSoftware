@@ -1,4 +1,4 @@
-package it.polimi.ingsw.components;
+package it.polimi.ingsw.areas;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
-public class MarketBuilding extends Market {
+public class MarketBuilding {
 	//private Piece bonus;
 	private String type;
 	private Map<String,Integer> bonus;

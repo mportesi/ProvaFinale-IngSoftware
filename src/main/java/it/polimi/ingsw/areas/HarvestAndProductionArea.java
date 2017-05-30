@@ -1,4 +1,4 @@
-package it.polimi.ingsw.components;
+package it.polimi.ingsw.areas;
 
 import it.polimi.ingsw.GC_40.Player;
 import java.util.ArrayList;

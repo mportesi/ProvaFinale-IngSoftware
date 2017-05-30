@@ -1,9 +1,10 @@
-package it.polimi.ingsw.components;
+package it.polimi.ingsw.areas;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.cards.Card;
 
 public class Tower {
 	private String type;

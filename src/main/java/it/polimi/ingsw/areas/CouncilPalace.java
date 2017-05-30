@@ -1,9 +1,11 @@
-package it.polimi.ingsw.components;
+package it.polimi.ingsw.areas;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.components.Piece;
+import it.polimi.ingsw.components.PrivilegeCouncil;
 
 public class CouncilPalace {
 	private ArrayList<Player> order = new ArrayList<Player>();

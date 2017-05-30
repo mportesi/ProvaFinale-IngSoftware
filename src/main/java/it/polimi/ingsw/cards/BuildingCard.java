@@ -1,4 +1,4 @@
-package it.polimi.ingsw.components;
+package it.polimi.ingsw.cards;
 
 import java.util.Map;
 

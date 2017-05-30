@@ -1,8 +1,9 @@
-package it.polimi.ingsw.components;
+package it.polimi.ingsw.areas;
 
 import java.util.Random;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.effects.Effect;
 
 public class Floor {
