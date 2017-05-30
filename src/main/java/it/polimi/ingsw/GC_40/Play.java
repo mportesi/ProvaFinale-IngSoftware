@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
-import Components.CouncilPalace;
+import it.polimi.ingsw.components.CouncilPalace;
 
 public class Play {
 	private int period;

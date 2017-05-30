@@ -3,14 +3,14 @@ package it.polimi.ingsw.GC_40;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import Components.Card;
-import Components.CouncilPalace;
-import Components.Dice;
-import Components.Floor;
-import Components.HarvestAndProductionArea;
-import Components.MarketBuilding;
-import Components.PersonalBonusTile;
-import Components.Tower;
+import it.polimi.ingsw.components.Card;
+import it.polimi.ingsw.components.CouncilPalace;
+import it.polimi.ingsw.components.Dice;
+import it.polimi.ingsw.components.Floor;
+import it.polimi.ingsw.components.HarvestAndProductionArea;
+import it.polimi.ingsw.components.MarketBuilding;
+import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.Tower;
 
 public class Board {
 	public static Tower territoryTower;
