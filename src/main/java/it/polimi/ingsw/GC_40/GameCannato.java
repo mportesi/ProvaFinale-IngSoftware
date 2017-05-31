@@ -24,17 +24,18 @@ import it.polimi.ingsw.resources.Wood;
 
 import java.util.ArrayList;
 //da cambiare
-public class GameServer {
+public class GameCannato {
 
-	public static ArrayList<Player> players;
-	public static List<ColorPlayer> colors;
-	public static View view;
+	private static ArrayList<Player> players;
+	private static List<ColorPlayer> colors;
+	private static ViewClient viewClient;
+	private Player currentPlayer;
 
 	public static void main(String[] args) {
 		Board board = new Board();
 		Scanner in= new Scanner(System.in);
 		
-		int numberOfPlayer=view.numberOfPlayer();
+		int numberOfPlayer=viewClient.numberOfPlayer();
 
 		initializePlayer(numberOfPlayer);
 
@@ -60,8 +61,8 @@ public class GameServer {
 				System.out.println("Values are: \n Black:" + Board.blackDice.getValue() + "\n 2) Orange:"
 						+ Board.orangeDice.getValue() + "\n 3) White: " + Board.whiteDice.getValue() + "\n 4) Neutral");
 				
-				String relative= view.chooseTheRelative();
-				int usedServant= view.addValue();
+				String relative= viewClient.chooseTheRelative();
+				int usedServant= viewClient.addValue();
 				Relative currentRelative = null;
 				switch (relative) {
 				case "Black": {
@@ -104,7 +105,7 @@ public class GameServer {
 				}
 
 				
-				String action = view.chooseTheMove();
+				String action = viewClient.chooseTheMove();
 
 				switch (action) {
 				case "PutRelativeOnTower": {
@@ -256,7 +257,7 @@ public class GameServer {
 	}
 	
 	public static String chooseCost(Player player){
-		return view.chooseCostForVentureCards();
+		return viewClient.chooseCostForVentureCards();
 	}
 
 }

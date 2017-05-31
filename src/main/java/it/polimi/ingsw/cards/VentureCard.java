@@ -2,7 +2,7 @@ package it.polimi.ingsw.cards;
 
 import java.util.Map;
 
-import it.polimi.ingsw.GC_40.GameServer;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 
 public class VentureCard extends Card {
@@ -74,7 +74,7 @@ public class VentureCard extends Card {
 	}
 	
 	public String chooseCost(Player player){
-		String chosenCost= GameServer.chooseCost(player);
+		String chosenCost= Play.chooseCost(player);
 		return chosenCost;
 		
 	}

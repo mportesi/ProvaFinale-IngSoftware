@@ -20,14 +20,14 @@ public class GameServer_ESTest extends GameServer_ESTest_scaffolding {
   public void test0()  throws Throwable  {
       // Undeclared exception!
       try { 
-        GameServer.initializePlayer((-1));
+        Play.initializePlayer((-1));
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
          //
          // no message in exception (getMessage() returned null)
          //
-         verifyException("it.polimi.ingsw.GC_40.GameServer", e);
+         verifyException("it.polimi.ingsw.GC_40.Play", e);
       }
   }
 
@@ -36,7 +36,7 @@ public class GameServer_ESTest extends GameServer_ESTest_scaffolding {
       String[] stringArray0 = new String[3];
       // Undeclared exception!
       try { 
-        GameServer.main(stringArray0);
+        Play.main(stringArray0);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
@@ -51,14 +51,14 @@ public class GameServer_ESTest extends GameServer_ESTest_scaffolding {
   public void test2()  throws Throwable  {
       // Undeclared exception!
       try { 
-        GameServer.initializePlayer(1);
+        Play.initializePlayer(1);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
          //
          // no message in exception (getMessage() returned null)
          //
-         verifyException("it.polimi.ingsw.GC_40.GameServer", e);
+         verifyException("it.polimi.ingsw.GC_40.Play", e);
       }
   }
 
@@ -66,7 +66,7 @@ public class GameServer_ESTest extends GameServer_ESTest_scaffolding {
   public void test3()  throws Throwable  {
       // Undeclared exception!
       try { 
-        GameServer.createTurnOrder();
+        Play.createTurnOrder();
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
@@ -79,6 +79,6 @@ public class GameServer_ESTest extends GameServer_ESTest_scaffolding {
 
   @Test(timeout = 4000)
   public void test4()  throws Throwable  {
-      GameServer gameServer0 = new GameServer();
+      Play gameServer0 = new Play();
   }
 }
