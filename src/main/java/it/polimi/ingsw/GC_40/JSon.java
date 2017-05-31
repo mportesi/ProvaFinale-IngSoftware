@@ -43,6 +43,20 @@ import Effects.GainMilitaryPoint;
 import Effects.GainStone;
 import Effects.GainWood;
 
+import it.polimi.ingsw.areas.Floor;
+import it.polimi.ingsw.areas.MarketBuilding;
+import it.polimi.ingsw.cards.BuildingCard;
+import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.CharacterCard;
+import it.polimi.ingsw.cards.TerritoryCard;
+import it.polimi.ingsw.cards.VentureCard;
+import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.effects.Effect;
+import it.polimi.ingsw.effects.GainCoin;
+import it.polimi.ingsw.effects.GainMilitaryPoint;
+import it.polimi.ingsw.effects.GainStone;
+import it.polimi.ingsw.effects.GainWood;
+//da dividere 
 public class JSon {
 	public static List<Card> buildingDeck = new ArrayList<Card>();
 	public static List<Card> territoryDeck = new ArrayList<Card>();

@@ -5,76 +5,76 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import Actions.PutRelativeOnCouncilPalace;
-import Actions.PutRelativeOnHarvestArea;
-import Actions.PutRelativeOnMarket;
-import Actions.PutRelativeOnProductionArea;
-import Actions.PutRelativeOnTower;
-import Components.Coin;
-import Components.FaithPoint;
-import Components.MarketBuilding;
-import Components.MilitaryPoint;
-import Components.Piece;
-import Components.Relative;
-import Components.Servant;
-import Components.Stone;
-import Components.Tower;
-import Components.Wood;
+import it.polimi.ingsw.actions.PutRelativeOnCouncilPalace;
+import it.polimi.ingsw.actions.PutRelativeOnHarvestArea;
+import it.polimi.ingsw.actions.PutRelativeOnMarket;
+import it.polimi.ingsw.actions.PutRelativeOnProductionArea;
+import it.polimi.ingsw.actions.PutRelativeOnTower;
+import it.polimi.ingsw.areas.MarketBuilding;
+import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.colors.ColorPlayer;
+import it.polimi.ingsw.components.Piece;
+import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.points.FaithPoint;
+import it.polimi.ingsw.points.MilitaryPoint;
+import it.polimi.ingsw.resources.Coin;
+import it.polimi.ingsw.resources.Servant;
+import it.polimi.ingsw.resources.Stone;
+import it.polimi.ingsw.resources.Wood;
 
 import java.util.ArrayList;
-
+//da cambiare
 public class GameServer {
 
 	public static ArrayList<Player> players;
 	public static List<ColorPlayer> colors;
+	public static View view;
 
 	public static void main(String[] args) {
 		Board board = new Board();
-
-		Scanner in = new Scanner(System.in);
-		System.out.println("Inserisci numero di player: ");
-		int numberOfPlayer = in.nextInt();
+		Scanner in= new Scanner(System.in);
+		
+		int numberOfPlayer=view.numberOfPlayer();
 
 		initializePlayer(numberOfPlayer);
 
-		Play play = new Play(0, 0, createTurnOrder());
+		PlayState playState = new PlayState(0, 0, createTurnOrder());
 
 		Player currentPlayer = players.get(0);
 
 		for (int i = 0; i < 3; i++) {
-			play.changePeriod();
+			playState.changePeriod();
 
 			for (int j = 0; j < 2; j++) {
 
-				play.changeRound();
+				playState.changeRound();
 				for (int k = 0; k < (4 * players.size()); k++) {
-					if (players.size() < 3) {
+					/*if (players.size() < 3) {
 						System.out.println(
 								"You can't use the right parts of the harvest and production value and you can't use the third and fourth parts of the market");
 					} else if (players.size() < 4) {
 						System.out.println("You can't use the third and fourth parts of the market");
 					}
-				}
+				}*/
 				System.out.println("It's the first player's turn: " + currentPlayer.getColor());
 				System.out.println("Values are: \n Black:" + Board.blackDice.getValue() + "\n 2) Orange:"
 						+ Board.orangeDice.getValue() + "\n 3) White: " + Board.whiteDice.getValue() + "\n 4) Neutral");
-				System.out.println("Choose a relative to place:\n" + "1) Black\n 2) Orange\n 3) White \n 4) Neutral");
-				int relative = in.nextInt();
-				System.out.println("Tell me if you want to use servants to give more value to the relative");
-				int usedServant = in.nextInt();
+				
+				String relative= view.chooseTheRelative();
+				int usedServant= view.addValue();
 				Relative currentRelative = null;
 				switch (relative) {
-				case 1: {
+				case "Black": {
 					currentRelative = currentPlayer.blackRelative;
 					currentRelative.setValue(usedServant);
+					//Modify with the observer/observable
 					if (currentPlayer.hasBlackRelative == false) {
 						System.out.println("This relative is already used");
 					} else
 						currentPlayer.hasBlackRelative = false;
-
 					break;
 				}
-				case 2: {
+				case "Orange": {
 					currentRelative = currentPlayer.orangeRelative;
 					currentRelative.setValue(usedServant);
 					if (currentPlayer.hasOrangeRelative == false) {
@@ -83,7 +83,7 @@ public class GameServer {
 						currentPlayer.hasOrangeRelative = false;
 					break;
 				}
-				case 3: {
+				case "White": {
 					currentRelative = currentPlayer.whiteRelative;
 					currentRelative.setValue(usedServant);
 					if (currentPlayer.hasWhiteRelative == false) {
@@ -92,7 +92,7 @@ public class GameServer {
 						currentPlayer.hasWhiteRelative = false;
 					break;
 				}
-				case 4: {
+				case "Neutral": {
 					currentRelative = currentPlayer.neutralRelative;
 					currentRelative.setValue(usedServant);
 					if (currentPlayer.hasNeutralRelative == false) {
@@ -103,13 +103,11 @@ public class GameServer {
 				}
 				}
 
-				System.out.println("Choose:\n" + "1) PutRelativeOnTower\n" + "2) PutRelativeOnCouncilPalace\n"
-						+ "3) PutRelativeOnMarket\n" + "4) PutRelativeOnHarvestArea\n"
-						+ "5) PutRelativeOnProductionArea");
-				int action = in.nextInt();
+				
+				String action = view.chooseTheMove();
 
 				switch (action) {
-				case 1: {
+				case "PutRelativeOnTower": {
 					System.out.println(
 							"Tell me the tower:\n 1)Territory tower\n 2)Building tower\n 3)Character Tower\n 4)Venture tower");
 					Tower tower = null;
@@ -141,7 +139,7 @@ public class GameServer {
 							currentRelative);
 					putRelativeOnTower.apply();
 				}
-				case 2: {
+				case "PutRelativeOnCouncilPalace": {
 					PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 							currentPlayer, currentRelative);
 					System.out.println("Tell me the piece that you want");
@@ -179,7 +177,7 @@ public class GameServer {
 					}
 					}
 				}
-				case 3: {
+				case "PutRelativeOnMarket": {
 					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(currentPlayer, currentRelative);
 					System.out.println("Tell me what market do you prefer");
 					switch (in.nextInt()) {
@@ -205,12 +203,12 @@ public class GameServer {
 					}
 					}
 				}
-				case 4: {
+				case "PutRelativeOnHarvestArea": {
 					PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(currentPlayer,
 							currentRelative);
 					break;
 				}
-				case 5: {
+				case "PutRelativeOnProductionArea": {
 					PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
 							currentPlayer, currentRelative);
 					break;
@@ -227,12 +225,13 @@ public class GameServer {
 				System.out.println("militaryPoint:" + currentPlayer.getMilitaryPoint());
 				System.out.println("victoryPoint:" + currentPlayer.getVictoryPoint());
 
-				play.changeCurrentPlayer();
+				playState.changeCurrentPlayer();
 
 			}
 		}
 
-		play.checkWinner();
+		playState.checkWinner();
+		}
 
 	}
 
@@ -252,6 +251,10 @@ public class GameServer {
 		Collections.shuffle(players);
 		return players;
 
+	}
+	
+	public static String chooseCost(Player player){
+		return view.chooseCostForVentureCards();
 	}
 
 }

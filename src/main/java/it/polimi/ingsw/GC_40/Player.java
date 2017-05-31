@@ -2,14 +2,16 @@ package it.polimi.ingsw.GC_40;
 
 import java.util.ArrayList;
 
-import Components.BuildingCard;
-import Components.Card;
-import Components.LeaderTile;
-import Components.PersonalBonusTile;
-import Components.Relative;
-import Components.TerritoryCard;
-import Components.VentureCard;
-import Components.CharacterCard;
+import it.polimi.ingsw.cards.BuildingCard;
+import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.CharacterCard;
+import it.polimi.ingsw.cards.TerritoryCard;
+import it.polimi.ingsw.cards.VentureCard;
+import it.polimi.ingsw.colors.ColorDice;
+import it.polimi.ingsw.colors.ColorPlayer;
+import it.polimi.ingsw.components.LeaderTile;
+import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.Relative;
 
 public class Player {
 	
