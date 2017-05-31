@@ -1,14 +1,6 @@
 package it.polimi.ingsw.actions;
 
-<<<<<<< HEAD:src/main/java/Actions/PutRelativeOnHarvestArea.java
-import Components.Relative;
-import Components.HarvestAndProductionArea;
-import Effects.GainHarvestValue;
-import Effects.GainProductionValue;
 import it.polimi.ingsw.GC_40.Board;
-import it.polimi.ingsw.GC_40.ColorDice;
-=======
->>>>>>> Sara:src/main/java/it/polimi/ingsw/actions/PutRelativeOnHarvestArea.java
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.components.Relative;

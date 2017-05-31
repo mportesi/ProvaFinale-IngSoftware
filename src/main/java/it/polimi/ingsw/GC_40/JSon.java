@@ -25,25 +25,8 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-
-
-import Components.BuildingCard;
-import Components.Card;
-import Components.CharacterCard;
-import Components.Floor;
-import Components.HarvestAndProductionArea;
-import Components.Market;
-import Components.MarketBuilding;
-import Components.PersonalBonusTile;
-import Components.TerritoryCard;
-import Components.VentureCard;
-import Effects.Effect;
-import Effects.GainCoin;
-import Effects.GainMilitaryPoint;
-import Effects.GainStone;
-import Effects.GainWood;
-
 import it.polimi.ingsw.areas.Floor;
+import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.Card;

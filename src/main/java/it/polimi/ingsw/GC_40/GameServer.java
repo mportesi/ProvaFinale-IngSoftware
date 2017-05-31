@@ -204,13 +204,15 @@ public class GameServer {
 					}
 				}
 				case "PutRelativeOnHarvestArea": {
+					String area= in.nextLine();
 					PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(currentPlayer,
-							currentRelative);
+							currentRelative, area);
 					break;
 				}
 				case "PutRelativeOnProductionArea": {
+					String area= in.nextLine();
 					PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
-							currentPlayer, currentRelative);
+							currentPlayer, currentRelative,area);
 					break;
 				}
 

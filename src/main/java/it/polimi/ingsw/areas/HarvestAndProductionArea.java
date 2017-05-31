@@ -1,8 +1,10 @@
 package it.polimi.ingsw.areas;
 
 
-import it.polimi.ingsw.GC_40.ColorDice;
+import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.components.Relative;
+
 import java.util.ArrayList;
 import java.util.List;
 

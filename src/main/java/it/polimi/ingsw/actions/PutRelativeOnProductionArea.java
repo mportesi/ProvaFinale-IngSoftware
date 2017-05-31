@@ -1,24 +1,14 @@
 package it.polimi.ingsw.actions;
 
-<<<<<<< HEAD:src/main/java/Actions/PutRelativeOnProductionArea.java
-import Components.Relative;
-import Components.HarvestAndProductionArea;
-import Effects.GainHarvestValue;
-import Effects.GainProductionValue;
+
 import it.polimi.ingsw.GC_40.Board;
-=======
->>>>>>> Sara:src/main/java/it/polimi/ingsw/actions/PutRelativeOnProductionArea.java
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainProductionValue;
 
-<<<<<<< HEAD:src/main/java/Actions/PutRelativeOnProductionArea.java
-public class PutRelativeOnProductionArea extends PutRelative {
-	
-=======
+
 public class PutRelativeOnProductionArea implements PutRelative {
->>>>>>> Sara:src/main/java/it/polimi/ingsw/actions/PutRelativeOnProductionArea.java
 	Relative relative;
 	HarvestAndProductionArea productionArea;
 	Player player;

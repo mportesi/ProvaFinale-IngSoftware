@@ -1,11 +1,10 @@
 package it.polimi.ingsw.components;
 
-<<<<<<< HEAD:src/main/java/Components/Relative.java
-import it.polimi.ingsw.GC_40.ColorDice;
-import it.polimi.ingsw.GC_40.Player;
-=======
 import it.polimi.ingsw.colors.ColorDice;
->>>>>>> Sara:src/main/java/it/polimi/ingsw/components/Relative.java
+import it.polimi.ingsw.GC_40.Player;
+
+import it.polimi.ingsw.colors.ColorDice;
+
 
 public class Relative {
 	
