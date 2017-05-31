@@ -192,54 +192,46 @@ public class Player {
 		}
 		}
 		
-		}
+	}
 
 
 	public void setCoin(int i) {
-		// TODO Auto-generated method stub
-		
+		coin = i;
 	}
 
 
 	public void setWood(int i) {
-		// TODO Auto-generated method stub
-		
+		wood=i;
 	}
 
 
 	public void setServant(int i) {
-		// TODO Auto-generated method stub
-		
+		servant=i;
 	}
 
 
 	public void setStone(int i) {
-		// TODO Auto-generated method stub
-		
+		stone=i;
 	}
 
 
 	public void setMilitaryPoint(int i) {
-		// TODO Auto-generated method stub
-		
+		militaryPoint=i;
 	}
 
 
 	public void setVictorypoint(int i) {
-		// TODO Auto-generated method stub
-		
+		victoryPoint=i;
 	}
 
 
 	public void setFaithPoint(int i) {
-		// TODO Auto-generated method stub
-		
+		faithPoint=i;
 	}
 
 
 	public void setColor(ColorPlayer colorPlayer) {
-		// TODO Auto-generated method stub
-		
+		color = colorPlayer;
 	}
-	}
+}
 
