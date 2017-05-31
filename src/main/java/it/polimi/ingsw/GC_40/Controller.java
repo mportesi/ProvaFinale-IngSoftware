@@ -1,16 +1,14 @@
 package it.polimi.ingsw.GC_40;
 
-import java.util.Observable;
-import java.util.Observer;
 
 import it.polimi.ingsw.changes.*;
 
 public class Controller implements Observer<Change> {
 	
-	private final GameServer gameServer;
+	private final Play play;
 	
-	public Controller(GameServer gameServer){
-		this.gameServer=gameServer;
+	public Controller(Play play){
+		this.play=play;
 	}
 	
 	
@@ -18,14 +16,17 @@ public class Controller implements Observer<Change> {
 	@Override
 	public void update(Change change) {
 		// TODO Auto-generated method stub
+		change.apply();
 
 	}
 
 
 
-	public GameServer getGameServer() {
-		return gameServer;
+	public Play getGameServer() {
+		return play;
 	}
+
+
 
 	
 }

@@ -250,11 +250,7 @@ public class GameCannato {
 
 	}
 
-	public static ArrayList<Player> createTurnOrder() {
-		Collections.shuffle(players);
-		return players;
-
-	}
+	
 	
 	public static String chooseCost(Player player){
 		return viewClient.chooseCostForVentureCards();
