@@ -6,10 +6,12 @@ import java.util.List;
 
 import it.polimi.ingsw.colors.ColorPlayer;
 
-public class Play {
+public class Play extends Observable<Notify>
+{
 	private static ArrayList<Player> players;
 	private Player currentPlayer;
 	private Board board;
+	private PlayState state;
 	
 	public Play(){
 		this.board=new Board();
@@ -20,6 +22,10 @@ public class Play {
 		this.players=players;
 		ArrayList<Player> currentTurnOrder=createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
+		this.state = new PlayState(0, 0, currentTurnOrder);
+		this.currentPlayer = currentTurnOrder.get(0);
+		state.changePeriod();
+		state.changeRound();
 		
 	}
 	
@@ -35,6 +41,7 @@ public class Play {
 	public void initializePlayer(ArrayList<Player> currentTurnOrder){
 		int i=0;
 		for(Player p:currentTurnOrder){
+			//TO DO SET E GET, MATTEO
 			p.setCoin(0);
 			p.setWood(2);
 			p.setServant(3);
@@ -44,6 +51,7 @@ public class Play {
 			p.setFaithPoint(0);
 			i++;
 		}
+		
 		giveStartingCoin(currentTurnOrder);
 		
 		
@@ -54,5 +62,36 @@ public class Play {
 		Collections.shuffle(players);
 		return players;
 	}
+	
+	
+	// unire playState e play
+	
+	
+	public void changePlayer(){
+		//TO DO MATTEO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NON URLARE
+	}
+	
+	public void changeTurnOrder(){
+		
+	}
+	
+	public void changeRound(){
+		
+	}
+	
+	
+	public void changePeriod(){
+		
+	}
+	
+	public void giveFinalPoint(){
+		//assegna i punti a ciascun player
+	}
+	
+	public void endGame(){
+		//restituisce la classifica e il vincitore
+	}
+	
+	
 
 }
