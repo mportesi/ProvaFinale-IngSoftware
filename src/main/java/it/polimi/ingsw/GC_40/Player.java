@@ -78,21 +78,26 @@ public class Player {
 	public int getVictoryPoint() {
 		return victoryPoint;
 	}
+	
 	public int getMilitaryPoint() {
 		return militaryPoint;
 	}
+	
 	public ArrayList<TerritoryCard> getTerritory() {
 		return territoryCard;
 	}
+	
 	public ArrayList<CharacterCard> getCharacter() {
 		return characterCard;
 	}
+	
 	public ArrayList<BuildingCard> getBuilding() {
 		return buildingCard;
 	}
 	public ArrayList<VentureCard> getVenture() {
 		return ventureCard;
 	}
+	
 	public ArrayList<LeaderTile> getLeader() {
 		return leader;
 	}
