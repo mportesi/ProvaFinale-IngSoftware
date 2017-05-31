@@ -1,6 +1,6 @@
 package it.polimi.ingsw.changes;
 
-public class ChangeRound extends Change {
+public class ChangeRound implements Change {
 
 	@Override
 	public void apply() {

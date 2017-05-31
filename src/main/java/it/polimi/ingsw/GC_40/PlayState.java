@@ -68,7 +68,12 @@ public class PlayState {
 
 	public void changeRound() {
 		if (round == 2 || round == 4 || round == 6) {
-			changePeriod();
+			if(period==3){
+				changePeriod();
+				return;
+			}
+			else changePeriod();
+			
 		}
 		round += 1;
 		changeTurnOrder();

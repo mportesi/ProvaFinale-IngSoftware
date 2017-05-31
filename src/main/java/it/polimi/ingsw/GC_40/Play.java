@@ -54,8 +54,6 @@ public class Play extends Observable<Notify>
 		
 		giveStartingCoin(currentTurnOrder);
 		
-		
-
 	}
 	
 	public static ArrayList<Player> createTurnOrder(ArrayList<Player> players) {
