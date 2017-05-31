@@ -29,8 +29,8 @@ public class PersonalBonusTile{
 	private int costHarvest;
 	
 	public PersonalBonusTile (String type, Map<String, Integer> productionEffectMap, Map<String, Integer> harvestEffectMap, int costProduction, int costHarvest){
-		this.costProduction=costProduction;
-		this.costHarvest=costHarvest;
+		this.costProduction = costProduction;
+		this.costHarvest = costHarvest;
 		this.harvestEffectMap=harvestEffectMap;
 		this.productionEffectMap=productionEffectMap;
 	}
@@ -167,6 +167,15 @@ public class PersonalBonusTile{
 			}
 		}
 	}
+
+	public int getCostHarvest() {
+		return costHarvest;
+	}
+
+	public int getCostProduction() {
+		return costProduction;
+	}
+
 	
 	
 

@@ -1,9 +1,11 @@
 package Components;
 
 import it.polimi.ingsw.GC_40.ColorDice;
+import it.polimi.ingsw.GC_40.Player;
 
 public class Relative {
 	
+	private Player player;
 	private ColorDice color;
 	private int value;
 	
@@ -23,6 +25,14 @@ public class Relative {
 	public void setValue(int n){
 		this.value+=n;
 	}
+
+
+	public Player getPlayer() {
+		return player;
+	}
+
+
+	
 	
 	
 }

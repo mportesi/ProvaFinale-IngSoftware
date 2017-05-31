@@ -1,0 +1,105 @@
+[
+  {
+    "type": "territory",
+    "cost":7,
+    "amountBonus":2
+    
+  },
+  {
+    "type": "territory",
+    "cost":5,
+    "amountBonus":1
+    
+  },
+  {
+    "type": "territory",
+    "cost":3,
+    "amountBonus":0
+    
+  },
+  {
+    "type": "territory",
+    "cost":1,
+    "amountBonus":0
+    
+  },
+  
+  {
+    "type": "character",
+    "cost":7,
+    "amountBonus":2
+    
+  },
+  {
+    "type": "character",
+    "cost":5,
+    "amountBonus":2
+    
+  },
+  {
+    "type": "character",
+    "cost":3,
+    "amountBonus":0
+    
+  },
+  {
+    "type": "character",
+    "cost":1,
+    "amountBonus":0
+    
+  },
+  
+  {
+    "type": "building",
+    "cost":7,
+    "amountBonus":2
+    
+  },
+  {
+    "type": "building",
+    "cost":5,
+    "amountBonus":1
+    
+  },
+  {
+    "type": "building",
+    "cost":3,
+    "amountBonus":0
+    
+  },
+  {
+    "type": "building",
+    "cost":1,
+    "amountBonus":0
+    
+  },
+  
+  {
+    "type": "venture",
+    "cost":7,
+    "amountBonus":2
+    
+  },
+  {
+    "type": "venture",
+    "cost":5,
+    "amountBonus":1
+    
+  },
+  {
+    "type": "venture",
+    "cost":3,
+    "amountBonus":0
+    
+  },
+  {
+    "type": "venture",
+    "cost":1,
+    "amountBonus":0
+    
+  }
+  
+  
+  
+  
+  ]

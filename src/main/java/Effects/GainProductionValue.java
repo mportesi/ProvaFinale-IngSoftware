@@ -13,7 +13,11 @@ public class GainProductionValue extends Effect {
 	@Override
 	public void apply(Player player) {
 		// TODO Auto-generated method stub
-	player.personalBonusTile.applyProductionEffect(player);	
+		if (productionValue >= player.personalBonusTile.getCostProduction()){
+		player.personalBonusTile.applyProductionEffect(player);		
+
+	}
+
 
 	}
 

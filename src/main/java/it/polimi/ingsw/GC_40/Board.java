@@ -76,13 +76,13 @@ public class Board {
 		
 		
 		
-		harvestArea= new HarvestAndProductionArea();
-		productionArea= new HarvestAndProductionArea();
+		harvestArea = JSon.harvest;
+		productionArea = JSon.production;
 		
 		
-		blackDice= new Dice(ColorDice.BLACK);
-		whiteDice= new Dice(ColorDice.WHITE);
-		orangeDice= new Dice(ColorDice.ORANGE);
+		blackDice = new Dice(ColorDice.BLACK);
+		whiteDice = new Dice(ColorDice.WHITE);
+		orangeDice = new Dice(ColorDice.ORANGE);
 	}
 	
 	

@@ -1,0 +1,44 @@
+[
+  {
+    "type": “market1",
+    "bonus":[ {
+      "type": "coin", "amount": 5
+    }],
+    "cost":1
+    
+  },
+  {
+    "type": "market2",
+    "bonus": [{
+      "type": "servant", "amount": 5
+    }],
+    "cost":1
+    
+  },
+  {
+    "type": "market3",
+    "bonus": [{
+      "type": "militaryPoint", "amount": 3
+      
+    },
+    {
+      "type": "coin", "amount": 2
+    }
+    ],
+    
+    "cost":1
+    
+  },
+  {
+    "type": "market4",
+    "bonus":[ {
+      "type": "privilegeCouncil", "amount": 2
+    }],
+    "cost":1
+    
+  }
+  
+  
+  
+  
+  ]

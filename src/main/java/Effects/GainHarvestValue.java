@@ -11,8 +11,11 @@ public class GainHarvestValue extends Effect {
 
 	@Override
 	public void apply(Player player) {
+		//attiva gli effetti permanenti con valore tot
+		if (harvestValue >= player.personalBonusTile.getCostHarvest()){
 		player.personalBonusTile.applyHarvestEffect(player);		
 
+	}
 	}
 
 }

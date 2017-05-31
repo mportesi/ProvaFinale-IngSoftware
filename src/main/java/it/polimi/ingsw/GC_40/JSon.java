@@ -25,14 +25,13 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
+
 
 import Components.BuildingCard;
 import Components.Card;
 import Components.CharacterCard;
 import Components.Floor;
+import Components.HarvestAndProductionArea;
 import Components.Market;
 import Components.MarketBuilding;
 import Components.PersonalBonusTile;
@@ -55,8 +54,35 @@ public class JSon {
 	public static ArrayList<Floor> ventureFloors = new ArrayList<Floor>();
 	public static ArrayList <MarketBuilding> marketBuilding = new ArrayList <MarketBuilding>();
 	public static ArrayList <PersonalBonusTile> personalBonusTiles = new ArrayList <PersonalBonusTile>();
+	public static HarvestAndProductionArea harvest;
+	public static HarvestAndProductionArea production;
 
 	public static void importCards() throws FileNotFoundException, IOException, ParseException {
+		
+		
+		JSONParser harvestAndProductionParser = new JSONParser();
+		JSONArray harvestAndProductionArray = (JSONArray) harvestAndProductionParser.parse(new FileReader("target/BonusFloors.json"));
+		for (Object o : harvestAndProductionArray) {
+			JSONObject harvestAndProduction = (JSONObject) o;
+
+			String type = (String) harvestAndProduction.get("type");
+			int costOfLeftArea = ((Long) harvestAndProduction.get("costOfLeftArea")).intValue();
+			int costOfRightArea = ((Long) harvestAndProduction.get("costOfRightArea")).intValue();
+			int malus = ((Long) harvestAndProduction.get("malus")).intValue();
+			
+			switch (type){
+			case "production": {
+				production = new HarvestAndProductionArea (type, costOfLeftArea, costOfRightArea, malus);
+				break;
+			}
+			case "harvest": {
+				harvest = new HarvestAndProductionArea (type, costOfLeftArea, costOfRightArea, malus);
+				break;
+			}
+			}
+			
+		}
+			
 
 		JSONParser floorParser = new JSONParser();
 		JSONArray floorArray = (JSONArray) floorParser.parse(new FileReader("target/BonusFloors.json"));

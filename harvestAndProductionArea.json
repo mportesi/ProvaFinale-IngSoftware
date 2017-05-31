@@ -1,0 +1,18 @@
+[
+  {
+    "type": "productionArea",
+    "costOfLeftArea": 1,
+    "costOfRightArea":1,
+    "malus":3
+  },
+  
+  {
+    "type": "harvestArea",
+    "costOfLeftArea": 1,
+    "costOfRightArea":1,
+    "malus":3
+  }
+  
+  
+  
+  ]
