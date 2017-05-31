@@ -1,7 +1,9 @@
 package it.polimi.ingsw.changes;
 
-public abstract class Change {
+import it.polimi.ingsw.GC_40.Play;
+
+public abstract interface Change {
 	
-	public abstract void apply();
+	public abstract void applyChange(Play play);
 
 }

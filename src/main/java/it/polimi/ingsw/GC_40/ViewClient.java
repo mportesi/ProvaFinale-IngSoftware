@@ -5,7 +5,7 @@ import java.util.Scanner;
 //da cambiare
 //client
 
-public class View extends Observable{
+public class ViewClient extends Observable{
 
 	public int numberOfPlayer() {
 		int numberOfPlayer=0;

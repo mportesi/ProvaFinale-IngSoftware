@@ -22,7 +22,7 @@ public class GameServer_ESTest_scaffolding {
 
   @BeforeClass 
   public static void initEvoSuiteFramework() { 
-    org.evosuite.runtime.RuntimeSettings.className = "it.polimi.ingsw.GC_40.GameServer"; 
+    org.evosuite.runtime.RuntimeSettings.className = "it.polimi.ingsw.GC_40.Play"; 
     org.evosuite.runtime.GuiSupport.initialize(); 
     org.evosuite.runtime.RuntimeSettings.maxNumberOfIterationsPerLoop = 10000; 
     org.evosuite.runtime.Runtime.getInstance().resetRuntime(); 
@@ -63,7 +63,7 @@ public class GameServer_ESTest_scaffolding {
       "Components.Stone",
       "it.polimi.ingsw.GC_40.Player",
       "Effects.GainMilitaryPoint",
-      "it.polimi.ingsw.GC_40.GameServer",
+      "it.polimi.ingsw.GC_40.Play",
       "Components.Piece",
       "Effects.GainStone"
     );

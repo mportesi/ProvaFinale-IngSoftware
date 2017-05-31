@@ -58,7 +58,7 @@ public class JSon {
 		
 		
 		JSONParser harvestAndProductionParser = new JSONParser();
-		JSONArray harvestAndProductionArray = (JSONArray) harvestAndProductionParser.parse(new FileReader("target/BonusFloors.json"));
+		JSONArray harvestAndProductionArray = (JSONArray) harvestAndProductionParser.parse(new FileReader("GC-40/BonusFloors.json"));
 		for (Object o : harvestAndProductionArray) {
 			JSONObject harvestAndProduction = (JSONObject) o;
 
@@ -82,7 +82,7 @@ public class JSon {
 			
 
 		JSONParser floorParser = new JSONParser();
-		JSONArray floorArray = (JSONArray) floorParser.parse(new FileReader("target/BonusFloors.json"));
+		JSONArray floorArray = (JSONArray) floorParser.parse(new FileReader("GC_40/BonusFloors.json"));
 		for (Object o : floorArray) {
 			JSONObject floor = (JSONObject) o;
 
@@ -119,7 +119,7 @@ public class JSon {
 		}
 		
 		JSONParser marketParser = new JSONParser();
-		JSONArray marketArray = (JSONArray) marketParser.parse(new FileReader("target/MarketBonus.json"));
+		JSONArray marketArray = (JSONArray) marketParser.parse(new FileReader("GC_40/MarketBonus.json"));
 		for (Object o : marketArray){
 			
 			JSONObject market = (JSONObject) o;
@@ -142,7 +142,7 @@ public class JSon {
 		}
 		
 		JSONParser personalBonusTileParser = new JSONParser();
-		JSONArray personalBonusTileArray = (JSONArray) personalBonusTileParser.parse(new FileReader("target/MarketBonus.json"));
+		JSONArray personalBonusTileArray = (JSONArray) personalBonusTileParser.parse(new FileReader("GC_40/MarketBonus.json"));
 		for (Object o : personalBonusTileArray){
 			
 			JSONObject personalBonusTile = (JSONObject) o;
@@ -179,7 +179,7 @@ public class JSon {
 
 		// BuildingCards
 		JSONParser buildingParser = new JSONParser();
-		JSONArray buildingArray = (JSONArray) buildingParser.parse(new FileReader("target/BuildingCards.json"));
+		JSONArray buildingArray = (JSONArray) buildingParser.parse(new FileReader("GC_40/BuildingCards.json"));
 		for (Object o : buildingArray) {
 			JSONObject card = (JSONObject) o;
 
@@ -214,7 +214,7 @@ public class JSon {
 
 		// TerritoryCards
 		JSONParser territoryParser = new JSONParser();
-		JSONArray territoryArray = (JSONArray) territoryParser.parse(new FileReader("target/TerritoryCards.json"));
+		JSONArray territoryArray = (JSONArray) territoryParser.parse(new FileReader("GC_40/TerritoryCards.json"));
 		for (Object o : territoryArray) {
 			JSONObject card = (JSONObject) o;
 
@@ -239,7 +239,7 @@ public class JSon {
 
 		// VentureDeck
 		JSONParser ventureParser = new JSONParser();
-		JSONArray ventureArray = (JSONArray) ventureParser.parse(new FileReader("/target/VentureCards.json"));
+		JSONArray ventureArray = (JSONArray) ventureParser.parse(new FileReader("GC_40/VentureCards.json"));
 		for (Object o : ventureArray) {
 			JSONObject card = (JSONObject) o;
 
@@ -282,7 +282,7 @@ public class JSon {
 
 		// CharacterCard
 		JSONParser characterParser = new JSONParser();
-		JSONArray characterArray = (JSONArray) characterParser.parse(new FileReader("/target/CharacterCards.json"));
+		JSONArray characterArray = (JSONArray) characterParser.parse(new FileReader("GC_40/CharacterCards.json"));
 		for (Object o : characterArray) {
 			JSONObject card = (JSONObject) o;
 
