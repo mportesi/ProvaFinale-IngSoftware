@@ -46,8 +46,6 @@ public class Play {
 		}
 		giveStartingCoin(currentTurnOrder);
 		
-		
-
 	}
 	
 	public static ArrayList<Player> createTurnOrder(ArrayList<Player> players) {

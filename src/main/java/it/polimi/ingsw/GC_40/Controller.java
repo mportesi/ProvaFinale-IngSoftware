@@ -28,5 +28,13 @@ public class Controller implements Observer<Change> {
 
 
 
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 	
 }
