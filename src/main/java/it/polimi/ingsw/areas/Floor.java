@@ -51,4 +51,8 @@ public class Floor {
 	public boolean isFree(){
 		return isFree;
 	}
+	
+	public Card getCard(){
+		return currentCard;
+	}
 }

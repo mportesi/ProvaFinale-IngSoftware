@@ -58,5 +58,9 @@ public class Tower {
 		}
 		return false;
 	}
+	
+	public Floor getFloor(int i){
+		return floors.get(i);
+	}
 
 }

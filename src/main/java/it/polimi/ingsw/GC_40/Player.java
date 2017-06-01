@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_40;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.Card;
@@ -191,6 +192,11 @@ public class Player {
 			break;
 		}
 		}
+		
+	}
+	
+	public void chooseCharacterCard(int value, Map<String, Integer> discount){
+		
 		
 	}
 
