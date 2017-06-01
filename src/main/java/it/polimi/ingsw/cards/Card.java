@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.effects.Card;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainFaithPoint;
 import it.polimi.ingsw.effects.GainMilitaryPoint;
+import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 import it.polimi.ingsw.effects.GainServant;
 import it.polimi.ingsw.effects.GainStone;
 import it.polimi.ingsw.effects.GainVictoryPoint;
@@ -60,8 +62,7 @@ public class Card {
 				iEffect.add(gainServant);
 			}
 			case "GainPrivilegeCouncil": {
-				String resource = PrivilegeCouncil.choosePrivilegeCouncil();
-				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect, resource);
+				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect);
 				iEffect.add(gainPrivilegeCouncil);
 				break;
 			}
@@ -121,25 +122,13 @@ public class Card {
 			createListOfEffect();
 
 		for (Effect e : iEffect) {
-			if (e != null && e != getCard) {
+			if (e != null) {
 				e.apply(player);
 			} 
 				return;
 			}
 		}
 	
-
-	/*for (Effect e : iEffect) {
-	if (e != null && e != getCard) {
-		e.apply(player);
-	} elseif (e != null && e == getCard){
-		Card card=player.chooseCard();
-		e.apply(player, card);
-		
-	}
-		return;
-	}
-}*/
 	
 	public void payCost(Player player){
 	};

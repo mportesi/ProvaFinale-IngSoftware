@@ -5,19 +5,18 @@ import it.polimi.ingsw.components.PrivilegeCouncil;
 
 public class GainPrivilegeCouncil extends Effect {
 	int privilegeCouncil;
-	String resource;
 	
-	public GainPrivilegeCouncil(int privilegeCouncil, String resource){
+	public GainPrivilegeCouncil(int privilegeCouncil){
 		this.privilegeCouncil=privilegeCouncil;
-		this.resource = resource;
+		
 	}
 
 	@Override
 	public void apply(Player player) {
-		Resource resource = player.chooseResource();
+		String resource; // =controller chooseResource(se privilegeCouncil>1 sceglie due cose diverse);
 		PrivilegeCouncil.applyEffect(player, resource);
 		
-	//metto uno switch e incremento a seconda del case
+	
 		
 		
 

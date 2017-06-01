@@ -5,42 +5,32 @@ import java.util.Map;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Floor;
 import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.cards.Card;
 
 public class GetCard extends Effect {
-	private Tower tower;
+	private String card;
 	private int value;
 	private Map<String, Integer> discount;
 	
 	
-	public GetCard(Tower tower, int value, Map<String, Integer> discount, Floor floor){
+	public GetCard(String card, int value, Map<String, Integer> discount){
 		this.card=card;
 		this.value=value;
 		this.discount=discount;
-		this.floor=floor;
+		
 	}
 	
 	
 
 	@Override
 	public void apply(Player player) {
-		/*switch(card){
-	public void apply(Player player, Card card) {
-		// TODO Auto-generated method stub
 		
-		player.getCard(Card);
+		Card card=//qualcosa chooseCard(value, discount);
+		e.applyCard(player, card);
 		
-		
-
-			case "characterCard": player.chooseCharacterCard(value, discount);
-			case "ventureCard": player.chooseVentureCard(value, discount);
-			case "territoryCard": player.chooseTerritoryCard(value);
-			case "buildingCard": player.chooseBuildingCard(value, discount);
-			case "anyone": player.chooseCard(value);*/
-
 	}
 
-	public Card chooseCard(Tower tower, int floor){
-		return tower.getFloor(floor).getCard();
+	public void applyCard(Player player,Card card){
 	}
 
 }
