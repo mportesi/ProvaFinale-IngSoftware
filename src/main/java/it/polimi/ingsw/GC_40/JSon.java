@@ -25,6 +25,7 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.Floor;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.areas.MarketBuilding;
@@ -34,6 +35,7 @@ import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainMilitaryPoint;
@@ -55,6 +57,30 @@ public class JSon {
 	public static HarvestAndProductionArea production;
 
 	public static void importCards() throws FileNotFoundException, IOException, ParseException {
+		
+		
+		
+		JSONParser councilPalaceParser = new JSONParser();
+		JSONObject councilPalaceObj = (JSONObject) councilPalaceParser.parse(new FileReader("GC-40/CouncilPalace.json"));
+		
+		int bonusPrivilegeCouncil = ((Long) councilPalaceObj.get("bonusPrivilegeCouncil")).intValue();
+		int bonusCoin = ((Long) councilPalaceObj.get("bonusCoin")).intValue();
+		int cost = ((Long) councilPalaceObj.get("cost")).intValue();
+		
+		CouncilPalace councilPalace = new CouncilPalace(bonusPrivilegeCouncil, bonusCoin, cost);
+		
+		
+		JSONParser privilegeCouncilParser = new JSONParser();
+		JSONObject privilegeCouncilObj = (JSONObject) privilegeCouncilParser.parse(new FileReader("GC-40/PrivilegeCouncil.json"));
+		
+		int bonusWoodAndStone = ((Long) privilegeCouncilObj.get("bonusWoodAndStone")).intValue();
+		int bonusServant = ((Long) privilegeCouncilObj.get("bonusServant")).intValue();
+		int bonusCoinP = ((Long) privilegeCouncilObj.get("bonusCoin")).intValue();
+		int bonusMilitaryPoint = ((Long) privilegeCouncilObj.get("bonusMilitaryPoint")).intValue();
+		int bonusFaithPoint = ((Long) privilegeCouncilObj.get("bonusFaithPoint")).intValue();
+		
+		PrivilegeCouncil privilegeCouncil = new PrivilegeCouncil(bonusWoodAndStone, bonusServant, bonusCoinP, bonusMilitaryPoint, bonusFaithPoint);
+		
 		
 		
 		JSONParser harvestAndProductionParser = new JSONParser();

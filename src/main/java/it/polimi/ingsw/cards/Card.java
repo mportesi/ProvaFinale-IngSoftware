@@ -58,6 +58,12 @@ public class Card {
 				GainServant gainServant = new GainServant(costImmediateEffect);
 				iEffect.add(gainServant);
 			}
+			case "GainPrivilegeCouncil": {
+				String resource = PrivilegeCouncil.choosePrivilegeCouncil();
+				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect, resource);
+				iEffect.add(gainPrivilegeCouncil);
+				break;
+			}
 			case "GainVictoryPoint": {
 				GainVictoryPoint gainVictoryPoint = new GainVictoryPoint(costImmediateEffect);
 				iEffect.add(gainVictoryPoint);

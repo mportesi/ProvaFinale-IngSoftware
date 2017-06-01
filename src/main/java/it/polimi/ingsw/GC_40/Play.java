@@ -41,7 +41,6 @@ public class Play extends Observable<Notify>
 	public void initializePlayer(ArrayList<Player> currentTurnOrder){
 		int i=0;
 		for(Player p:currentTurnOrder){
-			//TO DO SET E GET, MATTEO
 			p.setCoin(0);
 			p.setWood(2);
 			p.setServant(3);
