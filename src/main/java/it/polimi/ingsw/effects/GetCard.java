@@ -7,8 +7,11 @@ public class GetCard extends Effect {
 	
 
 	@Override
-	public void apply(Player player) {
+	public void apply(Player player, Card card) {
 		// TODO Auto-generated method stub
+		
+		player.getCard(Card);
+		
 		
 
 	}

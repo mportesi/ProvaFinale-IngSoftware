@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_40;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.Card;
@@ -56,6 +57,11 @@ public class Player {
 		hasNeutralRelative=true;
 	}
 	
+	public String chooseResource(){
+		Scanner in= new Scanner(System.in);
+		System.out.println("Scegli tra: 1: WoodAndStone, 2: Servant ecc" );
+				return nextInt();
+	}
 	
 	public int getCoin() {
 		return coin;
