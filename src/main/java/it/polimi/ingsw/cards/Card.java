@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.effects.Card;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainFaithPoint;
@@ -109,22 +110,36 @@ public class Card {
 				iEffect.add(gainMilitaryPoint);
 				break;
 			}
+			
+			//aggiungo il case con getCard
 			}
 		}
 	}
 
 	// to apply immediate effects
 	public void applyEffect(Player player) {
-		createListOfEffect();
+			createListOfEffect();
 
 		for (Effect e : iEffect) {
-			if (e != null) {
+			if (e != null && e != getCard) {
 				e.apply(player);
-			} else {
+			} 
 				return;
 			}
 		}
+	
+
+	/*for (Effect e : iEffect) {
+	if (e != null && e != getCard) {
+		e.apply(player);
+	} elseif (e != null && e == getCard){
+		Card card=player.chooseCard();
+		e.apply(player, card);
+		
 	}
+		return;
+	}
+}*/
 	
 	public void payCost(Player player){
 	};

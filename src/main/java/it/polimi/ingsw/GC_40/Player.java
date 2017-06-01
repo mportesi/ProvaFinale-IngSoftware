@@ -57,6 +57,11 @@ public class Player {
 		hasNeutralRelative=true;
 	}
 	
+	public String chooseResource(){
+		Scanner in= new Scanner(System.in);
+		System.out.println("Scegli tra: 1: WoodAndStone, 2: Servant ecc" );
+				return nextInt();
+	}
 	
 	public int getCoin() {
 		return coin;

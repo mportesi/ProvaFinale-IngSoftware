@@ -24,6 +24,12 @@ public class GetCard extends Effect {
 	@Override
 	public void apply(Player player) {
 		/*switch(card){
+	public void apply(Player player, Card card) {
+		// TODO Auto-generated method stub
+		
+		player.getCard(Card);
+		
+		
 
 			case "characterCard": player.chooseCharacterCard(value, discount);
 			case "ventureCard": player.chooseVentureCard(value, discount);

@@ -10,7 +10,7 @@ import it.polimi.ingsw.components.PrivilegeCouncil;
 public class CouncilPalace {
 	int bonusPrivilegeCouncil;
 	int bonusCoin;
-	int cost;
+	int value;
 	
 	private ArrayList<Player> order = new ArrayList<Player>();
 	private int orderIndex = 0;
@@ -19,7 +19,7 @@ public class CouncilPalace {
 	public CouncilPalace(int bonusPrivilegeCouncil, int bonusCoin, int cost){
 		this.bonusPrivilegeCouncil = bonusPrivilegeCouncil;
 		this.bonusCoin = bonusCoin;
-		this.cost = cost;
+		this.value = value;
 	}
 	
 	
