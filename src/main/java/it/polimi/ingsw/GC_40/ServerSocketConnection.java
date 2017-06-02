@@ -6,8 +6,7 @@ import java.net.Socket;
 
 public class ServerSocketConnection {
 	private final Socket socket;
-	private final ObjectInputStream socketIn;
-	private final ObjectOutputStream socketOut;
+	
 	
 	
 
