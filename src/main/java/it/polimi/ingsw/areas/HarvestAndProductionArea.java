@@ -12,7 +12,7 @@ public class HarvestAndProductionArea {
 	// it is necessary to keep a a leftPlayer because when the first player use
 	// this area, there is a penalty for the others
 	private Relative leftRelative;
-	private List<Relative> rightRelatives;
+	private ArrayList<Relative> rightRelatives;
 	private int valueOfLeftArea;
 	private int valueOfRightArea;
 	private int malus;
@@ -42,7 +42,7 @@ public class HarvestAndProductionArea {
 		return leftRelative;
 	}
 
-	public List<Relative> getRightRelatives() {
+	public ArrayList<Relative> getRightRelatives() {
 		return rightRelatives;
 	}
 

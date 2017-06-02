@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_40;
 
 import it.polimi.ingsw.changes.*;
 
-public class Controller implements Observer<Change> {
+public class Controller implements Observer<Change> /*implements Observer<ClientAction> */{
 	
 	private final Play play;
 	
@@ -16,13 +16,13 @@ public class Controller implements Observer<Change> {
 	@Override
 	public void update(Change change) {
 		// TODO Auto-generated method stub
-		change.apply();
+		change.applyChange();
 
 	}
 
 
 
-	public Play getGameServer() {
+	public Play getPlay() {
 		return play;
 	}
 

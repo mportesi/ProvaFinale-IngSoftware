@@ -1,11 +1,14 @@
 package it.polimi.ingsw.actions;
 
+import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 
-public class PutRelativeOnTower implements PutRelative {
+public class PutRelativeOnTower extends Observable<Change> implements PutRelative {
 	Tower tower;
 	Relative relative;
 	int floor;
@@ -36,6 +39,8 @@ public class PutRelativeOnTower implements PutRelative {
 				player.addCard(cardToGive);
 				cardToGive.applyEffect(player);
 				tower.floors.get(floor).bonusEffect.apply(player);
+				ChangeTower changeTower= new ChangeTower(tower,floor);
+				this.notifyObserver(changeTower);
 			}
 		return;
 	}

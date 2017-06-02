@@ -3,13 +3,13 @@ package it.polimi.ingsw.changes;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.colors.ColorPlayer;
 
-public class ChangeVictoryPoint implements Change {
-	private int victoryPoint;
-	private ColorPlayer color;
+public class ChangeServant implements Change {
+	int servant;
+	ColorPlayer color;
 	
-	public ChangeVictoryPoint(ColorPlayer color, int victoryPoint){
+	public ChangeServant(ColorPlayer color, int servant){
+		this.servant=servant;
 		this.color=color;
-		this.victoryPoint=victoryPoint;
 	}
 
 	@Override

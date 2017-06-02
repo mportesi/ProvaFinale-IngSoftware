@@ -1,13 +1,21 @@
 package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.colors.ColorPlayer;
 
-public class ChangeMilitaryPoint extends Change {
+public class ChangeMilitaryPoint implements Change {
 	private int militaryPoint;
-	private Player player;
+	private ColorPlayer color;
+	
+	
+	public ChangeMilitaryPoint(ColorPlayer color, int militaryPoint){
+		this.militaryPoint=militaryPoint;
+		this.color=color;
+	}
+	
 
 	@Override
-	public void apply() {
+	public void applyChange() {
 		// TODO Auto-generated method stub
 
 	}

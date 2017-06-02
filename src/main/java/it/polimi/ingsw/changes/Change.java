@@ -4,6 +4,6 @@ import it.polimi.ingsw.GC_40.Play;
 
 public abstract interface Change {
 	
-	public abstract void applyChange(Play play);
+	public abstract void applyChange();
 
 }
