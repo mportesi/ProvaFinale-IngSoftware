@@ -1,21 +1,25 @@
 package it.polimi.ingsw.actions;
 
+import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.MarketBuilding;
+import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeMarket;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
 
 import java.util.List;
 
-public class PutRelativeOnMarket implements PutRelative {
+public class PutRelativeOnMarket extends Observable<Change> implements PutRelative {
 
 	Relative relative;
 	MarketBuilding market;
 	Player player;
 	
-	public PutRelativeOnMarket(Player player,Relative relative){
+	public PutRelativeOnMarket(Player player,Relative relative, MarketBuilding market){
 		this.player=player;
 		this.relative=relative;
+		this.market=market;
 	}
 	
 	public void setMarket(MarketBuilding market){
@@ -38,6 +42,8 @@ public class PutRelativeOnMarket implements PutRelative {
 			// set the market as occupied because none can put other relatives
 			// in that space
 			market.setOccupied();
+			ChangeMarket changeMarket= new ChangeMarket(player.getColor(), relative, market);
+			this.notifyObserver(changeMarket);
 			// take the bonus
 			//market.giveBonus(player, market);
 			market.applyEffect(player);

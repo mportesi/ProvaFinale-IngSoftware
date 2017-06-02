@@ -13,6 +13,8 @@ public class ChangeCharacterCard implements Change {
 		this.color=color;
 		this.characterCard=characterCard;
 	}
+	
+	
 
 
 	@Override

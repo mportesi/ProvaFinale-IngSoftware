@@ -2,13 +2,19 @@ package it.polimi.ingsw.actions;
 
 
 import it.polimi.ingsw.GC_40.Board;
+import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
+import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeHarvestLeftArea;
+import it.polimi.ingsw.changes.ChangeHarvestRightArea;
+import it.polimi.ingsw.changes.ChangeProductionLeftArea;
+import it.polimi.ingsw.changes.ChangeProductionRightArea;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainProductionValue;
 
 
-public class PutRelativeOnProductionArea implements PutRelative {
+public class PutRelativeOnProductionArea extends Observable<Change> implements PutRelative {
 	Relative relative;
 	HarvestAndProductionArea productionArea;
 	Player player;
@@ -50,12 +56,16 @@ public class PutRelativeOnProductionArea implements PutRelative {
 			// If the left position is free, the player put the relative there.
 			if (area == "left") {
 				productionArea.setLeftRelative(relative);
+				ChangeProductionLeftArea changeProductionLeftArea= new ChangeProductionLeftArea(player.getColor(), relative);
+				this.notifyObserver(changeProductionLeftArea);
 				GainProductionValue gainProductionValue = new GainProductionValue(relative.getValue()); 
 				gainProductionValue.apply(player);
 			}
 			// Else he put the relative on the other side with the penalty
 			else {
 				productionArea.setRightRelative(relative);
+				ChangeProductionRightArea changeProductionRightArea= new ChangeProductionRightArea(productionArea.getRightRelatives());
+				this.notifyObserver(changeProductionRightArea);
 				int malus = Board.harvestArea.getMalus();
 				relative.setValue(-malus);
 				int newValue= relative.getValue();

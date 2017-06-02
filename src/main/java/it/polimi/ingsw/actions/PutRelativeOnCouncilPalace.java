@@ -1,11 +1,13 @@
-package it.polimi.ingsw.actions;
+ package it.polimi.ingsw.actions;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.changes.*;
+import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.components.Piece;
 import it.polimi.ingsw.components.Relative;
 
-public class PutRelativeOnCouncilPalace implements PutRelative {
+public class PutRelativeOnCouncilPalace extends Observable<Change> implements PutRelative {
 
 	Relative relative;
 	Player player;
@@ -36,6 +38,8 @@ public class PutRelativeOnCouncilPalace implements PutRelative {
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
 			councilPalace.addPlayer(player);
+			ChangeCouncilPalace changeCouncilPalace= new ChangeCouncilPalace(councilPalace);
+			this.notifyObserver(changeCouncilPalace);
 			// The player receive the bonus
 			// TODO give player the council privilege bonus choice
 			councilPalace.giveBonus(piece, player);
