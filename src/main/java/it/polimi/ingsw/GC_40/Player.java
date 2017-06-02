@@ -58,6 +58,20 @@ public class Player extends Observable<Change>{
 		hasNeutralRelative=true;
 	}
 	
+	public Player(){
+		Relative blackRelative= new Relative(ColorDice.BLACK);
+		Relative whiteRelative= new Relative(ColorDice.WHITE);
+		Relative orangeRelative= new Relative(ColorDice.ORANGE);
+		Relative neutralRelative= new Relative(null);
+		/*relatives.add(blackRelative);
+		relatives.add(whiteRelative);
+		relatives.add(orangeRelative);
+		relatives.add(neutralRelative);*/
+		hasBlackRelative=true;
+		hasWhiteRelative=true;
+		hasOrangeRelative=true;
+		hasNeutralRelative=true;
+	}
 	//non va fatta qui
 	/*public String chooseResource(){
 		Scanner in= new Scanner(System.in);

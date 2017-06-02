@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import it.polimi.ingsw.colors.ColorPlayer;
+
 public class ServerSocketConnectionView extends ServerView implements Runnable {
 
 	private Socket socket;
@@ -21,11 +23,16 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 	public void run() {
 		try {
 			while (true) {
-				String line = socketIn.nextLine();
-				System.out.println("SERVER: getting the command " + line);
-				StringTokenizer tokenizer = new StringTokenizer((String) line);
+				
+				Player player= new Player();
+				System.out.println("SERVER: "+ player);
+				String action = socketIn.nextLine();
+				System.out.println("SERVER: getting the command " + action);
+				
+				//StringTokenizer tokenizer = new StringTokenizer((String) line);
 
-				// Player player=new Player(tokenizer.nextToken());
+				//Player player=new Player(tokenizer.nextToken());
+				
 				// System.out.println("SERVER: "+ player);
 				// Mossa
 				// mossa=Mossa.valueOf(tokenizer.nextToken().toUpperCase());

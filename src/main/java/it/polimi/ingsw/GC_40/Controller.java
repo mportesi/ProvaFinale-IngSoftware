@@ -16,13 +16,13 @@ public class Controller implements Observer<Change> /*implements Observer<Client
 	@Override
 	public void update(Change change) {
 		// TODO Auto-generated method stub
-		change.apply();
+		change.applyChange();
 
 	}
 
 
 
-	public Play getGameServer() {
+	public Play getPlay() {
 		return play;
 	}
 
