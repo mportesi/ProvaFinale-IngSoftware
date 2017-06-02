@@ -1,9 +1,16 @@
 package it.polimi.ingsw.changes;
 
-public class ChangePlayer extends Change {
+import it.polimi.ingsw.GC_40.Player;
+
+public class ChangePlayer implements Change {
+	private Player currentPlayer;
+	
+	public ChangePlayer(Player currentPlayer){
+		this.currentPlayer=currentPlayer;
+	}
 
 	@Override
-	public void apply() {
+	public void applyChange() {
 		// TODO Auto-generated method stub
 
 	}

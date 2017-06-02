@@ -8,13 +8,14 @@ import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
+import it.polimi.ingsw.changes.*;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.LeaderTile;
 import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.Relative;
 
-public class Player {
+public class Player extends Observable<Change>{
 	
 	private ColorPlayer color;
 	private int coin;
@@ -57,11 +58,12 @@ public class Player {
 		hasNeutralRelative=true;
 	}
 	
-	public String chooseResource(){
+	//non va fatta qui
+	/*public String chooseResource(){
 		Scanner in= new Scanner(System.in);
 		System.out.println("Scegli tra: 1: WoodAndStone, 2: Servant ecc" );
 				return nextInt();
-	}
+	}*/
 	
 	public int getCoin() {
 		return coin;
@@ -110,45 +112,76 @@ public class Player {
 
 	public void incrementCoin(int n){
 		coin+=n;
+		ChangeCoin changeCoin= new ChangeCoin(this.color, coin);
+		this.notifyObserver(changeCoin);
+		
 	}
 	public void decrementCoin(int n){
 		coin-=n;
+		ChangeCoin changeCoin= new ChangeCoin(this.color, coin);
+		this.notifyObserver(changeCoin);
 	}
 	public void incrementWood(int n){
 		coin+=n;
+		ChangeWood changeWood= new ChangeWood(this.color, coin);
+		this.notifyObserver(changeWood);
 	}
 	public void decrementWood(int n){
 		coin-=n;
+		ChangeWood changeWood= new ChangeWood(this.color, coin);
+		this.notifyObserver(changeWood);
+		
 	}
 	public void incrementStone(int n){
 		coin+=n;
+		ChangeStone changeStone= new ChangeStone(this.color, coin);
+		this.notifyObserver(changeStone);
 	}
 	public void decrementStone(int n){
 		coin-=n;
+		ChangeStone changeStone= new ChangeStone(this.color, coin);
+		this.notifyObserver(changeStone);
 	}
 	public void incrementServant(int n){
 		coin+=n;
+		ChangeServant changeServant= new ChangeServant(this.color, coin);
+		this.notifyObserver(changeServant);
 	}
 	public void decrementServant(int n){
 		coin-=n;
+		ChangeServant changeServant= new ChangeServant(this.color, coin);
+		this.notifyObserver(changeServant);
 	}
 	public void incrementMilitaryPoint(int n){
 		coin+=n;
+		ChangeMilitaryPoint changeMilitaryPoint= new ChangeMilitaryPoint(this.color, coin);
+		this.notifyObserver(changeMilitaryPoint);
+		
 	}
 	public void decrementMilitaryPoint(int n){
 		coin-=n;
+		ChangeMilitaryPoint changeMilitaryPoint= new ChangeMilitaryPoint(this.color, coin);
+		this.notifyObserver(changeMilitaryPoint);
 	}
 	public void incrementFaithPoint(int n){
 		coin+=n;
+		ChangeFaithPoint changeFaithPoint= new ChangeFaithPoint(this.color, coin);
+		this.notifyObserver(changeFaithPoint);
 	}
 	public void decrementFaithPoint(int n){
 		coin-=n;
+		ChangeFaithPoint changeFaithPoint= new ChangeFaithPoint(this.color, coin);
+		this.notifyObserver(changeFaithPoint);
 	}
 	public void incrementVictoryPoint(int n){
 		coin+=n;
+		ChangeVictoryPoint changeVictoryPoint= new ChangeVictoryPoint(this.color, coin);
+		this.notifyObserver(changeVictoryPoint);
 	}
 	public void decrementVictoryPoint(int n){
 		coin-=n;
+		ChangeVictoryPoint changeVictoryPoint= new ChangeVictoryPoint(this.color, coin);
+		this.notifyObserver(changeVictoryPoint);
 	}
 	
 	public int counter(String cardType){
@@ -181,19 +214,26 @@ public class Player {
 		switch(type){
 		case "territoryCard": {
 			territoryCard.add((TerritoryCard) card);
+			ChangeTerritoryCard changeTerritoryCard= new ChangeTerritoryCard(color, territoryCard);
+			this.notifyObserver(changeTerritoryCard);
 			break;
 		}
 		case "buildingCard": {
 			buildingCard.add((BuildingCard) card);
-
+			ChangeBuildingCard changeBuildingCard= new ChangeBuildingCard(color, buildingCard);
+			this.notifyObserver(changeBuildingCard);
 			break;
 		}
 		case "characterCard": {
 			characterCard.add((CharacterCard) card);
+			ChangeCharacterCard changeCharacterCard= new ChangeCharacterCard(color, characterCard);
+			this.notifyObserver(changeCharacterCard);
 			break;
 		}
 		case "ventureCard": {
 			ventureCard.add((VentureCard) card);
+			ChangeVentureCard changeVentureCard= new ChangeVentureCard(color, ventureCard);
+			this.notifyObserver(changeVentureCard);
 			break;
 		}
 		}
