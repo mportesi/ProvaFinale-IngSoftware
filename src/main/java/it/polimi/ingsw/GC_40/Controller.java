@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_40;
 
 import it.polimi.ingsw.changes.*;
 
-public class Controller implements Observer<Change> {
+public class Controller implements Observer<Change> /*implements Observer<ClientAction> */{
 	
 	private final Play play;
 	

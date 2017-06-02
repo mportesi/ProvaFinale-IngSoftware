@@ -7,8 +7,9 @@ import java.util.HashMap;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 import it.polimi.ingsw.areas.CouncilPalace;
+import it.polimi.ingsw.changes.Change;
 
-public class PlayState {
+public class PlayState extends Observable<Change> {
 	private int period;
 	private int round;
 	private Player currentPlayer;
@@ -22,6 +23,7 @@ public class PlayState {
 	}
 
 	public void changeTurnOrder() {
+		ChangeTurnOrder changeTurnOrder;
 
 		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
 		ArrayList<Player> councilPalaceOrder = Board.councilPalace.getOrder();
@@ -45,6 +47,8 @@ public class PlayState {
 
 		currentTurnOrder.addAll(nextTurnOrder);
 		nextTurnOrder.clear();
+		
+		this.notifyObserver(changeTurnOrder);
 	}
 
 	public void changeCurrentPlayer() {
