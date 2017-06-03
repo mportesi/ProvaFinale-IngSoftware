@@ -1,5 +1,9 @@
 package it.polimi.ingsw.GC_40;
 
-public abstract class ServerView extends Observable{
+import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.changes.Change;
+
+public abstract class ServerView extends Observable<PutRelative> implements Observer<Change>{
+
 
 }
