@@ -58,7 +58,25 @@ public class JSon {
 
 	public static void importCards() throws FileNotFoundException, IOException, ParseException {
 		
-		
+		JSONParser finalVictoryPointParser = new JSONParser();
+		JSONArray finalVictoryPointArray = (JSONArray) finalVictoryPointParser.parse(new FileReader("GC_40/finalVictoryPoints.json"));
+		for (Object o : finalVictoryPointArray){
+			
+			JSONObject finalVictoryPoint = (JSONObject) o;
+			String type = (String) finalVictoryPoint.get("type");
+			
+			JSONArray gain = (JSONArray) finalVictoryPointParser.parse(finalVictoryPoint.get("gain").toString());
+			
+			Map<String, Integer> finalVictoryPointMap = new LinkedHashMap();
+			for (int i = 0; i < gain.size(); i++) {
+				JSONObject gainObject = (JSONObject) gain.get(i);
+				int numberOf = ((Long) gainObject.get("numberOf")).intValue();
+				int amount = ((Long) gainObject.get("amount")).intValue();
+				finalVictoryPoint.put(numberOf, amount);
+			
+			
+		}
+		}
 		
 		JSONParser councilPalaceParser = new JSONParser();
 		JSONObject councilPalaceObj = (JSONObject) councilPalaceParser.parse(new FileReader("GC-40/CouncilPalace.json"));
