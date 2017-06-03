@@ -27,9 +27,9 @@ public class Controller implements Observer<PutRelative> {
 		}*/
 		
 		@Override
-		public void update(PutRelative action) {
+		public void update(PutRelative putRelative) {
 			// TODO Auto-generated method stub
-			action.apply();
+			putRelative.apply();
 
 		}
 

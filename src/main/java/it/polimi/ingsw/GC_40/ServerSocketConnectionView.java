@@ -71,22 +71,7 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 					break;
 
 				}
-				}
-				// StringTokenizer tokenizer = new StringTokenizer((String)
-				// line);
-
-				// Player player=new Player(tokenizer.nextToken());
-
-				// System.out.println("SERVER: "+ player);
-				// Mossa
-				// mossa=Mossa.valueOf(tokenizer.nextToken().toUpperCase());
-				// System.out.println("SERVER: "+mossa);
-				// Action action=new EseguiMossa(mossa, player);
-				// this.setChanged();
-				// this.notifyObservers(action);
-				if (action.equals("quit")) {
-					// exits from the while
-					break;
+				
 				}
 			}
 			socketIn.close();
@@ -95,14 +80,16 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
+		socketOut.flush();
 	}
+	
 
-	@Override
+	/*@Override
 	public void update(Observable o, Object arg) {
 		System.out.println("SERVER-VIEW-SOCKET: sending the client the message: " + arg);
 		socketOut.println("SERVER: " + arg);
 		socketOut.flush();
-	}
+	}*/
 
 	@Override
 	public void update() {

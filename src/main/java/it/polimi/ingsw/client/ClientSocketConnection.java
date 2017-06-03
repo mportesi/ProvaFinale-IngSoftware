@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 
 //forse cambiare nome in client
-public class ClientSocketConnection {
+public class ClientSocketConnection{
 	//create the port for the connection
 	private final static int PORT = 29999; 
 	private final static String IP = "127.0.0.1";
