@@ -4,15 +4,15 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
 
-public class SocketClient implements ClientInterface {
+public class ClientSocketConnection implements ClientInterface {
 	
 	private final int port;
 	private final String ip;
 	private int ID;
-	private ViewClient clientView;
+	private ClientView clientView;
 	private ConnectionHandler handler;
 		
-	public SocketClient(String ip, int port, ViewClient view) {
+	public ClientSocketConnection(String ip, int port, ClientView view) {
 		super();
 		this.ip = ip;
 		this.port = port;
@@ -36,6 +36,7 @@ public class SocketClient implements ClientInterface {
 	@Override
 	public void runClient(String name) throws IOException {
 		Socket socket = new Socket(ip, port);
+		System.out.println("Connection Established");
 		
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 		this.handler = new SocketConnectionHandler(socket);
