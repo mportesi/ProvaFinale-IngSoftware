@@ -18,10 +18,20 @@ public class CommandLineInterface {
 		String input="";
 		while (!"quit".equals(input)) {
 			try {
+				chooseTheRelative();
 				input=this.scanner.nextLine();
+				chooseTheAction();
+				input=this.scanner.nextLine();
+				switch(input){
+				case("tower"):{
+					chooseTowerAndFloor();
+					input=this.scanner.nextLine();
+				}
+				}
 			} catch (IllegalStateException e){
 				return;
 			}
+		}
 		
 	}
 	//sistemare
@@ -34,9 +44,6 @@ public class CommandLineInterface {
 		System.out.println("Market");
 		System.out.println("HarvestArea");
 		System.out.println("ProductionArea");
-		
-		String action=scanner.nextLine();
-		
 	
 	}
 	
@@ -44,8 +51,8 @@ public class CommandLineInterface {
 		
 		
 		System.out.println("Choose what relative you want to use: black, white, orange, neutral");
-		
 		System.out.println("How many servants do you want to use?");
+		System.out.println("Divide the color and the number with the ;");
 		
 		
 	}
@@ -58,8 +65,11 @@ public class CommandLineInterface {
 		System.out.println("buildingTower");
 		System.out.println("characterTower");
 		System.out.println("ventureTower");
+
 		
 		System.out.println("Choose the number of the floor:");
+		System.out.println("Divide the tower and the number with the ;");
+	
 		
 	}
 	
@@ -72,18 +82,22 @@ public class CommandLineInterface {
 		System.out.println("servant");
 		System.out.println("faithPoint");
 		System.out.println("militaryPoint");
+		
+		
 	}
 	
 	public void chooseMarket(){
 		
 		
 		System.out.println("Choose the market to put your relative:");
+		
 	}
 	
 	public void chooseHarvestArea(){
 		
 		
 		System.out.println("Choose if you want to put your relative on the left or on the right");
+		
 		
 	}
 	

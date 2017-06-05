@@ -67,7 +67,4 @@
 			</plugin>
 		</plugins>
 	</build>
-  <modules>
-    <module>Server</module>
-  </modules>
 </project>
