@@ -51,7 +51,7 @@ public class ClientSocketConnection implements ClientInterface {
 			int id=(Integer)handler.receiveFromServer();
 			this.ID=id;
 		}
-		settare cose nella view*/
+		settare cose del model nella view*/
 
 		executor.submit(new ClientOutSocketHandler(handler, clientView));
 		executor.submit(new ClientInSocketHandler(handler, clientView));
