@@ -42,7 +42,7 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			this.notifyObserver(changeCouncilPalace);
 			// The player receive the bonus
 			// TODO give player the council privilege bonus choice
-			councilPalace.giveBonus(piece, player);
+			councilPalace.applyEffect(player);
 		}
 
 	}
