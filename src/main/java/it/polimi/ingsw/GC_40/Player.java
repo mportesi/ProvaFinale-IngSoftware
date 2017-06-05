@@ -82,21 +82,27 @@ public class Player extends Observable<Change>{
 	public int getCoin() {
 		return coin;
 	}
+	
 	public int getWood() {
 		return wood;
 	}
+	
 	public int getStone() {
 		return stone;
 	}
+	
 	public int getServant() {
 		return servant;
 	}
+	
 	public ColorPlayer getColor() {
 		return color;
 	}
+	
 	public int getFaithPoint() {
 		return faithPoint;
 	}
+	
 	public int getVictoryPoint() {
 		return victoryPoint;
 	}
