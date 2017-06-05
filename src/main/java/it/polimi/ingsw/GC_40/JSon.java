@@ -55,6 +55,7 @@ public class JSon {
 	public static ArrayList <PersonalBonusTile> personalBonusTiles = new ArrayList <PersonalBonusTile>();
 	public static HarvestAndProductionArea harvest;
 	public static HarvestAndProductionArea production;
+	public static CouncilPalace councilPalace;
 
 	public static void importCards() throws FileNotFoundException, IOException, ParseException {
 		
@@ -131,31 +132,31 @@ public class JSon {
 			JSONObject floor = (JSONObject) o;
 
 			String type = (String) floor.get("type");
-			int cost = ((Long) floor.get("cost")).intValue();
+			int costOfFloor = ((Long) floor.get("cost")).intValue();
 			int amountBonus = ((Long) floor.get("amountBonus")).intValue();
 
 			switch (type) {
 			case "territory": {
 				GainWood e = new GainWood(amountBonus);
-				Floor f = new Floor(type, cost, e);
+				Floor f = new Floor(type, costOfFloor, e);
 				territoryFloors.add(f);
 				break;
 			}
 			case "character": {
 				GainStone e = new GainStone(amountBonus);
-				Floor f = new Floor(type, cost, e);
+				Floor f = new Floor(type, costOfFloor, e);
 				characterFloors.add(f);
 				break;
 			}
 			case "building": {
 				GainMilitaryPoint e = new GainMilitaryPoint(amountBonus);
-				Floor f = new Floor(type, cost, e);
+				Floor f = new Floor(type, costOfFloor, e);
 				buildingFloors.add(f);
 				break;
 			}
 			case "venture": {
 				GainCoin e = new GainCoin(amountBonus);
-				Floor f = new Floor(type, cost, e);
+				Floor f = new Floor(type, costOfFloor, e);
 				ventureFloors.add(f);
 				break;
 			}
@@ -168,7 +169,7 @@ public class JSon {
 			
 			JSONObject market = (JSONObject) o;
 			String type = (String) market.get("type");
-			int cost= ((Long) market.get("cost")).intValue();
+			int costOfMarket= ((Long) market.get("cost")).intValue();
 			
 			JSONArray bonus = (JSONArray) marketParser.parse(market.get("bonus").toString());
 			
@@ -179,7 +180,7 @@ public class JSon {
 				int amount = ((Long) bonusObject.get("amount")).intValue();
 				bonusMap.put(typeBonus, amount);
 			
-			MarketBuilding m = new MarketBuilding (type, bonusMap, cost);
+			MarketBuilding m = new MarketBuilding (type, bonusMap, costOfMarket);
 			marketBuilding.add(m);
 			
 		}
@@ -231,13 +232,13 @@ public class JSon {
 			int period = ((Long) card.get("period")).intValue();
 			String name = (String) card.get("name");
 
-			JSONArray cost = (JSONArray) buildingParser.parse(card.get("cost").toString());
+			JSONArray costOfBuilding = (JSONArray) buildingParser.parse(card.get("cost").toString());
 
 			JSONArray immediateEffect = (JSONArray) buildingParser.parse(card.get("immediateEffect").toString());
 
 			Map<String, Integer> costMap = new LinkedHashMap();
-			for (int i = 0; i < cost.size(); i++) {
-				JSONObject costObject = (JSONObject) cost.get(i);
+			for (int i = 0; i < costOfBuilding.size(); i++) {
+				JSONObject costObject = (JSONObject) costOfBuilding.get(i);
 				String typeCost = (String) costObject.get("type");
 				int amount = ((Long) costObject.get("amount")).intValue();
 				costMap.put(typeCost, amount);
@@ -293,13 +294,13 @@ public class JSon {
 			int alternativeCostBoolean = ((Long) card.get("alternativeCostBoolean")).intValue();
 			int militaryRequirement = ((Long) card.get("militaryRequirement")).intValue();
 			int militaryCost = ((Long) card.get("militaryCost")).intValue();
-			JSONArray cost = (JSONArray) ventureParser.parse(card.get("cost").toString());
+			JSONArray costOfVenture = (JSONArray) ventureParser.parse(card.get("cost").toString());
 
 			JSONArray immediateEffect = (JSONArray) ventureParser.parse(card.get("immediateEffect").toString());
 
 			Map<String, Integer> costMap = new LinkedHashMap();
-			for (int i = 0; i < cost.size(); i++) {
-				JSONObject costObject = (JSONObject) cost.get(i);
+			for (int i = 0; i < costOfVenture.size(); i++) {
+				JSONObject costObject = (JSONObject) costOfVenture.get(i);
 				String typeCost = (String) costObject.get("type");
 				int amount = ((Long) costObject.get("amount")).intValue();
 				costMap.put(typeCost, amount);

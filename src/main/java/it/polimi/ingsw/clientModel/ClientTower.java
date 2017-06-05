@@ -12,7 +12,7 @@ public class ClientTower {
 	
 	@Override 
 	public String toString(){
-		return ("["+ clientFloors.get(0).getCard()+"] \n"+"["+ clientFloors.get(1).getCard()+"] \n"+"["+ clientFloors.get(2).getCard()+"] \n"+"["+ clientFloors.get(3).getCard()+"] \n");
+		return ("The tower of type: "+ type +" is: \n"+"["+ clientFloors.get(0).getCard()+"] \n"+"["+ clientFloors.get(1).getCard()+"] \n"+"["+ clientFloors.get(2).getCard()+"] \n"+"["+ clientFloors.get(3).getCard()+"] \n");
 	}
 	
 	

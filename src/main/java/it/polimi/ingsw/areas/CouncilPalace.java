@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.components.Piece;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.effects.Effect;
@@ -30,7 +31,7 @@ public class CouncilPalace {
 	public void createListOfCouncilPalaceEffect(){
 		GainCoin gainCoin = new GainCoin(bonusCoin);
 		councilPalaceEffect.add(gainCoin);
-		String resource = chooseResource(); //da aggiungere
+		String resource = CommandLineInterface.choosePrivilegeCouncil(); //da aggiungere
 		GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil (bonusPrivilegeCouncil, resource);
 		councilPalaceEffect.add(gainPrivilegeCouncil);
 		

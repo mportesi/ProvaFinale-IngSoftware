@@ -64,7 +64,9 @@ public class Board {
 		buildingTower= new Tower("building", building1, building2, building3, JSon.buildingFloors);
 		characterTower= new Tower("character", character1, character2, character3, JSon.characterFloors);
 		ventureTower= new Tower("venture", venture1, venture2, venture3, JSon.ventureFloors);
-		councilPalace= new CouncilPalace();
+		
+		
+		councilPalace = JSon.councilPalace;
 		
 		//lista di market
 		MarketBuilding market1 = JSon.marketBuilding.get(0);

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.effects.Card;
 import it.polimi.ingsw.effects.Effect;
@@ -62,7 +63,8 @@ public class Card {
 				iEffect.add(gainServant);
 			}
 			case "GainPrivilegeCouncil": {
-				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect);
+				String resource = CommandLineInterface.choosePrivilegeCouncil();
+				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect, resource);
 				iEffect.add(gainPrivilegeCouncil);
 				break;
 			}
