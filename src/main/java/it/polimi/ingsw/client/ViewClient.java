@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_40;
+package it.polimi.ingsw.client;
 
 import java.util.Observable;
 import java.util.Scanner;
@@ -51,6 +51,12 @@ public class ViewClient extends Observable{
 		System.out.println("PutRelativeOnHarvestArea");
 		System.out.println("PutRelativeOnProductionArea");
 		return in.nextLine();	
+	}
+	
+	public Object start() {
+		// TODO give player the possibility to do a choice
+		Object actionToDo = new Object(); 
+		return actionToDo;
 	}
 
 }
