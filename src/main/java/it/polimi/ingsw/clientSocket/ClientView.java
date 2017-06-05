@@ -1,4 +1,4 @@
-package it.polimi.ingsw.client;
+package it.polimi.ingsw.clientSocket;
 
 import java.util.Observable;
 import java.util.Scanner;

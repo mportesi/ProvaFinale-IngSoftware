@@ -1,5 +1,7 @@
-package it.polimi.ingsw.GC_40;
+package it.polimi.ingsw.serverSocket;
 
+import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.Change;
 

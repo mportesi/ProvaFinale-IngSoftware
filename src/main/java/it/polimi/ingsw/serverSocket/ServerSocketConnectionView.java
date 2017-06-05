@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_40;
+package it.polimi.ingsw.serverSocket;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.actions.PutRelativeOnCouncilPalace;
 import it.polimi.ingsw.actions.PutRelativeOnHarvestArea;
 import it.polimi.ingsw.actions.PutRelativeOnMarket;
@@ -42,23 +43,11 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 				System.out.println("SERVER: " + player);
 				String action = socketIn.nextLine();
 				System.out.println("SERVER: getting the command " + action);
-<<<<<<< HEAD
-				
-				switch (stringa){
-				case "putRelativeOnTower"{
-					PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower (//parametri presi da cli e portati qui tramite socket)
-							notifyObserver(PutRelative);
-							}
-				}
-				
-				//StringTokenizer tokenizer = new StringTokenizer((String) line);
-=======
-				String parameters = socketIn.nextLine();
->>>>>>> Sara
+
 
 				switch (action) {
 				case "putRelativeOnTower": {
-					PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(/* parametri */);
+					PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(/* parametri  */);
 					this.notifyObserver(putRelativeOnTower);
 					break;
 				}
@@ -95,11 +84,6 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 		socketOut.flush();
 	}
 	
-
-<<<<<<< HEAD
-	@Override
-	public void update(){
-=======
 	/*@Override
 	public void update(Observable o, Object arg) {
 		System.out.println("SERVER-VIEW-SOCKET: sending the client the message: " + arg);
@@ -111,7 +95,6 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 	public void update() {
 		// TODO Auto-generated method stub
 
->>>>>>> Sara
 	}
 
 }

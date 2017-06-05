@@ -2,6 +2,10 @@ package it.polimi.ingsw.client;
 
 import java.util.Scanner;
 
+import it.polimi.ingsw.clientSocket.ClientInterface;
+import it.polimi.ingsw.clientSocket.ClientSocketConnection;
+import it.polimi.ingsw.clientSocket.ClientView;
+
 import java.io.IOException;
 
 public class Client {

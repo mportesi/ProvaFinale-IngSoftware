@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_40;
+package it.polimi.ingsw.serverSocket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,7 +26,6 @@ public class ServerSocketConnection {
 	}
 
 	private void startSocket() throws IOException {
-
 		ExecutorService executor = Executors.newCachedThreadPool();
 		ServerSocket serverSocket = new ServerSocket(PORT);
 		System.out.println("Server socket ready on port: " + PORT);
