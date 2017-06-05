@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_40;
 
 
+import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.*;
 
 public class Controller implements Observer<Change> /*implements Observer<ClientAction> */{
@@ -29,9 +30,10 @@ public class Controller implements Observer<Change> /*implements Observer<Client
 
 
 	@Override
-	public void update() {
+	public void update(PutRelative putRelative) {
 		// TODO Auto-generated method stub
 		
+		putRelative.apply();
 	}
 
 

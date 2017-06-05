@@ -29,6 +29,13 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 				String action = socketIn.nextLine();
 				System.out.println("SERVER: getting the command " + action);
 				
+				switch (stringa){
+				case "putRelativeOnTower"{
+					PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower (//parametri presi da cli e portati qui tramite socket)
+							notifyObserver(PutRelative);
+							}
+				}
+				
 				//StringTokenizer tokenizer = new StringTokenizer((String) line);
 
 				//Player player=new Player(tokenizer.nextToken());
@@ -54,10 +61,7 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
-		System.out.println("SERVER-VIEW-SOCKET: sending the client the message: " + arg);
-		socketOut.println("SERVER: " + arg);
-		socketOut.flush();
+	public void update(){
 	}
 
 }

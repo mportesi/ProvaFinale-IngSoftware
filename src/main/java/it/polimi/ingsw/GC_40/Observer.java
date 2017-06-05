@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_40;
 
+import it.polimi.ingsw.actions.PutRelative;
 
 public interface Observer<C> {
 	
@@ -9,6 +10,10 @@ public interface Observer<C> {
 	};
 	
 	public abstract void update();
+
+	
+
+
 	
 
 }
