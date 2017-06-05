@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class ClientInSocketHandler implements Runnable{
 
 	private ConnectionHandler handler;
-	private ViewClient clientView;
-	private Scanner socketIn;
+	private ClientView clientView;
+	
 
-	public ClientInSocketHandler(ConnectionHandler handler, ViewClient clientView) {
+	public ClientInSocketHandler(ConnectionHandler handler, ClientView clientView) {
 		//this.socketIn = scanner;
 		this.handler=handler;
 		this.clientView=clientView;

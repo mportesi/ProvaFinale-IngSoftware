@@ -40,7 +40,7 @@ public class SocketConnectionHandler implements ConnectionHandler {
 	}
 	
 	public String getName() throws ClassNotFoundException, IOException{
-		this.socket.setSoTimeout(30*1000);
+		this.socket.setSoTimeout(30*1000);//TODO IMPORTARE DA JSON
 		String name="";
 		try {
 			name= (String)this.receiveFromClient();

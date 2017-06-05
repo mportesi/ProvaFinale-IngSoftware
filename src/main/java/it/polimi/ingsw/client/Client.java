@@ -21,7 +21,7 @@ public class Client {
 			System.out.println("Select your connection:\n");
 			System.out.println("1) Socket");
 			System.out.println("2) Remote Method Invocation (RMI)");
-			ViewClient clientView= new ViewClient();
+			ClientView clientView= new ClientView();
 			input = in.nextInt();
 			
 			if(input!=1 && input!=2){
@@ -30,7 +30,7 @@ public class Client {
 			else{
 				ClientInterface cs = null;
 				if(input==1){
-					cs = new SocketClient(host, socket, clientView); 
+					cs = new ClientSocketConnection(host, socket, clientView); 
 				}
 				else{
 					//TODO RMI

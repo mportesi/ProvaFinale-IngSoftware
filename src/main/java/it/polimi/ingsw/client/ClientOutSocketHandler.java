@@ -5,11 +5,10 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class ClientOutSocketHandler implements Runnable{
-	private PrintWriter socketOut;
 	private ConnectionHandler handler;
-	private ViewClient clientView;
+	private ClientView clientView;
 	
-	public ClientOutSocketHandler(ConnectionHandler handler, ViewClient view){
+	public ClientOutSocketHandler(ConnectionHandler handler, ClientView view){
 		//this.socketOut=socketOut;
 		this.handler=handler;
 		this.clientView=view;
@@ -19,7 +18,7 @@ public class ClientOutSocketHandler implements Runnable{
 	public void run() {
 		
 		while(true){
-			Object action = clientView.start(); //TODO put the player turn choice in ViewClient.start()
+			Object action = clientView.start(); //TODO put the player turn choice in ClientView.start()
 			if(action!=null){
 				try{
 					handler.sendToServer(action);

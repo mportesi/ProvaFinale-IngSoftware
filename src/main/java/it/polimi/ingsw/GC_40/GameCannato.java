@@ -12,7 +12,7 @@ import it.polimi.ingsw.actions.PutRelativeOnProductionArea;
 import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
-import it.polimi.ingsw.client.ViewClient;
+import it.polimi.ingsw.client.ClientView;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.Piece;
 import it.polimi.ingsw.components.Relative;
@@ -29,14 +29,14 @@ public class GameCannato {
 
 	private static ArrayList<Player> players;
 	private static List<ColorPlayer> colors;
-	private static ViewClient viewClient;
+	private static ClientView clientView;
 	private Player currentPlayer;
 
 	public static void main(String[] args) {
 		Board board = new Board();
 		Scanner in= new Scanner(System.in);
 		
-		int numberOfPlayer=viewClient.numberOfPlayer();
+		int numberOfPlayer=clientView.numberOfPlayer();
 
 		initializePlayer(numberOfPlayer);
 
@@ -62,8 +62,8 @@ public class GameCannato {
 				System.out.println("Values are: \n Black:" + Board.blackDice.getValue() + "\n 2) Orange:"
 						+ Board.orangeDice.getValue() + "\n 3) White: " + Board.whiteDice.getValue() + "\n 4) Neutral");
 				
-				String relative= viewClient.chooseTheRelative();
-				int usedServant= viewClient.addValue();
+				String relative= clientView.chooseTheRelative();
+				int usedServant= clientView.addValue();
 				Relative currentRelative = null;
 				switch (relative) {
 				case "Black": {
@@ -106,7 +106,7 @@ public class GameCannato {
 				}
 
 				
-				String action = viewClient.chooseTheMove();
+				String action = clientView.chooseTheMove();
 
 				switch (action) {
 				case "PutRelativeOnTower": {
@@ -258,7 +258,7 @@ public class GameCannato {
 	
 	
 	public static String chooseCost(Player player){
-		return viewClient.chooseCostForVentureCards();
+		return clientView.chooseCostForVentureCards();
 	}
 
 }
