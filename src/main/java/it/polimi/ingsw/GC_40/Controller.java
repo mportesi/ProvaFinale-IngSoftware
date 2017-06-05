@@ -1,42 +1,67 @@
 package it.polimi.ingsw.GC_40;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Sara
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.*;
 
-public class Controller implements Observer<Change> /*implements Observer<ClientAction> */{
-	
-	private final Play play;
-	
-	public Controller(Play play){
-		this.play=play;
-	}
-	
+
+public class Controller implements Observer<PutRelative> {
 	
 
-	@Override
-	public void update(Change change) {
-		// TODO Auto-generated method stub
-		change.applyChange();
+	
+		
+		private final Play play;
+		
+		public Controller(Play play){
+			this.play=play;
+		}
+		
+		
 
-	}
+		/*@Override
+		public void update(Change change) {
+			// TODO Auto-generated method stub
+			change.applyChange();
+
+		}*/
+		
+		@Override
+		public void update(PutRelative putRelative) {
+			// TODO Auto-generated method stub
+			putRelative.apply();
+
+		}
 
 
 
-	public Play getPlay() {
-		return play;
-	}
 
+		public Play getPlay() {
+			return play;
+		}
 
-
+<<<<<<< HEAD
 	@Override
 	public void update(PutRelative putRelative) {
 		// TODO Auto-generated method stub
 		
 		putRelative.apply();
 	}
+=======
+>>>>>>> Sara
+
+
+		@Override
+		public void update() {
+			// TODO Auto-generated method stub
+			
+		}
 
 
 
-	
-}
+		
+	}
+

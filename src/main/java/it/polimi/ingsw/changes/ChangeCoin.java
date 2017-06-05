@@ -15,7 +15,10 @@ public class ChangeCoin implements Change {
 
 	@Override
 	public void applyChange() {
-		// TODO Auto-generated method stub
+		if(clientPlayer.getColor().equals(color)){
+			clientPlayer.setCoin(coin);
+		}
+		
 		
 	}
 
