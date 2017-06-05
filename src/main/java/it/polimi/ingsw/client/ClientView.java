@@ -32,7 +32,7 @@ public class ClientView extends Observable{
 	
 	public String chooseTheRelative(){
 		Scanner in = new Scanner(System.in);
-		System.out.println("Choose a relative to place:\n" + "Black Orange  White Neutral");
+		System.out.println("Choose a relative to place:\n" + "Black Orange White Neutral");
 		return in.nextLine();
 	}
 	

@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_40;
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> Sara
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.*;
 
@@ -40,6 +43,15 @@ public class Controller implements Observer<PutRelative> {
 			return play;
 		}
 
+<<<<<<< HEAD
+	@Override
+	public void update(PutRelative putRelative) {
+		// TODO Auto-generated method stub
+		
+		putRelative.apply();
+	}
+=======
+>>>>>>> Sara
 
 
 		@Override
