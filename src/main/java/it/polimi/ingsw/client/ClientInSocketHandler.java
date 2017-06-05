@@ -1,21 +1,31 @@
 package it.polimi.ingsw.client;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ClientInSocketHandler implements Runnable{
 
+	private ConnectionHandler handler;
+	private ViewClient clientView;
 	private Scanner socketIn;
 
-	public ClientInSocketHandler(Scanner scanner) {
-		this.socketIn = scanner;
+	public ClientInSocketHandler(ConnectionHandler handler, ViewClient clientView) {
+		//this.socketIn = scanner;
+		this.handler=handler;
+		this.clientView=clientView;
 	}
 
 	public void run() {
 		while (true) {
-			//da cambiare perchè line verrà presa da CLI
-			// reads a new Line from the Scanner
-			String line = socketIn.nextLine();
+			Object x = new Object();
+			try {
+				 x = handler.receiveFromServer();
+			} catch (ClassNotFoundException | IOException e) {
+				System.out.println("THE GAME IS FINISHED - BYE BYE");
+				break;
+			}
 			
+			// TODO insert if for change, like if(x.getClass().equals(SomeChange.class)) --> modify the client model
 		}
 	}
 	
