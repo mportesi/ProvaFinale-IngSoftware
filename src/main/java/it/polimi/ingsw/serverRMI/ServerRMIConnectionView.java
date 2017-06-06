@@ -1,29 +1,37 @@
 package it.polimi.ingsw.serverRMI;
 
+import java.rmi.RemoteException;
+import java.util.HashSet;
+import java.util.Set;
+
+import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
+import it.polimi.ingsw.serverSocket.ServerView;
+
 public class ServerRMIConnectionView
-	extends View implements ServerRMIConnectionViewRemote {
+	extends ServerView implements ServerRMIConnectionViewRemote {
 
-		private Set<ClientViewRemote> clients;
+		private Set<ClientRMIConnectionViewRemote> clients;
 
 
 
-		public RMIView() {
+		public ServerRMIConnectionView() {
 			this.clients = new HashSet<>();
 		}
 
 		@Override
-		public void registerClient(ClientViewRemote clientStub) throws RemoteException {
+		public void registerClient(ClientRMIConnectionViewRemote clientStub) throws RemoteException {
 			System.out.println("CLIENT REGISTRATO");
 			this.clients.add(clientStub);
 		}
 
 		@Override
-		public void update(Change o) {
+		public void update(Change change) {
 			System.out.println("SENDING THE CHANGE TO THE CLIENT");
 			try {
-				for (ClientViewRemote clientstub : this.clients) {
+				for (ClientRMIConnectionViewRemote clientstub : this.clients) {
 					
-					clientstub.updateClient(o);
+					clientstub.updateClient(change);
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -37,7 +45,7 @@ public class ServerRMIConnectionView
 
 		}
 
-		public void turnOn() throws RemoteException{
+		/*public void turnOn() throws RemoteException{
 			this.notifyObserver(new TurnOn());
 		}
 
@@ -54,6 +62,7 @@ public class ServerRMIConnectionView
 			this.notifyObserver(new PrintModel());
 		}
 
+		*/
 	}
 
 
