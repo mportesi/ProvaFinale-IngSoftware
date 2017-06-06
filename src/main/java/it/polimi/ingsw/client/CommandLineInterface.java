@@ -18,7 +18,7 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 public class CommandLineInterface {
 
 	private static Scanner scanner;
-	private Player player;//??
+	private static Player player;//??
 	private Board board;
 
 	public CommandLineInterface() {
@@ -50,7 +50,7 @@ public class CommandLineInterface {
 		System.out.println("HarvestArea");
 		System.out.println("ProductionArea");
 
-		String input = this.scanner.nextLine();
+		String input = scanner.nextLine();
 		PutRelative putRelative=null;
 		switch (input) {
 		case "Tower": {
@@ -122,13 +122,13 @@ public class CommandLineInterface {
 		}
 		}
 		System.out.println("How many servants do you want to use?");
-		int value = this.scanner.nextInt();
+		int value = scanner.nextInt();
 		relative.setValue(value);
 		return relative;
 
 	}
 
-	public Tower chooseTower() {
+	public static Tower chooseTower() {
 
 		System.out.println("Choose the tower:");
 		System.out.println("territoryTower");
@@ -136,7 +136,7 @@ public class CommandLineInterface {
 		System.out.println("characterTower");
 		System.out.println("ventureTower");
 
-		String input = this.scanner.nextLine();
+		String input = scanner.nextLine();
 		Tower tower=null;
 		switch (input) {
 		case "territoryTower": {
@@ -161,13 +161,13 @@ public class CommandLineInterface {
 
 	}
 
-	public int chooseFloor() {
+	public static int chooseFloor() {
 		System.out.println("Choose the number of the floor:");
-		int floor = this.scanner.nextInt();
+		int floor = scanner.nextInt();
 		return floor;
 	}
 
-	public String choosePrivilegeCouncil() {
+	public static String choosePrivilegeCouncil() {
 
 		System.out.println("Choose the privilege Council:");
 		System.out.println("coin");
@@ -176,30 +176,30 @@ public class CommandLineInterface {
 		System.out.println("faithPoint");
 		System.out.println("militaryPoint");
 
-		String resource = this.scanner.nextLine();
+		String resource = scanner.nextLine();
 		return resource;
 	}
 
-	public int chooseMarket() {
+	public static int chooseMarket() {
 
 		System.out.println("Choose the market to put your relative:");
-		int market = this.scanner.nextInt();
+		int market = scanner.nextInt();
 		return market;
 
 	}
 
-	public String chooseHarvestArea() {
+	public static String chooseHarvestArea() {
 
 		System.out.println("Choose if you want to put your relative on the left or on the right");
-		String harvestArea = this.scanner.nextLine();
+		String harvestArea = scanner.nextLine();
 		return harvestArea;
 
 	}
 
-	public String chooseProductionArea() {
+	public static String chooseProductionArea() {
 
 		System.out.println("Choose if you want to put your relative on the left or on the right");
-		String productionArea = this.scanner.nextLine();
+		String productionArea = scanner.nextLine();
 		return productionArea;
 
 	}

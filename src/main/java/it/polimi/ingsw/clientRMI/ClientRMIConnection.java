@@ -21,7 +21,7 @@ public class ClientRMIConnection {
 		private final static int PORT = 52365;
 		
 
-		//private static final String NAME = "prigionieri";
+		private static final String NAME = "player"; //??
 
 		public static void main(String[] args) throws RemoteException, NotBoundException, AlreadyBoundException {
 
