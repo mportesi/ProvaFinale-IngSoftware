@@ -15,8 +15,8 @@ public class ChangeCoin implements Change {
 
 	@Override
 	public void applyChange() {
-		if(clientPlayer.getColor().equals(color)){
-			clientPlayer.setCoin(coin);
+		if(player.getColor().equals(color)){
+			player.setCoin(coin);
 		}
 		
 		

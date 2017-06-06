@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ClientSocket {
+public class ClientSocketConnection {
 
 	private final static int PORT = 29999;
 	private final static String IP = "127.0.0.1";
@@ -18,6 +18,8 @@ public class ClientSocket {
 		Socket socket = new Socket(IP, PORT);
 
 		System.out.println("Connection created");
+		
+		Player player=
 
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 

@@ -17,8 +17,8 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class CommandLineInterface {
 
-	private static Scanner scanner;
-	private static Player player;//??
+	private  Scanner scanner;
+	private Player player;//??
 	private Board board;
 
 	public CommandLineInterface() {
@@ -39,7 +39,7 @@ public class CommandLineInterface {
 
 	}
 
-	public static PutRelative chooseTheAction() {
+	public  PutRelative chooseTheAction() {
 		
 		Relative relative=chooseTheRelative();
 
@@ -94,7 +94,7 @@ public class CommandLineInterface {
 
 	}
 
-	public static Relative chooseTheRelative() {
+	public  Relative chooseTheRelative() {
 
 		System.out.println("Choose what relative you want to use: black, white, orange, neutral");
 		String input = scanner.nextLine();
@@ -128,7 +128,7 @@ public class CommandLineInterface {
 
 	}
 
-	public static Tower chooseTower() {
+	public  Tower chooseTower() {
 
 		System.out.println("Choose the tower:");
 		System.out.println("territoryTower");
@@ -161,13 +161,13 @@ public class CommandLineInterface {
 
 	}
 
-	public static int chooseFloor() {
+	public int chooseFloor() {
 		System.out.println("Choose the number of the floor:");
 		int floor = scanner.nextInt();
 		return floor;
 	}
 
-	public static String choosePrivilegeCouncil() {
+	public String choosePrivilegeCouncil() {
 
 		System.out.println("Choose the privilege Council:");
 		System.out.println("coin");
@@ -180,7 +180,7 @@ public class CommandLineInterface {
 		return resource;
 	}
 
-	public static int chooseMarket() {
+	public int chooseMarket() {
 
 		System.out.println("Choose the market to put your relative:");
 		int market = scanner.nextInt();
@@ -188,7 +188,7 @@ public class CommandLineInterface {
 
 	}
 
-	public static String chooseHarvestArea() {
+	public String chooseHarvestArea() {
 
 		System.out.println("Choose if you want to put your relative on the left or on the right");
 		String harvestArea = scanner.nextLine();
@@ -196,7 +196,7 @@ public class CommandLineInterface {
 
 	}
 
-	public static String chooseProductionArea() {
+	public String chooseProductionArea() {
 
 		System.out.println("Choose if you want to put your relative on the left or on the right");
 		String productionArea = scanner.nextLine();

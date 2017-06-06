@@ -1,7 +1,9 @@
 package it.polimi.ingsw.GC_40;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.UUID;
 
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.Card;
@@ -16,7 +18,7 @@ import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.Relative;
 
 public class Player extends Observable<Change>{
-	
+	private UUID ID;
 	private ColorPlayer color;
 	private int coin;
 	private int wood;
@@ -42,8 +44,8 @@ public class Player extends Observable<Change>{
 	public boolean hasNeutralRelative;
 	
 	
-	public Player (ColorPlayer color){
-		this.color=color;
+	public Player (UUID ID){
+		this.ID=ID;
 		Relative blackRelative= new Relative(ColorDice.BLACK);
 		Relative whiteRelative= new Relative(ColorDice.WHITE);
 		Relative orangeRelative= new Relative(ColorDice.ORANGE);
@@ -304,5 +306,11 @@ public class Player extends Observable<Change>{
 	public void setColor(ColorPlayer colorPlayer) {
 		color = colorPlayer;
 	}
+
+	public UUID getID() {
+		return ID;
+	}
+
+	
 }
 

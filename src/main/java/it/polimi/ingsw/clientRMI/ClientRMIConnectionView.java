@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import it.polimi.ingsw.changes.Change;
+
 public class ClientRMIConnectionView extends UnicastRemoteObject implements ClientRMIConnectionViewRemote, Serializable{
 
 	protected ClientRMIConnectionView() throws RemoteException {
@@ -19,8 +21,9 @@ public class ClientRMIConnectionView extends UnicastRemoteObject implements Clie
 	@Override
 	public void updateClient(Change c) throws RemoteException {
 		// Just prints what was received from the server
-		System.out.println(c);
+		c.applyChange();
 	}
+
 
 
 }

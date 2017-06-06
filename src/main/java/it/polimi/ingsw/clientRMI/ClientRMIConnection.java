@@ -19,13 +19,13 @@ public class ClientRMIConnection {
 		private final static String HOST = "127.0.0.1";
 
 		private final static int PORT = 52365;
+	
+		private static final String NAME = "Lorenzo Il Magnifico";
 		
-		
+		private CommandLineInterface commandLineInterface;
 
-		private static final String NAME = "player"; //??
-
-		public static void main(String[] args) throws RemoteException, NotBoundException, AlreadyBoundException {
-
+		public  void RMIConnection() throws RemoteException, NotBoundException, AlreadyBoundException {
+			commandLineInterface=new CommandLineInterface();
 			//Get the remote registry
 			Registry registry = LocateRegistry.getRegistry(HOST, PORT);
 
@@ -46,10 +46,10 @@ public class ClientRMIConnection {
 				String inputLine = stdIn.nextLine();
 				System.out.println("SENDING "+inputLine);
 				try {
-					PutRelative putRelative= CommandLineInterface.chooseTheAction();
+					PutRelative putRelative= commandLineInterface.chooseTheAction();
 					serverStub.notifyObserver(putRelative);
 					}
-				} catch (IOException e1) {
+				 catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

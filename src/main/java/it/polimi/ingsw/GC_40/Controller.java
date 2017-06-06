@@ -1,11 +1,12 @@
 package it.polimi.ingsw.GC_40;
 
 
+import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.*;
 
 
-public class Controller implements Observer<PutRelative> {
+public class Controller implements Observer<Action> {
 	
 
 	
@@ -26,7 +27,7 @@ public class Controller implements Observer<PutRelative> {
 		}*/
 		
 		@Override
-		public void update(PutRelative putRelative) {
+		public void update(Action putRelative) {
 			// TODO Auto-generated method stub
 			putRelative.apply();
 

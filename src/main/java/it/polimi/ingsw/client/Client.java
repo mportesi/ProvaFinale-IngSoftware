@@ -2,12 +2,15 @@ package it.polimi.ingsw.client;
 
 import java.util.Scanner;
 
+import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.clientSocket.ClientInterface;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
 
 import java.io.IOException;
 
 public class Client {
+	private Player player;
+	
 	public static void main(String[] args) throws IOException{
 		
 		Scanner in = new Scanner(System.in);
@@ -31,16 +34,22 @@ public class Client {
 				System.out.println("Not valid value inserted");
 			}
 			else{
-				ClientInterface cs = null;
+				
 				if(input==1){
-					cs = new ClientSocketConnection(host, socket, clientView); 
+					ClientSocketConnection client = new ClientSocketConnection(host, socket, clientView); 
 				}
 				else{
 					//TODO RMI
 				}
-				cs.startClient();
+				client.startClient();
 			}
 		}
+	}
+
+	public void setPlayer(Player player) {
+		// TODO Auto-generated method stub
+		this.player=player;
+		
 	}
 }
 

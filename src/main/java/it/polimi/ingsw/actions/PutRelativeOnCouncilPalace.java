@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.changes.*;
 import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.areas.CouncilPalace;
-import it.polimi.ingsw.components.Piece;
 import it.polimi.ingsw.components.Relative;
 
 public class PutRelativeOnCouncilPalace extends Observable<Change> implements PutRelative {
@@ -20,9 +19,6 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		this.bonus=bonus;
 	}
 	
-	public void setPiece(Piece piece){
-		this.piece=piece;
-	}
 
 	@Override
 	public boolean isApplicable() {

@@ -28,6 +28,8 @@ public class CouncilPalace {
 		this.value = value;
 	}
 	
+	
+	//spostare in privilegeCouncil!!
 	public void createListOfCouncilPalaceEffect(){
 		GainCoin gainCoin = new GainCoin(bonusCoin);
 		councilPalaceEffect.add(gainCoin);
