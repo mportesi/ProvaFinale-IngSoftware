@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.client.ClientModel;
 
 public class ChangeTurnOrder implements Change {
 	ArrayList<Player> currentTurnOrder;
@@ -15,10 +16,8 @@ public class ChangeTurnOrder implements Change {
 
 
 	@Override
-	public void applyChange() {
-		// TODO Auto-generated method stub
-		//change the order in the model of the player
-		
+	public void applyChange(ClientModel client) {
+		client.setCurrentTurnOrder(currentTurnOrder);
 	}
 
 

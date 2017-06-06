@@ -1,19 +1,24 @@
 package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
 
 public class ChangeStone implements Change {
 	int stone;
-	ColorPlayer color;
+	Player player;
 	
-	public ChangeStone(ColorPlayer color, int stone){
+	public ChangeStone(Player player, int stone){
 		this.stone=stone;
-		this.color=color;
+		this.player=player;
 	}
 	
-	public void applyChange(){
-		//applico incrementStone nel model del client
+	public void applyChange(ClientModel client){
+		for (Player p : client.getPlayers()) {
+			if (player.equals(p)) {
+				p.setStone(stone);
+			}
+		}
 	}
 
 }

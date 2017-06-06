@@ -2,19 +2,20 @@ package it.polimi.ingsw.changes;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
 
 public class ChangeProductionRightArea implements Change {
-private ArrayList<Relative> relatives;
+private Relative relative;
 	
-	public ChangeProductionRightArea(ArrayList<Relative> relatives){
-		this.relatives=relatives;
+	public ChangeProductionRightArea(Relative relative){
+		this.relative=relative;
 	}
 	
 
 	@Override
-	public void applyChange() {
-		// TODO Auto-generated method stub
+	public void applyChange(ClientModel client) {
+		client.setProductionRightArea(relative);
 
 	}
 

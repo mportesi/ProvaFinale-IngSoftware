@@ -1,5 +1,7 @@
 package it.polimi.ingsw.changes;
 
+import it.polimi.ingsw.client.ClientModel;
+
 public class ChangeRound implements Change {
 	private int round;
 	
@@ -8,8 +10,8 @@ public class ChangeRound implements Change {
 	}
 
 	@Override
-	public void applyChange() {
-		// TODO Auto-generated method stub
+	public void applyChange(ClientModel client) {
+		client.setRound(round);
 
 	}
 

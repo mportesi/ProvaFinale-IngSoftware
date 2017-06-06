@@ -13,11 +13,10 @@ import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 
 public class CouncilPalace {
-	int bonusPrivilegeCouncil;
-	int bonusCoin;
-	int value;
-	List <Effect> councilPalaceEffect;
-	
+	private int bonusPrivilegeCouncil;
+	private int bonusCoin;
+	private int value;
+	private List <Effect> councilPalaceEffect;
 	private ArrayList<Player> order = new ArrayList<Player>();
 	private int orderIndex = 0;
 

@@ -1,20 +1,25 @@
 package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
 
 public class ChangeServant implements Change {
 	int servant;
-	ColorPlayer color;
+	Player player;
 	
-	public ChangeServant(ColorPlayer color, int servant){
+	public ChangeServant(Player player, int servant){
 		this.servant=servant;
-		this.color=color;
+		this.player=player;
 	}
 
 	@Override
-	public void applyChange() {
-		// TODO Auto-generated method stub
+	public void applyChange(ClientModel client) {
+		for (Player p : client.getPlayers()) {
+			if (player.equals(p)) {
+				p.setServant(servant);
+			}
+		}
 
 	}
 

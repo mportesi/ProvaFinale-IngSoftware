@@ -134,75 +134,75 @@ public class Player extends Observable<Change>{
 
 	public void incrementCoin(int n){
 		coin+=n;
-		ChangeCoin changeCoin= new ChangeCoin(this.color, coin);
+		ChangeCoin changeCoin= new ChangeCoin(this, coin);
 		this.notifyObserver(changeCoin);
 		
 	}
 	public void decrementCoin(int n){
 		coin-=n;
-		ChangeCoin changeCoin= new ChangeCoin(this.color, coin);
+		ChangeCoin changeCoin= new ChangeCoin(this, coin);
 		this.notifyObserver(changeCoin);
 	}
 	public void incrementWood(int n){
 		coin+=n;
-		ChangeWood changeWood= new ChangeWood(this.color, coin);
+		ChangeWood changeWood= new ChangeWood(this, coin);
 		this.notifyObserver(changeWood);
 	}
 	public void decrementWood(int n){
 		coin-=n;
-		ChangeWood changeWood= new ChangeWood(this.color, coin);
+		ChangeWood changeWood= new ChangeWood(this, coin);
 		this.notifyObserver(changeWood);
 		
 	}
 	public void incrementStone(int n){
 		coin+=n;
-		ChangeStone changeStone= new ChangeStone(this.color, coin);
+		ChangeStone changeStone= new ChangeStone(this, coin);
 		this.notifyObserver(changeStone);
 	}
 	public void decrementStone(int n){
 		coin-=n;
-		ChangeStone changeStone= new ChangeStone(this.color, coin);
+		ChangeStone changeStone= new ChangeStone(this, coin);
 		this.notifyObserver(changeStone);
 	}
 	public void incrementServant(int n){
 		coin+=n;
-		ChangeServant changeServant= new ChangeServant(this.color, coin);
+		ChangeServant changeServant= new ChangeServant(this, coin);
 		this.notifyObserver(changeServant);
 	}
 	public void decrementServant(int n){
 		coin-=n;
-		ChangeServant changeServant= new ChangeServant(this.color, coin);
+		ChangeServant changeServant= new ChangeServant(this, coin);
 		this.notifyObserver(changeServant);
 	}
 	public void incrementMilitaryPoint(int n){
 		coin+=n;
-		ChangeMilitaryPoint changeMilitaryPoint= new ChangeMilitaryPoint(this.color, coin);
+		ChangeMilitaryPoint changeMilitaryPoint= new ChangeMilitaryPoint(this, coin);
 		this.notifyObserver(changeMilitaryPoint);
 		
 	}
 	public void decrementMilitaryPoint(int n){
 		coin-=n;
-		ChangeMilitaryPoint changeMilitaryPoint= new ChangeMilitaryPoint(this.color, coin);
+		ChangeMilitaryPoint changeMilitaryPoint= new ChangeMilitaryPoint(this, coin);
 		this.notifyObserver(changeMilitaryPoint);
 	}
 	public void incrementFaithPoint(int n){
 		coin+=n;
-		ChangeFaithPoint changeFaithPoint= new ChangeFaithPoint(this.color, coin);
+		ChangeFaithPoint changeFaithPoint= new ChangeFaithPoint(this, coin);
 		this.notifyObserver(changeFaithPoint);
 	}
 	public void decrementFaithPoint(int n){
 		coin-=n;
-		ChangeFaithPoint changeFaithPoint= new ChangeFaithPoint(this.color, coin);
+		ChangeFaithPoint changeFaithPoint= new ChangeFaithPoint(this, coin);
 		this.notifyObserver(changeFaithPoint);
 	}
 	public void incrementVictoryPoint(int n){
 		coin+=n;
-		ChangeVictoryPoint changeVictoryPoint= new ChangeVictoryPoint(this.color, coin);
+		ChangeVictoryPoint changeVictoryPoint= new ChangeVictoryPoint(this, coin);
 		this.notifyObserver(changeVictoryPoint);
 	}
 	public void decrementVictoryPoint(int n){
 		coin-=n;
-		ChangeVictoryPoint changeVictoryPoint= new ChangeVictoryPoint(this.color, coin);
+		ChangeVictoryPoint changeVictoryPoint= new ChangeVictoryPoint(this, coin);
 		this.notifyObserver(changeVictoryPoint);
 	}
 	
@@ -236,25 +236,25 @@ public class Player extends Observable<Change>{
 		switch(type){
 		case "territoryCard": {
 			territoryCard.add((TerritoryCard) card);
-			ChangeTerritoryCard changeTerritoryCard= new ChangeTerritoryCard(color, territoryCard);
+			ChangeTerritoryCard changeTerritoryCard= new ChangeTerritoryCard(this, territoryCard);
 			this.notifyObserver(changeTerritoryCard);
 			break;
 		}
 		case "buildingCard": {
 			buildingCard.add((BuildingCard) card);
-			ChangeBuildingCard changeBuildingCard= new ChangeBuildingCard(color, buildingCard);
+			ChangeBuildingCard changeBuildingCard= new ChangeBuildingCard(this, buildingCard);
 			this.notifyObserver(changeBuildingCard);
 			break;
 		}
 		case "characterCard": {
 			characterCard.add((CharacterCard) card);
-			ChangeCharacterCard changeCharacterCard= new ChangeCharacterCard(color, characterCard);
+			ChangeCharacterCard changeCharacterCard= new ChangeCharacterCard(this, characterCard);
 			this.notifyObserver(changeCharacterCard);
 			break;
 		}
 		case "ventureCard": {
 			ventureCard.add((VentureCard) card);
-			ChangeVentureCard changeVentureCard= new ChangeVentureCard(color, ventureCard);
+			ChangeVentureCard changeVentureCard= new ChangeVentureCard(this, ventureCard);
 			this.notifyObserver(changeVentureCard);
 			break;
 		}
@@ -293,7 +293,7 @@ public class Player extends Observable<Change>{
 	}
 
 
-	public void setVictorypoint(int i) {
+	public void setVictoryPoint(int i) {
 		victoryPoint=i;
 	}
 
@@ -309,6 +309,51 @@ public class Player extends Observable<Change>{
 
 	public UUID getID() {
 		return ID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Player other = (Player) obj;
+		if (ID == null) {
+			if (other.ID != null)
+				return false;
+		} else if (!ID.equals(other.ID))
+			return false;
+		if (color != other.color)
+			return false;
+		return true;
+	}
+
+	public void setBuilding(ArrayList<BuildingCard> buildingCard) {
+		this.buildingCard=buildingCard;
+	}
+
+	public void setCharacter(ArrayList<CharacterCard> characterCard) {
+		this.characterCard=characterCard;
+	}
+
+	public void setTerritoryCard(ArrayList<TerritoryCard> territoryCard) {
+		this.territoryCard=territoryCard;
+	}
+
+	public void setVentureCard(ArrayList<VentureCard> ventureCard) {
+		this.ventureCard=ventureCard;
+		
 	}
 
 	

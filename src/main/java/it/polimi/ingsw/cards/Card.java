@@ -30,6 +30,7 @@ public class Card {
 	protected Map<String, Integer> immediateEffect;
 	protected List<Effect> iEffect;
 	
+	
 
 	// This method create the list of the Effect of the card from a Map<String,
 	// Integer>
