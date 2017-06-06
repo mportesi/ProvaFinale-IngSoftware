@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.clientSocket.ClientInterface;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
-import it.polimi.ingsw.clientSocket.ClientView;
 
 import java.io.IOException;
 

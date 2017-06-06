@@ -12,7 +12,7 @@ import it.polimi.ingsw.actions.PutRelativeOnProductionArea;
 import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
-import it.polimi.ingsw.clientSocket.ClientView;
+import it.polimi.ingsw.client.ClientView;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.Piece;
 import it.polimi.ingsw.components.Relative;

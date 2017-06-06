@@ -20,6 +20,7 @@ public class ClientRMIConnection {
 
 		private final static int PORT = 52365;
 		
+		
 
 		private static final String NAME = "player"; //??
 
