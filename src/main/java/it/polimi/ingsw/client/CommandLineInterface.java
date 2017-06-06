@@ -60,9 +60,8 @@ public class CommandLineInterface {
 			break;
 		}
 		case "CouncilPalace": {
-			String resource = choosePrivilegeCouncil();
-			putRelative = new PutRelativeOnCouncilPalace(player, relative,
-					resource); // TODO sistemare poi la stringa risorsa e
+			
+			putRelative = new PutRelativeOnCouncilPalace(player, relative); // TODO sistemare poi la stringa risorsa e
 								// convertirla in dei pezzi
 			break;
 		}
