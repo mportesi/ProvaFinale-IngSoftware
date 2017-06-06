@@ -3,6 +3,7 @@ package it.polimi.ingsw.client;
 import java.util.Scanner;
 
 import it.polimi.ingsw.clientSocket.ClientInterface;
+import it.polimi.ingsw.clientSocket.ClientSocket;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
 
 import java.io.IOException;
@@ -24,21 +25,20 @@ public class Client {
 			System.out.println("Select your connection:\n");
 			System.out.println("1) Socket");
 			System.out.println("2) Remote Method Invocation (RMI)");
-			ClientView clientView= new ClientView();
 			input = in.nextInt();
 			
 			if(input!=1 && input!=2){
 				System.out.println("Not valid value inserted");
 			}
 			else{
-				ClientInterface cs = null;
+				
 				if(input==1){
-					cs = new ClientSocketConnection(host, socket, clientView); 
+					ClientSocket cs = new ClientSocket(); 
+					cs.startClient();
 				}
 				else{
 					//TODO RMI
 				}
-				cs.startClient();
 			}
 		}
 	}
