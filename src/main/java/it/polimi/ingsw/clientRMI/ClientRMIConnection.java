@@ -8,6 +8,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
+import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 
@@ -17,6 +19,7 @@ public class ClientRMIConnection {
 		private final static String HOST = "127.0.0.1";
 
 		private final static int PORT = 52365;
+		
 
 		//private static final String NAME = "prigionieri";
 
@@ -34,33 +37,16 @@ public class ClientRMIConnection {
 			serverStub.registerClient(rmiView);
 			
 			
+			
 			Scanner stdIn = new Scanner(System.in);
 
 			while (true) {
 				//Capture input from user
 				String inputLine = stdIn.nextLine();
 				System.out.println("SENDING "+inputLine);
-				//Action action;
-				//Query query;
 				try {
-
-					// Call the appropriate method in the server
-					switch (inputLine) {
-					/*case "ON":
-						serverStub.turnOn();
-						break;
-					case "OFF":
-						serverStub.turnOff();
-						break;
-					case "PRINT":
-						serverStub.printModel();
-						break;
-					case "SCOMMETTI":
-						serverStub.scommetti();
-						break;
-					
-					default:
-						break;*/
+					PutRelative putRelative= CommandLineInterface.chooseTheAction();
+					serverStub.notifyObserver(putRelative);
 					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block

@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.HashSet;
 import java.util.Set;
 
+import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.serverSocket.ServerView;
@@ -44,6 +45,13 @@ public class ServerRMIConnectionView
 			// TODO Auto-generated method stub
 
 		}
+		
+		@Override
+		public void notifyObserver(PutRelative putRelative){
+			this.notifyObserver(putRelative);
+		}
+
+		
 
 		/*public void turnOn() throws RemoteException{
 			this.notifyObserver(new TurnOn());

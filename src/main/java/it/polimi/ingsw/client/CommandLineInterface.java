@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.actions.PutRelativeOnCouncilPalace;
 import it.polimi.ingsw.actions.PutRelativeOnHarvestArea;
 import it.polimi.ingsw.actions.PutRelativeOnMarket;
@@ -12,11 +13,13 @@ import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class CommandLineInterface {
 
-	private Scanner scanner;
+	private static Scanner scanner;
 	private Player player;//??
+	private Board board;
 
 	public CommandLineInterface() {
 		scanner = new Scanner(System.in);
@@ -26,10 +29,9 @@ public class CommandLineInterface {
 		String input = "";
 		while (!"quit".equals(input)) {
 			try {
-				
 				chooseTheAction();
 				System.out.println("your turn is finished");
-				System.out.println("The board now is:"+ Board);
+				System.out.println("The board now is:"+ board);
 			} catch (IllegalStateException e) {
 				return;
 			}
@@ -37,7 +39,7 @@ public class CommandLineInterface {
 
 	}
 
-	public void chooseTheAction() {
+	public static PutRelative chooseTheAction() {
 		
 		Relative relative=chooseTheRelative();
 
@@ -47,49 +49,55 @@ public class CommandLineInterface {
 		System.out.println("Market");
 		System.out.println("HarvestArea");
 		System.out.println("ProductionArea");
+
 		String input = this.scanner.nextLine();
+		PutRelative putRelative=null;
 		switch (input) {
 		case "Tower": {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(player, tower, floor, relative);
+			putRelative= new PutRelativeOnTower(player, tower, floor, relative);
 			break;
 		}
 		case "CouncilPalace": {
 			String resource = choosePrivilegeCouncil();
-			PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(player, relative,
+			putRelative = new PutRelativeOnCouncilPalace(player, relative,
 					resource); // TODO sistemare poi la stringa risorsa e
 								// convertirla in dei pezzi
 			break;
 		}
 		case "Market": {
 			int market = chooseMarket();
-			PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(player, relative, market); //sistemare
+			putRelative = new PutRelativeOnMarket(player, relative, market); //sistemare
 			break;
 		}
 		case "HarvestArea": {
 			String harvestArea = chooseHarvestArea();
-			PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(player, relative, harvestArea);
+			putRelative = new PutRelativeOnHarvestArea(player, relative, harvestArea);
+			
 			break;
 		}
 		case "ProductionArea": {
 			String productionArea = chooseProductionArea();
-			PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(player, relative,
+			putRelative = new PutRelativeOnProductionArea(player, relative,
 					productionArea);
+			
 			break;
 		}
+		
 		default: {
 			System.out.println("Error: insert again");
 			break;
 		}
 		}
+		return putRelative;
 
 	}
 
-	public Relative chooseTheRelative() {
+	public static Relative chooseTheRelative() {
 
 		System.out.println("Choose what relative you want to use: black, white, orange, neutral");
-		String input = this.scanner.nextLine();
+		String input = scanner.nextLine();
 		Relative relative=null;
 		switch (input) {
 		case "black": {
