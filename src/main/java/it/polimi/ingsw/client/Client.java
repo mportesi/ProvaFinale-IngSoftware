@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.clientSocket.ClientInterface;
+import it.polimi.ingsw.clientSocket.ClientSocket;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
 
 import java.io.IOException;
@@ -27,7 +28,6 @@ public class Client {
 			System.out.println("Select your connection:\n");
 			System.out.println("1) Socket");
 			System.out.println("2) Remote Method Invocation (RMI)");
-			ClientView clientView= new ClientView();
 			input = in.nextInt();
 			
 			if(input!=1 && input!=2){
@@ -37,6 +37,8 @@ public class Client {
 				
 				if(input==1){
 					ClientSocketConnection client = new ClientSocketConnection(host, socket, clientView); 
+					ClientSocket cs = new ClientSocket(); 
+					cs.startClient();
 				}
 				else{
 					//TODO RMI
