@@ -52,12 +52,6 @@ public class ServerRMIConnectionView
 
 		}
 
-		//?????
-		@Override
-		public void notifyObserver(Action action) {
-			// TODO Auto-generated method stub
-			
-		}
 		
 
 		

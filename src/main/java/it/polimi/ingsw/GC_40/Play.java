@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_40;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -8,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeCoin;
@@ -32,7 +36,7 @@ public class Play extends Observable<Change>
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	
-	public Play(){
+	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		this.board=new Board();
 		this.players=new ArrayList<Player>();
 		this.round=0;
@@ -53,7 +57,7 @@ public class Play extends Observable<Change>
 		for(Player p:currentTurnOrder){
 			p.incrementCoin(coin);
 			coin++;
-			ChangeCoin changeCoin= new ChangeCoin(p.getColor(), p.getCoin());
+			ChangeCoin changeCoin= new ChangeCoin(p, p.getCoin());
 			this.notifyObserver(changeCoin);
 		}
 		
@@ -65,16 +69,16 @@ public class Play extends Observable<Change>
 		for(Player p:currentTurnOrder){
 			p.setCoin(0);
 			p.setWood(2);
-			ChangeWood changeWood= new ChangeWood(p.getColor(), p.getWood());
+			ChangeWood changeWood= new ChangeWood(p, p.getWood());
 			this.notifyObserver(changeWood);
 			p.setServant(3);
-			ChangeServant changeServant= new ChangeServant(p.getColor(), p.getServant());
+			ChangeServant changeServant= new ChangeServant(p, p.getServant());
 			this.notifyObserver(changeServant);
 			p.setStone(2);
-			ChangeStone changeStone= new ChangeStone(p.getColor(), p.getStone());
+			ChangeStone changeStone= new ChangeStone(p, p.getStone());
 			this.notifyObserver(changeStone);
 			p.setMilitaryPoint(0);
-			p.setVictorypoint(0);
+			p.setVictoryPoint(0);
 			p.setFaithPoint(0);
 			i++;
 		}

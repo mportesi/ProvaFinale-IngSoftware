@@ -21,12 +21,12 @@ import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
 public class MarketBuilding {
-	//private Piece bonus;
 	private String type;
 	private Map<String,Integer> bonus;
 	private boolean isOccupied;
 	private int cost;
 	private List<Effect> marketEffect;
+	private Player player;
 	
 	public void createListOfMarketEffect(){
 		marketEffect = new ArrayList<Effect>();
@@ -45,7 +45,7 @@ public class MarketBuilding {
 			}
 			
 			case "privilegeCouncil": {
-				String resource = chooseResource();
+				String resource = "coin";//TODO
 				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(bonusEffect, resource);
 				marketEffect.add(gainPrivilegeCouncil);
 				break;
@@ -122,5 +122,9 @@ public class MarketBuilding {
 
 	public void setFree() {
 		isOccupied = false;
+	}
+
+	public void setPlayer(Player player) {
+		this.player=player;
 	}
 }

@@ -14,20 +14,14 @@ import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.client.ClientView;
 import it.polimi.ingsw.colors.ColorPlayer;
-import it.polimi.ingsw.components.Piece;
+
 import it.polimi.ingsw.components.Relative;
-import it.polimi.ingsw.points.FaithPoint;
-import it.polimi.ingsw.points.MilitaryPoint;
-import it.polimi.ingsw.resources.Coin;
-import it.polimi.ingsw.resources.Servant;
-import it.polimi.ingsw.resources.Stone;
-import it.polimi.ingsw.resources.Wood;
 
 import java.util.ArrayList;
 //da cambiare
 public class GameCannato {
 
-	private static ArrayList<Player> players;
+	/*private static ArrayList<Player> players;
 	private static List<ColorPlayer> colors;
 	private static ClientView clientView;
 	private Player currentPlayer;
@@ -58,7 +52,7 @@ public class GameCannato {
 						System.out.println("You can't use the third and fourth parts of the market");
 					}
 				}*/
-				System.out.println("It's the first player's turn: " + currentPlayer.getColor());
+			/*	System.out.println("It's the first player's turn: " + currentPlayer.getColor());
 				System.out.println("Values are: \n Black:" + Board.blackDice.getValue() + "\n 2) Orange:"
 						+ Board.orangeDice.getValue() + "\n 3) White: " + Board.whiteDice.getValue() + "\n 4) Neutral");
 				
@@ -135,7 +129,7 @@ public class GameCannato {
 					 * // divide la stringa in base al separatore passato
 					 * String[] array = x.split(";");
 					 */
-					System.out.println("Tell me the floor");
+				/*	System.out.println("Tell me the floor");
 					int floor = in.nextInt();
 					PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(currentPlayer, tower, floor,
 							currentRelative);
@@ -259,6 +253,6 @@ public class GameCannato {
 	
 	public static String chooseCost(Player player){
 		return clientView.chooseCostForVentureCards();
-	}
+	}*/
 
 }

@@ -8,6 +8,8 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import it.polimi.ingsw.GC_40.Player;
+
 public class ClientSocketConnection {
 
 	private final static int PORT = 29999;
@@ -19,7 +21,7 @@ public class ClientSocketConnection {
 
 		System.out.println("Connection created");
 		
-		Player player=
+		
 
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 

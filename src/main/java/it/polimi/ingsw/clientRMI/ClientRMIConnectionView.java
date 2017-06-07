@@ -5,10 +5,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.client.ClientModel;
 
 public class ClientRMIConnectionView extends UnicastRemoteObject implements ClientRMIConnectionViewRemote, Serializable{
 
-	protected ClientRMIConnectionView() throws RemoteException {
+	private ClientModel client;
+	
+	public ClientRMIConnectionView() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -20,8 +23,8 @@ public class ClientRMIConnectionView extends UnicastRemoteObject implements Clie
 
 	@Override
 	public void updateClient(Change c) throws RemoteException {
-		// Just prints what was received from the server
-		c.applyChange();
+		
+		c.applyChange(client);
 	}
 
 

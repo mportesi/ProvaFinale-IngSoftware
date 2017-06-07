@@ -14,4 +14,6 @@ public class GainCoin extends Effect {
 		player.incrementCoin(coin);
 	}
 
+	
+
 }

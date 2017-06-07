@@ -18,9 +18,12 @@ public class GainPrivilegeCouncil extends Effect {
 		PrivilegeCouncil.applyEffect(player, resource);
 		
 	//metto uno switch e incremento a seconda del case
-		
-		
 
+	}
+
+	public void apply(Player player, String resource) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

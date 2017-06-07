@@ -6,17 +6,17 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.CommandLineInterface;
+
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 
 public class CouncilPalace {
-	int bonusPrivilegeCouncil;
-	int bonusCoin;
-	int value;
-	List <Effect> councilPalaceEffect;
-	
+	private int bonusPrivilegeCouncil;
+	private int bonusCoin;
+	private int value;
+	private List <Effect> councilPalaceEffect;
 	private ArrayList<Player> order = new ArrayList<Player>();
 	private int orderIndex = 0;
 
@@ -30,17 +30,12 @@ public class CouncilPalace {
 	public void createListOfCouncilPalaceEffect(){
 		GainCoin gainCoin = new GainCoin(bonusCoin);
 		councilPalaceEffect.add(gainCoin);
-		String resource = CommandLineInterface.choosePrivilegeCouncil(); 
+	  	String resource = "coin"; //TODO
 		GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil (bonusPrivilegeCouncil, resource);
 		councilPalaceEffect.add(gainPrivilegeCouncil);
 		
 	}
 	
-	// to give the bonus when a player put a relative and choose a piece
-	/*public void giveBonus(Piece r, Player player) {
-		player.incrementCoin(1);
-		PrivilegeCouncil.giveBonus(r, player);
-	}*/
 	
 	public void applyEffect(Player player){
 		createListOfCouncilPalaceEffect();

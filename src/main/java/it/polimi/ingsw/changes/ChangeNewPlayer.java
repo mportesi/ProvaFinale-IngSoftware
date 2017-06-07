@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.Client;
+import it.polimi.ingsw.client.ClientModel;
 
 /**
  * @author Sara
@@ -21,11 +22,14 @@ public class ChangeNewPlayer implements Change {
 	 * @see it.polimi.ingsw.changes.Change#applyChange()
 	 */
 	
+	public ChangeNewPlayer(Player player){
+		this.player=player;
+	}
+	
 	@Override
-	public void applyChange() {
-		// TODO Auto-generated method stub
-		
-		client.setPlayer();
+	public void applyChange(ClientModel client) {
+		client.addPlayer(player);
+		//TODO GIVE THE NAME TO THE CLIENT AND SET HIS PLAYER 
 	}
 
 }

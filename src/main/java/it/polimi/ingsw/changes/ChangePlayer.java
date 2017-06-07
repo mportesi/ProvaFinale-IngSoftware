@@ -1,6 +1,7 @@
 package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.client.ClientModel;
 
 public class ChangePlayer implements Change {
 	private Player currentPlayer;
@@ -10,8 +11,8 @@ public class ChangePlayer implements Change {
 	}
 
 	@Override
-	public void applyChange() {
-		// TODO Auto-generated method stub
+	public void applyChange(ClientModel client) {
+		client.setCurrentPlayer(currentPlayer);
 
 	}
 

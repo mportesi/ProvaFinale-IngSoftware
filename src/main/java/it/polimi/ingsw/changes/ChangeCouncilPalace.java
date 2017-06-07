@@ -1,17 +1,20 @@
 package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.areas.CouncilPalace;
+import it.polimi.ingsw.client.ClientModel;
+import it.polimi.ingsw.components.Relative;
 
 public class ChangeCouncilPalace implements Change {
-	private CouncilPalace councilPalace;
+	//private Player player;
+	private Relative relative;
 	
-	public ChangeCouncilPalace(CouncilPalace councilPalace){
-		this.councilPalace=councilPalace;
+	public ChangeCouncilPalace(Relative relative){
+		this.relative=relative;
 	}
 
 	@Override
-	public void applyChange() {
-		// TODO Auto-generated method stub
+	public void applyChange(ClientModel client) {
+		client.setCouncilPalace(relative);
 		
 	}
 	

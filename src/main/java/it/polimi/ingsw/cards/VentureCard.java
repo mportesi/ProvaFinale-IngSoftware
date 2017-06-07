@@ -74,7 +74,7 @@ public class VentureCard extends Card {
 	}
 	
 	public String chooseCost(Player player){
-		String chosenCost= Play.chooseCost(player);
+		String chosenCost="militaryPoint";
 		return chosenCost;
 		
 	}
