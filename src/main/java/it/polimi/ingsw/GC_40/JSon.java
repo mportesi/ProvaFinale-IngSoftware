@@ -58,8 +58,8 @@ public class JSon {
 	public static HarvestAndProductionArea harvest;
 	public static HarvestAndProductionArea production;
 	public static CouncilPalace councilPalace;
-	public static Map <Integer, Integer> finalVictoryPointGain;
-	public static ArrayList <FinalVictoryPoint> finalVictoryPointArray;
+	public static Map <Integer, Integer> finalVictoryPointMap;
+	public static ArrayList <FinalVictoryPoint> finalVictoryPointList;
 	public static int victoryPointForTheFirst;
 	public static int victoryPointForTheSecond;
 
@@ -68,11 +68,12 @@ public class JSon {
 		
 		JSONParser VPForMilitaryParser = new JSONParser();
 		Object obj = null;
-		JSONObject VPForMilitary = (JSONObject) obj;
+		JSONObject VPForMilitary = (JSONObject) VPForMilitaryParser.parse(new FileReader("json/VPForMilitary.json"));
 		victoryPointForTheFirst = ((Long) VPForMilitary.get("victoryPointForTheFirst")).intValue();
 		victoryPointForTheSecond = ((Long) VPForMilitary.get("victoryPointForTheSecond")).intValue();
 		
 		
+		finalVictoryPointList= new ArrayList<FinalVictoryPoint>();
 		JSONParser finalVictoryPointParser = new JSONParser();
 		JSONArray finalVictoryPointArray = (JSONArray) finalVictoryPointParser.parse(new FileReader("json/finalVictoryPoints.json"));
 		for (Object o : finalVictoryPointArray){
@@ -82,15 +83,15 @@ public class JSon {
 			
 			JSONArray gain = (JSONArray) finalVictoryPointParser.parse(finalVictoryPoint.get("gain").toString());
 			
-			Map<Integer, Integer> finalVictoryPointMap = new LinkedHashMap();
+			Map<Integer, Integer> finalVictoryPointMap = new LinkedHashMap<Integer, Integer>();
 			for (int i = 0; i < gain.size(); i++) {
 				JSONObject gainObject = (JSONObject) gain.get(i);
 				int numberOf = ((Long) gainObject.get("numberOf")).intValue();
 				int amount = ((Long) gainObject.get("amount")).intValue();
-				finalVictoryPointGain.put(numberOf, amount);
+				finalVictoryPointMap.put(numberOf, amount);
 				
-			FinalVictoryPoint finalVictoryPointClass = new FinalVictoryPoint (type, finalVictoryPoint);
-			
+			FinalVictoryPoint finalVictoryPointClass = new FinalVictoryPoint (type, finalVictoryPointMap);
+			finalVictoryPointList.add(finalVictoryPointClass);
 		}
 			
 		}
