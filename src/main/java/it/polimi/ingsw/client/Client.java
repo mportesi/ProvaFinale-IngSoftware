@@ -48,6 +48,14 @@ public class Client {
 				ClientRMIConnection client= new ClientRMIConnection();
 				ClientRMIConnectionView clientView= new ClientRMIConnectionView();
 				client.startClient();
+				if(input==1){
+					ClientSocketConnection client = new ClientSocketConnection(); 
+					
+					client.startClient();
+				}
+				else{
+					//TODO RMI
+				}
 			}
 		}
 	}

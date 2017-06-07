@@ -20,6 +20,7 @@ import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 import it.polimi.ingsw.serverSocket.ServerSocketConnectionView;
+import it.polimi.ingsw.serverSocketTest.ServerSocketView;
 
 public class Server {
 
@@ -52,7 +53,7 @@ public class Server {
 			Socket socket = serverSocket.accept();
 
 			// creates the view (server side) associated with the new client
-			ServerSocketConnectionView view = new ServerSocketConnectionView(socket);
+			ServerSocketView view = new ServerSocketView(socket, gioco);
 
 			// the view observes the model
 			this.gioco.registerObserver(view);
