@@ -20,7 +20,7 @@ import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 import it.polimi.ingsw.serverSocket.ServerSocketConnectionView;
-import it.polimi.ingsw.serverSocketTest.ServerSocketView;
+import it.polimi.ingsw.serverSocket.ServerSocketView;
 
 public class Server {
 

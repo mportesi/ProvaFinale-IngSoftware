@@ -1,4 +1,4 @@
-package it.polimi.ingsw.serverSocketTest;
+package it.polimi.ingsw.serverSocket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -9,7 +9,6 @@ import java.util.Set;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.changes.Change;
-import it.polimi.ingsw.serverSocket.ServerView;
 
 public class ServerSocketView extends ServerView implements Runnable {
 	
