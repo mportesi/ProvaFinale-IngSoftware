@@ -205,7 +205,7 @@ public class Play extends Observable<Change>
 	
 	
 	
-	
+	/*
 	public Map <int, Player> militaryPointForPlayer(){
 		LinkedHashMap <int, Player> pointForPlayer = null;
 		for (Player p : players){
@@ -290,7 +290,7 @@ public class Play extends Observable<Change>
 				
 			
 		}
-	
+	*/
 	
 	
 	public void endGame(){
