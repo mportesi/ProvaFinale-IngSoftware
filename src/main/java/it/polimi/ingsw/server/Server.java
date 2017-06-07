@@ -16,12 +16,14 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Controller;
 import it.polimi.ingsw.GC_40.Play;
+import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
-import it.polimi.ingsw.serverSocket.ServerSocketConnectionView;
+
 import it.polimi.ingsw.serverSocket.ServerSocketView;
 
+@SuppressWarnings("unused")
 public class Server {
 
 	//Main class from the server side
@@ -31,10 +33,12 @@ public class Server {
 	private Play gioco;
 
 	private Controller controller;
+	
+	private final String NAME="Lorenzo Il Magnifico";
 
 	public Server() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.gioco = new Play();
-		//this.controller = new Controller(gioco);
+		this.controller = new Controller(gioco);
 
 	}
 	
@@ -66,13 +70,20 @@ public class Server {
 		}
 	}*/
 	
-	public void startRMI() throws RemoteException{
+	public void startRMI() throws RemoteException, AlreadyBoundException{
+		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
+		System.out.println("constructing the rmi regisrty");
 		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView();
-		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote;
+		serverRMIConnectionView.registerObserver(this.controller);
+		this.gioco.registerObserver(serverRMIConnectionView);
 		
+		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView, 0);
+		System.out.println("binding the server implementation to the registry");
+		registry.bind(NAME, serverRMIConnectionView);
 		
-		while(true){
-		}
+		//while(true){
+			
+		//}
 	}
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException, NullPointerException, ParseException {

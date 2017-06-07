@@ -2,6 +2,7 @@ package it.polimi.ingsw.changes;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.client.ClientModel;

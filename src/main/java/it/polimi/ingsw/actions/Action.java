@@ -1,7 +1,10 @@
 package it.polimi.ingsw.actions;
 
-public abstract interface Action {
+import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.changes.Change;
+
+public abstract interface Action  {
 	
-	public void apply();
+	public abstract void apply();
 
 }

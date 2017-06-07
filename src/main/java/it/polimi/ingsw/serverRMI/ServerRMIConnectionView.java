@@ -14,7 +14,7 @@ import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.serverSocket.ServerView;
 
 public class ServerRMIConnectionView
-	extends ServerView implements ServerRMIConnectionViewRemote {
+	extends ServerView implements ServerRMIConnectionViewRemote, Observer<Change> {
 
 		private Set<ClientRMIConnectionViewRemote> clients;
 

@@ -5,6 +5,7 @@ package it.polimi.ingsw.changes;
 
 import java.util.UUID;
 
+import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.ClientModel;
@@ -14,7 +15,7 @@ import it.polimi.ingsw.client.ClientModel;
  *
  */
 
-public class ChangeNewPlayer implements Change {
+public class ChangeNewPlayer extends Observable<Change> implements Change {
 	private Player player;
 	
 

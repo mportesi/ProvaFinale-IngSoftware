@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.actions.Action;
+import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeCoin;
 import it.polimi.ingsw.changes.ChangePeriod;

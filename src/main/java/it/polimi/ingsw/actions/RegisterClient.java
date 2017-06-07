@@ -14,7 +14,9 @@ public class RegisterClient extends Observable<Change> implements Action {
 		UUID playerID= UUID.randomUUID();
 		Player player= new Player(playerID);
 		ChangeNewPlayer changeNewPlayer= new ChangeNewPlayer(player);
+		System.out.println("the new player has"+ playerID);
 		this.notifyObserver(changeNewPlayer);
+		System.out.println("Ho notificato");
 	}
 
 }
