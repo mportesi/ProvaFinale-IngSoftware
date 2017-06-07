@@ -1,4 +1,4 @@
-package it.polimi.ingsw.serverSocketTest;
+package it.polimi.ingsw.serverSocket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

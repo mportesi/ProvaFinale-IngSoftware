@@ -11,7 +11,7 @@ import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
-import it.polimi.ingsw.serverSocketTest.ServerView;
+import it.polimi.ingsw.serverSocket.ServerView;
 
 public class ServerRMIConnectionView
 	extends ServerView implements ServerRMIConnectionViewRemote {

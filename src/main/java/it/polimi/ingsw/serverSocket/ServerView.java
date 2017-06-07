@@ -1,4 +1,4 @@
-package it.polimi.ingsw.serverSocketTest;
+package it.polimi.ingsw.serverSocket;
 
 import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.GC_40.Observer;
