@@ -81,6 +81,10 @@ public class Player extends Observable<Change>{
 				return nextInt();
 	}*/
 	
+	public int resourceCounter(){
+		return coin + wood + stone + servant;
+	}
+	
 	public int getCoin() {
 		return coin;
 	}

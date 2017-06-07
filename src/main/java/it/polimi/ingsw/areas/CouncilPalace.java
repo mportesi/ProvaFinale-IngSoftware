@@ -27,8 +27,6 @@ public class CouncilPalace {
 		this.value = value;
 	}
 	
-	
-	//spostare in privilegeCouncil!!
 	public void createListOfCouncilPalaceEffect(){
 		GainCoin gainCoin = new GainCoin(bonusCoin);
 		councilPalaceEffect.add(gainCoin);
@@ -61,5 +59,9 @@ public class CouncilPalace {
 		order.add(orderIndex, player);
 		orderIndex += 1;
 	}
-
+	
+	@Override
+	public String toString(){
+		return ("ActionValue: " + value +"\n"+ "PrivilegeCouncil bonus: "+ bonusPrivilegeCouncil + "Coin bonus: "+bonusCoin + "\n"+ "The actual order is: "+ order);
+	}
 }
