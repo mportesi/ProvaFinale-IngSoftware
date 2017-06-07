@@ -3,16 +3,18 @@ package it.polimi.ingsw.client;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.clientSocket.ClientInterface;
-import it.polimi.ingsw.clientSocket.ClientSocket;
+import it.polimi.ingsw.clientRMI.ClientRMIConnection;
+import it.polimi.ingsw.clientRMI.ClientRMIConnectionView;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
 
 import java.io.IOException;
+import java.nio.channels.AlreadyBoundException;
+import java.rmi.NotBoundException;
 
 public class Client {
 	private Player player;
 	
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException, AlreadyBoundException, NotBoundException{
 		
 		Scanner in = new Scanner(System.in);
 		String host = "127.0.0.1";
@@ -35,14 +37,16 @@ public class Client {
 			}
 			else{
 				
-				if(input==1){
+				/*if(input==1){
 					ClientSocketConnection client = new ClientSocketConnection(host, socket, clientView); 
 					ClientSocket cs = new ClientSocket(); 
 					cs.startClient();
-				}
-				else{
-					//TODO RMI
-				}
+				}*
+				else{//TODO RMI}*/
+					
+					
+				ClientRMIConnection client= new ClientRMIConnection();
+				ClientRMIConnectionView clientView= new ClientRMIConnectionView();
 				client.startClient();
 			}
 		}

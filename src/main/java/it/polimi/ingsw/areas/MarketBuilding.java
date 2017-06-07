@@ -45,7 +45,7 @@ public class MarketBuilding {
 			}
 			
 			case "privilegeCouncil": {
-				String resource = chooseResource();
+				String resource = "coin";//TODO
 				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(bonusEffect, resource);
 				marketEffect.add(gainPrivilegeCouncil);
 				break;

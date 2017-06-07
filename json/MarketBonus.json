@@ -1,6 +1,6 @@
 [
   {
-    "type": “market1",
+    "type": "market1",
     "bonus":[ {
       "type": "coin", "amount": 5
     }],

@@ -1,7 +1,11 @@
 package it.polimi.ingsw.GC_40;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.Floor;
@@ -32,7 +36,8 @@ public class Board {
 	
 	
 	
-	public Board(){
+	public Board() throws FileNotFoundException, NullPointerException, IOException, ParseException{
+		deck=new ArrayList<Card>();
 		ArrayList<Card> territory1= createDeck(1, "territory");
 		ArrayList<Card> territory2= createDeck(2, "territory");
 		ArrayList<Card> territory3= createDeck(3, "territory");
@@ -92,7 +97,9 @@ public class Board {
 	
 	
 	
-	public ArrayList<Card> createDeck(int period, String type) {
+	public ArrayList<Card> createDeck(int period, String type) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		JSon.importCards();
+		
 		for (Card card : JSon.characterDeck){
 			 deck.add(card);
 		}

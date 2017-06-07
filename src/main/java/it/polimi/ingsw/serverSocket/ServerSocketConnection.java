@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 
 public class ServerSocketConnection {
 
-	private final static int PORT = 29999;
+	/*private final static int PORT = 29999;
 	// private Partita partita;
 	// private Controller controller;
 
@@ -67,5 +67,5 @@ public class ServerSocketConnection {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

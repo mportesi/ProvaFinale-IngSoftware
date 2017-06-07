@@ -39,7 +39,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 				player.addCard(cardToGive);
 				cardToGive.applyEffect(player);
 				tower.floors.get(floor).bonusEffect.apply(player);
-				ChangeTower changeTower= new ChangeTower(tower,floor);
+				ChangeTower changeTower= new ChangeTower(tower,floor, relative);
 				this.notifyObserver(changeTower);
 			}
 		return;

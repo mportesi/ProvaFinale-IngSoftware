@@ -5,11 +5,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.client.ClientModel;
 
 public class ClientRMIConnectionView extends UnicastRemoteObject implements ClientRMIConnectionViewRemote, Serializable{
 
-	private Client client;
-	protected ClientRMIConnectionView() throws RemoteException {
+	private ClientModel client;
+	
+	public ClientRMIConnectionView() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

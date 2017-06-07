@@ -13,14 +13,28 @@ import it.polimi.ingsw.actions.PutRelativeOnMarket;
 import it.polimi.ingsw.actions.PutRelativeOnProductionArea;
 import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 
 public class ServerSocketConnectionView extends ServerView implements Runnable {
 
-	private Socket socket;
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*private Socket socket;
 	private Scanner socketIn;
 	private PrintWriter socketOut;
+	private ClientModel client;
 
 	public ServerSocketConnectionView(Socket socket) throws IOException {
 		this.socket = socket;
@@ -31,14 +45,14 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 	@Override
 	public void update(Change change) {
 		// TODO Auto-generated method stub
-		change.applyChange();
+		change.applyChange(client);
 
 	}
 
 	public void run() {
 		try {
 			while (true) {
-
+				
 				Player player = new Player();
 				System.out.println("SERVER: " + player);
 				String action = socketIn.nextLine();
@@ -47,31 +61,30 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 
 				switch (action) {
 				case "putRelativeOnTower": {
-					PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(/* parametri  */);
-					this.notifyObserver(putRelativeOnTower);
+			/*			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(/* parametri  */
+			/*	this.notifyObserver(putRelativeOnTower);
 					break;
-				}
-				case "putRelativeOnMarket": {
-					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(/* parametri */);
-					this.notifyObserver(putRelativeOnMarket);
-					break;
+				}*/
+			/*	case "putRelativeOnMarket": {
+					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(/* parametri */
+			/*		this.notifyObserver(putRelativeOnMarket);*/
+					/*break;
 				}
 				case "putRelativeOnHarvestArea": {
-					PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(/* parametri */);
-					this.notifyObserver(putRelativeOnHarvestArea);
-					break;
+					PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(/* parametri */
+					/*break;
 				}
 				case "putRelativeOnProductionArea": {
-					PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(/* parametri */);
-					this.notifyObserver(putRelativeOnProductionArea);
+					PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(/* parametri */
+			/*		this.notifyObserver(putRelativeOnProductionArea);
 					break;
 				}
 				case "putRelativeOnCouncilPalace": {
-					PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(/* parametri */);
-					this.notifyObserver(putRelativeOnCouncilPalace);
+					PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(/* parametri */
+			/*		this.notifyObserver(putRelativeOnCouncilPalace);
 					break;
-
-				}
+*/
+		/*		}
 				
 				}
 			}
@@ -91,10 +104,10 @@ public class ServerSocketConnectionView extends ServerView implements Runnable {
 		socketOut.flush();
 	}*/
 
-	@Override
-	public void update() {
+	/*@Override
+	/*public void update() {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 }
