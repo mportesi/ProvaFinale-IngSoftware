@@ -3,8 +3,6 @@ package it.polimi.ingsw.client;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.clientSocket.ClientInterface;
-import it.polimi.ingsw.clientSocket.ClientSocket;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
 
 import java.io.IOException;
@@ -36,14 +34,13 @@ public class Client {
 			else{
 				
 				if(input==1){
-					ClientSocketConnection client = new ClientSocketConnection(host, socket, clientView); 
-					ClientSocket cs = new ClientSocket(); 
-					cs.startClient();
+					ClientSocketConnection client = new ClientSocketConnection(); 
+					
+					client.startClient();
 				}
 				else{
 					//TODO RMI
 				}
-				client.startClient();
 			}
 		}
 	}

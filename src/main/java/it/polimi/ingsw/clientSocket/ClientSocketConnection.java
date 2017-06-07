@@ -19,7 +19,7 @@ public class ClientSocketConnection {
 
 		System.out.println("Connection created");
 		
-		Player player=
+		
 
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
