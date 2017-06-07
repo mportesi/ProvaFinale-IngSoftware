@@ -14,6 +14,7 @@ import java.util.concurrent.Executors;
 import it.polimi.ingsw.GC_40.Controller;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.serverSocket.ServerSocketConnectionView;
+import it.polimi.ingsw.serverSocketTest.ServerSocketView;
 
 public class Server {
 
@@ -46,7 +47,7 @@ public class Server {
 			Socket socket = serverSocket.accept();
 
 			// creates the view (server side) associated with the new client
-			ServerSocketConnectionView view = new ServerSocketConnectionView(socket);
+			ServerSocketView view = new ServerSocketView(socket, gioco);
 
 			// the view observes the model
 			this.gioco.registerObserver(view);
