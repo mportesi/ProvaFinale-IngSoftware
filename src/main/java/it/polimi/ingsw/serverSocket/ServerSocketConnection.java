@@ -10,6 +10,8 @@ import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import it.polimi.ingsw.serverSocketTest.ServerView;
+
 public class ServerSocketConnection {
 
 	private final static int PORT = 29999;

@@ -15,6 +15,7 @@ import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.PrivilegeCouncil;
+import it.polimi.ingsw.serverSocketTest.ServerView;
 
 public class ServerSocketConnectionView extends ServerView implements Runnable {
 
