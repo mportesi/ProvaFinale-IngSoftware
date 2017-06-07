@@ -16,7 +16,7 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 public class ClientRMIConnection {
 		private final static int RMI_PORT = 52365;
 
-		private final static String HOST = "127.0.1.1";
+		private final static String HOST = "127.0.0.1";
 
 		private final static int PORT = 52365;
 	
