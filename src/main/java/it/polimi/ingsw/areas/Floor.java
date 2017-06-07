@@ -55,4 +55,14 @@ public class Floor {
 	public Card getCard(){
 		return currentCard;
 	}
+	
+
+	@Override
+	public String toString(){
+		if (isFree){
+			return ("Cost: " + cost+ "\n Bonus: "+ bonusEffect+ "\n Card" +currentCard +"\n The floor is free!");
+		}
+		else{
+		return ("Cost: " + cost+ "\n Bonus: "+ bonusEffect + "\n Card" +currentCard + "\n The floor is occupied by: "+player);
+	}}
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.CommandLineInterface;
-import it.polimi.ingsw.components.Piece;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
@@ -28,12 +27,10 @@ public class CouncilPalace {
 		this.value = value;
 	}
 	
-	
-	//spostare in privilegeCouncil!!
 	public void createListOfCouncilPalaceEffect(){
 		GainCoin gainCoin = new GainCoin(bonusCoin);
 		councilPalaceEffect.add(gainCoin);
-		String resource = CommandLineInterface.choosePrivilegeCouncil(); //da aggiungere
+		String resource = CommandLineInterface.choosePrivilegeCouncil(); 
 		GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil (bonusPrivilegeCouncil, resource);
 		councilPalaceEffect.add(gainPrivilegeCouncil);
 		
@@ -67,5 +64,9 @@ public class CouncilPalace {
 		order.add(orderIndex, player);
 		orderIndex += 1;
 	}
-
+	
+	@Override
+	public String toString(){
+		return ("ActionValue: " + value +"\n"+ "PrivilegeCouncil bonus: "+ bonusPrivilegeCouncil + "Coin bonus: "+bonusCoin + "\n"+ "The actual order is: "+ order);
+	}
 }

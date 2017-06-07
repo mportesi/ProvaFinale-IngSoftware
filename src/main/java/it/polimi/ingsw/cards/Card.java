@@ -39,6 +39,7 @@ public class Card {
 		for (String key : immediateEffect.keySet()) {
 			keys.add(key);
 		}
+		
 		for (int i = 0; i < keys.size(); i++) {
 			String effect = keys.get(i);
 			int costImmediateEffect = immediateEffect.get(effect);

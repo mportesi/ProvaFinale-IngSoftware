@@ -62,5 +62,10 @@ public class Tower {
 	public Floor getFloor(int i){
 		return floors.get(i);
 	}
+	
+	@Override 
+	public String toString(){
+		return ("The tower of type: "+ type +" is: \n"+"["+ floors.get(0).getCard()+"] \n"+"["+ floors.get(1).getCard()+"] \n"+"["+ floors.get(2).getCard()+"] \n"+"["+ floors.get(3).getCard()+"] \n");
+	}
 
 }

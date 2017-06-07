@@ -34,6 +34,7 @@ import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
+import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.effects.Effect;
@@ -56,8 +57,20 @@ public class JSon {
 	public static HarvestAndProductionArea harvest;
 	public static HarvestAndProductionArea production;
 	public static CouncilPalace councilPalace;
+	public static Map <Integer, Integer> finalVictoryPointGain;
+	public static ArrayList <FinalVictoryPoint> finalVictoryPointArray;
+	public static int victoryPointForTheFirst;
+	public static int victoryPointForTheSecond;
 
 	public static void importCards() throws FileNotFoundException, IOException, ParseException {
+		
+		
+		JSONParser VPForMilitaryParser = new JSONParser();
+		Object obj = null;
+		JSONObject VPForMilitary = (JSONObject) obj;
+		victoryPointForTheFirst = ((Long) VPForMilitary.get("victoryPointForTheFirst")).intValue();
+		victoryPointForTheSecond = ((Long) VPForMilitary.get("victoryPointForTheSecond")).intValue();
+		
 		
 		JSONParser finalVictoryPointParser = new JSONParser();
 		JSONArray finalVictoryPointArray = (JSONArray) finalVictoryPointParser.parse(new FileReader("GC_40/finalVictoryPoints.json"));
@@ -68,15 +81,17 @@ public class JSon {
 			
 			JSONArray gain = (JSONArray) finalVictoryPointParser.parse(finalVictoryPoint.get("gain").toString());
 			
-			Map<String, Integer> finalVictoryPointMap = new LinkedHashMap();
+			Map<Integer, Integer> finalVictoryPointMap = new LinkedHashMap();
 			for (int i = 0; i < gain.size(); i++) {
 				JSONObject gainObject = (JSONObject) gain.get(i);
 				int numberOf = ((Long) gainObject.get("numberOf")).intValue();
 				int amount = ((Long) gainObject.get("amount")).intValue();
-				finalVictoryPoint.put(numberOf, amount);
-			
+				finalVictoryPointGain.put(numberOf, amount);
+				
+			FinalVictoryPoint finalVictoryPointClass = new FinalVictoryPoint (type, finalVictoryPoint);
 			
 		}
+			
 		}
 		
 		JSONParser councilPalaceParser = new JSONParser();

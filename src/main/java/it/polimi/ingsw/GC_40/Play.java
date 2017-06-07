@@ -2,7 +2,12 @@ package it.polimi.ingsw.GC_40;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeCoin;
@@ -15,6 +20,8 @@ import it.polimi.ingsw.changes.ChangeTurnOrder;
 import it.polimi.ingsw.changes.ChangeWinners;
 import it.polimi.ingsw.changes.ChangeWood;
 import it.polimi.ingsw.colors.ColorPlayer;
+import it.polimi.ingsw.components.FinalVictoryPoint;
+import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 
 public class Play extends Observable<Change>
 {
@@ -187,9 +194,98 @@ public class Play extends Observable<Change>
 
 	}
 	
-	public void giveFinalPoint(){
-		//assegna i punti a ciascun player
+	
+	
+	
+	
+	
+	
+	public Map <int, Player> militaryPointForPlayer(){
+		LinkedHashMap <int, Player> pointForPlayer = null;
+		for (Player p : players){
+			pointForPlayer.put(p.getMilitaryPoint(), p);
+		}
+		return pointForPlayer;
 	}
+	
+	public List <Player> militaryPointRank(){
+		Map pointForPlayer=militaryPointForPlayer();
+		int max=0;
+		ArrayList<Player> players;
+		List <Player> keys;
+		for(Player p: pointForPlayer.keySet()){
+			keys.add(p);
+			if(pointForPlayer.get(p)>=max){
+				max=pointForPlayer.get(p);
+				players.add(p);
+			}
+		}
+		
+	}
+	
+	
+	
+		
+	public void giveFinalPoint(){
+		
+		int victoryPointForMilitaryFirst = JSon.victoryPointForTheFirst;
+		int victoryPointForMilitarySecond = JSon.victoryPointForTheSecond;
+		for (Player p : players){
+			if (p == militaryPointRank().get(0)){
+				p.incrementVictoryPoint(victoryPointForMilitaryFirst);
+			}
+			if (p == militaryPointRank().get(1)){
+				p.incrementVictoryPoint(victoryPointForMilitarySecond);
+			}
+			
+			for (FinalVictoryPoint f : JSon.finalVictoryPointArray){
+				String type = f.getType();
+				switch (type){
+				case "victoryPointForTerritory" : {
+					Set list  = JSon.finalVictoryPointGain.keySet();
+					Iterator iter = list.iterator();
+								
+					while(iter.hasNext()) {
+					     int key = (int)(iter.next());
+					     int value = (int)(JSon.finalVictoryPointGain.get(key));
+						 int numberOfTerritoryCard = p.counter("territoryCard");
+						 if (numberOfTerritoryCard >= key){
+							p.incrementVictoryPoint(value);
+							break;
+						}}}
+				case "victoryPointForCharacter" : {
+					Set list  = JSon.finalVictoryPointGain.keySet();
+					Iterator iter = list.iterator();
+								
+					while(iter.hasNext()) {
+					     int key = (int)(iter.next());
+					     int value = (int)(JSon.finalVictoryPointGain.get(key));
+						 int numberOfTerritoryCard = p.counter("characterCard");
+						 if (numberOfTerritoryCard >= key){
+							p.incrementVictoryPoint(value);
+							break;
+						}}}
+				
+				case "victoryPointForResource" : {
+					Set list  = JSon.finalVictoryPointGain.keySet();
+					Iterator iter = list.iterator();
+								
+					while(iter.hasNext()) {
+					     int key = (int)(iter.next());
+					     int value = (int)(JSon.finalVictoryPointGain.get(key));
+						 int numberOfResource = p.resourceCounter();
+							p.incrementVictoryPoint(numberOfResource/5);
+							break;
+						}}
+				
+					}
+					}}
+				
+				
+			
+		}
+	
+	
 	
 	public void endGame(){
 		//restituisce la classifica e il vincitore
