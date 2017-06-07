@@ -16,7 +16,7 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 public class ClientRMIConnection {
 		private final static int RMI_PORT = 52365;
 
-		private final static String HOST = "127.0.0.1";
+		private final static String HOST = "127.0.1.1";
 
 		private final static int PORT = 52365;
 	
@@ -24,11 +24,12 @@ public class ClientRMIConnection {
 		
 		private CommandLineInterface commandLineInterface;
 
-		public  void RMIConnection() throws RemoteException, NotBoundException, AlreadyBoundException {
+		public  void startClient() throws RemoteException, NotBoundException, AlreadyBoundException, IOException {
 			commandLineInterface=new CommandLineInterface();
+			System.setProperty("java.rmi.server.hostname", "192.168.1.2");
 			//Get the remote registry
 			Registry registry = LocateRegistry.getRegistry(HOST, PORT);
-
+			
 			//get the stub (local object) of the remote view
 			ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
 
@@ -38,22 +39,14 @@ public class ClientRMIConnection {
 			serverStub.registerClient(rmiView);
 			
 			
-			
 			Scanner stdIn = new Scanner(System.in);
 
 			while (true) {
 				//Capture input from user
 				String inputLine = stdIn.nextLine();
 				System.out.println("SENDING "+inputLine);
-				try {
-					PutRelative putRelative= commandLineInterface.chooseTheAction();
-					serverStub.notifyObserver(putRelative);
-					}
-				 catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
+				PutRelative putRelative= commandLineInterface.chooseTheAction();
+				serverStub.notifyObserver(putRelative);
 			}
 		}
 

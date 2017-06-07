@@ -26,11 +26,16 @@ public class GetCard extends Effect {
 	public void apply(Player player) {
 		
 		Card card=//qualcosa chooseCard(value, discount);
-		e.applyCard(player, card);
+		applyCard(player, this.card );
 		
 	}
-
-	public void applyCard(Player player,Card card){
+	//TODO
+	Card applyCard(Player player,String card){
+		if (card.equals("lorenzo")){
+			Card card2= new Card();
+			return card2;
+		}
+		return null;
 	}
 
 }

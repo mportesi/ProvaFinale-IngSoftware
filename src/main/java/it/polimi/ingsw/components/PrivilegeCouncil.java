@@ -13,13 +13,13 @@ import it.polimi.ingsw.effects.GainWood;
 
 // Quando devo attivare il privilege council, chiamo privilegeCuncil.applyEFfect(player, resource)
 
-public class PrivilegeCouncil extends Piece {
-	int bonusWoodAndStone;
-	int bonusServant;
-	int bonusCoin;
-	int bonusMilitaryPoint;
-	int bonusFaithPoint;
-	List<Effect> effectOfPrivilegeCouncil;
+public class PrivilegeCouncil{
+	private static int bonusWoodAndStone;
+	private static int bonusServant;
+	private static int bonusCoin;
+	private static int bonusMilitaryPoint;
+	private static int bonusFaithPoint;
+	private static List<Effect> effectOfPrivilegeCouncil;
 	
 	public PrivilegeCouncil (int bonusWoodAndStone, int bonusServant, int bonusCoin, int bonusMilitaryPoint, int bonusFaithPoint){
 		this.bonusWoodAndStone = bonusWoodAndStone;
@@ -30,7 +30,7 @@ public class PrivilegeCouncil extends Piece {
 	}
 	
 	
-	public void createEffectOfPrivilegeCouncil(String resource){
+	public static void createEffectOfPrivilegeCouncil(String resource){
 		switch (resource){
 		case "woodAndStone" : {
 			 GainWood gainWood = new GainWood (bonusWoodAndStone);
@@ -67,7 +67,7 @@ public class PrivilegeCouncil extends Piece {
 	}
 	
 	
-	public void applyEffect(Player player, String resource) {
+	public static void applyEffect(Player player, String resource) {
 		createEffectOfPrivilegeCouncil(resource);
 
 		for (Effect e : effectOfPrivilegeCouncil) {

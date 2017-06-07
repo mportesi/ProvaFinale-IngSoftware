@@ -17,9 +17,9 @@
   { "numberOf":6, "amount":21}
   ]},
 {"type": "victoryPointForResource",
-  "gain":{
+  "gain":[{
     "numberOf":5, "amount":1
-  }},
+  }]},
   
   {"type": "victoryPointForMilitaryRecord",
   "gain":[{

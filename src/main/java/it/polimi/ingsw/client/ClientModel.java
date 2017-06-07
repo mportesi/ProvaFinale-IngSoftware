@@ -117,6 +117,31 @@ public class ClientModel {
 		}
 		
 	}
+
+
+	public Tower getTerritoryTower() {
+		return territoryTower;
+	}
+
+
+	public Tower getBuildingTower() {
+		return buildingTower;
+	}
+
+
+	public Tower getCharacterTower() {
+		return characterTower;
+	}
+	
+	public Tower getVentureTower() {
+		return ventureTower;
+	}
+
+
+	public MarketBuilding getMarket(int i) {
+		
+		return market.get(i);
+	}
 	
 	
 	

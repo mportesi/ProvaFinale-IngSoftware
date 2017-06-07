@@ -13,6 +13,8 @@ public interface ServerRMIConnectionViewRemote extends Remote {
 		public void registerClient(
 				ClientRMIConnectionViewRemote clientStub) 
 				throws RemoteException;
+
+		public void notifyObserver(Action action);
 		
 		
 		

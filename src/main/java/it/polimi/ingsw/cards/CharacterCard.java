@@ -7,6 +7,7 @@ import java.util.Map;
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Floor;
+import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainFaithPoint;
@@ -63,7 +64,7 @@ public class CharacterCard extends Card {
 			int costImmediateEffect = immediateEffect.get(effect);
 			switch (effect) {
 			case "GainPrivilegeCouncil": {
-				String resource = PrivilegeCouncil.choosePrivilegeCouncil();
+				String resource ="coin"; //TODO
 				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect, resource);
 				iEffect.add(gainPrivilegeCouncil);
 				break;
@@ -109,8 +110,9 @@ public class CharacterCard extends Card {
 				break;
 			}
 			case "GetCard":{
-				
-				GetCard getCard= new GetCard(tower, value, discount, floor);
+				//TODO
+				String card= "lorenzo";
+				GetCard getCard= new GetCard(card, value, discount);
 			}
 			}
 		

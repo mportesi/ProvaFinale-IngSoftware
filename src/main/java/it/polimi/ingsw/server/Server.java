@@ -1,5 +1,6 @@
 package it.polimi.ingsw.server;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -11,8 +12,13 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_40.Controller;
 import it.polimi.ingsw.GC_40.Play;
+import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
+import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
+import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 import it.polimi.ingsw.serverSocket.ServerSocketConnectionView;
 import it.polimi.ingsw.serverSocketTest.ServerSocketView;
 
@@ -26,13 +32,13 @@ public class Server {
 
 	private Controller controller;
 
-	public Server() {
+	public Server() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.gioco = new Play();
 		//this.controller = new Controller(gioco);
 
 	}
 	
-	private void startSocket() throws IOException {
+	/*private void startSocket() throws IOException {
 
 		// creates the thread pool to handle clients
 		ExecutorService executor = Executors.newCachedThreadPool();
@@ -58,11 +64,22 @@ public class Server {
 			// a new thread handle the connection with the view
 			executor.submit(view);
 		}
+	}*/
+	
+	public void startRMI() throws RemoteException{
+		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView();
+		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote;
+		
+		
+		while(true){
+		}
 	}
 
-	public static void main(String[] args) throws IOException, AlreadyBoundException {
+	public static void main(String[] args) throws IOException, AlreadyBoundException, NullPointerException, ParseException {
 		Server server = new Server();
-		System.out.println("START SOCKET");
-		server.startSocket();
+		/*System.out.println("START SOCKET");
+		server.startSocket();*/
+		System.out.println("START RMI");
+		server.startRMI();
 	}
 }
