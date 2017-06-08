@@ -53,27 +53,6 @@ public class ServerRMIConnectionView
 		}
 
 		
-
-		
-
-		/*public void turnOn() throws RemoteException{
-			this.notifyObserver(new TurnOn());
-		}
-
-		public void turnOff() throws RemoteException{
-			this.notifyObserver(new TurnOff());
-
-		}
-
-		public void scommetti() throws RemoteException{
-			this.notifyObserver(new Scommetti());
-		}
-
-		public void printModel() throws RemoteException{
-			this.notifyObserver(new PrintModel());
-		}
-
-		*/
 	}
 
 

@@ -1,82 +1,91 @@
 package it.polimi.ingsw.cards;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.effects.Effect;
 
 public class VentureCard extends Card {
 	private int alternativeCostBoolean;
-	private Map<String,Integer> cost;
+	private Map<String, Integer> cost;
 	private int militaryRequirement;
 	private int militaryCost;
-	
-	public VentureCard(String type,String name,int period,Map<String,Integer> costMap,int militaryRequirement,int militaryCost,Map<String,Integer> immediateEffectMap){
-		this.type=type;
-		this.name=name;
-		this.period=period;
-		this.cost=cost;
-		this.militaryRequirement=militaryRequirement;
-		this.militaryCost=militaryCost;
-		this.immediateEffect=immediateEffect;
+	private TerritoryListOfEffect effects;
+	private ArrayList<Effect> immediateEffects;
+
+	public VentureCard(String type, String name, int period, Map<String, Integer> costMap, int militaryRequirement,
+			int militaryCost) {
+		super(type, name, period);
+		this.cost = cost;
+		this.militaryRequirement = militaryRequirement;
+		this.militaryCost = militaryCost;
+		
 	};
-	
-	public VentureCard(String type,String name,int period,Map<String,Integer> cost, Map<String,Integer> immediateEffect){
-		this.type=type;
-		this.name=name;
-		this.period=period;
-		this.cost=cost;
-		this.immediateEffect=immediateEffect;
-		militaryRequirement= 0;
-		militaryCost=0;
+
+	public VentureCard(String type, String name, int period, Map<String, Integer> cost) {
+		super(type, name, period);
+		this.cost = cost;
+		militaryRequirement = 0;
+		militaryCost = 0;
 	}
-	
-	public VentureCard(String type,String name,int period,int militaryRequirement,int militaryCost,Map<String,Integer> cost, Map<String,Integer> immediateEffectMap){
-		this.type=type;
-		this.name=name;
-		this.period=period;
-		this.militaryRequirement=militaryRequirement;
-		this.militaryCost=militaryCost;
-		this.cost=cost;
-		this.immediateEffect=immediateEffect;
-		cost=null;
+
+	public VentureCard(String type, String name, int period, int militaryRequirement, int militaryCost,
+			Map<String, Integer> cost) {
+		super(type, name, period);
+		this.militaryRequirement = militaryRequirement;
+		this.militaryCost = militaryCost;
+		this.cost = cost;
+		cost = null;
 	};
-	
+
 	@Override
-	public void payCost(Player player){
-		if (militaryRequirement==0 && militaryCost==0 || chooseCost(player)=="otherCost"){
-			for(String key: cost.keySet()){
-				switch(key){
-				case "coin":{
+	public void payCost(Player player) {
+		if (militaryRequirement == 0 && militaryCost == 0 || chooseCost(player) == "otherCost") {
+			for (String key : cost.keySet()) {
+				switch (key) {
+				case "coin": {
 					player.decrementCoin(cost.get(key));
 					break;
 				}
-				case "wood":{
+				case "wood": {
 					player.decrementWood(cost.get(key));
 					break;
 				}
-				case "stone":{
+				case "stone": {
 					player.decrementStone(cost.get(key));
 					break;
 				}
-				case "servant":{
+				case "servant": {
 					player.decrementServant(cost.get(key));
 					break;
 				}
 				}
 			}
-		}
-		else if(cost.isEmpty() || chooseCost(player)=="militaryCost"){
+		} else if (cost.isEmpty() || chooseCost(player) == "militaryCost") {
 			player.decrementMilitaryPoint(militaryCost);
 		}
-	return;
-		
+		return;
+
 	}
-	
-	public String chooseCost(Player player){
-		String chosenCost="militaryPoint";
+
+	// to apply immediate effects
+	public void applyEffect(Player player) {
+		immediateEffects = effects.createListOfEffect();
+
+		for (Effect e : immediateEffects) {
+			if (e != null) {
+				e.apply(player);
+			}
+			return;
+		}
+	}
+
+	public String chooseCost(Player player) {
+		String chosenCost = "militaryPoint";
 		return chosenCost;
-		
+
 	}
-	
+
 }

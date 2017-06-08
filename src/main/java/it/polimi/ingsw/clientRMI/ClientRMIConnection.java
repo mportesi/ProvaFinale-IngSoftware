@@ -14,6 +14,7 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 
 public class ClientRMIConnection {
+		//TODO METTERE QUESTI DATI NEL COSTRUTTORE E CHIAMARE IN CLIENT IL COSTRUTTORE
 		private final static int RMI_PORT = 52365;
 
 		private final static String HOST = "127.0.0.1";

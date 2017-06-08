@@ -32,7 +32,7 @@ public class GetCard extends Effect {
 	//TODO
 	Card applyCard(Player player,String card){
 		if (card.equals("lorenzo")){
-			Card card2= new Card();
+			Card card2= new Card("building", "lorenzo", 1);
 			return card2;
 		}
 		return null;

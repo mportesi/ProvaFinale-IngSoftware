@@ -68,4 +68,22 @@ public class Tower {
 		return ("The tower of type: "+ type +" is: \n"+"["+ floors.get(0).getCard()+"] \n"+"["+ floors.get(1).getCard()+"] \n"+"["+ floors.get(2).getCard()+"] \n"+"["+ floors.get(3).getCard()+"] \n");
 	}
 
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tower other = (Tower) obj;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
+	}
+
 }

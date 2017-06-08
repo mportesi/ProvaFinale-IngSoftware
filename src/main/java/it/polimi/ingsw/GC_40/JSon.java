@@ -30,10 +30,15 @@ import it.polimi.ingsw.areas.Floor;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.cards.BuildingCard;
+import it.polimi.ingsw.cards.BuildingListOfEffect;
 import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.CardListOfEffect;
 import it.polimi.ingsw.cards.CharacterCard;
+import it.polimi.ingsw.cards.CharacterListOfEffect;
 import it.polimi.ingsw.cards.TerritoryCard;
+import it.polimi.ingsw.cards.TerritoryListOfEffect;
 import it.polimi.ingsw.cards.VentureCard;
+import it.polimi.ingsw.cards.VentureListOfEffect;
 import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.PrivilegeCouncil;
@@ -274,8 +279,9 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
-
-			Card c = new BuildingCard(type, name, period, costMap, immediateEffectMap);
+			
+			CardListOfEffect immediate= new BuildingListOfEffect(immediateEffectMap);
+			Card c = new BuildingCard(type, name, period, costMap);
 
 			buildingDeck.add(c);
 		}
@@ -300,8 +306,9 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
-
-			Card c = new TerritoryCard(type, name, period, immediateEffectMap);
+			
+			CardListOfEffect immediate= new TerritoryListOfEffect(immediateEffectMap);
+			Card c = new TerritoryCard(type, name, period);
 
 			territoryDeck.add(c);
 		}
@@ -338,13 +345,14 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
+			CardListOfEffect immediate= new VentureListOfEffect(immediateEffectMap);
 			Card c;
 			if (alternativeCostBoolean == 1) {
-				c = new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost, immediateEffectMap);
+				c = new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost);
 			} else if (militaryRequirement == 0 && militaryCost == 0) {
-				c = new VentureCard(type, name, period, costMap, immediateEffectMap);
+				c = new VentureCard(type, name, period, costMap);
 			} else {
-				c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap, immediateEffectMap);
+				c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap);
 			}
 
 			ventureDeck.add(c);
@@ -372,7 +380,7 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
-
+			CardListOfEffect immediate= new CharacterListOfEffect(immediateEffectMap);
 			if (bonusCard != null) {
 				int valueGetCard = ((Long) card.get("valueGetCard")).intValue();
 				JSONArray discount = (JSONArray) characterParser.parse(card.get("discount").toString());
@@ -385,13 +393,12 @@ public class JSon {
 					discountMap.put(typeDiscount, amount);
 				}
 
-				Card c = new CharacterCard(type, name, period, costCoin, bonusCard, valueGetCard, discountMap,
-						immediateEffectMap);
+				Card c = new CharacterCard(type, name, period, costCoin, bonusCard, valueGetCard, discountMap);
 				characterDeck.add(c);
 			
 			} else {
 
-				Card c = new CharacterCard(type, name, period, costCoin, immediateEffectMap);
+				Card c = new CharacterCard(type, name, period, costCoin);
 				characterDeck.add(c);
 				
 			}

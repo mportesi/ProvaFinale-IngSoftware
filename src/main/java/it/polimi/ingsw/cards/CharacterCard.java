@@ -23,100 +23,41 @@ import it.polimi.ingsw.effects.GainWood;
 import it.polimi.ingsw.effects.*;
 
 public class CharacterCard extends Card {
-	public int costCoin;
-	String card;
-	int value;
-	Map<String, Integer> discount;
+	private int costCoin;
+	private String card;
+	private int value;
+	private Map<String, Integer> discount;
+	private CharacterListOfEffect effects;
+	private ArrayList<Effect> immediateEffects;
 
-	public CharacterCard(String type, String name, int period, int costCoin, Map<String, Integer> immediateEffect) {
-		this.type = type;
-		this.name = name;
+	public CharacterCard(String type, String name, int period, int costCoin) {
+		super(type, name, period);
 		this.costCoin = costCoin;
-		this.immediateEffect = immediateEffect;
 	}
 
 	public CharacterCard(String type, String name, int period, int costCoin, String card, int value,
-			Map<String, Integer> discount, Map<String, Integer> immediateEffect) {
-		this.type = type;
-		this.name = name;
+			Map<String, Integer> discount) {
+		super(type, name, period);
 		this.costCoin = costCoin;
 		this.card = card;
 		this.value = value;
 		this.discount = discount;
-		this.immediateEffect = immediateEffect;
 	}
-
 
 	@Override
 	public void payCost(Player player) {
 		player.decrementCoin(costCoin);
 	}
-	
-	
-	public void createListOfEffect() {
-		iEffect = new ArrayList<Effect>();
-		List<String> keys = new ArrayList<String>();
-		for (String key : immediateEffect.keySet()) {
-			keys.add(key);
+
+	// to apply immediate effects
+	public void applyEffect(Player player) {
+		immediateEffects = effects.createListOfEffect();
+
+		for (Effect e : immediateEffects) {
+			if (e != null) {
+				e.apply(player);
+			}
+			return;
 		}
-		for (int i = 0; i < keys.size(); i++) {
-			String effect = keys.get(i);
-			int costImmediateEffect = immediateEffect.get(effect);
-			switch (effect) {
-			case "GainPrivilegeCouncil": {
-				String resource ="coin"; //TODO
-				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect, resource);
-				iEffect.add(gainPrivilegeCouncil);
-				break;
-			}
-			case "GainVictoryPointForMilitaryPoint": {
-				GainVictoryPointForMilitaryPoint gainVictoryPointForMilitaryPoint = new GainVictoryPointForMilitaryPoint(
-						costImmediateEffect);
-				iEffect.add(gainVictoryPointForMilitaryPoint);
-				break;
-			}
-			case "GainVictoryPointForTerritoryCard": {
-				GainVictoryPointForTerritoryCard gainVictoryPointForTerritoryCard = new GainVictoryPointForTerritoryCard(
-						costImmediateEffect);
-				iEffect.add(gainVictoryPointForTerritoryCard);
-				break;
-			}
-			case "GainVictoryPointForBuildingCard": {
-				GainVictoryPointForBuildingCard gainVictoryPointForBuildingCard = new GainVictoryPointForBuildingCard(
-						costImmediateEffect);
-				iEffect.add(gainVictoryPointForBuildingCard);
-				break;
-			}
-			case "GainVictoryPointForVentureCard": {
-				GainVictoryPointForVentureCard gainVictoryPointForVentureCard = new GainVictoryPointForVentureCard(
-						costImmediateEffect);
-				iEffect.add(gainVictoryPointForVentureCard);
-				break;
-			}
-			case "GainVictoryPointForCharacterCard": {
-				GainVictoryPointForCharacterCard gainVictoryPointForCharacterCard = new GainVictoryPointForCharacterCard(
-						costImmediateEffect);
-				iEffect.add(gainVictoryPointForCharacterCard);
-				break;
-			}
-			case "GainFaithPoint": {
-				GainFaithPoint gainFaithPoint = new GainFaithPoint(costImmediateEffect);
-				iEffect.add(gainFaithPoint);
-				break;
-			}
-			case "GainMilitaryPoint": {
-				GainMilitaryPoint gainMilitaryPoint = new GainMilitaryPoint(costImmediateEffect);
-				iEffect.add(gainMilitaryPoint);
-				break;
-			}
-			case "GetCard":{
-				//TODO
-				String card= "lorenzo";
-				GetCard getCard= new GetCard(card, value, discount);
-			}
-			}
-		
-	}
-	
 	}
 }
