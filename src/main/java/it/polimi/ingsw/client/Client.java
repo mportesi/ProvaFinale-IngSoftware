@@ -23,7 +23,7 @@ public class Client {
 		String host = "127.0.0.1";
 		int rmi=52365;
 		//int socket = 29999;
-
+		
 		System.out.println("Welcome to Lorenzo il Magnifico \n");
 		System.out.println("Select how you want to play:\n");
 		System.out.println("1) Command Line Interface (CLI)");

@@ -10,13 +10,15 @@ import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 
-public class ClientRMIConnection {
+public class ClientRMIConnection{
 		//TODO METTERE QUESTI DATI NEL COSTRUTTORE E CHIAMARE IN CLIENT IL COSTRUTTORE
 		private final static int RMI_PORT = 52365;
 

@@ -38,4 +38,9 @@ public class ChangeNewPlayer extends Observable<Change> implements Change {
 		//TODO GIVE THE NAME TO THE CLIENT AND SET HIS PLAYER 
 	}
 
+	@Override
+	public String toString() {
+		return "ChangeNewPlayer [player=" + player + "]";
+	}
+
 }

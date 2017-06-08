@@ -158,6 +158,11 @@ public class ClientModel {
 		players= new ArrayList<Player>();
 		
 	}
+
+	public Board getBoard() {
+		// TODO Auto-generated method stub
+		return board;
+	}
 	
 	
 	

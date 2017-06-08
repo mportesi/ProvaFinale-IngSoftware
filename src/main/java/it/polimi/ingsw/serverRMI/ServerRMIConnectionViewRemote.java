@@ -7,11 +7,13 @@ import java.rmi.RemoteException;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 
-public interface ServerRMIConnectionViewRemote extends Remote {
+public interface ServerRMIConnectionViewRemote extends Remote{
 	
 
 		public void registerClient(ClientRMIConnectionViewRemote clientStub) 

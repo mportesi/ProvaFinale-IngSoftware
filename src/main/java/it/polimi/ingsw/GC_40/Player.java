@@ -37,11 +37,11 @@ public class Player extends Observable<Change> implements Serializable {
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
 	private ArrayList<LeaderTile> leader;
-	/*public ArrayList<Relative> relatives;*/
+	/*public ArrayList<Relative> relatives;
 	public Relative blackRelative;
 	public Relative whiteRelative;
 	public Relative orangeRelative;
-	public Relative neutralRelative;
+	public Relative neutralRelative;*/
 	public PersonalBonusTile personalBonusTile;
 	public boolean hasBlackRelative;
 	public boolean hasWhiteRelative;
@@ -51,11 +51,11 @@ public class Player extends Observable<Change> implements Serializable {
 	
 	public Player (UUID ID, Play play){
 		this.ID=ID;
-		Relative blackRelative= new Relative(ColorDice.BLACK);
+		/*Relative blackRelative= new Relative(ColorDice.BLACK);
 		Relative whiteRelative= new Relative(ColorDice.WHITE);
 		Relative orangeRelative= new Relative(ColorDice.ORANGE);
 		Relative neutralRelative= new Relative(null);
-		/*relatives.add(blackRelative);
+		relatives.add(blackRelative);
 		relatives.add(whiteRelative);
 		relatives.add(orangeRelative);
 		relatives.add(neutralRelative);*/
@@ -67,11 +67,11 @@ public class Player extends Observable<Change> implements Serializable {
 	}
 	
 	public Player(){
-		Relative blackRelative= new Relative(ColorDice.BLACK);
+		/*Relative blackRelative= new Relative(ColorDice.BLACK);
 		Relative whiteRelative= new Relative(ColorDice.WHITE);
 		Relative orangeRelative= new Relative(ColorDice.ORANGE);
 		Relative neutralRelative= new Relative(null);
-		/*relatives.add(blackRelative);
+		relatives.add(blackRelative);
 		relatives.add(whiteRelative);
 		relatives.add(orangeRelative);
 		relatives.add(neutralRelative);*/

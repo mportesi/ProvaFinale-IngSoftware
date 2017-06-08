@@ -34,6 +34,7 @@ public class ServerRMIConnectionView
 		public void registerClient(ClientRMIConnectionViewRemote clientStub) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 			System.out.println("CLIENT REGISTRATO");
 			this.clients.add(clientStub);
+			System.out.println(clients.get(0));
 			RegisterClient registerClient= new RegisterClient();
 			//System.out.println("notifico di registerClient() il controller");
 			this.notifyObserver(registerClient);
