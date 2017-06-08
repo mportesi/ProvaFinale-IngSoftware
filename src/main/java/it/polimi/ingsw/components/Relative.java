@@ -1,12 +1,15 @@
 package it.polimi.ingsw.components;
 
 import it.polimi.ingsw.colors.ColorDice;
+
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_40.Player;
 
 import it.polimi.ingsw.colors.ColorDice;
 
 
-public class Relative {
+public class Relative implements Serializable{
 	
 	private Player player;
 	private ColorDice color;

@@ -1,11 +1,16 @@
 package it.polimi.ingsw.serverRMI;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.actions.Action;
+import it.polimi.ingsw.actions.InitializeGame;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
@@ -25,15 +30,22 @@ public class ServerRMIConnectionView
 		}
 
 		@Override
-		public void registerClient(ClientRMIConnectionViewRemote clientStub) throws RemoteException {
+		public void registerClient(ClientRMIConnectionViewRemote clientStub) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 			System.out.println("CLIENT REGISTRATO");
 			this.clients.add(clientStub);
 			RegisterClient registerClient= new RegisterClient();
 			this.notifyObserver(registerClient);
 		}
+		
+		@Override
+		public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException{
+			InitializeGame initializeGame= new InitializeGame();
+			this.notifyObserver(initializeGame);
+			System.out.println("notifico di inizializzae");
+		}
 
 		@Override
-		public void update(Change change) {
+		public void update(Change change) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 			System.out.println("SENDING THE CHANGE TO THE CLIENT");
 			try {
 				for (ClientRMIConnectionViewRemote clientstub : this.clients) {

@@ -84,7 +84,7 @@ public class PutRelativeOnTower_ESTest extends PutRelativeOnTower_ESTest_scaffol
       PutRelativeOnTower putRelativeOnTower0 = new PutRelativeOnTower(player0, (Tower) null, 0, (Relative) null);
       // Undeclared exception!
       try { 
-        putRelativeOnTower0.apply();
+        putRelativeOnTower0.apply(null);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
@@ -104,7 +104,7 @@ public class PutRelativeOnTower_ESTest extends PutRelativeOnTower_ESTest_scaffol
       PutRelativeOnTower putRelativeOnTower0 = new PutRelativeOnTower(player0, tower0, 0, (Relative) null);
       // Undeclared exception!
       try { 
-        putRelativeOnTower0.apply();
+        putRelativeOnTower0.apply(null);
         fail("Expecting exception: IndexOutOfBoundsException");
       
       } catch(IndexOutOfBoundsException e) {
@@ -123,7 +123,7 @@ public class PutRelativeOnTower_ESTest extends PutRelativeOnTower_ESTest_scaffol
       PutRelativeOnTower putRelativeOnTower0 = new PutRelativeOnTower((Player) null, tower0, (-1), (Relative) null);
       // Undeclared exception!
       try { 
-        putRelativeOnTower0.apply();
+        putRelativeOnTower0.apply(null);
         fail("Expecting exception: ArrayIndexOutOfBoundsException");
       
       } catch(ArrayIndexOutOfBoundsException e) {

@@ -2,6 +2,8 @@ package it.polimi.ingsw.client;
 
 import java.util.Scanner;
 
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.clientRMI.ClientRMIConnection;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionView;
@@ -13,8 +15,9 @@ import java.rmi.NotBoundException;
 
 public class Client {
 	private Player player;
+	private static ClientModel clientModel;
 
-	public static void main(String[] args) throws IOException, AlreadyBoundException, NotBoundException {
+	public static void main(String[] args) throws IOException, AlreadyBoundException, NotBoundException, NullPointerException, ParseException {
 
 		Scanner in = new Scanner(System.in);
 		String host = "127.0.0.1";
@@ -43,7 +46,7 @@ public class Client {
 				} else {
 
 					ClientRMIConnection client = new ClientRMIConnection();
-					ClientRMIConnectionView clientView = new ClientRMIConnectionView();
+					ClientRMIConnectionView clientView = new ClientRMIConnectionView(clientModel);
 					client.startClient();
 				}
 

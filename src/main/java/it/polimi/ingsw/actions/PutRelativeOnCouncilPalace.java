@@ -2,7 +2,14 @@
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.changes.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.components.Relative;
 
@@ -34,7 +41,7 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 	}
 
 	@Override
-	public void apply() {
+	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
 			councilPalace.addPlayer(player);

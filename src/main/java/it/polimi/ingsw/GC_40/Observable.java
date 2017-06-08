@@ -1,7 +1,11 @@
 package it.polimi.ingsw.GC_40;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.simple.parser.ParseException;
 
 public abstract class Observable<C> {
 	private List<Observer<C>> observers;
@@ -24,7 +28,7 @@ public abstract class Observable<C> {
 		}
 	}
 	
-	public void notifyObserver(C c){
+	public void notifyObserver(C c) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		for (Observer<C> o: this.observers){
 			System.out.println("notifico"+ c);
 			o.update(c);

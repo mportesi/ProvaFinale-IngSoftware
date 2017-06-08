@@ -1,9 +1,14 @@
 package it.polimi.ingsw.GC_40;
 
 import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.Card;
@@ -17,7 +22,7 @@ import it.polimi.ingsw.components.LeaderTile;
 import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.Relative;
 
-public class Player extends Observable<Change>{
+public class Player extends Observable<Change> implements Serializable {
 	private UUID ID;
 	private ColorPlayer color;
 	private int coin;
@@ -44,7 +49,7 @@ public class Player extends Observable<Change>{
 	public boolean hasNeutralRelative;
 	
 	
-	public Player (UUID ID){
+	public Player (UUID ID, Play play){
 		this.ID=ID;
 		Relative blackRelative= new Relative(ColorDice.BLACK);
 		Relative whiteRelative= new Relative(ColorDice.WHITE);
@@ -58,6 +63,7 @@ public class Player extends Observable<Change>{
 		hasWhiteRelative=true;
 		hasOrangeRelative=true;
 		hasNeutralRelative=true;
+		registerObserver(play);
 	}
 	
 	public Player(){
@@ -136,75 +142,75 @@ public class Player extends Observable<Change>{
 		return leader;
 	}
 
-	public void incrementCoin(int n){
+	public void incrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin+=n;
 		ChangeCoin changeCoin= new ChangeCoin(this, coin);
 		this.notifyObserver(changeCoin);
 		
 	}
-	public void decrementCoin(int n){
+	public void decrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin-=n;
 		ChangeCoin changeCoin= new ChangeCoin(this, coin);
 		this.notifyObserver(changeCoin);
 	}
-	public void incrementWood(int n){
+	public void incrementWood(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin+=n;
 		ChangeWood changeWood= new ChangeWood(this, coin);
 		this.notifyObserver(changeWood);
 	}
-	public void decrementWood(int n){
+	public void decrementWood(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin-=n;
 		ChangeWood changeWood= new ChangeWood(this, coin);
 		this.notifyObserver(changeWood);
 		
 	}
-	public void incrementStone(int n){
+	public void incrementStone(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin+=n;
 		ChangeStone changeStone= new ChangeStone(this, coin);
 		this.notifyObserver(changeStone);
 	}
-	public void decrementStone(int n){
+	public void decrementStone(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin-=n;
 		ChangeStone changeStone= new ChangeStone(this, coin);
 		this.notifyObserver(changeStone);
 	}
-	public void incrementServant(int n){
+	public void incrementServant(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin+=n;
 		ChangeServant changeServant= new ChangeServant(this, coin);
 		this.notifyObserver(changeServant);
 	}
-	public void decrementServant(int n){
+	public void decrementServant(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin-=n;
 		ChangeServant changeServant= new ChangeServant(this, coin);
 		this.notifyObserver(changeServant);
 	}
-	public void incrementMilitaryPoint(int n){
+	public void incrementMilitaryPoint(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin+=n;
 		ChangeMilitaryPoint changeMilitaryPoint= new ChangeMilitaryPoint(this, coin);
 		this.notifyObserver(changeMilitaryPoint);
 		
 	}
-	public void decrementMilitaryPoint(int n){
+	public void decrementMilitaryPoint(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin-=n;
 		ChangeMilitaryPoint changeMilitaryPoint= new ChangeMilitaryPoint(this, coin);
 		this.notifyObserver(changeMilitaryPoint);
 	}
-	public void incrementFaithPoint(int n){
+	public void incrementFaithPoint(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin+=n;
 		ChangeFaithPoint changeFaithPoint= new ChangeFaithPoint(this, coin);
 		this.notifyObserver(changeFaithPoint);
 	}
-	public void decrementFaithPoint(int n){
+	public void decrementFaithPoint(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin-=n;
 		ChangeFaithPoint changeFaithPoint= new ChangeFaithPoint(this, coin);
 		this.notifyObserver(changeFaithPoint);
 	}
-	public void incrementVictoryPoint(int n){
+	public void incrementVictoryPoint(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin+=n;
 		ChangeVictoryPoint changeVictoryPoint= new ChangeVictoryPoint(this, coin);
 		this.notifyObserver(changeVictoryPoint);
 	}
-	public void decrementVictoryPoint(int n){
+	public void decrementVictoryPoint(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		coin-=n;
 		ChangeVictoryPoint changeVictoryPoint= new ChangeVictoryPoint(this, coin);
 		this.notifyObserver(changeVictoryPoint);
@@ -235,7 +241,7 @@ public class Player extends Observable<Change>{
 		return i;
 	}
 	
-	public void addCard(Card card){
+	public void addCard(Card card) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		String type=card.getType();
 		switch(type){
 		case "territoryCard": {

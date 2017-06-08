@@ -41,7 +41,7 @@ public class PutRelativeOnProductionArea_ESTest extends PutRelativeOnProductionA
       UUID uUID0 = new UUID(0L, 0L);
       Player player0 = new Player(uUID0);
       PutRelativeOnProductionArea putRelativeOnProductionArea0 = new PutRelativeOnProductionArea(player0, (Relative) null, "");
-      putRelativeOnProductionArea0.apply();
+      putRelativeOnProductionArea0.apply(null);
   }
 
   @Test(timeout = 4000)
@@ -50,7 +50,7 @@ public class PutRelativeOnProductionArea_ESTest extends PutRelativeOnProductionA
       PutRelativeOnProductionArea putRelativeOnProductionArea0 = new PutRelativeOnProductionArea(player0, (Relative) null, "right");
       // Undeclared exception!
       try { 
-        putRelativeOnProductionArea0.apply();
+        putRelativeOnProductionArea0.apply(null);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {

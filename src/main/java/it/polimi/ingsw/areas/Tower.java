@@ -1,12 +1,13 @@
 package it.polimi.ingsw.areas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.Card;
 
-public class Tower {
+public class Tower implements Serializable{
 	private String type;
 	public ArrayList <Floor> floors;
 	private ArrayList<Card> deck1;

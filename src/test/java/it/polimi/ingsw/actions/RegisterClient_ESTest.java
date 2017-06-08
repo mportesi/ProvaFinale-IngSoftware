@@ -24,7 +24,7 @@ public class RegisterClient_ESTest extends RegisterClient_ESTest_scaffolding {
       registerClient0.registerObserver((Observer<Change>) null);
       // Undeclared exception!
       try { 
-        registerClient0.apply();
+        registerClient0.apply(null);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
@@ -38,6 +38,6 @@ public class RegisterClient_ESTest extends RegisterClient_ESTest_scaffolding {
   @Test(timeout = 4000)
   public void test1()  throws Throwable  {
       RegisterClient registerClient0 = new RegisterClient();
-      registerClient0.apply();
+      registerClient0.apply(null);
   }
 }

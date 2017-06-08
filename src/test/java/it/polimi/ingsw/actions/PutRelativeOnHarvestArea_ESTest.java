@@ -25,7 +25,7 @@ public class PutRelativeOnHarvestArea_ESTest extends PutRelativeOnHarvestArea_ES
       PutRelativeOnHarvestArea putRelativeOnHarvestArea0 = new PutRelativeOnHarvestArea(player0, (Relative) null, "right");
       // Undeclared exception!
       try { 
-        putRelativeOnHarvestArea0.apply();
+        putRelativeOnHarvestArea0.apply(null);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
@@ -40,7 +40,7 @@ public class PutRelativeOnHarvestArea_ESTest extends PutRelativeOnHarvestArea_ES
   public void test1()  throws Throwable  {
       Player player0 = new Player();
       PutRelativeOnHarvestArea putRelativeOnHarvestArea0 = new PutRelativeOnHarvestArea(player0, (Relative) null, "");
-      putRelativeOnHarvestArea0.apply();
+      putRelativeOnHarvestArea0.apply(null);
   }
 
   @Test(timeout = 4000)

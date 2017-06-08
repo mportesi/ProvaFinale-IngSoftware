@@ -30,7 +30,7 @@ public class PutRelativeOnCouncilPalace_ESTest extends PutRelativeOnCouncilPalac
       putRelativeOnCouncilPalace0.councilPalace = councilPalace0;
       // Undeclared exception!
       try { 
-        putRelativeOnCouncilPalace0.apply();
+        putRelativeOnCouncilPalace0.apply(null);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {
@@ -63,7 +63,7 @@ public class PutRelativeOnCouncilPalace_ESTest extends PutRelativeOnCouncilPalac
       ColorDice colorDice0 = ColorDice.BLACK;
       Relative relative0 = new Relative(colorDice0);
       PutRelativeOnCouncilPalace putRelativeOnCouncilPalace0 = new PutRelativeOnCouncilPalace((Player) null, relative0, "");
-      putRelativeOnCouncilPalace0.apply();
+      putRelativeOnCouncilPalace0.apply(null);
       assertFalse(putRelativeOnCouncilPalace0.isApplicable());
   }
 

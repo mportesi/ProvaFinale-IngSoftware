@@ -1,6 +1,12 @@
 package it.polimi.ingsw.actions;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
@@ -32,7 +38,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	
 	
 	@Override
-	public void apply(){
+	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		if(isApplicable()){
 				tower.floors.get(floor).setPlayer(player);
 				cardToGive= tower.floors.get(floor).giveCard();

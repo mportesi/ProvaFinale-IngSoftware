@@ -1,7 +1,11 @@
 package it.polimi.ingsw.serverRMI;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.PutRelative;
@@ -12,9 +16,11 @@ public interface ServerRMIConnectionViewRemote extends Remote {
 
 		public void registerClient(
 				ClientRMIConnectionViewRemote clientStub) 
-				throws RemoteException;
+				throws RemoteException, FileNotFoundException, NullPointerException, IOException, ParseException;
+		
+		public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException;
 
-		public void notifyObserver(Action action) throws RemoteException;
+		public void notifyObserver(Action action) throws FileNotFoundException, NullPointerException, IOException, ParseException, RemoteException;
 		
 		
 		

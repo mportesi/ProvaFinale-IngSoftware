@@ -1,6 +1,11 @@
 package it.polimi.ingsw.components;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
@@ -13,7 +18,7 @@ import it.polimi.ingsw.effects.GainWood;
 
 // Quando devo attivare il privilege council, chiamo privilegeCuncil.applyEFfect(player, resource)
 
-public class PrivilegeCouncil{
+public class PrivilegeCouncil implements Serializable{
 	private static int bonusWoodAndStone;
 	private static int bonusServant;
 	private static int bonusCoin;
@@ -67,7 +72,7 @@ public class PrivilegeCouncil{
 	}
 	
 	
-	public static void applyEffect(Player player, String resource) {
+	public static void applyEffect(Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		createEffectOfPrivilegeCouncil(resource);
 
 		for (Effect e : effectOfPrivilegeCouncil) {

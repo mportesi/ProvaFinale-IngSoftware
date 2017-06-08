@@ -1,7 +1,11 @@
 package it.polimi.ingsw.cards;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
@@ -41,7 +45,7 @@ public class VentureCard extends Card {
 	};
 
 	@Override
-	public void payCost(Player player) {
+	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		if (militaryRequirement == 0 && militaryCost == 0 || chooseCost(player) == "otherCost") {
 			for (String key : cost.keySet()) {
 				switch (key) {
@@ -71,7 +75,7 @@ public class VentureCard extends Card {
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		immediateEffects = effects.createListOfEffect();
 
 		for (Effect e : immediateEffects) {

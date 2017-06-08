@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+import java.util.UUID;
 
 import org.json.simple.parser.ParseException;
 
@@ -17,6 +17,8 @@ import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeCoin;
+import it.polimi.ingsw.changes.ChangeInitialize;
+import it.polimi.ingsw.changes.ChangeNewPlayer;
 import it.polimi.ingsw.changes.ChangePeriod;
 import it.polimi.ingsw.changes.ChangePlayer;
 import it.polimi.ingsw.changes.ChangeRound;
@@ -29,7 +31,7 @@ import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 
-public class Play extends Observable<Change>
+public class Play extends Observable<Change> implements Observer<Change>
 {
 	private static ArrayList<Player> players;
 	private Player currentPlayer;
@@ -39,14 +41,22 @@ public class Play extends Observable<Change>
 	private ArrayList<Player> currentTurnOrder;
 	
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException{
-		this.board=new Board();
+		/*this.board=new Board();
 		this.players=new ArrayList<Player>();
 		this.round=0;
-		this.period=0;
+		this.period=0;*/
 	}
 	
-	public void initializeGame(ArrayList<Player> players){
-		this.players=players;
+	public void initializeBoard() throws FileNotFoundException, NullPointerException, IOException, ParseException{
+		this.players= new ArrayList<Player>();
+		this.board= new Board();
+		this.round=0;
+		this.period=0;
+		ChangeInitialize changeInitialize= new ChangeInitialize(board);
+		this.notifyObserver(changeInitialize);
+	}
+	
+	public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		ArrayList<Player> currentTurnOrder=createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
@@ -54,7 +64,7 @@ public class Play extends Observable<Change>
 		changeRound();
 	}
 	
-	public void giveStartingCoin(ArrayList<Player> currentTurnOrder){
+	public void giveStartingCoin(ArrayList<Player> currentTurnOrder) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		int coin=5;
 		for(Player p:currentTurnOrder){
 			p.incrementCoin(coin);
@@ -66,7 +76,7 @@ public class Play extends Observable<Change>
 		
 	}
 	
-	public void initializePlayer(ArrayList<Player> currentTurnOrder){
+	public void initializePlayer(ArrayList<Player> currentTurnOrder) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		int i=0;
 		for(Player p:currentTurnOrder){
 			p.setCoin(0);
@@ -95,7 +105,7 @@ public class Play extends Observable<Change>
 		return players;
 	}
 	
-	public void changeTurnOrder() {
+	public void changeTurnOrder() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 
 		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
 		ArrayList<Player> councilPalaceOrder = Board.councilPalace.getOrder();
@@ -125,7 +135,7 @@ public class Play extends Observable<Change>
 		this.notifyObserver(changeTurnOrder);
 	}
 
-	public void changeCurrentPlayer() {
+	public void changeCurrentPlayer() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		int i = 0;
 		int n = 0;
 
@@ -148,7 +158,7 @@ public class Play extends Observable<Change>
 		}
 	}
 
-	public void changeRound() {
+	public void changeRound() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		if (round == 2 || round == 4 || round == 6) {
 			if(period==3){
 				changePeriod();
@@ -187,7 +197,7 @@ public class Play extends Observable<Change>
 		this.notifyObserver(changeRound);
 	}
 
-	public void changePeriod() {
+	public void changePeriod() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		period++;
 		
 		if (period == 4) {
@@ -297,7 +307,7 @@ public class Play extends Observable<Change>
 		//restituisce la classifica e il vincitore
 	}
 
-	public void checkWinner() {
+	public void checkWinner() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		ArrayList<Player> winners = new ArrayList<>();
 		int max = 0;
 		for (Player p : currentTurnOrder) {
@@ -312,6 +322,19 @@ public class Play extends Observable<Change>
 		ChangeWinners changeWinners= new ChangeWinners(winners);
 		this.notifyObserver(changeWinners);
 
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createNewPlayer() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		Player player = new Player(UUID.randomUUID(),this);
+		players.add(player);
+		notifyObserver(new ChangeNewPlayer(player));
+		
 	}
 	
 	

@@ -1,8 +1,13 @@
 package it.polimi.ingsw.cards;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.CommandLineInterface;
@@ -22,7 +27,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
-public class Card {
+public class Card implements Serializable {
 	protected String type;
 	protected String name;
 	protected int period;
@@ -35,10 +40,10 @@ public class Card {
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 	};
 
-	public void payCost(Player player) {
+	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 	};
 
 	public String getType() {

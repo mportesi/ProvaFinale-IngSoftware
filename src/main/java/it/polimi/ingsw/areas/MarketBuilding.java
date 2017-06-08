@@ -1,8 +1,13 @@
 package it.polimi.ingsw.areas;
 
 import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
@@ -20,7 +25,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
-public class MarketBuilding {
+public class MarketBuilding implements Serializable{
 
 	private String type; // A COSA SERVE??
 	private Map<String, Integer> bonus;
@@ -66,7 +71,7 @@ public class MarketBuilding {
 		}
 	}
 
-	public void applyEffect(Player player) {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		createListOfMarketEffect();
 
 		for (Effect e : marketEffect) {

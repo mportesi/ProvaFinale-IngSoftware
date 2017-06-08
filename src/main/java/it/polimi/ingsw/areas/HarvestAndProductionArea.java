@@ -5,10 +5,11 @@ import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.components.Relative;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HarvestAndProductionArea {
+public class HarvestAndProductionArea implements Serializable {
 	// it is necessary to keep a a leftPlayer because when the first player use
 	// this area, there is a penalty for the others
 	private Relative leftRelative;

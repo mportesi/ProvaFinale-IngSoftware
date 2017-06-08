@@ -41,7 +41,7 @@ public class PutRelative_ESTest extends PutRelative_ESTest_scaffolding {
   public void test1()  throws Throwable  {
       Player player0 = new Player();
       PutRelativeOnHarvestArea putRelativeOnHarvestArea0 = new PutRelativeOnHarvestArea(player0, (Relative) null, "");
-      putRelativeOnHarvestArea0.apply();
+      putRelativeOnHarvestArea0.apply(null);
   }
 
   @Test(timeout = 4000)
@@ -88,7 +88,7 @@ public class PutRelative_ESTest extends PutRelative_ESTest_scaffolding {
       PutRelativeOnHarvestArea putRelativeOnHarvestArea0 = new PutRelativeOnHarvestArea(player0, (Relative) null, (String) null);
       // Undeclared exception!
       try { 
-        putRelativeOnHarvestArea0.apply();
+        putRelativeOnHarvestArea0.apply(null);
         fail("Expecting exception: NullPointerException");
       
       } catch(NullPointerException e) {

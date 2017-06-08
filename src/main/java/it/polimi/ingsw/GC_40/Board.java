@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_40;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -13,11 +14,12 @@ import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.PersonalBonusTile;
 
-public class Board {
+public class Board  extends Observable<Change> implements Serializable{
 	public static Tower territoryTower;
 	public static Tower characterTower;
 	public static Tower buildingTower;
@@ -123,6 +125,14 @@ public class Board {
 			return newDeck;
 			
 		}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Board [toString()=" + super.toString() + "]";
+	}
 
 
 }

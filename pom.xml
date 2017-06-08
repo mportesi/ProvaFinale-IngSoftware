@@ -4,7 +4,6 @@
 	<groupId>it.polimi.ingsw</groupId>
 	<artifactId>GC_40</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
 	<name>GC_40</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

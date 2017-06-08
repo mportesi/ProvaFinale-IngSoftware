@@ -1,8 +1,12 @@
 package it.polimi.ingsw.cards;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
@@ -45,12 +49,12 @@ public class CharacterCard extends Card {
 	}
 
 	@Override
-	public void payCost(Player player) {
+	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		player.decrementCoin(costCoin);
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		immediateEffects = effects.createListOfEffect();
 
 		for (Effect e : immediateEffects) {

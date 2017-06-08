@@ -1,6 +1,11 @@
 package it.polimi.ingsw.GC_40;
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.*;
@@ -27,9 +32,9 @@ public class Controller implements Observer<Action> {
 		}*/
 		
 		@Override
-		public void update(Action action) {
+		public void update(Action action) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 			// TODO Auto-generated method stub
-			action.apply();
+			action.apply(play);
 
 		}
 

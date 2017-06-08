@@ -1,12 +1,13 @@
 package it.polimi.ingsw.areas;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.effects.Effect;
 
-public class Floor {
+public class Floor implements Serializable{
 	private String type;
 	private int cost;
 	public Card currentCard;

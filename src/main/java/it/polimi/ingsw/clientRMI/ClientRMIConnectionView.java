@@ -11,8 +11,9 @@ public class ClientRMIConnectionView extends UnicastRemoteObject implements Clie
 
 	private ClientModel client;
 	
-	public ClientRMIConnectionView() throws RemoteException {
+	public ClientRMIConnectionView(ClientModel client) throws RemoteException {
 		super();
+		this.client=client;
 		// TODO Auto-generated constructor stub
 	}
 

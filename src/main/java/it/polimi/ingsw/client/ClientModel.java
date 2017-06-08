@@ -2,6 +2,7 @@ package it.polimi.ingsw.client;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
@@ -13,7 +14,7 @@ import it.polimi.ingsw.components.Relative;
 public class ClientModel {
 	private ArrayList<Player> players;
 	private Player currentPlayer;
-	//private Board board
+	private Board board;
 	private Tower territoryTower;
 	private Tower buildingTower;
 	private Tower ventureTower;
@@ -30,6 +31,12 @@ public class ClientModel {
 	private ArrayList<Player> currentTurnOrder;
 	
 	
+	public ClientModel(){
+		players= new ArrayList<Player>();
+		currentTurnOrder= new ArrayList<Player>();
+		
+	}
+	
 	public ArrayList<Player> getPlayers() {
 		
 		return players;
@@ -43,6 +50,7 @@ public class ClientModel {
 
 
 	public void addPlayer(Player player) {
+		players= new ArrayList<Player>();
 		players.add(player);
 	}
 
@@ -141,6 +149,14 @@ public class ClientModel {
 	public MarketBuilding getMarket(int i) {
 		
 		return market.get(i);
+	}
+
+
+	public void setBoard(Board board) {
+		this.board=board;
+		System.out.println(board);
+		players= new ArrayList<Player>();
+		
 	}
 	
 	

@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Set;
 
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.changes.Change;
@@ -69,6 +71,12 @@ public class ServerSocketView extends ServerView implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

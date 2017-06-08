@@ -1,8 +1,13 @@
 package it.polimi.ingsw.areas;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.CommandLineInterface;
@@ -12,7 +17,7 @@ import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 
-public class CouncilPalace {
+public class CouncilPalace implements Serializable{
 	private int bonusPrivilegeCouncil;
 	private int bonusCoin;
 	private int value;
@@ -37,7 +42,7 @@ public class CouncilPalace {
 	}
 	
 	
-	public void applyEffect(Player player){
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		createListOfCouncilPalaceEffect();
 		for (Effect e : councilPalaceEffect){
 			e.apply(player);
