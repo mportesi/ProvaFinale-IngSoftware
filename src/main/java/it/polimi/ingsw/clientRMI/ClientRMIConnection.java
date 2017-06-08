@@ -38,12 +38,15 @@ public class ClientRMIConnection {
 			
 			//get the stub (local object) of the remote view
 			ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
-			serverStub.initializeGame();
+			
 			ClientRMIConnectionView rmiView=new ClientRMIConnectionView(client);
 			
-			
+		//	serverStub.initializeGame(rmiView);
 			// register the client view in the server side (to receive messages from the server)
 			serverStub.registerClient(rmiView);
+			serverStub.initializeGame(rmiView);
+			
+			
 			
 			
 			Scanner stdIn = new Scanner(System.in);

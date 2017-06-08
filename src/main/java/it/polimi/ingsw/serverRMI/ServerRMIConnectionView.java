@@ -3,6 +3,7 @@ package it.polimi.ingsw.serverRMI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,12 +22,12 @@ import it.polimi.ingsw.serverSocket.ServerView;
 public class ServerRMIConnectionView
 	extends ServerView implements ServerRMIConnectionViewRemote, Observer<Change> {
 
-		private Set<ClientRMIConnectionViewRemote> clients;
+		private ArrayList<ClientRMIConnectionViewRemote> clients;
 
 
 
 		public ServerRMIConnectionView() {
-			this.clients = new HashSet<>();
+			this.clients = new ArrayList<>();
 		}
 
 		@Override
@@ -34,14 +35,15 @@ public class ServerRMIConnectionView
 			System.out.println("CLIENT REGISTRATO");
 			this.clients.add(clientStub);
 			RegisterClient registerClient= new RegisterClient();
+			//System.out.println("notifico di registerClient() il controller");
 			this.notifyObserver(registerClient);
 		}
 		
 		@Override
-		public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException{
+		public void initializeGame(ClientRMIConnectionViewRemote clientStub) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 			InitializeGame initializeGame= new InitializeGame();
 			this.notifyObserver(initializeGame);
-			System.out.println("notifico di inizializzae");
+			//System.out.println("notifico di initializeGame() il controller");
 		}
 
 		@Override
@@ -49,9 +51,9 @@ public class ServerRMIConnectionView
 			System.out.println("SENDING THE CHANGE TO THE CLIENT");
 			try {
 				for (ClientRMIConnectionViewRemote clientstub : this.clients) {
-					System.out.println("prima update change client");
+				//	System.out.println("sono nel Server prima di fare updateClient(c)");
 					clientstub.updateClient(change);
-					System.out.println("dopo update change client");
+				//	System.out.println("sono nel Server dopo aver fatto updateClient(c)");
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block

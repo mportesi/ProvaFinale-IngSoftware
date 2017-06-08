@@ -54,6 +54,7 @@ public class Play extends Observable<Change> implements Observer<Change>
 		this.period=0;
 		ChangeInitialize changeInitialize= new ChangeInitialize(board);
 		this.notifyObserver(changeInitialize);
+		System.out.println("notifico di aver inizializzato la board alla view");
 	}
 	
 	public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException{
@@ -331,9 +332,11 @@ public class Play extends Observable<Change> implements Observer<Change>
 	}
 
 	public void createNewPlayer() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		this.players= new ArrayList<Player>();
 		Player player = new Player(UUID.randomUUID(),this);
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
+		//System.out.println("notifico la view di aver creato un nuovo player");
 		
 	}
 	
