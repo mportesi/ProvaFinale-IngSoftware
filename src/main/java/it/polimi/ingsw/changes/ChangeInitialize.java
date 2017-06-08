@@ -15,7 +15,13 @@ public class ChangeInitialize implements Change {
 		// TODO Auto-generated method stub
 		System.out.println("board");
 		client.setBoard(board);
+		System.out.println(client.getBoard());
 		
+	}
+
+	@Override
+	public String toString() {
+		return "ChangeInitialize [board=" + board + "]";
 	}
 
 }

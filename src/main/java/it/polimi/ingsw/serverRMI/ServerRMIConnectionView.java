@@ -3,6 +3,7 @@ package it.polimi.ingsw.serverRMI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,18 +22,19 @@ import it.polimi.ingsw.serverSocket.ServerView;
 public class ServerRMIConnectionView
 	extends ServerView implements ServerRMIConnectionViewRemote, Observer<Change> {
 
-		private Set<ClientRMIConnectionViewRemote> clients;
+		private ArrayList<ClientRMIConnectionViewRemote> clients;
 
 
 
 		public ServerRMIConnectionView() {
-			this.clients = new HashSet<>();
+			this.clients = new ArrayList<>();
 		}
 
 		@Override
 		public void registerClient(ClientRMIConnectionViewRemote clientStub) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 			System.out.println("CLIENT REGISTRATO");
 			this.clients.add(clientStub);
+			System.out.println(clients.get(0));
 			RegisterClient registerClient= new RegisterClient();
 			this.notifyObserver(registerClient);
 		}
@@ -41,7 +43,8 @@ public class ServerRMIConnectionView
 		public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException{
 			InitializeGame initializeGame= new InitializeGame();
 			this.notifyObserver(initializeGame);
-			System.out.println("notifico di inizializzae");
+			System.out.println("notifico di inizializzare");
+
 		}
 
 		@Override

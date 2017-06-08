@@ -32,9 +32,14 @@ public class ChangeNewPlayer extends Observable<Change> implements Change {
 	@Override
 	public void applyChange(ClientModel client) {
 		client.addPlayer(player);
-		final Logger LOGGER = Logger.getLogger(ChangeNewPlayer.class.getName() );
-		LOGGER.log(Level.FINE, "ChangeNewPlayer arrivato");
-		//TODO GIVE THE NAME TO THE CLIENT AND SET HIS PLAYER 
+		
+		//TODO GIVE THE NAME TO THE CLIENT AND SET HIS PLAYER
+		System.out.println("new client");
+	}
+
+	@Override
+	public String toString() {
+		return "ChangeNewPlayer [player=" + player + "]";
 	}
 
 }
