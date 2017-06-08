@@ -13,7 +13,7 @@ public class ChangeInitialize implements Change {
 	@Override
 	public void applyChange(ClientModel client) {
 		// TODO Auto-generated method stub
-		System.out.println(board);
+		System.out.println("board");
 		client.setBoard(board);
 		
 	}

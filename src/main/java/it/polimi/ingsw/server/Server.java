@@ -76,7 +76,6 @@ public class Server {
 		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView();
 		serverRMIConnectionView.registerObserver(this.controller);
 		this.gioco.registerObserver(serverRMIConnectionView);
-		
 		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView, 0);
 		System.out.println("binding the server implementation to the registry");
 		registry.bind(NAME, serverRMIConnectionView);

@@ -49,8 +49,9 @@ public class ServerRMIConnectionView
 			System.out.println("SENDING THE CHANGE TO THE CLIENT");
 			try {
 				for (ClientRMIConnectionViewRemote clientstub : this.clients) {
-					
+					System.out.println("prima update change client");
 					clientstub.updateClient(change);
+					System.out.println("dopo update change client");
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
