@@ -41,13 +41,22 @@ public class ClientRMIConnection{
 			
 			//get the stub (local object) of the remote view
 			ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
-			serverStub.initializeGame();
-			ClientRMIConnectionView rmiView=new ClientRMIConnectionView(client);
 			
+<<<<<<< HEAD
 			System.out.println("Tell me your name");
 			String name= stdIn.nextLine();
 			// register the client view in the server side (to receive messages from the server)
 			serverStub.registerClient(rmiView, name);
+=======
+			ClientRMIConnectionView rmiView=new ClientRMIConnectionView(client);
+			
+		//	serverStub.initializeGame(rmiView);
+			// register the client view in the server side (to receive messages from the server)
+			serverStub.registerClient(rmiView);
+			serverStub.initializeGame(rmiView);
+			
+			
+>>>>>>> Sara
 			
 			
 			while (true) {

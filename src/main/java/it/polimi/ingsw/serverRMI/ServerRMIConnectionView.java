@@ -35,16 +35,16 @@ public class ServerRMIConnectionView
 			System.out.println("CLIENT REGISTRATO");
 			this.clients.add(clientStub);
 			System.out.println(clients.get(0));
-			RegisterClient registerClient= new RegisterClient(name);
+			RegisterClient registerClient= new RegisterClient();
+			//System.out.println("notifico di registerClient() il controller");
 			this.notifyObserver(registerClient);
 		}
 		
 		@Override
-		public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException{
+		public void initializeGame(ClientRMIConnectionViewRemote clientStub) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 			InitializeGame initializeGame= new InitializeGame();
 			this.notifyObserver(initializeGame);
-			System.out.println("notifico di inizializzare");
-
+			//System.out.println("notifico di initializeGame() il controller");
 		}
 
 		@Override
@@ -53,9 +53,9 @@ public class ServerRMIConnectionView
 			try {
 				System.out.println(change);
 				for (ClientRMIConnectionViewRemote clientstub : this.clients) {
-					System.out.println("prima update change client");
+				//	System.out.println("sono nel Server prima di fare updateClient(c)");
 					clientstub.updateClient(change);
-					System.out.println("dopo update change client");
+				//	System.out.println("sono nel Server dopo aver fatto updateClient(c)");
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block

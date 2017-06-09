@@ -24,9 +24,9 @@ public class ClientRMIConnectionView extends UnicastRemoteObject implements Clie
 
 	@Override
 	public void updateClient(Change c) throws RemoteException {
-		System.out.println("update nel client"+ c);
+		System.out.println("sono nel CLient prima updateClient(c)" + c);
 		c.applyChange(client);
-		System.out.println("dopo update change nel client"+ c);
+		System.out.println("sono nel Client dopo updateClient(c)" + c);
 	}
 
 

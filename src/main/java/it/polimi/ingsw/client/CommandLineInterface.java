@@ -43,6 +43,8 @@ public class CommandLineInterface {
 	public PutRelative chooseTheAction() {
 
 		Relative relative = chooseTheRelative();
+		
+		System.out.println("ho creato un relative");
 
 		System.out.println("Choose where you want to put the relative:");
 		System.out.println("Tower");
@@ -50,9 +52,11 @@ public class CommandLineInterface {
 		System.out.println("Market");
 		System.out.println("HarvestArea");
 		System.out.println("ProductionArea");
-
+		scanner.nextLine();
 		String input = scanner.nextLine();
+		
 		PutRelative putRelative = null;
+		//System.out.println("sto entrando nello switch");
 		switch (input) {
 		case "Tower": {
 			Tower tower = chooseTower();
@@ -80,22 +84,25 @@ public class CommandLineInterface {
 		case "HarvestArea": {
 			String harvestArea = chooseHarvestArea();
 			putRelative = new PutRelativeOnHarvestArea(player, relative, harvestArea);
-
+			
 			break;
 		}
 		case "ProductionArea": {
 			String productionArea = chooseProductionArea();
 			putRelative = new PutRelativeOnProductionArea(player, relative, productionArea);
-
+			
 			break;
 		}
 
 		default: {
 			System.out.println("Error: insert again");
+			//chooseTheAction();
 			break;
 		}
+		
 		}
 		return putRelative;
+		
 
 	}
 
@@ -111,6 +118,7 @@ public class CommandLineInterface {
 		}
 		case "white": {
 			relative = new Relative(ColorDice.WHITE);
+		//	System.out.println("ho creato un relative");
 			break;
 		}
 		case "orange": {
@@ -134,7 +142,7 @@ public class CommandLineInterface {
 	}
 
 	public Tower chooseTower() {
-
+		client = new ClientModel();
 		System.out.println("Choose the tower:");
 		System.out.println("territoryTower");
 		System.out.println("buildingTower");
@@ -145,16 +153,16 @@ public class CommandLineInterface {
 		Tower tower = null;
 		switch (input) {
 		case "territoryTower": {
-			tower = client.getTerritoryTower();
+			tower = this.client.getTerritoryTower();
 		}
 		case "buildingTower": {
-			tower = client.getBuildingTower();
+			tower = this.client.getBuildingTower();
 		}
 		case "characterTower": {
-			tower = client.getCharacterTower();
+			tower = this.client.getCharacterTower();
 		}
 		case "ventureTower": {
-			tower = client.getVentureTower();
+			tower = this.client.getVentureTower();
 		}
 		default: {
 			System.out.println("Error: insert again");
