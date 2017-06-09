@@ -19,37 +19,37 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 
 public class ClientRMIConnection{
-		//TODO METTERE QUESTI DATI NEL COSTRUTTORE E CHIAMARE IN CLIENT IL COSTRUTTORE
-		private final static int RMI_PORT = 52365;
-
-		private final static String HOST = "127.0.0.1";
-
-		private final static int PORT = 52365;
-	
-		private static final String NAME = "Lorenzo Il Magnifico";
-		
+		private int RMI_PORT;
+		private String HOST;
+		private String NAME = "Lorenzo Il Magnifico";
 		private CommandLineInterface commandLineInterface;
 		private ClientModel client;
+		
+		public ClientRMIConnection(int rmi_port, String host){
+			RMI_PORT=rmi_port;
+			HOST=host;
+		}
 
 		public  void startClient() throws RemoteException, NotBoundException, AlreadyBoundException, IOException, NullPointerException, ParseException {
 			client= new ClientModel();
 			commandLineInterface=new CommandLineInterface();
+			Scanner stdIn = new Scanner(System.in);
 			//System.setProperty("java.rmi.server.hostname", "192.168.1.2");
+			
 			//Get the remote registry
-			Registry registry = LocateRegistry.getRegistry(HOST, PORT);
+			Registry registry = LocateRegistry.getRegistry(HOST, RMI_PORT);
 			
 			//get the stub (local object) of the remote view
 			ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
 			serverStub.initializeGame();
 			ClientRMIConnectionView rmiView=new ClientRMIConnectionView(client);
 			
-			
+			System.out.println("Tell me your name");
+			String name= stdIn.nextLine();
 			// register the client view in the server side (to receive messages from the server)
-			serverStub.registerClient(rmiView);
+			serverStub.registerClient(rmiView, name);
 			
 			
-			Scanner stdIn = new Scanner(System.in);
-
 			while (true) {
 				//Capture input from user
 				String inputLine = stdIn.nextLine();

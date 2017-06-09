@@ -14,49 +14,42 @@ import java.nio.channels.AlreadyBoundException;
 import java.rmi.NotBoundException;
 
 public class Client {
-	private Player player;
-	private static ClientModel clientModel;
 
-	public static void main(String[] args) throws IOException, AlreadyBoundException, NotBoundException, NullPointerException, ParseException {
+	public static void main(String[] args)
+			throws IOException, AlreadyBoundException, NotBoundException, NullPointerException, ParseException {
 
 		Scanner in = new Scanner(System.in);
 		String host = "127.0.0.1";
-		int rmi=52365;
-		//int socket = 29999;
-		
-		System.out.println("Welcome to Lorenzo il Magnifico \n");
-		System.out.println("Select how you want to play:\n");
-		System.out.println("1) Command Line Interface (CLI)");
-		System.out.println("2) Graphical User Interface (GUI)");
+		int rmi_port = 52365;
+		// int socket = 29999;
 
-		int input = in.nextInt();
-		if (input == 1) {
-			System.out.println("Select your connection:\n");
-			System.out.println("1) Socket");
-			System.out.println("2) Remote Method Invocation (RMI)");
-			input = in.nextInt();
+		while (true) {
+			System.out.println("WELCOME");
+			System.out.println("This is Lorenzo il Magnifico \n");
+			System.out.println("Choose what you prefer:\n");
+			System.out.println("1) Command Line Interface");
+			System.out.println("2) Graphical User Interface");
 
-			if (input != 1 && input != 2) {
-				System.out.println("Not valid value inserted");
-			} else {
-				if (input == 1) {
-					ClientSocketConnection client = new ClientSocketConnection();
+			int input = in.nextInt();
+			if (input == 1) {
+				System.out.println("Select your connection:\n");
+				System.out.println("1) Socket");
+				System.out.println("2) Remote Method Invocation");
+				input = in.nextInt();
 
-					client.startClient();
+				if (input != 1 && input != 2) {
+					System.out.println("Not valid value inserted");
 				} else {
+					if (input == 1) {
+						ClientSocketConnection client = new ClientSocketConnection();
+						client.startClient();
+					} else {
+						ClientRMIConnection client = new ClientRMIConnection(rmi_port, host);
+						client.startClient();
+					}
 
-					ClientRMIConnection client = new ClientRMIConnection();
-					ClientRMIConnectionView clientView = new ClientRMIConnectionView(clientModel);
-					client.startClient();
 				}
-
 			}
 		}
-	}
-
-	public void setPlayer(Player player) {
-		// TODO Auto-generated method stub
-		this.player = player;
-
 	}
 }

@@ -13,10 +13,15 @@ import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
 
 public class RegisterClient extends Observable<Change> implements Action {
+	private String name;
+	
+	public RegisterClient(String name){
+		this.name=name;
+	}
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		play.createNewPlayer();
+		play.createNewPlayer(name);
 	}
 
 }

@@ -31,11 +31,11 @@ public class ServerRMIConnectionView
 		}
 
 		@Override
-		public void registerClient(ClientRMIConnectionViewRemote clientStub) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		public void registerClient(ClientRMIConnectionViewRemote clientStub, String name) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 			System.out.println("CLIENT REGISTRATO");
 			this.clients.add(clientStub);
 			System.out.println(clients.get(0));
-			RegisterClient registerClient= new RegisterClient();
+			RegisterClient registerClient= new RegisterClient(name);
 			this.notifyObserver(registerClient);
 		}
 		
@@ -51,6 +51,7 @@ public class ServerRMIConnectionView
 		public void update(Change change) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 			System.out.println("SENDING THE CHANGE TO THE CLIENT");
 			try {
+				System.out.println(change);
 				for (ClientRMIConnectionViewRemote clientstub : this.clients) {
 					System.out.println("prima update change client");
 					clientstub.updateClient(change);

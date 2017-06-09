@@ -330,8 +330,8 @@ public class Play extends Observable<Change> implements Observer<Change>
 		
 	}
 
-	public void createNewPlayer() throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		Player player = new Player(UUID.randomUUID(),this);
+	public void createNewPlayer(String name) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		Player player = new Player(UUID.randomUUID(),this, name);
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
 		

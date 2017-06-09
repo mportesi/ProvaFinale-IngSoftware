@@ -24,6 +24,7 @@ import it.polimi.ingsw.components.Relative;
 
 public class Player extends Observable<Change> implements Serializable {
 	private UUID ID;
+	private String name;
 	private ColorPlayer color;
 	private int coin;
 	private int wood;
@@ -49,8 +50,9 @@ public class Player extends Observable<Change> implements Serializable {
 	public boolean hasNeutralRelative;
 	
 	
-	public Player (UUID ID, Play play){
+	public Player (UUID ID, Play play, String name){
 		this.ID=ID;
+		this.name=name;
 		/*Relative blackRelative= new Relative(ColorDice.BLACK);
 		Relative whiteRelative= new Relative(ColorDice.WHITE);
 		Relative orangeRelative= new Relative(ColorDice.ORANGE);

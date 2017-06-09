@@ -13,19 +13,14 @@ import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 
-public interface ServerRMIConnectionViewRemote extends Remote{
-	
+public interface ServerRMIConnectionViewRemote extends Remote {
 
-		public void registerClient(
-				ClientRMIConnectionViewRemote clientStub) 
-				throws RemoteException, FileNotFoundException, NullPointerException, IOException, ParseException;
-		
-		public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException;
+	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
+			throws RemoteException, FileNotFoundException, NullPointerException, IOException, ParseException;
 
-		public void notifyObserver(Action action) throws FileNotFoundException, NullPointerException, IOException, ParseException, RemoteException;
-		
-		
-		
+	public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException;
 
+	public void notifyObserver(Action action)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, RemoteException;
 
 }
