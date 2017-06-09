@@ -58,10 +58,11 @@ public class ClientRMIConnection implements Serializable{
 		// register the client view in the server side (to receive messages from
 		// the server)
 		serverStub.registerClient(rmiView, name);
+		if(clientModel.getStartPlay()==true){
 		serverStub.initializeGame(rmiView);
-		CommandLineInterface commandLineInterface= new CommandLineInterface(clientModel.getPlayer(), clientModel);
+		CommandLineInterface commandLineInterface= new CommandLineInterface(clientModel.getPlayer(), clientModel);}
 		
-		while (true) {
+		while (clientModel.getStartPlay()==true) {
 			// Capture input from user
 			System.out.println("Press a key to start the action");
 			String inputLine = stdIn.nextLine();
