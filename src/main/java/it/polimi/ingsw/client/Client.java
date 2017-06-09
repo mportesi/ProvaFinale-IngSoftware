@@ -15,49 +15,45 @@ import java.io.Serializable;
 import java.nio.channels.AlreadyBoundException;
 import java.rmi.NotBoundException;
 
-public class Client implements Serializable{
+public class Client implements Serializable {
 	private Player player;
 	private static ClientStart clientStart;
-	//private static ClientModel clientModel;
-	
-	
-	
-	public static void main(String args[])
-			throws IOException, AlreadyBoundException, NotBoundException, NullPointerException, ParseException, InterruptedException {
-		
+	// private static ClientModel clientModel;
+
+	public static void main(String args[]) throws IOException, AlreadyBoundException, NotBoundException,
+			NullPointerException, ParseException, InterruptedException {
+
 		Scanner in = new Scanner(System.in);
 		String host = "127.0.0.1";
 		int rmi_port = 52365;
 		// int socket = 29999;
-		//clientStart= new ClientStart();
-		//clientModel= clientStart.start();
-		
-		while (true) {
-			System.out.println("WELCOME");
-			System.out.println("This is Lorenzo il Magnifico \n");
-			System.out.println("Choose what you prefer:\n");
-			System.out.println("1) Command Line Interface");
-			System.out.println("2) Graphical User Interface");
+		// clientStart= new ClientStart();
+		// clientModel= clientStart.start();
 
-			int input = in.nextInt();
-			if (input == 1) {
-				System.out.println("Choose your connection:\n");
-				System.out.println("1) Socket");
-				System.out.println("2) Remote Method Invocation");
-				input = in.nextInt();
+		System.out.println("WELCOME");
+		System.out.println("This is Lorenzo il Magnifico \n");
+		System.out.println("Choose what you prefer:\n");
+		System.out.println("1) Command Line Interface");
+		System.out.println("2) Graphical User Interface");
 
-				if (input != 1 && input != 2) {
-					System.out.println("Not valid value inserted");
+		int input = in.nextInt();
+		if (input == 1) {
+			System.out.println("Choose your connection:\n");
+			System.out.println("1) Socket");
+			System.out.println("2) Remote Method Invocation");
+			input = in.nextInt();
+
+			if (input != 1 && input != 2) {
+				System.out.println("Not valid value inserted");
+			} else {
+				if (input == 1) {
+					ClientSocketConnection client = new ClientSocketConnection();
+					client.startClient();
 				} else {
-					if (input == 1) {
-						ClientSocketConnection client = new ClientSocketConnection();
-						client.startClient();
-					} else {
-						ClientRMIConnection client = new ClientRMIConnection(rmi_port, host);
-						client.startClient();
-					}
-
+					ClientRMIConnection client = new ClientRMIConnection(rmi_port, host);
+					client.startClient();
 				}
+
 			}
 		}
 	}

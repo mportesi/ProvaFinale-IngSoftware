@@ -72,7 +72,7 @@ public class PrivilegeCouncil implements Serializable{
 	}
 	
 	
-	public static void applyEffect(Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public static void applyEffect(Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createEffectOfPrivilegeCouncil(resource);
 
 		for (Effect e : effectOfPrivilegeCouncil) {

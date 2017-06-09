@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_40.Player;
 
 public abstract class Effect implements Serializable {
 	
-	public abstract void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException;
+	public abstract void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 
 	
 }

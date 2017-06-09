@@ -38,7 +38,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	
 	
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException{
+	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if(isApplicable()){
 				tower.floors.get(floor).setPlayer(player);
 				cardToGive= tower.floors.get(floor).giveCard();

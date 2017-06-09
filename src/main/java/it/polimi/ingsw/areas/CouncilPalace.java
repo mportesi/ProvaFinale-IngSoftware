@@ -42,7 +42,7 @@ public class CouncilPalace implements Serializable{
 	}
 	
 	
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException{
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		createListOfCouncilPalaceEffect();
 		for (Effect e : councilPalaceEffect){
 			e.apply(player);

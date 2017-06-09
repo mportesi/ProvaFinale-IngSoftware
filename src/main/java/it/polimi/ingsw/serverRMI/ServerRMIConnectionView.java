@@ -29,7 +29,7 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 
 	@Override
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("CLIENT REGISTRATO");
 		this.clients.add(clientStub);
 		System.out.println(clients.get(0));
@@ -40,7 +40,7 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 
 	@Override
 	public void initializeGame(ClientRMIConnectionViewRemote clientStub)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		InitializeGame initializeGame = new InitializeGame();
 		this.notifyObserver(initializeGame);
 		// System.out.println("notifico di initializeGame() il controller");

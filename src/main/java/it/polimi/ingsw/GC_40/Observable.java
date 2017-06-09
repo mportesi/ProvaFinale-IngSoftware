@@ -28,7 +28,7 @@ public abstract class Observable<C> {
 		}
 	}
 	
-	public void notifyObserver(C c) throws FileNotFoundException, NullPointerException, IOException, ParseException{
+	public void notifyObserver(C c) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		for (Observer<C> o: this.observers){
 			System.out.println("notifico"+ c);
 			o.update(c);

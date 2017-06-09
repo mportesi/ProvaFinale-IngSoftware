@@ -16,7 +16,7 @@ public class GainServant extends Effect {
 	
 
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// TODO Auto-generated method stub
 		player.incrementServant(servant);
 		

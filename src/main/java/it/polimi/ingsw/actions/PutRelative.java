@@ -14,6 +14,6 @@ public abstract interface PutRelative extends Action {
 	
 	public abstract boolean isApplicable();
 	
-	public abstract void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException;
+	public abstract void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 
 }

@@ -18,7 +18,7 @@ int victoryPoint;
 	}
 
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int counter= player.counter("ventureCard");
 		player.incrementVictoryPoint(victoryPoint*counter);
 

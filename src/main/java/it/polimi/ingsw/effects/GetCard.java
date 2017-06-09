@@ -23,7 +23,7 @@ public class GetCard extends Effect {
 	
 
 	@Override
-	public void apply(Player player) {
+	public void apply(Player player) throws InterruptedException {
 		
 		Card card=//qualcosa chooseCard(value, discount);
 		applyCard(player, this.card );

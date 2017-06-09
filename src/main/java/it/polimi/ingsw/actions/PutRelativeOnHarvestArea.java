@@ -55,7 +55,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 
 
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			// If the left position is free, the player put the relative there.
 			if (area == "left") {

@@ -19,7 +19,7 @@ import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
-public class ClientRMIConnection implements Serializable{
+public class ClientRMIConnection implements Serializable {
 	private int RMI_PORT;
 	private String HOST;
 	private String NAME = "Lorenzo Il Magnifico";
@@ -33,10 +33,10 @@ public class ClientRMIConnection implements Serializable{
 	}
 
 	public void startClient() throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
-			NullPointerException, ParseException {
-		clientModel=new ClientModel();
+			NullPointerException, ParseException, InterruptedException {
+		clientModel = new ClientModel();
 		Scanner stdIn = new Scanner(System.in);
-		
+
 		// System.setProperty("java.rmi.server.hostname", "192.168.1.2");
 
 		// Get the remote registry
@@ -49,7 +49,6 @@ public class ClientRMIConnection implements Serializable{
 		String name = stdIn.nextLine();
 		// register the client view in the server side (to receive messages from
 		// the server)
-		
 
 		System.out.println("inizio");
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
@@ -58,11 +57,12 @@ public class ClientRMIConnection implements Serializable{
 		// register the client view in the server side (to receive messages from
 		// the server)
 		serverStub.registerClient(rmiView, name);
-		if(clientModel.getStartPlay()==true){
-		serverStub.initializeGame(rmiView);
-		CommandLineInterface commandLineInterface= new CommandLineInterface(clientModel.getPlayer(), clientModel);}
-		
-		while (clientModel.getStartPlay()==true) {
+		if (clientModel.getStartPlay() == true) {
+			serverStub.initializeGame(rmiView);
+			CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(), clientModel);
+		}
+
+		while (clientModel.getStartPlay() == true) {
 			// Capture input from user
 			System.out.println("Press a key to start the action");
 			String inputLine = stdIn.nextLine();

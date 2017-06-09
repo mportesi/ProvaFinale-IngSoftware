@@ -20,7 +20,7 @@ public class RegisterClient extends Observable<Change> implements Action {
 	}
 
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		play.createNewPlayer(name);
 		//System.out.println("sto creando un nuovo player");
 	}

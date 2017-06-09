@@ -149,7 +149,7 @@ public class PersonalBonusTile implements Serializable{
 	
 	
 	
-	public void applyProductionEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void applyProductionEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createListOfProductionEffect();
 
 		for (Effect e : productionEffect) {
@@ -161,7 +161,7 @@ public class PersonalBonusTile implements Serializable{
 		}
 	}
 	
-	public void applyHarvestEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void applyHarvestEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createListOfHarvestEffect();
 
 		for (Effect e : harvestEffect) {

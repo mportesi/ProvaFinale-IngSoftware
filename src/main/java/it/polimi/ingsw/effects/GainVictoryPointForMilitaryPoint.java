@@ -17,7 +17,7 @@ public class GainVictoryPointForMilitaryPoint extends Effect {
 	}
 
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// TODO Auto-generated method stub
 		int counter=player.getMilitaryPoint();
 		player.incrementVictoryPoint(victoryPoint*counter);

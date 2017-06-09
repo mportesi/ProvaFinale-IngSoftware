@@ -15,7 +15,7 @@ public class GainVictoryPointForCharacterCard extends Effect {
 		this.victoryPoint=costImmediateEffect;
 	}
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int counter= player.counter("characterCard");
 		player.incrementVictoryPoint(victoryPoint*counter);
 

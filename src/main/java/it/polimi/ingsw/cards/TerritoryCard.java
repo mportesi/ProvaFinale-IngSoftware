@@ -19,7 +19,7 @@ public class TerritoryCard extends Card {
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		immediateEffects = effects.createListOfEffect();
 
 		for (Effect e : immediateEffects) {

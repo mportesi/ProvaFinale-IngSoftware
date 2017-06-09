@@ -40,10 +40,10 @@ public class Card implements Serializable {
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 	};
 
-	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 	};
 
 	public String getType() {

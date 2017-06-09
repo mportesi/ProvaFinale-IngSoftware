@@ -42,7 +42,7 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 	}
 
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			// set the market as occupied because none can put other relatives
 			// in that space

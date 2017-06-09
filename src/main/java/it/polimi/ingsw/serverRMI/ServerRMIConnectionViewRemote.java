@@ -16,12 +16,12 @@ import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 public interface ServerRMIConnectionViewRemote extends Remote {
 
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
-			throws RemoteException, FileNotFoundException, NullPointerException, IOException, ParseException;
+			throws RemoteException, FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 
 	public void initializeGame(ClientRMIConnectionViewRemote clientStub)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException;
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 
 	public void notifyObserver(Action action)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, RemoteException;
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, RemoteException, InterruptedException;
 
 }

@@ -45,7 +45,7 @@ public class VentureCard extends Card {
 	};
 
 	@Override
-	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (militaryRequirement == 0 && militaryCost == 0 || chooseCost(player) == "otherCost") {
 			for (String key : cost.keySet()) {
 				switch (key) {
@@ -75,7 +75,7 @@ public class VentureCard extends Card {
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		immediateEffects = effects.createListOfEffect();
 
 		for (Effect e : immediateEffects) {

@@ -71,7 +71,7 @@ public class MarketBuilding implements Serializable{
 		}
 	}
 
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createListOfMarketEffect();
 
 		for (Effect e : marketEffect) {

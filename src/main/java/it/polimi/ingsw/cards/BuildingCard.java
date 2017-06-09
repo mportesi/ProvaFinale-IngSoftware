@@ -24,7 +24,7 @@ public class BuildingCard extends Card {
 	
 	
 	@Override
-	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException{
+	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		for(String key: cost.keySet()){
 			switch(key){
 			case "coin":{
@@ -41,7 +41,7 @@ public class BuildingCard extends Card {
 	}
 	
 	// to apply immediate effects
-		public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 				immediateEffects=effects.createListOfEffect();
 
 			for (Effect e : immediateEffects) {

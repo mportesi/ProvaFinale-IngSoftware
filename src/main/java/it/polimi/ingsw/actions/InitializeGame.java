@@ -11,7 +11,7 @@ public class InitializeGame implements Action {
 	
 
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		play.initializeBoard();
 		//System.out.println("Sto facendo initializeGame.apply()");
 		

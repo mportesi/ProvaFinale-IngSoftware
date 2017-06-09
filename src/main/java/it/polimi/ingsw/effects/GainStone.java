@@ -15,7 +15,7 @@ public class GainStone extends Effect {
 	}
 
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException{
+	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		player.incrementStone(stone);
 
 	}

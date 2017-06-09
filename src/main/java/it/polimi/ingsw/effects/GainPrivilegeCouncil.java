@@ -18,7 +18,7 @@ public class GainPrivilegeCouncil extends Effect {
 	}
 
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// Resource resource = chooseResource();
 		PrivilegeCouncil.applyEffect(player, resource);
 		

@@ -144,60 +144,60 @@ public class Player extends Observable<Change> implements Serializable {
 		return leader;
 	}
 
-	public void incrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void incrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
 		ChangeCoin changeCoin = new ChangeCoin(this, coin);
 		this.notifyObserver(changeCoin);
 
 	}
 
-	public void decrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void decrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin -= n;
 		ChangeCoin changeCoin = new ChangeCoin(this, coin);
 		this.notifyObserver(changeCoin);
 	}
 
-	public void incrementWood(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void incrementWood(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
 		ChangeWood changeWood = new ChangeWood(this, coin);
 		this.notifyObserver(changeWood);
 	}
 
-	public void decrementWood(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void decrementWood(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin -= n;
 		ChangeWood changeWood = new ChangeWood(this, coin);
 		this.notifyObserver(changeWood);
 
 	}
 
-	public void incrementStone(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void incrementStone(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
 		ChangeStone changeStone = new ChangeStone(this, coin);
 		this.notifyObserver(changeStone);
 	}
 
-	public void decrementStone(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void decrementStone(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin -= n;
 		ChangeStone changeStone = new ChangeStone(this, coin);
 		this.notifyObserver(changeStone);
 	}
 
 	public void incrementServant(int n)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
 		ChangeServant changeServant = new ChangeServant(this, coin);
 		this.notifyObserver(changeServant);
 	}
 
 	public void decrementServant(int n)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin -= n;
 		ChangeServant changeServant = new ChangeServant(this, coin);
 		this.notifyObserver(changeServant);
 	}
 
 	public void incrementMilitaryPoint(int n)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
 		ChangeMilitaryPoint changeMilitaryPoint = new ChangeMilitaryPoint(this, coin);
 		this.notifyObserver(changeMilitaryPoint);
@@ -205,35 +205,35 @@ public class Player extends Observable<Change> implements Serializable {
 	}
 
 	public void decrementMilitaryPoint(int n)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin -= n;
 		ChangeMilitaryPoint changeMilitaryPoint = new ChangeMilitaryPoint(this, coin);
 		this.notifyObserver(changeMilitaryPoint);
 	}
 
 	public void incrementFaithPoint(int n)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
 		ChangeFaithPoint changeFaithPoint = new ChangeFaithPoint(this, coin);
 		this.notifyObserver(changeFaithPoint);
 	}
 
 	public void decrementFaithPoint(int n)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin -= n;
 		ChangeFaithPoint changeFaithPoint = new ChangeFaithPoint(this, coin);
 		this.notifyObserver(changeFaithPoint);
 	}
 
 	public void incrementVictoryPoint(int n)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
 		ChangeVictoryPoint changeVictoryPoint = new ChangeVictoryPoint(this, coin);
 		this.notifyObserver(changeVictoryPoint);
 	}
 
 	public void decrementVictoryPoint(int n)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin -= n;
 		ChangeVictoryPoint changeVictoryPoint = new ChangeVictoryPoint(this, coin);
 		this.notifyObserver(changeVictoryPoint);
@@ -272,7 +272,7 @@ public class Player extends Observable<Change> implements Serializable {
 		return i;
 	}
 
-	public void addCard(Card card) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void addCard(Card card) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		String type = card.getType();
 		switch (type) {
 		case "territoryCard": {

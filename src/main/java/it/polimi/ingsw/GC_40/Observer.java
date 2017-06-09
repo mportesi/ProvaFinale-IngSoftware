@@ -10,7 +10,7 @@ import it.polimi.ingsw.actions.PutRelative;
 public interface Observer<C> {
 	
 	
-	public default void update(C change) throws FileNotFoundException, NullPointerException, IOException, ParseException{
+	public default void update(C change) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		
 	};
 	

@@ -15,7 +15,7 @@ public class GainVictoryPointForTerritoryCard extends Effect {
 	}
 
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int counter=player.counter("territoryCard");
 		player.incrementVictoryPoint(victoryPoint*counter);
 

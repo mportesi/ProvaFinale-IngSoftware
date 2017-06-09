@@ -49,12 +49,12 @@ public class CharacterCard extends Card {
 	}
 
 	@Override
-	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		player.decrementCoin(costCoin);
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		immediateEffects = effects.createListOfEffect();
 
 		for (Effect e : immediateEffects) {
