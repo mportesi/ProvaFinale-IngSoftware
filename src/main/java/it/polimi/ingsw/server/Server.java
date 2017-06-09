@@ -72,7 +72,7 @@ public class Server {
 	
 	public void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
-		System.out.println("constructing the rmi regisrty");
+		System.out.println("constructing the rmi registry");
 		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView();
 		serverRMIConnectionView.registerObserver(this.controller);
 		this.gioco.registerObserver(serverRMIConnectionView);
