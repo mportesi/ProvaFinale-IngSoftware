@@ -31,81 +31,81 @@ import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 
-public class Play extends Observable<Change> implements Observer<Change>
-{
-	private static ArrayList<Player> players;
+public class Play extends Observable<Change> implements Observer<Change> {
+	private ArrayList<Player> players;
 	private Player currentPlayer;
 	private Board board;
 	private int period;
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
-	
-	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException{
-		/*this.board=new Board();
-		this.players=new ArrayList<Player>();
-		this.round=0;
-		this.period=0;*/
+
+	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		/*
+		 * this.board=new Board(); this.players=new ArrayList<Player>();
+		 * this.round=0; this.period=0;
+		 */
 	}
-	
-	public void initializeBoard() throws FileNotFoundException, NullPointerException, IOException, ParseException{
-		this.players= new ArrayList<Player>();
-		this.board= new Board();
-		this.round=0;
-		this.period=0;
-		ChangeInitialize changeInitialize= new ChangeInitialize(board);
+
+	public void initializeBoard() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		this.players = new ArrayList<Player>();
+		this.board = new Board();
+		this.round = 0;
+		this.period = 0;
+		ChangeInitialize changeInitialize = new ChangeInitialize(board);
 		this.notifyObserver(changeInitialize);
 		System.out.println("notifico di aver inizializzato la board alla view");
 	}
-	
-	public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException{
-		ArrayList<Player> currentTurnOrder=createTurnOrder(players);
+
+	public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		ArrayList<Player> currentTurnOrder = createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
 		changePeriod();
 		changeRound();
 	}
-	
-	public void giveStartingCoin(ArrayList<Player> currentTurnOrder) throws FileNotFoundException, NullPointerException, IOException, ParseException{
-		int coin=5;
-		for(Player p:currentTurnOrder){
+
+	public void giveStartingCoin(ArrayList<Player> currentTurnOrder)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		int coin = 5;
+		for (Player p : currentTurnOrder) {
 			p.incrementCoin(coin);
 			coin++;
-			ChangeCoin changeCoin= new ChangeCoin(p, p.getCoin());
+			ChangeCoin changeCoin = new ChangeCoin(p, p.getCoin());
 			this.notifyObserver(changeCoin);
 		}
-		
-		
+
 	}
-	
-	public void initializePlayer(ArrayList<Player> currentTurnOrder) throws FileNotFoundException, NullPointerException, IOException, ParseException{
-		int i=0;
-		for(Player p:currentTurnOrder){
+
+	public void initializePlayer(ArrayList<Player> currentTurnOrder)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		int i = 0;
+		for (Player p : currentTurnOrder) {
 			p.setCoin(0);
 			p.setWood(2);
-			ChangeWood changeWood= new ChangeWood(p, p.getWood());
+			ChangeWood changeWood = new ChangeWood(p, p.getWood());
 			this.notifyObserver(changeWood);
 			p.setServant(3);
-			ChangeServant changeServant= new ChangeServant(p, p.getServant());
+			ChangeServant changeServant = new ChangeServant(p, p.getServant());
 			this.notifyObserver(changeServant);
 			p.setStone(2);
-			ChangeStone changeStone= new ChangeStone(p, p.getStone());
+			ChangeStone changeStone = new ChangeStone(p, p.getStone());
 			this.notifyObserver(changeStone);
 			p.setMilitaryPoint(0);
 			p.setVictoryPoint(0);
 			p.setFaithPoint(0);
 			i++;
 		}
-		
+
 		giveStartingCoin(currentTurnOrder);
-		
+
 	}
-	
+
 	public static ArrayList<Player> createTurnOrder(ArrayList<Player> players) {
 		Collections.shuffle(players);
-		ChangeTurnOrder changeTurnOrder= new ChangeTurnOrder(players);
+		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder(players);
 		return players;
 	}
-	
+
 	public void changeTurnOrder() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 
 		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
@@ -130,9 +130,9 @@ public class Play extends Observable<Change> implements Observer<Change>
 
 		currentTurnOrder.addAll(nextTurnOrder);
 		nextTurnOrder.clear();
-		
-		ChangeTurnOrder changeTurnOrder= new ChangeTurnOrder(currentTurnOrder);
-		
+
+		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder(currentTurnOrder);
+
 		this.notifyObserver(changeTurnOrder);
 	}
 
@@ -149,9 +149,9 @@ public class Play extends Observable<Change> implements Observer<Change>
 		} else {
 			currentPlayer = currentTurnOrder.get(i + 1);
 		}
-		
-		ChangePlayer changePlayer= new ChangePlayer(currentPlayer);
-		
+
+		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
+
 		this.notifyObserver(changePlayer);
 
 		if (n == 4) {
@@ -161,12 +161,12 @@ public class Play extends Observable<Change> implements Observer<Change>
 
 	public void changeRound() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		if (round == 2 || round == 4 || round == 6) {
-			if(period==3){
+			if (period == 3) {
 				changePeriod();
 				return;
-			}
-			else changePeriod();
-			
+			} else
+				changePeriod();
+
 		}
 		round += 1;
 		changeTurnOrder();
@@ -193,119 +193,80 @@ public class Play extends Observable<Change> implements Observer<Change>
 		Board.blackDice.setValue();
 		Board.orangeDice.setValue();
 		Board.whiteDice.setValue();
-		
-		ChangeRound changeRound= new ChangeRound(round);
+
+		ChangeRound changeRound = new ChangeRound(round);
 		this.notifyObserver(changeRound);
 	}
 
 	public void changePeriod() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		period++;
-		
+
 		if (period == 4) {
 			checkWinner(); // TODO define checkwinner
+		} else {
+			ChangePeriod changePeriod = new ChangePeriod(period);
 		}
-		else {
-			ChangePeriod changePeriod= new ChangePeriod(period);
-		}
-		
 
 	}
-	
-	
-	
-	
-	
-	
+
 	/*
-	public Map <int, Player> militaryPointForPlayer(){
-		LinkedHashMap <int, Player> pointForPlayer = null;
-		for (Player p : players){
-			pointForPlayer.put(p.getMilitaryPoint(), p);
-		}
-		return pointForPlayer;
-	}
-	
-	public List <Player> militaryPointRank(){
-		Map pointForPlayer=militaryPointForPlayer();
-		int max=0;
-		ArrayList<Player> players;
-		List <Player> keys;
-		for(Player p: pointForPlayer.keySet()){
-			keys.add(p);
-			if(pointForPlayer.get(p)>=max){
-				max=pointForPlayer.get(p);
-				players.add(p);
-			}
-		}
-		
-	}
-	
-	
-	
-		
-	public void giveFinalPoint(){
-		
-		int victoryPointForMilitaryFirst = JSon.victoryPointForTheFirst;
-		int victoryPointForMilitarySecond = JSon.victoryPointForTheSecond;
-		for (Player p : players){
-			if (p == militaryPointRank().get(0)){
-				p.incrementVictoryPoint(victoryPointForMilitaryFirst);
-			}
-			if (p == militaryPointRank().get(1)){
-				p.incrementVictoryPoint(victoryPointForMilitarySecond);
-			}
-			
-			for (FinalVictoryPoint f : JSon.finalVictoryPointArray){
-				String type = f.getType();
-				switch (type){
-				case "victoryPointForTerritory" : {
-					Set list  = JSon.finalVictoryPointGain.keySet();
-					Iterator iter = list.iterator();
-								
-					while(iter.hasNext()) {
-					     int key = (int)(iter.next());
-					     int value = (int)(JSon.finalVictoryPointGain.get(key));
-						 int numberOfTerritoryCard = p.counter("territoryCard");
-						 if (numberOfTerritoryCard >= key){
-							p.incrementVictoryPoint(value);
-							break;
-						}}}
-				case "victoryPointForCharacter" : {
-					Set list  = JSon.finalVictoryPointGain.keySet();
-					Iterator iter = list.iterator();
-								
-					while(iter.hasNext()) {
-					     int key = (int)(iter.next());
-					     int value = (int)(JSon.finalVictoryPointGain.get(key));
-						 int numberOfTerritoryCard = p.counter("characterCard");
-						 if (numberOfTerritoryCard >= key){
-							p.incrementVictoryPoint(value);
-							break;
-						}}}
-				
-				case "victoryPointForResource" : {
-					Set list  = JSon.finalVictoryPointGain.keySet();
-					Iterator iter = list.iterator();
-								
-					while(iter.hasNext()) {
-					     int key = (int)(iter.next());
-					     int value = (int)(JSon.finalVictoryPointGain.get(key));
-						 int numberOfResource = p.resourceCounter();
-							p.incrementVictoryPoint(numberOfResource/5);
-							break;
-						}}
-				
-					}
-					}}
-				
-				
-			
-		}
-	*/
-	
-	
-	public void endGame(){
-		//restituisce la classifica e il vincitore
+	 * public Map <int, Player> militaryPointForPlayer(){ LinkedHashMap <int,
+	 * Player> pointForPlayer = null; for (Player p : players){
+	 * pointForPlayer.put(p.getMilitaryPoint(), p); } return pointForPlayer; }
+	 * 
+	 * public List <Player> militaryPointRank(){ Map
+	 * pointForPlayer=militaryPointForPlayer(); int max=0; ArrayList<Player>
+	 * players; List <Player> keys; for(Player p: pointForPlayer.keySet()){
+	 * keys.add(p); if(pointForPlayer.get(p)>=max){ max=pointForPlayer.get(p);
+	 * players.add(p); } }
+	 * 
+	 * }
+	 * 
+	 * 
+	 * 
+	 * 
+	 * public void giveFinalPoint(){
+	 * 
+	 * int victoryPointForMilitaryFirst = JSon.victoryPointForTheFirst; int
+	 * victoryPointForMilitarySecond = JSon.victoryPointForTheSecond; for
+	 * (Player p : players){ if (p == militaryPointRank().get(0)){
+	 * p.incrementVictoryPoint(victoryPointForMilitaryFirst); } if (p ==
+	 * militaryPointRank().get(1)){
+	 * p.incrementVictoryPoint(victoryPointForMilitarySecond); }
+	 * 
+	 * for (FinalVictoryPoint f : JSon.finalVictoryPointArray){ String type =
+	 * f.getType(); switch (type){ case "victoryPointForTerritory" : { Set list
+	 * = JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
+	 * 
+	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
+	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfTerritoryCard =
+	 * p.counter("territoryCard"); if (numberOfTerritoryCard >= key){
+	 * p.incrementVictoryPoint(value); break; }}} case
+	 * "victoryPointForCharacter" : { Set list =
+	 * JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
+	 * 
+	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
+	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfTerritoryCard =
+	 * p.counter("characterCard"); if (numberOfTerritoryCard >= key){
+	 * p.incrementVictoryPoint(value); break; }}}
+	 * 
+	 * case "victoryPointForResource" : { Set list =
+	 * JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
+	 * 
+	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
+	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfResource =
+	 * p.resourceCounter(); p.incrementVictoryPoint(numberOfResource/5); break;
+	 * }}
+	 * 
+	 * } }}
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
+
+	public void endGame() {
+		// restituisce la classifica e il vincitore
 	}
 
 	public void checkWinner() throws FileNotFoundException, NullPointerException, IOException, ParseException {
@@ -320,7 +281,7 @@ public class Play extends Observable<Change> implements Observer<Change>
 				winners.add(p);
 			}
 		}
-		ChangeWinners changeWinners= new ChangeWinners(winners);
+		ChangeWinners changeWinners = new ChangeWinners(winners);
 		this.notifyObserver(changeWinners);
 
 	}
@@ -328,21 +289,18 @@ public class Play extends Observable<Change> implements Observer<Change>
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void createNewPlayer(String name) throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		this.players= new ArrayList<Player>();
-		Player player = new Player(UUID.randomUUID(),this, name);
+	public void createNewPlayer(String name)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		this.players = new ArrayList<Player>();
+		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
-		//System.out.println("notifico la view di aver creato un nuovo player");
-		
+		// System.out.println("notifico la view di aver creato un nuovo
+		// player");
+
 	}
-	
-	
-	
-	
-	
 
 }

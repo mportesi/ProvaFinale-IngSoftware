@@ -7,13 +7,14 @@ import java.rmi.server.UnicastRemoteObject;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
 
-public class ClientRMIConnectionView extends UnicastRemoteObject implements ClientRMIConnectionViewRemote, Serializable{
+public class ClientRMIConnectionView extends UnicastRemoteObject
+		implements ClientRMIConnectionViewRemote, Serializable {
 
 	private ClientModel client;
-	
+
 	public ClientRMIConnectionView(ClientModel client) throws RemoteException {
 		super();
-		this.client=client;
+		this.client = client;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -28,9 +29,5 @@ public class ClientRMIConnectionView extends UnicastRemoteObject implements Clie
 		c.applyChange(client);
 		System.out.println("sono nel Client dopo updateClient(c)" + c);
 	}
-
-
-
-
 
 }
