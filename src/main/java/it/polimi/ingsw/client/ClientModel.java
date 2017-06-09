@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_40.Board;
@@ -11,7 +12,7 @@ import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.Relative;
 
-public class ClientModel {
+public class ClientModel implements Serializable{
 	private Player player;
 	private Player currentPlayer;
 	private Board board;

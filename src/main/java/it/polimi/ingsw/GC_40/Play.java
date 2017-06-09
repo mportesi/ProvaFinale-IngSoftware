@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import org.json.simple.parser.ParseException;
@@ -17,7 +19,8 @@ import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeCoin;
-import it.polimi.ingsw.changes.ChangeInitialize;
+import it.polimi.ingsw.changes.ChangeInitializeBoard;
+import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
 import it.polimi.ingsw.changes.ChangePeriod;
 import it.polimi.ingsw.changes.ChangePlayer;
@@ -51,8 +54,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		this.board = new Board();
 		this.round = 0;
 		this.period = 0;
-		ChangeInitialize changeInitialize = new ChangeInitialize(board);
-		this.notifyObserver(changeInitialize);
+		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board);
+		this.notifyObserver(changeInitializeBoard);
 		System.out.println("notifico di aver inizializzato la board alla view");
 	}
 
@@ -297,10 +300,46 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		this.players = new ArrayList<Player>();
 		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
+		verifyNumberOfPlayer();
 		notifyObserver(new ChangeNewPlayer(player));
 		// System.out.println("notifico la view di aver creato un nuovo
 		// player");
 
+	}
+
+	public void verifyNumberOfPlayer() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		
+		while (players.size() < 2) {
+		}
+		if (players.size() >= 2 && players.size() < 4) {
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					try {
+						initializePlay();
+					} catch (NullPointerException | IOException | ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
+			}, 10 * 100000); // TODO IMPORTARE DA JSON
+
+		} else if (players.size() == 4) {
+			for(int i=0; i<players.size(); i++){
+			System.out.println("the players are  "+ players.get(i).getName());}
+			initializePlay();
+		}
+
+	}
+
+	public void initializePlay() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
+		this.notifyObserver(changeInitializePlay);
 	}
 
 }

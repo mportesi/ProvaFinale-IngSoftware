@@ -3,10 +3,10 @@ package it.polimi.ingsw.changes;
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.client.ClientModel;
 
-public class ChangeInitialize implements Change {
+public class ChangeInitializeBoard implements Change {
 	private Board board;
 	
-	public ChangeInitialize(Board board){
+	public ChangeInitializeBoard(Board board){
 		this.board=board;
 	}
 
@@ -21,7 +21,7 @@ public class ChangeInitialize implements Change {
 
 	@Override
 	public String toString() {
-		return "ChangeInitialize [board=" + board + "]";
+		return "ChangeInitializeBoard [board=" + board + "]";
 	}
 
 }

@@ -11,10 +11,11 @@ import it.polimi.ingsw.clientRMI.ClientRMIConnectionView;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.channels.AlreadyBoundException;
 import java.rmi.NotBoundException;
 
-public class Client {
+public class Client implements Serializable{
 	private Player player;
 	private static ClientStart clientStart;
 	//private static ClientModel clientModel;

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.clientRMI;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.channels.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -18,7 +19,7 @@ import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
-public class ClientRMIConnection {
+public class ClientRMIConnection implements Serializable{
 	private int RMI_PORT;
 	private String HOST;
 	private String NAME = "Lorenzo Il Magnifico";
