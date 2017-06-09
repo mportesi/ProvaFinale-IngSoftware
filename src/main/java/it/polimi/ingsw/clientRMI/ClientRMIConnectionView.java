@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.client.ClientModel;
 
 public class ClientRMIConnectionView extends UnicastRemoteObject
@@ -25,6 +26,10 @@ public class ClientRMIConnectionView extends UnicastRemoteObject
 
 	@Override
 	public void updateClient(Change c) throws RemoteException {
+		if(c instanceof ChangeInitializePlay){
+			System.out.println("ok posso inizializzare il gioco");
+			c.applyChange(client);
+		}
 		System.out.println("sono nel CLient prima updateClient(c)" + c);
 		c.applyChange(client);
 		System.out.println("sono nel Client dopo updateClient(c)" + c);

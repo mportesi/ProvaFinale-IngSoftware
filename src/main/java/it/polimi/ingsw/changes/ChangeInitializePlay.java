@@ -16,6 +16,7 @@ public class ChangeInitializePlay implements Change {
 	public void applyChange(ClientModel client) {
 		// TODO Auto-generated method stub
 		System.out.println("The game can start");
+		client.setStartPlay(true);
 
 	}
 
