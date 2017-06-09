@@ -42,7 +42,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private boolean start;
-
+ 
+	//costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		/*
 		 * this.board=new Board(); this.players=new ArrayList<Player>();
