@@ -22,14 +22,17 @@ public class CommandLineInterface {
 	private Player player;// ??
 	private ClientModel client;
 
-	public CommandLineInterface() {
+	public CommandLineInterface(Player player, ClientModel client) {
 		scanner = new Scanner(System.in);
+		this.player=player;
+		this.client=client;
 	}
 
 	public void input() {
 		String input = "";
 		while (!"quit".equals(input)) {
 			try {
+				
 				chooseTheAction();
 				System.out.println("your turn is finished");
 				System.out.println("The board now is:" + client);
@@ -41,6 +44,7 @@ public class CommandLineInterface {
 	}
 
 	public PutRelative chooseTheAction() {
+		System.out.println("sta giocando"+ player.getName());
 
 		Relative relative = chooseTheRelative();
 		
@@ -154,15 +158,19 @@ public class CommandLineInterface {
 		switch (input) {
 		case "territoryTower": {
 			tower = this.client.getTerritoryTower();
+			break;
 		}
 		case "buildingTower": {
 			tower = this.client.getBuildingTower();
+			break;
 		}
 		case "characterTower": {
 			tower = this.client.getCharacterTower();
+			break;
 		}
 		case "ventureTower": {
 			tower = this.client.getVentureTower();
+			break;
 		}
 		default: {
 			System.out.println("Error: insert again");

@@ -388,4 +388,9 @@ public class Player extends Observable<Change> implements Serializable {
 
 	}
 
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
 }

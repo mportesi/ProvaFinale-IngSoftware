@@ -20,12 +20,12 @@ public class ChangeCharacterCard implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		for(Player p: client.getPlayers()){
+		/*for(Player p: client.getPlayers()){
 			if(player.equals(p)){
 				player.setCharacter(characterCard);
 			}
 		}
-		
+		*/
 	}
 
 }

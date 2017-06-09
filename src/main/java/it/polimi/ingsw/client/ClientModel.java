@@ -12,7 +12,7 @@ import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.Relative;
 
 public class ClientModel {
-	private ArrayList<Player> players;
+	private Player player;
 	private Player currentPlayer;
 	private Board board;
 	private Tower territoryTower;
@@ -32,15 +32,15 @@ public class ClientModel {
 	
 	
 	public ClientModel(){
-		players= new ArrayList<Player>();
+		//players= new ArrayList<Player>();
 		currentTurnOrder= new ArrayList<Player>();
 		
 	}
 	
-	public ArrayList<Player> getPlayers() {
+	/*public ArrayList<Player> getPlayers() {
 		
 		return players;
-	}
+	}*/
 
 
 	public void setCouncilPalace(Relative relative) {
@@ -49,11 +49,15 @@ public class ClientModel {
 	}
 
 
-	public void addPlayer(Player player) {
+	/*public void addPlayer(Player player) {
 		players= new ArrayList<Player>();
 		players.add(player);
-	}
-
+		this.player=player;
+		for(int i=0; i<players.size(); i++){
+		System.out.println("I giocatori sono:" + players.get(i).getName());}
+		
+		
+	}*/
 
 	public void setPeriod(int period) {
 		this.period=period;
@@ -155,7 +159,7 @@ public class ClientModel {
 	public void setBoard(Board board) {
 		this.board=board;
 		System.out.println(board);
-		players= new ArrayList<Player>();
+		//players= new ArrayList<Player>();
 		
 	}
 
@@ -163,7 +167,23 @@ public class ClientModel {
 		// TODO Auto-generated method stub
 		return board;
 	}
-	
+
+	public void setPlayer(Player player) {
+		// TODO Auto-generated method stub
+		this.player=player;
+		
+	}
+
+	public Player getPlayer() {
+		// TODO Auto-generated method stub
+		return player;
+	}
+
+	/*public Player getPlayer(int i) {
+		// TODO Auto-generated method stub
+		return players.get(i);
+	}
+	*/
 	
 	
 	
