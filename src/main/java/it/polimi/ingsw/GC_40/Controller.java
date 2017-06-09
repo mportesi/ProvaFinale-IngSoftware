@@ -34,6 +34,7 @@ public class Controller implements Observer<Action> {
 		@Override
 		public void update(Action action) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 			// TODO Auto-generated method stub
+			System.out.println(play);
 			action.apply(play);
 			//System.out.println("E' stata fatta apply()");
 
