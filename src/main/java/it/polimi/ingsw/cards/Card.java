@@ -57,5 +57,8 @@ public class Card implements Serializable {
 	public int getPeriod() {
 		return period;
 	}
+	public void chooseCost(boolean cost){
+		//for venture card
+	}
 
 }
