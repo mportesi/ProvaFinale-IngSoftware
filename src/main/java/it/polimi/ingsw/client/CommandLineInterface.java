@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_40.Board;
@@ -16,7 +17,7 @@ import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
-public class CommandLineInterface {
+public class CommandLineInterface implements Serializable{
 
 	private Scanner scanner;
 	private Player player;// ??

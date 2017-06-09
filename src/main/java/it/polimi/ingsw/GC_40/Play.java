@@ -45,6 +45,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
  
 	//costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		this.players = new ArrayList<Player>();
 		/*
 		 * this.board=new Board(); this.players=new ArrayList<Player>();
 		 * this.round=0; this.period=0;
@@ -349,7 +350,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			}, 10*1000);
 				
 			}; // TODO IMPORTARE DA JSON*/
-			Thread.sleep(10*1000);
+			Thread.sleep((long) 10*1000);
 			initializePlay();
 			start=true;
 			
