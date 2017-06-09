@@ -18,6 +18,7 @@ public class VentureCard extends Card {
 	private int militaryCost;
 	private TerritoryListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
+	private boolean payAlternativeCost= false;
 
 	public VentureCard(String type, String name, int period, Map<String, Integer> costMap, int militaryRequirement,
 			int militaryCost) {
@@ -45,6 +46,8 @@ public class VentureCard extends Card {
 	};
 
 	@Override
+	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		if (militaryRequirement == 0 && militaryCost == 0 || payAlternativeCost == false) {
 	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (militaryRequirement == 0 && militaryCost == 0 || chooseCost(player) == "otherCost") {
 			for (String key : cost.keySet()) {
@@ -67,7 +70,7 @@ public class VentureCard extends Card {
 				}
 				}
 			}
-		} else if (cost.isEmpty() || chooseCost(player) == "militaryCost") {
+		} else if (cost.isEmpty() || payAlternativeCost == true) {
 			player.decrementMilitaryPoint(militaryCost);
 		}
 		return;
@@ -86,10 +89,12 @@ public class VentureCard extends Card {
 		}
 	}
 
-	public String chooseCost(Player player) {
+	/*public String chooseCost(Player player) {
 		String chosenCost = "militaryPoint";
 		return chosenCost;
-
+	}*/
+	
+	public void chooseCost(boolean choice){
+		payAlternativeCost=choice;
 	}
-
 }
