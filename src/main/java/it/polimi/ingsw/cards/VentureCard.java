@@ -46,10 +46,9 @@ public class VentureCard extends Card {
 	};
 
 	@Override
-	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		if (militaryRequirement == 0 && militaryCost == 0 || payAlternativeCost == false) {
+	
 	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if (militaryRequirement == 0 && militaryCost == 0 || chooseCost(player) == "otherCost") {
+		if (militaryRequirement == 0 && militaryCost == 0 || payAlternativeCost == false) {
 			for (String key : cost.keySet()) {
 				switch (key) {
 				case "coin": {
