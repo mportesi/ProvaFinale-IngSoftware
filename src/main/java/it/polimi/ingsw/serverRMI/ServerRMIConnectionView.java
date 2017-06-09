@@ -35,7 +35,7 @@ public class ServerRMIConnectionView
 			System.out.println("CLIENT REGISTRATO");
 			this.clients.add(clientStub);
 			System.out.println(clients.get(0));
-			RegisterClient registerClient= new RegisterClient();
+			RegisterClient registerClient= new RegisterClient(name);
 			//System.out.println("notifico di registerClient() il controller");
 			this.notifyObserver(registerClient);
 		}
@@ -68,6 +68,7 @@ public class ServerRMIConnectionView
 			// TODO Auto-generated method stub
 
 		}
+
 
 		
 	}

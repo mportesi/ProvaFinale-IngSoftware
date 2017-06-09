@@ -331,9 +331,9 @@ public class Play extends Observable<Change> implements Observer<Change>
 		
 	}
 
-	public void createNewPlayer() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void createNewPlayer(String name) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players= new ArrayList<Player>();
-		Player player = new Player(UUID.randomUUID(),this);
+		Player player = new Player(UUID.randomUUID(),this, name);
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
 		//System.out.println("notifico la view di aver creato un nuovo player");
