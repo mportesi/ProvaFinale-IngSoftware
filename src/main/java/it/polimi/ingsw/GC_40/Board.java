@@ -125,9 +125,7 @@ public class Board  extends Observable<Change> implements Serializable{
 		jsonCouncil.importCouncilPalace();
 		
 		councilPalace = jsonCouncil.getCouncilPalace();
-		
-		
-		councilPalace = JSon.councilPalace;
+
 		
 		//lista di market
 		market= new ArrayList<MarketBuilding>();
