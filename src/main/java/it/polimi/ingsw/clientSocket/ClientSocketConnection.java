@@ -29,11 +29,11 @@ public class ClientSocketConnection {
 
 		//Creates one thread to send messages to the server
 		executor.submit(new ClientOutHandler(
-				new ObjectOutputStream(socket.getOutputStream())));
+				new ObjectOutputStream(socket.getOutputStream()), clientModel));
 
 		//Creates one thread to receive messages from the server
 		executor.submit(new ClientInHandler(
-				new ObjectInputStream(socket.getInputStream())));
+				new ObjectInputStream(socket.getInputStream()), clientModel));
 	}
 	
 
