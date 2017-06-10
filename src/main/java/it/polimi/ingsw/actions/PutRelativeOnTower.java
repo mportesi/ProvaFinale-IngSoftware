@@ -15,11 +15,11 @@ import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 
 public class PutRelativeOnTower extends Observable<Change> implements PutRelative {
-	Tower tower;
-	Relative relative;
-	int floor;
-	Player player;
-	Card cardToGive;
+	private Tower tower;
+	private Relative relative;
+	private int floor;
+	private Player player;
+	private Card cardToGive;
 	
 	public PutRelativeOnTower(Player player, Tower tower, int floor, Relative relative){
 		this.relative=relative;

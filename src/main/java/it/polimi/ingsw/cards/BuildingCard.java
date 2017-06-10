@@ -53,4 +53,8 @@ public class BuildingCard extends Card {
 			}
 		
 
+		@Override
+		public String toString(){
+			return (name + ": il costo è " + cost + " Gli effetti immediati sono " + immediateEffects );
+		}
 }

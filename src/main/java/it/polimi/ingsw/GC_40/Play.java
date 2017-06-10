@@ -60,15 +60,16 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		this.period = 0;
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board);
 		this.notifyObserver(changeInitializeBoard);
-		System.out.println("notifico di aver inizializzato la board alla view");
-	}
-
-	public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		//System.out.println("notifico di aver inizializzato la board alla view");
 		ArrayList<Player> currentTurnOrder = createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
 		changePeriod();
 		changeRound();
+	}
+
+	public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		
 	}
 
 	public void giveStartingCoin(ArrayList<Player> currentTurnOrder)

@@ -27,7 +27,7 @@ public class Tower implements Serializable {
 		return type;
 	}
 	
-	//S: NON MI TORNA!! QUANDO RIMUOVO LE CARTE VECCHIE????
+	
 	// To empty the towers at the end of the round and to recharge them with new
 	// cards
 	public void refreshTower(int period) {

@@ -43,6 +43,10 @@ public class CommandLineInterface implements Serializable{
 		}
 
 	}
+	
+	public void printTheBoard(){
+		client.getBoard();
+	}
 
 	public PutRelative chooseTheAction() {
 		System.out.println("sta giocando"+ player.getName());

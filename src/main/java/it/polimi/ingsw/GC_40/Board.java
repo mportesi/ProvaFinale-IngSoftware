@@ -131,7 +131,7 @@ public class Board  extends Observable<Change> implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Board [toString()=" + super.toString() + "]";
+		return ("Board" + "\n" + "TerritoryTower" + territoryTower + "\n" + "BuildingTower" + buildingTower + "\n" + "CharacterTower" + "\n" + characterTower + "\n" + "VentureTower" + "\n" + ventureTower);
 	}
 
 
