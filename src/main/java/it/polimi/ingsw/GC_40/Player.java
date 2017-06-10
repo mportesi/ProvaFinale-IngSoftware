@@ -38,11 +38,6 @@ public class Player extends Observable<Change> implements Serializable {
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
 	private ArrayList<LeaderTile> leader;
-	/*
-	 * public ArrayList<Relative> relatives; public Relative blackRelative;
-	 * public Relative whiteRelative; public Relative orangeRelative; public
-	 * Relative neutralRelative;
-	 */
 	public PersonalBonusTile personalBonusTile;
 	public boolean hasBlackRelative;
 	public boolean hasWhiteRelative;
@@ -52,14 +47,6 @@ public class Player extends Observable<Change> implements Serializable {
 	public Player(UUID ID, Play play, String name) {
 		this.ID = ID;
 		this.name = name;
-		/*
-		 * Relative blackRelative= new Relative(ColorDice.BLACK); Relative
-		 * whiteRelative= new Relative(ColorDice.WHITE); Relative
-		 * orangeRelative= new Relative(ColorDice.ORANGE); Relative
-		 * neutralRelative= new Relative(null); relatives.add(blackRelative);
-		 * relatives.add(whiteRelative); relatives.add(orangeRelative);
-		 * relatives.add(neutralRelative);
-		 */
 		hasBlackRelative = true;
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
@@ -68,25 +55,12 @@ public class Player extends Observable<Change> implements Serializable {
 	}
 
 	public Player() {
-		/*
-		 * Relative blackRelative= new Relative(ColorDice.BLACK); Relative
-		 * whiteRelative= new Relative(ColorDice.WHITE); Relative
-		 * orangeRelative= new Relative(ColorDice.ORANGE); Relative
-		 * neutralRelative= new Relative(null); relatives.add(blackRelative);
-		 * relatives.add(whiteRelative); relatives.add(orangeRelative);
-		 * relatives.add(neutralRelative);
-		 */
 		hasBlackRelative = true;
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
 		hasNeutralRelative = true;
 	}
-	// non va fatta qui
-	/*
-	 * public String chooseResource(){ Scanner in= new Scanner(System.in);
-	 * System.out.println("Scegli tra: 1: WoodAndStone, 2: Servant ecc" );
-	 * return nextInt(); }
-	 */
+	
 
 	public int resourceCounter() {
 		return coin + wood + stone + servant;
@@ -389,7 +363,6 @@ public class Player extends Observable<Change> implements Serializable {
 	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
 
