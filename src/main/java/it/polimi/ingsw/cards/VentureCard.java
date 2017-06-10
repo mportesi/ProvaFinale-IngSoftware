@@ -16,24 +16,28 @@ public class VentureCard extends Card {
 	private Map<String, Integer> cost;
 	private int militaryRequirement;
 	private int militaryCost;
-	private TerritoryListOfEffect effects;
+	private VentureListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 	private boolean payAlternativeCost= false;
 
 	public VentureCard(String type, String name, int period, Map<String, Integer> costMap, int militaryRequirement,
-			int militaryCost) {
+			int militaryCost, VentureListOfEffect effects) {
 		super(type, name, period);
 		this.cost = cost;
 		this.militaryRequirement = militaryRequirement;
 		this.militaryCost = militaryCost;
+		this.effects=effects;
+		immediateEffects = effects.createListOfEffect();
 		
 	};
 
-	public VentureCard(String type, String name, int period, Map<String, Integer> cost) {
+	public VentureCard(String type, String name, int period, Map<String, Integer> cost, VentureListOfEffect effects) {
 		super(type, name, period);
 		this.cost = cost;
 		militaryRequirement = 0;
 		militaryCost = 0;
+		this.effects = effects;
+		immediateEffects = effects.createListOfEffect();
 	}
 
 	public VentureCard(String type, String name, int period, int militaryRequirement, int militaryCost,
@@ -43,6 +47,8 @@ public class VentureCard extends Card {
 		this.militaryCost = militaryCost;
 		this.cost = cost;
 		cost = null;
+		//immediateEffects = effects.createListOfEffect();
+
 	};
 
 	@Override
@@ -78,8 +84,7 @@ public class VentureCard extends Card {
 
 	// to apply immediate effects
 	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		immediateEffects = effects.createListOfEffect();
-
+		
 		for (Effect e : immediateEffects) {
 			if (e != null) {
 				e.apply(player);

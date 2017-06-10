@@ -17,9 +17,11 @@ public class BuildingCard extends Card {
 	private BuildingListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 	
-	public BuildingCard(String type, String name, int period, Map<String, Integer> cost) {
+	public BuildingCard(String type, String name, int period, Map<String, Integer> cost, BuildingListOfEffect effects) {
 		super(type, name, period);
 		this.cost=cost;
+		this.effects=effects;
+		immediateEffects = effects.createListOfEffect();
 	}
 	
 	

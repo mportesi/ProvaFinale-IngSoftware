@@ -61,9 +61,5 @@ public class Card implements Serializable {
 		//for venture card
 	}
 	
-	@Override
-	public String toString(){
-		return (name + ": ");
-	}
 
 }

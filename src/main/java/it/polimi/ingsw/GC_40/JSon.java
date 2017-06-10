@@ -271,6 +271,7 @@ public class JSon {
 				int amount = ((Long) costObject.get("amount")).intValue();
 				costMap.put(typeCost, amount);
 			}
+			
 
 			Map<String, Integer> immediateEffectMap = new LinkedHashMap();
 			for (int i = 0; i < immediateEffect.size(); i++) {
@@ -280,8 +281,9 @@ public class JSon {
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
 			
-			CardListOfEffect immediate= new BuildingListOfEffect(immediateEffectMap);
-			Card c = new BuildingCard(type, name, period, costMap);
+			
+			BuildingListOfEffect immediate= new BuildingListOfEffect(immediateEffectMap);
+			Card c = new BuildingCard(type, name, period, costMap, immediate);
 
 			buildingDeck.add(c);
 		}
@@ -307,8 +309,8 @@ public class JSon {
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
 			
-			CardListOfEffect immediate= new TerritoryListOfEffect(immediateEffectMap);
-			Card c = new TerritoryCard(type, name, period);
+			TerritoryListOfEffect immediate= new TerritoryListOfEffect(immediateEffectMap);
+			Card c = new TerritoryCard(type, name, period, immediate);
 
 			territoryDeck.add(c);
 		}
@@ -345,12 +347,12 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
-			CardListOfEffect immediate= new VentureListOfEffect(immediateEffectMap);
+			VentureListOfEffect immediate= new VentureListOfEffect(immediateEffectMap);
 			Card c;
 			if (alternativeCostBoolean == 1) {
-				c = new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost);
+				c = new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost, immediate);
 			} else if (militaryRequirement == 0 && militaryCost == 0) {
-				c = new VentureCard(type, name, period, costMap);
+				c = new VentureCard(type, name, period, costMap, immediate);
 			} else {
 				c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap);
 			}
@@ -380,7 +382,7 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
-			CardListOfEffect immediate= new CharacterListOfEffect(immediateEffectMap);
+			CharacterListOfEffect immediate= new CharacterListOfEffect(immediateEffectMap);
 			if (bonusCard != null) {
 				int valueGetCard = ((Long) card.get("valueGetCard")).intValue();
 				JSONArray discount = (JSONArray) characterParser.parse(card.get("discount").toString());
@@ -393,12 +395,12 @@ public class JSon {
 					discountMap.put(typeDiscount, amount);
 				}
 
-				Card c = new CharacterCard(type, name, period, costCoin, bonusCard, valueGetCard, discountMap);
+				Card c = new CharacterCard(type, name, period, costCoin, bonusCard, valueGetCard, discountMap, immediate);
 				characterDeck.add(c);
 			
 			} else {
 
-				Card c = new CharacterCard(type, name, period, costCoin);
+				Card c = new CharacterCard(type, name, period, costCoin, immediate);
 				characterDeck.add(c);
 				
 			}

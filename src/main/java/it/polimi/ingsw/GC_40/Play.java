@@ -43,8 +43,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private boolean start;
- 
-	//costruttore
+
+	// costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
 		/*
@@ -53,23 +53,26 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		 */
 	}
 
-	public void initializeBoard() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		//this.players = new ArrayList<Player>();
+	public void initializeBoard()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		// this.players = new ArrayList<Player>();
 		this.board = new Board();
 		this.round = 0;
 		this.period = 0;
+		changePeriod();
+		changeRound();
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board);
 		this.notifyObserver(changeInitializeBoard);
-		//System.out.println("notifico di aver inizializzato la board alla view");
+		// System.out.println("notifico di aver inizializzato la board alla
+		// view");
 		ArrayList<Player> currentTurnOrder = createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
-		changePeriod();
-		changeRound();
 	}
 
-	public void initializeGame() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		
+	public void initializeGame()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+
 	}
 
 	public void giveStartingCoin(ArrayList<Player> currentTurnOrder)
@@ -114,7 +117,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		return players;
 	}
 
-	public void changeTurnOrder() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void changeTurnOrder()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
 		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
 		ArrayList<Player> councilPalaceOrder = Board.councilPalace.getOrder();
@@ -144,7 +148,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		this.notifyObserver(changeTurnOrder);
 	}
 
-	public void changeCurrentPlayer() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void changeCurrentPlayer()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int i = 0;
 		int n = 0;
 
@@ -167,7 +172,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		}
 	}
 
-	public void changeRound() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void changeRound()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (round == 2 || round == 4 || round == 6) {
 			if (period == 3) {
 				changePeriod();
@@ -176,8 +182,11 @@ public class Play extends Observable<Change> implements Observer<Change> {
 				changePeriod();
 
 		}
+		if(round!=0){
+		changeTurnOrder();}
 		round += 1;
-		changeTurnOrder();
+		
+		
 
 		// refresh tower( place new card and remove family member)
 		Board.territoryTower.refreshTower(period);
@@ -206,7 +215,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		this.notifyObserver(changeRound);
 	}
 
-	public void changePeriod() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void changePeriod()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		period++;
 
 		if (period == 4) {
@@ -277,7 +287,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// restituisce la classifica e il vincitore
 	}
 
-	public void checkWinner() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void checkWinner()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		ArrayList<Player> winners = new ArrayList<>();
 		int max = 0;
 		for (Player p : currentTurnOrder) {
@@ -302,75 +313,69 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 	public void createNewPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if(players==null){
-		this.players = new ArrayList<Player>();
+		if (players == null) {
+			this.players = new ArrayList<Player>();
 		}
 		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
-		for (int i =0; i<players.size(); i++){
-		System.out.println("the players are  "+ players.get(i).getName());}
 		
-		if(players.size()<2){
-		notifyObserver(new ChangeNewPlayer(player));
-		start=false;}
-		if (players.size() >= 2){
+
+		if (players.size() < 2) {
+			notifyObserver(new ChangeNewPlayer(player));
+			start = false;
+		}
+		if (players.size() >= 2) {
 			verifyNumberOfPlayer();
 		}
-		
-		if(start==true){
-		notifyObserver(new ChangeNewPlayer(player));
-		System.out.println("ho fatto la verify()" + player.getName());
+
+		if (start == true) {
+			notifyObserver(new ChangeNewPlayer(player));
+
 		}
-		
+
 		// System.out.println("notifico la view di aver creato un nuovo
 		// player");
 
 	}
 
-	public void verifyNumberOfPlayer() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("sono dentro la verify");
+	public void verifyNumberOfPlayer()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (players.size() >= 2 && players.size() < 4) {
-			/*Timer timer = new Timer();
-			timer.schedule(new TimerTask() {
-
-				@Override
-				public void run() {
-
-					System.out.println("sono entrato nel run");
-					// TODO Auto-generated method stub
-					try {
-						 initializePlay();
-						
-						
-					} catch (NullPointerException | IOException | ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-
-			}, 10*1000);
-				
-			}; // TODO IMPORTARE DA JSON*/
-			Thread.sleep((long) 10*1000);
+			/*
+			 * Timer timer = new Timer(); timer.schedule(new TimerTask() {
+			 * 
+			 * @Override public void run() {
+			 * 
+			 * System.out.println("sono entrato nel run"); // TODO
+			 * Auto-generated method stub try { initializePlay();
+			 * 
+			 * 
+			 * } catch (NullPointerException | IOException | ParseException e) {
+			 * // TODO Auto-generated catch block e.printStackTrace(); }
+			 * 
+			 * }
+			 * 
+			 * }, 10*1000);
+			 * 
+			 * }; // TODO IMPORTARE DA JSON
+			 */
+			Thread.sleep((long) 10 * 1000);
 			initializePlay();
-			start=true;
-			
+			start = true;
+
 		} else if (players.size() == 4) {
-			System.out.println("sono nell'else");
-			for(int i=0; i<players.size(); i++){
-			System.out.println("the players are  "+ players.get(i).getName());}
+
 			initializePlay();
-			start=true;
-			
+			start = true;
+
 		}
-		
-		start=true;
+
+		start = true;
 
 	}
 
-	public boolean initializePlay() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("sono nel initializePlay()");
+	public boolean initializePlay()
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
 		this.notifyObserver(changeInitializePlay);
 		return true;
@@ -380,9 +385,9 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// TODO Auto-generated method stub
 		return board;
 	}
-	
-	public void modifyCouncilPalace(){
-		
+
+	public void modifyCouncilPalace() {
+
 	}
 
 }
