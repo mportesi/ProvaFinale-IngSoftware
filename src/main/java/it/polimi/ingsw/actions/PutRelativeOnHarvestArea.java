@@ -71,7 +71,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 				harvestArea.setRightRelative(relative);
 				ChangeHarvestRightArea changeHarvestRightArea= new ChangeHarvestRightArea(relative);
 				this.notifyObserver(changeHarvestRightArea);
-				int malus = Board.harvestArea.getMalus();
+				int malus = play.getBoard().getHarvestArea().getMalus();
 				relative.setValue(-malus);
 				int newValue= relative.getValue();
 				GainHarvestValue gainHarvestValue = new GainHarvestValue(newValue); 

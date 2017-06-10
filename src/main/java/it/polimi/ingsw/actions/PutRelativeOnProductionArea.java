@@ -72,7 +72,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				productionArea.setRightRelative(relative);
 				ChangeProductionRightArea changeProductionRightArea= new ChangeProductionRightArea(relative);
 				this.notifyObserver(changeProductionRightArea);
-				int malus = Board.harvestArea.getMalus();
+				int malus = play.getBoard().getHarvestArea().getMalus();
 				relative.setValue(-malus);
 				int newValue= relative.getValue();
 				GainProductionValue gainProductionValue = new GainProductionValue(newValue); 
