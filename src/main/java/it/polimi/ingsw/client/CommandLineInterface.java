@@ -47,7 +47,7 @@ public class CommandLineInterface implements Serializable{
 		client.getBoard();
 	}
 
-	public static PutRelative chooseTheAction() {
+	public PutRelative chooseTheAction() {
 		System.out.println("sta giocando"+ player.getName());
 
 		Relative relative = chooseTheRelative();
