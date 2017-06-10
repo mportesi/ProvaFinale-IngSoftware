@@ -20,7 +20,6 @@ public class Tower implements Serializable {
 		this.deck1 = deck1;
 		this.deck2 = deck2;
 		this.deck3 = deck3;
-		floors= new ArrayList<Floor>(4);
 		this.floors = floors;
 	}
 
@@ -36,15 +35,15 @@ public class Tower implements Serializable {
 		switch (period) {
 		case 1:
 			deck = deck1;
-			System.out.println("mazzo1:" + deck.get(0));
+			//System.out.println("mazzo1:" + deck.get(0));
 			break;
 		case 2:
 			deck = deck2;
-			System.out.println("mazzo2:" + deck.get(0));
+			//System.out.println("mazzo2:" + deck.get(0));
 			break;
 		case 3:
 			deck = deck3;
-			System.out.println("mazzo3:" + deck.get(0));
+			//System.out.println("mazzo3:" + deck.get(0));
 			break;
 		}
 
