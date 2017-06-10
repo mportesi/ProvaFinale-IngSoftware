@@ -14,13 +14,15 @@ public class TerritoryCard extends Card {
 	private TerritoryListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 
-	public TerritoryCard(String type, String name, int period) {
+	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects) {
 		super(type, name, period);
+		this.effects=effects;
+		immediateEffects = effects.createListOfEffect();
 	}
 
 	// to apply immediate effects
 	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		immediateEffects = effects.createListOfEffect();
+		
 
 		for (Effect e : immediateEffects) {
 			if (e != null) {
@@ -28,5 +30,10 @@ public class TerritoryCard extends Card {
 			}
 			return;
 		}
+	}
+	
+	@Override
+	public String toString(){
+		return (name + ": gli effetti immediati sono " + immediateEffects );
 	}
 }

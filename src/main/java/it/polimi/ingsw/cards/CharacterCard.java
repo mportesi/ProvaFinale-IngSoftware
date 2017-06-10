@@ -34,18 +34,22 @@ public class CharacterCard extends Card {
 	private CharacterListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 
-	public CharacterCard(String type, String name, int period, int costCoin) {
+	public CharacterCard(String type, String name, int period, int costCoin, CharacterListOfEffect effects) {
 		super(type, name, period);
 		this.costCoin = costCoin;
+		this.effects=effects;
+		immediateEffects = effects.createListOfEffect();
 	}
 
 	public CharacterCard(String type, String name, int period, int costCoin, String card, int value,
-			Map<String, Integer> discount) {
+			Map<String, Integer> discount, CharacterListOfEffect effects) {
 		super(type, name, period);
 		this.costCoin = costCoin;
 		this.card = card;
 		this.value = value;
 		this.discount = discount;
+		this.effects=effects;
+		immediateEffects = effects.createListOfEffect();
 	}
 
 	@Override
@@ -55,7 +59,7 @@ public class CharacterCard extends Card {
 
 	// to apply immediate effects
 	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		immediateEffects = effects.createListOfEffect();
+		
 
 		for (Effect e : immediateEffects) {
 			if (e != null) {

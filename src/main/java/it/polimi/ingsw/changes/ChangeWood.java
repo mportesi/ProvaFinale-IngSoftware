@@ -15,6 +15,9 @@ public class ChangeWood implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if(client.getPlayer().equals(client)){
+			player.setWood(wood);
+		}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {
 				p.setWood(wood);

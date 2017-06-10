@@ -18,6 +18,9 @@ public class ChangeTerritoryCard implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if(client.getPlayer().equals(client)){
+			player.setTerritoryCard(territoryCard);
+		}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {
 				p.setTerritoryCard(territoryCard);

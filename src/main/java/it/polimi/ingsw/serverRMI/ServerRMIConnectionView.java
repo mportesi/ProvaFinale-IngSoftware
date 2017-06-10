@@ -30,9 +30,9 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 	@Override
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("CLIENT REGISTRATO");
+		//System.out.println("CLIENT REGISTRATO");
 		this.clients.add(clientStub);
-		System.out.println(clients.get(0));
+		//System.out.println(clients.get(0));
 		RegisterClient registerClient = new RegisterClient(name);
 		// System.out.println("notifico di registerClient() il controller");
 		this.notifyObserver(registerClient);
@@ -48,9 +48,9 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 
 	@Override
 	public void update(Change change) throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		System.out.println("SENDING THE CHANGE TO THE CLIENT");
+		//System.out.println("SENDING THE CHANGE TO THE CLIENT");
 		try {
-			System.out.println(change);
+			//System.out.println(change);
 			for (ClientRMIConnectionViewRemote clientstub : this.clients) {
 				// System.out.println("sono nel Server prima di fare
 				// updateClient(c)");

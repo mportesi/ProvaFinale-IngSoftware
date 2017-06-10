@@ -20,6 +20,7 @@ public class Tower implements Serializable {
 		this.deck1 = deck1;
 		this.deck2 = deck2;
 		this.deck3 = deck3;
+		floors= new ArrayList<Floor>(4);
 		this.floors = floors;
 	}
 
@@ -27,7 +28,7 @@ public class Tower implements Serializable {
 		return type;
 	}
 	
-	//S: NON MI TORNA!! QUANDO RIMUOVO LE CARTE VECCHIE????
+	
 	// To empty the towers at the end of the round and to recharge them with new
 	// cards
 	public void refreshTower(int period) {
@@ -35,17 +36,23 @@ public class Tower implements Serializable {
 		switch (period) {
 		case 1:
 			deck = deck1;
+			System.out.println("mazzo1:" + deck.get(0));
 			break;
 		case 2:
 			deck = deck2;
+			System.out.println("mazzo2:" + deck.get(0));
 			break;
 		case 3:
 			deck = deck3;
+			System.out.println("mazzo3:" + deck.get(0));
 			break;
 		}
 
 		for (Floor f : floors) {
-				f.currentCard = deck.remove(0);
+				for(int i=0; i<deck.size(); i++){
+				f.currentCard = deck.remove(i);
+				//System.out.println(f.currentCard);
+				}
 		}
 	}
 

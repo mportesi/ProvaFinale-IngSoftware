@@ -33,7 +33,6 @@ public class CommandLineInterface implements Serializable{
 		String input = "";
 		while (!"quit".equals(input)) {
 			try {
-				
 				chooseTheAction();
 				System.out.println("your turn is finished");
 				System.out.println("The board now is:" + client);
@@ -42,6 +41,10 @@ public class CommandLineInterface implements Serializable{
 			}
 		}
 
+	}
+	
+	public void printTheBoard(){
+		client.getBoard();
 	}
 
 	public static PutRelative chooseTheAction() {

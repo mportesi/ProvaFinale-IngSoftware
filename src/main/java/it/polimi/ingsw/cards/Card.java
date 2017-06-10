@@ -60,5 +60,6 @@ public class Card implements Serializable {
 	public void chooseCost(boolean cost){
 		//for venture card
 	}
+	
 
 }
