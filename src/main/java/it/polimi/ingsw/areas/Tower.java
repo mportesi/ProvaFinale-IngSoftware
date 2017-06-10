@@ -6,6 +6,7 @@ import java.util.List;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.components.Relative;
 
 public class Tower implements Serializable {
 	private String type;
@@ -13,7 +14,7 @@ public class Tower implements Serializable {
 	private ArrayList<Card> deck1;
 	private ArrayList<Card> deck2;
 	private ArrayList<Card> deck3;
-
+	
 	public Tower(String type, ArrayList<Card> deck1, ArrayList<Card> deck2, ArrayList<Card> deck3, ArrayList<Floor> floors) {
 		this.type = type;
 		this.deck1 = deck1;
@@ -114,5 +115,7 @@ public class Tower implements Serializable {
 			return false;
 		return true;
 	}
+
+
 
 }
