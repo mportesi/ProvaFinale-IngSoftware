@@ -27,11 +27,12 @@ public class JsonHarvestAndProduction {
 			int malus = ((Long) harvestAndProduction.get("malus")).intValue();
 			
 			switch (type){
-			case "production": {
+			case "productionArea": {
 				production = new HarvestAndProductionArea (type, costOfLeftArea, costOfRightArea, malus);
+				System.out.println("sono in json voglio stampare la production" + production);
 				break;
 			}
-			case "harvest": {
+			case "harvestArea": {
 				harvest = new HarvestAndProductionArea (type, costOfLeftArea, costOfRightArea, malus);
 				break;
 			}

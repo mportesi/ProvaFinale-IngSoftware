@@ -123,6 +123,7 @@ public class Board  extends Observable<Change> implements Serializable{
 		
 		JsonCouncilPalace jsonCouncil= new JsonCouncilPalace();
 		jsonCouncil.importCouncilPalace();
+		
 		councilPalace = jsonCouncil.getCouncilPalace();
 		
 		
@@ -142,8 +143,9 @@ public class Board  extends Observable<Change> implements Serializable{
 		PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
 		
 		
-		JsonHarvestAndProduction jsonHarvestAndProduction= new JsonHarvestAndProduction();
+		JsonHarvestAndProduction jsonHarvestAndProduction = new JsonHarvestAndProduction();
 		jsonHarvestAndProduction.importHarvestAndProduction();
+		System.out.println("harvest " + jsonHarvestAndProduction.getHarvest());
 		harvestArea = jsonHarvestAndProduction.getHarvest();
 		productionArea = jsonHarvestAndProduction.getProduction();
 		

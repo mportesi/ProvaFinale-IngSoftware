@@ -82,6 +82,11 @@ public class MarketBuilding implements Serializable{
 			}
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return ("The market of type: " + type + "\n" + "With cost: " + cost);
+	}
 
 	/*
 	 * public Piece getBonus() { return bonus; }

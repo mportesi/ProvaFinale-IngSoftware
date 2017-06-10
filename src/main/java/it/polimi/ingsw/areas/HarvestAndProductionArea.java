@@ -77,6 +77,12 @@ public class HarvestAndProductionArea implements Serializable {
 	}
 
 	
+	@Override
+	public String toString() {
+		return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is " + valueOfLeftArea + "\n" + "The right value is "
+				+ valueOfRightArea + "\n" + "The malus is " + malus + "\n");
+	}
+
 	
 
 }
