@@ -15,7 +15,7 @@ public class JsonHarvestAndProduction {
 	private HarvestAndProductionArea harvest;
 	private HarvestAndProductionArea production;
 	
-	public void importCards() throws FileNotFoundException, IOException, ParseException {
+	public void importHarvestAndProduction() throws FileNotFoundException, IOException, ParseException {
 		JSONParser harvestAndProductionParser = new JSONParser();
 		JSONArray harvestAndProductionArray = (JSONArray) harvestAndProductionParser.parse(new FileReader("json/harvestAndProductionArea.json"));
 		for (Object o : harvestAndProductionArray) {
@@ -42,10 +42,12 @@ public class JsonHarvestAndProduction {
 	}
 
 	public HarvestAndProductionArea getHarvest() {
+	
 		// TODO Auto-generated method stub
 		return harvest;
 	}
 	public HarvestAndProductionArea getProduction() {
+	
 		// TODO Auto-generated method stub
 		return production;
 	}

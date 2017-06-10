@@ -17,7 +17,7 @@ import it.polimi.ingsw.components.PersonalBonusTile;
 public class JsonPersonalBonusTiles {
 	private ArrayList <PersonalBonusTile> personalBonusTiles;
 	
-	public  void importCards() throws FileNotFoundException, IOException, ParseException {
+	public  void importPersonalBonusTiles() throws FileNotFoundException, IOException, ParseException {
 		personalBonusTiles= new ArrayList<PersonalBonusTile>();
 		JSONParser personalBonusTileParser = new JSONParser();
 		JSONArray personalBonusTileArray = (JSONArray) personalBonusTileParser.parse(new FileReader("json/tesseraBonus.json"));
@@ -55,6 +55,7 @@ public class JsonPersonalBonusTiles {
 	}
 
 	public PersonalBonusTile getPersonalBonusTiles(int i) {
+		
 		// TODO Auto-generated method stub
 		return personalBonusTiles.get(i);
 	}

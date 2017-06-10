@@ -13,7 +13,7 @@ import it.polimi.ingsw.areas.CouncilPalace;
 public class JsonCouncilPalace {
 	private CouncilPalace councilPalace;
 	
-	public void importCards() throws FileNotFoundException, IOException, ParseException {
+	public void  importCouncilPalace() throws FileNotFoundException, IOException, ParseException {
 	
 	JSONParser councilPalaceParser = new JSONParser();
 	JSONObject councilPalaceObj = (JSONObject) councilPalaceParser.parse(new FileReader("json/CouncilPalace.json"));
@@ -25,7 +25,8 @@ public class JsonCouncilPalace {
 	councilPalace = new CouncilPalace(bonusPrivilegeCouncil, bonusCoin, cost);
 	}
 
-	public CouncilPalace getCouncilPalace() {
+	public CouncilPalace getCouncilPalace(){
+	
 		// TODO Auto-generated method stub
 		return councilPalace;
 	}

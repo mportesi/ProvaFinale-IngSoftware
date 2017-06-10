@@ -22,7 +22,7 @@ public class JsonFloor {
 	private ArrayList<Floor> buildingFloors ;
 	private ArrayList<Floor> ventureFloors; 
 	
-	public void importCards() throws FileNotFoundException, IOException, ParseException {
+	public void importFloors() throws FileNotFoundException, IOException, ParseException {
 		territoryFloors= new ArrayList<Floor>();
 		characterFloors= new ArrayList<Floor>();
 		ventureFloors= new ArrayList<Floor>();
@@ -65,22 +65,26 @@ public class JsonFloor {
 		}
 	}
 
-	public ArrayList<Floor> getTerritoryFloors() {
+	public ArrayList<Floor> getTerritoryFloors()  {
+		
 		// TODO Auto-generated method stub
 		return territoryFloors;
 	}
 	
-	public ArrayList<Floor> getBuildingFloors() {
+	public ArrayList<Floor> getBuildingFloors()  {
+	
 		// TODO Auto-generated method stub
 		return buildingFloors;
 	}
 	
-	public ArrayList<Floor> getVentureFloors() {
+	public ArrayList<Floor> getVentureFloors()  {
+	
 		// TODO Auto-generated method stub
 		return ventureFloors;
 	}
 	
 	public ArrayList<Floor> getCharacterFloors() {
+		
 		// TODO Auto-generated method stub
 		return characterFloors;
 	}

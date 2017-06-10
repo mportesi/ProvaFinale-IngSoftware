@@ -17,7 +17,7 @@ import it.polimi.ingsw.areas.MarketBuilding;
 public class JsonMarket {
 	private ArrayList <MarketBuilding> marketBuilding;
 	
-	public void importCards() throws FileNotFoundException, IOException, ParseException {
+	public void importMarket() throws FileNotFoundException, IOException, ParseException {
 	marketBuilding= new ArrayList<MarketBuilding>();
 	JSONParser marketParser = new JSONParser();
 	JSONArray marketArray = (JSONArray) marketParser.parse(new FileReader("json/MarketBonus.json"));
@@ -43,7 +43,8 @@ public class JsonMarket {
 	}
 	}
 
-	public MarketBuilding getMarketBuilding(int i) {
+	public MarketBuilding getMarketBuilding(int i) throws FileNotFoundException, IOException, ParseException {
+		
 		// TODO Auto-generated method stub
 		return marketBuilding.get(i);
 	}

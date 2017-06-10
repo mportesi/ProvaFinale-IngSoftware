@@ -21,7 +21,7 @@ public class JsonFinalVictoryPoint {
 	private int victoryPointForTheSecond;
 
 	
-	public void importCards() throws FileNotFoundException, IOException, ParseException {
+	public void importVictoryPoint() throws FileNotFoundException, IOException, ParseException {
 		JSONParser VPForMilitaryParser = new JSONParser();
 		Object obj = null;
 		JSONObject VPForMilitary = (JSONObject) VPForMilitaryParser.parse(new FileReader("json/VPForMilitary.json"));

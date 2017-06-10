@@ -72,26 +72,31 @@ public class Board  extends Observable<Change> implements Serializable{
 		Collections.shuffle(venture3);
 		
 		JsonFloor jsonFloor= new JsonFloor();
+		jsonFloor.importFloors();
 		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
 		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
 		characterTower= new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
 		ventureTower= new Tower("venture", venture1, venture2, venture3, jsonFloor.getVentureFloors());
 		
 		JsonCouncilPalace jsonCouncil= new JsonCouncilPalace();
+		jsonCouncil.importCouncilPalace();
 		councilPalace = jsonCouncil.getCouncilPalace();
 		
 		//lista di market
 		JsonMarket jsonMarket= new  JsonMarket();
+		jsonMarket.importMarket();
 		for(int i=0; i<4; i++){
 			market.add(i, jsonMarket.getMarketBuilding(i));
 		}
 		
 		JsonPersonalBonusTiles jsonPersonalBonusTiles= new JsonPersonalBonusTiles();
+		jsonPersonalBonusTiles.importPersonalBonusTiles();
 		PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
 		PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
 		
 		
 		JsonHarvestAndProduction jsonHarvestAndProduction= new JsonHarvestAndProduction();
+		jsonHarvestAndProduction.importHarvestAndProduction();
 		harvestArea = jsonHarvestAndProduction.getHarvest();
 		productionArea = jsonHarvestAndProduction.getProduction();
 		
@@ -103,6 +108,7 @@ public class Board  extends Observable<Change> implements Serializable{
 	
 	
 	
+	JsonCard jsonCard= new JsonCard();
 	
 	public ArrayList<Card> createDeck(int period, String type) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		JSon.importCards();
