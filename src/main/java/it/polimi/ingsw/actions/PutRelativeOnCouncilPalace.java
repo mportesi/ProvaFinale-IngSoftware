@@ -39,12 +39,14 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			return false;
 		}
 	}
-
+	
+	
+	//PROBLEMA 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
-			councilPalace.addPlayer(player);
+			play.getBoard().getCouncilPalace().addPlayer(player);
 			ChangeCouncilPalace changeCouncilPalace= new ChangeCouncilPalace(relative);
 			this.notifyObserver(changeCouncilPalace);
 			// The player receive the bonus

@@ -17,6 +17,9 @@ public class ChangeFaithPoint implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if(client.getPlayer().equals(client)){
+			player.setFaithPoint(faithPoint);
+		}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {
 				p.setFaithPoint(faithPoint);

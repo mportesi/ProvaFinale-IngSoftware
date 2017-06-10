@@ -19,6 +19,9 @@ public class ChangeVentureCard implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if(client.getPlayer().equals(client)){
+			player.setVentureCard(ventureCard);
+		}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {
 				p.setVentureCard(ventureCard);

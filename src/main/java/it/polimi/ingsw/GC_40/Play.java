@@ -19,6 +19,7 @@ import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeCoin;
+import it.polimi.ingsw.changes.ChangeCouncilPalace;
 import it.polimi.ingsw.changes.ChangeInitializeBoard;
 import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
@@ -372,6 +373,15 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
 		this.notifyObserver(changeInitializePlay);
 		return true;
+	}
+
+	public Board getBoard() {
+		// TODO Auto-generated method stub
+		return board;
+	}
+	
+	public void modifyCouncilPalace(){
+		
 	}
 
 }

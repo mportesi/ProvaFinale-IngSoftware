@@ -135,4 +135,12 @@ public class Board  extends Observable<Change> implements Serializable{
 	}
 
 
+
+
+	public CouncilPalace getCouncilPalace() {
+		// TODO Auto-generated method stub
+		return councilPalace;
+	}
+
+
 }
