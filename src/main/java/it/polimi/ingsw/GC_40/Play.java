@@ -192,10 +192,10 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		
 
 		// refresh tower( place new card and remove family member)
-		Board.territoryTower.refreshTower(period);
-		Board.buildingTower.refreshTower(period);
-		Board.characterTower.refreshTower(period);
-		Board.ventureTower.refreshTower(period);
+		board.getTerritoryTower().refreshTower(period);
+		board.getBuildingTower().refreshTower(period);
+		board.getCharacterTower().refreshTower(period);
+		board.getVentureTower().refreshTower(period);
 		System.out.println(board);
 		// refresh harvest and production area
 		board.getHarvestArea().refresh();

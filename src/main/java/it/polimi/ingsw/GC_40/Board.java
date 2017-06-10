@@ -42,9 +42,10 @@ public class Board  extends Observable<Change> implements Serializable{
 	
 	
 	public Board() throws FileNotFoundException, NullPointerException, IOException, ParseException{
-		JSon.importCards();
+		JsonCard jsonCard= new JsonCard();
+		jsonCard.importCards();
 		deck=new ArrayList<Card>();
-		create();
+		create(jsonCard);
 		ArrayList<Card> territory1= createDeck(1, "territory");
 		ArrayList<Card> territory2= createDeck(2, "territory");
 		ArrayList<Card> territory3= createDeck(3, "territory");
@@ -73,48 +74,48 @@ public class Board  extends Observable<Change> implements Serializable{
 		Collections.shuffle(venture2);
 		Collections.shuffle(venture3);
 		
-	
-		territoryTower= new Tower("territory", territory1, territory2, territory3, JSon.territoryFloors);
+		JsonFloor jsonFloor= new JsonFloor();
+		jsonFloor.importFloors();
+		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
 		for (int i =0; i< territory1.size(); i++){
 		System.out.println("carta territorio: " + territory1.get(i));
 		}
-		for (int i =0; i< JSon.territoryFloors.size(); i++){
-			System.out.println("Ho creato il piano territory: " + JSon.territoryFloors.get(i));
+		for (int i =0; i< jsonFloor.getTerritoryFloors().size(); i++){
+			System.out.println("Ho creato il piano territory: " + jsonFloor.getTerritoryFloors().get(i));
 			System.out.println("Piano della torre: " + territoryTower.floors.get(i));
 			
 			}
 		
-		buildingTower= new Tower("building", building1, building2, building3, JSon.buildingFloors);
+		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
 		for (int i =0; i< building1.size(); i++){
 			System.out.println("carta building: " + building1.get(i));
 			}
-		for (int i =0; i< JSon.buildingFloors.size(); i++){
-			System.out.println("Ho creato il piano building: " + JSon.buildingFloors.get(i));
+		for (int i =0; i< jsonFloor.getBuildingFloors().size(); i++){
+			System.out.println("Ho creato il piano building: " + jsonFloor.getBuildingFloors().get(i));
 			System.out.println("Piano della torre: " + buildingTower.floors.get(i));
 			
 			}
 		
-		characterTower= new Tower("character", character1, character2, character3, JSon.characterFloors);
+		characterTower= new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
 		for (int i =0; i< character1.size(); i++){
 			System.out.println("carta character: " + character1.get(i));
 			}
-		for (int i =0; i< JSon.characterFloors.size(); i++){
-			System.out.println("Ho creato il piano character: " + JSon.characterFloors.get(i));
+		for (int i =0; i< jsonFloor.getCharacterFloors().size(); i++){
+			System.out.println("Ho creato il piano character: " + jsonFloor.getCharacterFloors().get(i));
 			System.out.println("Piano della torre: " + characterTower.floors.get(i));
 			
 			}
 		
-		ventureTower= new Tower("venture", venture1, venture2, venture3, JSon.ventureFloors);
+		ventureTower= new Tower("venture", venture1, venture2, venture3, jsonFloor.getVentureFloors());
 		for (int i =0; i< venture1.size(); i++){
 			System.out.println("carta venture: " + venture1.get(i));
 			}
-		for (int i =0; i< JSon.ventureFloors.size(); i++){
-			System.out.println("Ho creato il piano venture: " + JSon.ventureFloors.get(i));
+		for (int i =0; i< jsonFloor.getVentureFloors().size(); i++){
+			System.out.println("Ho creato il piano venture: " + jsonFloor.getVentureFloors().get(i));
 			System.out.println("Piano della torre: " + ventureTower.floors.get(i));
 			
 			}
-		JsonFloor jsonFloor= new JsonFloor();
-		jsonFloor.importFloors();
+		
 		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
 		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
 		characterTower= new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
@@ -128,6 +129,7 @@ public class Board  extends Observable<Change> implements Serializable{
 		councilPalace = JSon.councilPalace;
 		
 		//lista di market
+		market= new ArrayList<MarketBuilding>();
 		JsonMarket jsonMarket= new  JsonMarket();
 		jsonMarket.importMarket();
 		for(int i=0; i<4; i++){
@@ -153,22 +155,24 @@ public class Board  extends Observable<Change> implements Serializable{
 	
 	
 	
-	JsonCard jsonCard= new JsonCard();
+	
 	
 	//public ArrayList<Card> createDeck(int period, String type) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		
-		public void create(){
-		for (Card card : JSon.characterDeck){
-		for (Card card : JsonCard.characterDeck){
+	
+
+	
+		public void create(JsonCard jsonCard){
+		for (Card card : jsonCard.getCharacterDeck()){
 			 deck.add(card);
 		}
-		for (Card card : JsonCard.buildingDeck){
+		for (Card card : jsonCard.getBuildingDeck()){
 			 deck.add(card);
 		}
-		for (Card card : JsonCard.territoryDeck){
+		for (Card card : jsonCard.getTerritoryDeck()){
 			 deck.add(card);
 		}
-		for (Card card : JsonCard.ventureDeck){
+		for (Card card : jsonCard.getVentureDeck()){
 			 deck.add(card);
 		}
 		}
