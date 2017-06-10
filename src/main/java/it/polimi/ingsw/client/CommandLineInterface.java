@@ -162,19 +162,19 @@ public class CommandLineInterface implements Serializable{
 		switch (input) {
 		case "territoryTower": {
 			tower = this.client.getTerritoryTower();
-			break;
+			return tower;
 		}
 		case "buildingTower": {
 			tower = this.client.getBuildingTower();
-			break;
+			return tower;
 		}
 		case "characterTower": {
 			tower = this.client.getCharacterTower();
-			break;
+			return tower;
 		}
 		case "ventureTower": {
 			tower = this.client.getVentureTower();
-			break;
+			return tower;
 		}
 		default: {
 			System.out.println("Error: insert again");

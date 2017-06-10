@@ -359,7 +359,6 @@ public class Player extends Observable<Change> implements Serializable {
 
 	public void setVentureCard(ArrayList<VentureCard> ventureCard) {
 		this.ventureCard = ventureCard;
-
 	}
 
 	public String getName() {

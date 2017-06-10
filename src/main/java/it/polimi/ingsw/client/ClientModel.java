@@ -16,14 +16,6 @@ public class ClientModel implements Serializable{
 	private Player player;
 	private Player currentPlayer;
 	private Board board;
-	private Tower territoryTower;
-	private Tower buildingTower;
-	private Tower ventureTower;
-	private Tower characterTower;
-	private ArrayList<MarketBuilding> market;
-	private CouncilPalace councilPalace;
-	private HarvestAndProductionArea harvestArea;
-	private HarvestAndProductionArea productionArea;
 	public static Dice blackDice;
 	public static Dice whiteDice;
 	public static Dice orangeDice;
@@ -46,7 +38,7 @@ public class ClientModel implements Serializable{
 
 
 	public void setCouncilPalace(Relative relative) {
-		councilPalace.addPlayer(relative.getPlayer());
+		board.getCouncilPalace().addPlayer(relative.getPlayer());
 		
 	}
 
@@ -84,38 +76,38 @@ public class ClientModel implements Serializable{
 
 
 	public void setHarvestLeftArea(Relative relative) {
-		harvestArea.setLeftRelative(relative);
+		board.getHarvestArea().setLeftRelative(relative);
 	}
 
 
 	public void setProductionLeftArea(Relative relative) {
-		productionArea.setLeftRelative(relative);
+		board.getProductionArea().setLeftRelative(relative);
 		
 	}
 	
 	public void setProductionRightArea(Relative relative) {
-		productionArea.setRightRelative(relative);
+		board.getProductionArea().setRightRelative(relative);
 		
 	}
 
 
 	public void setHarvestRightArea(Relative relative) {
-		harvestArea.setRightRelative(relative);
+		board.getHarvestArea().setRightRelative(relative);
 		
 	}
 
 
 	public void setTower(Tower tower, int floor, Relative relative) {
-		if(tower.equals(territoryTower)){
+		if(tower.equals(board.getTerritoryTower())){
 			tower.getFloor(floor).setPlayer(relative.getPlayer());
 		}
-		if(tower.equals(buildingTower)){
+		if(tower.equals(board.getBuildingTower())){
 			tower.getFloor(floor).setPlayer(relative.getPlayer());
 		}
-		if(tower.equals(characterTower)){
+		if(tower.equals(board.getCharacterTower())){
 			tower.getFloor(floor).setPlayer(relative.getPlayer());
 		}
-		if(tower.equals(ventureTower)){
+		if(tower.equals(board.getVentureTower())){
 			tower.getFloor(floor).setPlayer(relative.getPlayer());
 		}
 		
@@ -123,7 +115,7 @@ public class ClientModel implements Serializable{
 
 
 	public void setMarket(MarketBuilding market, Relative relative) {
-		for(MarketBuilding m: this.market){
+		for(MarketBuilding m: board.getMarket()){
 			if(m.equals(market)){
 				market.setOccupied();
 				market.setPlayer(relative.getPlayer());
@@ -134,33 +126,34 @@ public class ClientModel implements Serializable{
 
 
 	public Tower getTerritoryTower() {
-		return territoryTower;
+		return board.getTerritoryTower();
 	}
 
 
 	public Tower getBuildingTower() {
-		return buildingTower;
+		return board.getBuildingTower();
 	}
 
 
 	public Tower getCharacterTower() {
-		return characterTower;
+		return board.getCharacterTower();
 	}
 	
 	public Tower getVentureTower() {
-		return ventureTower;
+		return board.getVentureTower();
 	}
 
 
 	public MarketBuilding getMarket(int i) {
 		
-		return market.get(i);
+		return board.getMarket(i);
 	}
 
 
 	public void setBoard(Board board) {
 		this.board=board;
 		System.out.println(board);
+		System.out.println(board.getTerritoryTower());
 		//players= new ArrayList<Player>();
 		
 	}
@@ -192,13 +185,6 @@ public class ClientModel implements Serializable{
 		return startPlay;
 	}
 
-	/*public Player getPlayer(int i) {
-		// TODO Auto-generated method stub
-		return players.get(i);
-	}
-	*/
-	
-	
 	
 
 }

@@ -277,4 +277,13 @@ public class Board  extends Observable<Change> implements Serializable{
 		return market.get(i);
 	}
 
+
+
+
+
+	public ArrayList<MarketBuilding> getMarket() {
+		// TODO Auto-generated method stub
+		return market;
+	}
+
 }

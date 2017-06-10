@@ -29,6 +29,10 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	}
 	
 	public boolean isApplicable(){
+		System.out.println(tower);
+		System.out.println(floor);
+		System.out.println(relative);
+		System.out.println(player);
 		if(tower.floors.get(floor).isFree() && relative.getValue()>= tower.floors.get(floor).getCost() && tower.isPresent(player)==false)
 			 {
 			return true;
