@@ -57,11 +57,11 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// this.players = new ArrayList<Player>();
 		this.board = new Board();
-		//System.out.println(board);
+		System.out.println("ho inizializzato la board");
 		this.round = 0;
 		this.period = 0;
 		changePeriod();
-		System.out.println(board);
+		System.out.println("ho fatto change period");
 		changeRound();
 		System.out.println(board);
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board);
@@ -198,13 +198,20 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		board.getVentureTower().refreshTower(period);
 		System.out.println(board);
 		// refresh harvest and production area
+		
 		board.getHarvestArea().refresh();
+		System.out.println("HarvestArea:  "+ board.getHarvestArea());
 		board.getProductionArea().refresh();
+		System.out.println("ProductionArea:  "+ board.getProductionArea());
 		// refresh market
 		board.getMarket(0).setFree();
+		System.out.println("Market1 " + board.getMarket(0));
 		board.getMarket(1).setFree();
+		System.out.println("Market2 " + board.getMarket(1));
 		board.getMarket(2).setFree();
+		System.out.println("Market3 " + board.getMarket(2));
 		board.getMarket(3).setFree();
+		System.out.println("Market4 " + board.getMarket(3));
 
 		// refresh council palace
 		board.getCouncilPalace().refresh();

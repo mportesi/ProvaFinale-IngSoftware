@@ -23,6 +23,7 @@ public class JsonCouncilPalace {
 	int cost = ((Long) councilPalaceObj.get("cost")).intValue();
 	
 	councilPalace = new CouncilPalace(bonusPrivilegeCouncil, bonusCoin, cost);
+	System.out.println ("il councilPalace è" + councilPalace);
 	}
 
 	public CouncilPalace getCouncilPalace(){
