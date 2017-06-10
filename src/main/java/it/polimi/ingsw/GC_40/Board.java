@@ -18,23 +18,26 @@ import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.json.JsonCard;
+import it.polimi.ingsw.json.JsonCouncilPalace;
+import it.polimi.ingsw.json.JsonFloor;
+import it.polimi.ingsw.json.JsonHarvestAndProduction;
+import it.polimi.ingsw.json.JsonMarket;
+import it.polimi.ingsw.json.JsonPersonalBonusTiles;
 
 public class Board  extends Observable<Change> implements Serializable{
-	public static Tower territoryTower;
-	public static Tower characterTower;
-	public static Tower buildingTower;
-	public static Tower ventureTower;
-	public static CouncilPalace councilPalace;
-	public static MarketBuilding market1;
-	public static MarketBuilding market2;
-	public static MarketBuilding market3;
-	public static MarketBuilding market4;
-	public static HarvestAndProductionArea harvestArea;
-	public static HarvestAndProductionArea productionArea;
-	public static Dice blackDice;
-	public static Dice whiteDice;
-	public static Dice orangeDice;
-	public static ArrayList<Card> deck;
+	private Tower territoryTower;
+	private Tower characterTower;
+	private Tower buildingTower;
+	private Tower ventureTower;
+	private CouncilPalace councilPalace;
+	private ArrayList<MarketBuilding> market;
+	private HarvestAndProductionArea harvestArea;
+	private HarvestAndProductionArea productionArea;
+	private Dice blackDice;
+	private Dice whiteDice;
+	private Dice orangeDice;
+	private ArrayList<Card> deck;
 	
 	
 	
@@ -46,6 +49,8 @@ public class Board  extends Observable<Change> implements Serializable{
 		ArrayList<Card> territory2= createDeck(2, "territory");
 		ArrayList<Card> territory3= createDeck(3, "territory");
 		ArrayList<Card> building1= createDeck(1, "building");
+		for(int i=0; i<building1.size();i++){
+			System.out.println(building1.get(i));}
 		ArrayList<Card> building2= createDeck(2, "building");
 		ArrayList<Card> building3= createDeck(3, "building");
 		ArrayList<Card> character1= createDeck(1, "characterCard");
@@ -108,25 +113,37 @@ public class Board  extends Observable<Change> implements Serializable{
 			System.out.println("Piano della torre: " + ventureTower.floors.get(i));
 			
 			}
+		JsonFloor jsonFloor= new JsonFloor();
+		jsonFloor.importFloors();
+		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
+		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
+		characterTower= new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
+		ventureTower= new Tower("venture", venture1, venture2, venture3, jsonFloor.getVentureFloors());
 		
+		JsonCouncilPalace jsonCouncil= new JsonCouncilPalace();
+		jsonCouncil.importCouncilPalace();
+		councilPalace = jsonCouncil.getCouncilPalace();
 		
 		
 		councilPalace = JSon.councilPalace;
 		
 		//lista di market
-		MarketBuilding market1 = JSon.marketBuilding.get(0);
-		MarketBuilding market2 = JSon.marketBuilding.get(1);
-		MarketBuilding market3 = JSon.marketBuilding.get(2);
-		MarketBuilding market4 = JSon.marketBuilding.get(3);
+		JsonMarket jsonMarket= new  JsonMarket();
+		jsonMarket.importMarket();
+		for(int i=0; i<4; i++){
+			market.add(i, jsonMarket.getMarketBuilding(i));
+		}
+		
+		JsonPersonalBonusTiles jsonPersonalBonusTiles= new JsonPersonalBonusTiles();
+		jsonPersonalBonusTiles.importPersonalBonusTiles();
+		PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
+		PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
 		
 		
-		PersonalBonusTile personalBonusTileSimple = JSon.personalBonusTiles.get(0);
-		PersonalBonusTile personalBonusTileAdvanced = JSon.personalBonusTiles.get(1);
-		
-		
-		
-		harvestArea = JSon.harvest;
-		productionArea = JSon.production;
+		JsonHarvestAndProduction jsonHarvestAndProduction= new JsonHarvestAndProduction();
+		jsonHarvestAndProduction.importHarvestAndProduction();
+		harvestArea = jsonHarvestAndProduction.getHarvest();
+		productionArea = jsonHarvestAndProduction.getProduction();
 		
 		
 		blackDice = new Dice(ColorDice.BLACK);
@@ -136,20 +153,22 @@ public class Board  extends Observable<Change> implements Serializable{
 	
 	
 	
+	JsonCard jsonCard= new JsonCard();
 	
 	//public ArrayList<Card> createDeck(int period, String type) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		
 		public void create(){
 		for (Card card : JSon.characterDeck){
+		for (Card card : JsonCard.characterDeck){
 			 deck.add(card);
 		}
-		for (Card card : JSon.buildingDeck){
+		for (Card card : JsonCard.buildingDeck){
 			 deck.add(card);
 		}
-		for (Card card : JSon.territoryDeck){
+		for (Card card : JsonCard.territoryDeck){
 			 deck.add(card);
 		}
-		for (Card card : JSon.ventureDeck){
+		for (Card card : JsonCard.ventureDeck){
 			 deck.add(card);
 		}
 		}
@@ -160,13 +179,16 @@ public class Board  extends Observable<Change> implements Serializable{
 			for(Card c:deck){
 				if (c.getType().equals(type) && c.getPeriod()==period){
 					newDeck.add(c);
+					
 					}
 			}
+			/*for(int i=0; i<newDeck.size(); i++){
+				System.out.println(newDeck.get(i));
+			}*/
 			return newDeck;
 			
+			
 		}
-
-
 
 
 	@Override
@@ -175,12 +197,80 @@ public class Board  extends Observable<Change> implements Serializable{
 	}
 
 
-
-
 	public CouncilPalace getCouncilPalace() {
 		// TODO Auto-generated method stub
 		return councilPalace;
 	}
 
+	public Tower getTerritoryTower() {
+		// TODO Auto-generated method stub
+		return territoryTower;
+	}
+	
+	public Tower getBuildingTower() {
+		// TODO Auto-generated method stub
+		return buildingTower;
+	}
+
+
+
+
+	public Tower getCharacterTower() {
+		return characterTower;
+	}
+
+
+
+
+	public Tower getVentureTower() {
+		return ventureTower;
+	}
+
+
+
+
+
+	public HarvestAndProductionArea getHarvestArea() {
+		return harvestArea;
+	}
+
+
+
+
+	public HarvestAndProductionArea getProductionArea() {
+		return productionArea;
+	}
+
+
+
+
+	public Dice getBlackDice() {
+		return blackDice;
+	}
+
+
+
+
+	public Dice getWhiteDice() {
+		return whiteDice;
+	}
+
+
+
+
+	public Dice getOrangeDice() {
+		return orangeDice;
+	}
+
+
+
+
+	public ArrayList<Card> getDeck() {
+		return deck;
+	}
+
+	public MarketBuilding getMarket(int i) {
+		return market.get(i);
+	}
 
 }

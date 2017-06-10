@@ -124,7 +124,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
 		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
-		ArrayList<Player> councilPalaceOrder = Board.councilPalace.getOrder();
+		ArrayList<Player> councilPalaceOrder = board.getCouncilPalace().getOrder();
 
 		for (Player checkedPlayer : councilPalaceOrder) {
 			nextTurnOrder.add(checkedPlayer);
@@ -198,21 +198,21 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		Board.ventureTower.refreshTower(period);
 		System.out.println(board);
 		// refresh harvest and production area
-		Board.harvestArea.refresh();
-		Board.productionArea.refresh();
+		board.getHarvestArea().refresh();
+		board.getProductionArea().refresh();
 		// refresh market
-		Board.market1.setFree();
-		Board.market2.setFree();
-		Board.market3.setFree();
-		Board.market4.setFree();
+		board.getMarket(0).setFree();
+		board.getMarket(1).setFree();
+		board.getMarket(2).setFree();
+		board.getMarket(3).setFree();
 
 		// refresh council palace
-		Board.councilPalace.refresh();
+		board.getCouncilPalace().refresh();
 
 		// roll dice
-		Board.blackDice.setValue();
-		Board.orangeDice.setValue();
-		Board.whiteDice.setValue();
+		board.getBlackDice().setValue();
+		board.getOrangeDice().setValue();
+		board.getWhiteDice().setValue();
 
 		ChangeRound changeRound = new ChangeRound(round);
 		this.notifyObserver(changeRound);
