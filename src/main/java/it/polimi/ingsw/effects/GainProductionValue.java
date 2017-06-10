@@ -1,5 +1,10 @@
 package it.polimi.ingsw.effects;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_40.Player;
 
 public class GainProductionValue extends Effect {
@@ -11,9 +16,13 @@ public class GainProductionValue extends Effect {
 	}
 
 	@Override
-	public void apply(Player player) {
+	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// TODO Auto-generated method stub
-	player.personalBonusTile.applyProductionEffect(player);	
+		if (productionValue >= player.personalBonusTile.getCostProduction()){
+		player.personalBonusTile.applyProductionEffect(player);		
+
+	}
+
 
 	}
 

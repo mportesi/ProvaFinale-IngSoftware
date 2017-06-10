@@ -1,8 +1,10 @@
 package it.polimi.ingsw.components;
 
-import it.polimi.ingsw.GC_40.ColorDice;
+import java.io.Serializable;
 
-public class Dice {
+import it.polimi.ingsw.colors.ColorDice;
+
+public class Dice implements Serializable{
 	private ColorDice color;
 	private int value;
 	

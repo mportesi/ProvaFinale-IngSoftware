@@ -25,83 +25,177 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-
-import it.polimi.ingsw.components.BuildingCard;
-import it.polimi.ingsw.components.Card;
-import it.polimi.ingsw.components.CharacterCard;
-import it.polimi.ingsw.components.Floor;
-import it.polimi.ingsw.components.Market;
-import it.polimi.ingsw.components.MarketBuilding;
+import it.polimi.ingsw.areas.CouncilPalace;
+import it.polimi.ingsw.areas.Floor;
+import it.polimi.ingsw.areas.HarvestAndProductionArea;
+import it.polimi.ingsw.areas.MarketBuilding;
+import it.polimi.ingsw.cards.BuildingCard;
+import it.polimi.ingsw.cards.BuildingListOfEffect;
+import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.CardListOfEffect;
+import it.polimi.ingsw.cards.CharacterCard;
+import it.polimi.ingsw.cards.CharacterListOfEffect;
+import it.polimi.ingsw.cards.TerritoryCard;
+import it.polimi.ingsw.cards.TerritoryListOfEffect;
+import it.polimi.ingsw.cards.VentureCard;
+import it.polimi.ingsw.cards.VentureListOfEffect;
+import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.components.PersonalBonusTile;
-import it.polimi.ingsw.components.TerritoryCard;
-import it.polimi.ingsw.components.VentureCard;
+import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainMilitaryPoint;
 import it.polimi.ingsw.effects.GainStone;
 import it.polimi.ingsw.effects.GainWood;
-
+//da dividere 
 public class JSon {
-	public static List<Card> buildingDeck = new ArrayList<Card>();
-	public static List<Card> territoryDeck = new ArrayList<Card>();
-	public static List<Card> ventureDeck = new ArrayList<Card>();
-	public static List<Card> characterDeck = new ArrayList<Card>();
-	public static ArrayList<Floor> territoryFloors = new ArrayList<Floor>();
-	public static ArrayList<Floor> characterFloors = new ArrayList<Floor>();
-	public static ArrayList<Floor> buildingFloors = new ArrayList<Floor>();
-	public static ArrayList<Floor> ventureFloors = new ArrayList<Floor>();
-	public static ArrayList <MarketBuilding> marketBuilding = new ArrayList <MarketBuilding>();
-	public static ArrayList <PersonalBonusTile> personalBonusTiles = new ArrayList <PersonalBonusTile>();
+	
+	public static List<Card> buildingDeck;
+	public static List<Card> territoryDeck ;
+	public static List<Card> ventureDeck ;
+	public static List<Card> characterDeck ;
+	public static ArrayList<Floor> territoryFloors;
+	public static ArrayList<Floor> characterFloors; 
+	public static ArrayList<Floor> buildingFloors ;
+	public static ArrayList<Floor> ventureFloors; 
+	public static ArrayList <MarketBuilding> marketBuilding;
+	public static ArrayList <PersonalBonusTile> personalBonusTiles;
+	public static HarvestAndProductionArea harvest;
+	public static HarvestAndProductionArea production;
+	public static CouncilPalace councilPalace;
+	public static Map <Integer, Integer> finalVictoryPointMap;
+	public static ArrayList <FinalVictoryPoint> finalVictoryPointList;
+	public static int victoryPointForTheFirst;
+	public static int victoryPointForTheSecond;
 
 	public static void importCards() throws FileNotFoundException, IOException, ParseException {
+		
+		
+		JSONParser VPForMilitaryParser = new JSONParser();
+		Object obj = null;
+		JSONObject VPForMilitary = (JSONObject) VPForMilitaryParser.parse(new FileReader("json/VPForMilitary.json"));
+		victoryPointForTheFirst = ((Long) VPForMilitary.get("victoryPointForTheFirst")).intValue();
+		victoryPointForTheSecond = ((Long) VPForMilitary.get("victoryPointForTheSecond")).intValue();
+		
+		
+		finalVictoryPointList= new ArrayList<FinalVictoryPoint>();
+		JSONParser finalVictoryPointParser = new JSONParser();
+		JSONArray finalVictoryPointArray = (JSONArray) finalVictoryPointParser.parse(new FileReader("json/finalVictoryPoints.json"));
+		for (Object o : finalVictoryPointArray){
+			
+			JSONObject finalVictoryPoint = (JSONObject) o;
+			String type = (String) finalVictoryPoint.get("type");
+			
+			JSONArray gain = (JSONArray) finalVictoryPointParser.parse(finalVictoryPoint.get("gain").toString());
+			
+			Map<Integer, Integer> finalVictoryPointMap = new LinkedHashMap<Integer, Integer>();
+			for (int i = 0; i < gain.size(); i++) {
+				JSONObject gainObject = (JSONObject) gain.get(i);
+				int numberOf = ((Long) gainObject.get("numberOf")).intValue();
+				int amount = ((Long) gainObject.get("amount")).intValue();
+				finalVictoryPointMap.put(numberOf, amount);
+				
+			FinalVictoryPoint finalVictoryPointClass = new FinalVictoryPoint (type, finalVictoryPointMap);
+			finalVictoryPointList.add(finalVictoryPointClass);
+		}
+			
+		}
+		
+		JSONParser councilPalaceParser = new JSONParser();
+		JSONObject councilPalaceObj = (JSONObject) councilPalaceParser.parse(new FileReader("json/CouncilPalace.json"));
+		
+		int bonusPrivilegeCouncil = ((Long) councilPalaceObj.get("bonusPrivilegeCouncil")).intValue();
+		int bonusCoin = ((Long) councilPalaceObj.get("bonusCoin")).intValue();
+		int cost = ((Long) councilPalaceObj.get("cost")).intValue();
+		
+		CouncilPalace councilPalace = new CouncilPalace(bonusPrivilegeCouncil, bonusCoin, cost);
+		
+		
+		JSONParser privilegeCouncilParser = new JSONParser();
+		JSONObject privilegeCouncilObj = (JSONObject) privilegeCouncilParser.parse(new FileReader("json/privilegeCouncil.json"));
+		
+		int bonusWoodAndStone = ((Long) privilegeCouncilObj.get("bonusWoodAndStone")).intValue();
+		int bonusServant = ((Long) privilegeCouncilObj.get("bonusServant")).intValue();
+		int bonusCoinP = ((Long) privilegeCouncilObj.get("bonusCoin")).intValue();
+		int bonusMilitaryPoint = ((Long) privilegeCouncilObj.get("bonusMilitaryPoint")).intValue();
+		int bonusFaithPoint = ((Long) privilegeCouncilObj.get("bonusFaithPoint")).intValue();
+		
+		PrivilegeCouncil privilegeCouncil = new PrivilegeCouncil(bonusWoodAndStone, bonusServant, bonusCoinP, bonusMilitaryPoint, bonusFaithPoint);
+		
+		
+		
+		JSONParser harvestAndProductionParser = new JSONParser();
+		JSONArray harvestAndProductionArray = (JSONArray) harvestAndProductionParser.parse(new FileReader("json/harvestAndProductionArea.json"));
+		for (Object o : harvestAndProductionArray) {
+			JSONObject harvestAndProduction = (JSONObject) o;
 
+			String type = (String) harvestAndProduction.get("type");
+			int costOfLeftArea = ((Long) harvestAndProduction.get("costOfLeftArea")).intValue();
+			int costOfRightArea = ((Long) harvestAndProduction.get("costOfRightArea")).intValue();
+			int malus = ((Long) harvestAndProduction.get("malus")).intValue();
+			
+			switch (type){
+			case "production": {
+				production = new HarvestAndProductionArea (type, costOfLeftArea, costOfRightArea, malus);
+				break;
+			}
+			case "harvest": {
+				harvest = new HarvestAndProductionArea (type, costOfLeftArea, costOfRightArea, malus);
+				break;
+			}
+			}
+			
+		}
+			
+		territoryFloors= new ArrayList<Floor>();
+		characterFloors= new ArrayList<Floor>();
+		ventureFloors= new ArrayList<Floor>();
+		buildingFloors= new ArrayList<Floor>();
 		JSONParser floorParser = new JSONParser();
-		JSONArray floorArray = (JSONArray) floorParser.parse(new FileReader("target/BonusFloors.json"));
+		JSONArray floorArray = (JSONArray) floorParser.parse(new FileReader("json/Floors.json"));
 		for (Object o : floorArray) {
 			JSONObject floor = (JSONObject) o;
 
 			String type = (String) floor.get("type");
-			int cost = ((Long) floor.get("cost")).intValue();
+			int costOfFloor = ((Long) floor.get("cost")).intValue();
 			int amountBonus = ((Long) floor.get("amountBonus")).intValue();
 
 			switch (type) {
 			case "territory": {
 				GainWood e = new GainWood(amountBonus);
-				Floor f = new Floor(type, cost, e);
+				Floor f = new Floor(type, costOfFloor, e);
 				territoryFloors.add(f);
 				break;
 			}
 			case "character": {
 				GainStone e = new GainStone(amountBonus);
-				Floor f = new Floor(type, cost, e);
+				Floor f = new Floor(type, costOfFloor, e);
 				characterFloors.add(f);
 				break;
 			}
 			case "building": {
 				GainMilitaryPoint e = new GainMilitaryPoint(amountBonus);
-				Floor f = new Floor(type, cost, e);
+				Floor f = new Floor(type, costOfFloor, e);
 				buildingFloors.add(f);
 				break;
 			}
 			case "venture": {
 				GainCoin e = new GainCoin(amountBonus);
-				Floor f = new Floor(type, cost, e);
+				Floor f = new Floor(type, costOfFloor, e);
 				ventureFloors.add(f);
 				break;
 			}
 			}
 		}
 		
+		marketBuilding= new ArrayList<MarketBuilding>();
 		JSONParser marketParser = new JSONParser();
-		JSONArray marketArray = (JSONArray) marketParser.parse(new FileReader("target/MarketBonus.json"));
+		JSONArray marketArray = (JSONArray) marketParser.parse(new FileReader("json/MarketBonus.json"));
 		for (Object o : marketArray){
 			
 			JSONObject market = (JSONObject) o;
 			String type = (String) market.get("type");
-			int cost= ((Long) market.get("cost")).intValue();
+			int costOfMarket= ((Long) market.get("cost")).intValue();
 			
 			JSONArray bonus = (JSONArray) marketParser.parse(market.get("bonus").toString());
 			
@@ -112,14 +206,15 @@ public class JSon {
 				int amount = ((Long) bonusObject.get("amount")).intValue();
 				bonusMap.put(typeBonus, amount);
 			
-			MarketBuilding m = new MarketBuilding (type, bonusMap, cost);
+			MarketBuilding m = new MarketBuilding (type, bonusMap, costOfMarket);
 			marketBuilding.add(m);
 			
 		}
 		}
 		
+		personalBonusTiles= new ArrayList<PersonalBonusTile>();
 		JSONParser personalBonusTileParser = new JSONParser();
-		JSONArray personalBonusTileArray = (JSONArray) personalBonusTileParser.parse(new FileReader("target/MarketBonus.json"));
+		JSONArray personalBonusTileArray = (JSONArray) personalBonusTileParser.parse(new FileReader("json/tesseraBonus.json"));
 		for (Object o : personalBonusTileArray){
 			
 			JSONObject personalBonusTile = (JSONObject) o;
@@ -155,8 +250,9 @@ public class JSon {
 		
 
 		// BuildingCards
+		buildingDeck= new ArrayList<Card>();
 		JSONParser buildingParser = new JSONParser();
-		JSONArray buildingArray = (JSONArray) buildingParser.parse(new FileReader("target/BuildingCards.json"));
+		JSONArray buildingArray = (JSONArray) buildingParser.parse(new FileReader("json/BuildingCards.json"));
 		for (Object o : buildingArray) {
 			JSONObject card = (JSONObject) o;
 
@@ -164,17 +260,18 @@ public class JSon {
 			int period = ((Long) card.get("period")).intValue();
 			String name = (String) card.get("name");
 
-			JSONArray cost = (JSONArray) buildingParser.parse(card.get("cost").toString());
+			JSONArray costOfBuilding = (JSONArray) buildingParser.parse(card.get("cost").toString());
 
 			JSONArray immediateEffect = (JSONArray) buildingParser.parse(card.get("immediateEffect").toString());
 
 			Map<String, Integer> costMap = new LinkedHashMap();
-			for (int i = 0; i < cost.size(); i++) {
-				JSONObject costObject = (JSONObject) cost.get(i);
+			for (int i = 0; i < costOfBuilding.size(); i++) {
+				JSONObject costObject = (JSONObject) costOfBuilding.get(i);
 				String typeCost = (String) costObject.get("type");
 				int amount = ((Long) costObject.get("amount")).intValue();
 				costMap.put(typeCost, amount);
 			}
+			
 
 			Map<String, Integer> immediateEffectMap = new LinkedHashMap();
 			for (int i = 0; i < immediateEffect.size(); i++) {
@@ -183,15 +280,22 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
-
-			Card c = new BuildingCard(type, name, period, costMap, immediateEffectMap);
+			
+			
+			BuildingListOfEffect immediate= new BuildingListOfEffect(immediateEffectMap);
+			Card c = new BuildingCard(type, name, period, costMap, immediate);
 
 			buildingDeck.add(c);
 		}
-
+		
+			for (int i = 0; i<buildingDeck.size(); i++){
+				System.out.println("Carta numero(b): "+ i + "  "+ buildingDeck.get(i));
+			}
+		
 		// TerritoryCards
+		territoryDeck= new ArrayList<Card>();
 		JSONParser territoryParser = new JSONParser();
-		JSONArray territoryArray = (JSONArray) territoryParser.parse(new FileReader("target/TerritoryCards.json"));
+		JSONArray territoryArray = (JSONArray) territoryParser.parse(new FileReader("json/TerritoryCards.json"));
 		for (Object o : territoryArray) {
 			JSONObject card = (JSONObject) o;
 
@@ -208,15 +312,21 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
-
-			Card c = new TerritoryCard(type, name, period, immediateEffectMap);
+			
+			TerritoryListOfEffect immediate= new TerritoryListOfEffect(immediateEffectMap);
+			Card c = new TerritoryCard(type, name, period, immediate);
 
 			territoryDeck.add(c);
 		}
-
+		
+		for (int i = 0; i<territoryDeck.size(); i++){
+			System.out.println("Carta numero(t): "+ i + "  "+ territoryDeck.get(i));
+		}
+		
 		// VentureDeck
+		ventureDeck= new ArrayList<Card>();
 		JSONParser ventureParser = new JSONParser();
-		JSONArray ventureArray = (JSONArray) ventureParser.parse(new FileReader("/target/VentureCards.json"));
+		JSONArray ventureArray = (JSONArray) ventureParser.parse(new FileReader("json/VentureCards.json"));
 		for (Object o : ventureArray) {
 			JSONObject card = (JSONObject) o;
 
@@ -226,13 +336,13 @@ public class JSon {
 			int alternativeCostBoolean = ((Long) card.get("alternativeCostBoolean")).intValue();
 			int militaryRequirement = ((Long) card.get("militaryRequirement")).intValue();
 			int militaryCost = ((Long) card.get("militaryCost")).intValue();
-			JSONArray cost = (JSONArray) ventureParser.parse(card.get("cost").toString());
+			JSONArray costOfVenture = (JSONArray) ventureParser.parse(card.get("cost").toString());
 
 			JSONArray immediateEffect = (JSONArray) ventureParser.parse(card.get("immediateEffect").toString());
 
 			Map<String, Integer> costMap = new LinkedHashMap();
-			for (int i = 0; i < cost.size(); i++) {
-				JSONObject costObject = (JSONObject) cost.get(i);
+			for (int i = 0; i < costOfVenture.size(); i++) {
+				JSONObject costObject = (JSONObject) costOfVenture.get(i);
 				String typeCost = (String) costObject.get("type");
 				int amount = ((Long) costObject.get("amount")).intValue();
 				costMap.put(typeCost, amount);
@@ -245,21 +355,26 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
+			VentureListOfEffect immediate= new VentureListOfEffect(immediateEffectMap);
 			Card c;
 			if (alternativeCostBoolean == 1) {
-				c = new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost, immediateEffectMap);
+				c = new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost, immediate);
 			} else if (militaryRequirement == 0 && militaryCost == 0) {
-				c = new VentureCard(type, name, period, costMap, immediateEffectMap);
+				c = new VentureCard(type, name, period, costMap, immediate);
 			} else {
-				c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap, immediateEffectMap);
+				c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap);
 			}
 
 			ventureDeck.add(c);
 		}
 
+		for (int i = 0; i<ventureDeck.size(); i++){
+			System.out.println("Carta numero(v): "+ i + "  "+ ventureDeck.get(i));
+		}
 		// CharacterCard
+		characterDeck= new ArrayList<Card>();
 		JSONParser characterParser = new JSONParser();
-		JSONArray characterArray = (JSONArray) characterParser.parse(new FileReader("/target/CharacterCards.json"));
+		JSONArray characterArray = (JSONArray) characterParser.parse(new FileReader("json/CharacterCards.json"));
 		for (Object o : characterArray) {
 			JSONObject card = (JSONObject) o;
 
@@ -278,9 +393,9 @@ public class JSon {
 				int amount = ((Long) immediateEffectObject.get("amount")).intValue();
 				immediateEffectMap.put(typeImmediateEffect, amount);
 			}
-
+			CharacterListOfEffect immediate= new CharacterListOfEffect(immediateEffectMap);
 			if (bonusCard != null) {
-				int valueGetCard = (int) card.get("valueGetCard");
+				int valueGetCard = ((Long) card.get("valueGetCard")).intValue();
 				JSONArray discount = (JSONArray) characterParser.parse(card.get("discount").toString());
 
 				Map<String, Integer> discountMap = new LinkedHashMap();
@@ -291,15 +406,24 @@ public class JSon {
 					discountMap.put(typeDiscount, amount);
 				}
 
-				Card c = new CharacterCard(type, name, period, costCoin, bonusCard, valueGetCard, discountMap,
-						immediateEffectMap);
+				Card c = new CharacterCard(type, name, period, costCoin, bonusCard, valueGetCard, discountMap, immediate);
 				characterDeck.add(c);
+			
 			} else {
 
-				Card c = new CharacterCard(type, name, period, costCoin, immediateEffectMap);
+				Card c = new CharacterCard(type, name, period, costCoin, immediate);
 				characterDeck.add(c);
+				
 			}
+			
+			
+			
+			
 
+		}
+
+		for (int i = 0; i<characterDeck.size(); i++){
+			System.out.println("Carta numero(c): "+ i + "  "+ characterDeck.get(i));
 		}
 
 	}

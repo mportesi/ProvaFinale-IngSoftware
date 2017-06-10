@@ -1,25 +1,34 @@
-package it.polimi.ingsw.actions;
+ package it.polimi.ingsw.actions;
 
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.components.CouncilPalace;
-import it.polimi.ingsw.components.Piece;
+import it.polimi.ingsw.changes.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
+import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.GC_40.Play;
+import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.components.Relative;
 
-public class PutRelativeOnCouncilPalace implements PutRelative {
+public class PutRelativeOnCouncilPalace extends Observable<Change> implements PutRelative {
 
 	Relative relative;
 	Player player;
 	CouncilPalace councilPalace;
-	Piece piece;
+	String bonus;
 	
-	public PutRelativeOnCouncilPalace(Player player, Relative relative){
+	
+	public PutRelativeOnCouncilPalace(Player player, Relative relative, String bonus){
 		this.player=player;
 		this.relative=relative;
+		this.bonus=bonus;
+
 	}
 	
-	public void setPiece(Piece piece){
-		this.piece=piece;
-	}
+	
 
 	@Override
 	public boolean isApplicable() {
@@ -30,15 +39,19 @@ public class PutRelativeOnCouncilPalace implements PutRelative {
 			return false;
 		}
 	}
-
+	
+	
+	//PROBLEMA 
 	@Override
-	public void apply() {
+	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
-			councilPalace.addPlayer(player);
+			play.getBoard().getCouncilPalace().addPlayer(player);
+			ChangeCouncilPalace changeCouncilPalace= new ChangeCouncilPalace(relative);
+			this.notifyObserver(changeCouncilPalace);
 			// The player receive the bonus
 			// TODO give player the council privilege bonus choice
-			councilPalace.giveBonus(piece, player);
+			councilPalace.applyEffect(player);
 		}
 
 	}

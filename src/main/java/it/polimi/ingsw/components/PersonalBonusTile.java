@@ -1,7 +1,12 @@
 package it.polimi.ingsw.components;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
@@ -19,7 +24,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
 
-public class PersonalBonusTile{
+public class PersonalBonusTile implements Serializable{
 	private String type;
 	private List <Effect> productionEffect;
 	private List <Effect> harvestEffect;
@@ -29,8 +34,8 @@ public class PersonalBonusTile{
 	private int costHarvest;
 	
 	public PersonalBonusTile (String type, Map<String, Integer> productionEffectMap, Map<String, Integer> harvestEffectMap, int costProduction, int costHarvest){
-		this.costProduction=costProduction;
-		this.costHarvest=costHarvest;
+		this.costProduction = costProduction;
+		this.costHarvest = costHarvest;
 		this.harvestEffectMap=harvestEffectMap;
 		this.productionEffectMap=productionEffectMap;
 	}
@@ -144,7 +149,7 @@ public class PersonalBonusTile{
 	
 	
 	
-	public void applyProductionEffect(Player player) {
+	public void applyProductionEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createListOfProductionEffect();
 
 		for (Effect e : productionEffect) {
@@ -156,7 +161,7 @@ public class PersonalBonusTile{
 		}
 	}
 	
-	public void applyHarvestEffect(Player player) {
+	public void applyHarvestEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createListOfHarvestEffect();
 
 		for (Effect e : harvestEffect) {
@@ -167,6 +172,15 @@ public class PersonalBonusTile{
 			}
 		}
 	}
+
+	public int getCostHarvest() {
+		return costHarvest;
+	}
+
+	public int getCostProduction() {
+		return costProduction;
+	}
+
 	
 	
 

@@ -1,9 +1,17 @@
 package it.polimi.ingsw.components;
 
-import it.polimi.ingsw.GC_40.ColorDice;
+import it.polimi.ingsw.colors.ColorDice;
 
-public class Relative {
+import java.io.Serializable;
+
+import it.polimi.ingsw.GC_40.Player;
+
+import it.polimi.ingsw.colors.ColorDice;
+
+
+public class Relative implements Serializable{
 	
+	private Player player;
 	private ColorDice color;
 	private int value;
 	
@@ -23,6 +31,14 @@ public class Relative {
 	public void setValue(int n){
 		this.value+=n;
 	}
+
+
+	public Player getPlayer() {
+		return player;
+	}
+
+
+	
 	
 	
 }
