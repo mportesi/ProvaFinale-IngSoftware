@@ -150,15 +150,15 @@ public class CommandLineInterface implements Serializable{
 	}
 
 	public Tower chooseTower() {
-		client = new ClientModel();
+		
 		System.out.println("Choose the tower:");
 		System.out.println("territoryTower");
 		System.out.println("buildingTower");
 		System.out.println("characterTower");
 		System.out.println("ventureTower");
-
+		System.out.println(client.getBoard().getTerritoryTower());
 		String input = scanner.nextLine();
-		Tower tower = null;
+		Tower tower;
 		switch (input) {
 		case "territoryTower": {
 			tower = this.client.getTerritoryTower();
@@ -181,8 +181,7 @@ public class CommandLineInterface implements Serializable{
 			break;
 		}
 		}
-
-		return tower;
+		return null;
 
 	}
 

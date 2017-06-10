@@ -154,12 +154,6 @@ public class Board  extends Observable<Change> implements Serializable{
 	}
 	
 	
-	
-	
-	
-	//public ArrayList<Card> createDeck(int period, String type) throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		
-	
 
 	
 		public void create(JsonCard jsonCard){
@@ -208,6 +202,7 @@ public class Board  extends Observable<Change> implements Serializable{
 
 	public Tower getTerritoryTower() {
 		// TODO Auto-generated method stub
+		System.out.println(territoryTower);
 		return territoryTower;
 	}
 	
