@@ -287,7 +287,11 @@ public class JSon {
 
 			buildingDeck.add(c);
 		}
-
+		
+			for (int i = 0; i<buildingDeck.size(); i++){
+				System.out.println("Carta numero(b): "+ i + "  "+ buildingDeck.get(i));
+			}
+		
 		// TerritoryCards
 		territoryDeck= new ArrayList<Card>();
 		JSONParser territoryParser = new JSONParser();
@@ -314,7 +318,11 @@ public class JSon {
 
 			territoryDeck.add(c);
 		}
-
+		
+		for (int i = 0; i<territoryDeck.size(); i++){
+			System.out.println("Carta numero(t): "+ i + "  "+ territoryDeck.get(i));
+		}
+		
 		// VentureDeck
 		ventureDeck= new ArrayList<Card>();
 		JSONParser ventureParser = new JSONParser();
@@ -360,6 +368,9 @@ public class JSon {
 			ventureDeck.add(c);
 		}
 
+		for (int i = 0; i<ventureDeck.size(); i++){
+			System.out.println("Carta numero(v): "+ i + "  "+ ventureDeck.get(i));
+		}
 		// CharacterCard
 		characterDeck= new ArrayList<Card>();
 		JSONParser characterParser = new JSONParser();
@@ -407,7 +418,12 @@ public class JSon {
 			
 			
 			
+			
 
+		}
+
+		for (int i = 0; i<characterDeck.size(); i++){
+			System.out.println("Carta numero(c): "+ i + "  "+ characterDeck.get(i));
 		}
 
 	}

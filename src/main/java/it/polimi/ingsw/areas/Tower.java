@@ -14,13 +14,11 @@ public class Tower implements Serializable {
 	private ArrayList<Card> deck2;
 	private ArrayList<Card> deck3;
 
-	public Tower(String type, ArrayList<Card> deck1, ArrayList<Card> deck2, ArrayList<Card> deck3,
-			ArrayList<Floor> floors) {
+	public Tower(String type, ArrayList<Card> deck1, ArrayList<Card> deck2, ArrayList<Card> deck3, ArrayList<Floor> floors) {
 		this.type = type;
 		this.deck1 = deck1;
 		this.deck2 = deck2;
 		this.deck3 = deck3;
-		floors= new ArrayList<Floor>(4);
 		this.floors = floors;
 	}
 
@@ -32,28 +30,34 @@ public class Tower implements Serializable {
 	// To empty the towers at the end of the round and to recharge them with new
 	// cards
 	public void refreshTower(int period) {
+		System.out.println("Sono nella refresh tower");
 		ArrayList<Card> deck = new ArrayList<Card>();
 		switch (period) {
 		case 1:
+			{
+			System.out.println("Sono nel case1");	
 			deck = deck1;
-			System.out.println("mazzo1:" + deck.get(0));
+			
 			break;
+			}
 		case 2:
-			deck = deck2;
+			{deck = deck2;
 			System.out.println("mazzo2:" + deck.get(0));
 			break;
+			}
 		case 3:
-			deck = deck3;
+			{deck = deck3;
 			System.out.println("mazzo3:" + deck.get(0));
 			break;
+			}
 		}
 
-		for (Floor f : floors) {
-				for(int i=0; i<deck.size(); i++){
-				f.currentCard = deck.remove(i);
-				//System.out.println(f.currentCard);
+		
+				for(int i=0; i<4; i++){
+				floors.get(i).currentCard = deck.remove(i);
+				System.out.println("ho messo nel piano: "+i +"la carta:" + floors.get(i).currentCard.getType());
 				}
-		}
+		
 	}
 
 	/*
