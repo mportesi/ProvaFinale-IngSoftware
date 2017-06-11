@@ -30,7 +30,8 @@ public class Relative implements Serializable{
 	}
 	
 	public void setValueServant(int n){
-		this.value+= n;
+		this.value= value + n;
+		System.out.println("The relative with servant has the value" + value + "  with color  " + color);
 	}
 	
 	public void setValue(int value){

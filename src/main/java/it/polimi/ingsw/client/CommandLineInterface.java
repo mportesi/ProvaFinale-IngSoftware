@@ -52,7 +52,7 @@ public class CommandLineInterface implements Serializable{
 
 		Relative relative = chooseTheRelative();
 		
-		System.out.println("ho creato un relative");
+		System.out.println("ho creato un relative" + relative.getValue());
 
 		System.out.println("Choose where you want to put the relative:");
 		System.out.println("Tower");
@@ -116,6 +116,7 @@ public class CommandLineInterface implements Serializable{
 	}
 
 	public Relative chooseTheRelative() {
+		System.out.println(client.getBoard().getBlackDice());
 
 		System.out.println("Choose what relative you want to use: black, white, orange, neutral");
 		String input = scanner.nextLine();
@@ -128,10 +129,12 @@ public class CommandLineInterface implements Serializable{
 		case "white": {
 			relative = client.getPlayer().getWhiteRelative();
 			break;
+			
 		}
 		case "orange": {
 			relative = client.getPlayer().getOrangeRelative();
 			break;
+			
 		}
 		case "neutral": {
 			relative = client.getPlayer().getNeutralRelative();
@@ -142,10 +145,13 @@ public class CommandLineInterface implements Serializable{
 			break;
 		}
 		}
+		System.out.println("THE VALUE OF THE RELATIVE IS  " + relative.getValue());
 		System.out.println("How many servants do you want to use?");
-		int value = scanner.nextInt();
-		relative.setValueServant(value);
+		int valueServant = scanner.nextInt();
+		relative.setValueServant(valueServant);
+		System.out.println("the value of the relative with servant is  " + relative.getValue());
 		return relative;
+		
 
 	}
 
