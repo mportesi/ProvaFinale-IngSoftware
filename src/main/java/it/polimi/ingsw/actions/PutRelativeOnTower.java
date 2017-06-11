@@ -34,13 +34,17 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		System.out.println("C'è il giocatore: "+ tower.floors.get(floor).getPlayer());
 		if(tower.floors.get(floor).isFree()){
 			System.out.println("tower is free");
+			if(relative.getValue()>=tower.floors.get(floor).getCost()){
+				System.out.println("The relative has the bigger value");
+				if(tower.isPresent(player)==false){
+					System.out.println("There isn't the player");
+					System.out.println("true");
+					return true;
+				}
+			}
 		}
-		if(relative.getValue()>=tower.floors.get(floor).getCost()){
-			System.out.println("The relative has the bigger value");
-		}
-		if(tower.isPresent(player)==false){
-			System.out.println("There isn't the player");
-		}
+		
+		
 		if((tower.floors.get(floor).isFree()) && (relative.getValue()>= tower.floors.get(floor).getCost()) && (tower.isPresent(player)==false))
 			 {
 			System.out.println(tower);

@@ -71,7 +71,7 @@ public class Tower implements Serializable {
 	//	floors = new ArrayList <Floor>();
 		//System.out.println(floors.get(0));
 		for (Floor f : floors) {
-			if (f.getPlayer()==null || f.getPlayer().equals(p))
+			if (f.getPlayer()!=null || f.getPlayer().equals(p))
 			
 				return true;
 		}
