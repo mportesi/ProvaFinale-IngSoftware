@@ -119,7 +119,7 @@ public class CommandLineInterface implements Serializable{
 
 		System.out.println("Choose what relative you want to use: black, white, orange, neutral");
 		String input = scanner.nextLine();
-		Relative relative = null;
+		Relative relative=null;
 		switch (input) {
 		case "black": {
 			relative = client.getPlayer().getBlackRelative();
@@ -144,7 +144,7 @@ public class CommandLineInterface implements Serializable{
 		}
 		System.out.println("How many servants do you want to use?");
 		int value = scanner.nextInt();
-		relative.setValue(value);
+		relative.setValueServant(value);
 		return relative;
 
 	}

@@ -29,8 +29,12 @@ public class Relative implements Serializable{
 		return value;
 	}
 	
-	public void setValue(int n){
-		this.value= this.value + n;
+	public void setValueServant(int n){
+		this.value+= n;
+	}
+	
+	public void setValue(int value){
+		this.value= value;
 		System.out.println("The relative has the value" + value + "  with color  " + color);
 	}
 

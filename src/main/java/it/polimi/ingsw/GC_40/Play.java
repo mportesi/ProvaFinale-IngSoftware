@@ -219,10 +219,10 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		board.getOrangeDice().setValue();
 		board.getWhiteDice().setValue();
 		
-		System.out.println("ho settato il valore dei dadi");
+		//System.out.println("ho settato il valore dei dadi");
 		for(Player p: players){
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
-			System.out.println("Il valore del black è" + p.getBlackRelative().getValue() );
+			//System.out.println("Il valore del black è" + p.getBlackRelative().getValue() );
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
 			
