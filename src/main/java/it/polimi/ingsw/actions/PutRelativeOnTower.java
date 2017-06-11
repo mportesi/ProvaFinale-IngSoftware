@@ -38,9 +38,16 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		System.out.println("C'è il giocatore: "+ tower.floors.get(floor).getPlayer());
 		if(tower.floors.get(floor).isFree() && relative.getValue()>= tower.floors.get(floor).getCost() && tower.isPresent(player)==false)
 			 {
+			System.out.println(tower);
+			System.out.println("true");
 			return true;
 			 }
-		else return false;
+	
+		else {
+			System.out.println("false");
+			return false;
+		}
+		//System.out.println("false");
 	}
 	
 	
@@ -48,7 +55,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		System.out.println("sono nell'apply di putRelative");
 		if(isApplicable()){
-			System.out.println(isApplicable());
+			System.out.println("ciao");
 				tower.floors.get(floor).setPlayer(player);
 				cardToGive= tower.floors.get(floor).giveCard();
 				player.addCard(cardToGive);

@@ -10,10 +10,11 @@ import it.polimi.ingsw.components.Relative;
 
 public class Tower implements Serializable {
 	private String type;
-	public ArrayList<Floor> floors;
+	public ArrayList<Floor> floors = new ArrayList<Floor>();
 	private ArrayList<Card> deck1;
 	private ArrayList<Card> deck2;
 	private ArrayList<Card> deck3;
+	
 	
 	public Tower(String type, ArrayList<Card> deck1, ArrayList<Card> deck2, ArrayList<Card> deck3, ArrayList<Floor> floors) {
 		this.type = type;
@@ -65,9 +66,9 @@ public class Tower implements Serializable {
 	 * for(int i=0; i<floors.length; i++){ floors[i].currentCard=deck.remove(0);
 	 * } }
 	 */
-
+	
 	public boolean isPresent(Player p) {
-		floors = new ArrayList <Floor>();
+	//	floors = new ArrayList <Floor>();
 		for (Floor f : floors) {
 			if (f.getPlayer().equals(p))
 			
