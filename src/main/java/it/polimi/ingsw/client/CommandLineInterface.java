@@ -69,6 +69,7 @@ public class CommandLineInterface implements Serializable{
 		case "Tower": {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
+			System.out.println(player);
 			putRelative = new PutRelativeOnTower(player, tower, floor, relative);
 			break;
 		}
