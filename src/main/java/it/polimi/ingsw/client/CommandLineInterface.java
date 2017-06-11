@@ -126,7 +126,6 @@ public class CommandLineInterface implements Serializable{
 		}
 		case "white": {
 			relative = client.getPlayer().getWhiteRelative();
-		//	System.out.println("ho creato un relative");
 			break;
 		}
 		case "orange": {

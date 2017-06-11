@@ -29,10 +29,6 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	}
 	
 	public boolean isApplicable(){
-		System.out.println(tower);
-		System.out.println(floor);
-		System.out.println(relative);
-		System.out.println(player);
 		System.out.println("Value of relative: "+ relative.getValue());
 		System.out.println("Cost of action: "+ tower.floors.get(floor).getCost());
 		System.out.println("C'è il giocatore: "+ tower.floors.get(floor).getPlayer());
@@ -49,8 +45,10 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		System.out.println("sono nell'apply di putRelative");
 		if(isApplicable()){
 				tower.floors.get(floor).setPlayer(player);
+				System.out.println(tower.floors.get(floor).getPlayer());
 				cardToGive= tower.floors.get(floor).giveCard();
 				player.addCard(cardToGive);
+				System.out.println(player.getTerritory());
 				cardToGive.applyEffect(player);
 				tower.floors.get(floor).bonusEffect.apply(player);
 				ChangeTower changeTower= new ChangeTower(tower,floor, relative);
