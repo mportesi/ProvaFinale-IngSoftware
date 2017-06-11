@@ -15,8 +15,9 @@ public class Relative implements Serializable{
 	private ColorDice color;
 	private int value;
 	
-	public Relative(ColorDice color){
+	public Relative(ColorDice color, Player player){
 		this.color = color;
+		this.player=player;
 	}
 	
 	

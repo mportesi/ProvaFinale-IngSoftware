@@ -121,20 +121,20 @@ public class CommandLineInterface implements Serializable{
 		Relative relative = null;
 		switch (input) {
 		case "black": {
-			relative = new Relative(ColorDice.BLACK);
+			relative = client.getPlayer().getBlackRelative();
 			break;
 		}
 		case "white": {
-			relative = new Relative(ColorDice.WHITE);
+			relative = client.getPlayer().getWhiteRelative();
 		//	System.out.println("ho creato un relative");
 			break;
 		}
 		case "orange": {
-			relative = new Relative(ColorDice.ORANGE);
+			relative = client.getPlayer().getOrangeRelative();
 			break;
 		}
 		case "neutral": {
-			relative = new Relative(null);
+			relative = client.getPlayer().getNeutralRelative();
 			break;
 		}
 		default: {

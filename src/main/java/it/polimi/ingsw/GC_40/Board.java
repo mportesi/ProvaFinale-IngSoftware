@@ -50,8 +50,6 @@ public class Board  extends Observable<Change> implements Serializable{
 		ArrayList<Card> territory2= createDeck(2, "territory");
 		ArrayList<Card> territory3= createDeck(3, "territory");
 		ArrayList<Card> building1= createDeck(1, "building");
-		for(int i=0; i<building1.size();i++){
-			System.out.println(building1.get(i));}
 		ArrayList<Card> building2= createDeck(2, "building");
 		ArrayList<Card> building3= createDeck(3, "building");
 		ArrayList<Card> character1= createDeck(1, "characterCard");
@@ -77,44 +75,44 @@ public class Board  extends Observable<Change> implements Serializable{
 		JsonFloor jsonFloor= new JsonFloor();
 		jsonFloor.importFloors();
 		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
-		for (int i =0; i< territory1.size(); i++){
+		/*for (int i =0; i< territory1.size(); i++){
 		System.out.println("carta territorio: " + territory1.get(i));
 		}
 		for (int i =0; i< jsonFloor.getTerritoryFloors().size(); i++){
 			System.out.println("Ho creato il piano territory: " + jsonFloor.getTerritoryFloors().get(i));
 			System.out.println("Piano della torre: " + territoryTower.floors.get(i));
 			
-			}
+			}*/
 		
 		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
-		for (int i =0; i< building1.size(); i++){
+		/*for (int i =0; i< building1.size(); i++){
 			System.out.println("carta building: " + building1.get(i));
 			}
 		for (int i =0; i< jsonFloor.getBuildingFloors().size(); i++){
 			System.out.println("Ho creato il piano building: " + jsonFloor.getBuildingFloors().get(i));
 			System.out.println("Piano della torre: " + buildingTower.floors.get(i));
 			
-			}
+			}*/
 		
 		characterTower= new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
-		for (int i =0; i< character1.size(); i++){
+		/*for (int i =0; i< character1.size(); i++){
 			System.out.println("carta character: " + character1.get(i));
 			}
 		for (int i =0; i< jsonFloor.getCharacterFloors().size(); i++){
 			System.out.println("Ho creato il piano character: " + jsonFloor.getCharacterFloors().get(i));
 			System.out.println("Piano della torre: " + characterTower.floors.get(i));
 			
-			}
+			}*/
 		
 		ventureTower= new Tower("venture", venture1, venture2, venture3, jsonFloor.getVentureFloors());
-		for (int i =0; i< venture1.size(); i++){
+		/*for (int i =0; i< venture1.size(); i++){
 			System.out.println("carta venture: " + venture1.get(i));
 			}
 		for (int i =0; i< jsonFloor.getVentureFloors().size(); i++){
 			System.out.println("Ho creato il piano venture: " + jsonFloor.getVentureFloors().get(i));
 			System.out.println("Piano della torre: " + ventureTower.floors.get(i));
 			
-			}
+			}*/
 		
 		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
 		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
@@ -206,13 +204,10 @@ public class Board  extends Observable<Change> implements Serializable{
 	}
 
 	public Tower getTerritoryTower() {
-		// TODO Auto-generated method stub
-		System.out.println(territoryTower);
 		return territoryTower;
 	}
 	
 	public Tower getBuildingTower() {
-		// TODO Auto-generated method stub
 		return buildingTower;
 	}
 
@@ -282,7 +277,6 @@ public class Board  extends Observable<Change> implements Serializable{
 
 
 	public ArrayList<MarketBuilding> getMarket() {
-		// TODO Auto-generated method stub
 		return market;
 	}
 
