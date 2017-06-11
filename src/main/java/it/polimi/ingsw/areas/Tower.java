@@ -53,8 +53,6 @@ public class Tower implements Serializable {
 			break;
 			}
 		}
-
-		
 				for(int i=0; i<4; i++){
 				floors.get(i).currentCard = deck.remove(i);
 				System.out.println("ho messo nel piano: "+i +"la carta:" + floors.get(i).currentCard.getType());

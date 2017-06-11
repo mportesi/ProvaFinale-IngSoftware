@@ -187,7 +187,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		changeTurnOrder();}
 		round += 1;
 		
-		
+		System.out.println(board);
 
 		// refresh tower( place new card and remove family member)
 		board.getTerritoryTower().refreshTower(period);

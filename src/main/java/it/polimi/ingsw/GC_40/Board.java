@@ -46,12 +46,12 @@ public class Board  extends Observable<Change> implements Serializable{
 		jsonCard.importCards();
 		deck=new ArrayList<Card>();
 		create(jsonCard);
-		ArrayList<Card> territory1= createDeck(1, "territory");
-		ArrayList<Card> territory2= createDeck(2, "territory");
-		ArrayList<Card> territory3= createDeck(3, "territory");
-		ArrayList<Card> building1= createDeck(1, "building");
-		ArrayList<Card> building2= createDeck(2, "building");
-		ArrayList<Card> building3= createDeck(3, "building");
+		ArrayList<Card> territory1= createDeck(1, "territoryCard");
+		ArrayList<Card> territory2= createDeck(2, "territoryCard");
+		ArrayList<Card> territory3= createDeck(3, "territoryCard");
+		ArrayList<Card> building1= createDeck(1, "buildingCard");
+		ArrayList<Card> building2= createDeck(2, "buildingCard");
+		ArrayList<Card> building3= createDeck(3, "buildingCard");
 		ArrayList<Card> character1= createDeck(1, "characterCard");
 		ArrayList<Card> character2= createDeck(2, "characterCard");
 		ArrayList<Card> character3= createDeck(3, "characterCard");
