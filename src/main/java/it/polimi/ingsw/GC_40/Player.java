@@ -38,27 +38,34 @@ public class Player extends Observable<Change> implements Serializable {
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
 	private ArrayList<LeaderTile> leader;
-	public PersonalBonusTile personalBonusTile;
-	public boolean hasBlackRelative;
+	private PersonalBonusTile personalBonusTile;
+	private Relative blackRelative;
+	private Relative whiteRelative;
+	private Relative orangeRelative;
+	private Relative neutralRelative;
+	/*public boolean hasBlackRelative;
 	public boolean hasWhiteRelative;
 	public boolean hasOrangeRelative;
-	public boolean hasNeutralRelative;
+	public boolean hasNeutralRelative;*/
 
 	public Player(UUID ID, Play play, String name) {
 		this.ID = ID;
 		this.name = name;
-		hasBlackRelative = true;
+		blackRelative= new Relative(ColorDice.BLACK, this);
+		whiteRelative= new Relative(ColorDice.WHITE, this);
+		orangeRelative= new Relative(ColorDice.ORANGE, this);
+		/*hasBlackRelative = true;
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
-		hasNeutralRelative = true;
+		hasNeutralRelative = true;*/
 		registerObserver(play);
 	}
 
 	public Player() {
-		hasBlackRelative = true;
+		/*hasBlackRelative = true;
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
-		hasNeutralRelative = true;
+		hasNeutralRelative = true;*/
 	}
 	
 
@@ -364,5 +371,29 @@ public class Player extends Observable<Change> implements Serializable {
 	public String getName() {
 		return name;
 	}
+
+	public Relative getBlackRelative() {
+		return blackRelative;
+	}
+	
+	public Relative getWhiteRelative() {
+		return whiteRelative;
+	}
+	
+	public Relative getOrangeRelative() {
+		return orangeRelative;
+	}
+	
+	public Relative getNeutralRelative() {
+		return neutralRelative;
+	}
+
+	public PersonalBonusTile getPersonalBonusTile() {
+	
+		return personalBonusTile;
+	}
+	
+
+
 
 }

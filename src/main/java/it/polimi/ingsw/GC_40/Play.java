@@ -194,7 +194,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		board.getBuildingTower().refreshTower(period);
 		board.getCharacterTower().refreshTower(period);
 		board.getVentureTower().refreshTower(period);
-		System.out.println(board);
+		//System.out.println(board);
 		// refresh harvest and production area
 		
 		board.getHarvestArea().refresh();
@@ -203,13 +203,13 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		System.out.println("ProductionArea:  "+ board.getProductionArea());
 		// refresh market
 		board.getMarket(0).setFree();
-		System.out.println("Market1 " + board.getMarket(0));
+		//System.out.println("Market1 " + board.getMarket(0));
 		board.getMarket(1).setFree();
-		System.out.println("Market2 " + board.getMarket(1));
+		//System.out.println("Market2 " + board.getMarket(1));
 		board.getMarket(2).setFree();
-		System.out.println("Market3 " + board.getMarket(2));
+		//System.out.println("Market3 " + board.getMarket(2));
 		board.getMarket(3).setFree();
-		System.out.println("Market4 " + board.getMarket(3));
+		//System.out.println("Market4 " + board.getMarket(3));
 
 		// refresh council palace
 		board.getCouncilPalace().refresh();
@@ -218,6 +218,13 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		board.getBlackDice().setValue();
 		board.getOrangeDice().setValue();
 		board.getWhiteDice().setValue();
+		
+		for(Player p: players){
+			p.getBlackRelative().setValue(board.getBlackDice().getValue());
+			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
+			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
+			
+		}
 
 		ChangeRound changeRound = new ChangeRound(round);
 		this.notifyObserver(changeRound);
@@ -338,11 +345,9 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 		if (start == true) {
 			notifyObserver(new ChangeNewPlayer(player));
+			initializePlayer(players);
 
 		}
-
-		// System.out.println("notifico la view di aver creato un nuovo
-		// player");
 
 	}
 
@@ -390,7 +395,6 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	}
 
 	public Board getBoard() {
-		// TODO Auto-generated method stub
 		return board;
 	}
 

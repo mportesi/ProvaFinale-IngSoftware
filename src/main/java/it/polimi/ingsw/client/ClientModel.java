@@ -126,7 +126,6 @@ public class ClientModel implements Serializable{
 
 
 	public Tower getTerritoryTower() {
-		System.out.println(board);
 		return board.getTerritoryTower();
 	}
 
@@ -154,7 +153,6 @@ public class ClientModel implements Serializable{
 	public void setBoard(Board board) {
 		this.board=board;
 		System.out.println(board);
-		System.out.println(board.getTerritoryTower());
 		//players= new ArrayList<Player>();
 		
 	}
