@@ -35,6 +35,7 @@ public class ClientRMIConnection implements Serializable {
 	public void startClient() throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
 			NullPointerException, ParseException, InterruptedException {
 		clientModel = new ClientModel();
+		
 		Scanner stdIn = new Scanner(System.in);
 
 		// System.setProperty("java.rmi.server.hostname", "192.168.1.2");
@@ -50,7 +51,7 @@ public class ClientRMIConnection implements Serializable {
 		// register the client view in the server side (to receive messages from
 		// the server)
 
-		System.out.println("inizio");
+		System.out.println("Inizio");
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
 
 		// serverStub.initializeGame(rmiView);

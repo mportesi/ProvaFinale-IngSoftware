@@ -44,7 +44,7 @@ public class Board  extends Observable<Change> implements Serializable{
 	public Board() throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		JsonCard jsonCard= new JsonCard();
 		jsonCard.importCards();
-		deck=new ArrayList<Card>();
+		deck = new ArrayList<Card>();
 		create(jsonCard);
 		ArrayList<Card> territory1= createDeck(1, "territoryCard");
 		ArrayList<Card> territory2= createDeck(2, "territoryCard");
@@ -72,9 +72,9 @@ public class Board  extends Observable<Change> implements Serializable{
 		Collections.shuffle(venture2);
 		Collections.shuffle(venture3);
 		
-		JsonFloor jsonFloor= new JsonFloor();
+		JsonFloor jsonFloor = new JsonFloor();
 		jsonFloor.importFloors();
-		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
+		territoryTower = new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
 		/*for (int i =0; i< territory1.size(); i++){
 		System.out.println("carta territorio: " + territory1.get(i));
 		}
@@ -84,7 +84,7 @@ public class Board  extends Observable<Change> implements Serializable{
 			
 			}*/
 		
-		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
+		buildingTower = new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
 		/*for (int i =0; i< building1.size(); i++){
 			System.out.println("carta building: " + building1.get(i));
 			}
@@ -94,7 +94,7 @@ public class Board  extends Observable<Change> implements Serializable{
 			
 			}*/
 		
-		characterTower= new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
+		characterTower = new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
 		/*for (int i =0; i< character1.size(); i++){
 			System.out.println("carta character: " + character1.get(i));
 			}
@@ -149,6 +149,7 @@ public class Board  extends Observable<Change> implements Serializable{
 		blackDice = new Dice(ColorDice.BLACK);
 		whiteDice = new Dice(ColorDice.WHITE);
 		orangeDice = new Dice(ColorDice.ORANGE);
+		
 	}
 	
 	

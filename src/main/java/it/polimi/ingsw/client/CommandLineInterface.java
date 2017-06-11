@@ -146,6 +146,7 @@ public class CommandLineInterface implements Serializable{
 		}
 		}
 		System.out.println("THE VALUE OF THE RELATIVE IS  " + relative.getValue());
+		System.out.println("THE NAME OF THE RELATIVE IS  " + player.getName());
 		System.out.println("How many servants do you want to use?");
 		int valueServant = scanner.nextInt();
 		relative.setValueServant(valueServant);

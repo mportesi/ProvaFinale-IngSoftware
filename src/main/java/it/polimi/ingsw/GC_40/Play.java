@@ -31,12 +31,17 @@ import it.polimi.ingsw.changes.ChangeStone;
 import it.polimi.ingsw.changes.ChangeTurnOrder;
 import it.polimi.ingsw.changes.ChangeWinners;
 import it.polimi.ingsw.changes.ChangeWood;
+import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.colors.ColorPlayer;
+import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 
 public class Play extends Observable<Change> implements Observer<Change> {
 	private ArrayList<Player> players;
+	private Dice blackDice;
+	private Dice whiteDice;
+	private Dice orangeDice;
 	private Player currentPlayer;
 	private Board board;
 	private int period;
@@ -57,6 +62,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// this.players = new ArrayList<Player>();
 		this.board = new Board();
+		
 		//System.out.println("ho inizializzato la board");
 		this.round = 0;
 		this.period = 0;
@@ -64,7 +70,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		//System.out.println("ho fatto change period");
 		changeRound();
 		System.out.println(board);
-		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board);
+		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board,blackDice, orangeDice, whiteDice);
 		this.notifyObserver(changeInitializeBoard);
 		ArrayList<Player> currentTurnOrder = createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
@@ -214,12 +220,12 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// refresh council palace
 		board.getCouncilPalace().refresh();
 
-		// roll dice
+		 System.out.println("roll dice");
 		board.getBlackDice().setValue();
 		board.getOrangeDice().setValue();
 		board.getWhiteDice().setValue();
 		
-		//System.out.println("ho settato il valore dei dadi");
+		System.out.println("ho settato il valore dei dadi");
 		for(Player p: players){
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
 			System.out.println("Il valore del black è" + p.getBlackRelative().getValue() );
