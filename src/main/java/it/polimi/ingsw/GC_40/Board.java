@@ -113,7 +113,7 @@ public class Board  extends Observable<Change> implements Serializable{
 			System.out.println("Piano della torre: " + ventureTower.floors.get(i));
 			
 			}*/
-		
+		//System.out.println(jsonFloor.getTerritoryFloors());
 		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
 		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
 		characterTower= new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());

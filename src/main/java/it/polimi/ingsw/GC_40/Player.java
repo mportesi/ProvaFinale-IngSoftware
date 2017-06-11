@@ -54,6 +54,10 @@ public class Player extends Observable<Change> implements Serializable {
 		blackRelative= new Relative(ColorDice.BLACK, this);
 		whiteRelative= new Relative(ColorDice.WHITE, this);
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
+		territoryCard= new ArrayList<>();
+		buildingCard= new ArrayList<>();
+		ventureCard= new ArrayList<>();
+		characterCard=new ArrayList<>();
 		/*hasBlackRelative = true;
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
