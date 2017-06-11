@@ -67,6 +67,7 @@ public class Tower implements Serializable {
 	 */
 
 	public boolean isPresent(Player p) {
+		floors = new ArrayList <Floor>();
 		for (Floor f : floors) {
 			if (f.getPlayer().equals(p))
 			
