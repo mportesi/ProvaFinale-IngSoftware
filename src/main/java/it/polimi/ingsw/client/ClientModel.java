@@ -16,9 +16,6 @@ public class ClientModel implements Serializable{
 	private Player player;
 	private Player currentPlayer;
 	private Board board;
-	private Dice blackDice;
-	private Dice whiteDice;
-	private Dice orangeDice;
 	private int period;
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
@@ -27,7 +24,7 @@ public class ClientModel implements Serializable{
 	
 	public ClientModel(){
 		//players= new ArrayList<Player>();
-		currentTurnOrder= new ArrayList<Player>();
+		//currentTurnOrder= new ArrayList<Player>();
 		
 	}
 	

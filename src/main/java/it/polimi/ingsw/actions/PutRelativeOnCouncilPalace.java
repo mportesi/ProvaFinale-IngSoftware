@@ -21,11 +21,11 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 	String bonus;
 	
 	
-	public PutRelativeOnCouncilPalace(Player player, Relative relative, String bonus){
+	public PutRelativeOnCouncilPalace(Player player, Relative relative, CouncilPalace councilPalace, String bonus){
 		this.player=player;
 		this.relative=relative;
 		this.bonus=bonus;
-
+		this.councilPalace=councilPalace;
 	}
 	
 	
@@ -51,7 +51,8 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			this.notifyObserver(changeCouncilPalace);
 			// The player receive the bonus
 			// TODO give player the council privilege bonus choice
-			councilPalace.applyEffect(player);
+			System.out.println(councilPalace);
+			councilPalace.applyEffect(player, bonus);
 		}
 
 	}

@@ -224,9 +224,9 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
 			System.out.println("Il valore del black è" + p.getBlackRelative().getValue() );
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
-			System.out.println("Il valore del black è" + p.getWhiteRelative().getValue() );
+			System.out.println("Il valore del white è" + p.getWhiteRelative().getValue() );
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
-			System.out.println("Il valore del black è" + p.getOrangeRelative().getValue() );
+			System.out.println("Il valore del orange è" + p.getOrangeRelative().getValue() );
 			
 		}
 

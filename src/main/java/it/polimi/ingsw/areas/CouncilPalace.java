@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.CommandLineInterface;
 
@@ -25,25 +26,40 @@ public class CouncilPalace implements Serializable{
 	private ArrayList<Player> order = new ArrayList<Player>();
 	private int orderIndex = 0;
 
-	
 	public CouncilPalace(int bonusPrivilegeCouncil, int bonusCoin, int value){
 		this.bonusPrivilegeCouncil = bonusPrivilegeCouncil;
 		this.bonusCoin = bonusCoin;
 		this.value = value;
+		councilPalaceEffect= new ArrayList<>();
 	}
 	
-	public void createListOfCouncilPalaceEffect(){
+	
+	private int getValue() {
+		// TODO Auto-generated method stub
+		return value;
+	}
+
+	private int getBonusCoin() {
+		// TODO Auto-generated method stub
+		return bonusCoin;
+	}
+
+	private int getBonusPrivilegeCouncil() {
+		// TODO Auto-generated method stub
+		return bonusPrivilegeCouncil;
+	}
+
+	public void createListOfCouncilPalaceEffect(String bonus){
 		GainCoin gainCoin = new GainCoin(bonusCoin);
 		councilPalaceEffect.add(gainCoin);
-	  	String resource = "coin"; //TODO
-		GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil (bonusPrivilegeCouncil, resource);
+		GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil (bonusPrivilegeCouncil, bonus);
 		councilPalaceEffect.add(gainPrivilegeCouncil);
 		
 	}
 	
 	
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		createListOfCouncilPalaceEffect();
+	public void applyEffect(Player player, String bonus) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		createListOfCouncilPalaceEffect(bonus);
 		for (Effect e : councilPalaceEffect){
 			e.apply(player);
 		}

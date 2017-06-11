@@ -17,7 +17,7 @@ import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
-public class CommandLineInterface implements Serializable{
+public class CommandLineInterface implements Serializable {
 
 	private Scanner scanner;
 	private Player player;// ??
@@ -25,8 +25,8 @@ public class CommandLineInterface implements Serializable{
 
 	public CommandLineInterface(Player player, ClientModel client) {
 		scanner = new Scanner(System.in);
-		this.player=player;
-		this.client=client;
+		this.player = player;
+		this.client = client;
 	}
 
 	public void input() {
@@ -42,16 +42,16 @@ public class CommandLineInterface implements Serializable{
 		}
 
 	}
-	
-	public void printTheBoard(){
+
+	public void printTheBoard() {
 		client.getBoard();
 	}
 
 	public PutRelative chooseTheAction() {
-		System.out.println("sta giocando"+ player.getName());
+		System.out.println("sta giocando" + player.getName());
 
 		Relative relative = chooseTheRelative();
-		
+
 		System.out.println("ho creato un relative" + relative.getValue());
 
 		System.out.println("Choose where you want to put the relative:");
@@ -62,9 +62,9 @@ public class CommandLineInterface implements Serializable{
 		System.out.println("ProductionArea");
 		scanner.nextLine();
 		String input = scanner.nextLine();
-		
+
 		PutRelative putRelative = null;
-		//System.out.println("sto entrando nello switch");
+		// System.out.println("sto entrando nello switch");
 		switch (input) {
 		case "Tower": {
 			Tower tower = chooseTower();
@@ -75,14 +75,7 @@ public class CommandLineInterface implements Serializable{
 		}
 		case "CouncilPalace": {
 			String bonus = choosePrivilegeCouncil();
-			putRelative = new PutRelativeOnCouncilPalace(player, relative, bonus); // TODO
-																					// sistemare
-																					// poi
-																					// la
-																					// stringa
-																					// risorsa
-																					// e
-			// convertirla in dei pezzi
+			putRelative = new PutRelativeOnCouncilPalace(player, relative, client.getBoard().getCouncilPalace(), bonus); // TODO
 			break;
 		}
 		case "Market": {
@@ -92,26 +85,25 @@ public class CommandLineInterface implements Serializable{
 		}
 		case "HarvestArea": {
 			String harvestArea = chooseHarvestArea();
-			putRelative = new PutRelativeOnHarvestArea(player, relative, harvestArea);
-			
+			putRelative = new PutRelativeOnHarvestArea(player, relative, client.getBoard().getHarvestArea(),  harvestArea);
+
 			break;
 		}
 		case "ProductionArea": {
 			String productionArea = chooseProductionArea();
-			putRelative = new PutRelativeOnProductionArea(player, relative, productionArea);
-			
+			putRelative = new PutRelativeOnProductionArea(player, relative, client.getBoard().getProductionArea(), productionArea);
+
 			break;
 		}
 
 		default: {
 			System.out.println("Error: insert again");
-			//chooseTheAction();
+			// chooseTheAction();
 			break;
 		}
-		
+
 		}
 		return putRelative;
-		
 
 	}
 
@@ -120,7 +112,7 @@ public class CommandLineInterface implements Serializable{
 
 		System.out.println("Choose what relative you want to use: black, white, orange, neutral");
 		String input = scanner.nextLine();
-		Relative relative=null;
+		Relative relative = null;
 		switch (input) {
 		case "black": {
 			relative = client.getPlayer().getBlackRelative();
@@ -129,12 +121,12 @@ public class CommandLineInterface implements Serializable{
 		case "white": {
 			relative = client.getPlayer().getWhiteRelative();
 			break;
-			
+
 		}
 		case "orange": {
 			relative = client.getPlayer().getOrangeRelative();
 			break;
-			
+
 		}
 		case "neutral": {
 			relative = client.getPlayer().getNeutralRelative();
@@ -151,12 +143,11 @@ public class CommandLineInterface implements Serializable{
 		relative.setValueServant(valueServant);
 		System.out.println("the value of the relative with servant is  " + relative.getValue());
 		return relative;
-		
 
 	}
 
 	public Tower chooseTower() {
-		
+
 		System.out.println("Choose the tower:");
 		System.out.println("territoryTower");
 		System.out.println("buildingTower");

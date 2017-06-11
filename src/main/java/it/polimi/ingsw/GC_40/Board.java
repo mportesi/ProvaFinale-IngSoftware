@@ -18,12 +18,14 @@ import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.json.JsonCard;
 import it.polimi.ingsw.json.JsonCouncilPalace;
 import it.polimi.ingsw.json.JsonFloor;
 import it.polimi.ingsw.json.JsonHarvestAndProduction;
 import it.polimi.ingsw.json.JsonMarket;
 import it.polimi.ingsw.json.JsonPersonalBonusTiles;
+import it.polimi.ingsw.json.JsonPrivilegeCouncil;
 
 public class Board  extends Observable<Change> implements Serializable{
 	private Tower territoryTower;
@@ -31,6 +33,7 @@ public class Board  extends Observable<Change> implements Serializable{
 	private Tower buildingTower;
 	private Tower ventureTower;
 	private CouncilPalace councilPalace;
+	private PrivilegeCouncil privilegeCouncil;
 	private ArrayList<MarketBuilding> market;
 	private HarvestAndProductionArea harvestArea;
 	private HarvestAndProductionArea productionArea;
@@ -121,8 +124,11 @@ public class Board  extends Observable<Change> implements Serializable{
 		
 		JsonCouncilPalace jsonCouncil= new JsonCouncilPalace();
 		jsonCouncil.importCouncilPalace();
-		
 		councilPalace = jsonCouncil.getCouncilPalace();
+		
+		JsonPrivilegeCouncil jsonPrivilegeCouncil= new JsonPrivilegeCouncil();
+		jsonPrivilegeCouncil.importPrivilegeCouncil();
+		privilegeCouncil=jsonPrivilegeCouncil.getPrivilegeCouncil();
 
 		
 		//lista di market
@@ -278,6 +284,14 @@ public class Board  extends Observable<Change> implements Serializable{
 
 	public ArrayList<MarketBuilding> getMarket() {
 		return market;
+	}
+
+
+
+
+	public PrivilegeCouncil getPrivilegeCouncil() {
+		// TODO Auto-generated method stub
+		return privilegeCouncil;
 	}
 
 }
