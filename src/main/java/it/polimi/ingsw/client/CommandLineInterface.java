@@ -156,7 +156,6 @@ public class CommandLineInterface implements Serializable{
 		System.out.println("buildingTower");
 		System.out.println("characterTower");
 		System.out.println("ventureTower");
-		System.out.println(client.getBoard().getTerritoryTower());
 		String input = scanner.nextLine();
 		Tower tower;
 		switch (input) {

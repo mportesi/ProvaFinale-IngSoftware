@@ -191,7 +191,12 @@ public class Board  extends Observable<Change> implements Serializable{
 
 	@Override
 	public String toString() {
-		return ("Board" + "\n" + "TerritoryTower" + territoryTower + "\n" + "BuildingTower" + buildingTower + "\n" + "CharacterTower" + "\n" + characterTower + "\n" + "VentureTower" + "\n" + ventureTower);
+		return ("Board" + "\n" + territoryTower + "\n" + buildingTower +  "\n" + characterTower + "\n" + ventureTower
+				+ "\n" + councilPalace
+				+ "\n" + market.get(0) + "\n" + market.get(1) + "\n" + market.get(1) + "\n" + market.get(2)
+				+ "\n" + harvestArea 
+				+ "\n" + productionArea 
+				+ "\n" + blackDice + "\n" + whiteDice + "\n" + orangeDice);
 	}
 
 

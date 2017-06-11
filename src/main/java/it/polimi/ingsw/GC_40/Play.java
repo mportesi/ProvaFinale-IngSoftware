@@ -338,11 +338,9 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 		if (start == true) {
 			notifyObserver(new ChangeNewPlayer(player));
+			initializePlayer(players);
 
 		}
-
-		// System.out.println("notifico la view di aver creato un nuovo
-		// player");
 
 	}
 

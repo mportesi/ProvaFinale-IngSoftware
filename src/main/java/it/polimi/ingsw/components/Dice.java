@@ -27,4 +27,9 @@ public class Dice implements Serializable{
 	public void setValue(){
 		value= roll();
 	}
+	
+	@Override
+	public String toString() {
+		return "Dice [color=" + color + ", value=" + value + "]";
+	}
 }
