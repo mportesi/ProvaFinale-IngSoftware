@@ -69,6 +69,7 @@ public class Tower implements Serializable {
 	public boolean isPresent(Player p) {
 		for (Floor f : floors) {
 			if (f.getPlayer().equals(p))
+			
 				return true;
 		}
 		return false;
