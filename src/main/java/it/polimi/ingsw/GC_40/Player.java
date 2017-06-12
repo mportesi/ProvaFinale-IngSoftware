@@ -74,7 +74,8 @@ public class Player extends Observable<Change> implements Serializable {
 	
 	@Override
 	public String toString(){
-		return ("The player is\n " + "Name: " + name +  "\nColor: "  );
+		return ("The player is\n " + "Name: " + name +  "\nColor: " + color + "\nCoin: " +coin + "\nWood: "+ wood +"\nStone: "+ stone + "\nServant: "+ servant + "\nFaithPoint: " + faithPoint + "\nMilitaryPoint: "+ militaryPoint + "\nVictoryPoint: "+ victoryPoint+ "\nTerritoryCard: " + territoryCard + "\nCharacterCard: "
+				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nLeaderTile: "+ leader);
 	}
 
 	public int resourceCounter() {

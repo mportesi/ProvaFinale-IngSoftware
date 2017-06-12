@@ -59,7 +59,7 @@ public class CharacterCard extends Card {
 	
 	@Override
 	public String toString(){
-		return (name + ": il costo è "+ costCoin + ": gli effetti immediati sono " + immediateEffects );
+		return (name + ":\n" + "Il costo è "+ costCoin +"\n"+ "Gli effetti immediati sono " + immediateEffects );
 	}
 	
 	// to apply immediate effects
