@@ -177,6 +177,11 @@ public class ClientModel implements Serializable{
 		return startPlay;
 	}
 
+	public Player getCurrentPlayer() {
+		// TODO Auto-generated method stub
+		return currentPlayer;
+	}
+
 	
 
 }

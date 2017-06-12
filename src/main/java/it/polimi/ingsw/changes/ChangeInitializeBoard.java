@@ -1,25 +1,24 @@
 package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.GC_40.Board;
+import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Dice;
 
 public class ChangeInitializeBoard implements Change {
 	private Board board;
-	private Dice blackDice;
-	private Dice orangeDice;
-	private Dice whiteDice;
+	private Player currentPlayer;
 	
-	public ChangeInitializeBoard(Board board, Dice blackDice, Dice orangeDice, Dice whiteDice){
+	public ChangeInitializeBoard(Board board, Player currentPlayer){
 		this.board=board;
-		this.blackDice=blackDice;
-		this.orangeDice = orangeDice;
-		this.whiteDice = whiteDice;
+		this.currentPlayer=currentPlayer;
 	}
 
 	@Override
 	public void applyChange(ClientModel client) {
 		client.setBoard(board);
+		client.setCurrentPlayer(currentPlayer);
+		System.out.println("It's " + currentPlayer.getName() +"'s turn");
 		
 		//client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());
 		//client.getPlayer().getOrangeRelative().setValue(board.getOrangeDice().getValue());

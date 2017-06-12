@@ -71,12 +71,15 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// System.out.println("ho fatto change period");
 		changeRound();
 		System.out.println(board);
-		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, blackDice, orangeDice,
-				whiteDice);
-		this.notifyObserver(changeInitializeBoard);
 		ArrayList<Player> currentTurnOrder = createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
+		//ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
+		//this.notifyObserver(changePlayer);
+		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
+		this.notifyObserver(changeInitializeBoard);
+		
+		
 	}
 
 	public void giveStartingCoin(ArrayList<Player> currentTurnOrder)

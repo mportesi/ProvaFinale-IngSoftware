@@ -17,7 +17,7 @@ public class ChangeColor implements Change {
 	public void applyChange(ClientModel client) {
 		// TODO Auto-generated method stub
 		client.getPlayer().setColor(color);
-		System.out.println("The color of the player " + player.getName() + "is " + color);
+		System.out.println("The color of the player " + player.getName() + "  is " + color);
 	}
 
 }
