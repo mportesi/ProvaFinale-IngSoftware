@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.actions.InitializeGame;
 import it.polimi.ingsw.actions.RegisterClient;
@@ -61,11 +63,21 @@ public class ClientOutHandler implements Runnable {
 		System.out.println(player.getName());
 		cli = new CommandLineInterface(player, clientModel);
 		while (true) {
+			try
+	        {Thread.sleep(0);}
+	    catch (Exception e)
+	        {e.printStackTrace();
+		}
 			
 			System.out.println("test the action");
 			//String input = stdIn.nextLine();
-			Object action;
-			action=cli.chooseTheAction();
+			Object action= new Object();
+			try {
+				action=cli.chooseTheAction();
+			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("test the action");
 
 			try {
