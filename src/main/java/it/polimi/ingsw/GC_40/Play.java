@@ -353,13 +353,13 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
 		
-		while (players.size() < 2) {
+		if (players.size() < 2) {
 			start = false;
 		}
 		if (players.size() >= 2) {
 			verifyNumberOfPlayer();
 		}
-		verifyNumberOfPlayer();
+		
 		if (start == true) {
 			initializePlayer(players);
 
