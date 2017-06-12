@@ -24,6 +24,7 @@ public class ClientModel implements Serializable{
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private boolean startPlay;
+	private ArrayList<ClientModel> clients;
 	
 	
 	public ClientModel(){

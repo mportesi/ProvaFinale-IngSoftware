@@ -32,6 +32,7 @@ import it.polimi.ingsw.changes.ChangeStone;
 import it.polimi.ingsw.changes.ChangeTurnOrder;
 import it.polimi.ingsw.changes.ChangeWinners;
 import it.polimi.ingsw.changes.ChangeWood;
+import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.Dice;
@@ -412,6 +413,5 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	public Board getBoard() {
 		return board;
 	}
-
-
+	
 }
