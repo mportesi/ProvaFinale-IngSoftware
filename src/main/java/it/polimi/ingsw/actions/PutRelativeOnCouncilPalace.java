@@ -35,9 +35,9 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		// the required value is 1 to put a relative on the CouncilPalace
 		if (relative.getValue() >= 1) {
 			return true;
-		} else {
-			return false;
-		}
+		} 
+		return false;
+		
 	}
 	
 	
@@ -47,6 +47,7 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
 			play.getBoard().getCouncilPalace().addPlayer(player);
+			player.setOccupiedRelative(relative);
 			ChangeCouncilPalace changeCouncilPalace= new ChangeCouncilPalace(relative);
 			this.notifyObserver(changeCouncilPalace);
 			// The player receive the bonus
