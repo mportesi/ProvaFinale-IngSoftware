@@ -13,6 +13,8 @@ public class ChangePlayer implements Change {
 	@Override
 	public void applyChange(ClientModel client) {
 		client.setCurrentPlayer(currentPlayer);
+		client.setStartPlay(true);
+		System.out.println("StartPLay" + client.getStartPlay());
 		System.out.println("It's the " + currentPlayer.getName() + "'s turn.");
 	}
 

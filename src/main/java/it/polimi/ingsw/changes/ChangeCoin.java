@@ -31,4 +31,5 @@ public class ChangeCoin implements Change {
 		}*/
 
 	}
+}
 
