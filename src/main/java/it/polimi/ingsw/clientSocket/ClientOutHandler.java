@@ -14,11 +14,11 @@ public class ClientOutHandler implements Runnable {
 	private ObjectOutputStream socketOut;
 	private ClientModel clientModel;
 	private CommandLineInterface cli;
-	private Player player;
+	private Player player= new Player();
 	public ClientOutHandler(ObjectOutputStream socketOut, ClientModel clientModel) {
 		this.socketOut = socketOut;
 		this.clientModel=clientModel;
-		this.player= this.clientModel.getPlayer();
+		//this.player= clientModel.getPlayer();
 		//cli = new CommandLineInterface(this.clientModel.getPlayer(), clientModel);
 	}
 
@@ -31,7 +31,8 @@ public class ClientOutHandler implements Runnable {
 		Scanner stdIn = new Scanner(System.in);
 		String name= stdIn.nextLine();
 		RegisterClient register = new RegisterClient(name);
-		cli = new CommandLineInterface(player, clientModel);
+		//this.player= clientModel.getPlayer();
+		//cli = new CommandLineInterface(player, clientModel);
 		try {
 			socketOut.writeObject(register);
 			socketOut.flush();
@@ -39,6 +40,11 @@ public class ClientOutHandler implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		while(clientModel.getPlayer()==null){
+			
+		}
+		player= clientModel.getPlayer();
+		cli = new CommandLineInterface(player, clientModel);
 		while (true) {
 			System.out.println("test the action");
 			//String input = stdIn.nextLine();
