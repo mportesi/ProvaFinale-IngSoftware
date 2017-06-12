@@ -34,7 +34,7 @@ public class MarketBuilding implements Serializable{
 	private List<Effect> marketEffect;
 	private Player player;
 
-	public void createListOfMarketEffect() {
+	public void createListOfMarketEffect() throws FileNotFoundException, IOException, ParseException {
 		marketEffect = new ArrayList<Effect>();
 		List<String> keys = new ArrayList<String>();
 		for (String key : bonus.keySet()) {

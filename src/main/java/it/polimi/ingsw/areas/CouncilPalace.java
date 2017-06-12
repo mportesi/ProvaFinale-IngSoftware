@@ -49,7 +49,7 @@ public class CouncilPalace implements Serializable{
 		return bonusPrivilegeCouncil;
 	}
 
-	public void createListOfCouncilPalaceEffect(String bonus){
+	public void createListOfCouncilPalaceEffect(String bonus) throws FileNotFoundException, IOException, ParseException{
 		GainCoin gainCoin = new GainCoin(bonusCoin);
 		councilPalaceEffect.add(gainCoin);
 		GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil (bonusPrivilegeCouncil, bonus);

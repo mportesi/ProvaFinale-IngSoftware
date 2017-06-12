@@ -19,21 +19,13 @@ public class ChangeInitializeBoard implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		// TODO Auto-generated method stub
-		//System.out.println("board");
 		client.setBoard(board);
 		
-		client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());
-		client.getPlayer().getOrangeRelative().setValue(board.getOrangeDice().getValue());
-		client.getPlayer().getWhiteRelative().setValue(board.getWhiteDice().getValue());
+		//client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());
+		//client.getPlayer().getOrangeRelative().setValue(board.getOrangeDice().getValue());
+		//client.getPlayer().getWhiteRelative().setValue(board.getWhiteDice().getValue());
 		
-		System.out.println(client.getBoard().getBlackDice().getValue());
-		/*client.setBlackDice(blackDice);
-		client.setOrangeDice(orangeDice);
-		client.setWhiteDice(whiteDice);*/
-		
-		//System.out.println(client.getBoard());
-		
+	
 	}
 
 	@Override

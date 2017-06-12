@@ -14,7 +14,7 @@ public class TerritoryCard extends Card {
 	private TerritoryListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 
-	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects) {
+	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.effects=effects;
 		immediateEffects = effects.createListOfEffect();

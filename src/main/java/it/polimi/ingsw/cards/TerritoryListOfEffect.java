@@ -1,8 +1,12 @@
 package it.polimi.ingsw.cards;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
@@ -25,7 +29,7 @@ public class TerritoryListOfEffect extends CardListOfEffect{
 		super(immediateEffect);
 	}
 
-	public ArrayList<Effect> createListOfEffect() {
+	public ArrayList<Effect> createListOfEffect() throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Effect> immediateEffects = new ArrayList<Effect>();
 		List<String> keys = new ArrayList<String>();
 		for (String key : immediateEffect.keySet()) {

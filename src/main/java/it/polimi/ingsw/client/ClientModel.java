@@ -177,30 +177,6 @@ public class ClientModel implements Serializable{
 		return startPlay;
 	}
 
-	public Dice getBlackDice() {
-		return blackDice;
-	}
-
-	public void setBlackDice(Dice blackDice) {
-		this.blackDice = blackDice;
-	}
-
-	public Dice getWhiteDice() {
-		return whiteDice;
-	}
-
-	public void setWhiteDice(Dice whiteDice) {
-		this.whiteDice = whiteDice;
-	}
-
-	public Dice getOrangeDice() {
-		return orangeDice;
-	}
-
-	public void setOrangeDice(Dice orangeDice) {
-		this.orangeDice = orangeDice;
-	}
-
 	
 
 }
