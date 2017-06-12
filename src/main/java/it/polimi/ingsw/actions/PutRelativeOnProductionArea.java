@@ -26,10 +26,11 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 	Player player;
 	String area; 
 
-	public PutRelativeOnProductionArea(Player player, Relative relative, String area){
+	public PutRelativeOnProductionArea(Player player, Relative relative, HarvestAndProductionArea productionArea, String area){
 		this.player = player;
 		this.relative=relative;
 		this.area = area;
+		this.productionArea=productionArea;
 	}
 	
 	@Override
@@ -37,18 +38,25 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 		
 		switch (area){
 		case "left" : {
-			if (relative.getValue() >= productionArea.getValueOfLeftArea() && productionArea.getLeftRelative() == null && (!(productionArea.isAlreadyPresent(player)) || relative.getColor() == null)) {
-			return true;
-		} break;
+			if (relative.getValue() >= productionArea.getValueOfLeftArea()) {
+				if (productionArea.getLeftRelative() == null) {
+					if ((!(productionArea.isAlreadyPresent(player)) || relative.getColor() == null)) {
+						return true;
+					}
+				}
+			}
+			break;
 		}
 			
 		
 		
 		case "right" : {
-
-			if (relative.getValue() >= productionArea.getValueOfRightArea() && (!(productionArea.isAlreadyPresent(player)) || relative.getColor() == null)){
-				return true;
-			} break;
+			if (relative.getValue() >= productionArea.getValueOfRightArea()) {
+				if (!(productionArea.isAlreadyPresent(player)) || relative.getColor() == null) {
+					return true;
+				}
+			}
+			break;
 			}
 		
 		}

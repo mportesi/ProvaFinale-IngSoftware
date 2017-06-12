@@ -3,6 +3,7 @@ package it.polimi.ingsw.components;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
@@ -19,12 +20,12 @@ import it.polimi.ingsw.effects.GainWood;
 // Quando devo attivare il privilege council, chiamo privilegeCuncil.applyEFfect(player, resource)
 
 public class PrivilegeCouncil implements Serializable{
-	private static int bonusWoodAndStone;
-	private static int bonusServant;
-	private static int bonusCoin;
-	private static int bonusMilitaryPoint;
-	private static int bonusFaithPoint;
-	private static List<Effect> effectOfPrivilegeCouncil;
+	private int bonusWoodAndStone;
+	private int bonusServant;
+	private int bonusCoin;
+	private int bonusMilitaryPoint;
+	private int bonusFaithPoint;
+	private List<Effect> effectOfPrivilegeCouncil;
 	
 	public PrivilegeCouncil (int bonusWoodAndStone, int bonusServant, int bonusCoin, int bonusMilitaryPoint, int bonusFaithPoint){
 		this.bonusWoodAndStone = bonusWoodAndStone;
@@ -32,10 +33,11 @@ public class PrivilegeCouncil implements Serializable{
 		this.bonusFaithPoint = bonusFaithPoint;
 		this.bonusMilitaryPoint = bonusMilitaryPoint;
 		this.bonusServant = bonusServant;
+		this.effectOfPrivilegeCouncil= new ArrayList<>();
 	}
 	
 	
-	public static void createEffectOfPrivilegeCouncil(String resource){
+	public void createEffectOfPrivilegeCouncil(String resource){
 		switch (resource){
 		case "woodAndStone" : {
 			 GainWood gainWood = new GainWood (bonusWoodAndStone);
@@ -72,7 +74,7 @@ public class PrivilegeCouncil implements Serializable{
 	}
 	
 	
-	public static void applyEffect(Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void applyEffect(Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createEffectOfPrivilegeCouncil(resource);
 
 		for (Effect e : effectOfPrivilegeCouncil) {

@@ -30,11 +30,11 @@ public class HarvestAndProductionArea implements Serializable {
 	
 	public boolean isAlreadyPresent(Player player) {
 		for (Relative r : rightRelatives){
-			if (r.getPlayer() == player && r.getColor() != null){
-				return true;
+			if (r.getPlayer()==null || !(r.getPlayer()==player && r.getColor() != null)){
+				return false;
 			}		
 	}
-		return false;
+		return true;
 	}
 
 

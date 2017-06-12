@@ -39,21 +39,23 @@ public class ClientRMIConnection implements Serializable {
 		Scanner stdIn = new Scanner(System.in);
 
 		// System.setProperty("java.rmi.server.hostname", "192.168.1.2");
-
+		
 		// Get the remote registry
 		Registry registry = LocateRegistry.getRegistry(HOST, RMI_PORT);
 
 		// get the stub (local object) of the remote view
 		ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
 
-		System.out.println("Tell me your name");
-		String name = stdIn.nextLine();
+		
 		// register the client view in the server side (to receive messages from
 		// the server)
 
-		System.out.println("Inizio");
+		//System.out.println("inizio");
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
 
+		System.out.println("Tell me your name");
+		String name = stdIn.nextLine();
+		
 		// serverStub.initializeGame(rmiView);
 		// register the client view in the server side (to receive messages from
 		// the server)
