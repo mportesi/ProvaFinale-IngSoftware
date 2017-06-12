@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.actions.InitializeGame;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
@@ -40,12 +41,27 @@ public class ClientOutHandler implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		while(clientModel.getPlayer()==null){
-			
+		InitializeGame init= new InitializeGame();
+		try {
+			socketOut.writeObject(init);
+			socketOut.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		player= clientModel.getPlayer();
+		try
+        {Thread.sleep(5*1000);}
+    catch (Exception e)
+        {e.printStackTrace();
+	}
+		
+		while(clientModel.getPlayer()==null){
+		}
+		player = clientModel.getPlayer();
+		System.out.println(player.getName());
 		cli = new CommandLineInterface(player, clientModel);
 		while (true) {
+			
 			System.out.println("test the action");
 			//String input = stdIn.nextLine();
 			Object action;
