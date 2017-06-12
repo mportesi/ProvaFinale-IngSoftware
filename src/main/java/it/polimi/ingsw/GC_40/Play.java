@@ -72,7 +72,6 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		changeRound();
 		System.out.println(board);
 		currentTurnOrder = createTurnOrder(players);
-		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
 		//ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
 		//this.notifyObserver(changePlayer);
