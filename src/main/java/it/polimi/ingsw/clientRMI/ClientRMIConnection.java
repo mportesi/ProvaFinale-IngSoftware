@@ -61,26 +61,26 @@ public class ClientRMIConnection implements Serializable {
 		// register the client view in the server side (to receive messages from
 		// the server)
 		serverStub.registerClient(rmiView, name);
-		
+		if (clientModel.getStartPlay() == true) {
+			serverStub.initializeGame(rmiView);
+			System.out.println("Ho inizializzato il game");
+			// CommandLineInterface commandLineInterface = new
+			// CommandLineInterface(clientModel.getPlayer(), clientModel);
+		}
 		System.out.println("LO START DI" + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
-		run(serverStub, rmiView);
+		run(serverStub);
 		System.out.println("ESCO DAL WHILE TRUE");
 	}
 
-	public void run(ServerRMIConnectionViewRemote serverStub, ClientRMIConnectionView rmiView) throws FileNotFoundException, NullPointerException,
+	public void run(ServerRMIConnectionViewRemote serverStub) throws FileNotFoundException, NullPointerException,
 			RemoteException, IOException, ParseException, InterruptedException {
 		while (true) {
 			// if(clientModel.getCurrentPlayer()!= null){
 			// System.out.println("Il currentPlayer è" +
 			// clientModel.getCurrentPlayer().getName());}
-			if (clientModel.getStartPlay() == true) {
-				serverStub.initializeGame(rmiView);
-				System.out.println("Ho inizializzato il game");
-				// CommandLineInterface commandLineInterface = new
-				// CommandLineInterface(clientModel.getPlayer(), clientModel);
-			}
+			
 			while ((clientModel.getStartPlay() == true)) {
-				System.out.println("SONO NEL PRIMO WHILE DI STARTPLAY");
+				//System.out.println("SONO NEL PRIMO WHILE DI STARTPLAY");
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
 					System.out.println(clientModel.getCurrentPlayer().getName());
 					System.out.println(clientModel.getPlayer());
