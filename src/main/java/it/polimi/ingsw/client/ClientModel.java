@@ -1,7 +1,11 @@
 package it.polimi.ingsw.client;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
@@ -34,8 +38,8 @@ public class ClientModel implements Serializable{
 	}*/
 
 
-	public void setCouncilPalace(Relative relative) {
-		board.getCouncilPalace().addPlayer(relative.getPlayer());
+	public void setCouncilPalace(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		board.getCouncilPalace().addPlayer(relative.getPlayer(), relative);
 		
 	}
 

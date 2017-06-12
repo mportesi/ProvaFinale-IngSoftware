@@ -62,7 +62,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	public void initializeBoard()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// this.players = new ArrayList<Player>();
-		this.board = new Board();
+		this.board = new Board(this);
 
 		// System.out.println("ho inizializzato la board");
 		this.round = 0;

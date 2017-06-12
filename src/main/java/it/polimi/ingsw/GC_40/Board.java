@@ -44,7 +44,7 @@ public class Board  extends Observable<Change> implements Serializable{
 	
 	
 	
-	public Board() throws FileNotFoundException, NullPointerException, IOException, ParseException{
+	public Board(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException{
 		JsonCard jsonCard= new JsonCard();
 		jsonCard.importCards();
 		deck = new ArrayList<Card>();
@@ -124,7 +124,8 @@ public class Board  extends Observable<Change> implements Serializable{
 		
 		JsonCouncilPalace jsonCouncil= new JsonCouncilPalace();
 		jsonCouncil.importCouncilPalace();
-		councilPalace = jsonCouncil.getCouncilPalace();
+		CouncilPalace councilPalaceJson=jsonCouncil.getCouncilPalace();
+		councilPalace = new CouncilPalace(councilPalace, play);
 		
 		JsonPrivilegeCouncil jsonPrivilegeCouncil= new JsonPrivilegeCouncil();
 		jsonPrivilegeCouncil.importPrivilegeCouncil();
