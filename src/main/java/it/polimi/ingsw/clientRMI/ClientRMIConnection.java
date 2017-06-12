@@ -1,5 +1,6 @@
 package it.polimi.ingsw.clientRMI;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.channels.AlreadyBoundException;
@@ -36,58 +37,71 @@ public class ClientRMIConnection implements Serializable {
 	public void startClient() throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
 			NullPointerException, ParseException, InterruptedException {
 		clientModel = new ClientModel();
-		
+
 		Scanner stdIn = new Scanner(System.in);
 
 		// System.setProperty("java.rmi.server.hostname", "192.168.1.2");
-		
+
 		// Get the remote registry
 		Registry registry = LocateRegistry.getRegistry(HOST, RMI_PORT);
 
 		// get the stub (local object) of the remote view
 		ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
 
-		
 		// register the client view in the server side (to receive messages from
 		// the server)
 
-		//System.out.println("inizio");
+		// System.out.println("inizio");
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
 
 		System.out.println("Tell me your name");
 		String name = stdIn.nextLine();
-		
+
 		// serverStub.initializeGame(rmiView);
 		// register the client view in the server side (to receive messages from
 		// the server)
 		serverStub.registerClient(rmiView, name);
-		if (clientModel.getStartPlay() == true) {
-			serverStub.initializeGame(rmiView);
-			//CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(), clientModel);
-		}
+		
 		System.out.println("LO START DI" + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
-		while(true){
-			//if(clientModel.getCurrentPlayer()!= null){
-			//System.out.println("Il currentPlayer è" + clientModel.getCurrentPlayer().getName());}
-		while ((clientModel.getStartPlay() == true) && (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName()))) {
-			System.out.println(clientModel.getCurrentPlayer());
-			System.out.println(clientModel.getPlayer());
-			// Capture input from user
-			CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(), clientModel);
-			System.out.println("Press a key to start the action");
-			String inputLine = stdIn.nextLine();
-			
-			//commandLineInterface.printTheBoard();
-			
-			PutRelative putRelative = commandLineInterface.chooseTheAction();
-			serverStub.notifyObserver(putRelative);
-			System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
-			ShiftPlayer shiftPlayer= new ShiftPlayer();
-			serverStub.notifyObserver(shiftPlayer);
-		}
-		}
+		run(serverStub, rmiView);
+		System.out.println("ESCO DAL WHILE TRUE");
 	}
-	
-	
+
+	public void run(ServerRMIConnectionViewRemote serverStub, ClientRMIConnectionView rmiView) throws FileNotFoundException, NullPointerException,
+			RemoteException, IOException, ParseException, InterruptedException {
+		while (true) {
+			// if(clientModel.getCurrentPlayer()!= null){
+			// System.out.println("Il currentPlayer è" +
+			// clientModel.getCurrentPlayer().getName());}
+			if (clientModel.getStartPlay() == true) {
+				serverStub.initializeGame(rmiView);
+				System.out.println("Ho inizializzato il game");
+				// CommandLineInterface commandLineInterface = new
+				// CommandLineInterface(clientModel.getPlayer(), clientModel);
+			}
+			while ((clientModel.getStartPlay() == true)) {
+				System.out.println("SONO NEL PRIMO WHILE DI STARTPLAY");
+				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
+					System.out.println(clientModel.getCurrentPlayer().getName());
+					System.out.println(clientModel.getPlayer());
+					// Capture input from user
+					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(),
+							clientModel);
+					System.out.println("Press a key to start the action");
+					Scanner stdIn = new Scanner(System.in);
+					String inputLine = stdIn.nextLine();
+
+					// commandLineInterface.printTheBoard();
+
+					PutRelative putRelative = commandLineInterface.chooseTheAction();
+					serverStub.notifyObserver(putRelative);
+					System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
+					ShiftPlayer shiftPlayer = new ShiftPlayer();
+					serverStub.notifyObserver(shiftPlayer);
+				}
+			}
+		}
+
+	}
 
 }
