@@ -48,7 +48,7 @@ public class CommandLineInterface implements Serializable {
 	}
 
 	public PutRelative chooseTheAction() {
-		System.out.println("sta giocando" + player.getName());
+		System.out.println("Il tuo stato è: " + player);
 
 		Relative relative = chooseTheRelative();
 

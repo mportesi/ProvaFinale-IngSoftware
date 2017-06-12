@@ -60,6 +60,7 @@ public class CouncilPalace implements Serializable{
 	
 	public void applyEffect(Player player, String bonus) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		createListOfCouncilPalaceEffect(bonus);
+		System.out.println(councilPalaceEffect);
 		for (Effect e : councilPalaceEffect){
 			e.apply(player);
 		}

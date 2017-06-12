@@ -17,9 +17,10 @@ public class ChangeCoin implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		if(client.getPlayer().equals(client)){
+		//if(client.getPlayer().equals(client)){
 			player.setCoin(coin);
-		}
+			client.getPlayer().setCoin(coin);
+		//}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {
 				p.setCoin(coin);

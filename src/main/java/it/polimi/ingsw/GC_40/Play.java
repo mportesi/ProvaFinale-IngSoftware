@@ -71,7 +71,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// System.out.println("ho fatto change period");
 		changeRound();
 		System.out.println(board);
-		ArrayList<Player> currentTurnOrder = createTurnOrder(players);
+		currentTurnOrder = createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
 		//ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
