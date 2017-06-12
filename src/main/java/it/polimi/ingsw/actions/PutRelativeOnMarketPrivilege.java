@@ -52,10 +52,8 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 		if (isApplicable()) {
 			// set the market as occupied because none can put other relatives
 			// in that space
-			market.setOccupied();
+			market.setOccupied(relative, market);
 			player.setOccupiedRelative(relative);
-			ChangeMarket changeMarket= new ChangeMarket(relative, market);
-			this.notifyObserver(changeMarket);
 			// take the bonus
 			//market.giveBonus(player, market);
 			//market.applyEffect(player);

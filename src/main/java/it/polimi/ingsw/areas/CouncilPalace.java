@@ -93,6 +93,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		order.add(orderIndex, player);
 		orderIndex += 1;
 		ChangeCouncilPalace changeCouncilPalace= new ChangeCouncilPalace(relative);
+		System.out.println("ho creato il change");
 		this.notifyObserver(changeCouncilPalace);
 	}
 	

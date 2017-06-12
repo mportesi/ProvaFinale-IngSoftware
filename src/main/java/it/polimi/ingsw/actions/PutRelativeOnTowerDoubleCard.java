@@ -46,7 +46,8 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if(isApplicable()){
-				tower.floors.get(floor).setPlayer(player);
+			System.out.println("Sono nell'apply di put relative on tower");
+				tower.floors.get(floor).setPlayer(player , relative, tower, floor);
 				player.setOccupiedRelative(relative);
 				cardToGive= tower.floors.get(floor).giveCard();
 				player.addCard(cardToGive);

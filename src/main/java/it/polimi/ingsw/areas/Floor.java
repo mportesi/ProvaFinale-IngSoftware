@@ -1,14 +1,22 @@
 package it.polimi.ingsw.areas;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Random;
 
+import org.json.simple.parser.ParseException;
+
+import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
 
-public class Floor implements Serializable {
+public class Floor extends Observable<Change> implements Serializable {
 	
 	private String type;
 	private int cost;
@@ -26,6 +34,26 @@ public class Floor implements Serializable {
 		relative = null;
 		player = null;
 		isFree = true;
+	}
+	
+	public Floor(Floor floor, Play play){
+		this.bonusEffect=floor.getBonusEffect();
+		this.type=floor.getType();
+		this.cost=floor.getCost();
+		relative = null;
+		player = null;
+		isFree = true;
+		registerObserver(play);
+	}
+
+	private String getType() {
+		// TODO Auto-generated method stub
+		return type;
+	}
+
+	private Effect getBonusEffect() {
+		// TODO Auto-generated method stub
+		return bonusEffect;
 	}
 
 	public int getCost() {
@@ -46,9 +74,13 @@ public class Floor implements Serializable {
 		return player;
 	}
 
-	public void setPlayer(Player player) {
+	public void setPlayer(Player player, Relative relative, Tower tower, int floor) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.player = player;
 		isFree = false;
+		ChangeTower changeTower= new ChangeTower(tower,floor, relative);
+		System.out.println("ho mandato il change");
+		this.notifyObserver(changeTower);
+		
 	}
 
 	public void setFree() {

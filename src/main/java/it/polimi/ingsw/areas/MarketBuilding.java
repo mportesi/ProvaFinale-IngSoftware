@@ -9,7 +9,12 @@ import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeMarket;
+import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
 import it.polimi.ingsw.effects.GainFaithPoint;
@@ -25,7 +30,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
-public class MarketBuilding implements Serializable{
+public class MarketBuilding extends Observable<Change> implements Serializable{
 
 	private String type; // A COSA SERVE??
 	private Map<String, Integer> bonus;
@@ -33,6 +38,28 @@ public class MarketBuilding implements Serializable{
 	private int cost;
 	private List<Effect> marketEffect;
 	private Player player;
+
+	public MarketBuilding(String type, Map<String, Integer> bonus, int cost) {
+		this.type = type;
+		this.bonus = bonus;
+		this.cost = cost;
+	}
+	
+	public MarketBuilding(MarketBuilding market, Play play){
+		this.type=market.getType();
+		this.bonus=market.getBonus();
+		this.cost=market.getCost();
+		registerObserver(play);
+	}
+	private Map<String, Integer> getBonus() {
+		// TODO Auto-generated method stub
+		return bonus;
+	}
+
+	private String getType() {
+		// TODO Auto-generated method stub
+		return type;
+	}
 
 	public void createListOfMarketEffect() throws FileNotFoundException, IOException, ParseException {
 		marketEffect = new ArrayList<Effect>();
@@ -100,11 +127,7 @@ public class MarketBuilding implements Serializable{
 		return cost;
 	}
 
-	public MarketBuilding(String type, Map<String, Integer> bonus, int cost) {
-		this.type = type;
-		this.bonus = bonus;
-		this.cost = cost;
-	}
+	
 
 	// when a player put a relative, he receive a bonus
 	/*
@@ -119,8 +142,10 @@ public class MarketBuilding implements Serializable{
 	 * }
 	 */
 
-	public void setOccupied() {
+	public void setOccupied(Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		isOccupied = true;
+		ChangeMarket changeMarket= new ChangeMarket(relative, market);
+		this.notifyObserver(changeMarket);
 	}
 
 	public void setFree() {

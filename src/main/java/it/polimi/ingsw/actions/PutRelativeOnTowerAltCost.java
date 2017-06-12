@@ -42,7 +42,7 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if(isApplicable()){
-				tower.floors.get(floor).setPlayer(player);
+				tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 				player.setOccupiedRelative(relative);
 				cardToGive= tower.floors.get(floor).giveCard();
 				player.addCard(cardToGive);

@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.components.Relative;
 
-public class Tower implements Serializable {
+public class Tower extends Observable<Change> implements Serializable {
 	private String type;
 	public ArrayList<Floor> floors;
 	private ArrayList<Card> deck1;
@@ -16,12 +19,13 @@ public class Tower implements Serializable {
 	private ArrayList<Card> deck3;
 	
 	
-	public Tower(String type, ArrayList<Card> deck1, ArrayList<Card> deck2, ArrayList<Card> deck3, ArrayList<Floor> floors) {
+	public Tower(String type, ArrayList<Card> deck1, ArrayList<Card> deck2, ArrayList<Card> deck3, ArrayList<Floor> floors, Play play) {
 		this.type = type;
 		this.deck1 = deck1;
 		this.deck2 = deck2;
 		this.deck3 = deck3;
 		this.floors = floors;
+		registerObserver(play);
 	}
 
 	public String getType() {

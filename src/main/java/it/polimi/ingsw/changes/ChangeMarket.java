@@ -1,5 +1,10 @@
 package it.polimi.ingsw.changes;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
@@ -17,7 +22,7 @@ public class ChangeMarket implements Change {
 	}
 
 	@Override
-	public void applyChange(ClientModel client) {
+	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		client.setMarket(market, relative);
 	}
 

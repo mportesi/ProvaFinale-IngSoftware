@@ -2,14 +2,21 @@ package it.polimi.ingsw.areas;
 
 
 import it.polimi.ingsw.colors.ColorDice;
+import it.polimi.ingsw.GC_40.Observable;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.changes.*;
 import it.polimi.ingsw.components.Relative;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HarvestAndProductionArea implements Serializable {
+import org.json.simple.parser.ParseException;
+
+public class HarvestAndProductionArea extends Observable<Change> implements Serializable {
 	// it is necessary to keep a a leftPlayer because when the first player use
 	// this area, there is a penalty for the others
 	private Relative leftRelative;
@@ -25,6 +32,16 @@ public class HarvestAndProductionArea implements Serializable {
 		this.valueOfRightArea = valueOfRightArea;
 		this.malus = malus;
 		this.rightRelatives = new ArrayList<Relative>();
+		
+	}
+	
+	public HarvestAndProductionArea (HarvestAndProductionArea area, Play play){
+		this.type = area.getType();
+		this.valueOfLeftArea = area.getValueOfLeftArea();
+		this.valueOfRightArea = area.getValueOfRightArea();
+		this.malus = area.getMalus();
+		this.rightRelatives = new ArrayList<Relative>();
+		registerObserver(play);
 		
 	}
 	
@@ -47,12 +64,29 @@ public class HarvestAndProductionArea implements Serializable {
 		return rightRelatives;
 	}
 
-	public void setLeftRelative(Relative relative) {
+	public void setLeftRelativeOnHarvest(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		leftRelative = relative;
+		ChangeHarvestLeftArea changeHarvestLeftArea = new ChangeHarvestLeftArea(relative);
+		this.notifyObserver(changeHarvestLeftArea);
+	}
+	
+	public void setLeftRelativeOnProduction(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		leftRelative = relative;
+		//???????chiedere 
+		ChangeProductionLeftArea changeProductionLeftArea= new ChangeProductionLeftArea(relative);
+		this.notifyObserver(changeProductionLeftArea);
 	}
 
-	public void setRightRelative(Relative relative) {
+	public void setRightRelativeOnHarvest(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		rightRelatives.add(relative);
+		ChangeHarvestRightArea changeHarvestRightArea = new ChangeHarvestRightArea(relative);
+		this.notifyObserver(changeHarvestRightArea);
+	}
+	
+	public void setRightRelativeOnProduction(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		rightRelatives.add(relative);
+		ChangeProductionRightArea changeProductionRightArea= new ChangeProductionRightArea(relative);
+		this.notifyObserver(changeProductionRightArea);
 	}
 
 	public int getValueOfLeftArea() {

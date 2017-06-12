@@ -67,13 +67,7 @@ public class ClientRMIConnection implements Serializable {
 			// CommandLineInterface commandLineInterface = new
 			// CommandLineInterface(clientModel.getPlayer(), clientModel);
 		}
-		System.out.println("LO START DI" + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
-		run(serverStub);
-		System.out.println("ESCO DAL WHILE TRUE");
-	}
-
-	public void run(ServerRMIConnectionViewRemote serverStub) throws FileNotFoundException, NullPointerException,
-			RemoteException, IOException, ParseException, InterruptedException {
+		System.out.println("LO START DI " + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
 		while (true) {
 			// if(clientModel.getCurrentPlayer()!= null){
 			// System.out.println("Il currentPlayer è" +
@@ -88,7 +82,7 @@ public class ClientRMIConnection implements Serializable {
 					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(),
 							clientModel);
 					System.out.println("Press a key to start the action");
-					Scanner stdIn = new Scanner(System.in);
+		
 					String inputLine = stdIn.nextLine();
 
 					// commandLineInterface.printTheBoard();
@@ -103,5 +97,6 @@ public class ClientRMIConnection implements Serializable {
 		}
 
 	}
+
 
 }

@@ -21,7 +21,7 @@ public class ChangeCouncilPalace implements Change {
 	@Override
 	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		client.setCouncilPalace(relative);
-		
+		System.out.println("Ho fatto il change del council");
 	}
 	
 

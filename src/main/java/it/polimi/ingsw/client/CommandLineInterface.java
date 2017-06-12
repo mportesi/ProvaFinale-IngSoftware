@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.actions.*;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.actions.PutRelativeOnCouncilPalace;
 import it.polimi.ingsw.actions.PutRelativeOnHarvestArea;
@@ -14,7 +15,9 @@ import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.colors.ColorDice;
+import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class CommandLineInterface implements Serializable {
@@ -69,8 +72,7 @@ public class CommandLineInterface implements Serializable {
 		case "Tower": {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
-			System.out.println(player);
-			putRelative = new PutRelativeOnTower(player, tower, floor, relative);
+			putRelative = chooseThePutRelativeOnTower(tower, floor, relative);
 			break;
 		}
 		case "CouncilPalace": {
@@ -80,7 +82,7 @@ public class CommandLineInterface implements Serializable {
 		}
 		case "Market": {
 			MarketBuilding market = chooseMarket();
-			putRelative = new PutRelativeOnMarket(player, relative, market); // sistemare
+			putRelative = chooseThePutRelativeOnMarket(market, relative);
 			break;
 		}
 		case "HarvestArea": {
@@ -105,6 +107,53 @@ public class CommandLineInterface implements Serializable {
 		}
 		return putRelative;
 
+	}
+
+	//TO FIX
+	private PutRelative chooseThePutRelativeOnMarket(MarketBuilding market, Relative relative) {
+		System.out.println("Tell me if you want to have the privilege council");
+		return null;
+	}
+
+	public PutRelative chooseThePutRelativeOnTower(Tower tower, int floor, Relative relative) {
+		System.out.println("Choose if the card that you want to take have one of this effect: \n 1) Gain privilege Council \n 2)Gain another card \n 3)It has an alternative cost \n Otherwise put another key ");
+		PutRelative putRelative=null;
+		switch(scanner.nextInt()){
+		case 1:{
+			String privilegeCouncil=choosePrivilegeCouncil();
+			//putRelative= new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative, bonus , GainPrivilegeCouncil gain)
+			break;
+		}
+		case 2:{
+			Tower tower2 = chooseTower();
+			int floor2= chooseFloor();
+			putRelative= new PutRelativeOnTowerDoubleCard(client.getPlayer(), tower, floor, relative, tower2, floor2);
+			break;
+		}
+		case 3:{
+			boolean choice= chooseAlternativeCost();
+			putRelative= new PutRelativeOnTowerAltCost(client.getPlayer(), tower, floor, relative, choice);
+			break;
+		}
+		default:{
+			putRelative= new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+			break;
+		}
+		}
+		return putRelative;
+	}
+
+	private boolean chooseAlternativeCost() {
+		System.out.println("Choose if you prefer: \n 1)military cost \n 2)the other cost");
+		switch(scanner.nextInt()){
+		case 1: {
+			return true;
+		}
+		case 2: {
+			return false;
+		}
+		}
+		return false;
 	}
 
 	public Relative chooseTheRelative() {

@@ -29,12 +29,13 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	}
 	
 	public boolean isApplicable(){
+		System.out.println("entro nell'isApplicable");
 		if(tower.floors.get(floor).isFree()){
-			//System.out.println("tower is free");
+			System.out.println("tower is free");
 			if(relative.getValue()>=tower.floors.get(floor).getCost()){
-				//System.out.println("The relative has the bigger value");
+				System.out.println("The relative has the bigger value");
 				if(tower.isPresent(player)==false){
-					//System.out.println("There isn't the player");
+					System.out.println("There isn't the player");
 					//System.out.println("true");
 					return true;
 				}
@@ -60,7 +61,8 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if(isApplicable()){
-				tower.floors.get(floor).setPlayer(player);
+			System.out.println("Sono nell'apply di put relative on tower");
+				tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 				player.setOccupiedRelative(relative);
 				System.out.println(tower.floors.get(floor).getPlayer());
 				cardToGive= tower.floors.get(floor).giveCard();
@@ -69,9 +71,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 				System.out.println("territory" + player.getTerritory().size());
 				cardToGive.applyEffect(player);
 				tower.floors.get(floor).bonusEffect.apply(player);
-				ChangeTower changeTower= new ChangeTower(tower,floor, relative);
-				System.out.println("ho mandato il change");
-				this.notifyObserver(changeTower);
+				
 				
 				
 			}

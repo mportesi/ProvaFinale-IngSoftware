@@ -77,7 +77,11 @@ public class Board  extends Observable<Change> implements Serializable{
 		
 		JsonFloor jsonFloor = new JsonFloor();
 		jsonFloor.importFloors();
-		territoryTower = new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
+		ArrayList<Floor> territoryFloorJson=jsonFloor.getTerritoryFloors();
+		ArrayList<Floor> territoryFloor= new ArrayList<>();
+		for(Floor f: territoryFloorJson){
+		territoryFloor.add(new Floor(f, play));}
+		territoryTower = new Tower("territory", territory1, territory2, territory3, territoryFloor, play);
 		/*for (int i =0; i< territory1.size(); i++){
 		System.out.println("carta territorio: " + territory1.get(i));
 		}
@@ -86,8 +90,11 @@ public class Board  extends Observable<Change> implements Serializable{
 			System.out.println("Piano della torre: " + territoryTower.floors.get(i));
 			
 			}*/
-		
-		buildingTower = new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
+		ArrayList<Floor> buildingFloorJson=jsonFloor.getBuildingFloors();
+		ArrayList<Floor> buildingFloor= new ArrayList<>();
+		for(Floor f: buildingFloorJson){
+		buildingFloor.add(new Floor(f, play));}
+		buildingTower = new Tower("building", building1, building2, building3, buildingFloor, play);
 		/*for (int i =0; i< building1.size(); i++){
 			System.out.println("carta building: " + building1.get(i));
 			}
@@ -96,8 +103,11 @@ public class Board  extends Observable<Change> implements Serializable{
 			System.out.println("Piano della torre: " + buildingTower.floors.get(i));
 			
 			}*/
-		
-		characterTower = new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
+		ArrayList<Floor> characterFloorJson=jsonFloor.getCharacterFloors();
+		ArrayList<Floor> characterFloor= new ArrayList<>();
+		for(Floor f: characterFloorJson){
+		characterFloor.add(new Floor(f, play));}
+		characterTower = new Tower("character", character1, character2, character3, characterFloor , play);
 		/*for (int i =0; i< character1.size(); i++){
 			System.out.println("carta character: " + character1.get(i));
 			}
@@ -106,8 +116,11 @@ public class Board  extends Observable<Change> implements Serializable{
 			System.out.println("Piano della torre: " + characterTower.floors.get(i));
 			
 			}*/
-		
-		ventureTower= new Tower("venture", venture1, venture2, venture3, jsonFloor.getVentureFloors());
+		ArrayList<Floor> ventureFloorJson=jsonFloor.getTerritoryFloors();
+		ArrayList<Floor> ventureFloor= new ArrayList<>();
+		for(Floor f: ventureFloorJson){
+		ventureFloor.add(new Floor(f, play));}
+		ventureTower= new Tower("venture", venture1, venture2, venture3, ventureFloor, play);
 		/*for (int i =0; i< venture1.size(); i++){
 			System.out.println("carta venture: " + venture1.get(i));
 			}
@@ -117,10 +130,6 @@ public class Board  extends Observable<Change> implements Serializable{
 			
 			}*/
 		//System.out.println(jsonFloor.getTerritoryFloors());
-		territoryTower= new Tower("territory", territory1, territory2, territory3, jsonFloor.getTerritoryFloors());
-		buildingTower= new Tower("building", building1, building2, building3, jsonFloor.getBuildingFloors());
-		characterTower= new Tower("character", character1, character2, character3, jsonFloor.getCharacterFloors());
-		ventureTower= new Tower("venture", venture1, venture2, venture3, jsonFloor.getVentureFloors());
 		
 		JsonCouncilPalace jsonCouncil= new JsonCouncilPalace();
 		jsonCouncil.importCouncilPalace();
@@ -136,8 +145,10 @@ public class Board  extends Observable<Change> implements Serializable{
 		market= new ArrayList<MarketBuilding>();
 		JsonMarket jsonMarket= new  JsonMarket();
 		jsonMarket.importMarket();
+		ArrayList<MarketBuilding> marketJson= new ArrayList<>();
 		for(int i=0; i<4; i++){
-			market.add(i, jsonMarket.getMarketBuilding(i));
+			marketJson.add(i, jsonMarket.getMarketBuilding(i));
+			market.add(i, new MarketBuilding(marketJson.get(i), play));
 		}
 		
 		JsonPersonalBonusTiles jsonPersonalBonusTiles= new JsonPersonalBonusTiles();
@@ -148,10 +159,11 @@ public class Board  extends Observable<Change> implements Serializable{
 		
 		JsonHarvestAndProduction jsonHarvestAndProduction = new JsonHarvestAndProduction();
 		jsonHarvestAndProduction.importHarvestAndProduction();
-		System.out.println("harvest " + jsonHarvestAndProduction.getHarvest());
-		harvestArea = jsonHarvestAndProduction.getHarvest();
-		productionArea = jsonHarvestAndProduction.getProduction();
 		
+		HarvestAndProductionArea harvestAreaJson = jsonHarvestAndProduction.getHarvest();
+		HarvestAndProductionArea productionAreaJson = jsonHarvestAndProduction.getProduction();
+		harvestArea= new HarvestAndProductionArea(harvestAreaJson, play);
+		productionArea= new HarvestAndProductionArea(productionAreaJson, play);
 		
 		blackDice = new Dice(ColorDice.BLACK);
 		whiteDice = new Dice(ColorDice.WHITE);
@@ -292,7 +304,6 @@ public class Board  extends Observable<Change> implements Serializable{
 
 
 	public PrivilegeCouncil getPrivilegeCouncil() {
-		// TODO Auto-generated method stub
 		return privilegeCouncil;
 	}
 

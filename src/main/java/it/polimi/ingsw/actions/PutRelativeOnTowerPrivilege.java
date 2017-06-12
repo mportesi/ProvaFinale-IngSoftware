@@ -24,6 +24,7 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	Card cardToGive;
 	PrivilegeCouncil privilege;
 	GainPrivilegeCouncil gain;
+	
 	public PutRelativeOnTowerPrivilege(Player player, Tower tower, int floor, Relative relative, PrivilegeCouncil privilege, GainPrivilegeCouncil gain){
 		this.relative=relative;
 		this.player=player;
@@ -45,7 +46,7 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if(isApplicable()){
-				tower.floors.get(floor).setPlayer(player);
+				tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 				player.setOccupiedRelative(relative);
 				cardToGive= tower.floors.get(floor).giveCard();
 				gain.apply(player);
