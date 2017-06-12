@@ -45,6 +45,7 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
+			//System.out.println("putRelativeOnCouncilPalace is applicable");
 			// The player puts a relative on the councilPalace
 			play.getBoard().getCouncilPalace().addPlayer(player, relative);
 			player.setOccupiedRelative(relative);

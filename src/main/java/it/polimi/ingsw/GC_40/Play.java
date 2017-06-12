@@ -87,9 +87,10 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		int coin = 5;
 		for (Player p : currentTurnOrder) {
 			p.incrementCoin(coin);
-			coin++;
+			
 			ChangeCoin changeCoin = new ChangeCoin(p, p.getCoin());
 			this.notifyObserver(changeCoin);
+			coin ++;
 		}
 
 	}
@@ -97,8 +98,12 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	public void initializePlayer(ArrayList<Player> currentTurnOrder)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		ColorPlayer[] colors= ColorPlayer.values();
+			System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
+			System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
 		for(int i=0; i<currentTurnOrder.size(); i++){
+			System.out.println(currentTurnOrder.get(i));
 			currentTurnOrder.get(i).setColor(colors[i]);
+			System.out.println(currentTurnOrder.get(i).getColor());
 			ChangeColor changeColor = new ChangeColor(currentTurnOrder.get(i), colors[i]);
 			this.notifyObserver(changeColor);
 		}
@@ -341,6 +346,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	
 	@Override
 	public void update(Change c) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		System.out.println("ho ricevuto il cambiamento");
 		this.notifyObserver(c);
 	}
 

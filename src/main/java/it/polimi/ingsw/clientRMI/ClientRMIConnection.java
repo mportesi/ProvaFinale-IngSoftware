@@ -68,6 +68,8 @@ public class ClientRMIConnection implements Serializable {
 		
 		while(true){
 		while ((clientModel.getStartPlay() == true) && (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName()))) {
+			System.out.println(clientModel.getCurrentPlayer());
+			System.out.println(clientModel.getPlayer());
 			// Capture input from user
 			CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(), clientModel);
 			System.out.println("Press a key to start the action");
@@ -77,6 +79,7 @@ public class ClientRMIConnection implements Serializable {
 			
 			PutRelative putRelative = commandLineInterface.chooseTheAction();
 			serverStub.notifyObserver(putRelative);
+			System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
 			ShiftPlayer shiftPlayer= new ShiftPlayer();
 			serverStub.notifyObserver(shiftPlayer);
 		}

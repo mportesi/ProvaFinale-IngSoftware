@@ -74,7 +74,8 @@ public class Player extends Observable<Change> implements Serializable {
 	
 	@Override
 	public String toString(){
-		return ("The player is\n " + "Name: " + name +  "\nColor: "  );
+		return ("The player is\n " + "Name: " + name +  "\nColor: " + color + "\nCoin: " +coin + "\nWood: "+ wood +"\nStone: "+ stone + "\nServant: "+ servant + "\nFaithPoint: " + faithPoint + "\nMilitaryPoint: "+ militaryPoint + "\nVictoryPoint: "+ victoryPoint+ "\nTerritoryCard: " + territoryCard + "\nCharacterCard: "
+				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nLeaderTile: "+ leader);
 	}
 
 	public int resourceCounter() {
@@ -136,6 +137,7 @@ public class Player extends Observable<Change> implements Serializable {
 	public void incrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
 		ChangeCoin changeCoin = new ChangeCoin(this, coin);
+		System.out.println("notifico il change coin");
 		this.notifyObserver(changeCoin);
 
 	}
