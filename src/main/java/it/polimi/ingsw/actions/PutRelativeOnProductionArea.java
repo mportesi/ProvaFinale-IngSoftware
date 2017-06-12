@@ -70,6 +70,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 			// If the left position is free, the player put the relative there.
 			if (area == "left") {
 				productionArea.setLeftRelative(relative);
+				player.setOccupiedRelative(relative);
 				ChangeProductionLeftArea changeProductionLeftArea= new ChangeProductionLeftArea(relative);
 				this.notifyObserver(changeProductionLeftArea);
 				GainProductionValue gainProductionValue = new GainProductionValue(relative.getValue()); 
@@ -78,6 +79,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 			// Else he put the relative on the other side with the penalty
 			else {
 				productionArea.setRightRelative(relative);
+				player.setOccupiedRelative(relative);
 				ChangeProductionRightArea changeProductionRightArea= new ChangeProductionRightArea(relative);
 				this.notifyObserver(changeProductionRightArea);
 				int malus = play.getBoard().getHarvestArea().getMalus();

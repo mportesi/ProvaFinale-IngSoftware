@@ -125,7 +125,7 @@ public class Board  extends Observable<Change> implements Serializable{
 		JsonCouncilPalace jsonCouncil= new JsonCouncilPalace();
 		jsonCouncil.importCouncilPalace();
 		CouncilPalace councilPalaceJson=jsonCouncil.getCouncilPalace();
-		councilPalace = new CouncilPalace(councilPalace, play);
+		councilPalace = new CouncilPalace(councilPalaceJson, play);
 		
 		JsonPrivilegeCouncil jsonPrivilegeCouncil= new JsonPrivilegeCouncil();
 		jsonPrivilegeCouncil.importPrivilegeCouncil();

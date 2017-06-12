@@ -43,6 +43,7 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if(isApplicable()){
 				tower.floors.get(floor).setPlayer(player);
+				player.setOccupiedRelative(relative);
 				cardToGive= tower.floors.get(floor).giveCard();
 				player.addCard(cardToGive);
 				cardToGive.chooseCost(choice);

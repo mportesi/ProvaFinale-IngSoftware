@@ -405,18 +405,26 @@ public class Player extends Observable<Change> implements Serializable {
 		return personalBonusTile;
 	}
 
-	public void setOccupiedRelative(Relative relative) {
+	public void setOccupiedRelative(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=false;
+			ChangeOccupiedRelative changeOccupiedRelative= new ChangeOccupiedRelative(this, relative);
+			this.notifyObserver(changeOccupiedRelative);
 		}
 		if(relative.equals(whiteRelative)){
 			hasWhiteRelative=false;
+			ChangeOccupiedRelative changeOccupiedRelative= new ChangeOccupiedRelative(this, relative);
+			this.notifyObserver(changeOccupiedRelative);
 		}
 		if(relative.equals(orangeRelative)){
 			hasOrangeRelative=false;
+			ChangeOccupiedRelative changeOccupiedRelative= new ChangeOccupiedRelative(this, relative);
+			this.notifyObserver(changeOccupiedRelative);
 		}
 		if(relative.equals(orangeRelative)){
 			hasNeutralRelative=false;
+			ChangeOccupiedRelative changeOccupiedRelative= new ChangeOccupiedRelative(this, relative);
+			this.notifyObserver(changeOccupiedRelative);
 		}
 		
 	}

@@ -46,6 +46,7 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if(isApplicable()){
 				tower.floors.get(floor).setPlayer(player);
+				player.setOccupiedRelative(relative);
 				cardToGive= tower.floors.get(floor).giveCard();
 				gain.apply(player);
 				player.addCard(cardToGive);

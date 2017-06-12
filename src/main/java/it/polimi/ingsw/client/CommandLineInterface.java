@@ -115,21 +115,40 @@ public class CommandLineInterface implements Serializable {
 		Relative relative = null;
 		switch (input) {
 		case "black": {
-			relative = client.getPlayer().getBlackRelative();
+			if(client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())){
+				relative = client.getPlayer().getBlackRelative();
+			}
+			else{
+				System.out.println("You cannot use this relative, it is already used");
+			}
 			break;
 		}
 		case "white": {
+			if(client.getPlayer().getBooleanRelative(client.getPlayer().getWhiteRelative())){
 			relative = client.getPlayer().getWhiteRelative();
+			}
+			else{
+				System.out.println("You cannot use this relative, it is already used");
+			}
 			break;
 
 		}
 		case "orange": {
+			if(client.getPlayer().getBooleanRelative(client.getPlayer().getOrangeRelative())){
 			relative = client.getPlayer().getOrangeRelative();
+			}
+			else{
+				System.out.println("You cannot use this relative, it is already used");
+			}
 			break;
 
 		}
 		case "neutral": {
-			relative = client.getPlayer().getNeutralRelative();
+			if(client.getPlayer().getBooleanRelative(client.getPlayer().getNeutralRelative())){
+			relative = client.getPlayer().getNeutralRelative();}
+			else{
+				System.out.println("You cannot use this relative, it is already used");
+			}
 			break;
 		}
 		default: {
