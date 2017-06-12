@@ -6,6 +6,8 @@ import java.util.Scanner;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.clientRMI.ClientRMIConnection;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionView;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
@@ -17,7 +19,6 @@ import java.rmi.NotBoundException;
 
 public class Client implements Serializable {
 	private Player player;
-	private static ClientStart clientStart;
 	// private static ClientModel clientModel;
 
 	public static void main(String args[]) throws IOException, AlreadyBoundException, NotBoundException,
@@ -56,5 +57,6 @@ public class Client implements Serializable {
 
 			}
 		}
+		
 	}
 }

@@ -19,6 +19,7 @@ public class ChangeCoin implements Change {
 	public void applyChange(ClientModel client) {
 		if(client.getPlayer().equals(client)){
 			player.setCoin(coin);
+			System.out.println("ho cambiato i coin");
 		}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {

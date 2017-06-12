@@ -30,15 +30,15 @@ public class Server {
 	private final static int PORT = 29999;
 	private final static int RMI_PORT = 52365;
 
-	private Play gioco;
+	private Play play;
 
 	private Controller controller;
 	
 	private final String NAME="Lorenzo Il Magnifico";
 
 	public Server() throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		this.gioco = new Play();
-		this.controller = new Controller(gioco);
+		this.play = new Play();
+		this.controller = new Controller(play);
 
 	}
 	
@@ -57,7 +57,7 @@ public class Server {
 			Socket socket = serverSocket.accept();
 
 			// creates the view (server side) associated with the new client
-			ServerSocketView view = new ServerSocketView(socket, gioco);
+			ServerSocketView view = new ServerSocketView(socket, play);
 
 			// the view observes the model
 			this.gioco.registerObserver(view);
@@ -75,7 +75,7 @@ public class Server {
 		System.out.println("constructing the rmi registry");
 		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView();
 		serverRMIConnectionView.registerObserver(this.controller);
-		this.gioco.registerObserver(serverRMIConnectionView);
+		this.play.registerObserver(serverRMIConnectionView);
 		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView, 0);
 		System.out.println("binding the server implementation to the registry");
 		registry.bind(NAME, serverRMIConnectionView);
