@@ -62,7 +62,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	public void initializeBoard()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// this.players = new ArrayList<Player>();
-		this.board = new Board();
+		this.board = new Board(this);
 
 		// System.out.println("ho inizializzato la board");
 		this.round = 0;
@@ -72,7 +72,6 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		changeRound();
 		System.out.println(board);
 		currentTurnOrder = createTurnOrder(players);
-		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
 		//ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
 		//this.notifyObserver(changePlayer);
@@ -359,13 +358,13 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
 		
-		while (players.size() < 2) {
+		if (players.size() < 2) {
 			start = false;
 		}
 		if (players.size() >= 2) {
 			verifyNumberOfPlayer();
 		}
-		verifyNumberOfPlayer();
+		
 		if (start == true) {
 			initializePlayer(players);
 

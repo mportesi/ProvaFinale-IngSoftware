@@ -47,6 +47,7 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 			// set the market as occupied because none can put other relatives
 			// in that space
 			market.setOccupied();
+			player.setOccupiedRelative(relative);
 			ChangeMarket changeMarket= new ChangeMarket(relative, market);
 			this.notifyObserver(changeMarket);
 			// take the bonus

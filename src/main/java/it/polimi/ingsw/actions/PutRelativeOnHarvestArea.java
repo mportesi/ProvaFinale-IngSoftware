@@ -67,6 +67,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 			// If the left position is free, the player put the relative there.
 			if (area == "left") {
 				harvestArea.setLeftRelative(relative);
+				player.setOccupiedRelative(relative);
 				ChangeHarvestLeftArea changeHarvestLeftArea = new ChangeHarvestLeftArea(relative);
 				this.notifyObserver(changeHarvestLeftArea);
 				GainHarvestValue gainHarvestValue = new GainHarvestValue(relative.getValue());
@@ -76,6 +77,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 			// Else he put the relative on the other side with the penalty
 			else {
 				harvestArea.setRightRelative(relative);
+				player.setOccupiedRelative(relative);
 				ChangeHarvestRightArea changeHarvestRightArea = new ChangeHarvestRightArea(relative);
 				this.notifyObserver(changeHarvestRightArea);
 				int malus = play.getBoard().getHarvestArea().getMalus();

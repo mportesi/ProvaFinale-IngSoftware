@@ -1,8 +1,12 @@
 package it.polimi.ingsw.clientRMI;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeInitializePlay;
@@ -25,7 +29,7 @@ public class ClientRMIConnectionView extends UnicastRemoteObject
 	private static final long serialVersionUID = 6111979881550001331L;
 
 	@Override
-	public void updateClient(Change c) throws RemoteException {
+	public void updateClient(Change c) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (c instanceof ChangeInitializePlay) {
 			//System.out.println("ok posso inizializzare il gioco");
 			c.applyChange(client);

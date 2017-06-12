@@ -47,7 +47,7 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 	}
 
 	@Override
-	public void update(Change change) throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public void update(Change change) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		//System.out.println("SENDING THE CHANGE TO THE CLIENT");
 		try {
 			//System.out.println(change);

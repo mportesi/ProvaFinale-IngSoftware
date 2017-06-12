@@ -47,6 +47,7 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if(isApplicable()){
 				tower.floors.get(floor).setPlayer(player);
+				player.setOccupiedRelative(relative);
 				cardToGive= tower.floors.get(floor).giveCard();
 				player.addCard(cardToGive);
 				cardToGive.applyEffect(player);
@@ -55,6 +56,7 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 				this.notifyObserver(changeTower);
 				secondCardToGive = secondT.floors.get(secondF).giveCard();
 				player.addCard(secondCardToGive);
+				secondCardToGive.applyEffect(player);
 			}
 		return;
 	}
