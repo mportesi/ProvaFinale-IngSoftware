@@ -22,5 +22,10 @@ public class GainHarvestValue extends Effect {
 
 	}
 	}
+	
+	@Override
+	public String toString(){
+		return ("Effect: gain " + harvestValue + " coin"  );
+	}
 
 }

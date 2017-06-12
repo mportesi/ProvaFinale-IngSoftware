@@ -19,6 +19,11 @@ public class GainCoin extends Effect {
 		player.incrementCoin(coin);
 	}
 
+	@Override
+	public String toString(){
+		return ("Effect: gain " + coin + " coin"  );
+	}
+
 	
 
 }

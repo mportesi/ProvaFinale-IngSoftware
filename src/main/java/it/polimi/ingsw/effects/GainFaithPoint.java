@@ -21,5 +21,10 @@ public class GainFaithPoint extends Effect {
 		player.incrementFaithPoint(faithPoint);
 
 	}
+	
+	@Override
+	public String toString(){
+		return ("Effect: gain " + faithPoint + " faithPoint"  );
+	}
 
 }

@@ -30,6 +30,12 @@ public class GainPrivilegeCouncil extends Effect {
 		// TODO Auto-generated method stub
 		
 	}
+	
+
+	@Override
+	public String toString(){
+		return ("Effect: gain " + privilegeCouncil + " privilegeCouncil in "+ resource  );
+	}
 
 
 }

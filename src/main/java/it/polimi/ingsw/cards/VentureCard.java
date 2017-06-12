@@ -81,6 +81,12 @@ public class VentureCard extends Card {
 		return;
 
 	}
+	
+
+	@Override
+	public String toString(){
+		return (name + ": il costo è "+ cost + ": gli effetti immediati sono " + immediateEffects );
+	}
 
 	// to apply immediate effects
 	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {

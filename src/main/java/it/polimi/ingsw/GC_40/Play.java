@@ -77,10 +77,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		this.currentPlayer = currentTurnOrder.get(0);
 	}
 
-	public void initializeGame()
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-
-	}
+	
 
 	public void giveStartingCoin(ArrayList<Player> currentTurnOrder)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {

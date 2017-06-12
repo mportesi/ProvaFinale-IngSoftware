@@ -21,5 +21,11 @@ public class GainVictoryPoint extends Effect {
 			player.incrementVictoryPoint(victoryPoint);
 
 	}
+	
+
+	@Override
+	public String toString(){
+		return ("Effect: gain " + victoryPoint + " victoryPoint"  );
+	}
 
 }

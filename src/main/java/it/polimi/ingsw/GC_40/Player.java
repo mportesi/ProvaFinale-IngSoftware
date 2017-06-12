@@ -72,6 +72,10 @@ public class Player extends Observable<Change> implements Serializable {
 		hasNeutralRelative = true;*/
 	}
 	
+	@Override
+	public String toString(){
+		return ("The player is\n " + "Name: " + name +  "\nColor: "  );
+	}
 
 	public int resourceCounter() {
 		return coin + wood + stone + servant;

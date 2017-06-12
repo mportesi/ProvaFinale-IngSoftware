@@ -19,5 +19,11 @@ public class GainStone extends Effect {
 		player.incrementStone(stone);
 
 	}
+	
+
+	@Override
+	public String toString(){
+		return ("Effect: gain " + stone + " stone"  );
+	}
 
 }

@@ -12,5 +12,5 @@ public abstract class Effect implements Serializable {
 	
 	public abstract void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 
-	
+
 }

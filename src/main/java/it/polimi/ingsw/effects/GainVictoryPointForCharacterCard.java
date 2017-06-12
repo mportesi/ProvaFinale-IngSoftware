@@ -20,4 +20,10 @@ public class GainVictoryPointForCharacterCard extends Effect {
 		player.incrementVictoryPoint(victoryPoint*counter);
 
 	}
+	
+
+	@Override
+	public String toString(){
+		return ("Effect: gain " + victoryPoint + " victoryPointForCharacterCard"  );
+	}
 }
