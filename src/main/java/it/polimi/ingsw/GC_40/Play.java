@@ -338,6 +338,11 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public void update(Change c) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		this.notifyObserver(c);
+	}
 
 	public void createNewPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -346,17 +351,16 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		}
 		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
-
-		if (players.size() < 2) {
-			notifyObserver(new ChangeNewPlayer(player));
+		notifyObserver(new ChangeNewPlayer(player));
+		
+		while (players.size() < 2) {
 			start = false;
 		}
 		if (players.size() >= 2) {
 			verifyNumberOfPlayer();
 		}
-
+		verifyNumberOfPlayer();
 		if (start == true) {
-			notifyObserver(new ChangeNewPlayer(player));
 			initializePlayer(players);
 
 		}
@@ -395,7 +399,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 		}
 
-		start = true;
+		start = false;
 
 	}
 
@@ -410,8 +414,5 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		return board;
 	}
 
-	public void modifyCouncilPalace() {
-
-	}
 
 }
