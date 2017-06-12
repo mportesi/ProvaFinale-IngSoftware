@@ -55,6 +55,7 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 				// System.out.println("sono nel Server prima di fare
 				// updateClient(c)");
 				clientstub.updateClient(change);
+				System.out.println("ho fatto il change sul client" + change);
 				// System.out.println("sono nel Server dopo aver fatto
 				// updateClient(c)");
 			}

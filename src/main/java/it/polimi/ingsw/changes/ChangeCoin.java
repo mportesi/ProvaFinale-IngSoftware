@@ -16,7 +16,8 @@ public class ChangeCoin implements Change {
 	}
 
 	@Override
-	public void applyChange(ClientModel client) {
+	public void applyChange(ClientModel client){
+		System.out.println("sono nel change coin");
 		//if(client.getPlayer().equals(client)){
 			player.setCoin(coin);
 			client.getPlayer().setCoin(coin);
@@ -30,4 +31,4 @@ public class ChangeCoin implements Change {
 		}*/
 
 	}
-}
+
