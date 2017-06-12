@@ -13,7 +13,7 @@ import it.polimi.ingsw.components.PrivilegeCouncil;
 public class JsonPrivilegeCouncil {
 	private PrivilegeCouncil privilegeCouncil;
 	
-	public void importCards() throws FileNotFoundException, IOException, ParseException {
+	public void importPrivilegeCouncil() throws FileNotFoundException, IOException, ParseException {
 
 		JSONParser privilegeCouncilParser = new JSONParser();
 		JSONObject privilegeCouncilObj = (JSONObject) privilegeCouncilParser.parse(new FileReader("json/privilegeCouncil.json"));
@@ -26,4 +26,7 @@ public class JsonPrivilegeCouncil {
 		
 		privilegeCouncil = new PrivilegeCouncil(bonusWoodAndStone, bonusServant, bonusCoinP, bonusMilitaryPoint, bonusFaithPoint);
 }
+	public PrivilegeCouncil getPrivilegeCouncil(){
+		return privilegeCouncil;
+	}
 }

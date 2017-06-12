@@ -21,7 +21,7 @@ public class VentureCard extends Card {
 	private boolean payAlternativeCost= false;
 
 	public VentureCard(String type, String name, int period, Map<String, Integer> costMap, int militaryRequirement,
-			int militaryCost, VentureListOfEffect effects) {
+			int militaryCost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.cost = cost;
 		this.militaryRequirement = militaryRequirement;
@@ -31,7 +31,7 @@ public class VentureCard extends Card {
 		
 	};
 
-	public VentureCard(String type, String name, int period, Map<String, Integer> cost, VentureListOfEffect effects) {
+	public VentureCard(String type, String name, int period, Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.cost = cost;
 		militaryRequirement = 0;
@@ -80,6 +80,12 @@ public class VentureCard extends Card {
 		}
 		return;
 
+	}
+	
+
+	@Override
+	public String toString(){
+		return (name + ": il costo è "+ cost + ": gli effetti immediati sono " + immediateEffects );
 	}
 
 	// to apply immediate effects

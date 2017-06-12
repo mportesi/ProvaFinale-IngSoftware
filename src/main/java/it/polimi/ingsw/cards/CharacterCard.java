@@ -34,7 +34,7 @@ public class CharacterCard extends Card {
 	private CharacterListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 
-	public CharacterCard(String type, String name, int period, int costCoin, CharacterListOfEffect effects) {
+	public CharacterCard(String type, String name, int period, int costCoin, CharacterListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.costCoin = costCoin;
 		this.effects=effects;
@@ -42,7 +42,7 @@ public class CharacterCard extends Card {
 	}
 
 	public CharacterCard(String type, String name, int period, int costCoin, String card, int value,
-			Map<String, Integer> discount, CharacterListOfEffect effects) {
+			Map<String, Integer> discount, CharacterListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.costCoin = costCoin;
 		this.card = card;
@@ -56,7 +56,12 @@ public class CharacterCard extends Card {
 	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		player.decrementCoin(costCoin);
 	}
-
+	
+	@Override
+	public String toString(){
+		return (name + ": il costo è "+ costCoin + ": gli effetti immediati sono " + immediateEffects );
+	}
+	
 	// to apply immediate effects
 	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		

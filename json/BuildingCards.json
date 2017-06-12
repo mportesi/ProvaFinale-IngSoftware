@@ -1,6 +1,6 @@
 [
   { "name":"residence",
-    "type":"building",
+    "type":"buildingCard",
     "period":1,
     "cost":[
       {"type":"stone", "amount":2}
@@ -10,7 +10,7 @@
     ]
   },
   { "name":"theatre",
-    "type":"building",
+    "type":"buildingCard",
     "period":1,
     "cost":[
      {"type":"coin", "amount":2},
@@ -21,7 +21,7 @@
     ]
   },
   { "name":"carpentry",
-    "type":"building",
+    "type":"buildingCard",
     "period":1,
     "cost":[
       {"type":"coin", "amount":1},
@@ -32,7 +32,7 @@
     ]
   },
   { "name":"taxOffice",
-    "type":"building",
+    "type":"buildingCard",
     "period":1,
     "cost":[
       {"type":"wood", "amount":3},
@@ -43,7 +43,7 @@
     ]
   },
   {"name":"archOfTriumph",
-   "type":"building",
+   "type":"buildingCard",
    "period":1,
     "cost":[
       {"type":"coin", "amount":2},
@@ -54,7 +54,7 @@
     ]
   },
   {"name":"mint",
-   "type":"building",
+   "type":"buildingCard",
    "period":1,
    "cost":[
         {"type":"wood", "amount":1},
@@ -65,7 +65,7 @@
     ]
   },
   {"name":"chapel",
-    "type":"building",
+    "type":"buildingCard",
     "period":1,
     "cost":[
       {"type":"wood", "amount":2}
@@ -75,7 +75,7 @@
     ]
   },
   {"name":"stonecutter",
-    "type":"building",
+    "type":"buildingCard",
     "period":1,
     "cost":[
         {"type":"coin", "amount":1},
@@ -86,7 +86,7 @@
       ]  
   },
   {"name":"guildOfSculptores",
-    "type":"building",
+    "type":"buildingCard",
     "period":2,
     "cost":[
         {"type":"stone", "amount":4}
@@ -96,7 +96,7 @@
       ]  
   },
   {"name":"guildOfBuilders",
-    "type":"building",
+    "type":"buildingCard",
     "period":2,
     "cost":[
         {"type":"wood", "amount":1},
@@ -107,7 +107,7 @@
       ]  
   },
   {"name":"guildOfPainters",
-    "type":"building",
+    "type":"buildingCard",
     "period":2,
     "cost":[
         {"type":"wood", "amount":4}
@@ -117,7 +117,7 @@
       ]  
   },
   {"name":"market",
-    "type":"building",
+    "type":"buildingCard",
     "period":2,
     "cost":[
         {"type":"wood", "amount":2},
@@ -128,7 +128,7 @@
       ]  
   },
   {"name":"baptistery",
-    "type":"building",
+    "type":"buildingCard",
     "period":2,
     "cost":[
         {"type":"stone", "amount":3}
@@ -139,7 +139,7 @@
       ]  
   },
    {"name":"fortress",
-    "type":"building",
+    "type":"buildingCard",
     "period":2,
     "cost":[
         {"type":"coin", "amount":2},
@@ -151,7 +151,7 @@
       ]  
   },
   {"name":"treasury",
-    "type":"building",
+    "type":"buildingCard",
     "period":2,
     "cost":[
         {"type":"wood", "amount":3}
@@ -161,7 +161,7 @@
       ]  
   },
   {"name":"barrack",
-    "type":"building",
+    "type":"buildingCard",
     "period":2,
     "cost":[
         {"type":"wood", "amount":1},
@@ -172,7 +172,7 @@
       ]  
   },
   {"name":"garden",
-    "type":"building",
+    "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"wood", "amount":4},
@@ -184,7 +184,7 @@
       ]  
   },
   {"name":"bank",
-    "type":"building",
+    "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"coin", "amount":3},
@@ -196,7 +196,7 @@
       ]  
   },
   {"name":"cathedral",
-    "type":"building",
+    "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"wood", "amount":4},
@@ -208,7 +208,7 @@
       ]  
   },
   {"name":"fair",
-    "type":"building",
+    "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"coin", "amount":4},
@@ -219,7 +219,7 @@
       ]  
   },
   {"name":"militaryAcademy",
-    "type":"building",
+    "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"wood", "amount":2},
@@ -231,7 +231,7 @@
       ]  
   },
   {"name":"headframe",
-    "type":"building",
+    "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"coin", "amount":2},
@@ -243,7 +243,7 @@
       ]  
   },
   {"name":"basilica",
-    "type":"building",
+    "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"wood", "amount":1},
@@ -255,7 +255,7 @@
       ]  
   },
   {"name":"palace",
-    "type":"building",
+    "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"coin", "amount":3},

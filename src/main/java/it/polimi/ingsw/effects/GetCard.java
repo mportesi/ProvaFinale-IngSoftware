@@ -37,5 +37,10 @@ public class GetCard extends Effect {
 		}
 		return null;
 	}
+	
+	@Override
+	public String toString(){
+		return ("Effect: gain a card of type " + card + " with a value of " + value + " and a discount of " + discount );
+	}
 
 }

@@ -14,6 +14,7 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
@@ -35,24 +36,27 @@ public class ClientRMIConnection implements Serializable {
 	public void startClient() throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
 			NullPointerException, ParseException, InterruptedException {
 		clientModel = new ClientModel();
+		
 		Scanner stdIn = new Scanner(System.in);
 
 		// System.setProperty("java.rmi.server.hostname", "192.168.1.2");
-
+		
 		// Get the remote registry
 		Registry registry = LocateRegistry.getRegistry(HOST, RMI_PORT);
 
 		// get the stub (local object) of the remote view
 		ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
 
-		System.out.println("Tell me your name");
-		String name = stdIn.nextLine();
+		
 		// register the client view in the server side (to receive messages from
 		// the server)
 
-		System.out.println("inizio");
+		//System.out.println("inizio");
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
 
+		System.out.println("Tell me your name");
+		String name = stdIn.nextLine();
+		
 		// serverStub.initializeGame(rmiView);
 		// register the client view in the server side (to receive messages from
 		// the server)
@@ -62,7 +66,7 @@ public class ClientRMIConnection implements Serializable {
 			//CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(), clientModel);
 		}
 
-		while (clientModel.getStartPlay() == true) {
+		while ((clientModel.getStartPlay() == true) && (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName()))) {
 			// Capture input from user
 			CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(), clientModel);
 			System.out.println("Press a key to start the action");
@@ -71,6 +75,8 @@ public class ClientRMIConnection implements Serializable {
 			System.out.println("SENDING " + inputLine);
 			PutRelative putRelative = commandLineInterface.chooseTheAction();
 			serverStub.notifyObserver(putRelative);
+			ShiftPlayer shiftPlayer= new ShiftPlayer();
+			serverStub.notifyObserver(shiftPlayer);
 		}
 	}
 

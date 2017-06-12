@@ -19,6 +19,7 @@ import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeCoin;
+import it.polimi.ingsw.changes.ChangeColor;
 import it.polimi.ingsw.changes.ChangeCouncilPalace;
 import it.polimi.ingsw.changes.ChangeInitializeBoard;
 import it.polimi.ingsw.changes.ChangeInitializePlay;
@@ -31,12 +32,17 @@ import it.polimi.ingsw.changes.ChangeStone;
 import it.polimi.ingsw.changes.ChangeTurnOrder;
 import it.polimi.ingsw.changes.ChangeWinners;
 import it.polimi.ingsw.changes.ChangeWood;
+import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.colors.ColorPlayer;
+import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 
 public class Play extends Observable<Change> implements Observer<Change> {
 	private ArrayList<Player> players;
+	private Dice blackDice;
+	private Dice whiteDice;
+	private Dice orangeDice;
 	private Player currentPlayer;
 	private Board board;
 	private int period;
@@ -57,23 +63,23 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// this.players = new ArrayList<Player>();
 		this.board = new Board();
-		System.out.println("ho inizializzato la board");
+
+		// System.out.println("ho inizializzato la board");
 		this.round = 0;
 		this.period = 0;
 		changePeriod();
-		System.out.println("ho fatto change period");
+		// System.out.println("ho fatto change period");
 		changeRound();
 		System.out.println(board);
-		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board);
-		this.notifyObserver(changeInitializeBoard);
 		ArrayList<Player> currentTurnOrder = createTurnOrder(players);
 		initializePlayer(currentTurnOrder);
 		this.currentPlayer = currentTurnOrder.get(0);
-	}
-
-	public void initializeGame()
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-
+		//ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
+		//this.notifyObserver(changePlayer);
+		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
+		this.notifyObserver(changeInitializeBoard);
+		
+		
 	}
 
 	public void giveStartingCoin(ArrayList<Player> currentTurnOrder)
@@ -90,7 +96,12 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 	public void initializePlayer(ArrayList<Player> currentTurnOrder)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		int i = 0;
+		ColorPlayer[] colors= ColorPlayer.values();
+		for(int i=0; i<currentTurnOrder.size(); i++){
+			currentTurnOrder.get(i).setColor(colors[i]);
+			ChangeColor changeColor = new ChangeColor(currentTurnOrder.get(i), colors[i]);
+			this.notifyObserver(changeColor);
+		}
 		for (Player p : currentTurnOrder) {
 			p.setCoin(0);
 			p.setWood(2);
@@ -105,11 +116,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			p.setMilitaryPoint(0);
 			p.setVictoryPoint(0);
 			p.setFaithPoint(0);
-			i++;
 		}
-
 		giveStartingCoin(currentTurnOrder);
-
 	}
 
 	public static ArrayList<Player> createTurnOrder(ArrayList<Player> players) {
@@ -183,52 +191,55 @@ public class Play extends Observable<Change> implements Observer<Change> {
 				changePeriod();
 
 		}
-		if(round!=0){
-		changeTurnOrder();}
+		if (round != 0) {
+			changeTurnOrder();
+		}
 		round += 1;
-		
-		
+
+		System.out.println(board);
 
 		// refresh tower( place new card and remove family member)
 		board.getTerritoryTower().refreshTower(period);
 		board.getBuildingTower().refreshTower(period);
 		board.getCharacterTower().refreshTower(period);
 		board.getVentureTower().refreshTower(period);
-		//System.out.println(board);
+		// System.out.println(board);
 		// refresh harvest and production area
-		
+
 		board.getHarvestArea().refresh();
-		System.out.println("HarvestArea:  "+ board.getHarvestArea());
+		// System.out.println("HarvestArea: "+ board.getHarvestArea());
 		board.getProductionArea().refresh();
-		System.out.println("ProductionArea:  "+ board.getProductionArea());
+		// System.out.println("ProductionArea: "+ board.getProductionArea());
 		// refresh market
 		board.getMarket(0).setFree();
-		//System.out.println("Market1 " + board.getMarket(0));
+		// System.out.println("Market1 " + board.getMarket(0));
 		board.getMarket(1).setFree();
-		//System.out.println("Market2 " + board.getMarket(1));
+		// System.out.println("Market2 " + board.getMarket(1));
 		board.getMarket(2).setFree();
-		//System.out.println("Market3 " + board.getMarket(2));
+		// System.out.println("Market3 " + board.getMarket(2));
 		board.getMarket(3).setFree();
-		//System.out.println("Market4 " + board.getMarket(3));
+		// System.out.println("Market4 " + board.getMarket(3));
 
 		// refresh council palace
 		board.getCouncilPalace().refresh();
 
-		// roll dice
+		System.out.println("roll dice");
 		board.getBlackDice().setValue();
 		board.getOrangeDice().setValue();
 		board.getWhiteDice().setValue();
-		
-		//System.out.println("ho settato il valore dei dadi");
-		for(Player p: players){
+
+		System.out.println("ho settato il valore dei dadi");
+		for (Player p : players) {
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
-			//System.out.println("Il valore del black è" + p.getBlackRelative().getValue() );
+			System.out.println("Il valore del black è" + p.getBlackRelative().getValue());
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
+			System.out.println("Il valore del white è" + p.getWhiteRelative().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
-			
+			System.out.println("Il valore del orange è" + p.getOrangeRelative().getValue());
+
 		}
 
-		ChangeRound changeRound = new ChangeRound(round);
+		ChangeRound changeRound = new ChangeRound(round, players);
 		this.notifyObserver(changeRound);
 	}
 
@@ -335,7 +346,6 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		}
 		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
-		
 
 		if (players.size() < 2) {
 			notifyObserver(new ChangeNewPlayer(player));

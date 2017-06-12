@@ -17,7 +17,7 @@ public class BuildingCard extends Card {
 	private BuildingListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 	
-	public BuildingCard(String type, String name, int period, Map<String, Integer> cost, BuildingListOfEffect effects) {
+	public BuildingCard(String type, String name, int period, Map<String, Integer> cost, BuildingListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.cost=cost;
 		this.effects=effects;

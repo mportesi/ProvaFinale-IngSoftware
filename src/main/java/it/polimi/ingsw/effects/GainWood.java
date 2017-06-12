@@ -20,5 +20,9 @@ public class GainWood extends Effect {
 
 	}
 	
+	@Override
+	public String toString(){
+		return ("Effect: gain " + wood + " wood"  );
+	}
 
 }

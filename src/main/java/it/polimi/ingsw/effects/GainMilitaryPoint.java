@@ -20,5 +20,11 @@ public class GainMilitaryPoint extends Effect {
 		player.incrementMilitaryPoint(militaryPoint);
 
 	}
+	
+
+	@Override
+	public String toString(){
+		return ("Effect: gain " + militaryPoint + " militaryPoint"  );
+	}
 
 }

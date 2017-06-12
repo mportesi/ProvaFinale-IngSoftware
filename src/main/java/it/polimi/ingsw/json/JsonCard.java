@@ -93,7 +93,7 @@ public class JsonCard {
 					
 					TerritoryListOfEffect immediate= new TerritoryListOfEffect(immediateEffectMap);
 					Card c = new TerritoryCard(type, name, period, immediate);
-
+					
 					territoryDeck.add(c);
 				}
 

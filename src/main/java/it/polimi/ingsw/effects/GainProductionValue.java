@@ -25,5 +25,11 @@ public class GainProductionValue extends Effect {
 
 
 	}
+	
+
+	@Override
+	public String toString(){
+		return ("Effect: gain " + productionValue + " productionValue"  );
+	}
 
 }

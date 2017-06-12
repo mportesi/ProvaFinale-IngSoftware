@@ -21,11 +21,11 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 	String bonus;
 	
 	
-	public PutRelativeOnCouncilPalace(Player player, Relative relative, String bonus){
+	public PutRelativeOnCouncilPalace(Player player, Relative relative, CouncilPalace councilPalace, String bonus){
 		this.player=player;
 		this.relative=relative;
 		this.bonus=bonus;
-
+		this.councilPalace=councilPalace;
 	}
 	
 	
@@ -35,9 +35,9 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		// the required value is 1 to put a relative on the CouncilPalace
 		if (relative.getValue() >= 1) {
 			return true;
-		} else {
-			return false;
-		}
+		} 
+		return false;
+		
 	}
 	
 	
@@ -47,11 +47,13 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
 			play.getBoard().getCouncilPalace().addPlayer(player);
+			player.setOccupiedRelative(relative);
 			ChangeCouncilPalace changeCouncilPalace= new ChangeCouncilPalace(relative);
 			this.notifyObserver(changeCouncilPalace);
 			// The player receive the bonus
 			// TODO give player the council privilege bonus choice
-			councilPalace.applyEffect(player);
+			System.out.println(councilPalace);
+			councilPalace.applyEffect(player, bonus);
 		}
 
 	}

@@ -16,9 +16,6 @@ public class ClientModel implements Serializable{
 	private Player player;
 	private Player currentPlayer;
 	private Board board;
-	public static Dice blackDice;
-	public static Dice whiteDice;
-	public static Dice orangeDice;
 	private int period;
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
@@ -27,7 +24,7 @@ public class ClientModel implements Serializable{
 	
 	public ClientModel(){
 		//players= new ArrayList<Player>();
-		currentTurnOrder= new ArrayList<Player>();
+		//currentTurnOrder= new ArrayList<Player>();
 		
 	}
 	
@@ -158,23 +155,19 @@ public class ClientModel implements Serializable{
 	}
 
 	public Board getBoard() {
-		// TODO Auto-generated method stub
 		return board;
 	}
 
 	public void setPlayer(Player player) {
-		// TODO Auto-generated method stub
 		this.player=player;
 		
 	}
 
 	public Player getPlayer() {
-		// TODO Auto-generated method stub
 		return player;
 	}
 
 	public void setStartPlay(boolean b) {
-		// TODO Auto-generated method stub
 		startPlay=true;
 		
 	}
@@ -182,6 +175,11 @@ public class ClientModel implements Serializable{
 	public boolean getStartPlay() {
 		// TODO Auto-generated method stub
 		return startPlay;
+	}
+
+	public Player getCurrentPlayer() {
+		// TODO Auto-generated method stub
+		return currentPlayer;
 	}
 
 	

@@ -43,10 +43,10 @@ public class Player extends Observable<Change> implements Serializable {
 	private Relative whiteRelative;
 	private Relative orangeRelative;
 	private Relative neutralRelative;
-	/*public boolean hasBlackRelative;
-	public boolean hasWhiteRelative;
-	public boolean hasOrangeRelative;
-	public boolean hasNeutralRelative;*/
+	private boolean hasBlackRelative;
+	private boolean hasWhiteRelative;
+	private boolean hasOrangeRelative;
+	private boolean hasNeutralRelative;
 
 	public Player(UUID ID, Play play, String name) {
 		this.ID = ID;
@@ -54,10 +54,14 @@ public class Player extends Observable<Change> implements Serializable {
 		blackRelative= new Relative(ColorDice.BLACK, this);
 		whiteRelative= new Relative(ColorDice.WHITE, this);
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
-		/*hasBlackRelative = true;
+		territoryCard= new ArrayList<>();
+		buildingCard= new ArrayList<>();
+		ventureCard= new ArrayList<>();
+		characterCard=new ArrayList<>();
+		hasBlackRelative = true;
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
-		hasNeutralRelative = true;*/
+		hasNeutralRelative = true;
 		registerObserver(play);
 	}
 
@@ -68,6 +72,10 @@ public class Player extends Observable<Change> implements Serializable {
 		hasNeutralRelative = true;*/
 	}
 	
+	@Override
+	public String toString(){
+		return ("The player is\n " + "Name: " + name +  "\nColor: "  );
+	}
 
 	public int resourceCounter() {
 		return coin + wood + stone + servant;
@@ -257,27 +265,31 @@ public class Player extends Observable<Change> implements Serializable {
 		String type = card.getType();
 		switch (type) {
 		case "territoryCard": {
+			if(territoryCard.size()<6){
 			territoryCard.add((TerritoryCard) card);
 			ChangeTerritoryCard changeTerritoryCard = new ChangeTerritoryCard(this, territoryCard);
-			this.notifyObserver(changeTerritoryCard);
+			this.notifyObserver(changeTerritoryCard);}
 			break;
 		}
 		case "buildingCard": {
+			if(buildingCard.size()<6){
 			buildingCard.add((BuildingCard) card);
 			ChangeBuildingCard changeBuildingCard = new ChangeBuildingCard(this, buildingCard);
-			this.notifyObserver(changeBuildingCard);
+			this.notifyObserver(changeBuildingCard);}
 			break;
 		}
 		case "characterCard": {
+			if(characterCard.size()<6){
 			characterCard.add((CharacterCard) card);
 			ChangeCharacterCard changeCharacterCard = new ChangeCharacterCard(this, characterCard);
-			this.notifyObserver(changeCharacterCard);
+			this.notifyObserver(changeCharacterCard);}
 			break;
 		}
 		case "ventureCard": {
+			if(ventureCard.size()<6){
 			ventureCard.add((VentureCard) card);
 			ChangeVentureCard changeVentureCard = new ChangeVentureCard(this, ventureCard);
-			this.notifyObserver(changeVentureCard);
+			this.notifyObserver(changeVentureCard);}
 			break;
 		}
 		}
@@ -391,6 +403,38 @@ public class Player extends Observable<Change> implements Serializable {
 	public PersonalBonusTile getPersonalBonusTile() {
 	
 		return personalBonusTile;
+	}
+
+	public void setOccupiedRelative(Relative relative) {
+		if(relative.equals(blackRelative)){
+			hasBlackRelative=false;
+		}
+		if(relative.equals(whiteRelative)){
+			hasWhiteRelative=false;
+		}
+		if(relative.equals(orangeRelative)){
+			hasOrangeRelative=false;
+		}
+		if(relative.equals(orangeRelative)){
+			hasNeutralRelative=false;
+		}
+		
+	}
+
+	public boolean getBooleanRelative(Relative relative) {
+		if(relative.equals(blackRelative)){
+			return hasBlackRelative;
+		}
+		if(relative.equals(whiteRelative)){
+			return hasWhiteRelative;
+		}
+		if(relative.equals(orangeRelative)){
+			return hasOrangeRelative;
+		}
+		if(relative.equals(orangeRelative)){
+			return hasNeutralRelative;
+		}
+		return false;
 	}
 	
 

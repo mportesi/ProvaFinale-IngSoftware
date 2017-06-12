@@ -22,5 +22,11 @@ public class GainServant extends Effect {
 		
 
 	}
+	
+
+	@Override
+	public String toString(){
+		return ("Effect: gain " + servant + " servant"  );
+	}
 
 }

@@ -17,64 +17,71 @@ import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainHarvestValue;
 import it.polimi.ingsw.effects.GainProductionValue;
 
-public class PutRelativeOnHarvestArea extends Observable<Change> implements PutRelative{
+public class PutRelativeOnHarvestArea extends Observable<Change> implements PutRelative {
 
 	Relative relative;
 	HarvestAndProductionArea harvestArea;
 	Player player;
-	String area; 
+	String area;
 
-	public PutRelativeOnHarvestArea(Player player, Relative relative, String area){
+	public PutRelativeOnHarvestArea(Player player, Relative relative, HarvestAndProductionArea harvestArea,  String area) {
 		this.player = player;
-		this.relative=relative;
+		this.relative = relative;
 		this.area = area;
+		this.harvestArea=harvestArea;
 	}
-	
+
 	@Override
 	public boolean isApplicable() {
-		
-		switch (area){
-		case "left" : {
-			if (relative.getValue() >= harvestArea.getValueOfLeftArea() && harvestArea.getLeftRelative() == null && (!(harvestArea.isAlreadyPresent(player)) || relative.getColor() == null)) {
-			return true;
-		} break;
-		}
-			
-		
-		
-		case "right" : {
 
-			if (relative.getValue() >= harvestArea.getValueOfRightArea() && (!(harvestArea.isAlreadyPresent(player)) || relative.getColor() == null)){
-				return true;
-			} break;
+		switch (area) {
+		case "left": {
+			if (relative.getValue() >= harvestArea.getValueOfLeftArea()) {
+				if (harvestArea.getLeftRelative() == null) {
+					if ((!(harvestArea.isAlreadyPresent(player)) || relative.getColor() == null)) {
+						return true;
+					}
+				}
 			}
-		
+			break;
+		}
+
+		case "right": {
+
+			if (relative.getValue() >= harvestArea.getValueOfRightArea()) {
+				if (!(harvestArea.isAlreadyPresent(player)) || relative.getColor() == null) {
+					return true;
+				}
+			}
+			break;
+		}
+
 		}
 		return false;
 	}
 
-
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void apply(Play play)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			// If the left position is free, the player put the relative there.
 			if (area == "left") {
 				harvestArea.setLeftRelative(relative);
-				ChangeHarvestLeftArea changeHarvestLeftArea= new ChangeHarvestLeftArea(relative);
+				ChangeHarvestLeftArea changeHarvestLeftArea = new ChangeHarvestLeftArea(relative);
 				this.notifyObserver(changeHarvestLeftArea);
-				GainHarvestValue gainHarvestValue = new GainHarvestValue(relative.getValue()); 
+				GainHarvestValue gainHarvestValue = new GainHarvestValue(relative.getValue());
 				gainHarvestValue.apply(player);
-				
+
 			}
 			// Else he put the relative on the other side with the penalty
 			else {
 				harvestArea.setRightRelative(relative);
-				ChangeHarvestRightArea changeHarvestRightArea= new ChangeHarvestRightArea(relative);
+				ChangeHarvestRightArea changeHarvestRightArea = new ChangeHarvestRightArea(relative);
 				this.notifyObserver(changeHarvestRightArea);
 				int malus = play.getBoard().getHarvestArea().getMalus();
 				relative.setValue(-malus);
-				int newValue= relative.getValue();
-				GainHarvestValue gainHarvestValue = new GainHarvestValue(newValue); 
+				int newValue = relative.getValue();
+				GainHarvestValue gainHarvestValue = new GainHarvestValue(newValue);
 				gainHarvestValue.apply(player);
 			}
 		}
