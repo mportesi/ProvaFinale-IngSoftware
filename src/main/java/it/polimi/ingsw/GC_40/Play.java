@@ -309,6 +309,22 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	 * 
 	 * 
 	 * }
+	 * 
+	 *	RETURN ON ORDERED LIST BASED ON MILITARYPOINT
+	 * 
+	 * public static ArrayList<Player> ordina(ArrayList<Player> DaOrdinare){
+	 *	ArrayList<Player> ordinata= new ArrayList<>();
+	 *	ordinata.addAll(DaOrdinare);
+	 *	for(int i=0; i< ordinata.size(); i++){
+	 *		for(int j=i; j<ordinata.size(); j++){
+	 *			if(ordinata.get(i).getMilitaryPoint()<ordinata.get(j).getMilitaryPoint()){
+	 *				System.out.println("scambio"+i+"e"+j);
+	 *				Collections.swap(ordinata, i, j);
+	 *			}
+	 *		}
+	 *	}
+	 *	return ordinata;
+	 * }
 	 */
 
 	public void endGame() {
