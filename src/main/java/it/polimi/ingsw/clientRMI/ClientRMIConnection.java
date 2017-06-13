@@ -61,21 +61,24 @@ public class ClientRMIConnection implements Serializable {
 		// register the client view in the server side (to receive messages from
 		// the server)
 		serverStub.registerClient(rmiView, name);
-		if (clientModel.getStartPlay() == true) {
+		/*if (clientModel.getStartPlay() == true) {
 			serverStub.initializeGame(rmiView);
-			System.out.println("Ho inizializzato il game");
+			System.out.println("Ho inizializzato il game");*/
 			// CommandLineInterface commandLineInterface = new
 			// CommandLineInterface(clientModel.getPlayer(), clientModel);
-		}
-		System.out.println("LO START DI " + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
-		System.out.println(clientModel);
+		
+		//System.out.println("LO START DI " + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
+		//System.out.println(clientModel);
+		System.out.println(clientModel.getPlayer().getName());
 		while (true) {
+			serverStub.verifyNumberOfPlayer();
 			// if(clientModel.getCurrentPlayer()!= null){
 			// System.out.println("Il currentPlayer è" +
 			// clientModel.getCurrentPlayer().getName());}
 			
-			while ((clientModel.getStartPlay() == true)) {
+			/*while ((clientModel.getStartPlay() == true)) {*/
 				//System.out.println("SONO NEL PRIMO WHILE DI STARTPLAY");
+			if(clientModel.getCurrentPlayer()!=null){
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
 					System.out.println(clientModel.getCurrentPlayer().getName());
 					System.out.println(clientModel.getPlayer());
@@ -93,8 +96,8 @@ public class ClientRMIConnection implements Serializable {
 					System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
 					ShiftPlayer shiftPlayer = new ShiftPlayer();
 					serverStub.notifyObserver(shiftPlayer);
-				}
-			}
+				
+			}}
 		}
 
 	}

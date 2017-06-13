@@ -81,8 +81,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int coin = 5;
 		for (Player p : currentTurnOrder) {
-			p.incrementCoin(coin);
-
+			p.setCoin(coin);
 			ChangeCoin changeCoin = new ChangeCoin(p, p.getCoin());
 			this.notifyObserver(changeCoin);
 			coin++;
@@ -90,7 +89,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 	}
 
-	public void initializePlayer(ArrayList<Player> currentTurnOrder)
+	public void initializePlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		currentTurnOrder = createTurnOrder(players);
 		this.currentPlayer = currentTurnOrder.get(0);
@@ -105,7 +104,6 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			this.notifyObserver(changeColor);
 		}
 		for (Player p : currentTurnOrder) {
-			p.setCoin(0);
 			p.setWood(2);
 			ChangeWood changeWood = new ChangeWood(p, p.getWood());
 			this.notifyObserver(changeWood);
@@ -225,12 +223,12 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// refresh council palace
 		board.getCouncilPalace().refresh();
 
-		System.out.println("roll dice");
+		//System.out.println("roll dice");
 		board.getBlackDice().setValue();
 		board.getOrangeDice().setValue();
 		board.getWhiteDice().setValue();
 
-		System.out.println("ho settato il valore dei dadi");
+		//System.out.println("ho settato il valore dei dadi");
 		for (Player p : players) {
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
 			//System.out.println("Il valore del black è" + p.getBlackRelative().getValue());
@@ -344,7 +342,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	@Override
 	public void update(Change c)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("ho ricevuto il cambiamento");
+		//System.out.println("ho ricevuto il cambiamento");
 		this.notifyObserver(c);
 	}
 
@@ -357,14 +355,14 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
 
-		if (players.size() >= 2) {
+		/*if (players.size() >= 2) {
 			verifyNumberOfPlayer();
 			return;
-		}
+		}*/
 
 	}
 
-	public void verifyNumberOfPlayer()
+	/*public void verifyNumberOfPlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (players.size() >= 2 && players.size() < 4) {
 
@@ -406,7 +404,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		initializePlayer(players);
 		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
 		this.notifyObserver(changeInitializePlay);
-	}
+	}*/
 
 	public Board getBoard() {
 		return board;

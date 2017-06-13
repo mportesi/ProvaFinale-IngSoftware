@@ -23,7 +23,7 @@ public class ClientModel implements Serializable{
 	private int period;
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
-	private boolean startPlay;
+	//private boolean startPlay;
 	private ArrayList<ClientModel> clients;
 	
 	
@@ -172,7 +172,7 @@ public class ClientModel implements Serializable{
 		return player;
 	}
 
-	public void setStartPlay(boolean b) {
+	/*public void setStartPlay(boolean b) {
 		startPlay=true;
 		
 	}
@@ -180,7 +180,7 @@ public class ClientModel implements Serializable{
 	public boolean getStartPlay() {
 		// TODO Auto-generated method stub
 		return startPlay;
-	}
+	}*/
 
 	public Player getCurrentPlayer() {
 		// TODO Auto-generated method stub

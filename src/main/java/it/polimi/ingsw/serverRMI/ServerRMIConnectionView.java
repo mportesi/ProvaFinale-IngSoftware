@@ -6,6 +6,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.simple.parser.ParseException;
 
@@ -37,16 +39,67 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 		RegisterClient registerClient = new RegisterClient(name);
 		// System.out.println("notifico di registerClient() il controller");
 		this.notifyObserver(registerClient);
+		
+		
 	}
 
 	@Override
-	public void initializeGame(ClientRMIConnectionViewRemote clientStub)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		InitializeGame initializeGame = new InitializeGame();
-		this.notifyObserver(initializeGame);
-		// System.out.println("notifico di initializeGame() il controller");
+public void verifyNumberOfPlayer()
+		throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	while(clients.size()==1){
 		
 	}
+	if (clients.size() >= 2 && clients.size() < 4) {
+
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+
+				System.out.println("sono entrato nel run");
+				try {
+					initializePlay();
+
+				} catch (NullPointerException | IOException | ParseException e) {
+
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		}, 10 * 1000);// TODO IMPORTARE DA JSON
+
+	}
+
+	else if (clients.size() == 4) {
+
+		initializePlay();
+		return;
+
+	}
+		  
+
+}
+
+	public void initializePlay()
+		throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		InitializeGame initializeGame = new InitializeGame();
+		System.out.println("Sto facendo initializePlay");
+		this.notifyObserver(initializeGame);
+	}
+
+	
+
+	/*@Override
+	public void initializeGame(ClientRMIConnectionViewRemote clientStub)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		/*InitializeGame initializeGame = new InitializeGame();
+		this.notifyObserver(initializeGame);
+		// System.out.println("notifico di initializeGame() il controller");
+	}*/
 	
 	
 		
