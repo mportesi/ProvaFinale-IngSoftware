@@ -71,6 +71,9 @@ public class ClientRMIConnection implements Serializable {
 		//System.out.println(clientModel);
 		System.out.println(clientModel.getPlayer().getName());
 		while (true) {
+			
+			
+			//
 			serverStub.verifyNumberOfPlayer();
 			// if(clientModel.getCurrentPlayer()!= null){
 			// System.out.println("Il currentPlayer è" +
