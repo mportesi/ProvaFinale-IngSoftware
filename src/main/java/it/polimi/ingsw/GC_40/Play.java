@@ -355,11 +355,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
-	@Override
+/*	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 
-	}
+	}*/
 
 	@Override
 	public void update(Change c)
@@ -448,6 +448,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public Board getBoard() {
 		return board;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
