@@ -1,7 +1,11 @@
 package it.polimi.ingsw.client;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Scanner;
+
+import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
@@ -32,7 +36,7 @@ public class CommandLineInterface implements Serializable {
 		this.client = client;
 	}
 
-	public void input() {
+	public void input() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		String input = "";
 		while (!"quit".equals(input)) {
 			try {
@@ -50,7 +54,7 @@ public class CommandLineInterface implements Serializable {
 		client.getBoard();
 	}
 
-	public PutRelative chooseTheAction() {
+	public PutRelative chooseTheAction() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Il tuo stato è: " + player);
 
 		Relative relative = chooseTheRelative();
@@ -100,7 +104,7 @@ public class CommandLineInterface implements Serializable {
 
 		default: {
 			System.out.println("Error: insert again");
-			// chooseTheAction();
+			putRelative = chooseTheAction();
 			break;
 		}
 
@@ -156,7 +160,7 @@ public class CommandLineInterface implements Serializable {
 		return false;
 	}
 
-	public Relative chooseTheRelative() {
+	public Relative chooseTheRelative() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println(client.getBoard().getBlackDice());
 
 		System.out.println("Choose what relative you want to use: black, white, orange, neutral");
@@ -208,8 +212,18 @@ public class CommandLineInterface implements Serializable {
 		System.out.println("THE VALUE OF THE RELATIVE IS  " + relative.getValue());
 		System.out.println("THE NAME OF THE RELATIVE IS  " + player.getName());
 		System.out.println("How many servants do you want to use?");
-		int valueServant = scanner.nextInt();
-		relative.setValueServant(valueServant);
+		boolean legalServant=false; //loop until a legal servant numbers is given
+		while(!legalServant){
+			int valueServant = scanner.nextInt();
+			if(valueServant <= player.getServant()){
+				relative.setValueServant(valueServant);
+				player.decrementServant(valueServant);
+				legalServant=true;
+			}
+			else{
+				System.out.println("Not enough servant, you have only "+player.getServant()+" servant." );
+			}
+		}
 		System.out.println("the value of the relative with servant is  " + relative.getValue());
 		return relative;
 
