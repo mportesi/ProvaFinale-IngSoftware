@@ -70,12 +70,11 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// System.out.println("ho fatto change period");
 		changeRound();
 		System.out.println(board);
-		//ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
-		//this.notifyObserver(changePlayer);
+		// ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
+		// this.notifyObserver(changePlayer);
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
 		this.notifyObserver(changeInitializeBoard);
-		
-		
+
 	}
 
 	public void giveStartingCoin(ArrayList<Player> currentTurnOrder)
@@ -83,10 +82,10 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		int coin = 5;
 		for (Player p : currentTurnOrder) {
 			p.incrementCoin(coin);
-			
+
 			ChangeCoin changeCoin = new ChangeCoin(p, p.getCoin());
 			this.notifyObserver(changeCoin);
-			coin ++;
+			coin++;
 		}
 
 	}
@@ -95,10 +94,10 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		currentTurnOrder = createTurnOrder(players);
 		this.currentPlayer = currentTurnOrder.get(0);
-		ColorPlayer[] colors= ColorPlayer.values();
-			System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
-			System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
-		for(int i=0; i<currentTurnOrder.size(); i++){
+		ColorPlayer[] colors = ColorPlayer.values();
+		System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
+		System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
+		for (int i = 0; i < currentTurnOrder.size(); i++) {
 			System.out.println(currentTurnOrder.get(i));
 			currentTurnOrder.get(i).setColor(colors[i]);
 			System.out.println(currentTurnOrder.get(i).getColor());
@@ -341,9 +340,10 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	@Override
-	public void update(Change c) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+	public void update(Change c)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("ho ricevuto il cambiamento");
 		this.notifyObserver(c);
 	}
@@ -356,7 +356,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
-		
+
 		if (players.size() >= 2) {
 			verifyNumberOfPlayer();
 			return;
@@ -367,49 +367,49 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	public void verifyNumberOfPlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (players.size() >= 2 && players.size() < 4) {
-			/*
-			 * Timer timer = new Timer(); timer.schedule(new TimerTask() {
-			 * 
-			 * @Override public void run() {
-			 * 
-			 * System.out.println("sono entrato nel run"); // TODO
-			 * Auto-generated method stub try { initializePlay();
-			 * 
-			 * 
-			 * } catch (NullPointerException | IOException | ParseException e) {
-			 * // TODO Auto-generated catch block e.printStackTrace(); }
-			 * 
-			 * }
-			 * 
-			 * }, 10*1000);
-			 * 
-			 * }; // TODO IMPORTARE DA JSON
-			 */
-			Thread.sleep((long) 10 * 1000);
-			initializePlay();
-			return;
 
-		} else if (players.size() == 4) {
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
 
-			initializePlay();
-			return;
-			
+				@Override
+				public void run() {
+
+					System.out.println("sono entrato nel run");
+					try {
+						initializePlay();
+
+					} catch (NullPointerException | IOException | ParseException e) {
+
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
+			}, 10 * 1000);// TODO IMPORTARE DA JSON
 
 		}
 
-		
+		else if (players.size() == 4) {
+
+			initializePlay();
+			return;
+
+		}
+			  
+
 	}
 
-	public boolean initializePlay()
+	public void initializePlay()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		initializePlayer(players);
 		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
 		this.notifyObserver(changeInitializePlay);
-		return true;
 	}
 
 	public Board getBoard() {
 		return board;
 	}
-	
+
 }

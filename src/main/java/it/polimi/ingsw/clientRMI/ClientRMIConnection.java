@@ -68,6 +68,7 @@ public class ClientRMIConnection implements Serializable {
 			// CommandLineInterface(clientModel.getPlayer(), clientModel);
 		}
 		System.out.println("LO START DI " + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
+		System.out.println(clientModel);
 		while (true) {
 			// if(clientModel.getCurrentPlayer()!= null){
 			// System.out.println("Il currentPlayer è" +
