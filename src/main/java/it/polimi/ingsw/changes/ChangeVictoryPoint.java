@@ -15,8 +15,8 @@ public class ChangeVictoryPoint implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		if(client.getPlayer().equals(client)){
-			player.setVictoryPoint(victoryPoint);
+		if(client.getName().equals(player.getName())){
+			client.getPlayer().setVictoryPoint(victoryPoint);
 		}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {

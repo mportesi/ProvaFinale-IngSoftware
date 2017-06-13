@@ -15,8 +15,8 @@ public class ChangeServant implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-			if (client.getPlayer().equals(player)) {
-				player.setServant(servant);
+			if (client.getName().equals(player.getName())) {
+				client.getPlayer().setServant(servant);
 			}
 		}
 

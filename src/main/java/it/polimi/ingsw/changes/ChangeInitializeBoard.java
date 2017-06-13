@@ -9,6 +9,7 @@ public class ChangeInitializeBoard implements Change {
 	private Board board;
 	private Player currentPlayer;
 	
+	
 	public ChangeInitializeBoard(Board board, Player currentPlayer){
 		this.board=board;
 		this.currentPlayer=currentPlayer;
@@ -18,7 +19,8 @@ public class ChangeInitializeBoard implements Change {
 	public void applyChange(ClientModel client) {
 		client.setBoard(board);
 		client.setCurrentPlayer(currentPlayer);
-		System.out.println("It's " + currentPlayer.getName() +"'s turn");
+		
+		System.out.println("It's " + client.getCurrentPlayer().getName() +"'s turn of "+ client.getPlayer().getName());
 		
 		//client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());
 		//client.getPlayer().getOrangeRelative().setValue(board.getOrangeDice().getValue());

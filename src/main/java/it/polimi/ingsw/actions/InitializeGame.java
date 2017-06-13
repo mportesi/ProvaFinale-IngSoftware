@@ -5,16 +5,23 @@ import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.GC_40.Play;
+import it.polimi.ingsw.changes.Change;
 
-public class InitializeGame implements Action {
+public class InitializeGame extends Observable<Change> implements Action {
 	
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		play.initializeBoard();
-		//System.out.println("Sto facendo initializeGame.apply()");
+		
+		System.out.println("Sto facendo initializeGame.apply()");
 		play.initializePlayer();
+		//System.out.println(play.getCurrentPlayer());
+		play.initializeBoard();
+		
+		System.out.println("Sto facendo initializeGame.apply2()");
+		
 	}
 
 }

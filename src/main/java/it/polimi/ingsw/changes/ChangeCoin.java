@@ -18,10 +18,12 @@ public class ChangeCoin implements Change {
 	@Override
 	public void applyChange(ClientModel client){
 		System.out.println("sono nel change coin");
+		if (client.getName().equals(player.getName())){
 		//if(client.getPlayer().equals(client)){
 			client.getPlayer().setCoin(coin);
 		//}
 			System.out.println("ho cambiato i coin");
+		}
 		//}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {

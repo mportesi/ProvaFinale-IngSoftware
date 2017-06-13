@@ -18,7 +18,8 @@ import it.polimi.ingsw.components.Relative;
 
 public class ClientModel implements Serializable{
 	private Player player;
-	private Player currentPlayer;
+	private String name;
+	private volatile Player currentPlayer;
 	private Board board;
 	private int period;
 	private int round;
@@ -185,6 +186,16 @@ public class ClientModel implements Serializable{
 	public Player getCurrentPlayer() {
 		// TODO Auto-generated method stub
 		return currentPlayer;
+	}
+
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		this.name = name;
+	}
+
+	public String getName() {
+		
+		return name;
 	}
 
 	

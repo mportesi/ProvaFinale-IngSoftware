@@ -17,7 +17,7 @@ public class ClientOutHandler implements Runnable {
 	private ObjectOutputStream socketOut;
 	private ClientModel clientModel;
 	private CommandLineInterface cli;
-	private Player player= new Player();
+	private Player player;//= new Player();
 	public ClientOutHandler(ObjectOutputStream socketOut, ClientModel clientModel) {
 		this.socketOut = socketOut;
 		this.clientModel=clientModel;

@@ -24,7 +24,5 @@ public interface ServerRMIConnectionViewRemote extends Remote {
 	public void notifyObserver(Action action)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, RemoteException, InterruptedException;
 
-	void verifyNumberOfPlayer()
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
-
+	
 }

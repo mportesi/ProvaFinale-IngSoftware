@@ -14,8 +14,8 @@ public class ChangeStone implements Change {
 	}
 	
 	public void applyChange(ClientModel client){
-		if(client.getPlayer().equals(client)){
-			player.setStone(stone);
+		if(client.getName().equals(player.getName())){
+			client.getPlayer().setStone(stone);
 		}
 		/*for (Player p : client.getPlayers()) {
 			if (player.equals(p)) {

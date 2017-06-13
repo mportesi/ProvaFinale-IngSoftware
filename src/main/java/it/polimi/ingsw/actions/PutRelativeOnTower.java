@@ -37,13 +37,14 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		System.out.println("entro nell'isApplicable");
 		//System.out.println("entro nell'isApplicable");
 		if(tower.floors.get(floor).isFree()){
-			//System.out.println("tower is free");
+			System.out.println("tower is free");
 			if(relative.getValue()>=tower.floors.get(floor).getCost()){
-				//System.out.println("The relative has the bigger value");
+				System.out.println("The relative has the bigger value");
 				if(tower.isPresent(player)==false){
-					//System.out.println("There isn't the player");
-					//System.out.println("true");
+					System.out.println("There isn't the player");
+					System.out.println("true");
 					check=checkCardCost();
+					System.out.println(check);
 					return check;
 				}
 			}
@@ -78,6 +79,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 				System.out.println("territory" + player.getTerritory().size());
 				cardToGive.applyEffect(player);
 				tower.floors.get(floor).bonusEffect.apply(player);
+				System.out.println(player);
 				
 				
 				

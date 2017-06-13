@@ -56,6 +56,7 @@ public class CommandLineInterface implements Serializable {
 
 	public PutRelative chooseTheAction() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Il tuo stato è: " + player);
+		System.out.println("La board è: " + client.getBoard());
 
 		Relative relative = chooseTheRelative();
 		

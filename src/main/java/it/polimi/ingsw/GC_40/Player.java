@@ -54,6 +54,7 @@ public class Player extends Observable<Change> implements Serializable {
 		blackRelative= new Relative(ColorDice.BLACK, this);
 		whiteRelative= new Relative(ColorDice.WHITE, this);
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
+		neutralRelative= new Relative(null, this);
 		territoryCard= new ArrayList<>();
 		buildingCard= new ArrayList<>();
 		ventureCard= new ArrayList<>();
@@ -65,12 +66,7 @@ public class Player extends Observable<Change> implements Serializable {
 		registerObserver(play);
 	}
 
-	public Player() {
-		/*hasBlackRelative = true;
-		hasWhiteRelative = true;
-		hasOrangeRelative = true;
-		hasNeutralRelative = true;*/
-	}
+	
 	
 	@Override
 	public String toString(){
@@ -445,6 +441,28 @@ public class Player extends Observable<Change> implements Serializable {
 			return hasNeutralRelative;
 		}
 		return false;
+	}
+
+
+
+	public void setFreeRelative(Relative relative) {
+		// TODO Auto-generated method stub
+		System.out.println(relative);
+		System.out.println(blackRelative);
+		if(relative.equals(blackRelative)){
+			hasBlackRelative=true;
+		}
+		if(relative.equals(whiteRelative)){
+			hasWhiteRelative=true;
+		}
+		if(relative.equals(orangeRelative)){
+			hasOrangeRelative=true;
+			
+		}
+		if(relative.equals(orangeRelative)){
+			hasNeutralRelative=true;
+			
+		}
 	}
 	
 

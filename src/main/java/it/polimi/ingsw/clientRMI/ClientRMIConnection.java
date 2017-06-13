@@ -56,7 +56,7 @@ public class ClientRMIConnection implements Serializable {
 
 		System.out.println("Tell me your name");
 		String name = stdIn.nextLine();
-
+		clientModel.setName(name);
 		// serverStub.initializeGame(rmiView);
 		// register the client view in the server side (to receive messages from
 		// the server)
@@ -69,19 +69,23 @@ public class ClientRMIConnection implements Serializable {
 		
 		//System.out.println("LO START DI " + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
 		//System.out.println(clientModel);
-		System.out.println(clientModel.getPlayer().getName());
+		System.out.println("!!!!!!!!!!!" +clientModel.getPlayer().getName());
+		
+		
 		while (true) {
 			
 			
 			//
-			serverStub.verifyNumberOfPlayer();
+			
 			// if(clientModel.getCurrentPlayer()!= null){
 			// System.out.println("Il currentPlayer è" +
 			// clientModel.getCurrentPlayer().getName());}
 			
 			/*while ((clientModel.getStartPlay() == true)) {*/
 				//System.out.println("SONO NEL PRIMO WHILE DI STARTPLAY");
+			
 			if(clientModel.getCurrentPlayer()!=null){
+				
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
 					System.out.println(clientModel.getCurrentPlayer().getName());
 					System.out.println(clientModel.getPlayer());

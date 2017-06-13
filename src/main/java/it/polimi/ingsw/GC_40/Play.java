@@ -49,10 +49,11 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	private int period;
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
-
+	private boolean start;
 	// costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
+		
 		/*
 		 * this.board=new Board(); this.players=new ArrayList<Player>();
 		 * this.round=0; this.period=0;
@@ -69,7 +70,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		changePeriod();
 		// System.out.println("ho fatto change period");
 		changeRound();
-		//System.out.println(board);
+		// System.out.println(board);
 		// ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
 		// this.notifyObserver(changePlayer);
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
@@ -94,12 +95,12 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		currentTurnOrder = createTurnOrder(players);
 		this.currentPlayer = currentTurnOrder.get(0);
 		ColorPlayer[] colors = ColorPlayer.values();
-		//System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
-		//System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
+		// System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
+		// System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
 		for (int i = 0; i < currentTurnOrder.size(); i++) {
-			//System.out.println(currentTurnOrder.get(i));
+			// System.out.println(currentTurnOrder.get(i));
 			currentTurnOrder.get(i).setColor(colors[i]);
-			//System.out.println(currentTurnOrder.get(i).getColor());
+			// System.out.println(currentTurnOrder.get(i).getColor());
 			ChangeColor changeColor = new ChangeColor(currentTurnOrder.get(i), colors[i]);
 			this.notifyObserver(changeColor);
 		}
@@ -196,7 +197,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		}
 		round += 1;
 
-		//System.out.println(board);
+		// System.out.println(board);
 
 		// refresh tower( place new card and remove family member)
 		board.getTerritoryTower().refreshTower(period);
@@ -223,23 +224,26 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// refresh council palace
 		board.getCouncilPalace().refresh();
 
-		//System.out.println("roll dice");
+		// System.out.println("roll dice");
 		board.getBlackDice().setValue();
 		board.getOrangeDice().setValue();
 		board.getWhiteDice().setValue();
 
-		//System.out.println("ho settato il valore dei dadi");
+		// System.out.println("ho settato il valore dei dadi");
 		for (Player p : players) {
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
-			//System.out.println("Il valore del black è" + p.getBlackRelative().getValue());
+			// System.out.println("Il valore del black è" +
+			// p.getBlackRelative().getValue());
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
-			//System.out.println("Il valore del white è" + p.getWhiteRelative().getValue());
+			// System.out.println("Il valore del white è" +
+			// p.getWhiteRelative().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
-			//System.out.println("Il valore del orange è" + p.getOrangeRelative().getValue());
+			// System.out.println("Il valore del orange è" +
+			// p.getOrangeRelative().getValue());
 
 		}
 
-		ChangeRound changeRound = new ChangeRound(round, players);
+		ChangeRound changeRound = new ChangeRound(round, board);
 		this.notifyObserver(changeRound);
 	}
 
@@ -342,31 +346,36 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	@Override
 	public void update(Change c)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		//System.out.println("ho ricevuto il cambiamento");
+		// System.out.println("ho ricevuto il cambiamento");
 		this.notifyObserver(c);
 	}
 
 	public void createNewPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		
 		if (players == null) {
 			this.players = new ArrayList<Player>();
 		}
+		
 		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
 
-		/*if (players.size() >= 2) {
-			verifyNumberOfPlayer();
+		if (players.size() == 2) {
+			initializePlay();
+			
+		//	verifyNumberOfPlayer(name);
 			return;
-		}*/
+		}
 
 	}
 
-	/*public void verifyNumberOfPlayer()
+	/*private void verifyNumberOfPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if (players.size() >= 2 && players.size() < 4) {
-
-			Timer timer = new Timer();
+		if (players.size() == 2 && players.size() < 4) {
+		
+			
+		/*	Timer timer = new Timer();
 			timer.schedule(new TimerTask() {
 
 				@Override
@@ -374,9 +383,12 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 					System.out.println("sono entrato nel run");
 					try {
-						initializePlay();
+								
+								initializePlay();
+							
+						}
 
-					} catch (NullPointerException | IOException | ParseException e) {
+					catch (NullPointerException | IOException | ParseException e) {
 
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -385,26 +397,35 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 				}
 
-			}, 10 * 1000);// TODO IMPORTARE DA JSON
+			}, 10 * 1000);
+			// TODO IMPORTARE DA JSON
+		}}*/
 
-		}
+		
 
-		else if (players.size() == 4) {
+//	else if(players.size()==4)
 
-			initializePlay();
-			return;
+	//{
 
-		}
-			  
+	/*	initializePlay();
+
+		return;
 
 	}
 
-	public void initializePlay()
+	*/
+
+	private void initializePlay()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		initializePlayer(players);
+		System.out.println("sono in initializePlay()");
+		initializePlayer();
+		System.out.println("ho fatto initializePlayer()");
+		initializeBoard();
+		System.out.println("ho fatto initializeBoard()");
 		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
 		this.notifyObserver(changeInitializePlay);
-	}*/
+	}
+
 
 	public Board getBoard() {
 		return board;

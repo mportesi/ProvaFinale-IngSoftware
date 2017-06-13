@@ -24,8 +24,8 @@ import it.polimi.ingsw.serverSocket.ServerView;
 
 public class ServerRMIConnectionView extends ServerView implements ServerRMIConnectionViewRemote, Observer<Change> {
 
-	private ArrayList<ClientRMIConnectionViewRemote> clients;
-
+	private volatile ArrayList<ClientRMIConnectionViewRemote> clients;
+	
 	public ServerRMIConnectionView() {
 		this.clients = new ArrayList<>();
 	}
@@ -43,54 +43,8 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 		
 	}
 
-	@Override
-public void verifyNumberOfPlayer()
-		throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-	while(clients.size()==1){
-		
-	}
-	if (clients.size() >= 2 && clients.size() < 4) {
-
-		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-
-				System.out.println("sono entrato nel run");
-				try {
-					initializePlay();
-
-				} catch (NullPointerException | IOException | ParseException e) {
-
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-
-		}, 10 * 1000);// TODO IMPORTARE DA JSON
-
-	}
-
-	else if (clients.size() == 4) {
-
-		initializePlay();
-		return;
-
-	}
-		  
-
-}
-
-	public void initializePlay()
-		throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		InitializeGame initializeGame = new InitializeGame();
-		System.out.println("Sto facendo initializePlay");
-		this.notifyObserver(initializeGame);
-	}
-
+	
+	
 	
 
 	/*@Override
@@ -113,7 +67,7 @@ public void verifyNumberOfPlayer()
 				// System.out.println("sono nel Server prima di fare
 				// updateClient(c)");
 				clientstub.updateClient(change);
-				System.out.println("ho fatto il change sul client " + change);
+				//System.out.println("ho fatto il change sul client " + change);
 				// System.out.println("sono nel Server dopo aver fatto
 				// updateClient(c)");
 			}
