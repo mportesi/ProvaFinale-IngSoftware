@@ -116,7 +116,7 @@ public class CommandLineInterface implements Serializable {
 	}
 
 	public PutRelative chooseThePutRelativeOnTower(Tower tower, int floor, Relative relative) {
-		System.out.println("Choose if the card that you want to take have one of this effect: \n 1) Gain privilege Council \n 2)Gain another card \n 3)It has an alternative cost \n Otherwise put another key ");
+		System.out.println("Choose if the card that you want to take have one of this effect: \n 1) Gain privilege Council \n 2)Gain another card \n 3)It has an alternative cost \n 4) Otherwise");
 		PutRelative putRelative=null;
 		switch(scanner.nextInt()){
 		case 1:{
