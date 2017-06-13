@@ -47,7 +47,6 @@ public class CommandLineInterface implements Serializable {
 				return;
 			}
 		}
-
 	}
 
 	public void printTheBoard() {
@@ -111,7 +110,6 @@ public class CommandLineInterface implements Serializable {
 
 		}
 		return putRelative;
-
 	}
 
 	//TO FIX
@@ -149,16 +147,23 @@ public class CommandLineInterface implements Serializable {
 	}
 
 	private boolean chooseAlternativeCost() {
+		boolean choice=false;
 		System.out.println("Choose if you prefer: \n 1)military cost \n 2)the other cost");
 		switch(scanner.nextInt()){
 		case 1: {
-			return true;
+			choice=true;
+			return choice;
 		}
 		case 2: {
-			return false;
+			choice=false;
+			return choice;
+		}
+		default:{
+			System.out.println("Try again!");
+			choice=chooseAlternativeCost();
 		}
 		}
-		return false;
+		return choice;
 	}
 
 	public Relative chooseTheRelative() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -207,7 +212,9 @@ public class CommandLineInterface implements Serializable {
 		}
 		default: {
 			System.out.println("Error: insert again");
-			break;
+			relative=chooseTheRelative();
+			return relative;
+			//break;
 		}
 		}
 		System.out.println("THE VALUE OF THE RELATIVE IS  " + relative.getValue());
@@ -258,16 +265,22 @@ public class CommandLineInterface implements Serializable {
 		}
 		default: {
 			System.out.println("Error: insert again");
-			break;
+			tower=chooseTower();
+			return tower;
+			//break;
 		}
 		}
-		return null;
+		//return null;
 
 	}
 
 	public int chooseFloor() {
 		System.out.println("Choose the number of the floor:");
 		int floor = scanner.nextInt();
+		if(floor<0 || floor>4){
+			System.out.println("That floor dont exist!");
+			floor=chooseFloor();
+		}
 		return floor;
 	}
 
@@ -285,7 +298,7 @@ public class CommandLineInterface implements Serializable {
 	}
 
 	public MarketBuilding chooseMarket() {
-
+		
 		System.out.println("Choose the market to put your relative:");
 		int number = scanner.nextInt();
 		MarketBuilding market = null;
@@ -293,19 +306,25 @@ public class CommandLineInterface implements Serializable {
 	}
 
 	public String chooseHarvestArea() {
-
+		//Choose if you want to place the relative left or right
 		System.out.println("Choose if you want to put your relative on the left or on the right");
 		String harvestArea = scanner.nextLine();
+		if(harvestArea!="left" || harvestArea!="right" ){
+			System.out.println("Try again!");
+			harvestArea=chooseHarvestArea();
+		}
 		return harvestArea;
-
 	}
 
 	public String chooseProductionArea() {
-
+		//Choose if you want to place the relative left or right
 		System.out.println("Choose if you want to put your relative on the left or on the right");
 		String productionArea = scanner.nextLine();
+		if(productionArea!="left" || productionArea!="right"){
+			System.out.println("Try again!");
+			productionArea = chooseProductionArea();
+		}
 		return productionArea;
-
 	}
 
 }
