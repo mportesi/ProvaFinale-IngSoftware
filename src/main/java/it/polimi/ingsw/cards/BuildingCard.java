@@ -59,4 +59,17 @@ public class BuildingCard extends Card {
 		public String toString(){
 			return (name + ": il costo è " + cost + " Gli effetti immediati sono " + immediateEffects );
 		}
+		
+		public Integer getCostCoin(){
+			return cost.get("coin");
+		}
+		public Integer getCostWood(){
+			return cost.get("wood");
+		}
+		public Integer getCostStone(){
+			return cost.get("stone");
+		}
+		public Integer getCostServant(){
+			return cost.get("servant");
+		}
 }
