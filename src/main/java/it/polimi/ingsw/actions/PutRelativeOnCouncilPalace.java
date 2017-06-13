@@ -56,5 +56,4 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		}
 
 	}
-
 }

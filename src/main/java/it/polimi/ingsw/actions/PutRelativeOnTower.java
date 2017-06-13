@@ -33,6 +33,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	}
 	
 	public boolean isApplicable(){
+		boolean check= false;
 		System.out.println("entro nell'isApplicable");
 		if(tower.floors.get(floor).isFree()){
 			System.out.println("tower is free");
@@ -41,8 +42,8 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 				if(tower.isPresent(player)==false){
 					System.out.println("There isn't the player");
 					//System.out.println("true");
-					
-					return true;
+					check=checkCardCost();
+					return check;
 				}
 			}
 		}
@@ -58,7 +59,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			System.out.println("false");
 			return false;
 		}*/
-		return false;
+		return check;
 		//System.out.println("false");
 	}
 	
@@ -83,15 +84,14 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		return;
 	}
 	
-	private boolean checkCardCost(){
-		cardToGive= tower.floors.get(floor).giveCard();
+	public boolean checkCardCost(){
+		cardToGive= tower.floors.get(floor).getCard();
 		boolean check= false;
 		if(cardToGive instanceof CharacterCard){
 			if(player.getCoin()>= ((CharacterCard) cardToGive).getCostCoin()){
 				check=true;
 				return check;
-			}
-			
+			}	
 		}
 		if(cardToGive instanceof TerritoryCard){
 			check=true;
@@ -123,11 +123,33 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 				check=false;
 			}
 			return check;
-			
 		}
 		if(cardToGive instanceof VentureCard){
-			
+			if(player.getCoin()>= ((VentureCard) cardToGive).getCostCoin()){
+				check=true;
+			}
+			else{
+				check=false;
+			}				if(player.getWood()>= ((VentureCard) cardToGive).getCostWood()){
+				check=true;
+			}
+			else{
+				check=false;
+			}
+			if(player.getStone()>= ((VentureCard) cardToGive).getCostStone()){
+				check=true;
+			}
+			else{
+				check=false;
+			}
+			if(player.getServant()>= ((VentureCard) cardToGive).getCostServant()){
+				check=true;
+			}
+			else{
+				check=false;
+			}
+			return check;
 		}
-		return false;
+		return check;
 	}
 }

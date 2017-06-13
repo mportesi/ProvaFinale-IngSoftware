@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
@@ -31,11 +32,13 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 	}
 	
 	public boolean isApplicable(){
+		boolean check=false;
 		if(tower.floors.get(floor).isFree() && relative.getValue()>= tower.floors.get(floor).getCost() && tower.isPresent(player)==false)
 			 {
-			return true;
+			check=checkCardCost();
+			return check;
 			 }
-		else return false;
+		else return check;
 	}
 	
 	
@@ -54,5 +57,17 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 				this.notifyObserver(changeTower);
 			}
 		return;
+	}
+
+	public boolean checkCardCost() {
+		cardToGive= tower.floors.get(floor).getCard();
+		boolean check= false;
+		if(cardToGive instanceof VentureCard){
+			if(player.getMilitaryPoint()>= ((VentureCard) cardToGive).getMilitaryReq()){
+				check=true;
+				return check;
+			}
+		}
+		return check;
 	}
 }

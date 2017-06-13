@@ -12,18 +12,6 @@ import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Floor;
 import it.polimi.ingsw.areas.Tower;
-import it.polimi.ingsw.effects.Effect;
-import it.polimi.ingsw.effects.GainCoin;
-import it.polimi.ingsw.effects.GainFaithPoint;
-import it.polimi.ingsw.effects.GainMilitaryPoint;
-import it.polimi.ingsw.effects.GainStone;
-import it.polimi.ingsw.effects.GainVictoryPoint;
-import it.polimi.ingsw.effects.GainVictoryPointForBuildingCard;
-import it.polimi.ingsw.effects.GainVictoryPointForCharacterCard;
-import it.polimi.ingsw.effects.GainVictoryPointForMilitaryPoint;
-import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
-import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
-import it.polimi.ingsw.effects.GainWood;
 import it.polimi.ingsw.effects.*;
 
 public class CharacterCard extends Card {
@@ -73,6 +61,29 @@ public class CharacterCard extends Card {
 			return;
 		}
 	}
+	
+	public void applyPrivilegeBonus(Player player, String resource){
+		try {
+			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
+			gain.apply(player);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public int getCostCoin(){
 		return costCoin;
 	}
