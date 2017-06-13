@@ -15,6 +15,10 @@ public class GainPrivilegeCouncil extends Effect {
 	private int privilege;
 	private String resource;
 	
+	public GainPrivilegeCouncil(int privilege){
+		this.privilege=privilege;
+	}
+	
 	public GainPrivilegeCouncil(int privilege, String resource) throws FileNotFoundException, IOException, ParseException{
 		this.privilege=privilege;
 		this.resource = resource;
@@ -22,7 +26,14 @@ public class GainPrivilegeCouncil extends Effect {
 		jsonPrivilegeCouncil.importPrivilegeCouncil();
 		this.privilegeCouncil=jsonPrivilegeCouncil.getPrivilegeCouncil();
 	}
-
+	
+	public GainPrivilegeCouncil(String resource) throws FileNotFoundException, IOException, ParseException{
+		this.resource = resource;
+		JsonPrivilegeCouncil jsonPrivilegeCouncil= new JsonPrivilegeCouncil();
+		jsonPrivilegeCouncil.importPrivilegeCouncil();
+		this.privilegeCouncil=jsonPrivilegeCouncil.getPrivilegeCouncil();
+	}
+	
 	@Override
 	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// Resource resource = chooseResource();

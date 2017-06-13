@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
+import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 
 public class TerritoryCard extends Card {
 	private TerritoryListOfEffect effects;
@@ -29,6 +30,28 @@ public class TerritoryCard extends Card {
 				e.apply(player);
 			}
 			return;
+		}
+	}
+	
+	public void applyPrivilegeBonus(Player player, String resource){
+		try {
+			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
+			gain.apply(player);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

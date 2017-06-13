@@ -60,6 +60,8 @@ public class Card implements Serializable {
 	public void chooseCost(boolean cost){
 		//for venture card
 	}
+	public void applyPrivilegeBonus(Player player,String resource){
+	}
 	
 
 }

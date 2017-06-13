@@ -84,5 +84,4 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 			}
 		}
 	}
-
 }
