@@ -16,6 +16,7 @@ public abstract class Observable<C> {
 	
 	public void registerObserver(Observer<C> o){
 		observers.add(o);
+		System.out.println(o);
 	}
 	
 	public void unregisterObserver(Observer<C> o){

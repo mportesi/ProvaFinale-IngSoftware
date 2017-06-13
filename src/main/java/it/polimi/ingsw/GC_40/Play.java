@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_40;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -39,7 +40,7 @@ import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 
-public class Play extends Observable<Change> implements Observer<Change> {
+public class Play extends Observable<Change> implements Observer<Change>, Serializable {
 	private ArrayList<Player> players;
 	private Dice blackDice;
 	private Dice whiteDice;
@@ -64,6 +65,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// this.players = new ArrayList<Player>();
 		this.board = new Board(this);
+		board.registerObserver(this);
 		// System.out.println("ho inizializzato la board");
 		this.round = 0;
 		this.period = 0;
@@ -362,7 +364,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	@Override
 	public void update(Change c)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// System.out.println("ho ricevuto il cambiamento");
+		 System.out.println("SONO IL PLAY ho ricevuto il cambiamento  "  + c);
 		this.notifyObserver(c);
 	}
 
@@ -375,6 +377,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		
 		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
+		player.registerObserver(this);
 		notifyObserver(new ChangeNewPlayer(player));
 
 		if (players.size() == 2) {

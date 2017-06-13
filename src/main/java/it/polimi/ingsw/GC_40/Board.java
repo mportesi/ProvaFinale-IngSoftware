@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
 import org.json.simple.parser.ParseException;
 
@@ -15,10 +16,13 @@ import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeCouncilPalace;
+import it.polimi.ingsw.changes.ChangePeriod;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.PrivilegeCouncil;
+import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonCard;
 import it.polimi.ingsw.json.JsonCouncilPalace;
 import it.polimi.ingsw.json.JsonFloor;
@@ -44,7 +48,7 @@ public class Board  extends Observable<Change> implements Serializable{
 	
 	
 	
-	public Board(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException{
+	public Board(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		JsonCard jsonCard= new JsonCard();
 		jsonCard.importCards();
 		deck = new ArrayList<Card>();
@@ -135,6 +139,7 @@ public class Board  extends Observable<Change> implements Serializable{
 		jsonCouncil.importCouncilPalace();
 		CouncilPalace councilPalaceJson=jsonCouncil.getCouncilPalace();
 		councilPalace = new CouncilPalace(councilPalaceJson, play);
+		
 		
 		JsonPrivilegeCouncil jsonPrivilegeCouncil= new JsonPrivilegeCouncil();
 		jsonPrivilegeCouncil.importPrivilegeCouncil();

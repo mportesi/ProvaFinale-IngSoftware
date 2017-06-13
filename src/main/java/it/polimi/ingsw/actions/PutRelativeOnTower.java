@@ -107,19 +107,19 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			else{
 				check=false;
 			}
-			if(player.getWood()>= ((BuildingCard) cardToGive).getCostWood()){
+			if(((BuildingCard) cardToGive).getCostWood()==null || player.getWood()>= ((BuildingCard) cardToGive).getCostWood()){
 				check=true;
 			}
 			else{
 				check=false;
 			}
-			if(player.getStone()>= ((BuildingCard) cardToGive).getCostStone()){
+			if(((BuildingCard) cardToGive).getCostStone()==null || player.getStone()>= ((BuildingCard) cardToGive).getCostStone()){
 				check=true;
 			}
 			else{
 				check=false;
 			}
-			if(player.getServant()>= ((BuildingCard) cardToGive).getCostServant()){
+			if(((BuildingCard) cardToGive).getCostServant()==null || player.getServant()>= ((BuildingCard) cardToGive).getCostServant()){
 				check=true;
 			}
 			else{

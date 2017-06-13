@@ -69,7 +69,7 @@ public class ClientRMIConnection implements Serializable {
 		
 		//System.out.println("LO START DI " + clientModel.getPlayer().getName() + "è" + clientModel.getStartPlay());
 		//System.out.println(clientModel);
-		System.out.println("!!!!!!!!!!!" +clientModel.getPlayer().getName());
+		//System.out.println("!!!!!!!!!!!" +clientModel.getPlayer().getName());
 		
 		
 		while (true) {
