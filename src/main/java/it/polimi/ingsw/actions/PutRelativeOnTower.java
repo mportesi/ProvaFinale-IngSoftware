@@ -10,6 +10,8 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
+import it.polimi.ingsw.cards.CharacterCard;
+import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
@@ -37,6 +39,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 				if(tower.isPresent(player)==false){
 					System.out.println("There isn't the player");
 					//System.out.println("true");
+					
 					return true;
 				}
 			}
@@ -76,5 +79,19 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 				
 			}
 		return;
+	}
+	
+	private boolean checkCardCost(){
+		cardToGive= tower.floors.get(floor).giveCard();
+		if(cardToGive instanceof CharacterCard){
+			if(player.getCoin()>= ((CharacterCard) cardToGive).getCostCoin()){
+				return true;
+			}
+			
+		}
+		if(cardToGive instanceof TerritoryCard){
+			return true;
+		}
+		return false;
 	}
 }

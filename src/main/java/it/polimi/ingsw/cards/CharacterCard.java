@@ -73,4 +73,7 @@ public class CharacterCard extends Card {
 			return;
 		}
 	}
+	public int getCostCoin(){
+		return costCoin;
+	}
 }
