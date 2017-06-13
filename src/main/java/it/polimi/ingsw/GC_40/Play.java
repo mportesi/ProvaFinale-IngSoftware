@@ -69,7 +69,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		changePeriod();
 		// System.out.println("ho fatto change period");
 		changeRound();
-		System.out.println(board);
+		//System.out.println(board);
 		// ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
 		// this.notifyObserver(changePlayer);
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
@@ -95,12 +95,12 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		currentTurnOrder = createTurnOrder(players);
 		this.currentPlayer = currentTurnOrder.get(0);
 		ColorPlayer[] colors = ColorPlayer.values();
-		System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
-		System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
+		//System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
+		//System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
 		for (int i = 0; i < currentTurnOrder.size(); i++) {
-			System.out.println(currentTurnOrder.get(i));
+			//System.out.println(currentTurnOrder.get(i));
 			currentTurnOrder.get(i).setColor(colors[i]);
-			System.out.println(currentTurnOrder.get(i).getColor());
+			//System.out.println(currentTurnOrder.get(i).getColor());
 			ChangeColor changeColor = new ChangeColor(currentTurnOrder.get(i), colors[i]);
 			this.notifyObserver(changeColor);
 		}
@@ -198,7 +198,7 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		}
 		round += 1;
 
-		System.out.println(board);
+		//System.out.println(board);
 
 		// refresh tower( place new card and remove family member)
 		board.getTerritoryTower().refreshTower(period);
@@ -233,11 +233,11 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		System.out.println("ho settato il valore dei dadi");
 		for (Player p : players) {
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
-			System.out.println("Il valore del black è" + p.getBlackRelative().getValue());
+			//System.out.println("Il valore del black è" + p.getBlackRelative().getValue());
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
-			System.out.println("Il valore del white è" + p.getWhiteRelative().getValue());
+			//System.out.println("Il valore del white è" + p.getWhiteRelative().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
-			System.out.println("Il valore del orange è" + p.getOrangeRelative().getValue());
+			//System.out.println("Il valore del orange è" + p.getOrangeRelative().getValue());
 
 		}
 

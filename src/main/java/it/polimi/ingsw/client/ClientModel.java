@@ -154,7 +154,7 @@ public class ClientModel implements Serializable{
 
 	public void setBoard(Board board) {
 		this.board=board;
-		System.out.println(board);
+		//System.out.println(board);
 		//players= new ArrayList<Player>();
 		
 	}

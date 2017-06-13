@@ -78,7 +78,7 @@ public class Floor extends Observable<Change> implements Serializable {
 		this.player = player;
 		isFree = false;
 		ChangeTower changeTower= new ChangeTower(tower,floor, relative);
-		System.out.println("ho mandato il change");
+		//System.out.println("ho mandato il change");
 		this.notifyObserver(changeTower);
 		
 	}

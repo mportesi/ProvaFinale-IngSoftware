@@ -72,7 +72,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	
 	public void applyEffect(Player player, String bonus) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		createListOfCouncilPalaceEffect(bonus);
-		System.out.println(councilPalaceEffect);
+		//System.out.println(councilPalaceEffect);
 		for (Effect e : councilPalaceEffect){
 			e.apply(player);
 		}
@@ -93,7 +93,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		order.add(orderIndex, player);
 		orderIndex += 1;
 		ChangeCouncilPalace changeCouncilPalace= new ChangeCouncilPalace(relative);
-		System.out.println("ho creato il change");
+		//System.out.println("ho creato il change");
 		this.notifyObserver(changeCouncilPalace);
 	}
 	
