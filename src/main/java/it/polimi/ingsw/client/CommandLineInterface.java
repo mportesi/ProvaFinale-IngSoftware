@@ -257,16 +257,22 @@ public class CommandLineInterface implements Serializable {
 		}
 		default: {
 			System.out.println("Error: insert again");
-			break;
+			tower=chooseTower();
+			return tower;
+			//break;
 		}
 		}
-		return null;
+		//return null;
 
 	}
 
 	public int chooseFloor() {
 		System.out.println("Choose the number of the floor:");
 		int floor = scanner.nextInt();
+		if(floor<0 || floor>4){
+			System.out.println("That floor dont exist!");
+			floor=chooseFloor();
+		}
 		return floor;
 	}
 
