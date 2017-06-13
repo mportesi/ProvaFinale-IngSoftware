@@ -49,7 +49,6 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	private int period;
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
-	private boolean start;
 
 	// costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
@@ -64,7 +63,6 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// this.players = new ArrayList<Player>();
 		this.board = new Board(this);
-
 		// System.out.println("ho inizializzato la board");
 		this.round = 0;
 		this.period = 0;
@@ -72,8 +70,6 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		// System.out.println("ho fatto change period");
 		changeRound();
 		System.out.println(board);
-		currentTurnOrder = createTurnOrder(players);
-		this.currentPlayer = currentTurnOrder.get(0);
 		//ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
 		//this.notifyObserver(changePlayer);
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
@@ -97,6 +93,8 @@ public class Play extends Observable<Change> implements Observer<Change> {
 
 	public void initializePlayer(ArrayList<Player> currentTurnOrder)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		currentTurnOrder = createTurnOrder(players);
+		this.currentPlayer = currentTurnOrder.get(0);
 		ColorPlayer[] colors= ColorPlayer.values();
 			System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
 			System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
@@ -359,15 +357,9 @@ public class Play extends Observable<Change> implements Observer<Change> {
 		players.add(player);
 		notifyObserver(new ChangeNewPlayer(player));
 		
-		if (players.size() < 2) {
-			start = false;
-		}
 		if (players.size() >= 2) {
 			verifyNumberOfPlayer();
-		}
-		
-		if (start == true) {
-			initializePlayer(players);
+			return;
 		}
 
 	}
@@ -395,21 +387,22 @@ public class Play extends Observable<Change> implements Observer<Change> {
 			 */
 			Thread.sleep((long) 10 * 1000);
 			initializePlay();
-			start = true;
+			return;
 
 		} else if (players.size() == 4) {
 
 			initializePlay();
-			start = true;
+			return;
+			
 
 		}
 
-		start = false;
-
+		
 	}
 
 	public boolean initializePlay()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		initializePlayer(players);
 		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
 		this.notifyObserver(changeInitializePlay);
 		return true;
