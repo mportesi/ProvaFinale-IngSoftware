@@ -58,7 +58,7 @@ public class CommandLineInterface implements Serializable {
 		System.out.println("Il tuo stato è: " + player);
 
 		Relative relative = chooseTheRelative();
-
+		
 		System.out.println("ho creato un relative" + relative.getValue());
 
 		System.out.println("Choose where you want to put the relative:");
