@@ -9,9 +9,11 @@ import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
+import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
@@ -83,14 +85,48 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	
 	private boolean checkCardCost(){
 		cardToGive= tower.floors.get(floor).giveCard();
+		boolean check= false;
 		if(cardToGive instanceof CharacterCard){
 			if(player.getCoin()>= ((CharacterCard) cardToGive).getCostCoin()){
-				return true;
+				check=true;
+				return check;
 			}
 			
 		}
 		if(cardToGive instanceof TerritoryCard){
-			return true;
+			check=true;
+			return check;
+		}
+		if(cardToGive instanceof BuildingCard){
+			if(player.getCoin()>= ((BuildingCard) cardToGive).getCostCoin()){
+				check=true;
+			}
+			else{
+				check=false;
+			}
+			if(player.getWood()>= ((BuildingCard) cardToGive).getCostWood()){
+				check=true;
+			}
+			else{
+				check=false;
+			}
+			if(player.getStone()>= ((BuildingCard) cardToGive).getCostStone()){
+				check=true;
+			}
+			else{
+				check=false;
+			}
+			if(player.getServant()>= ((BuildingCard) cardToGive).getCostServant()){
+				check=true;
+			}
+			else{
+				check=false;
+			}
+			return check;
+			
+		}
+		if(cardToGive instanceof VentureCard){
+			
 		}
 		return false;
 	}
