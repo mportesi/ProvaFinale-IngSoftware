@@ -22,15 +22,13 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 	Relative relative;
 	MarketBuilding market;
 	Player player;
-	PrivilegeCouncil privilege;
-	GainPrivilegeCouncil gain;
+	String bonus;
 	
-	public PutRelativeOnMarketPrivilege(Player player,Relative relative, MarketBuilding market,PrivilegeCouncil privilege, GainPrivilegeCouncil gain){
+	public PutRelativeOnMarketPrivilege(Player player,Relative relative, MarketBuilding market,String bonus){
 		this.player=player;
 		this.relative=relative;
 		this.market=market;
-		this.privilege=privilege;
-		this.gain=gain;
+		this.bonus=bonus;
 	}
 	
 	public void setMarket(MarketBuilding market){
@@ -57,6 +55,7 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 			// take the bonus
 			//market.giveBonus(player, market);
 			//market.applyEffect(player);
+			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(bonus);
 			gain.apply(player);
 			
 		}
