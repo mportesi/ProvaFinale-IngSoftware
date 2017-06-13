@@ -367,35 +367,41 @@ public class Play extends Observable<Change> implements Observer<Change> {
 	public void verifyNumberOfPlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (players.size() >= 2 && players.size() < 4) {
-			/*
-			 * Timer timer = new Timer(); timer.schedule(new TimerTask() {
-			 * 
-			 * @Override public void run() {
-			 * 
-			 * System.out.println("sono entrato nel run"); // TODO
-			 * Auto-generated method stub try { initializePlay();
-			 * 
-			 * 
-			 * } catch (NullPointerException | IOException | ParseException e) {
-			 * // TODO Auto-generated catch block e.printStackTrace(); }
-			 * 
-			 * }
-			 * 
-			 * }, 10*1000);
-			 * 
-			 * }; // TODO IMPORTARE DA JSON
-			 */
-			Thread.sleep((long) 10 * 1000);
-			initializePlay();
-			return;
+			
+			  Timer timer = new Timer(); 
+			  timer.schedule(new TimerTask() {
+			  
+			  @Override public void run() {
+			  
+			  System.out.println("sono entrato nel run");  try { 
+				  initializePlay();
+			  
+			  
+			 } catch (NullPointerException | IOException | ParseException e) {
+			  // TODO Auto-generated catch block e.printStackTrace(); }
+			  
+			 
+			 }
+			  
+			  }, 10*1000);
+			  
+		
+			  
+			   // TODO IMPORTARE DA JSON
+			 
+			
+		/*	//Thread.sleep((long) 10 * 1000);
+			//iNitializePlay();
+			return;*/
 
-		} else if (players.size() == 4) {
+		 else if (players.size() == 4) {
 
 			initializePlay();
 			return;
 			
 
 		}
+			  }
 
 		
 	}
