@@ -75,6 +75,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 				System.out.println(tower.floors.get(floor).getPlayer());
 				cardToGive= tower.floors.get(floor).giveCard();
 				System.out.println(cardToGive);
+				cardToGive.payCost(player);
 				player.addCard(cardToGive);
 				System.out.println("territory" + player.getTerritory().size());
 				cardToGive.applyEffect(player);

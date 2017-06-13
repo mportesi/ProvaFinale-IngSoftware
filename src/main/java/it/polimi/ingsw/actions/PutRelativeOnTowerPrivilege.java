@@ -52,6 +52,7 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 				tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 				player.setOccupiedRelative(relative);
 				cardToGive= tower.floors.get(floor).giveCard();
+				cardToGive.payCost(player);
 				player.addCard(cardToGive);
 				cardToGive.applyEffect(player);
 				cardToGive.applyPrivilegeBonus(player, bonus);

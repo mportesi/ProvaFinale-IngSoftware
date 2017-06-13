@@ -56,6 +56,7 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 				tower.floors.get(floor).setPlayer(player , relative, tower, floor);
 				player.setOccupiedRelative(relative);
 				cardToGive= tower.floors.get(floor).giveCard();
+				cardToGive.payCost(player);
 				player.addCard(cardToGive);
 				cardToGive.applyEffect(player);
 				tower.floors.get(floor).bonusEffect.apply(player);
