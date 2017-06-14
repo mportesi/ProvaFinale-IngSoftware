@@ -74,6 +74,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				
 				GainProductionValue gainProductionValue = new GainProductionValue(relative.getValue()); 
 				gainProductionValue.apply(player);
+				System.out.println(player);
 			}
 			// Else he put the relative on the other side with the penalty
 			else {
@@ -85,6 +86,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				int newValue= relative.getValue();
 				GainProductionValue gainProductionValue = new GainProductionValue(newValue); 
 				gainProductionValue.apply(player);
+				System.out.println(player);
 			}
 			play.changeCurrentPlayer();
 		}

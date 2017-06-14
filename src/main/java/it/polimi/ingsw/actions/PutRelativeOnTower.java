@@ -17,6 +17,7 @@ import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 
 public class PutRelativeOnTower extends Observable<Change> implements PutRelative {
 	private Tower tower;
@@ -80,9 +81,31 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		return;
 	}
 
-	public boolean checkCardCost() {
+	public boolean checkCardCost() throws FileNotFoundException, IOException, ParseException {
 		cardToGive = tower.floors.get(floor).getCard();
 		boolean check = false;
+		JsonMilitaryPointForTerritory jsonMilitaryPointForTerritory = new JsonMilitaryPointForTerritory();
+		jsonMilitaryPointForTerritory.importMilitaryPointForTerritory();
+		
+		if (player.counter("territory")==2 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheThirdCard()){
+			check = false;
+			return check;
+		}
+		
+		if (player.counter("territory")==3 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheFourthCard()){
+			check = false;
+			return check;
+		}
+		if (player.counter("territory")==4 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheFifthCard()){
+			check = false;
+			return check;
+		}
+		if (player.counter("territory")==5 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheSixthCard()){
+			check = false;
+			return check;
+		}
+		
+		
 		if (cardToGive instanceof CharacterCard) {
 			if (((CharacterCard) cardToGive).getCostCoin() == 0
 					|| player.getCoin() >= ((CharacterCard) cardToGive).getCostCoin()) {

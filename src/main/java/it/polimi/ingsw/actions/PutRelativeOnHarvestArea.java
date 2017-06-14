@@ -71,6 +71,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 				player.setOccupiedRelative(relative);
 				GainHarvestValue gainHarvestValue = new GainHarvestValue(relative.getValue());
 				gainHarvestValue.apply(player);
+				System.out.println(player);
 
 			}
 			// Else he put the relative on the other side with the penalty
@@ -82,6 +83,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 				int newValue = relative.getValue();
 				GainHarvestValue gainHarvestValue = new GainHarvestValue(newValue);
 				gainHarvestValue.apply(player);
+				System.out.println(player);
 			}
 			play.changeCurrentPlayer();
 		} else {
