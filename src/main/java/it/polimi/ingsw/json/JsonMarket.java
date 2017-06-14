@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.areas.MarketBuilding;
+import it.polimi.ingsw.areas.MarketListOfEffect;
 
 public class JsonMarket {
 	private ArrayList <MarketBuilding> marketBuilding;
@@ -35,12 +36,18 @@ public class JsonMarket {
 			String typeBonus = (String) bonusObject.get("type");
 			int amount = ((Long) bonusObject.get("amount")).intValue();
 			bonusMap.put(typeBonus, amount);
-		
-		MarketBuilding m = new MarketBuilding (type, bonusMap, costOfMarket);
+		}
+		System.out.println(bonusMap);
+		MarketListOfEffect marketEffect = new MarketListOfEffect(bonusMap);
+		MarketBuilding m = new MarketBuilding (type, marketEffect, costOfMarket);
 		marketBuilding.add(m);
 		
+		System.out.println("STAMPO I MARKET"+m);
+		
+	
+		
 	}
-	}
+	
 	}
 
 	public MarketBuilding getMarketBuilding(int i) throws FileNotFoundException, IOException, ParseException {

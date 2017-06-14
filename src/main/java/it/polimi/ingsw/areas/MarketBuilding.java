@@ -33,17 +33,19 @@ import it.polimi.ingsw.effects.GainWood;
 public class MarketBuilding extends Observable<Change> implements Serializable{
 
 	private String type; // A COSA SERVE??
-	private Map<String, Integer> bonus;
 	private boolean isOccupied;
 	private int cost;
-	private List<Effect> marketEffect;
+	private MarketListOfEffect marketEffect;
 	private Player player;
 	private Relative relative;
-
-	public MarketBuilding(String type, Map<String, Integer> bonus, int cost) {
+	private ArrayList<Effect> bonus;
+	
+	
+	public MarketBuilding(String type, MarketListOfEffect marketEffect, int cost) throws FileNotFoundException, IOException, ParseException {
 		this.type = type;
-		this.bonus = bonus;
+		this.marketEffect = marketEffect;
 		this.cost = cost;
+		bonus = marketEffect.createListOfEffect();
 	}
 	
 	public MarketBuilding(MarketBuilding market, Play play){
@@ -52,7 +54,9 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		this.cost=market.getCost();
 		registerObserver(play);
 	}
-	private Map<String, Integer> getBonus() {
+	
+	
+	private ArrayList<Effect> getBonus() {
 		// TODO Auto-generated method stub
 		return bonus;
 	}
@@ -62,47 +66,11 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		return type;
 	}
 
-	public void createListOfMarketEffect() throws FileNotFoundException, IOException, ParseException {
-		marketEffect = new ArrayList<Effect>();
-		List<String> keys = new ArrayList<String>();
-		for (String key : bonus.keySet()) {
-			keys.add(key);
-		}
-		for (int i = 0; i < keys.size(); i++) {
-			String effect = keys.get(i);
-			int bonusEffect = bonus.get(effect);
-			switch (effect) {
-			case "coin": {
-				GainCoin gainCoin = new GainCoin(bonusEffect);
-				marketEffect.add(gainCoin);
-				break;
-			}
-
-			case "privilegeCouncil": {
-				String resource = "coin";// TODO
-				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(bonusEffect, resource);
-				marketEffect.add(gainPrivilegeCouncil);
-				break;
-			}
-			case "servant": {
-				GainServant gainServant = new GainServant(bonusEffect);
-				marketEffect.add(gainServant);
-				break;
-			}
-
-			case "militaryPoint": {
-				GainMilitaryPoint gainMilitaryPoint = new GainMilitaryPoint(bonusEffect);
-				marketEffect.add(gainMilitaryPoint);
-				break;
-			}
-			}
-		}
-	}
+	
 
 	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		createListOfMarketEffect();
-
-		for (Effect e : marketEffect) {
+		
+		for (Effect e : bonus) {
 			if (e != null) {
 				e.apply(player);
 			} else {
@@ -114,9 +82,9 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	@Override
 	public String toString() {
 		if(player!=null){
-			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\n Is occupied by " +player+ " with the relative " + relative.getColor());
+			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\nWith bonus: " + bonus +"\nIs occupied by " +player+ " with the relative " + relative.getColor());
 		}
-		return ("The market of type: " + type + "\n" + "With cost: " + cost);
+		return ("The market of type: " + type + "\n" + "With cost: " + cost +"\nWithBonus: " + bonus + "\nIs free!");
 	}
 
 	/*

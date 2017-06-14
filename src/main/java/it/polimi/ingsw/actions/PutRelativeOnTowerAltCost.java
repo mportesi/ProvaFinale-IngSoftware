@@ -55,6 +55,7 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 				tower.floors.get(floor).bonusEffect.apply(player);
 				ChangeTower changeTower= new ChangeTower(tower,floor, relative);
 				this.notifyObserver(changeTower);
+				System.out.println(player);
 			}
 		return;
 	}

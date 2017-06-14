@@ -13,7 +13,7 @@ import it.polimi.ingsw.effects.GainFaithPoint;
 import it.polimi.ingsw.effects.GainVictoryPoint;
 
 
-public class BuildingListOfEffect extends CardListOfEffect {
+public class BuildingListOfEffect extends CreateListOfEffect {
 
 	
 	public BuildingListOfEffect(Map<String, Integer> immediateEffect) {

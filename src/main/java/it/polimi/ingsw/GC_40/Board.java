@@ -147,10 +147,10 @@ public class Board  extends Observable<Change> implements Serializable{
 
 		
 		//lista di market
-		market= new ArrayList<MarketBuilding>();
-		JsonMarket jsonMarket= new  JsonMarket();
+		market = new ArrayList<MarketBuilding>();
+		JsonMarket jsonMarket= new JsonMarket();
 		jsonMarket.importMarket();
-		ArrayList<MarketBuilding> marketJson= new ArrayList<>();
+		ArrayList<MarketBuilding> marketJson = new ArrayList<>();
 		for(int i=0; i<4; i++){
 			marketJson.add(i, jsonMarket.getMarketBuilding(i));
 			market.add(i, new MarketBuilding(marketJson.get(i), play));
@@ -216,7 +216,7 @@ public class Board  extends Observable<Change> implements Serializable{
 	public String toString() {
 		return ("Board" + "\n" + territoryTower + "\n" + buildingTower +  "\n" + characterTower + "\n" + ventureTower
 				+ "\n" + councilPalace
-				+ "\n" + market.get(0) + "\n" + market.get(1) + "\n" + market.get(1) + "\n" + market.get(2)
+				+ "\n" + market.get(0) + "\n" + market.get(1) + "\n" + market.get(2) + "\n" + market.get(3)
 				+ "\n" + harvestArea 
 				+ "\n" + productionArea 
 				+ "\n" + blackDice + "\n" + whiteDice + "\n" + orangeDice);

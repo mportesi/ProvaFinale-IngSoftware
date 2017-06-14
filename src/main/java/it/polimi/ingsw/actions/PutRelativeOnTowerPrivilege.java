@@ -59,6 +59,7 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 				tower.floors.get(floor).bonusEffect.apply(player);
 				ChangeTower changeTower= new ChangeTower(tower,floor, relative);
 				this.notifyObserver(changeTower);
+				System.out.println(player);
 			}
 		return;
 	}

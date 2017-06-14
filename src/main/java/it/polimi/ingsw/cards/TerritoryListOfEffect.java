@@ -23,7 +23,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
-public class TerritoryListOfEffect extends CardListOfEffect{
+public class TerritoryListOfEffect extends CreateListOfEffect{
 
 	public TerritoryListOfEffect(Map<String, Integer> immediateEffect) {
 		super(immediateEffect);

@@ -284,7 +284,7 @@ public class CommandLineInterface implements Serializable {
 		System.out.println("Choose the number of the floor:");
 		int floor = scanner.nextInt();
 		if (floor < 0 || floor > 4) {
-			System.out.println("That floor dont exist!");
+			System.out.println("That floor don't exist!");
 			floor = chooseFloor();
 		}
 		return (floor-1);

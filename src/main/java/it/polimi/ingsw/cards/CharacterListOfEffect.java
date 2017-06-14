@@ -21,7 +21,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForMilitaryPoint;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 
-public class CharacterListOfEffect extends CardListOfEffect{
+public class CharacterListOfEffect extends CreateListOfEffect{
 
 	public CharacterListOfEffect(Map<String, Integer> immediateEffect) {
 		super(immediateEffect);

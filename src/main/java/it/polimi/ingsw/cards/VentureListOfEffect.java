@@ -25,7 +25,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
-public class VentureListOfEffect extends CardListOfEffect {
+public class VentureListOfEffect extends CreateListOfEffect {
 	
 	public VentureListOfEffect(Map<String, Integer> immediateEffect) {
 		super(immediateEffect);
