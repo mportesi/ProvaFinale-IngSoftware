@@ -21,7 +21,6 @@ public class Floor extends Observable<Change> implements Serializable {
 	private String type;
 	private int cost;
 	public Card currentCard;
-	// private Piece bonus;
 	private Player player;
 	private Relative relative;
 	public Effect bonusEffect;
@@ -47,12 +46,10 @@ public class Floor extends Observable<Change> implements Serializable {
 	}
 
 	private String getType() {
-		// TODO Auto-generated method stub
 		return type;
 	}
 
 	private Effect getBonusEffect() {
-		// TODO Auto-generated method stub
 		return bonusEffect;
 	}
 
@@ -66,9 +63,6 @@ public class Floor extends Observable<Change> implements Serializable {
 		return current;
 	}
 
-	/*
-	 * public Piece getBonus(){ return bonus; }
-	 */
 
 	public Player getPlayer() {
 		return player;
@@ -79,7 +73,6 @@ public class Floor extends Observable<Change> implements Serializable {
 		this.relative=relative;
 		isFree = false;
 		ChangeTower changeTower= new ChangeTower(tower,floor, relative);
-		//System.out.println("ho mandato il change");
 		this.notifyObserver(changeTower);
 		
 	}

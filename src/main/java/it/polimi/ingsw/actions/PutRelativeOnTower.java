@@ -61,7 +61,6 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
-			// System.out.println("Sono nell'apply di put relative on tower");
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 			player.setOccupiedRelative(relative);
 			System.out.println(tower.floors.get(floor).getPlayer());
@@ -73,7 +72,10 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			cardToGive.applyEffect(player);
 			tower.floors.get(floor).bonusEffect.apply(player);
 			System.out.println(player);
-
+			play.changeCurrentPlayer();
+		}
+		else {
+			play.actionNotApplicable(player);
 		}
 		return;
 	}

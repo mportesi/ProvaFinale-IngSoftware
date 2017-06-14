@@ -37,24 +37,20 @@ public class Tower extends Observable<Change> implements Serializable {
 	// To empty the towers at the end of the round and to recharge them with new
 	// cards
 	public void refreshTower(int period) {
-		//System.out.println("Sono nella refresh tower");
 		ArrayList<Card> deck = new ArrayList<Card>();
 		switch (period) {
 		case 1:
 			{
-			//System.out.println("Sono nel case1");	
 			deck = deck1;
 			
 			break;
 			}
 		case 2:
 			{deck = deck2;
-			//System.out.println("mazzo2:" + deck.get(0));
 			break;
 			}
 		case 3:
 			{deck = deck3;
-			//System.out.println("mazzo3:" + deck.get(0));
 			break;
 			}
 		}
@@ -139,7 +135,6 @@ public class Tower extends Observable<Change> implements Serializable {
 	}
 
 	public int getCost() {
-		// TODO Auto-generated method stub
 		return cost;
 	}
 

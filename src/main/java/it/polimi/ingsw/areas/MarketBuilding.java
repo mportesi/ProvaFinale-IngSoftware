@@ -32,7 +32,7 @@ import it.polimi.ingsw.effects.GainWood;
 
 public class MarketBuilding extends Observable<Change> implements Serializable{
 
-	private String type; // A COSA SERVE??
+	private String type;
 	private Map<String, Integer> bonus;
 	private boolean isOccupied;
 	private int cost;
@@ -53,12 +53,10 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		registerObserver(play);
 	}
 	private Map<String, Integer> getBonus() {
-		// TODO Auto-generated method stub
 		return bonus;
 	}
 
 	private String getType() {
-		// TODO Auto-generated method stub
 		return type;
 	}
 
@@ -119,9 +117,7 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		return ("The market of type: " + type + "\n" + "With activation value: " + cost + "\n With the effects "+ marketEffect);
 	}
 
-	/*
-	 * public Piece getBonus() { return bonus; }
-	 */
+	
 
 	public boolean IsOccupied() {
 		return isOccupied;
@@ -131,20 +127,6 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		return cost;
 	}
 
-	
-
-	// when a player put a relative, he receive a bonus
-	/*
-	 * public void giveBonus(Player player, MarketBuilding market) { if
-	 * (market.equals(market1)) { player.incrementCoin(5); } if
-	 * (market.equals(market2)) { player.incrementServant(5); } if
-	 * (market.equals(market3)) { player.incrementMilitaryPoint(3);
-	 * player.incrementCoin(2); } if (market.equals(market4)) {
-	 * GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(2);
-	 * gainPrivilegeCouncil.apply(player); }
-	 * 
-	 * }
-	 */
 
 	public void setOccupied(Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		isOccupied = true;
