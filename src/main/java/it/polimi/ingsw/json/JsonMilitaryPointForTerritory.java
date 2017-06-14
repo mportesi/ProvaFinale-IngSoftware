@@ -28,12 +28,84 @@ public void importMilitaryPointForTerritory() throws FileNotFoundException, IOEx
 	JSONParser militaryPointForTParser = new JSONParser();
 	Object obj = null;
 	JSONObject militaryPointForT = (JSONObject) militaryPointForTParser.parse(new FileReader("json/MilitaryPointForTerritory.json"));
-	forTheFirstCard = ((Long) militaryPointForT.get("forTheFirstCard")).intValue();
-	forTheSecondCard = ((Long) militaryPointForT.get("forTheSecondCard")).intValue();
-	forTheThirdCard = ((Long) militaryPointForT.get("forTheThirdCard")).intValue();
-	forTheFourthCard = ((Long) militaryPointForT.get("forTheFourthCard")).intValue();
-	forTheFifthCard = ((Long) militaryPointForT.get("forTheFifthCard")).intValue();
-	forTheSixthCard = ((Long) militaryPointForT.get("forTheSixthCard")).intValue();
+	setForTheFirstCard(((Long) militaryPointForT.get("forTheFirstCard")).intValue());
+	setForTheSecondCard(((Long) militaryPointForT.get("forTheSecondCard")).intValue());
+	setForTheThirdCard(((Long) militaryPointForT.get("forTheThirdCard")).intValue());
+	setForTheFourthCard(((Long) militaryPointForT.get("forTheFourthCard")).intValue());
+	setForTheFifthCard(((Long) militaryPointForT.get("forTheFifthCard")).intValue());
+	setForTheSixthCard(((Long) militaryPointForT.get("forTheSixthCard")).intValue());
 
+}
+
+
+
+public int getForTheFirstCard() {
+	return forTheFirstCard;
+}
+
+
+
+public void setForTheFirstCard(int forTheFirstCard) {
+	this.forTheFirstCard = forTheFirstCard;
+}
+
+
+
+public int getForTheSecondCard() {
+	return forTheSecondCard;
+}
+
+
+
+public void setForTheSecondCard(int forTheSecondCard) {
+	this.forTheSecondCard = forTheSecondCard;
+}
+
+
+
+public int getForTheThirdCard() {
+	return forTheThirdCard;
+}
+
+
+
+public void setForTheThirdCard(int forTheThirdCard) {
+	this.forTheThirdCard = forTheThirdCard;
+}
+
+
+
+public int getForTheFourthCard() {
+	return forTheFourthCard;
+}
+
+
+
+public void setForTheFourthCard(int forTheFourthCard) {
+	this.forTheFourthCard = forTheFourthCard;
+}
+
+
+
+public int getForTheFifthCard() {
+	return forTheFifthCard;
+}
+
+
+
+public void setForTheFifthCard(int forTheFifthCard) {
+	this.forTheFifthCard = forTheFifthCard;
+}
+
+
+
+public int getForTheSixthCard() {
+	return forTheSixthCard;
+}
+
+
+
+public void setForTheSixthCard(int forTheSixthCard) {
+	this.forTheSixthCard = forTheSixthCard;
 }
 }
