@@ -32,8 +32,6 @@ import it.polimi.ingsw.effects.GainWood;
 
 public class MarketBuilding extends Observable<Change> implements Serializable{
 
-	private String type;
-	private Map<String, Integer> bonus;
 	private String type; // A COSA SERVE??
 	private boolean isOccupied;
 	private int cost;
@@ -56,14 +54,12 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		this.cost=market.getCost();
 		registerObserver(play);
 	}
-<<<<<<<
-	private Map<String, Integer> getBonus() {
-=======
+
+
 	
 	
 	private ArrayList<Effect> getBonus() {
-		// TODO Auto-generated method stub
->>>>>>>
+		
 		return bonus;
 	}
 

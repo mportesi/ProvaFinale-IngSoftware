@@ -33,7 +33,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		this.floor = floor;
 	}
 
-	public boolean isApplicable() {
+	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
 			System.out.println("tower is free");
