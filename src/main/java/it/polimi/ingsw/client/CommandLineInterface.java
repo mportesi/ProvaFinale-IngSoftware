@@ -116,30 +116,30 @@ public class CommandLineInterface implements Serializable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
 		System.out.println("Choose where you want to put the relative:");
-		System.out.println("Tower");
-		System.out.println("CouncilPalace");
-		System.out.println("Market");
-		System.out.println("HarvestArea");
-		System.out.println("ProductionArea");
+		System.out.println("1) Tower");
+		System.out.println("2) CouncilPalace");
+		System.out.println("3) Market");
+		System.out.println("4) HarvestArea");
+		System.out.println("5) ProductionArea");
 		scanner.nextLine();
-		String input = scanner.nextLine();
+		int input = scanner.nextInt();
 
 		PutRelative putRelative = null;
 		// System.out.println("sto entrando nello switch");
 		switch (input) {
-		case "Tower": {
+		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
 			putRelative = chooseThePutRelativeOnTower(tower, floor, relative);
 			break;
 		}
-		case "CouncilPalace": {
+		case 2: {
 			String bonus = choosePrivilegeCouncil();
 			putRelative = new PutRelativeOnCouncilPalace(client.getPlayer(), relative,
 					client.getBoard().getCouncilPalace(), bonus); // TODO
 			break;
 		}
-		case "Market": {
+		case 3: {
 			System.out.println("Choose the market to put your relative: \n 1)Gain coin \n 2)Gain servant \n 3)Gain military point and coin \n 4)Gain two different privilege Council");
 			int number = scanner.nextInt();
 			MarketBuilding market =client.getMarket(number);
@@ -150,14 +150,14 @@ public class CommandLineInterface implements Serializable {
 			putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market );}
 			break;
 		}
-		case "HarvestArea": {
+		case 4: {
 			String harvestArea = chooseHarvestArea();
 			putRelative = new PutRelativeOnHarvestArea(client.getPlayer(), relative, client.getBoard().getHarvestArea(),
 					harvestArea);
 
 			break;
 		}
-		case "ProductionArea": {
+		case 5: {
 			String productionArea = chooseProductionArea();
 			putRelative = new PutRelativeOnProductionArea(client.getPlayer(), relative,
 					client.getBoard().getProductionArea(), productionArea);
