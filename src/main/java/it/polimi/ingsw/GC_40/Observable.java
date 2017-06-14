@@ -8,7 +8,7 @@ import java.util.List;
 import org.json.simple.parser.ParseException;
 
 public abstract class Observable<C> {
-	private final List<Observer<C>> observers;
+	private List<Observer<C>> observers;
 	
 	public Observable(){
 		observers=new ArrayList<Observer<C>>();

@@ -390,6 +390,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 
 	}
+	
 
 	/*private void verifyNumberOfPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
