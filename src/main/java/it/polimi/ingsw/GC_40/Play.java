@@ -52,6 +52,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private boolean start;
+	
+	
 	// costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
@@ -435,7 +437,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		System.out.println("IL PLAY CORRENTE: "+ this);
 		players.add(player);
 		player.registerObserver(this);
-		notifyObserver(new ChangeNewPlayer(player));
+		notifyObserver(new ChangeNewPlayer(player, this));
 
 		if (players.size() == 2) {
 			initializePlay();
@@ -445,6 +447,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 
 	}
+	
 
 	/*private void verifyNumberOfPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {

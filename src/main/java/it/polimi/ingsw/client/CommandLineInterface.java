@@ -27,12 +27,10 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 public class CommandLineInterface implements Serializable {
 
 	private Scanner scanner;
-	private Player player;// ??
 	private ClientModel client;
 
-	public CommandLineInterface(Player player, ClientModel client) {
+	public CommandLineInterface(ClientModel client) {
 		scanner = new Scanner(System.in);
-		this.player = player;
 		this.client = client;
 	}
 
@@ -54,7 +52,7 @@ public class CommandLineInterface implements Serializable {
 	}
 
 	public PutRelative chooseTheAction() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("Il tuo stato è: " + player);
+		System.out.println("Il tuo stato è: " + client.getPlayer());
 		System.out.println("La board è: " + client.getBoard());
 
 		Relative relative = chooseTheRelative();
@@ -81,7 +79,7 @@ public class CommandLineInterface implements Serializable {
 		}
 		case "CouncilPalace": {
 			String bonus = choosePrivilegeCouncil();
-			putRelative = new PutRelativeOnCouncilPalace(player, relative, client.getBoard().getCouncilPalace(), bonus); // TODO
+			putRelative = new PutRelativeOnCouncilPalace(client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus); // TODO
 			break;
 		}
 		case "Market": {
@@ -91,13 +89,13 @@ public class CommandLineInterface implements Serializable {
 		}
 		case "HarvestArea": {
 			String harvestArea = chooseHarvestArea();
-			putRelative = new PutRelativeOnHarvestArea(player, relative, client.getBoard().getHarvestArea(),  harvestArea);
+			putRelative = new PutRelativeOnHarvestArea(client.getPlayer(), relative, client.getBoard().getHarvestArea(),  harvestArea);
 
 			break;
 		}
 		case "ProductionArea": {
 			String productionArea = chooseProductionArea();
-			putRelative = new PutRelativeOnProductionArea(player, relative, client.getBoard().getProductionArea(), productionArea);
+			putRelative = new PutRelativeOnProductionArea(client.getPlayer(), relative, client.getBoard().getProductionArea(), productionArea);
 
 			break;
 		}
@@ -218,18 +216,18 @@ public class CommandLineInterface implements Serializable {
 		}
 		}
 		System.out.println("THE VALUE OF THE RELATIVE IS  " + relative.getValue());
-		System.out.println("THE NAME OF THE RELATIVE IS  " + player.getName());
+		System.out.println("THE NAME OF THE RELATIVE IS  " + client.getPlayer().getName());
 		System.out.println("How many servants do you want to use?");
 		boolean legalServant=false; //loop until a legal servant numbers is given
 		while(!legalServant){
 			int valueServant = scanner.nextInt();
-			if(valueServant <= player.getServant()){
+			if(valueServant <= client.getPlayer().getServant()){
 				relative.setValueServant(valueServant);
-				player.decrementServant(valueServant);
+				client.getPlayer().decrementServant(valueServant);
 				legalServant=true;
 			}
 			else{
-				System.out.println("Not enough servant, you have only "+player.getServant()+" servant." );
+				System.out.println("Not enough servant, you have only "+client.getPlayer().getServant()+" servant." );
 			}
 		}
 		System.out.println("the value of the relative with servant is  " + relative.getValue());
