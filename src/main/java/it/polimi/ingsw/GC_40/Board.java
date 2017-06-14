@@ -178,14 +178,19 @@ public class Board extends Observable<Change> implements Serializable {
 			market = new ArrayList<MarketBuilding>();
 			JsonMarket jsonMarket = new JsonMarket();
 			jsonMarket.importMarket();
+			
+			for (int i=0; i<4; i++){
+			System.out.println(jsonMarket.getMarketBuilding(i));
+			}
 			ArrayList<MarketBuilding> marketJson = new ArrayList<>();
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i <= 1; i++) {
 				marketJson.add(i, jsonMarket.getMarketBuilding(i));
 				System.out.println("ho creato due market "+ marketJson.get(i).getCost());
 				market.add(i, new MarketBuilding(marketJson.get(i), play));
 			}
 
 		}
+		System.out.println("exit");
 
 		JsonPersonalBonusTiles jsonPersonalBonusTiles = new JsonPersonalBonusTiles();
 		jsonPersonalBonusTiles.importPersonalBonusTiles();

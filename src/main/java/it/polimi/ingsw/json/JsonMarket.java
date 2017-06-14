@@ -37,6 +37,7 @@ public class JsonMarket {
 			int amount = ((Long) bonusObject.get("amount")).intValue();
 			bonusMap.put(typeBonus, amount);
 		}
+		
 		System.out.println(bonusMap);
 		MarketListOfEffect marketEffect = new MarketListOfEffect(bonusMap);
 		MarketBuilding m = new MarketBuilding (type, marketEffect, costOfMarket);
