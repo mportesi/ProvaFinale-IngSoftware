@@ -61,15 +61,15 @@ public class BuildingCard extends Card {
 		}
 		
 		public int getCostCoin(){
-			return cost.get("coin");
+			return (int) cost.get("coin");
 		}
 		public int getCostWood(){
-			return cost.get("wood");
+			return (int) cost.get("wood");
 		}
 		public int getCostStone(){
-			return cost.get("stone");
+			return (int) cost.get("stone");
 		}
 		public int getCostServant(){
-			return cost.get("servant");
+			return (int) cost.get("servant");
 		}
 }

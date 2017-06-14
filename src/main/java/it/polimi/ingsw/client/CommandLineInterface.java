@@ -38,6 +38,7 @@ public class CommandLineInterface implements Serializable {
 	public void printTheBoard() {
 		client.getBoard();
 	}
+
 	public Relative chooseTheRelative()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Il tuo stato è: " + client.getPlayer());
@@ -53,7 +54,7 @@ public class CommandLineInterface implements Serializable {
 			} else {
 				System.out.println("You cannot use this relative, it is already used");
 			}
-			
+
 		}
 		case "white": {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getWhiteRelative())) {
@@ -62,7 +63,6 @@ public class CommandLineInterface implements Serializable {
 			} else {
 				System.out.println("You cannot use this relative, it is already used");
 			}
-			
 
 		}
 		case "orange": {
@@ -72,7 +72,6 @@ public class CommandLineInterface implements Serializable {
 			} else {
 				System.out.println("You cannot use this relative, it is already used");
 			}
-			
 
 		}
 		case "neutral": {
@@ -82,7 +81,7 @@ public class CommandLineInterface implements Serializable {
 			} else {
 				System.out.println("You cannot use this relative, it is already used");
 			}
-			
+
 		}
 		default: {
 			System.out.println("Error: insert again");
@@ -116,48 +115,57 @@ public class CommandLineInterface implements Serializable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
 		System.out.println("Choose where you want to put the relative:");
-		System.out.println("Tower");
-		System.out.println("CouncilPalace");
-		System.out.println("Market");
-		System.out.println("HarvestArea");
-		System.out.println("ProductionArea");
+		System.out.println("1) Tower");
+		System.out.println("2) CouncilPalace");
+		System.out.println("3) Market");
+		System.out.println("4) HarvestArea");
+		System.out.println("5) ProductionArea");
 		scanner.nextLine();
-		String input = scanner.nextLine();
+		int input = scanner.nextInt();
 
 		PutRelative putRelative = null;
 		// System.out.println("sto entrando nello switch");
 		switch (input) {
-		case "Tower": {
+		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
 			putRelative = chooseThePutRelativeOnTower(tower, floor, relative);
 			break;
 		}
-		case "CouncilPalace": {
+		case 2: {
 			String bonus = choosePrivilegeCouncil();
 			putRelative = new PutRelativeOnCouncilPalace(client.getPlayer(), relative,
 					client.getBoard().getCouncilPalace(), bonus); // TODO
 			break;
 		}
-		case "Market": {
-			System.out.println("Choose the market to put your relative: \n 1)Gain coin \n 2)Gain servant \n 3)Gain military point and coin \n 4)Gain two different privilege Council");
-			int number = scanner.nextInt();
-			MarketBuilding market =client.getMarket(number);
-			if(number==4){
-				putRelative= new PutRelativeOnMarketPrivilege(client.getPlayer(), relative, market, choosePrivilegeCouncil());
+		case 3: {
+			if (client.getBoard().getNumberOfPlayers() == 4) {
+				System.out.println(
+						"Choose the market to put your relative: \n 1)Gain coin \n 2)Gain servant \n 3)Gain military point and coin \n 4)Gain two different privilege Council");
+				int number = scanner.nextInt();
+				MarketBuilding market = client.getMarket(number);
+				if (number == 4) {
+					putRelative = new PutRelativeOnMarketPrivilege(client.getPlayer(), relative, market,
+							choosePrivilegeCouncil());
+				} else {
+					putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market);
+				}
+			} else {
+				System.out.println("Choose the market to put your relative: \n 1)Gain coin \n 2)Gain servant");
+				int number = scanner.nextInt();
+				MarketBuilding market = client.getMarket(number);
+				putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market);
 			}
-			else{
-			putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market );}
 			break;
 		}
-		case "HarvestArea": {
+		case 4: {
 			String harvestArea = chooseHarvestArea();
 			putRelative = new PutRelativeOnHarvestArea(client.getPlayer(), relative, client.getBoard().getHarvestArea(),
 					harvestArea);
 
 			break;
 		}
-		case "ProductionArea": {
+		case 5: {
 			String productionArea = chooseProductionArea();
 			putRelative = new PutRelativeOnProductionArea(client.getPlayer(), relative,
 					client.getBoard().getProductionArea(), productionArea);
@@ -175,7 +183,6 @@ public class CommandLineInterface implements Serializable {
 		return putRelative;
 	}
 
-
 	public PutRelative chooseThePutRelativeOnTower(Tower tower, int floor, Relative relative) {
 		PutRelative putRelative = null;
 		switch (tower.getType()) {
@@ -183,8 +190,9 @@ public class CommandLineInterface implements Serializable {
 			if (client.getBoard().getTerritoryTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
 				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative,
 						choosePrivilegeCouncil());
-			} else
-				{putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);}
+			} else {
+				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+			}
 			break;
 		}
 		case "building": {
@@ -197,8 +205,9 @@ public class CommandLineInterface implements Serializable {
 				int floor2 = chooseFloor();
 				putRelative = new PutRelativeOnTowerDoubleCard(client.getPlayer(), tower, floor, relative, tower2,
 						floor2);
-			} else
-				{putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);}
+			} else {
+				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+			}
 			break;
 		}
 		case "venture": {
@@ -208,8 +217,9 @@ public class CommandLineInterface implements Serializable {
 			} else if (client.getBoard().getVentureTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
 				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative,
 						choosePrivilegeCouncil());
-			} else
-				{putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);}
+			} else {
+				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+			}
 			break;
 		}
 		default: {
@@ -240,8 +250,6 @@ public class CommandLineInterface implements Serializable {
 		}
 		return choice;
 	}
-
-	
 
 	public Tower chooseTower() {
 
@@ -283,7 +291,7 @@ public class CommandLineInterface implements Serializable {
 	public int chooseFloor() {
 		System.out.println("Choose the number of the floor:");
 		int floor = scanner.nextInt();
-		floor-=1;
+		floor -= 1;
 		if (floor < 0 || floor > 4) {
 			System.out.println("That floor don't exist!");
 			floor = chooseFloor();
@@ -304,27 +312,46 @@ public class CommandLineInterface implements Serializable {
 		return resource;
 	}
 
-
 	public String chooseHarvestArea() {
-		// Choose if you want to place the relative left or right
-		System.out.println("Choose if you want to put your relative on the left or on the right");
-		String harvestArea = scanner.nextLine();
-		if (harvestArea != "left" || harvestArea != "right") {
-			System.out.println("Try again!");
-			harvestArea = chooseHarvestArea();
+		String harvestArea;
+		if (client.getBoard().getNumberOfPlayers() >= 3) {
+			if(client.getBoard().getHarvestArea().getLeftRelative()!= null){
+				System.out.println("The left area is occupied. You can only put on the right area");
+				harvestArea = "right";
+			}
+			// Choose if you want to place the relative left or right
+			System.out.println("Choose if you want to put your relative on the left or on the right");
+			harvestArea = scanner.nextLine();
+			if (harvestArea != "left" || harvestArea != "right") {
+				System.out.println("Try again!");
+				harvestArea = chooseHarvestArea();
+			}
+			return harvestArea;
+		} else {
+			harvestArea = "left";
+			return harvestArea;
 		}
-		return harvestArea;
 	}
 
 	public String chooseProductionArea() {
+		String productionArea;
+		if (client.getBoard().getNumberOfPlayers() >= 3) {
+			if(client.getBoard().getProductionArea().getLeftRelative()!= null){
+				System.out.println("The left area is occupied. You can only put on the right area");
+				productionArea = "right";
+			}
 		// Choose if you want to place the relative left or right
 		System.out.println("Choose if you want to put your relative on the left or on the right");
-		String productionArea = scanner.nextLine();
+		productionArea = scanner.nextLine();
 		if (productionArea != "left" || productionArea != "right") {
 			System.out.println("Try again!");
 			productionArea = chooseProductionArea();
 		}
-		return productionArea;
+		return productionArea;}
+		else {
+			productionArea = "left";
+			return productionArea;
+		}
 	}
 
 }

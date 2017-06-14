@@ -67,7 +67,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public void initializeBoard()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// this.players = new ArrayList<Player>();
-		this.board = new Board(this);
+		this.board = new Board(this, players.size());
 		board.registerObserver(this);
 		// System.out.println("ho inizializzato la board");
 		this.round = 0;
@@ -209,43 +209,29 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		board.getBuildingTower().refreshTower(period);
 		board.getCharacterTower().refreshTower(period);
 		board.getVentureTower().refreshTower(period);
-		// System.out.println(board);
+		
 		// refresh harvest and production area
-
 		board.getHarvestArea().refresh();
-		// System.out.println("HarvestArea: "+ board.getHarvestArea());
 		board.getProductionArea().refresh();
-		// System.out.println("ProductionArea: "+ board.getProductionArea());
+		
 		// refresh market
-		board.getMarket(0).setFree();
-		// System.out.println("Market1 " + board.getMarket(0));
-		board.getMarket(1).setFree();
-		// System.out.println("Market2 " + board.getMarket(1));
-		board.getMarket(2).setFree();
-		// System.out.println("Market3 " + board.getMarket(2));
-		board.getMarket(3).setFree();
-		// System.out.println("Market4 " + board.getMarket(3));
+		for(int i=0; i<board.getMarket().size(); i++){
+		board.getMarket(i).setFree();}
+		
 
 		// refresh council palace
 		board.getCouncilPalace().refresh();
 
-		// System.out.println("roll dice");
+		//roll dice
 		board.getBlackDice().setValue();
 		board.getOrangeDice().setValue();
 		board.getWhiteDice().setValue();
 
-		// System.out.println("ho settato il valore dei dadi");
+		
 		for (Player p : players) {
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
-			// System.out.println("Il valore del black è" +
-			// p.getBlackRelative().getValue());
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
-			// System.out.println("Il valore del white è" +
-			// p.getWhiteRelative().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
-			// System.out.println("Il valore del orange è" +
-			// p.getOrangeRelative().getValue());
-
 		}
 
 		ChangeRound changeRound = new ChangeRound(round, board);
@@ -440,6 +426,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		notifyObserver(new ChangeNewPlayer(player, this));
 
 		if (players.size() == 2) {
+			Thread.sleep(10*5000);
 			initializePlay();
 			
 		//	verifyNumberOfPlayer(name);
