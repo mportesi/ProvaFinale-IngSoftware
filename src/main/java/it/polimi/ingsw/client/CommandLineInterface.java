@@ -179,7 +179,7 @@ public class CommandLineInterface implements Serializable {
 	public PutRelative chooseThePutRelativeOnTower(Tower tower, int floor, Relative relative) {
 		PutRelative putRelative = null;
 		switch (tower.getType()) {
-		case "territoryTower": {
+		case "territory": {
 			if (client.getBoard().getTerritoryTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
 				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative,
 						choosePrivilegeCouncil());
@@ -187,11 +187,11 @@ public class CommandLineInterface implements Serializable {
 				{putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);}
 			break;
 		}
-		case "buildingTower": {
+		case "building": {
 			putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
 			break;
 		}
-		case "characterTower": {
+		case "character": {
 			if (client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()) {
 				Tower tower2 = chooseTower();
 				int floor2 = chooseFloor();
@@ -201,7 +201,7 @@ public class CommandLineInterface implements Serializable {
 				{putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);}
 			break;
 		}
-		case "ventureTower": {
+		case "venture": {
 			if (client.getBoard().getVentureTower().getFloor(floor).getCard().getAlternativeCost()) {
 				putRelative = new PutRelativeOnTowerAltCost(client.getPlayer(), tower, floor, relative,
 						chooseAlternativeCost());
