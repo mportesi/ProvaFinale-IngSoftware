@@ -41,6 +41,30 @@ public class JsonHarvestAndProduction {
 		}
 			
 	}
+	
+	public void importHarvestAndProductionWith3Players() throws FileNotFoundException, IOException, ParseException{
+		JSONParser harvestAndProductionParser = new JSONParser();
+		JSONArray harvestAndProductionArray = (JSONArray) harvestAndProductionParser.parse(new FileReader("json/harvestAndProductionArea.json"));
+		for (Object o : harvestAndProductionArray) {
+			JSONObject harvestAndProduction = (JSONObject) o;
+
+			String type = (String) harvestAndProduction.get("type");
+			int costOfLeftArea = ((Long) harvestAndProduction.get("costOfLeftArea")).intValue();
+			
+			switch (type){
+			case "productionArea": {
+				production = new HarvestAndProductionArea (type, costOfLeftArea);
+				//System.out.println("sono in json voglio stampare la production" + production);
+				break;
+			}
+			case "harvestArea": {
+				harvest = new HarvestAndProductionArea (type, costOfLeftArea);
+				break;
+			}
+			}
+			
+		}
+	}
 
 	public HarvestAndProductionArea getHarvest() {
 	

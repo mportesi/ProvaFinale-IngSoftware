@@ -114,9 +114,9 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	@Override
 	public String toString() {
 		if(player!=null){
-			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\n Is occupied by " +player+ " with the relative " + relative.getColor());
+			return ("The market of type: " + type + "\n" + "With activation value: " + cost + "\n With the effects "+ marketEffect + "\n Is occupied by " +player+ " with the relative " + relative.getColor());
 		}
-		return ("The market of type: " + type + "\n" + "With cost: " + cost);
+		return ("The market of type: " + type + "\n" + "With activation value: " + cost + "\n With the effects "+ marketEffect);
 	}
 
 	/*
