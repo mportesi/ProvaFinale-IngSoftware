@@ -88,7 +88,12 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				gainProductionValue.apply(player);
 				System.out.println(player);
 			}
+			play.changeCurrentPlayer();
 		}
+		else {
+			play.actionNotApplicable(player);
+		}
+		return;
 	}
 
 	

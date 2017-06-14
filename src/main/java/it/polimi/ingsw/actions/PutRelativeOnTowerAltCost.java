@@ -22,16 +22,16 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 	Player player;
 	Card cardToGive;
 	boolean choice;
-	
-	public PutRelativeOnTowerAltCost(Player player, Tower tower, int floor, Relative relative, boolean choice){
-		this.relative=relative;
-		this.player=player;
-		this.tower=tower;
-		this.floor=floor;
-		this.choice=choice;
+
+	public PutRelativeOnTowerAltCost(Player player, Tower tower, int floor, Relative relative, boolean choice) {
+		this.relative = relative;
+		this.player = player;
+		this.tower = tower;
+		this.floor = floor;
+		this.choice = choice;
 	}
-	
-	public boolean isApplicable(){
+
+	public boolean isApplicable() {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
 			System.out.println("tower is free");
@@ -55,32 +55,35 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 
 		return check;
 	}
-	
-	
+
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		if(isApplicable()){
-				tower.floors.get(floor).setPlayer(player, relative, tower, floor);
-				player.setOccupiedRelative(relative);
-				cardToGive= tower.floors.get(floor).giveCard();
-				player.addCard(cardToGive);
-				cardToGive.chooseCost(choice);
-				cardToGive.payCost(player);
-				cardToGive.applyEffect(player);
-				tower.floors.get(floor).bonusEffect.apply(player);
-				ChangeTower changeTower= new ChangeTower(tower,floor, relative);
-				this.notifyObserver(changeTower);
-				System.out.println(player);
-			}
+	public void apply(Play play)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if (isApplicable()) {
+			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
+			player.setOccupiedRelative(relative);
+			cardToGive = tower.floors.get(floor).giveCard();
+			player.addCard(cardToGive);
+			cardToGive.chooseCost(choice);
+			cardToGive.payCost(player);
+			cardToGive.applyEffect(player);
+			tower.floors.get(floor).bonusEffect.apply(player);
+			ChangeTower changeTower = new ChangeTower(tower, floor, relative);
+			this.notifyObserver(changeTower);
+			play.changeCurrentPlayer();
+		}
+		else {
+			play.actionNotApplicable(player);
+		}
 		return;
 	}
 
 	public boolean checkCardCost() {
-		cardToGive= tower.floors.get(floor).getCard();
-		boolean check= false;
-		if(cardToGive instanceof VentureCard){
-			if(player.getMilitaryPoint()>= ((VentureCard) cardToGive).getMilitaryReq()){
-				check=true;
+		cardToGive = tower.floors.get(floor).getCard();
+		boolean check = false;
+		if (cardToGive instanceof VentureCard) {
+			if (player.getMilitaryPoint() >= ((VentureCard) cardToGive).getMilitaryReq()) {
+				check = true;
 				return check;
 			}
 		}

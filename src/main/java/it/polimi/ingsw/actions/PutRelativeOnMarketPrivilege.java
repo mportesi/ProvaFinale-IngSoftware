@@ -58,8 +58,11 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 			//market.applyEffect(player);
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(bonus);
 			gain.apply(player);
-			System.out.println(player);
+			play.changeCurrentPlayer();
 			
+		}
+		else {
+			play.actionNotApplicable(player);
 		}
 	}
 

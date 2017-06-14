@@ -24,11 +24,12 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 	Player player;
 	String area;
 
-	public PutRelativeOnHarvestArea(Player player, Relative relative, HarvestAndProductionArea harvestArea,  String area) {
+	public PutRelativeOnHarvestArea(Player player, Relative relative, HarvestAndProductionArea harvestArea,
+			String area) {
 		this.player = player;
 		this.relative = relative;
 		this.area = area;
-		this.harvestArea=harvestArea;
+		this.harvestArea = harvestArea;
 	}
 
 	@Override
@@ -84,6 +85,9 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 				gainHarvestValue.apply(player);
 				System.out.println(player);
 			}
+			play.changeCurrentPlayer();
+		} else {
+			play.actionNotApplicable(player);
 		}
 	}
 }

@@ -26,6 +26,7 @@ import it.polimi.ingsw.changes.ChangeCouncilPalace;
 import it.polimi.ingsw.changes.ChangeInitializeBoard;
 import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangePeriod;
 import it.polimi.ingsw.changes.ChangePlayer;
 import it.polimi.ingsw.changes.ChangeRound;
@@ -519,6 +520,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void actionNotApplicable(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		ChangeNotApplicable changeNotApplicable= new ChangeNotApplicable(player);
+		this.notifyObserver(changeNotApplicable);
 		
 	}
 

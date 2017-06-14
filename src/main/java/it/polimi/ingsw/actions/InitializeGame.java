@@ -17,10 +17,7 @@ public class InitializeGame extends Observable<Change> implements Action {
 		
 		System.out.println("Sto facendo initializeGame.apply()");
 		play.initializePlayer();
-		//System.out.println(play.getCurrentPlayer());
 		play.initializeBoard();
-		
-		System.out.println("Sto facendo initializeGame.apply2()");
 		
 	}
 

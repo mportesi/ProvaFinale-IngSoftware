@@ -1,4 +1,4 @@
- package it.polimi.ingsw.actions;
+package it.polimi.ingsw.actions;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.changes.*;
@@ -19,33 +19,29 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 	Player player;
 	CouncilPalace councilPalace;
 	String bonus;
-	
-	
-	public PutRelativeOnCouncilPalace(Player player, Relative relative, CouncilPalace councilPalace, String bonus){
-		this.player=player;
-		this.relative=relative;
-		this.bonus=bonus;
-		this.councilPalace=councilPalace;
+
+	public PutRelativeOnCouncilPalace(Player player, Relative relative, CouncilPalace councilPalace, String bonus) {
+		this.player = player;
+		this.relative = relative;
+		this.bonus = bonus;
+		this.councilPalace = councilPalace;
 	}
-	
-	
 
 	@Override
 	public boolean isApplicable() {
 		// the required value is 1 to put a relative on the CouncilPalace
 		if (relative.getValue() >= 1) {
 			return true;
-		} 
+		}
 		return false;
-		
+
 	}
-	
-	
-	//PROBLEMA 
+
+	// PROBLEMA
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void apply(Play play)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
-			//System.out.println("putRelativeOnCouncilPalace is applicable");
 			// The player puts a relative on the councilPalace
 			play.getBoard().getCouncilPalace().addPlayer(player, relative);
 			player.setOccupiedRelative(relative);
@@ -53,7 +49,9 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			// TODO give player the council privilege bonus choice
 			System.out.println(councilPalace);
 			councilPalace.applyEffect(player, bonus);
-			System.out.println(player);
+			play.changeCurrentPlayer();
+		} else {
+			play.actionNotApplicable(player);
 		}
 
 	}

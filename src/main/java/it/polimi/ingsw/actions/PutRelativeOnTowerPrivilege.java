@@ -27,15 +27,16 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	Player player;
 	Card cardToGive;
 	String bonus;
-	public PutRelativeOnTowerPrivilege(Player player, Tower tower, int floor, Relative relative, String bonus){
-		this.relative=relative;
-		this.player=player;
-		this.tower=tower;
-		this.floor=floor;
-		this.bonus=bonus;
+
+	public PutRelativeOnTowerPrivilege(Player player, Tower tower, int floor, Relative relative, String bonus) {
+		this.relative = relative;
+		this.player = player;
+		this.tower = tower;
+		this.floor = floor;
+		this.bonus = bonus;
 	}
-	
-	public boolean isApplicable(){
+
+	public boolean isApplicable() {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
 			System.out.println("tower is free");
@@ -59,93 +60,88 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 
 		return check;
 	}
-	
-	
+
 	@Override
-	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		if(isApplicable()){
-				tower.floors.get(floor).setPlayer(player, relative, tower, floor);
-				player.setOccupiedRelative(relative);
-				cardToGive= tower.floors.get(floor).giveCard();
-				cardToGive.payCost(player);
-				player.addCard(cardToGive);
-				cardToGive.applyEffect(player);
-				cardToGive.applyPrivilegeBonus(player, bonus);
-				tower.floors.get(floor).bonusEffect.apply(player);
-				ChangeTower changeTower= new ChangeTower(tower,floor, relative);
-				this.notifyObserver(changeTower);
-				System.out.println(player);
-			}
+	public void apply(Play play)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if (isApplicable()) {
+			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
+			player.setOccupiedRelative(relative);
+			cardToGive = tower.floors.get(floor).giveCard();
+			cardToGive.payCost(player);
+			player.addCard(cardToGive);
+			cardToGive.applyEffect(player);
+			cardToGive.applyPrivilegeBonus(player, bonus);
+			tower.floors.get(floor).bonusEffect.apply(player);
+			ChangeTower changeTower = new ChangeTower(tower, floor, relative);
+			this.notifyObserver(changeTower);
+			play.changeCurrentPlayer();
+		}
+		else {
+			play.actionNotApplicable(player);
+		}
 		return;
 	}
-	
-	public boolean checkCardCost(){
-		cardToGive= tower.floors.get(floor).getCard();
-		boolean check= false;
-		if(cardToGive instanceof CharacterCard){
-			if(player.getCoin()>= ((CharacterCard) cardToGive).getCostCoin()){
-				check=true;
+
+	public boolean checkCardCost() {
+		cardToGive = tower.floors.get(floor).getCard();
+		boolean check = false;
+		if (cardToGive instanceof CharacterCard) {
+			if (player.getCoin() >= ((CharacterCard) cardToGive).getCostCoin()) {
+				check = true;
 				return check;
-			}	
+			}
 		}
-		if(cardToGive instanceof TerritoryCard){
-			check=true;
+		if (cardToGive instanceof TerritoryCard) {
+			check = true;
 			return check;
 		}
-		if(cardToGive instanceof BuildingCard){
-			if(player.getCoin()>= ((BuildingCard) cardToGive).getCostCoin()){
-				check=true;
+		if (cardToGive instanceof BuildingCard) {
+			if (player.getCoin() >= ((BuildingCard) cardToGive).getCostCoin()) {
+				check = true;
+			} else {
+				check = false;
 			}
-			else{
-				check=false;
+			if (player.getWood() >= ((BuildingCard) cardToGive).getCostWood()) {
+				check = true;
+			} else {
+				check = false;
 			}
-			if(player.getWood()>= ((BuildingCard) cardToGive).getCostWood()){
-				check=true;
+			if (player.getStone() >= ((BuildingCard) cardToGive).getCostStone()) {
+				check = true;
+			} else {
+				check = false;
 			}
-			else{
-				check=false;
-			}
-			if(player.getStone()>= ((BuildingCard) cardToGive).getCostStone()){
-				check=true;
-			}
-			else{
-				check=false;
-			}
-			if(player.getServant()>= ((BuildingCard) cardToGive).getCostServant()){
-				check=true;
-			}
-			else{
-				check=false;
+			if (player.getServant() >= ((BuildingCard) cardToGive).getCostServant()) {
+				check = true;
+			} else {
+				check = false;
 			}
 			return check;
 		}
-		if(cardToGive instanceof VentureCard){
-			if(player.getCoin()>= ((VentureCard) cardToGive).getCostCoin()){
-				check=true;
+		if (cardToGive instanceof VentureCard) {
+			if (player.getCoin() >= ((VentureCard) cardToGive).getCostCoin()) {
+				check = true;
+			} else {
+				check = false;
 			}
-			else{
-				check=false;
-			}				if(player.getWood()>= ((VentureCard) cardToGive).getCostWood()){
-				check=true;
+			if (player.getWood() >= ((VentureCard) cardToGive).getCostWood()) {
+				check = true;
+			} else {
+				check = false;
 			}
-			else{
-				check=false;
+			if (player.getStone() >= ((VentureCard) cardToGive).getCostStone()) {
+				check = true;
+			} else {
+				check = false;
 			}
-			if(player.getStone()>= ((VentureCard) cardToGive).getCostStone()){
-				check=true;
-			}
-			else{
-				check=false;
-			}
-			if(player.getServant()>= ((VentureCard) cardToGive).getCostServant()){
-				check=true;
-			}
-			else{
-				check=false;
+			if (player.getServant() >= ((VentureCard) cardToGive).getCostServant()) {
+				check = true;
+			} else {
+				check = false;
 			}
 			return check;
 		}
 		return check;
 	}
 }
-

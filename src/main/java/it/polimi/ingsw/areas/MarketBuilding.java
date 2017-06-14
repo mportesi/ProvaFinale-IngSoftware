@@ -54,15 +54,16 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		this.cost=market.getCost();
 		registerObserver(play);
 	}
+
+
 	
 	
 	private ArrayList<Effect> getBonus() {
-		// TODO Auto-generated method stub
+		
 		return bonus;
 	}
 
 	private String getType() {
-		// TODO Auto-generated method stub
 		return type;
 	}
 
@@ -87,9 +88,7 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		return ("The market of type: " + type + "\n" + "With cost: " + cost +"\nWithBonus: " + bonus + "\nIs free!");
 	}
 
-	/*
-	 * public Piece getBonus() { return bonus; }
-	 */
+	
 
 	public boolean IsOccupied() {
 		return isOccupied;
@@ -99,20 +98,6 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		return cost;
 	}
 
-	
-
-	// when a player put a relative, he receive a bonus
-	/*
-	 * public void giveBonus(Player player, MarketBuilding market) { if
-	 * (market.equals(market1)) { player.incrementCoin(5); } if
-	 * (market.equals(market2)) { player.incrementServant(5); } if
-	 * (market.equals(market3)) { player.incrementMilitaryPoint(3);
-	 * player.incrementCoin(2); } if (market.equals(market4)) {
-	 * GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(2);
-	 * gainPrivilegeCouncil.apply(player); }
-	 * 
-	 * }
-	 */
 
 	public void setOccupied(Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		isOccupied = true;

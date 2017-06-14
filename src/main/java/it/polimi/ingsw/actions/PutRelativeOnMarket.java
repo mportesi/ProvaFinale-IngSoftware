@@ -50,11 +50,13 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 			market.setPlayer(player);
 			player.setOccupiedRelative(relative);
 			// take the bonus
-			//market.giveBonus(player, market);
 			market.applyEffect(player);
-			System.out.println(player);
-			
+			play.changeCurrentPlayer();
 		}
+		else {
+			play.actionNotApplicable(player);
+		}
+		return;
 	}
 
 }
