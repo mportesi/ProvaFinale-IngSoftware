@@ -88,7 +88,12 @@ public class VentureCard extends Card {
 
 	@Override
 	public String toString(){
-		return (name + ":\n" + "The cost can be choose: "+ cost +"\n                     "+ "military requirement "+ militaryRequirement + " cost in military point " + militaryCost+  " \nThe immediate effects are " + immediateEffects );
+		if(alternativeCost){
+		return (name + ":\n" + "The cost can be choose: "+ cost +"\n                     "+ "military requirement "+ militaryRequirement + " cost in military point " + militaryCost+  " \nThe immediate effects are " + immediateEffects );}
+		else if(militaryRequirement==0 && militaryCost==0){
+			return (name + ":\n" + "The cost is: "+ cost +  " \nThe immediate effects are " + immediateEffects );
+		}
+		else{ return (name + ":\n" + "The militaryRequirement is: " + militaryRequirement + " , the cost in military point is " + militaryCost+  " \nThe immediate effects are " + immediateEffects );}
 	}
 
 	// to apply immediate effects

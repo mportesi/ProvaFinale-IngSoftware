@@ -287,7 +287,7 @@ public class CommandLineInterface implements Serializable {
 			System.out.println("That floor dont exist!");
 			floor = chooseFloor();
 		}
-		return (floor+1);
+		return (floor-1);
 	}
 
 	public String choosePrivilegeCouncil() {

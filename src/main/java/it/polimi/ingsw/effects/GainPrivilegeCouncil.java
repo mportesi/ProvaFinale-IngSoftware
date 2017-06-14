@@ -51,7 +51,7 @@ public class GainPrivilegeCouncil extends Effect {
 
 	@Override
 	public String toString(){
-		return ("Effect: gain " + privilegeCouncil + " privilegeCouncil in "+ resource  );
+		return ("Effect: gain " + privilege + " privilegeCouncil in "+ resource  );
 	}
 
 
