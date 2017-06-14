@@ -103,7 +103,7 @@ public class ClientRMIConnection implements Serializable {
 					System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
 					ShiftPlayer shiftPlayer = new ShiftPlayer();
 					serverStub.notifyObserver(shiftPlayer);
-				
+					System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
 			}}
 		}
 

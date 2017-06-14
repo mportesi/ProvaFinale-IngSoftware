@@ -135,7 +135,7 @@ public class Player extends Observable<Change> implements Serializable {
 
 	public void incrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
-		
+		registerObserver(play);
 		ChangeCoin changeCoin = new ChangeCoin(this, coin);
 		System.out.println("SONO IN PLAYER notifico il change coin");
 		this.notifyObserver(changeCoin);
