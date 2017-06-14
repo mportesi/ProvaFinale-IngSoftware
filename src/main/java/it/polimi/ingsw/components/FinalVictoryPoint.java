@@ -3,16 +3,63 @@ package it.polimi.ingsw.components;
 import java.util.Map;
 
 public class FinalVictoryPoint {
-	String type;
-	Map <Integer, Integer> amountForObject;
+	private String type;
+	private int finalVictoryPointForOne;
+	private int finalVictoryPointForTwo;
+	private int finalVictoryPointForThree;
+	private int finalVictoryPointForFour;
+	private int finalVictoryPointForFive;
+	private int finalVictoryPointForSix;
 	
-	public FinalVictoryPoint (String type, Map amountForObject){
-		this.type = type;
-		this.amountForObject = amountForObject;
+	public FinalVictoryPoint(int finalVictoryPointForOne, int finalVictoryPointForTwo, int finalVictoryPointForThree, int finalVictoryPointForFour, int finalVictoryPointForFive, int finalVictoryPointForSix){
+		this.finalVictoryPointForOne = finalVictoryPointForOne;
+		this.finalVictoryPointForTwo = finalVictoryPointForTwo;
+		this.finalVictoryPointForThree = finalVictoryPointForThree;
+		this.finalVictoryPointForFour = finalVictoryPointForFour;
+		this.finalVictoryPointForFive = finalVictoryPointForFive;
+		this.finalVictoryPointForSix = finalVictoryPointForSix;
 	}
-
+	
 	public String getType() {
-		// TODO Auto-generated method stub
 		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public int getFinalVictoryPointForOne() {
+		return finalVictoryPointForOne;
+	}
+	public void setFinalVictoryPointForOne(int finalVictoryPointForOne) {
+		this.finalVictoryPointForOne = finalVictoryPointForOne;
+	}
+	public int getFinalVictoryPointForTwo() {
+		return finalVictoryPointForTwo;
+	}
+	public void setFinalVictoryPointForTwo(int finalVictoryPointForTwo) {
+		this.finalVictoryPointForTwo = finalVictoryPointForTwo;
+	}
+	public int getFinalVictoryPointForThree() {
+		return finalVictoryPointForThree;
+	}
+	public void setFinalVictoryPointForThree(int finalVictoryPointForThree) {
+		this.finalVictoryPointForThree = finalVictoryPointForThree;
+	}
+	public int getFinalVictoryPointForFour() {
+		return finalVictoryPointForFour;
+	}
+	public void setFinalVictoryPointForFour(int finalVictoryPointForFour) {
+		this.finalVictoryPointForFour = finalVictoryPointForFour;
+	}
+	public int getFinalVictoryPointForFive() {
+		return finalVictoryPointForFive;
+	}
+	public void setFinalVictoryPointForFive(int finalVictoryPointForFive) {
+		this.finalVictoryPointForFive = finalVictoryPointForFive;
+	}
+	public int getFinalVictoryPointForSix() {
+		return finalVictoryPointForSix;
+	}
+	public void setFinalVictoryPointForSix(int finalVictoryPointForSix) {
+		this.finalVictoryPointForSix = finalVictoryPointForSix;
 	}
 }

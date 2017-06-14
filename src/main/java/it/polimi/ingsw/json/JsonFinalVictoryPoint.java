@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
@@ -15,41 +16,31 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.components.FinalVictoryPoint;
 
 public class JsonFinalVictoryPoint {
-	private Map <Integer, Integer> finalVictoryPointMap;
 	private ArrayList <FinalVictoryPoint> finalVictoryPointList;
-	private int victoryPointForTheFirst;
-	private int victoryPointForTheSecond;
 
-	
 	public void importVictoryPoint() throws FileNotFoundException, IOException, ParseException {
-		JSONParser VPForMilitaryParser = new JSONParser();
-		Object obj = null;
-		JSONObject VPForMilitary = (JSONObject) VPForMilitaryParser.parse(new FileReader("json/VPForMilitary.json"));
-		victoryPointForTheFirst = ((Long) VPForMilitary.get("victoryPointForTheFirst")).intValue();
-		victoryPointForTheSecond = ((Long) VPForMilitary.get("victoryPointForTheSecond")).intValue();
 		
-		
-		finalVictoryPointList= new ArrayList<FinalVictoryPoint>();
 		JSONParser finalVictoryPointParser = new JSONParser();
 		JSONArray finalVictoryPointArray = (JSONArray) finalVictoryPointParser.parse(new FileReader("json/finalVictoryPoints.json"));
 		for (Object o : finalVictoryPointArray){
 			
 			JSONObject finalVictoryPoint = (JSONObject) o;
 			String type = (String) finalVictoryPoint.get("type");
+			int victoryPointForOne = ((Long) finalVictoryPoint.get("victoryPointForOne")).intValue();
+			int victoryPointForTwo = ((Long) finalVictoryPoint.get("victoryPointForTwo")).intValue();
+			int victoryPointForThree = ((Long) finalVictoryPoint.get("victoryPointForThree")).intValue();
+			int victoryPointForFour = ((Long) finalVictoryPoint.get("victoryPointForFour")).intValue();
+			int victoryPointForFive = ((Long) finalVictoryPoint.get("victoryPointForFive")).intValue();
+			int victoryPointForSix = ((Long) finalVictoryPoint.get("victoryPointForSix")).intValue();
 			
-			JSONArray gain = (JSONArray) finalVictoryPointParser.parse(finalVictoryPoint.get("gain").toString());
+			FinalVictoryPoint finalVictoryPoints = new FinalVictoryPoint (victoryPointForOne, victoryPointForTwo, victoryPointForThree, victoryPointForFour, victoryPointForFive, victoryPointForSix);
+			finalVictoryPointList.add(finalVictoryPoints);
 			
-			Map<Integer, Integer> finalVictoryPointMap = new LinkedHashMap<Integer, Integer>();
-			for (int i = 0; i < gain.size(); i++) {
-				JSONObject gainObject = (JSONObject) gain.get(i);
-				int numberOf = ((Long) gainObject.get("numberOf")).intValue();
-				int amount = ((Long) gainObject.get("amount")).intValue();
-				finalVictoryPointMap.put(numberOf, amount);
-				
-			FinalVictoryPoint finalVictoryPointClass = new FinalVictoryPoint (type, finalVictoryPointMap);
-			finalVictoryPointList.add(finalVictoryPointClass);
+
 		}
-			
-		}
+	
+}
+	public ArrayList<FinalVictoryPoint> getFinalVictoryPointList(){
+		return finalVictoryPointList;
 	}
 }

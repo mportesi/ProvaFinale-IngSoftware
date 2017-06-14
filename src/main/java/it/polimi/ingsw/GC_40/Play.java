@@ -39,6 +39,7 @@ import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.FinalVictoryPoint;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
+import it.polimi.ingsw.json.JsonFinalVictoryPoint;
 
 public class Play extends Observable<Change> implements Observer<Change>, Serializable {
 	private ArrayList<Player> players;
@@ -261,78 +262,127 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
-	/*
-	 * public Map <int, Player> militaryPointForPlayer(){ LinkedHashMap <int,
-	 * Player> pointForPlayer = null; for (Player p : players){
-	 * pointForPlayer.put(p.getMilitaryPoint(), p); } return pointForPlayer; }
-	 * 
-	 * public List <Player> militaryPointRank(){ Map
-	 * pointForPlayer=militaryPointForPlayer(); int max=0; ArrayList<Player>
-	 * players; List <Player> keys; for(Player p: pointForPlayer.keySet()){
-	 * keys.add(p); if(pointForPlayer.get(p)>=max){ max=pointForPlayer.get(p);
-	 * players.add(p); } }
-	 * 
-	 * }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * public void giveFinalPoint(){
-	 * 
-	 * int victoryPointForMilitaryFirst = JSon.victoryPointForTheFirst; int
-	 * victoryPointForMilitarySecond = JSon.victoryPointForTheSecond; for
-	 * (Player p : players){ if (p == militaryPointRank().get(0)){
-	 * p.incrementVictoryPoint(victoryPointForMilitaryFirst); } if (p ==
-	 * militaryPointRank().get(1)){
-	 * p.incrementVictoryPoint(victoryPointForMilitarySecond); }
-	 * 
-	 * for (FinalVictoryPoint f : JSon.finalVictoryPointArray){ String type =
-	 * f.getType(); switch (type){ case "victoryPointForTerritory" : { Set list
-	 * = JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
-	 * 
-	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
-	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfTerritoryCard =
-	 * p.counter("territoryCard"); if (numberOfTerritoryCard >= key){
-	 * p.incrementVictoryPoint(value); break; }}} case
-	 * "victoryPointForCharacter" : { Set list =
-	 * JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
-	 * 
-	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
-	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfTerritoryCard =
-	 * p.counter("characterCard"); if (numberOfTerritoryCard >= key){
-	 * p.incrementVictoryPoint(value); break; }}}
-	 * 
-	 * case "victoryPointForResource" : { Set list =
-	 * JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
-	 * 
-	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
-	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfResource =
-	 * p.resourceCounter(); p.incrementVictoryPoint(numberOfResource/5); break;
-	 * }}
-	 * 
-	 * } }}
-	 * 
-	 * 
-	 * 
-	 * }
-	 * 
-	 *	RETURN ON ORDERED LIST BASED ON MILITARYPOINT
-	 * 
-	 * public static ArrayList<Player> ordina(ArrayList<Player> DaOrdinare){
-	 *	ArrayList<Player> ordinata= new ArrayList<>();
-	 *	ordinata.addAll(DaOrdinare);
-	 *	for(int i=0; i< ordinata.size(); i++){
-	 *		for(int j=i; j<ordinata.size(); j++){
-	 *			if(ordinata.get(i).getMilitaryPoint()<ordinata.get(j).getMilitaryPoint()){
-	 *				System.out.println("scambio"+i+"e"+j);
-	 *				Collections.swap(ordinata, i, j);
-	 *			}
-	 *		}
-	 *	}
-	 *	return ordinata;
-	 * }
-	 */
-
+	
+	public static ArrayList<Player> militaryPointRank(ArrayList<Player> players){
+	 	ArrayList<Player> ordinata= new ArrayList<>();
+	 	ordinata.addAll(players);
+	 	for(int i=0; i< ordinata.size(); i++){
+			for(int j=i; j<ordinata.size(); j++){
+	 			if(ordinata.get(i).getMilitaryPoint()<ordinata.get(j).getMilitaryPoint()){
+	 				System.out.println("scambio"+i+"e"+j);
+	 				Collections.swap(ordinata, i, j);
+	 			}
+	 		}
+	 	}
+	 	return ordinata;
+	  }
+	
+	 
+	  public void giveFinalPoint() throws FileNotFoundException, IOException, ParseException, NullPointerException, InterruptedException{
+	  JsonFinalVictoryPoint finalVictoryPoint = new JsonFinalVictoryPoint();
+	  finalVictoryPoint.importVictoryPoint();
+	  ArrayList <FinalVictoryPoint> list = finalVictoryPoint.getFinalVictoryPointList();
+	  for (Player p : players){ 
+	  for (FinalVictoryPoint f : list){ 
+		  String type = f.getType(); 
+		  switch (type){ 
+		  case "victoryPointForTerritory" : 
+		  { int numberOfTerritoryCard = p.counter("territoryCard"); 
+		  if (numberOfTerritoryCard >= 1 ){
+			  p.incrementVictoryPoint(f.getFinalVictoryPointForOne());
+			  
+			  }
+		  if (numberOfTerritoryCard >= 2 ){
+			  p.incrementVictoryPoint(f.getFinalVictoryPointForTwo());
+			  
+			  }
+		  if (numberOfTerritoryCard >= 3 ){
+			  p.incrementVictoryPoint(f.getFinalVictoryPointForThree());
+			  
+			  }
+		  if (numberOfTerritoryCard >= 4 ){
+			  p.incrementVictoryPoint(f.getFinalVictoryPointForFour());
+			  
+			  }
+		  if (numberOfTerritoryCard >= 5 ){
+			  p.incrementVictoryPoint(f.getFinalVictoryPointForFive());
+			  
+			  }
+		  if (numberOfTerritoryCard >= 6 ){
+			  p.incrementVictoryPoint(f.getFinalVictoryPointForSix());
+			  
+			  }
+		  break;
+		  }
+		  
+		  case "victoryPointForCharacter" :{
+			  int numberOfCharacterCard = p.counter("characterCard"); 
+			  if (numberOfCharacterCard >= 1 ){
+				  p.incrementVictoryPoint(f.getFinalVictoryPointForOne());
+				  
+		  }
+			  if (numberOfCharacterCard >= 2 ){
+				  p.incrementVictoryPoint(f.getFinalVictoryPointForTwo());
+				  
+		  }
+			  if (numberOfCharacterCard >= 3 ){
+				  p.incrementVictoryPoint(f.getFinalVictoryPointForThree());
+				  
+		  }
+			  if (numberOfCharacterCard >= 4 ){
+				  p.incrementVictoryPoint(f.getFinalVictoryPointForFour());
+				  
+		  }
+			  if (numberOfCharacterCard >= 5 ){
+				  p.incrementVictoryPoint(f.getFinalVictoryPointForFive());
+				  
+		  }
+			  if (numberOfCharacterCard >= 6 ){
+				  p.incrementVictoryPoint(f.getFinalVictoryPointForSix());
+				  
+		  }
+			  break;
+		  }
+		  
+		  case "victoryPointForResource" :{
+			  int numberOfResource = p.resourceCounter();
+			  p.incrementVictoryPoint(f.getFinalVictoryPointForFive()*(numberOfResource/5));
+			  break;
+		  }
+			  
+		  case "victoryPointForMilitaryRecord" : {
+			  if (p == militaryPointRank(players).get(0)){
+				  p.incrementVictoryPoint(f.getFinalVictoryPointForOne()); } 
+			  if (p == militaryPointRank(players).get(1)){
+				  p.incrementVictoryPoint(f.getFinalVictoryPointForTwo()); }
+			  break;
+		  
+		  }
+		  }
+	  }
+	  }
+	  }
+			  /*
+	  "victoryPointForCharacter" : { Set list =
+	  JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
+	  
+	  while(iter.hasNext()) { int key = (int)(iter.next()); int value =
+	  (int)(JSon.finalVictoryPointGain.get(key)); int numberOfTerritoryCard =
+	  p.counter("characterCard"); if (numberOfTerritoryCard >= key){
+	  p.incrementVictoryPoint(value); break; }}}
+	  
+	  case "victoryPointForResource" : { Set list =
+	  JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
+	  
+	  while(iter.hasNext()) { int key = (int)(iter.next()); int value =
+	  (int)(JSon.finalVictoryPointGain.get(key)); int numberOfResource =
+	  p.resourceCounter(); p.incrementVictoryPoint(numberOfResource/5); break;
+	  }}
+	  
+	  } }}
+	  */
+		  
+	   
 	public void endGame() {
 		// restituisce la classifica e il vincitore
 	}
@@ -365,17 +415,24 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public void update(Change c)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		 System.out.println("SONO IL PLAY ho ricevuto il cambiamento  "  + c);
+		 update2(c);
 		this.notifyObserver(c);
+	}
+	
+	public void update2(Change c) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		this.notifyObserver(c);
+		
 	}
 
 	public void createNewPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
-		if (players == null) {
+       if (players == null) {
 			this.players = new ArrayList<Player>();
 		}
 		
 		Player player = new Player(UUID.randomUUID(), this, name);
+		System.out.println("IL PLAY CORRENTE: "+ this);
 		players.add(player);
 		player.registerObserver(this);
 		notifyObserver(new ChangeNewPlayer(player));
