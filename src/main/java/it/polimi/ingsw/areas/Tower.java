@@ -86,9 +86,11 @@ public class Tower extends Observable<Change> implements Serializable {
 
 	@Override
 	public String toString() {
-		return ("The tower of type: " + type + " is: \n" + "[" + floors.get(0).getCard() + "] \n" + "["
-				+ floors.get(1).getCard() + "] \n" + "[" + floors.get(2).getCard() + "] \n" + "["
-				+ floors.get(3).getCard() + "] \n");
+		return ("The " + type + " tower is: \n" + "[" +
+				"FLOOR n°4 \n " + floors.get(3)+ "] \n" + "["
+				+ "FLOOR n°3 \n " + floors.get(2) + "] \n" + "["
+				+ "FLOOR n°2 \n " + floors.get(1)+ "] \n" + "[" +
+				"FLOOR n°1 \n " + floors.get(0).getCost() + "] \n" );
 	}
 
 	@Override

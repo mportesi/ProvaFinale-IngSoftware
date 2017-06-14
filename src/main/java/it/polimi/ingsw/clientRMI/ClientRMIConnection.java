@@ -19,6 +19,7 @@ import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
+import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class ClientRMIConnection implements Serializable {
@@ -96,8 +97,8 @@ public class ClientRMIConnection implements Serializable {
 					String inputLine = stdIn.nextLine();
 
 					// commandLineInterface.printTheBoard();
-
-					PutRelative putRelative = commandLineInterface.chooseTheAction();
+					Relative relative=commandLineInterface.chooseTheRelative();
+					PutRelative putRelative = commandLineInterface.chooseTheAction(relative);
 					serverStub.notifyObserver(putRelative);
 					System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
 					ShiftPlayer shiftPlayer = new ShiftPlayer();

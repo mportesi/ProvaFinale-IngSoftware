@@ -34,6 +34,7 @@ public class CharacterCard extends Card {
 		super(type, name, period);
 		this.costCoin = costCoin;
 		this.card = card;
+		this.getCard=true;
 		this.value = value;
 		this.discount = discount;
 		this.effects=effects;
@@ -47,7 +48,7 @@ public class CharacterCard extends Card {
 	
 	@Override
 	public String toString(){
-		return (name + ":\n" + "Il costo è "+ costCoin +"\n"+ "Gli effetti immediati sono " + immediateEffects );
+		return (name + ":\n" + "The cost is "+ costCoin +"\n"+ "The immediate effects are " + immediateEffects );
 	}
 	
 	// to apply immediate effects

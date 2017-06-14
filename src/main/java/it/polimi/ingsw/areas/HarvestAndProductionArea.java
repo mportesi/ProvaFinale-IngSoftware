@@ -113,8 +113,20 @@ public class HarvestAndProductionArea extends Observable<Change> implements Seri
 	
 	@Override
 	public String toString() {
-		return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is " + valueOfLeftArea + "\n" + "The right value is "
-				+ valueOfRightArea + "\n" + "The malus is " + malus + "\n");
+		if(leftRelative!=null){
+			for(int i=0; i<rightRelatives.size(); i++)
+			{
+			return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is " + valueOfLeftArea + "  It is occupied by " + leftRelative.getPlayer() + " with the relative " + leftRelative.getColor() + "\n" + "The right value is "
+					+ valueOfRightArea + "\n" + "The malus is " + malus + "\n" + "It is occupied by" + rightRelatives.get(i).getPlayer() + " with the relative " + rightRelatives.get(i).getColor());
+			}
+			return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is " + valueOfLeftArea + "  It is occupied by " + leftRelative.getPlayer() + " with the relative " + leftRelative.getColor() + "\n" + "The right value is "
+					+ valueOfRightArea + "\n" + "The malus is " + malus + "\n" + " It is free");
+		}
+		for(int i=0; i<rightRelatives.size(); i++){
+		return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is " + valueOfLeftArea +   " It is free "+ "\n" + "The right value is "
+				+ valueOfRightArea + "\n" + "The malus is " + malus + "\n" + "It is occupied by" + rightRelatives.get(i).getPlayer() + " with the relative " + rightRelatives.get(i).getColor());}
+		return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is " + valueOfLeftArea + "  It is free " + "\n" + "The right value is "
+				+ valueOfRightArea + "\n" + "The malus is " + malus + "\n" + " It is free");
 	}
 
 	

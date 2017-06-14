@@ -136,7 +136,7 @@ public class JsonCard {
 					} else if (militaryRequirement == 0 && militaryCost == 0) {
 						c = new VentureCard(type, name, period, costMap, immediate);
 					} else {
-						c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap);
+						c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap, immediate);
 					}
 
 					ventureDeck.add(c);

@@ -31,6 +31,9 @@ public class Card implements Serializable {
 	protected String type;
 	protected String name;
 	protected int period;
+	protected boolean gainPrivilegeCouncil; //TODO
+	protected boolean getCard;
+	protected boolean alternativeCost;
 	
 	
 	public Card(String type, String name, int period){
@@ -62,6 +65,18 @@ public class Card implements Serializable {
 	}
 	public void applyPrivilegeBonus(Player player,String resource){
 	}
-	
 
+	public boolean getGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
+	}
+
+	public boolean getGetCard() {
+		return getCard;
+	}
+
+	public boolean getAlternativeCost() {
+		return alternativeCost;
+	}
+
+	
 }

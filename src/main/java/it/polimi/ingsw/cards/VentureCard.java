@@ -29,6 +29,7 @@ public class VentureCard extends Card {
 		this.militaryCost = militaryCost;
 		this.effects=effects;
 		immediateEffects = effects.createListOfEffect();
+		alternativeCost=true;
 		
 	};
 
@@ -42,13 +43,14 @@ public class VentureCard extends Card {
 	}
 
 	public VentureCard(String type, String name, int period, int militaryRequirement, int militaryCost,
-			Map<String, Integer> cost) {
+			Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.militaryRequirement = militaryRequirement;
 		this.militaryCost = militaryCost;
 		this.cost = cost;
 		cost = null;
-		//immediateEffects = effects.createListOfEffect();
+		this.effects=effects;
+		immediateEffects = effects.createListOfEffect();
 
 	};
 
@@ -86,7 +88,7 @@ public class VentureCard extends Card {
 
 	@Override
 	public String toString(){
-		return (name + ": il costo è "+ cost + ": gli effetti immediati sono " + immediateEffects );
+		return (name + ":\n" + "The cost can be choose: "+ cost +"\n                     "+ "military requirement "+ militaryRequirement + " cost in military point " + militaryCost+  " \nThe immediate effects are " + immediateEffects );
 	}
 
 	// to apply immediate effects

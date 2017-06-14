@@ -57,6 +57,14 @@ public class TerritoryCard extends Card {
 	
 	@Override
 	public String toString(){
-		return (name + ": gli effetti immediati sono " + immediateEffects );
+		return (name + ":\n" + " The immediate effects are " + immediateEffects );
+	}
+
+	public boolean isGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
+	}
+
+	public void setGainPrivilegeCouncil(boolean gainPrivilegeCouncil) {
+		this.gainPrivilegeCouncil = gainPrivilegeCouncil;
 	}
 }

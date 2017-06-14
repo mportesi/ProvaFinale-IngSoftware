@@ -38,6 +38,7 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	private int cost;
 	private List<Effect> marketEffect;
 	private Player player;
+	private Relative relative;
 
 	public MarketBuilding(String type, Map<String, Integer> bonus, int cost) {
 		this.type = type;
@@ -112,6 +113,9 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	
 	@Override
 	public String toString() {
+		if(player!=null){
+			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\n Is occupied by " +player+ " with the relative " + relative.getColor());
+		}
 		return ("The market of type: " + type + "\n" + "With cost: " + cost);
 	}
 
@@ -144,6 +148,7 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 
 	public void setOccupied(Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		isOccupied = true;
+		this.relative=relative;
 		ChangeMarket changeMarket= new ChangeMarket(relative, market);
 		this.notifyObserver(changeMarket);
 	}

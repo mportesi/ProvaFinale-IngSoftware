@@ -31,7 +31,7 @@ public class Floor extends Observable<Change> implements Serializable {
 		this.bonusEffect = bonusEffect;
 		this.type = type;
 		this.cost = cost;
-		relative = null;
+		setRelative(null);
 		player = null;
 		isFree = true;
 	}
@@ -40,7 +40,7 @@ public class Floor extends Observable<Change> implements Serializable {
 		this.bonusEffect=floor.getBonusEffect();
 		this.type=floor.getType();
 		this.cost=floor.getCost();
-		relative = null;
+		setRelative(null);
 		player = null;
 		isFree = true;
 		registerObserver(play);
@@ -76,6 +76,7 @@ public class Floor extends Observable<Change> implements Serializable {
 
 	public void setPlayer(Player player, Relative relative, Tower tower, int floor) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.player = player;
+		this.relative=relative;
 		isFree = false;
 		ChangeTower changeTower= new ChangeTower(tower,floor, relative);
 		//System.out.println("ho mandato il change");
@@ -101,7 +102,7 @@ public class Floor extends Observable<Change> implements Serializable {
 			return ("Cost: " + cost + "\n Bonus: " + bonusEffect + "\n Card" + currentCard + "\n The floor is free!");
 		} else {
 			return ("Cost: " + cost + "\n Bonus: " + bonusEffect + "\n Card" + currentCard
-					+ "\n The floor is occupied by: " + player);
+					+ "\n The floor is occupied by: " + player + " with the relative " + relative.getColor());
 		}
 	}
 	
@@ -137,6 +138,14 @@ public class Floor extends Observable<Change> implements Serializable {
 		} else if (!type.equals(other.type))
 			return false;
 		return true;
+	}
+
+	public Relative getRelative() {
+		return relative;
+	}
+
+	public void setRelative(Relative relative) {
+		this.relative = relative;
 	}
 
 }

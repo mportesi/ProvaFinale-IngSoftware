@@ -57,7 +57,7 @@ public class BuildingCard extends Card {
 
 		@Override
 		public String toString(){
-			return (name + ": il costo è " + cost + " Gli effetti immediati sono " + immediateEffects );
+			return (name + ":\n The cost is " + cost + "\n The immediate effects are " + immediateEffects );
 		}
 		
 		public Integer getCostCoin(){
