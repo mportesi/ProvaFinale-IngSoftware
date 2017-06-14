@@ -73,7 +73,7 @@ public class ClientRMIConnection implements Serializable {
 		//System.out.println("!!!!!!!!!!!" +clientModel.getPlayer().getName());
 		
 		
-		while (true) {
+		while (stdIn.nextLine()!="quit") {
 			
 			
 			//

@@ -11,6 +11,7 @@ import it.polimi.ingsw.actions.InitializeGame;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
+import it.polimi.ingsw.components.Relative;
 
 public class ClientOutHandler implements Runnable {
 
@@ -61,7 +62,7 @@ public class ClientOutHandler implements Runnable {
 		}
 		player = clientModel.getPlayer();
 		System.out.println(player.getName());
-		cli = new CommandLineInterface(player, clientModel);
+		cli = new CommandLineInterface(clientModel);
 		while (true) {
 			try
 	        {Thread.sleep(0);}
@@ -72,8 +73,10 @@ public class ClientOutHandler implements Runnable {
 			System.out.println("test the action");
 			//String input = stdIn.nextLine();
 			Object action= new Object();
+			
 			try {
-				action=cli.chooseTheAction();
+				Relative relative=cli.chooseTheRelative();
+				action=cli.chooseTheAction(relative);
 			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
