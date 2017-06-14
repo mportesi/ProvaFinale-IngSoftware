@@ -90,7 +90,7 @@ public class Tower extends Observable<Change> implements Serializable {
 				"FLOOR n°4 \n " + floors.get(3)+ "] \n" + "["
 				+ "FLOOR n°3 \n " + floors.get(2) + "] \n" + "["
 				+ "FLOOR n°2 \n " + floors.get(1)+ "] \n" + "[" +
-				"FLOOR n°1 \n " + floors.get(0).getCost() + "] \n" );
+				"FLOOR n°1 \n " + floors.get(0) + "] \n" );
 	}
 
 	@Override
