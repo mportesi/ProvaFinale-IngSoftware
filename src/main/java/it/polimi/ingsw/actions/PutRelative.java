@@ -12,7 +12,7 @@ import it.polimi.ingsw.GC_40.Play;
 
 public abstract interface PutRelative extends Action {
 	
-	public abstract boolean isApplicable();
+	public abstract boolean isApplicable() throws FileNotFoundException, IOException, ParseException;
 	
 	public abstract void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 

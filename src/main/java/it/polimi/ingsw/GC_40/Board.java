@@ -84,9 +84,12 @@ public class Board extends Observable<Change> implements Serializable {
 		jsonFloor.importFloors();
 		ArrayList<Floor> territoryFloorJson = jsonFloor.getTerritoryFloors();
 		ArrayList<Floor> territoryFloor = new ArrayList<>();
-		for (Floor f : territoryFloorJson) {
-			territoryFloor.add(new Floor(f, play));
+		for (int i = territoryFloorJson.size()-1; i>=0; i--){
+			territoryFloor.add(new Floor(territoryFloorJson.get(i), play));
 		}
+		/*for (Floor f : territoryFloorJson) {
+			territoryFloor.add(new Floor(f, play));
+		}*/
 		territoryTower = new Tower("territory", territory1, territory2, territory3, territoryFloor, play);
 		/*
 		 * for (int i =0; i< territory1.size(); i++){
