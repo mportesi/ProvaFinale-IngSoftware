@@ -283,11 +283,12 @@ public class CommandLineInterface implements Serializable {
 	public int chooseFloor() {
 		System.out.println("Choose the number of the floor:");
 		int floor = scanner.nextInt();
+		floor-=1;
 		if (floor < 0 || floor > 4) {
 			System.out.println("That floor dont exist!");
 			floor = chooseFloor();
 		}
-		return (floor-1);
+		return (floor);
 	}
 
 	public String choosePrivilegeCouncil() {
