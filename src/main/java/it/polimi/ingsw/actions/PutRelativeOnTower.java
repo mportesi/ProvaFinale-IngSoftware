@@ -92,9 +92,10 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		cardToGive= tower.floors.get(floor).getCard();
 		boolean check= false;
 		if(cardToGive instanceof CharacterCard){
-			if(player.getCoin()>= ((CharacterCard) cardToGive).getCostCoin()){
-				check=true;
-				return check;
+			if(((CharacterCard) cardToGive).getCostCoin()==0 ||player.getCoin()>= ((CharacterCard) cardToGive).getCostCoin()){
+				check=true;}
+			else{
+				check=false;
 			}	
 		}
 		if(cardToGive instanceof TerritoryCard){
@@ -102,25 +103,25 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			return check;
 		}
 		if(cardToGive instanceof BuildingCard){
-			if(player.getCoin()>= ((BuildingCard) cardToGive).getCostCoin()){
+			if(((BuildingCard) cardToGive).getCostCoin()==0 || player.getCoin()>= ((BuildingCard) cardToGive).getCostCoin()){
 				check=true;
 			}
 			else{
 				check=false;
 			}
-			if(((BuildingCard) cardToGive).getCostWood()==null || player.getWood()>= ((BuildingCard) cardToGive).getCostWood()){
+			if(((BuildingCard) cardToGive).getCostWood()==0 || player.getWood()>= ((BuildingCard) cardToGive).getCostWood()){
 				check=true;
 			}
 			else{
 				check=false;
 			}
-			if(((BuildingCard) cardToGive).getCostStone()==null || player.getStone()>= ((BuildingCard) cardToGive).getCostStone()){
+			if(((BuildingCard) cardToGive).getCostStone()==0 || player.getStone()>= ((BuildingCard) cardToGive).getCostStone()){
 				check=true;
 			}
 			else{
 				check=false;
 			}
-			if(((BuildingCard) cardToGive).getCostServant()==null || player.getServant()>= ((BuildingCard) cardToGive).getCostServant()){
+			if(((BuildingCard) cardToGive).getCostServant()==0 || player.getServant()>= ((BuildingCard) cardToGive).getCostServant()){
 				check=true;
 			}
 			else{
@@ -129,7 +130,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			return check;
 		}
 		if(cardToGive instanceof VentureCard){
-			if(player.getCoin()>= ((VentureCard) cardToGive).getCostCoin()){
+			if(((VentureCard) cardToGive).getCostWood()==0 ||player.getCoin()>= ((VentureCard) cardToGive).getCostCoin()){
 				check=true;
 			}
 			else{
@@ -140,13 +141,13 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			else{
 				check=false;
 			}
-			if(player.getStone()>= ((VentureCard) cardToGive).getCostStone()){
+			if(((VentureCard) cardToGive).getCostStone()==0 ||player.getStone()>= ((VentureCard) cardToGive).getCostStone()){
 				check=true;
 			}
 			else{
 				check=false;
 			}
-			if(player.getServant()>= ((VentureCard) cardToGive).getCostServant()){
+			if(((VentureCard) cardToGive).getCostServant()==0 ||player.getServant()>= ((VentureCard) cardToGive).getCostServant()){
 				check=true;
 			}
 			else{

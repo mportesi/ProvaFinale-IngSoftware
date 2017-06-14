@@ -137,22 +137,22 @@ public class VentureCard extends Card {
 		payAlternativeCost=choice;
 	}
 	
-	public Integer getCostCoin(){
+	public int getCostCoin(){
 		return cost.get("coin");
 	}
-	public Integer getCostWood(){
+	public int getCostWood(){
 		return cost.get("wood");
 	}
-	public Integer getCostStone(){
+	public int getCostStone(){
 		return cost.get("stone");
 	}
-	public Integer getCostServant(){
+	public int getCostServant(){
 		return cost.get("servant");
 	}
-	public Integer getMilitaryReq(){
+	public int getMilitaryReq(){
 		return militaryRequirement;
 	}
-	public Integer getMilitaryCost(){
+	public int getMilitaryCost(){
 		return militaryCost;
 	}
 }
