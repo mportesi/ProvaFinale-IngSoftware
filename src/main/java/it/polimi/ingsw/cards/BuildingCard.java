@@ -60,16 +60,16 @@ public class BuildingCard extends Card {
 			return (name + ":\n The cost is " + cost + "\n The immediate effects are " + immediateEffects );
 		}
 		
-		public Integer getCostCoin(){
+		public int getCostCoin(){
 			return cost.get("coin");
 		}
-		public Integer getCostWood(){
+		public int getCostWood(){
 			return cost.get("wood");
 		}
-		public Integer getCostStone(){
+		public int getCostStone(){
 			return cost.get("stone");
 		}
-		public Integer getCostServant(){
+		public int getCostServant(){
 			return cost.get("servant");
 		}
 }
