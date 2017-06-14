@@ -90,8 +90,7 @@ public class ClientRMIConnection implements Serializable {
 					System.out.println(clientModel.getCurrentPlayer().getName());
 					System.out.println(clientModel.getPlayer());
 					// Capture input from user
-					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel.getPlayer(),
-							clientModel);
+					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel);
 					System.out.println("Press a key to start the action");
 		
 					String inputLine = stdIn.nextLine();

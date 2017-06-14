@@ -30,15 +30,17 @@ public class Server {
 	private final static int PORT = 29999;
 	private final static int RMI_PORT = 52365;
 
-	private Play play;
+	private final Play play;
 
 	private Controller controller;
+	
 	
 	private final String NAME="Lorenzo Il Magnifico";
 
 	public Server() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.play = new Play();
 		this.controller = new Controller(play);
+		
 
 	}
 	

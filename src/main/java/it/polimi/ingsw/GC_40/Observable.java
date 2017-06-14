@@ -8,7 +8,7 @@ import java.util.List;
 import org.json.simple.parser.ParseException;
 
 public abstract class Observable<C> {
-	private List<Observer<C>> observers;
+	private final List<Observer<C>> observers;
 	
 	public Observable(){
 		observers=new ArrayList<Observer<C>>();
@@ -19,9 +19,6 @@ public abstract class Observable<C> {
 		System.out.println(o);
 	}
 	
-	public void unregisterObserver(Observer<C> o){
-		this.observers.remove(o);
-	}
 	
 	public void notifyObserver(){
 		for(Observer<C> o: this.observers){

@@ -51,6 +51,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private boolean start;
+	
+	
 	// costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
@@ -378,7 +380,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		Player player = new Player(UUID.randomUUID(), this, name);
 		players.add(player);
 		player.registerObserver(this);
-		notifyObserver(new ChangeNewPlayer(player));
+		notifyObserver(new ChangeNewPlayer(player, this));
 
 		if (players.size() == 2) {
 			initializePlay();
