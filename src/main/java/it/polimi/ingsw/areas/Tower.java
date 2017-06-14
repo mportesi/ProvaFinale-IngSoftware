@@ -17,6 +17,7 @@ public class Tower extends Observable<Change> implements Serializable {
 	private ArrayList<Card> deck1;
 	private ArrayList<Card> deck2;
 	private ArrayList<Card> deck3;
+	private int cost;
 	
 	
 	public Tower(String type, ArrayList<Card> deck1, ArrayList<Card> deck2, ArrayList<Card> deck3, ArrayList<Floor> floors, Play play) {
@@ -59,26 +60,32 @@ public class Tower extends Observable<Change> implements Serializable {
 		}
 				for(int i=0; i<4; i++){
 				floors.get(i).currentCard = deck.remove(i);
-				//System.out.println("ho messo nel piano: "+i +"la carta:" + floors.get(i).currentCard.getType());
+				
 				}
 		
 	}
 
-	/*
-	 * for(int i=0; i<floors.length; i++){ floors[i].currentCard=deck.remove(0);
-	 * } }
-	 */
+	
 	
 	public boolean isPresent(Player p) {
-	//	floors = new ArrayList <Floor>();
-		//System.out.println(floors.get(0));
+	
 		for (Floor f : floors) {
-			if (f.getPlayer()==null || !f.getPlayer().equals(p))
+			if (f.getPlayer()==null || !f.getPlayer().equals(p) || (f.getPlayer().equals(p) && f.getRelative().getColor()==null))
 			
 				return false;
 		}
 		return true;
 	}
+	
+	public boolean isPresentAnyone() {
+			for (Floor f : floors) {
+				if (f.getPlayer()!=null){
+					cost=3;
+					return true;}
+			}
+			return false;
+		}
+	
 
 	public Floor getFloor(int i) {
 		return floors.get(i);
@@ -86,6 +93,13 @@ public class Tower extends Observable<Change> implements Serializable {
 
 	@Override
 	public String toString() {
+		if(isPresentAnyone()){
+			return ("The " + type + " tower have a cost of 3 coin and is: \n" + "[" +
+					"FLOOR n°4 \n " + floors.get(3)+ "] \n" + "["
+					+ "FLOOR n°3 \n " + floors.get(2) + "] \n" + "["
+					+ "FLOOR n°2 \n " + floors.get(1)+ "] \n" + "[" +
+					"FLOOR n°1 \n " + floors.get(0) + "] \n" );
+		}
 		return ("The " + type + " tower is: \n" + "[" +
 				"FLOOR n°4 \n " + floors.get(3)+ "] \n" + "["
 				+ "FLOOR n°3 \n " + floors.get(2) + "] \n" + "["
@@ -122,6 +136,11 @@ public class Tower extends Observable<Change> implements Serializable {
 		} else if (!type.equals(other.type))
 			return false;
 		return true;
+	}
+
+	public int getCost() {
+		// TODO Auto-generated method stub
+		return cost;
 	}
 
 
