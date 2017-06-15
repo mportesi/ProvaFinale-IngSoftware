@@ -21,7 +21,8 @@ public class VentureCard extends Card {
 	private VentureListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 	private boolean payAlternativeCost= false;
-
+	private boolean gainPrivilegeCouncil=false;
+	
 	public VentureCard(String type, String name, int period, Map<String, Integer> costMap, int militaryRequirement,
 			int militaryCost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);

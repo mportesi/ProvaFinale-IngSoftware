@@ -17,6 +17,7 @@ public class BuildingCard extends Card {
 	private Map<String, Integer> cost;
 	private BuildingListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
+	private boolean gainPrivilegeCouncil=false;
 	
 	public BuildingCard(String type, String name, int period, Map<String, Integer> cost, BuildingListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
@@ -85,5 +86,8 @@ public class BuildingCard extends Card {
 				return 0;
 			}
 			return cost.get("servant");
+		}
+		public boolean isGainPrivilegeCouncil() {
+			return gainPrivilegeCouncil;
 		}
 }

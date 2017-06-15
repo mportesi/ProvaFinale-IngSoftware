@@ -16,6 +16,7 @@ import it.polimi.ingsw.effects.HasPrivilege;
 public class TerritoryCard extends Card {
 	private TerritoryListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
+	private boolean gainPrivilegeCouncil=false;
 
 	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);

@@ -22,6 +22,7 @@ public class CharacterCard extends Card {
 	private Map<String, Integer> discount;
 	private CharacterListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
+	private boolean gainPrivilegeCouncil=false;
 
 	public CharacterCard(String type, String name, int period, int costCoin, CharacterListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
@@ -89,5 +90,8 @@ public class CharacterCard extends Card {
 	
 	public int getCostCoin(){
 		return costCoin;
+	}
+	public boolean isGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
 	}
 }
