@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
@@ -74,12 +75,12 @@ public class PrivilegeCouncil implements Serializable{
 	}
 	
 	
-	public void applyEffect(Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void applyEffect(Play play, Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createEffectOfPrivilegeCouncil(resource);
 
 		for (Effect e : effectOfPrivilegeCouncil) {
 			if (e != null) {
-				e.apply(player);
+				e.apply(player, play);
 			} else {
 				return;
 			}

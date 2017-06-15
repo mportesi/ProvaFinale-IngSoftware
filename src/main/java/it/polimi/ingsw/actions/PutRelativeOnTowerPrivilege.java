@@ -15,6 +15,7 @@ import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.components.Relative;
@@ -66,15 +67,15 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
+			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			player.setOccupiedRelative(relative);
+			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			cardToGive = tower.floors.get(floor).giveCard();
-			cardToGive.payCost(player);
-			player.addCard(cardToGive);
-			cardToGive.applyEffect(player);
+			cardToGive.payCost(player, play);
+			player.addCard(cardToGive, play);
+			cardToGive.applyEffect(player, play);
 			cardToGive.applyPrivilegeBonus(player, bonus);
-			tower.floors.get(floor).bonusEffect.apply(player);
-			ChangeTower changeTower = new ChangeTower(tower, floor, relative);
-			this.notifyObserver(changeTower);
+			tower.floors.get(floor).bonusEffect.apply(player, play);
 			play.changeCurrentPlayer();
 		}
 		else {

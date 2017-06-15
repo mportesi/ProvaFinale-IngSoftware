@@ -72,9 +72,6 @@ public class Floor extends Observable<Change> implements Serializable {
 		this.player = player;
 		this.relative=relative;
 		isFree = false;
-		ChangeTower changeTower= new ChangeTower(tower,floor, relative);
-		this.notifyObserver(changeTower);
-		
 	}
 
 	public void setFree() {
@@ -95,7 +92,7 @@ public class Floor extends Observable<Change> implements Serializable {
 			return ("Cost: " + cost + "\n Bonus: " + bonusEffect + "\n Card" + currentCard + "\n The floor is free!");
 		} else {
 			return ("Cost: " + cost + "\n Bonus: " + bonusEffect + "\n Card" + currentCard
-					+ "\n The floor is occupied by: " + player + " with the relative " + relative.getColor());
+					+ "\n The floor is occupied by: " + player.getName() + " with the relative " + relative.getColor());
 		}
 	}
 	

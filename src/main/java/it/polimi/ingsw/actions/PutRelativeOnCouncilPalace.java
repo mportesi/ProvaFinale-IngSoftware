@@ -44,10 +44,13 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
 			play.getBoard().getCouncilPalace().addPlayer(player, relative);
+			//Notify the observers that there is a new player in the council palace
+			play.notifyObserver(new ChangeCouncilPalace(player, relative));
 			player.setOccupiedRelative(relative);
+			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// The player receive the bonus
 			// TODO give player the council privilege bonus choice
-			councilPalace.applyEffect(player, bonus);
+			councilPalace.applyEffect(play, player, bonus);
 			play.changeCurrentPlayer();
 		} else {
 			play.actionNotApplicable(player);

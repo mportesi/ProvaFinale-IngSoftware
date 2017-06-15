@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.components.PrivilegeCouncil;
@@ -43,10 +44,10 @@ public class Card implements Serializable {
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 	};
 
-	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void payCost(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 	};
 
 	public String getType() {

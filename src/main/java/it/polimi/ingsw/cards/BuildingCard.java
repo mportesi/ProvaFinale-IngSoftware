@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
 
@@ -26,29 +27,30 @@ public class BuildingCard extends Card {
 	
 	
 	@Override
-	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+	public void payCost(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		for(String key: cost.keySet()){
 			switch(key){
 			case "coin":{
-				player.decrementCoin(cost.get(key));
+				player.decrementCoin(cost.get(key), play);
 			}
 			case "wood":{
-				player.decrementWood(cost.get(key));
+				player.decrementWood(cost.get(key), play);
 			}
 			case "stone":{
-				player.decrementStone(cost.get(key));
+				player.decrementStone(cost.get(key), play);
 			}
 			}
 		}
 	}
 	
 	// to apply immediate effects
-		public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	@Override
+		public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
 				System.out.println("Gli effetti della carta sono: "+ immediateEffects);
 			for (Effect e : immediateEffects) {
 				if (e != null) {
-					e.apply(player);
+					e.apply(player, play);
 				} 
 					return;
 				}
@@ -61,15 +63,27 @@ public class BuildingCard extends Card {
 		}
 		
 		public int getCostCoin(){
-			return (int) cost.get("coin");
+			if(cost.get("coin")==null){
+				return 0;
+			}
+			return  cost.get("coin");
 		}
 		public int getCostWood(){
-			return (int) cost.get("wood");
+			if(cost.get("wood")==null){
+				return 0;
+			}
+			return  cost.get("wood");
 		}
 		public int getCostStone(){
-			return (int) cost.get("stone");
+			if(cost.get("stone")==null){
+				return 0;
+			}
+			return  cost.get("stone");
 		}
 		public int getCostServant(){
-			return (int) cost.get("servant");
+			if(cost.get("servant")==null){
+				return 0;
+			}
+			return cost.get("servant");
 		}
 }

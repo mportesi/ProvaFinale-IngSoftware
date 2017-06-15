@@ -15,6 +15,7 @@ import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
@@ -63,15 +64,15 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
+			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			player.setOccupiedRelative(relative);
+			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			System.out.println(tower.floors.get(floor).getPlayer());
 			cardToGive = tower.floors.get(floor).giveCard();
-			System.out.println(cardToGive);
-			cardToGive.payCost(player);
-			player.addCard(cardToGive);
-			System.out.println("territory" + player.getTerritory().size());
-			cardToGive.applyEffect(player);
-			tower.floors.get(floor).bonusEffect.apply(player);
+			cardToGive.payCost(player, play);
+			player.addCard(cardToGive, play);
+			cardToGive.applyEffect(player, play);
+			tower.floors.get(floor).bonusEffect.apply(player, play);
 			System.out.println(player);
 			play.changeCurrentPlayer();
 		}

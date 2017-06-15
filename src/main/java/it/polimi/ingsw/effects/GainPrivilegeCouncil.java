@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Board;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.json.JsonPrivilegeCouncil;
@@ -35,9 +36,9 @@ public class GainPrivilegeCouncil extends Effect {
 	}
 	
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// Resource resource = chooseResource();
-		privilegeCouncil.applyEffect(player, resource);
+		privilegeCouncil.applyEffect(play, player, resource);
 		
 	//metto uno switch e incremento a seconda del case
 

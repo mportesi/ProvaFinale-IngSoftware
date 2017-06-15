@@ -69,11 +69,11 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 
 	
 
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		for (Effect e : bonus) {
 			if (e != null) {
-				e.apply(player);
+				e.apply(player, play);
 			} else {
 				return;
 			}
@@ -99,11 +99,10 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	}
 
 
-	public void setOccupied(Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void setOccupied(Player player, Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		isOccupied = true;
 		this.relative=relative;
-		ChangeMarket changeMarket= new ChangeMarket(relative, market);
-		this.notifyObserver(changeMarket);
+		this.player=player;
 	}
 
 	public void setFree() {

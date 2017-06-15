@@ -2,6 +2,7 @@ package it.polimi.ingsw.effects;
 
 import java.util.Map;
 
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Floor;
 import it.polimi.ingsw.areas.Tower;
@@ -23,7 +24,7 @@ public class GetCard extends Effect {
 	
 
 	@Override
-	public void apply(Player player) throws InterruptedException {
+	public void apply(Player player, Play play) throws InterruptedException {
 		
 		Card card=//qualcosa chooseCard(value, discount);
 		applyCard(player, this.card );

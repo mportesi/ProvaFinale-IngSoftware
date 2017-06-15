@@ -27,7 +27,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	private int bonusCoin;
 	private int value;
 	private List <Effect> councilPalaceEffect;
-	private ArrayList<Player> order = new ArrayList<Player>();
+	private ArrayList<Player> order;
 	private int orderIndex = 0;
 
 	public CouncilPalace(int bonusPrivilegeCouncil, int bonusCoin, int value){
@@ -35,6 +35,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		this.bonusCoin = bonusCoin;
 		this.value = value;
 		councilPalaceEffect= new ArrayList<>();
+		order = new ArrayList<Player>();
 	}
 	
 	public CouncilPalace(CouncilPalace councilPalace, Play play){
@@ -42,6 +43,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		this.bonusCoin=councilPalace.bonusCoin;
 		this.value=councilPalace.getValue();
 		councilPalaceEffect= new ArrayList<>();
+		order = new ArrayList<Player>();
 		this.registerObserver(play);
 	}
 	
@@ -67,10 +69,10 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	}
 	
 	
-	public void applyEffect(Player player, String bonus) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+	public void applyEffect(Play play, Player player, String bonus) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		createListOfCouncilPalaceEffect(bonus);
 		for (Effect e : councilPalaceEffect){
-			e.apply(player);
+			e.apply(player, play);
 		}
 	}
 
@@ -88,8 +90,6 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	public void addPlayer(Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		order.add(orderIndex, player);
 		orderIndex += 1;
-		ChangeCouncilPalace changeCouncilPalace= new ChangeCouncilPalace(relative);
-		this.notifyObserver(changeCouncilPalace);
 	}
 	
 	@Override

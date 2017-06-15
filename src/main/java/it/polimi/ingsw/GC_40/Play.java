@@ -54,12 +54,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private boolean start;
-	
-	
+
 	// costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
-		
+
 		/*
 		 * this.board=new Board(); this.players=new ArrayList<Player>();
 		 * this.round=0; this.period=0;
@@ -204,29 +203,23 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 		round += 1;
 
-		// System.out.println(board);
-
 		// refresh tower( place new card and remove family member)
 		board.getTerritoryTower().refreshTower(period);
 		board.getBuildingTower().refreshTower(period);
 		board.getCharacterTower().refreshTower(period);
 		board.getVentureTower().refreshTower(period);
-		// System.out.println(board);
-		// refresh harvest and production area
 
+		// refresh harvest and production area
 		board.getHarvestArea().refresh();
-		// System.out.println("HarvestArea: "+ board.getHarvestArea());
 		board.getProductionArea().refresh();
-		// System.out.println("ProductionArea: "+ board.getProductionArea());
+
 		// refresh market
 		board.getMarket(0).setFree();
-		// System.out.println("Market1 " + board.getMarket(0));
 		board.getMarket(1).setFree();
-		// System.out.println("Market2 " + board.getMarket(1));
-		board.getMarket(2).setFree();
-		// System.out.println("Market3 " + board.getMarket(2));
-		board.getMarket(3).setFree();
-		// System.out.println("Market4 " + board.getMarket(3));
+		if (players.size() == 4) {
+			board.getMarket(2).setFree();
+			board.getMarket(3).setFree();
+		}
 
 		// refresh council palace
 		board.getCouncilPalace().refresh();
@@ -266,132 +259,133 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
-	
-	public static ArrayList<Player> militaryPointRank(ArrayList<Player> players){
-	 	ArrayList<Player> ordinata= new ArrayList<>();
-	 	ordinata.addAll(players);
-	 	for(int i=0; i< ordinata.size(); i++){
-			for(int j=i; j<ordinata.size(); j++){
-	 			if(ordinata.get(i).getMilitaryPoint()<ordinata.get(j).getMilitaryPoint()){
-	 				System.out.println("scambio"+i+"e"+j);
-	 				Collections.swap(ordinata, i, j);
-	 			}
-	 		}
-	 	}
-	 	return ordinata;
-	  }
-	
-	 
-	  public void giveFinalPoint() throws FileNotFoundException, IOException, ParseException, NullPointerException, InterruptedException{
-	  JsonFinalVictoryPoint finalVictoryPoint = new JsonFinalVictoryPoint();
-	  finalVictoryPoint.importVictoryPoint();
-	  ArrayList <FinalVictoryPoint> list = finalVictoryPoint.getFinalVictoryPointList();
-	  
-	  for (Player p : players){ 
-		  for (VentureCard v : p.getVenture()){
-			  //TO DO:PERMANENT EFFECT SONO I VICTORY POINT, DA USARE POI PER LA CLASSIFICA
-		  }
-		  
-	  for (FinalVictoryPoint f : list){ 
-		  String type = f.getType(); 
-		  switch (type){ 
-		  case "victoryPointForTerritory" : 
-		  { int numberOfTerritoryCard = p.counter("territoryCard"); 
-		  if (numberOfTerritoryCard >= 1 ){
-			  p.incrementVictoryPoint(f.getFinalVictoryPointForOne());
-			  
-			  }
-		  if (numberOfTerritoryCard >= 2 ){
-			  p.incrementVictoryPoint(f.getFinalVictoryPointForTwo());
-			  
-			  }
-		  if (numberOfTerritoryCard >= 3 ){
-			  p.incrementVictoryPoint(f.getFinalVictoryPointForThree());
-			  
-			  }
-		  if (numberOfTerritoryCard >= 4 ){
-			  p.incrementVictoryPoint(f.getFinalVictoryPointForFour());
-			  
-			  }
-		  if (numberOfTerritoryCard >= 5 ){
-			  p.incrementVictoryPoint(f.getFinalVictoryPointForFive());
-			  
-			  }
-		  if (numberOfTerritoryCard >= 6 ){
-			  p.incrementVictoryPoint(f.getFinalVictoryPointForSix());
-			  
-			  }
-		  break;
-		  }
-		  
-		  case "victoryPointForCharacter" :{
-			  int numberOfCharacterCard = p.counter("characterCard"); 
-			  if (numberOfCharacterCard >= 1 ){
-				  p.incrementVictoryPoint(f.getFinalVictoryPointForOne());
-				  
-		  }
-			  if (numberOfCharacterCard >= 2 ){
-				  p.incrementVictoryPoint(f.getFinalVictoryPointForTwo());
-				  
-		  }
-			  if (numberOfCharacterCard >= 3 ){
-				  p.incrementVictoryPoint(f.getFinalVictoryPointForThree());
-				  
-		  }
-			  if (numberOfCharacterCard >= 4 ){
-				  p.incrementVictoryPoint(f.getFinalVictoryPointForFour());
-				  
-		  }
-			  if (numberOfCharacterCard >= 5 ){
-				  p.incrementVictoryPoint(f.getFinalVictoryPointForFive());
-				  
-		  }
-			  if (numberOfCharacterCard >= 6 ){
-				  p.incrementVictoryPoint(f.getFinalVictoryPointForSix());
-				  
-		  }
-			  break;
-		  }
-		  
-		  case "victoryPointForResource" :{
-			  int numberOfResource = p.resourceCounter();
-			  p.incrementVictoryPoint(f.getFinalVictoryPointForFive()*(numberOfResource/5));
-			  break;
-		  }
-			  
-		  case "victoryPointForMilitaryRecord" : {
-			  if (p == militaryPointRank(players).get(0)){
-				  p.incrementVictoryPoint(f.getFinalVictoryPointForOne()); } 
-			  if (p == militaryPointRank(players).get(1)){
-				  p.incrementVictoryPoint(f.getFinalVictoryPointForTwo()); }
-			  break;
-		  
-		  }
-		  }
-	  }
-	  }
-	  }
-			  /*
-	  "victoryPointForCharacter" : { Set list =
-	  JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
-	  
-	  while(iter.hasNext()) { int key = (int)(iter.next()); int value =
-	  (int)(JSon.finalVictoryPointGain.get(key)); int numberOfTerritoryCard =
-	  p.counter("characterCard"); if (numberOfTerritoryCard >= key){
-	  p.incrementVictoryPoint(value); break; }}}
-	  
-	  case "victoryPointForResource" : { Set list =
-	  JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
-	  
-	  while(iter.hasNext()) { int key = (int)(iter.next()); int value =
-	  (int)(JSon.finalVictoryPointGain.get(key)); int numberOfResource =
-	  p.resourceCounter(); p.incrementVictoryPoint(numberOfResource/5); break;
-	  }}
-	  
-	  } }}
-	  */
-		  
-	   
+	public static ArrayList<Player> militaryPointRank(ArrayList<Player> players) {
+		ArrayList<Player> ordinata = new ArrayList<>();
+		ordinata.addAll(players);
+		for (int i = 0; i < ordinata.size(); i++) {
+			for (int j = i; j < ordinata.size(); j++) {
+				if (ordinata.get(i).getMilitaryPoint() < ordinata.get(j).getMilitaryPoint()) {
+					System.out.println("scambio" + i + "e" + j);
+					Collections.swap(ordinata, i, j);
+				}
+			}
+		}
+		return ordinata;
+	}
+
+	public void giveFinalPoint()
+			throws FileNotFoundException, IOException, ParseException, NullPointerException, InterruptedException {
+		JsonFinalVictoryPoint finalVictoryPoint = new JsonFinalVictoryPoint();
+		finalVictoryPoint.importVictoryPoint();
+		ArrayList<FinalVictoryPoint> list = finalVictoryPoint.getFinalVictoryPointList();
+
+		for (Player p : players) {
+			for (VentureCard v : p.getVenture()) {
+				// TO DO:PERMANENT EFFECT SONO I VICTORY POINT, DA USARE POI PER
+				// LA CLASSIFICA
+			}
+
+			for (FinalVictoryPoint f : list) {
+				String type = f.getType();
+				switch (type) {
+				case "victoryPointForTerritory": {
+					int numberOfTerritoryCard = p.counter("territoryCard");
+					if (numberOfTerritoryCard >= 1) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForOne(), this);
+
+					}
+					if (numberOfTerritoryCard >= 2) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForTwo(), this);
+
+					}
+					if (numberOfTerritoryCard >= 3) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForThree(), this);
+
+					}
+					if (numberOfTerritoryCard >= 4) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForFour(), this);
+
+					}
+					if (numberOfTerritoryCard >= 5) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForFive(), this);
+
+					}
+					if (numberOfTerritoryCard >= 6) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForSix(), this);
+
+					}
+					break;
+				}
+
+				case "victoryPointForCharacter": {
+					int numberOfCharacterCard = p.counter("characterCard");
+					if (numberOfCharacterCard >= 1) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForOne(), this);
+
+					}
+					if (numberOfCharacterCard >= 2) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForTwo(), this);
+
+					}
+					if (numberOfCharacterCard >= 3) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForThree(), this);
+
+					}
+					if (numberOfCharacterCard >= 4) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForFour(), this);
+
+					}
+					if (numberOfCharacterCard >= 5) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForFive(), this);
+
+					}
+					if (numberOfCharacterCard >= 6) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForSix(), this);
+
+					}
+					break;
+				}
+
+				case "victoryPointForResource": {
+					int numberOfResource = p.resourceCounter();
+					p.incrementVictoryPoint(f.getFinalVictoryPointForFive() * (numberOfResource / 5), this);
+					break;
+				}
+
+				case "victoryPointForMilitaryRecord": {
+					if (p == militaryPointRank(players).get(0)) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForOne(), this);
+					}
+					if (p == militaryPointRank(players).get(1)) {
+						p.incrementVictoryPoint(f.getFinalVictoryPointForTwo(), this);
+					}
+					break;
+
+				}
+				}
+			}
+		}
+	}
+	/*
+	 * "victoryPointForCharacter" : { Set list =
+	 * JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
+	 * 
+	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
+	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfTerritoryCard =
+	 * p.counter("characterCard"); if (numberOfTerritoryCard >= key){
+	 * p.incrementVictoryPoint(value); break; }}}
+	 * 
+	 * case "victoryPointForResource" : { Set list =
+	 * JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
+	 * 
+	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
+	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfResource =
+	 * p.resourceCounter(); p.incrementVictoryPoint(numberOfResource/5); break;
+	 * }}
+	 * 
+	 * } }}
+	 */
+
 	public void endGame() {
 		// restituisce la classifica e il vincitore
 	}
@@ -414,92 +408,86 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
-/*	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}*/
+	/*
+	 * @Override public void update() { // TODO Auto-generated method stub
+	 * 
+	 * }
+	 */
 
 	@Override
 	public void update(Change c)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		 System.out.println("SONO IL PLAY ho ricevuto il cambiamento  "  + c);
-		 update2(c);
+		System.out.println("SONO IL PLAY ho ricevuto il cambiamento  " + c);
+		update2(c);
 		this.notifyObserver(c);
 	}
-	
-	public void update2(Change c) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+
+	public void update2(Change c)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.notifyObserver(c);
-		
+
 	}
 
 	public void createNewPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		
-       if (players == null) {
+
+		if (players == null) {
 			this.players = new ArrayList<Player>();
 		}
-		
+
 		Player player = new Player(UUID.randomUUID(), this, name);
-		System.out.println("IL PLAY CORRENTE: "+ this);
+		System.out.println("IL PLAY CORRENTE: " + this);
 		players.add(player);
 		player.registerObserver(this);
 		notifyObserver(new ChangeNewPlayer(player, this));
 
 		if (players.size() == 2) {
 			initializePlay();
-			
-		//	verifyNumberOfPlayer(name);
+
+			// verifyNumberOfPlayer(name);
 			return;
 		}
 
 	}
-	
 
-	/*private void verifyNumberOfPlayer(String name)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if (players.size() == 2 && players.size() < 4) {
-		
-			
-		/*	Timer timer = new Timer();
-			timer.schedule(new TimerTask() {
+	/*
+	 * private void verifyNumberOfPlayer(String name) throws
+	 * FileNotFoundException, NullPointerException, IOException, ParseException,
+	 * InterruptedException { if (players.size() == 2 && players.size() < 4) {
+	 * 
+	 * 
+	 * /* Timer timer = new Timer(); timer.schedule(new TimerTask() {
+	 * 
+	 * @Override public void run() {
+	 * 
+	 * System.out.println("sono entrato nel run"); try {
+	 * 
+	 * initializePlay();
+	 * 
+	 * }
+	 * 
+	 * catch (NullPointerException | IOException | ParseException e) {
+	 * 
+	 * } catch (InterruptedException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); }
+	 * 
+	 * }
+	 * 
+	 * }, 10 * 1000); // TODO IMPORTARE DA JSON }}
+	 */
 
-				@Override
-				public void run() {
+	// else if(players.size()==4)
 
-					System.out.println("sono entrato nel run");
-					try {
-								
-								initializePlay();
-							
-						}
+	// {
 
-					catch (NullPointerException | IOException | ParseException e) {
-
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-
-			}, 10 * 1000);
-			// TODO IMPORTARE DA JSON
-		}}*/
-
-		
-
-//	else if(players.size()==4)
-
-	//{
-
-	/*	initializePlay();
-
-		return;
-
-	}
-
-	*/
+	/*
+	 * initializePlay();
+	 * 
+	 * return;
+	 * 
+	 * }
+	 * 
+	 */
 
 	private void initializePlay()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -512,7 +500,6 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.notifyObserver(changeInitializePlay);
 	}
 
-
 	public Board getBoard() {
 		return board;
 	}
@@ -520,13 +507,14 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void actionNotApplicable(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		ChangeNotApplicable changeNotApplicable= new ChangeNotApplicable(player);
+	public void actionNotApplicable(Player player)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		ChangeNotApplicable changeNotApplicable = new ChangeNotApplicable(player);
 		this.notifyObserver(changeNotApplicable);
-		
+
 	}
 
 }

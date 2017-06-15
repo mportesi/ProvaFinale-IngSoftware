@@ -55,31 +55,30 @@ public class VentureCard extends Card {
 	};
 
 	@Override
-	
-	public void payCost(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void payCost(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (militaryRequirement == 0 && militaryCost == 0 || payAlternativeCost == false) {
 			for (String key : cost.keySet()) {
 				switch (key) {
 				case "coin": {
-					player.decrementCoin(cost.get(key));
+					player.decrementCoin(cost.get(key), play);
 					break;
 				}
 				case "wood": {
-					player.decrementWood(cost.get(key));
+					player.decrementWood(cost.get(key), play);
 					break;
 				}
 				case "stone": {
-					player.decrementStone(cost.get(key));
+					player.decrementStone(cost.get(key), play);
 					break;
 				}
 				case "servant": {
-					player.decrementServant(cost.get(key));
+					player.decrementServant(cost.get(key), play);
 					break;
 				}
 				}
 			}
 		} else if (cost.isEmpty() || payAlternativeCost == true) {
-			player.decrementMilitaryPoint(militaryCost);
+			player.decrementMilitaryPoint(militaryCost, play);
 		}
 		return;
 
@@ -97,19 +96,21 @@ public class VentureCard extends Card {
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	@Override
+	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		for (Effect e : immediateEffects) {
 			if (e != null) {
-				e.apply(player);
+				e.apply(player, play);
 			}
 			return;
 		}
 	}
-	public void applyPrivilegeBonus(Player player, String resource){
+	
+	public void applyPrivilegeBonus(Play play, Player player, String resource){
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
-			gain.apply(player);
+			gain.apply(player, play);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

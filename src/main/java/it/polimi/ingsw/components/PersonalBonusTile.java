@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
@@ -149,24 +150,24 @@ public class PersonalBonusTile implements Serializable{
 	
 	
 	
-	public void applyProductionEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void applyProductionEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createListOfProductionEffect();
 
 		for (Effect e : productionEffect) {
 			if (e != null) {
-				e.apply(player);
+				e.apply(player, play);
 			} else {
 				return;
 			}
 		}
 	}
 	
-	public void applyHarvestEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void applyHarvestEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createListOfHarvestEffect();
 
 		for (Effect e : harvestEffect) {
 			if (e != null) {
-				e.apply(player);
+				e.apply(player, play);
 			} else {
 				return;
 			}

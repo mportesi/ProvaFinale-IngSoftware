@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeMarket;
+import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
 
@@ -46,11 +47,12 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 		if (isApplicable()) {
 			// set the market as occupied because none can put other relatives
 			// in that space
-			market.setOccupied(relative, market);
-			market.setPlayer(player);
+			market.setOccupied(player, relative, market);
+			play.notifyObserver(new ChangeMarket(player, relative, market));
 			player.setOccupiedRelative(relative);
+			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// take the bonus
-			market.applyEffect(player);
+			market.applyEffect(player, play);
 			play.changeCurrentPlayer();
 		}
 		else {

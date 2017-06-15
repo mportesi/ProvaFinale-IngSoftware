@@ -41,9 +41,9 @@ public class CommandLineInterface implements Serializable {
 
 	public Relative chooseTheRelative()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("Il tuo stato è: " + client.getPlayer());
-		System.out.println("La board è: " + client.getBoard());
-		System.out.println("Choose what relative you want to use: black, white, orange, neutral");
+		System.out.println("Il tuo stato è: \n" + client.getPlayer());
+		System.out.println("\n\nLa board è: \n" + client.getBoard());
+		System.out.println("\n Choose what relative you want to use: black, white, orange, neutral");
 		String input = scanner.nextLine();
 		Relative relative = null;
 		switch (input) {
@@ -99,7 +99,7 @@ public class CommandLineInterface implements Serializable {
 			int valueServant = scanner.nextInt();
 			if (valueServant <= client.getPlayer().getServant()) {
 				relative.setValueServant(valueServant);
-				client.getPlayer().decrementServant(valueServant);
+				//client.getPlayer().decrementServant(valueServant);
 				legalServant = true;
 			} else {
 				System.out
@@ -153,7 +153,7 @@ public class CommandLineInterface implements Serializable {
 			} else {
 				System.out.println("Choose the market to put your relative: \n 1)Gain coin \n 2)Gain servant");
 				int number = scanner.nextInt();
-				MarketBuilding market = client.getMarket(number);
+				MarketBuilding market = client.getMarket(number-1);
 				putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market);
 			}
 			break;

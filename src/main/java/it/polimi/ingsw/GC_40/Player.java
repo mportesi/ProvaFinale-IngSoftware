@@ -47,7 +47,6 @@ public class Player extends Observable<Change> implements Serializable {
 	private boolean hasWhiteRelative;
 	private boolean hasOrangeRelative;
 	private boolean hasNeutralRelative;
-	//private Play play;
 
 	public Player(UUID ID, Play play, String name) {
 		this.ID = ID;
@@ -64,9 +63,7 @@ public class Player extends Observable<Change> implements Serializable {
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
 		hasNeutralRelative = true;
-	//	this.play=play;
 		registerObserver(play);
-		System.out.println("Registro" + play);
 	}
 
 	
@@ -133,116 +130,99 @@ public class Player extends Observable<Change> implements Serializable {
 		return leader;
 	}
 
-	public void incrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void incrementCoin(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
-		//registerObserver(play);
 		ChangeCoin changeCoin = new ChangeCoin(this, coin);
-		System.out.println("SONO IN PLAYER notifico il change coin");
-		this.notifyObserver(changeCoin);
+		play.notifyObserver(changeCoin);
 
 	}
 
-	public void decrementCoin(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void decrementCoin(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin -= n;
-		//registerObserver(play);
 		ChangeCoin changeCoin = new ChangeCoin(this, coin);
-		System.out.println("SONO IN PLAYER MANDO IL CHANGE AL PLAY");
-		this.notifyObserver(changeCoin);
+		play.notifyObserver(changeCoin);
 	}
 
-	public void incrementWood(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void incrementWood(int n,Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		wood += n;
-		//registerObserver(play);
 		ChangeWood changeWood = new ChangeWood(this, wood);
-		System.out.println("SONO IN PLAYER MANDO IL CHANGE AL PLAY");
-		this.notifyObserver(changeWood);
+		play.notifyObserver(changeWood);
 	}
 
-	public void decrementWood(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void decrementWood(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		wood -= n;
 		ChangeWood changeWood = new ChangeWood(this, wood);
-		this.notifyObserver(changeWood);
+		play.notifyObserver(changeWood);
 
 	}
 
-	public void incrementStone(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void incrementStone(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		stone += n;
-		//registerObserver(play);
 		ChangeStone changeStone = new ChangeStone(this, stone);
-		System.out.println("SONO IN PLAYER MANDO IL CHANGE AL PLAY");
-		this.notifyObserver(changeStone);
+		play.notifyObserver(changeStone);
 	}
 
-	public void decrementStone(int n) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void decrementStone(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		stone -= n;
 		ChangeStone changeStone = new ChangeStone(this, stone);
-		this.notifyObserver(changeStone);
+		play.notifyObserver(changeStone);
 	}
 
-	public void incrementServant(int n)
+	public void incrementServant(int n, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		servant += n;
-		//registerObserver(play);
 		ChangeServant changeServant = new ChangeServant(this, servant);
-		System.out.println("SONO IN PLAYER MANDO IL CHANGE AL PLAY");
-		this.notifyObserver(changeServant);
+		play.notifyObserver(changeServant);
 	}
 
-	public void decrementServant(int n)
+	public void decrementServant(int n, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		servant -= n;
-	//	registerObserver(play);
 		ChangeServant changeServant = new ChangeServant(this, servant);
-		this.notifyObserver(changeServant);
+		play.notifyObserver(changeServant);
 	}
 
-	public void incrementMilitaryPoint(int n)
+	public void incrementMilitaryPoint(int n, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		militaryPoint += n;
-		//registerObserver(play);
 		ChangeMilitaryPoint changeMilitaryPoint = new ChangeMilitaryPoint(this, militaryPoint);
-		System.out.println("SONO IN PLAYER MANDO IL CHANGE AL PLAY");
-		this.notifyObserver(changeMilitaryPoint);
+		play.notifyObserver(changeMilitaryPoint);
 
 	}
 
-	public void decrementMilitaryPoint(int n)
+	public void decrementMilitaryPoint(int n, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		militaryPoint -= n;
 		ChangeMilitaryPoint changeMilitaryPoint = new ChangeMilitaryPoint(this, militaryPoint);
-		this.notifyObserver(changeMilitaryPoint);
+		play.notifyObserver(changeMilitaryPoint);
 	}
 
-	public void incrementFaithPoint(int n)
+	public void incrementFaithPoint(int n, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		faithPoint += n;
-		//registerObserver(play);
 		ChangeFaithPoint changeFaithPoint = new ChangeFaithPoint(this, faithPoint);
-		System.out.println("SONO IN PLAYER MANDO IL CHANGE AL PLAY");
-		this.notifyObserver(changeFaithPoint);
+		play.notifyObserver(changeFaithPoint);
 	}
 
-	public void decrementFaithPoint(int n)
+	public void decrementFaithPoint(int n, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		faithPoint -= n;
 		ChangeFaithPoint changeFaithPoint = new ChangeFaithPoint(this, faithPoint);
-		this.notifyObserver(changeFaithPoint);
+		play.notifyObserver(changeFaithPoint);
 	}
 
-	public void incrementVictoryPoint(int n)
+	public void incrementVictoryPoint(int n, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		victoryPoint += n;
-		//registerObserver(play);
 		ChangeVictoryPoint changeVictoryPoint = new ChangeVictoryPoint(this, victoryPoint);
-		System.out.println("SONO IN PLAYER MANDO IL CHANGE AL PLAY");
-		this.notifyObserver(changeVictoryPoint);
+		play.notifyObserver(changeVictoryPoint);
 	}
 
-	public void decrementVictoryPoint(int n)
+	public void decrementVictoryPoint(int n, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		victoryPoint-= n;
 		ChangeVictoryPoint changeVictoryPoint = new ChangeVictoryPoint(this, victoryPoint);
-		this.notifyObserver(changeVictoryPoint);
+		play.notifyObserver(changeVictoryPoint);
 	}
 
 	public int counter(String cardType) {
@@ -278,35 +258,35 @@ public class Player extends Observable<Change> implements Serializable {
 		return i;
 	}
 
-	public void addCard(Card card) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void addCard(Card card, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		String type = card.getType();
 		switch (type) {
 		case "territoryCard": {
 			if(territoryCard.size()<6){
 			territoryCard.add((TerritoryCard) card);
 			ChangeTerritoryCard changeTerritoryCard = new ChangeTerritoryCard(this, territoryCard);
-			this.notifyObserver(changeTerritoryCard);}
+			play.notifyObserver(changeTerritoryCard);}
 			break;
 		}
 		case "buildingCard": {
 			if(buildingCard.size()<6){
 			buildingCard.add((BuildingCard) card);
 			ChangeBuildingCard changeBuildingCard = new ChangeBuildingCard(this, buildingCard);
-			this.notifyObserver(changeBuildingCard);}
+			play.notifyObserver(changeBuildingCard);}
 			break;
 		}
 		case "characterCard": {
 			if(characterCard.size()<6){
 			characterCard.add((CharacterCard) card);
 			ChangeCharacterCard changeCharacterCard = new ChangeCharacterCard(this, characterCard);
-			this.notifyObserver(changeCharacterCard);}
+			play.notifyObserver(changeCharacterCard);}
 			break;
 		}
 		case "ventureCard": {
 			if(ventureCard.size()<6){
 			ventureCard.add((VentureCard) card);
 			ChangeVentureCard changeVentureCard = new ChangeVentureCard(this, ventureCard);
-			this.notifyObserver(changeVentureCard);}
+			play.notifyObserver(changeVentureCard);}
 			break;
 		}
 		}
@@ -425,23 +405,15 @@ public class Player extends Observable<Change> implements Serializable {
 	public void setOccupiedRelative(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=false;
-			ChangeOccupiedRelative changeOccupiedRelative= new ChangeOccupiedRelative(this, relative);
-			this.notifyObserver(changeOccupiedRelative);
 		}
 		if(relative.equals(whiteRelative)){
 			hasWhiteRelative=false;
-			ChangeOccupiedRelative changeOccupiedRelative= new ChangeOccupiedRelative(this, relative);
-			this.notifyObserver(changeOccupiedRelative);
 		}
 		if(relative.equals(orangeRelative)){
 			hasOrangeRelative=false;
-			ChangeOccupiedRelative changeOccupiedRelative= new ChangeOccupiedRelative(this, relative);
-			this.notifyObserver(changeOccupiedRelative);
 		}
 		if(relative.equals(orangeRelative)){
 			hasNeutralRelative=false;
-			ChangeOccupiedRelative changeOccupiedRelative= new ChangeOccupiedRelative(this, relative);
-			this.notifyObserver(changeOccupiedRelative);
 		}
 		
 	}

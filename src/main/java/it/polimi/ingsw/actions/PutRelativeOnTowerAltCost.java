@@ -12,6 +12,7 @@ import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 
@@ -61,15 +62,15 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
+			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			player.setOccupiedRelative(relative);
+			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			cardToGive = tower.floors.get(floor).giveCard();
-			player.addCard(cardToGive);
+			player.addCard(cardToGive, play);
 			cardToGive.chooseCost(choice);
-			cardToGive.payCost(player);
-			cardToGive.applyEffect(player);
-			tower.floors.get(floor).bonusEffect.apply(player);
-			ChangeTower changeTower = new ChangeTower(tower, floor, relative);
-			play.notifyObserver(changeTower);
+			cardToGive.payCost(player, play);
+			cardToGive.applyEffect(player, play);
+			tower.floors.get(floor).bonusEffect.apply(player, play);
 			play.changeCurrentPlayer();
 		}
 		else {

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
@@ -22,21 +23,22 @@ public class TerritoryCard extends Card {
 	}
 
 	// to apply immediate effects
-	public void applyEffect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	@Override
+	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		System.out.println("Gli effetti della carta sono: " + immediateEffects);
 		for (Effect e : immediateEffects) {
 			if (e != null) {
-				e.apply(player);
+				e.apply(player, play);
 			}
 			return;
 		}
 	}
 	
-	public void applyPrivilegeBonus(Player player, String resource){
+	public void applyPrivilegeBonus(Play play,Player player, String resource){
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
-			gain.apply(player);
+			gain.apply(player, play);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

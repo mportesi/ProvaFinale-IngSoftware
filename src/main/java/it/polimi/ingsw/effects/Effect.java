@@ -6,11 +6,12 @@ import java.io.Serializable;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 
 public abstract class Effect implements Serializable {
 	
-	public abstract void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
+	public abstract void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 
 
 }

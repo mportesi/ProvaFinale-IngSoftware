@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.VentureCard;
@@ -18,9 +19,9 @@ int victoryPoint;
 	}
 
 	@Override
-	public void apply(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int counter= player.counter("ventureCard");
-		player.incrementVictoryPoint(victoryPoint*counter);
+		player.incrementVictoryPoint(victoryPoint*counter, play);
 
 	}
 	

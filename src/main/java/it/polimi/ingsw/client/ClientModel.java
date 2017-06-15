@@ -40,8 +40,8 @@ public class ClientModel implements Serializable{
 	}*/
 
 
-	public void setCouncilPalace(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		board.getCouncilPalace().addPlayer(relative.getPlayer(), relative);
+	public void setCouncilPalace(Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		board.getCouncilPalace().addPlayer(player, relative);
 		
 	}
 
@@ -100,28 +100,27 @@ public class ClientModel implements Serializable{
 	}
 
 
-	public void setTower(Tower tower, int floor, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if(tower.equals(board.getTerritoryTower())){
-			tower.getFloor(floor).setPlayer(relative.getPlayer(), relative, tower, floor);
+	public void setTower(Tower tower, int floor, Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if(tower.getType().equals("territory")){
+			board.getTerritoryTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
-		if(tower.equals(board.getBuildingTower())){
-			tower.getFloor(floor).setPlayer(relative.getPlayer(), relative, tower, floor);
+		if(tower.getType().equals("building")){
+			board.getBuildingTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
-		if(tower.equals(board.getCharacterTower())){
-			tower.getFloor(floor).setPlayer(relative.getPlayer(), relative, tower, floor);
+		if(tower.getType().equals("character")){
+			board.getCharacterTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
-		if(tower.equals(board.getVentureTower())){
-			tower.getFloor(floor).setPlayer(relative.getPlayer(), relative, tower, floor);
+		if(tower.getType().equals("venture")){
+			board.getVentureTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
 		
 	}
 
 
-	public void setMarket(MarketBuilding market, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void setMarket(MarketBuilding market, Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		for(MarketBuilding m: board.getMarket()){
 			if(m.equals(market)){
-				market.setOccupied(relative, m);
-				market.setPlayer(relative.getPlayer());
+				market.setOccupied(player, relative, m);
 			}
 		}
 		

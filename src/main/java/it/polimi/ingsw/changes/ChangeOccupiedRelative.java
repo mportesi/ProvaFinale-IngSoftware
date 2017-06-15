@@ -23,8 +23,9 @@ public class ChangeOccupiedRelative implements Change {
 	@Override
 	public void applyChange(ClientModel client)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if(this.player.equals(client.getPlayer())){
+		if(this.player.getName().equals(client.getPlayer().getName())){
 			client.getPlayer().setOccupiedRelative(relative);
+			System.out.println("For this round you cannot use anymore the relative " + relative.getColor());
 		}
 
 	}

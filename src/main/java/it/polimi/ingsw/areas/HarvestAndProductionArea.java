@@ -70,30 +70,21 @@ public class HarvestAndProductionArea extends Observable<Change> implements Seri
 	public void setLeftRelativeOnHarvest(Relative relative)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		leftRelative = relative;
-		ChangeHarvestLeftArea changeHarvestLeftArea = new ChangeHarvestLeftArea(relative);
-		this.notifyObserver(changeHarvestLeftArea);
 	}
 
 	public void setLeftRelativeOnProduction(Relative relative)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		leftRelative = relative;
-		// ???????chiedere
-		ChangeProductionLeftArea changeProductionLeftArea = new ChangeProductionLeftArea(relative);
-		this.notifyObserver(changeProductionLeftArea);
 	}
 
 	public void setRightRelativeOnHarvest(Relative relative)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		rightRelatives.add(relative);
-		ChangeHarvestRightArea changeHarvestRightArea = new ChangeHarvestRightArea(relative);
-		this.notifyObserver(changeHarvestRightArea);
 	}
 
 	public void setRightRelativeOnProduction(Relative relative)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		rightRelatives.add(relative);
-		ChangeProductionRightArea changeProductionRightArea = new ChangeProductionRightArea(relative);
-		this.notifyObserver(changeProductionRightArea);
 	}
 
 	public int getValueOfLeftArea() {
@@ -122,7 +113,7 @@ public class HarvestAndProductionArea extends Observable<Change> implements Seri
 		if (valueOfRightArea == 0 && malus == 0) {
 			if (leftRelative != null) {
 				return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is "
-						+ valueOfLeftArea + "  It is occupied by " + leftRelative.getPlayer() + " with the relative "
+						+ valueOfLeftArea + "  It is occupied by " + leftRelative.getPlayer().getName() + " with the relative "
 						+ leftRelative.getColor() + "\n");
 			} else {
 				return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is "
@@ -131,20 +122,20 @@ public class HarvestAndProductionArea extends Observable<Change> implements Seri
 		} else if (leftRelative != null) {
 			for (int i = 0; i < rightRelatives.size(); i++) {
 				return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is "
-						+ valueOfLeftArea + "  It is occupied by " + leftRelative.getPlayer() + " with the relative "
+						+ valueOfLeftArea + "  It is occupied by " + leftRelative.getPlayer().getName() + " with the relative "
 						+ leftRelative.getColor() + "\n" + "The right value is " + valueOfRightArea + "\n"
-						+ "The malus is " + malus + "\n" + "It is occupied by" + rightRelatives.get(i).getPlayer()
+						+ "The malus is " + malus + "\n" + "It is occupied by" + rightRelatives.get(i).getPlayer().getName()
 						+ " with the relative " + rightRelatives.get(i).getColor());
 			}
 			return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is " + valueOfLeftArea
-					+ "  It is occupied by " + leftRelative.getPlayer() + " with the relative "
+					+ "  It is occupied by " + leftRelative.getPlayer().getName() + " with the relative "
 					+ leftRelative.getColor() + "\n" + "The right value is " + valueOfRightArea + "\n" + "The malus is "
 					+ malus + "\n" + " It is free");
 		} else {
 			for (int i = 0; i < rightRelatives.size(); i++) {
 				return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is "
 						+ valueOfLeftArea + " It is free " + "\n" + "The right value is " + valueOfRightArea + "\n"
-						+ "The malus is " + malus + "\n" + "It is occupied by" + rightRelatives.get(i).getPlayer()
+						+ "The malus is " + malus + "\n" + "It is occupied by" + rightRelatives.get(i).getPlayer().getName()
 						+ " with the relative " + rightRelatives.get(i).getColor());
 			}
 			return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is " + valueOfLeftArea
