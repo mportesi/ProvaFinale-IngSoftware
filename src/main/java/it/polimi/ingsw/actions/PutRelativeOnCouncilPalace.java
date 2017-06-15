@@ -47,7 +47,6 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			player.setOccupiedRelative(relative);
 			// The player receive the bonus
 			// TODO give player the council privilege bonus choice
-			System.out.println(councilPalace);
 			councilPalace.applyEffect(player, bonus);
 			play.changeCurrentPlayer();
 		} else {
