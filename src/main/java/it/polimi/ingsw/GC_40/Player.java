@@ -39,7 +39,8 @@ public class Player extends Observable<Change> implements Serializable {
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
 	private ArrayList<LeaderTile> leader;
-	private PersonalBonusTile personalBonusTile;
+	private PersonalBonusTile personalBonusTileSimple;
+	private PersonalBonusTile personalBonusTileAdvcanced;
 	private Relative blackRelative;
 	private Relative whiteRelative;
 	private Relative orangeRelative;
@@ -64,6 +65,7 @@ public class Player extends Observable<Change> implements Serializable {
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
 		hasNeutralRelative = true;
+		//PersonalBonusTile personalBonusTileSimple;
 		registerObserver(play);
 	}
 
@@ -398,10 +400,6 @@ public class Player extends Observable<Change> implements Serializable {
 		return neutralRelative;
 	}
 
-	public PersonalBonusTile getPersonalBonusTile() {
-	
-		return personalBonusTile;
-	}
 
 	public void setOccupiedRelative(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(relative.equals(blackRelative)){
@@ -459,10 +457,23 @@ public class Player extends Observable<Change> implements Serializable {
 
 
 
-	public void setPersonalBonusTile(PersonalBonusTile personalBonusTileSimple) {
+	public void setPersonalBonusTile(PersonalBonusTile personalBonusTileSimple, PersonalBonusTile personalBonusTileAdvanced) {
 		// TODO Auto-generated method stub
-		personalBonusTileSimple = personalBonusTileSimple;
+		this.personalBonusTileSimple = personalBonusTileSimple;
+		this.personalBonusTileAdvcanced = personalBonusTileAdvanced;
+		
 	}
+
+
+
+	public PersonalBonusTile getPersonalBonusTileSimple() {
+		// TODO Auto-generated method stub
+		return personalBonusTileSimple;
+	}
+
+
+
+	
 	
 
 

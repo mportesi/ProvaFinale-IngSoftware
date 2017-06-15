@@ -101,12 +101,9 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public void initializePlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		JsonPersonalBonusTiles jsonPersonalBonusTiles = new JsonPersonalBonusTiles();
-		jsonPersonalBonusTiles.importPersonalBonusTiles();
-		PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
-		PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
 		
-		System.out.println(personalBonusTileSimple);
+		
+		//System.out.println(personalBonusTileSimple);
 		
 		currentTurnOrder = createTurnOrder(players);
 		this.currentPlayer = currentTurnOrder.get(0);
@@ -121,9 +118,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			this.notifyObserver(changeColor);
 		}
 		for (Player p : currentTurnOrder) {
-			System.out.println(personalBonusTileSimple);
-			p.setPersonalBonusTile(personalBonusTileSimple);
-			//ChangePersonalBonusTile changePersonalBonusTile = new ChangePersonalBonusTile (p, p.getPersonalBonusTile()); TO DO
+			//System.out.println(personalBonusTileSimple);
 			p.setWood(2);
 			ChangeWood changeWood = new ChangeWood(p, p.getWood());
 			this.notifyObserver(changeWood);
@@ -415,13 +410,18 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			this.players = new ArrayList<Player>();
 		}
 		if (players.size() < 4) {
+			JsonPersonalBonusTiles jsonPersonalBonusTiles = new JsonPersonalBonusTiles();
+			jsonPersonalBonusTiles.importPersonalBonusTiles();
+			PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
+			PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
 			Player player = new Player(UUID.randomUUID(), this, name);
 			players.add(player);
+			player.setPersonalBonusTile(personalBonusTileSimple, personalBonusTileAdvanced);
 			player.registerObserver(this);
 			notifyObserver(new ChangeNewPlayer(player, this));
 
 			if (players.size() == 2) {
-				Thread.sleep(10 * 10000);
+				Thread.sleep(10 * 100);
 				initializePlay();
 			}
 		} else if (players.size() == 4) {
