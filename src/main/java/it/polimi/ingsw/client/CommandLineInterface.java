@@ -3,6 +3,7 @@ package it.polimi.ingsw.client;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
@@ -43,58 +44,58 @@ public class CommandLineInterface implements Serializable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Il tuo stato è: \n" + client.getPlayer());
 		System.out.println("\n\nLa board è: \n" + client.getBoard());
-		System.out.println("\n Choose what relative you want to use: black, white, orange, neutral");
-		String input = scanner.nextLine();
+		System.out.println("\n Choose what relative you want to use: \n1)  black \n 2) white \n 3) orange \n 4) neutral");
+		int input = scanner.nextInt();
 		Relative relative = null;
-		switch (input) {
-		case "black": {
+		try{switch (input) {
+		case 1: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())) {
 				relative = client.getPlayer().getBlackRelative();
 				break;
 			} else {
-				System.out.println("You cannot use this relative, it is already used");
+				System.out.println("\nYou cannot use this relative, it is already used");
 			}
 
 		}
-		case "white": {
+		case 2: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getWhiteRelative())) {
 				relative = client.getPlayer().getWhiteRelative();
 				break;
 			} else {
-				System.out.println("You cannot use this relative, it is already used");
+				System.out.println("\nYou cannot use this relative, it is already used");
 			}
 
 		}
-		case "orange": {
+		case 3: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getOrangeRelative())) {
 				relative = client.getPlayer().getOrangeRelative();
 				break;
 			} else {
-				System.out.println("You cannot use this relative, it is already used");
+				System.out.println("\nYou cannot use this relative, it is already used");
 			}
 
 		}
-		case "neutral": {
+		case 4: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getNeutralRelative())) {
 				relative = client.getPlayer().getNeutralRelative();
 				break;
 			} else {
-				System.out.println("You cannot use this relative, it is already used");
+				System.out.println("\nYou cannot use this relative, it is already used");
 			}
 
 		}
 		default: {
-			System.out.println("Error: insert again");
+			System.out.println("\nError: insert again");
 			relative = chooseTheRelative();
 			return relative;
-			// break;
+		}}}
+		catch(InputMismatchException e){
+			System.out.println("\nError: insert again");
+			relative = chooseTheRelative();
+			
 		}
-		}
-		System.out.println("THE VALUE OF THE RELATIVE IS  " + relative.getValue());
-		System.out.println("THE NAME OF THE RELATIVE IS  " + client.getPlayer().getName());
-		System.out.println("How many servants do you want to use?");
-		boolean legalServant = false; // loop until a legal servant numbers is
-										// given
+		System.out.println("\nHow many servants do you want to use?");
+		boolean legalServant = false; // loop until a legal servant numbers is given
 		while (!legalServant) {
 			int valueServant = scanner.nextInt();
 			if (valueServant <= client.getPlayer().getServant()) {
@@ -103,10 +104,10 @@ public class CommandLineInterface implements Serializable {
 				legalServant = true;
 			} else {
 				System.out
-						.println("Not enough servant, you have only " + client.getPlayer().getServant() + " servant.");
+						.println("\nNot enough servant, you have only " + client.getPlayer().getServant() + " servant.");
 			}
 		}
-		System.out.println("the value of the relative with servant is  " + relative.getValue());
+		System.out.println("\nThe value of the relative with servant is  " + relative.getValue());
 		return relative;
 
 	}
@@ -114,7 +115,7 @@ public class CommandLineInterface implements Serializable {
 	public PutRelative chooseTheAction(Relative relative)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
-		System.out.println("Choose where you want to put the relative:");
+		System.out.println("\nChoose where you want to put the relative:");
 		System.out.println("1) Tower");
 		System.out.println("2) CouncilPalace");
 		System.out.println("3) Market");
@@ -124,8 +125,7 @@ public class CommandLineInterface implements Serializable {
 		int input = scanner.nextInt();
 
 		PutRelative putRelative = null;
-		// System.out.println("sto entrando nello switch");
-		switch (input) {
+		try{switch (input) {
 		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
@@ -141,7 +141,7 @@ public class CommandLineInterface implements Serializable {
 		case 3: {
 			if (client.getBoard().getNumberOfPlayers() == 4) {
 				System.out.println(
-						"Choose the market to put your relative: \n 1)Gain coin \n 2)Gain servant \n 3)Gain military point and coin \n 4)Gain two different privilege Council");
+						"\nChoose the market to put your relative: \n 1)Gain coin \n 2)Gain servant \n 3)Gain military point and coin \n 4)Gain two different privilege Council");
 				int number = scanner.nextInt();
 				MarketBuilding market = client.getMarket(number);
 				if (number == 4) {
@@ -151,7 +151,7 @@ public class CommandLineInterface implements Serializable {
 					putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market);
 				}
 			} else {
-				System.out.println("Choose the market to put your relative: \n 1)Gain coin \n 2)Gain servant");
+				System.out.println("\nChoose the market to put your relative: \n 1)Gain coin \n 2)Gain servant");
 				int number = scanner.nextInt();
 				MarketBuilding market = client.getMarket(number-1);
 				putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market);
@@ -174,12 +174,16 @@ public class CommandLineInterface implements Serializable {
 		}
 
 		default: {
-			System.out.println("Error: insert again");
+			System.out.println("\nError: insert again");
 			putRelative = chooseTheAction(relative);
 			break;
+		}}}
+		catch(InputMismatchException e){
+			System.out.println("\nError: insert again");
+			putRelative = chooseTheAction(relative);
+			
 		}
 
-		}
 		return putRelative;
 	}
 
@@ -222,18 +226,14 @@ public class CommandLineInterface implements Serializable {
 			}
 			break;
 		}
-		default: {
-			System.out.println("Error: insert again");
-			putRelative = chooseThePutRelativeOnTower(tower, floor, relative);
-			break;
-		}
 		}
 		return putRelative;
 	}
 
 	private boolean chooseAlternativeCost() {
 		boolean choice = false;
-		System.out.println("Choose if you prefer: \n 1)military cost \n 2)the other cost");
+		System.out.println("\nChoose if you prefer: \n 1)military cost \n 2)the other cost");
+		try{
 		switch (scanner.nextInt()) {
 		case 1: {
 			choice = true;
@@ -244,22 +244,28 @@ public class CommandLineInterface implements Serializable {
 			return choice;
 		}
 		default: {
-			System.out.println("Try again!");
+			System.out.println("\nError: insert again");
 			choice = chooseAlternativeCost();
 		}
+		}}
+		catch(InputMismatchException e){
+			System.out.println("\nError: insert again");
+			choice = chooseAlternativeCost();
+			
 		}
 		return choice;
 	}
 
 	public Tower chooseTower() {
 
-		System.out.println("Choose the tower:");
+		System.out.println("\nChoose the tower:");
 		System.out.println("1) Territory tower");
 		System.out.println("2) Building tower");
 		System.out.println("3) Character tower");
 		System.out.println("4) Venture tower");
 		int input = scanner.nextInt();
 		Tower tower;
+		try{
 		switch (input) {
 		case 1: {
 			tower = this.client.getTerritoryTower();
@@ -278,22 +284,29 @@ public class CommandLineInterface implements Serializable {
 			return tower;
 		}
 		default: {
-			System.out.println("Error: insert again");
+			System.out.println("\nError: insert again");
 			tower = chooseTower();
 			return tower;
-			// break;
+		}}}
+		catch(InputMismatchException e){
+			System.out.println("\nError: insert again");
+			tower = chooseTower();
+			
 		}
-		}
-		// return null;
-
+		return null;
 	}
 
 	public int chooseFloor() {
-		System.out.println("Choose the number of the floor:");
-		int floor = scanner.nextInt();
+		System.out.println("\nChoose the number of the floor:");
+		int floor;
+		try{floor = scanner.nextInt();}
+		catch(InputMismatchException e){
+			System.out.println("\nError: insert again");
+			floor = chooseFloor();
+		}
 		floor -= 1;
 		if (floor < 0 || floor > 4) {
-			System.out.println("That floor don't exist!");
+			System.out.println("\nThat floor don't exist!");
 			floor = chooseFloor();
 		}
 		return (floor);
@@ -301,32 +314,76 @@ public class CommandLineInterface implements Serializable {
 
 	public String choosePrivilegeCouncil() {
 
-		System.out.println("Choose the privilege Council:");
-		System.out.println("coin");
-		System.out.println("woodAndStone");
-		System.out.println("servant");
-		System.out.println("faithPoint");
-		System.out.println("militaryPoint");
-
-		String resource = scanner.nextLine();
+		System.out.println("\nChoose the privilege Council:");
+		System.out.println("1) 2 coin");
+		System.out.println("2) 1 wood and 1 Stone");
+		System.out.println("3) 1 servant");
+		System.out.println("4) 1 faithPoint");
+		System.out.println("5) 2 militaryPoint");
+		String resource=null;
+		int choice=0;
+		try{choice = scanner.nextInt();}
+		catch(InputMismatchException e){
+			System.out.println("\nError: insert again");
+			choosePrivilegeCouncil();
+		}
+		switch(choice){
+		case 1:{ resource="coin";
+				break;
+		}
+		case 2:{
+			resource="woodAndStone";
+			break;
+		}
+		case 3:{
+			resource="servant";
+			break;
+		}
+		case 4:{
+			resource="faithPoint";
+			break;
+		}
+		case 5:{
+			resource="militaryPoint";
+			break;
+		}
+		}
+		if (choice < 1 || choice > 4) {
+			System.out.println("\nError: insert again");
+			choosePrivilegeCouncil();
+		}
+		
 		return resource;
 	}
 
 	public String chooseHarvestArea() {
-		System.out.println("sono entrato nella Choose()");
-		String harvestArea;
+		String harvestArea=null;
+		int choice=0;
 		if (client.getBoard().getNumberOfPlayers() >= 3) {
 			System.out.println("sono entrato nell'if");
 			if(client.getBoard().getHarvestArea().getLeftRelative()!= null){
-				System.out.println("The left area is occupied. You can only put on the right area");
+				System.out.println("\nThe left area is occupied. You can only put on the right area");
 				harvestArea = "right";
 			}
 			// Choose if you want to place the relative left or right
-			System.out.println("Choose if you want to put your relative on the left or on the right");
-			harvestArea = scanner.nextLine();
-			if (harvestArea != "left" || harvestArea != "right") {
-				System.out.println("Try again!");
-				harvestArea = chooseHarvestArea();
+			System.out.println("\nChoose where you want to put your relative: \n1) left \n2) right");
+			try{choice=scanner.nextInt();}
+			catch(InputMismatchException e){
+				System.out.println("\nError: insert again");
+				chooseHarvestArea();
+			}
+			if (choice < 1 || choice > 2) {
+				System.out.println("\nError: insert again");
+				chooseHarvestArea();
+			}
+			switch(choice){
+			case 1:{
+				harvestArea="left";
+				break;
+			}
+			case 2:{
+				harvestArea="right";
+			}
 			}
 			return harvestArea;
 		} else {
@@ -336,18 +393,32 @@ public class CommandLineInterface implements Serializable {
 	}
 
 	public String chooseProductionArea() {
-		String productionArea;
+		String productionArea=null;
+		int choice=0;
 		if (client.getBoard().getNumberOfPlayers() >= 3) {
 			if(client.getBoard().getProductionArea().getLeftRelative()!= null){
-				System.out.println("The left area is occupied. You can only put on the right area");
+				System.out.println("\nThe left area is occupied. You can only put on the right area");
 				productionArea = "right";
 			}
 		// Choose if you want to place the relative left or right
-		System.out.println("Choose if you want to put your relative on the left or on the right");
-		productionArea = scanner.nextLine();
-		if (productionArea != "left" || productionArea != "right") {
-			System.out.println("Try again!");
-			productionArea = chooseProductionArea();
+		System.out.println("\nChoose where you want to put your relative: \n1) left \n2) right");
+		try{choice=scanner.nextInt();}
+		catch(InputMismatchException e){
+			System.out.println("\nError: insert again");
+			chooseProductionArea();
+		}
+		if (choice < 1 || choice > 2) {
+			System.out.println("\nError: insert again");
+			chooseProductionArea();
+		}
+		switch(choice){
+		case 1:{
+			productionArea="left";
+			break;
+		}
+		case 2:{
+			productionArea="right";
+		}
 		}
 		return productionArea;}
 		else {
