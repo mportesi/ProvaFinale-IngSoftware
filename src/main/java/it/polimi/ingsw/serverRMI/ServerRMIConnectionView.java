@@ -27,9 +27,12 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 
 	private volatile ArrayList<ClientRMIConnectionViewRemote> clients;
 	private Server server;
+	private int numberOfPlay;
 
-	public ServerRMIConnectionView() {
+	public ServerRMIConnectionView(Server server, int numberOfPlay) {
 		this.clients = new ArrayList<>();
+		this.server=server;
+		this.numberOfPlay=numberOfPlay;
 	}
 
 	@Override
@@ -37,6 +40,7 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// System.out.println("CLIENT REGISTRATO");
 		this.clients.add(clientStub);
+		server.setNumberOfPlayers(clients.size());
 		// System.out.println(clients.get(0));
 		RegisterClient registerClient = new RegisterClient(name);
 		// System.out.println("notifico di registerClient() il controller");

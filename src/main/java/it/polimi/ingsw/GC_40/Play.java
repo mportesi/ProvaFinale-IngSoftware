@@ -57,11 +57,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private boolean start;
+	private int numberOfPlay;
 
 	// costruttore
-	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public Play(int numberOfPlay) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
-
+		this.numberOfPlay=numberOfPlay;
 		/*
 		 * this.board=new Board(); this.players=new ArrayList<Player>();
 		 * this.round=0; this.period=0;
@@ -412,9 +413,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			this.players = new ArrayList<Player>();
 		}
 		if (players.size() < 4) {
-			Player player = new Player(UUID.randomUUID(), this, name);
+			Player player = new Player(UUID.randomUUID(), name);
 			players.add(player);
-			player.registerObserver(this);
 			notifyObserver(new ChangeNewPlayer(player, this));
 
 			if (players.size() == 2) {
@@ -427,9 +427,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 				this.players = new ArrayList<Player>();
 			}
 			if (players.size() < 4) {
-				Player player = new Player(UUID.randomUUID(), this, name);
+				Player player = new Player(UUID.randomUUID(), name);
 				players.add(player);
-				player.registerObserver(this);
 				notifyObserver(new ChangeNewPlayer(player, this));
 
 				if (players.size() == 2) {

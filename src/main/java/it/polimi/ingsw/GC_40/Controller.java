@@ -13,7 +13,7 @@ import it.polimi.ingsw.changes.*;
 
 public class Controller implements Observer<Action> {
 	
-		private  final Play play;
+		private  Play play;
 		
 		public Controller(Play play){
 			this.play=play;

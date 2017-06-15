@@ -35,7 +35,6 @@ public class ChangeNewPlayer extends Observable<Change> implements Change {
 	@Override
 	public void applyChange(ClientModel client) {
 		if (client.getName().equals(player.getName())){
-		player.registerObserver(play);
 		client.setPlayer(player);
 		System.out.println("Ho inizializzato: "+ client.getPlayer().getName() + player.getName());
 		}

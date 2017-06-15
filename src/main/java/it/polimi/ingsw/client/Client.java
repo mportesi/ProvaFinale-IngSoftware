@@ -19,6 +19,7 @@ import java.rmi.NotBoundException;
 
 public class Client implements Serializable {
 	private Player player;
+	private int numberOfPlayers;
 	// private static ClientModel clientModel;
 
 	public static void main(String args[]) throws IOException, AlreadyBoundException, NotBoundException,

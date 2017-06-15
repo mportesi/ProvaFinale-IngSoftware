@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -30,20 +31,25 @@ public class Server {
 	private final static int PORT = 29999;
 	private final static int RMI_PORT = 52365;
 
-	private Play play;
-
-	private Controller controller;
+	private ArrayList<Play> play;
+	private int numberOfPlayers;
+	private ArrayList<Controller> controller;
+	private ArrayList<ServerRMIConnectionView> serverRMIConnectionView;
 	
 	
 	private final String NAME="Lorenzo Il Magnifico";
 
 	public Server() throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		this.play = new Play();
-		this.controller = new Controller(play);
-		
+		play=new ArrayList<>();
+		this.play.add( new Play(0));
+		this.controller = new ArrayList<>();
+		this.controller.add(new Controller(play.get(0)));
 
 	}
 	
+	public void setNumberOfPlayers(int n){
+		numberOfPlayers=n;
+	}
 	/*private void startSocket() throws IOException {
 
 		// creates the thread pool to handle clients
@@ -72,19 +78,32 @@ public class Server {
 		}
 	}*/
 	
-	public void startRMI() throws RemoteException, AlreadyBoundException{
+	public void startRMI() throws AlreadyBoundException, FileNotFoundException, NullPointerException, IOException, ParseException{
 		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
 		System.out.println("constructing the rmi registry");
-		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView();
-		serverRMIConnectionView.registerObserver(this.controller);
-		this.play.registerObserver(serverRMIConnectionView);
-		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView, 0);
+		serverRMIConnectionView=new ArrayList<>();
+		serverRMIConnectionView.add(new ServerRMIConnectionView(this, 0));
+		serverRMIConnectionView.get(0).registerObserver(this.controller.get(0));
+		this.play.get(0).registerObserver(serverRMIConnectionView.get(0));
+		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView.get(0), 0);
 		System.out.println("binding the server implementation to the registry");
-		registry.bind(NAME, serverRMIConnectionView);
+		registry.bind(NAME, serverRMIConnectionView.get(0));
 		
-		//while(true){
+		while(true){
+			if(numberOfPlayers>4){
+				int i=1;
+				this.play.add(new Play(i));
+				this.controller.add(new Controller(play.get(i)));
+				serverRMIConnectionView.add(new ServerRMIConnectionView(this, i));
+				serverRMIConnectionView.get(i).registerObserver(this.controller.get(i));
+				this.play.get(i).registerObserver(serverRMIConnectionView.get(i));
+				serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView.get(i), 0);
+				System.out.println("binding the server implementation to the registry");
+				registry.bind(NAME, serverRMIConnectionView.get(i));
+				i++;
+			}
 			
-		//}
+		}
 	}
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException, NullPointerException, ParseException {

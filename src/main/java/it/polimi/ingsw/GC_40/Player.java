@@ -23,7 +23,7 @@ import it.polimi.ingsw.components.LeaderTile;
 import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.Relative;
 
-public class Player extends Observable<Change> implements Serializable {
+public class Player implements Serializable {
 	private UUID ID;
 	private String name;
 	private ColorPlayer color;
@@ -49,7 +49,7 @@ public class Player extends Observable<Change> implements Serializable {
 	private boolean hasOrangeRelative;
 	private boolean hasNeutralRelative;
 
-	public Player(UUID ID, Play play, String name) {
+	public Player(UUID ID, String name) {
 		this.ID = ID;
 		this.name = name;
 		blackRelative= new Relative(ColorDice.BLACK, this);
@@ -64,7 +64,6 @@ public class Player extends Observable<Change> implements Serializable {
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
 		hasNeutralRelative = true;
-		registerObserver(play);
 	}
 
 	
