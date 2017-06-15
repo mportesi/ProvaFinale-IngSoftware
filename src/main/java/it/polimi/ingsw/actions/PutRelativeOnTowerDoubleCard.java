@@ -52,12 +52,19 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 					check = checkCardCost();
 					if (tower.isPresentAnyone()) {
 						if (player.getCoin() >= tower.getCost()) {
-							return check;
+							if(checkSecondCardCost()){
+								return check;
+							}
 						} else
 							check = false;
 					}
 					System.out.println(check);
-					return check;
+					if(checkSecondCardCost()){
+						return check;
+					}
+					else{
+						check=false;
+					}
 				}
 			}
 		}
@@ -79,6 +86,8 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 			cardToGive.applyEffect(player, play);
 			tower.floors.get(floor).bonusEffect.apply(player, play);
 			secondCardToGive = secondT.floors.get(secondF).giveCard();
+			secondCardToGive.payCost(player, play);
+			giveDiscount(cardToGive,player,play);
 			player.addCard(secondCardToGive, play);
 			secondCardToGive.applyEffect(player, play);
 			play.changeCurrentPlayer();
@@ -149,5 +158,56 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 			return check;
 		}
 		return check;
+	}
+	
+	private boolean checkSecondCardCost(){
+		boolean value=false;
+		cardToGive = tower.floors.get(floor).getCard();
+		secondCardToGive = secondT.floors.get(secondF).getCard();
+		if(((CharacterCard) cardToGive).getSecondCardValue()>=secondT.floors.get(floor).getCost()){
+			if(((CharacterCard) cardToGive).getSecondCard().equals(secondCardToGive.getType()) || ((CharacterCard) cardToGive).getSecondCard()=="anyone"){
+				if(secondCardToGive instanceof CharacterCard ){
+					if ((player.getCoin()-((CharacterCard)cardToGive).getCostCoin() + ((CharacterCard)cardToGive).getDiscountCoin() ) >= ((CharacterCard) secondCardToGive).getCostCoin()) {
+						value = true;
+						return value;
+					}
+				}
+				if (secondCardToGive instanceof TerritoryCard) {
+					value = true;
+					return value;
+				}
+				if (secondCardToGive instanceof BuildingCard){
+					if ((player.getCoin()-((CharacterCard) cardToGive).getCostCoin()+((CharacterCard) cardToGive).getDiscountCoin()) >= ((BuildingCard) secondCardToGive).getCostCoin()) {
+						if ((player.getWood()+((CharacterCard) cardToGive).getDiscountWood()) >= ((BuildingCard) secondCardToGive).getCostWood()) {
+							if ((player.getStone()+((CharacterCard) cardToGive).getDiscountStone()) >= ((BuildingCard) secondCardToGive).getCostStone()) {
+								if (player.getServant() >= ((BuildingCard) secondCardToGive).getCostServant()) {
+									value=true;
+								}
+							}
+						}
+					}
+					return value;
+				}
+				if (secondCardToGive instanceof VentureCard) {
+					if ((player.getCoin()-((CharacterCard) cardToGive).getCostCoin()+((CharacterCard) cardToGive).getDiscountCoin()) >= ((VentureCard) secondCardToGive).getCostCoin()) {
+						if ((player.getWood() +((CharacterCard) cardToGive).getDiscountWood()) >= ((VentureCard) secondCardToGive).getCostWood()) {
+							if ((player.getStone()+((CharacterCard) cardToGive).getDiscountStone()) >= ((VentureCard) secondCardToGive).getCostStone()) {
+								if (player.getServant() >= ((VentureCard) secondCardToGive).getCostServant()) {
+									value=true;
+								}
+							}
+						}
+					}
+					return value;
+				}
+			}
+		}
+		return value;
+	}
+	public void giveDiscount(Card cardToGive,Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		
+		player.incrementCoin(((CharacterCard) cardToGive).getDiscountCoin(), play);
+		player.incrementWood(((CharacterCard) cardToGive).getDiscountWood(), play);
+		player.incrementStone(((CharacterCard) cardToGive).getDiscountStone(), play);
 	}
 }
