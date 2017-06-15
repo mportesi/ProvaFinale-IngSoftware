@@ -38,9 +38,13 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 
 		switch (area) {
 		case "left": {
+			System.out.println("sono nel case left");
 			if (relative.getValue() >= harvestArea.getValueOfLeftArea()) {
+				System.out.println("Sono nell'if che verifica il valore dell'azione");
 				if (harvestArea.getLeftRelative() == null) {
+					System.out.println("sono nell'if che verifica che la zona a sx sia libera");
 					if ((!(harvestArea.isAlreadyPresent(player)) || relative.getColor() == null)) {
+						System.out.println("sono nell'if che verifica che anche nella sinistra non ci sia nessuno");
 						return true;
 					}
 				}
@@ -66,8 +70,10 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
+			System.out.println("The action is applicable()");
 			// If the left position is free, the player put the relative there.
-			if (area == "left") {
+			if (area.equals("left")) {
+				System.out.println("Sono nel case left");
 				harvestArea.setLeftRelativeOnHarvest(relative);
 				play.notifyObserver(new ChangeHarvestLeftArea(relative));
 				

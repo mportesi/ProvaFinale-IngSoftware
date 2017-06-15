@@ -313,8 +313,10 @@ public class CommandLineInterface implements Serializable {
 	}
 
 	public String chooseHarvestArea() {
+		System.out.println("sono entrato nella Choose()");
 		String harvestArea;
 		if (client.getBoard().getNumberOfPlayers() >= 3) {
+			System.out.println("sono entrato nell'if");
 			if(client.getBoard().getHarvestArea().getLeftRelative()!= null){
 				System.out.println("The left area is occupied. You can only put on the right area");
 				harvestArea = "right";

@@ -32,7 +32,7 @@ import it.polimi.ingsw.effects.GainWood;
 
 public class MarketBuilding extends Observable<Change> implements Serializable{
 
-	private String type; // A COSA SERVE??
+	private String type;
 	private boolean isOccupied;
 	private int cost;
 	private MarketListOfEffect marketEffect;

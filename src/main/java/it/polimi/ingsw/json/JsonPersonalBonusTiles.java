@@ -13,6 +13,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.PersonalBonusTileListOfHarvestEffect;
+import it.polimi.ingsw.components.PersonalBonusTileListOfProductionEffect;
 
 public class JsonPersonalBonusTiles {
 	private ArrayList <PersonalBonusTile> personalBonusTiles;
@@ -49,9 +51,13 @@ public class JsonPersonalBonusTiles {
 			
 			}
 			
-			PersonalBonusTile personalBonusTile1 = new PersonalBonusTile (type, bonusProductionMap, bonusHarvestMap, costProduction, costHarvest);
+			PersonalBonusTileListOfProductionEffect personalBonusTileProductionListOfEffect = new PersonalBonusTileListOfProductionEffect (bonusProductionMap);
+			PersonalBonusTileListOfHarvestEffect personalBonusTileHarvestListOfEffect = new PersonalBonusTileListOfHarvestEffect (bonusHarvestMap);
+			
+			PersonalBonusTile personalBonusTile1 = new PersonalBonusTile (type, personalBonusTileProductionListOfEffect, personalBonusTileHarvestListOfEffect, costProduction, costHarvest);
 			personalBonusTiles.add(personalBonusTile1);
 			}
+			
 	}
 
 	public PersonalBonusTile getPersonalBonusTiles(int i) {
