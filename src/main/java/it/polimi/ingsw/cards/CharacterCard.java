@@ -89,4 +89,23 @@ public class CharacterCard extends Card {
 	public boolean isGainPrivilegeCouncil() {
 		return gainPrivilegeCouncil;
 	}
+	public String getSecondCard(){
+		return card;
+	}
+	public int getSecondCardValue(){
+		return value;
+	}
+	public int getDiscountCoin(){
+		return discount.get("coin");
+	}
+	public int getDiscountWood(){
+		return discount.get("wood");
+	}
+	public int getDiscountStone(){
+		return discount.get("stone");
+	}
+	public int getDiscountServant(){
+		return discount.get("servant");
+	}
+	
 }
