@@ -51,12 +51,20 @@ public class HarvestAndProductionArea extends Observable<Change> implements Seri
 	}
 
 	public boolean isAlreadyPresent(Player player) {
+		System.out.println("Sono nell'already present()");
+		if (rightRelatives.size() ==  0){
+			System.out.println("false");
+			return false;
+		}
+		else {
 		for (Relative r : rightRelatives) {
 			if (r.getPlayer() == null || !(r.getPlayer() == player && r.getColor() != null)) {
+				System.out.println("false");
 				return false;
 			}
 		}
 		return true;
+		}
 	}
 
 	public Relative getLeftRelative() {

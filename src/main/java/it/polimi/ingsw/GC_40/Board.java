@@ -46,6 +46,7 @@ public class Board extends Observable<Change> implements Serializable {
 	private Dice orangeDice;
 	private ArrayList<Card> deck;
 	private int numberOfPlayers;
+	
 
 	public Board(Play play, int numberOfPlayers)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -192,10 +193,7 @@ public class Board extends Observable<Change> implements Serializable {
 		}
 		System.out.println("exit");
 
-		JsonPersonalBonusTiles jsonPersonalBonusTiles = new JsonPersonalBonusTiles();
-		jsonPersonalBonusTiles.importPersonalBonusTiles();
-		PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
-		PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
+		;
 
 		if (numberOfPlayers >= 3) {
 			JsonHarvestAndProduction jsonHarvestAndProduction = new JsonHarvestAndProduction();
@@ -329,5 +327,7 @@ public class Board extends Observable<Change> implements Serializable {
 	public int getNumberOfPlayers() {
 		return numberOfPlayers;
 	}
+
+	
 
 }

@@ -41,8 +41,10 @@ import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.FinalVictoryPoint;
+import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.json.JsonFinalVictoryPoint;
+import it.polimi.ingsw.json.JsonPersonalBonusTiles;
 
 public class Play extends Observable<Change> implements Observer<Change>, Serializable {
 	private ArrayList<Player> players;
@@ -99,6 +101,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public void initializePlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		JsonPersonalBonusTiles jsonPersonalBonusTiles = new JsonPersonalBonusTiles();
+		jsonPersonalBonusTiles.importPersonalBonusTiles();
+		PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
+		PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
+		
 		currentTurnOrder = createTurnOrder(players);
 		this.currentPlayer = currentTurnOrder.get(0);
 		ColorPlayer[] colors = ColorPlayer.values();
@@ -112,6 +119,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			this.notifyObserver(changeColor);
 		}
 		for (Player p : currentTurnOrder) {
+			System.out.println(personalBonusTileSimple);
+			p.setPersonalBonusTile(personalBonusTileSimple);
 			p.setWood(2);
 			ChangeWood changeWood = new ChangeWood(p, p.getWood());
 			this.notifyObserver(changeWood);

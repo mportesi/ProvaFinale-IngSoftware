@@ -361,6 +361,7 @@ public class CommandLineInterface implements Serializable {
 		String harvestArea=null;
 		int choice=0;
 		if (client.getBoard().getNumberOfPlayers() >= 3) {
+			System.out.println("sono entrato nell'if");
 			if(client.getBoard().getHarvestArea().getLeftRelative()!= null){
 				System.out.println("\nThe left area is occupied. You can only put on the right area");
 				harvestArea = "right";

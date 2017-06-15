@@ -456,6 +456,13 @@ public class Player extends Observable<Change> implements Serializable {
 			
 		}
 	}
+
+
+
+	public void setPersonalBonusTile(PersonalBonusTile personalBonusTileSimple) {
+		// TODO Auto-generated method stub
+		personalBonusTileSimple = personalBonusTileSimple;
+	}
 	
 
 
