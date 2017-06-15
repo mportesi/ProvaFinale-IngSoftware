@@ -44,7 +44,7 @@ public class CommandLineInterface implements Serializable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Il tuo stato è: \n" + client.getPlayer());
 		System.out.println("\n\nLa board è: \n" + client.getBoard());
-		System.out.println("\n Choose what relative you want to use: \n1)  black \n 2) white \n 3) orange \n 4) neutral");
+		System.out.println("\n Choose what relative you want to use: \n 1)  black \n 2) white \n 3) orange \n 4) neutral");
 		int input = scanner.nextInt();
 		Relative relative = null;
 		try{switch (input) {
@@ -299,16 +299,17 @@ public class CommandLineInterface implements Serializable {
 	public int chooseFloor() {
 		System.out.println("\nChoose the number of the floor:");
 		int floor;
-		try{floor = scanner.nextInt();}
-		catch(InputMismatchException e){
-			System.out.println("\nError: insert again");
-			floor = chooseFloor();
-		}
+		try{floor = scanner.nextInt();
 		floor -= 1;
 		if (floor < 0 || floor > 4) {
 			System.out.println("\nThat floor don't exist!");
 			floor = chooseFloor();
+		}}
+		catch(InputMismatchException e){
+			System.out.println("\nError: insert again");
+			floor = chooseFloor();
 		}
+		
 		return (floor);
 	}
 

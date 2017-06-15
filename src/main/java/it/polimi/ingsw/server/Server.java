@@ -30,7 +30,7 @@ public class Server {
 	private final static int PORT = 29999;
 	private final static int RMI_PORT = 52365;
 
-	private final Play play;
+	private Play play;
 
 	private Controller controller;
 	

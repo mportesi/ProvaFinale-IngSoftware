@@ -20,12 +20,14 @@ import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
+import it.polimi.ingsw.server.Server;
 import it.polimi.ingsw.serverSocket.ServerView;
 
 public class ServerRMIConnectionView extends ServerView implements ServerRMIConnectionViewRemote, Observer<Change> {
 
 	private volatile ArrayList<ClientRMIConnectionViewRemote> clients;
-	
+	private Server server;
+
 	public ServerRMIConnectionView() {
 		this.clients = new ArrayList<>();
 	}
@@ -33,36 +35,30 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 	@Override
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		//System.out.println("CLIENT REGISTRATO");
+		// System.out.println("CLIENT REGISTRATO");
 		this.clients.add(clientStub);
-		//System.out.println(clients.get(0));
+		// System.out.println(clients.get(0));
 		RegisterClient registerClient = new RegisterClient(name);
 		// System.out.println("notifico di registerClient() il controller");
 		this.notifyObserver(registerClient);
-		
-		
+
 	}
 
-	
-	
-	
-
-	/*@Override
-	public void initializeGame(ClientRMIConnectionViewRemote clientStub)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		/*InitializeGame initializeGame = new InitializeGame();
-		this.notifyObserver(initializeGame);
-		// System.out.println("notifico di initializeGame() il controller");
-	}*/
-	
-	
-		
+	/*
+	 * @Override public void initializeGame(ClientRMIConnectionViewRemote
+	 * clientStub) throws FileNotFoundException, NullPointerException,
+	 * IOException, ParseException, InterruptedException { /*InitializeGame
+	 * initializeGame = new InitializeGame();
+	 * this.notifyObserver(initializeGame); //
+	 * System.out.println("notifico di initializeGame() il controller"); }
+	 */
 
 	@Override
-	public void update(Change change) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		//System.out.println("SENDING THE CHANGE TO THE CLIENT");
+	public void update(Change change)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		// System.out.println("SENDING THE CHANGE TO THE CLIENT");
 		try {
-			//System.out.println(change);
+			// System.out.println(change);
 			for (ClientRMIConnectionViewRemote clientstub : this.clients) {
 				// System.out.println("sono nel Server prima di fare
 				// updateClient(c)");
