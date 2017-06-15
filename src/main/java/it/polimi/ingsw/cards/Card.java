@@ -79,5 +79,10 @@ public class Card implements Serializable {
 		return alternativeCost;
 	}
 
+	public void applyPrivilegeBonus(Play play, Player player, String bonus) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
