@@ -20,11 +20,6 @@ public class ChangeFaithPoint implements Change {
 		if(client.getName().equals(player.getName())){
 			client.getPlayer().setFaithPoint(faithPoint);
 		}
-		/*for (Player p : client.getPlayers()) {
-			if (player.equals(p)) {
-				p.setFaithPoint(faithPoint);
-			}
-		}*/
 
 	}
 

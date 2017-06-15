@@ -91,7 +91,7 @@ public class VentureCard extends Card {
 
 	@Override
 	public String toString(){
-		if(alternativeCost){
+		if(alternativeCost && cost!=null){
 		return (name + ":\n" + "The cost can be choose: "+ cost +"\n                     "+ "military requirement "+ militaryRequirement + " cost in military point " + militaryCost+  " \nThe immediate effects are " + immediateEffects );}
 		else if(militaryRequirement==0 && militaryCost==0){
 			return (name + ":\n" + "The cost is: "+ cost +  " \nThe immediate effects are " + immediateEffects );
@@ -116,48 +116,57 @@ public class VentureCard extends Card {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
 			gain.apply(player, play);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	/*public String chooseCost(Player player) {
-		String chosenCost = "militaryPoint";
-		return chosenCost;
-	}*/
 	
 	public void chooseCost(boolean choice){
 		payAlternativeCost=choice;
 	}
 	
 	public int getCostCoin(){
+		if( cost.get("coin")==null){
+			return 0;
+		}
 		return cost.get("coin");
 	}
 	public int getCostWood(){
+		if( cost.get("wood")==null){
+			return 0;
+		}
 		return cost.get("wood");
 	}
 	public int getCostStone(){
+		if( cost.get("stone")==null){
+			return 0;
+		}
 		return cost.get("stone");
 	}
 	public int getCostServant(){
+		if( cost.get("servant")==null){
+			return 0;
+		}
 		return cost.get("servant");
 	}
 	public int getMilitaryReq(){
+		if( cost.get("militaryRequirement")==null){
+			return 0;
+		}
 		return militaryRequirement;
 	}
 	public int getMilitaryCost(){
+		if( cost.get("militaryCost")==null){
+			return 0;
+		}
 		return militaryCost;
 	}
 	public boolean isGainPrivilegeCouncil() {

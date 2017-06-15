@@ -18,11 +18,6 @@ public class ChangeVictoryPoint implements Change {
 		if(client.getName().equals(player.getName())){
 			client.getPlayer().setVictoryPoint(victoryPoint);
 		}
-		/*for (Player p : client.getPlayers()) {
-			if (player.equals(p)) {
-				p.setVictoryPoint(victoryPoint);
-			}
-		}*/
 	}
 
 }

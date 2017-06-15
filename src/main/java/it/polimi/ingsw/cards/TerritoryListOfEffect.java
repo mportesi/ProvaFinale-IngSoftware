@@ -60,12 +60,6 @@ public class TerritoryListOfEffect extends CreateListOfEffect{
 				GainServant gainServant = new GainServant(costImmediateEffect);
 				immediateEffects.add(gainServant);
 			}
-			/*case "GainPrivilegeCouncil": {
-				String resource = "coin";// TODO
-				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect, resource);
-				immediateEffects.add(gainPrivilegeCouncil);
-				break;
-			}*/
 			case "GainPrivilegeCouncil": {
 				HasPrivilege privilege = new HasPrivilege();
 				immediateEffects.add(privilege);

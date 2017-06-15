@@ -37,12 +37,8 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
-			System.out.println("tower is free");
 			if (relative.getValue() >= tower.floors.get(floor).getCost()) {
-				System.out.println("The relative has the bigger value");
 				if (tower.isPresent(player) == false) {
-					System.out.println("There isn't the player");
-					System.out.println("true");
 					check = checkCardCost();
 					if (tower.isPresentAnyone()) {
 						if (player.getCoin() >= tower.getCost()) {
@@ -50,7 +46,6 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 						} else
 							check = false;
 					}
-					System.out.println(check);
 					return check;
 				}
 			}
@@ -67,13 +62,12 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
-			System.out.println(tower.floors.get(floor).getPlayer());
 			cardToGive = tower.floors.get(floor).giveCard();
 			cardToGive.payCost(player, play);
 			player.addCard(cardToGive, play);
 			cardToGive.applyEffect(player, play);
-			tower.floors.get(floor).bonusEffect.apply(player, play);
-			System.out.println(player);
+			if(tower.floors.get(floor).bonusEffect!=null){
+					tower.floors.get(floor).bonusEffect.apply(player, play);}
 			play.changeCurrentPlayer();
 		}
 		else {

@@ -13,7 +13,7 @@ public class ChangePlayer implements Change {
 	@Override
 	public void applyChange(ClientModel client) {
 		client.setCurrentPlayer(currentPlayer);
-		System.out.println("It's the " + currentPlayer.getName() + "'s turn. Il giocatore è : " + client.getPlayer().getName());
+		System.out.println("It's the " + currentPlayer.getName() + "'s turn.");
 	}
 
 }

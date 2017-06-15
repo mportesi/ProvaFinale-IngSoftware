@@ -29,7 +29,6 @@ public class JsonHarvestAndProduction {
 			switch (type){
 			case "productionArea": {
 				production = new HarvestAndProductionArea (type, costOfLeftArea, costOfRightArea, malus);
-				//System.out.println("sono in json voglio stampare la production" + production);
 				break;
 			}
 			case "harvestArea": {
@@ -54,7 +53,6 @@ public class JsonHarvestAndProduction {
 			switch (type){
 			case "productionArea": {
 				production = new HarvestAndProductionArea (type, costOfLeftArea);
-				//System.out.println("sono in json voglio stampare la production" + production);
 				break;
 			}
 			case "harvestArea": {
@@ -67,13 +65,9 @@ public class JsonHarvestAndProduction {
 	}
 
 	public HarvestAndProductionArea getHarvest() {
-	
-		// TODO Auto-generated method stub
 		return harvest;
 	}
 	public HarvestAndProductionArea getProduction() {
-	
-		// TODO Auto-generated method stub
 		return production;
 	}
 

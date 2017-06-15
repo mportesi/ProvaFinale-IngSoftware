@@ -61,27 +61,16 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	// costruttore
 	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
-
-		/*
-		 * this.board=new Board(); this.players=new ArrayList<Player>();
-		 * this.round=0; this.period=0;
-		 */
 	}
 
 	public void initializeBoard()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// this.players = new ArrayList<Player>();
 		this.board = new Board(this, players.size());
 		board.registerObserver(this);
-		// System.out.println("ho inizializzato la board");
 		this.round = 0;
 		this.period = 0;
 		changePeriod();
-		// System.out.println("ho fatto change period");
 		changeRound();
-		// System.out.println(board);
-		// ChangePlayer changePlayer= new ChangePlayer(this.currentPlayer);
-		// this.notifyObserver(changePlayer);
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
 		this.notifyObserver(changeInitializeBoard);
 
@@ -103,22 +92,15 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		
-		//System.out.println(personalBonusTileSimple);
-		
 		currentTurnOrder = createTurnOrder(players);
 		this.currentPlayer = currentTurnOrder.get(0);
 		ColorPlayer[] colors = ColorPlayer.values();
-		// System.out.println("Giocatore 1: " + currentTurnOrder.get(0));
-		// System.out.println("Giocatore 2: " + currentTurnOrder.get(1));
 		for (int i = 0; i < currentTurnOrder.size(); i++) {
-			// System.out.println(currentTurnOrder.get(i));
 			currentTurnOrder.get(i).setColor(colors[i]);
-			// System.out.println(currentTurnOrder.get(i).getColor());
 			ChangeColor changeColor = new ChangeColor(currentTurnOrder.get(i), colors[i]);
 			this.notifyObserver(changeColor);
 		}
 		for (Player p : currentTurnOrder) {
-			//System.out.println(personalBonusTileSimple);
 			p.setWood(2);
 			ChangeWood changeWood = new ChangeWood(p, p.getWood());
 			this.notifyObserver(changeWood);
@@ -232,23 +214,15 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		// refresh council palace
 		board.getCouncilPalace().refresh();
 
-		// System.out.println("roll dice");
+	
 		board.getBlackDice().setValue();
 		board.getOrangeDice().setValue();
 		board.getWhiteDice().setValue();
 
-		// System.out.println("ho settato il valore dei dadi");
 		for (Player p : players) {
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
-			// System.out.println("Il valore del black è" +
-			// p.getBlackRelative().getValue());
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
-			// System.out.println("Il valore del white è" +
-			// p.getWhiteRelative().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
-			// System.out.println("Il valore del orange è" +
-			// p.getOrangeRelative().getValue());
-
 		}
 
 		ChangeRound changeRound = new ChangeRound(round, board);
@@ -260,7 +234,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		period++;
 
 		if (period == 4) {
-			checkWinner(); // TODO define checkwinner
+			checkWinner();
 		} else {
 			ChangePeriod changePeriod = new ChangePeriod(period);
 		}
@@ -486,8 +460,6 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void actionNotApplicable(Player player)

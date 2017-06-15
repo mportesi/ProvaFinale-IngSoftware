@@ -20,11 +20,6 @@ public class ChangeMilitaryPoint implements Change {
 		if(client.getName().equals(player.getName())){
 			client.getPlayer().setMilitaryPoint(militaryPoint);
 		}
-		/*for (Player p : client.getPlayers()) {
-			if (player.equals(p)) {
-				p.setMilitaryPoint(militaryPoint);
-			}
-		}*/
 
 	}
 

@@ -28,8 +28,6 @@ public class TerritoryCard extends Card {
 	// to apply immediate effects
 	@Override
 	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		
-		System.out.println("Gli effetti della carta sono: " + immediateEffects);
 		for (Effect e : immediateEffects) {
 			if (e != null) {
 				e.apply(player, play);
@@ -43,19 +41,14 @@ public class TerritoryCard extends Card {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
 			gain.apply(player, play);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

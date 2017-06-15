@@ -51,7 +51,6 @@ public class HarvestAndProductionArea extends Observable<Change> implements Seri
 	}
 
 	public boolean isAlreadyPresent(Player player) {
-		System.out.println("Sono nell'already present()");
 		if (rightRelatives.size() ==  0){
 			System.out.println("false");
 			return false;

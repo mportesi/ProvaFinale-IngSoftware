@@ -43,12 +43,8 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 	public boolean isApplicable() {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
-			System.out.println("tower is free");
 			if (relative.getValue() >= tower.floors.get(floor).getCost()) {
-				System.out.println("The relative has the bigger value");
 				if (tower.isPresent(player) == false) {
-					System.out.println("There isn't the player");
-					System.out.println("true");
 					check = checkCardCost();
 					if (tower.isPresentAnyone()) {
 						if (player.getCoin() >= tower.getCost()) {
@@ -56,7 +52,6 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 						} else
 							check = false;
 					}
-					System.out.println(check);
 					return check;
 				}
 			}

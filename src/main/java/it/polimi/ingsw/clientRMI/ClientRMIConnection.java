@@ -54,7 +54,7 @@ public class ClientRMIConnection implements Serializable {
 		
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
 
-		System.out.println("Tell me your name");
+		System.out.println("\nTell me your name\n");
 		String name = stdIn.nextLine();
 		clientModel.setName(name);
 	
@@ -62,23 +62,21 @@ public class ClientRMIConnection implements Serializable {
 		// the server)
 		serverStub.registerClient(rmiView, name);
 		
-		System.out.println("Press a key if you want to play otherwise write 'quit'");
+		System.out.println("\nPress a key if you want to play otherwise write 'quit'");
 		
 		while (stdIn.nextLine()!="quit") {
 			if(clientModel.getCurrentPlayer()!=null){
 				
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
-					System.out.println(clientModel.getCurrentPlayer().getName());
-					System.out.println(clientModel.getPlayer());
-					
+					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn.");
 					// Capture input from user
 					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel);
-					System.out.println("Press a key to start the action");
+					System.out.println("\nPress a key to start the action");
 					String inputLine = stdIn.nextLine();
 					Relative relative=commandLineInterface.chooseTheRelative();
 					PutRelative putRelative = commandLineInterface.chooseTheAction(relative);
 					serverStub.notifyObserver(putRelative);
-					System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
+					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
 
 			}}
 		}

@@ -41,7 +41,6 @@ public class ClientOutHandler implements Runnable {
 			socketOut.writeObject(register);
 			socketOut.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		InitializeGame init= new InitializeGame();
@@ -49,7 +48,6 @@ public class ClientOutHandler implements Runnable {
 			socketOut.writeObject(init);
 			socketOut.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try
@@ -78,7 +76,6 @@ public class ClientOutHandler implements Runnable {
 				Relative relative=cli.chooseTheRelative();
 				action=cli.chooseTheAction(relative);
 			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("test the action");
@@ -90,7 +87,6 @@ public class ClientOutHandler implements Runnable {
 			socketOut.writeObject(action);
 			socketOut.flush();
 			}catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

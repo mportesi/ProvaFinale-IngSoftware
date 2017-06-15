@@ -48,7 +48,6 @@ public class BuildingCard extends Card {
 	@Override
 		public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
-				System.out.println("Gli effetti della carta sono: "+ immediateEffects);
 			for (Effect e : immediateEffects) {
 				if (e != null) {
 					e.apply(player, play);

@@ -14,8 +14,6 @@ public class InitializeGame extends Observable<Change> implements Action {
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		
-		System.out.println("Sto facendo initializeGame.apply()");
 		play.initializePlayer();
 		play.initializeBoard();
 		

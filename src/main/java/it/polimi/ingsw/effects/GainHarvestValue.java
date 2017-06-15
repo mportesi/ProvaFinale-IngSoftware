@@ -18,9 +18,6 @@ public class GainHarvestValue extends Effect {
 	@Override
 	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		//attiva gli effetti permanenti con valore tot
-		System.out.println("il player è: "+player);
-		System.out.println(player.getPersonalBonusTileSimple());
-		
 		if (harvestValue >= player.getPersonalBonusTileSimple().getCostHarvest()){
 		player.getPersonalBonusTileSimple().applyHarvestEffect(player, play);		
 	}

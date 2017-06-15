@@ -20,19 +20,9 @@ public class Controller implements Observer<Action> {
 		}
 		
 		
-
-		/*@Override
-		public void update(Change change) {
-			// TODO Auto-generated method stub
-			change.applyChange();
-
-		}*/
-		
 		@Override
 		public void update(Action action) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-			// TODO Auto-generated method stub
 			action.apply(play);
-			//System.out.println("E' stata fatta apply()");
 
 		}
 
@@ -46,7 +36,6 @@ public class Controller implements Observer<Action> {
 
 		@Override
 		public void update() {
-			// TODO Auto-generated method stub
 			
 		}
 

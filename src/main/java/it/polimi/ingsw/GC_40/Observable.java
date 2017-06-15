@@ -17,7 +17,6 @@ public abstract class Observable<C> {
 	
 	public void registerObserver(Observer<C> o){
 		observers.add(o);
-		System.out.println(o);
 	}
 	
 	
@@ -28,10 +27,8 @@ public abstract class Observable<C> {
 	}
 	
 	public void notifyObserver(C c) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-	//	System.out.println("sono nella notify devo fare l'update dell osservatore" + this.observers.get(0));
+	
 		for (Observer<C> o: this.observers){
-			
-			System.out.println("notifico"+ o + "il cambiamento"  + c);
 			o.update(c);
 		}
 	}

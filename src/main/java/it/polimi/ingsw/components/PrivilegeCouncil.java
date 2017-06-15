@@ -87,17 +87,6 @@ public class PrivilegeCouncil implements Serializable{
 		}
 	}
 	
-	/*
-	
-	public static void giveBonus(Piece piece, Player player){
-		piece.incrementPrivilegeCouncil(player);
-		
-		}
 
-	//It is useless in this class but this class extend Piece
-	@Override
-	public void incrementPrivilegeCouncil(Player player) {
-		return;
-	} */
 }
 

@@ -195,22 +195,18 @@ public class JsonCard {
 	}
 
 	public  List<Card> getCharacterDeck() {
-		// TODO Auto-generated method stub
 		return characterDeck;
 	}
 	
 	public  List<Card> getTerritoryDeck() {
-		// TODO Auto-generated method stub
 		return territoryDeck;
 	}
 	
 	public  List<Card> getVentureDeck() {
-		// TODO Auto-generated method stub
 		return ventureDeck;
 	}
 	
 	public  List<Card> getBuildingDeck() {
-		// TODO Auto-generated method stub
 		return buildingDeck;
 	}
 

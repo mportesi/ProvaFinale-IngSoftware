@@ -56,8 +56,6 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// take the bonus
-			//market.giveBonus(player, market);
-			//market.applyEffect(player);
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(bonus);
 			gain.apply(player, play);
 			play.changeCurrentPlayer();

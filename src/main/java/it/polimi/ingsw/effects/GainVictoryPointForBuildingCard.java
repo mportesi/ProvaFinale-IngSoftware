@@ -20,7 +20,6 @@ public class GainVictoryPointForBuildingCard extends Effect {
 
 	@Override
 	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// TODO Auto-generated method stub
 		BuildingCard buildingCard;
 		int counter= player.counter("buildingCard");
 		player.incrementVictoryPoint(victoryPoint*counter, play);

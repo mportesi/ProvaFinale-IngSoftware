@@ -18,7 +18,6 @@ public class ChangeNotApplicable implements Change {
 	@Override
 	public void applyChange(ClientModel client)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// TODO Auto-generated method stub
 		if(client.getPlayer().getName().equals(player.getName())){
 			System.out.println("The action did by " + player.getName() + "wasn't correct!");
 			client.setCurrentPlayer(player);

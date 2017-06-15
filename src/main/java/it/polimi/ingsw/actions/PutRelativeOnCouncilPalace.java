@@ -37,7 +37,6 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 
 	}
 
-	// PROBLEMA
 	@Override
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -49,7 +48,6 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// The player receive the bonus
-			// TODO give player the council privilege bonus choice
 			councilPalace.applyEffect(play, player, bonus);
 			play.changeCurrentPlayer();
 		} else {

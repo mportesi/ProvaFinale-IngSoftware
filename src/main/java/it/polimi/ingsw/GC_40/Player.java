@@ -65,7 +65,6 @@ public class Player extends Observable<Change> implements Serializable {
 		hasWhiteRelative = true;
 		hasOrangeRelative = true;
 		hasNeutralRelative = true;
-		//PersonalBonusTile personalBonusTileSimple;
 		registerObserver(play);
 	}
 
@@ -269,6 +268,7 @@ public class Player extends Observable<Change> implements Serializable {
 			territoryCard.add((TerritoryCard) card);
 			ChangeTerritoryCard changeTerritoryCard = new ChangeTerritoryCard(this, territoryCard);
 			play.notifyObserver(changeTerritoryCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this));
 			break;
 		}
 		case "buildingCard": {
@@ -276,6 +276,7 @@ public class Player extends Observable<Change> implements Serializable {
 			buildingCard.add((BuildingCard) card);
 			ChangeBuildingCard changeBuildingCard = new ChangeBuildingCard(this, buildingCard);
 			play.notifyObserver(changeBuildingCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this));
 			break;
 		}
 		case "characterCard": {
@@ -283,6 +284,7 @@ public class Player extends Observable<Change> implements Serializable {
 			characterCard.add((CharacterCard) card);
 			ChangeCharacterCard changeCharacterCard = new ChangeCharacterCard(this, characterCard);
 			play.notifyObserver(changeCharacterCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this));
 			break;
 		}
 		case "ventureCard": {
@@ -290,6 +292,7 @@ public class Player extends Observable<Change> implements Serializable {
 			ventureCard.add((VentureCard) card);
 			ChangeVentureCard changeVentureCard = new ChangeVentureCard(this, ventureCard);
 			play.notifyObserver(changeVentureCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this));
 			break;
 		}
 		}
@@ -436,7 +439,6 @@ public class Player extends Observable<Change> implements Serializable {
 
 
 	public void setFreeRelative(Relative relative) {
-		// TODO Auto-generated method stub
 		System.out.println(relative);
 		System.out.println(blackRelative);
 		if(relative.equals(blackRelative)){
@@ -458,7 +460,6 @@ public class Player extends Observable<Change> implements Serializable {
 
 
 	public void setPersonalBonusTile(PersonalBonusTile personalBonusTileSimple, PersonalBonusTile personalBonusTileAdvanced) {
-		// TODO Auto-generated method stub
 		this.personalBonusTileSimple = personalBonusTileSimple;
 		this.personalBonusTileAdvcanced = personalBonusTileAdvanced;
 		
@@ -467,7 +468,6 @@ public class Player extends Observable<Change> implements Serializable {
 
 
 	public PersonalBonusTile getPersonalBonusTileSimple() {
-		// TODO Auto-generated method stub
 		return personalBonusTileSimple;
 	}
 

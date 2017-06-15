@@ -135,7 +135,7 @@ public class CommandLineInterface implements Serializable {
 		case 2: {
 			String bonus = choosePrivilegeCouncil();
 			putRelative = new PutRelativeOnCouncilPalace(client.getPlayer(), relative,
-					client.getBoard().getCouncilPalace(), bonus); // TODO
+					client.getBoard().getCouncilPalace(), bonus);
 			break;
 		}
 		case 3: {

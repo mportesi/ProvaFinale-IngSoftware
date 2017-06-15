@@ -88,73 +88,28 @@ public class Board extends Observable<Change> implements Serializable {
 		for (int i = territoryFloorJson.size()-1; i>=0; i--){
 			territoryFloor.add(new Floor(territoryFloorJson.get(i), play));
 		}
-		/*for (Floor f : territoryFloorJson) {
-			territoryFloor.add(new Floor(f, play));
-		}*/
 		territoryTower = new Tower("territory", territory1, territory2, territory3, territoryFloor, play);
-		/*
-		 * for (int i =0; i< territory1.size(); i++){
-		 * System.out.println("carta territorio: " + territory1.get(i)); } for
-		 * (int i =0; i< jsonFloor.getTerritoryFloors().size(); i++){
-		 * System.out.println("Ho creato il piano territory: " +
-		 * jsonFloor.getTerritoryFloors().get(i));
-		 * System.out.println("Piano della torre: " +
-		 * territoryTower.floors.get(i));
-		 * 
-		 * }
-		 */
+		
 		ArrayList<Floor> buildingFloorJson = jsonFloor.getBuildingFloors();
 		ArrayList<Floor> buildingFloor = new ArrayList<>();
-		for (Floor f : buildingFloorJson) {
-			buildingFloor.add(new Floor(f, play));
+		for (int i = territoryFloorJson.size()-1; i>=0; i--){
+			buildingFloor.add(new Floor(buildingFloorJson.get(i), play));
 		}
 		buildingTower = new Tower("building", building1, building2, building3, buildingFloor, play);
-		/*
-		 * for (int i =0; i< building1.size(); i++){
-		 * System.out.println("carta building: " + building1.get(i)); } for (int
-		 * i =0; i< jsonFloor.getBuildingFloors().size(); i++){
-		 * System.out.println("Ho creato il piano building: " +
-		 * jsonFloor.getBuildingFloors().get(i));
-		 * System.out.println("Piano della torre: " +
-		 * buildingTower.floors.get(i));
-		 * 
-		 * }
-		 */
+		
 		ArrayList<Floor> characterFloorJson = jsonFloor.getCharacterFloors();
 		ArrayList<Floor> characterFloor = new ArrayList<>();
-		for (Floor f : characterFloorJson) {
-			characterFloor.add(new Floor(f, play));
+		for (int i = characterFloorJson.size()-1; i>=0; i--){
+			characterFloor.add(new Floor(characterFloorJson.get(i), play));
 		}
 		characterTower = new Tower("character", character1, character2, character3, characterFloor, play);
-		/*
-		 * for (int i =0; i< character1.size(); i++){
-		 * System.out.println("carta character: " + character1.get(i)); } for
-		 * (int i =0; i< jsonFloor.getCharacterFloors().size(); i++){
-		 * System.out.println("Ho creato il piano character: " +
-		 * jsonFloor.getCharacterFloors().get(i));
-		 * System.out.println("Piano della torre: " +
-		 * characterTower.floors.get(i));
-		 * 
-		 * }
-		 */
+	
 		ArrayList<Floor> ventureFloorJson = jsonFloor.getTerritoryFloors();
 		ArrayList<Floor> ventureFloor = new ArrayList<>();
-		for (Floor f : ventureFloorJson) {
-			ventureFloor.add(new Floor(f, play));
+		for (int i = ventureFloorJson.size()-1; i>=0; i--){
+			ventureFloor.add(new Floor(ventureFloorJson.get(i), play));
 		}
 		ventureTower = new Tower("venture", venture1, venture2, venture3, ventureFloor, play);
-		/*
-		 * for (int i =0; i< venture1.size(); i++){
-		 * System.out.println("carta venture: " + venture1.get(i)); } for (int i
-		 * =0; i< jsonFloor.getVentureFloors().size(); i++){
-		 * System.out.println("Ho creato il piano venture: " +
-		 * jsonFloor.getVentureFloors().get(i));
-		 * System.out.println("Piano della torre: " +
-		 * ventureTower.floors.get(i));
-		 * 
-		 * }
-		 */
-		// System.out.println(jsonFloor.getTerritoryFloors());
 
 		JsonCouncilPalace jsonCouncil = new JsonCouncilPalace();
 		jsonCouncil.importCouncilPalace();
@@ -180,20 +135,15 @@ public class Board extends Observable<Change> implements Serializable {
 			JsonMarket jsonMarket = new JsonMarket();
 			jsonMarket.importMarket();
 			
-			for (int i=0; i<4; i++){
-			System.out.println(jsonMarket.getMarketBuilding(i));
-			}
 			ArrayList<MarketBuilding> marketJson = new ArrayList<>();
 			for (int i = 0; i <= 1; i++) {
 				marketJson.add(i, jsonMarket.getMarketBuilding(i));
-				System.out.println("ho creato due market "+ marketJson.get(i).getCost());
 				market.add(i, new MarketBuilding(marketJson.get(i), play));
 			}
 
 		}
-		System.out.println("exit");
 
-		;
+		
 
 		if (numberOfPlayers >= 3) {
 			JsonHarvestAndProduction jsonHarvestAndProduction = new JsonHarvestAndProduction();
@@ -245,10 +195,7 @@ public class Board extends Observable<Change> implements Serializable {
 
 			}
 		}
-		/*
-		 * for(int i=0; i<newDeck.size(); i++){
-		 * System.out.println(newDeck.get(i)); }
-		 */
+		
 		return newDeck;
 
 	}
@@ -268,7 +215,6 @@ public class Board extends Observable<Change> implements Serializable {
 	}
 
 	public CouncilPalace getCouncilPalace() {
-		// TODO Auto-generated method stub
 		return councilPalace;
 	}
 
