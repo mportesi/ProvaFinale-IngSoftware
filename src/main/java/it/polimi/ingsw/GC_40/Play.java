@@ -105,6 +105,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
 		PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
 		
+		System.out.println(personalBonusTileSimple);
+		
 		currentTurnOrder = createTurnOrder(players);
 		this.currentPlayer = currentTurnOrder.get(0);
 		ColorPlayer[] colors = ColorPlayer.values();
@@ -120,6 +122,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		for (Player p : currentTurnOrder) {
 			System.out.println(personalBonusTileSimple);
 			p.setPersonalBonusTile(personalBonusTileSimple);
+			//ChangePersonalBonusTile changePersonalBonusTile = new ChangePersonalBonusTile (p, p.getPersonalBonusTile()); TO DO
 			p.setWood(2);
 			ChangeWood changeWood = new ChangeWood(p, p.getWood());
 			this.notifyObserver(changeWood);
