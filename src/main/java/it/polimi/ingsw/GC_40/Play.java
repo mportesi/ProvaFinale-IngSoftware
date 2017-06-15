@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_40;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.rmi.AlreadyBoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -378,25 +379,6 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			}
 		}
 	}
-	/*
-	 * "victoryPointForCharacter" : { Set list =
-	 * JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
-	 * 
-	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
-	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfTerritoryCard =
-	 * p.counter("characterCard"); if (numberOfTerritoryCard >= key){
-	 * p.incrementVictoryPoint(value); break; }}}
-	 * 
-	 * case "victoryPointForResource" : { Set list =
-	 * JSon.finalVictoryPointGain.keySet(); Iterator iter = list.iterator();
-	 * 
-	 * while(iter.hasNext()) { int key = (int)(iter.next()); int value =
-	 * (int)(JSon.finalVictoryPointGain.get(key)); int numberOfResource =
-	 * p.resourceCounter(); p.incrementVictoryPoint(numberOfResource/5); break;
-	 * }}
-	 * 
-	 * } }}
-	 */
 
 	public void endGame() {
 		// restituisce la classifica e il vincitore
@@ -420,24 +402,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
-	/*
-	 * @Override public void update() { // TODO Auto-generated method stub
-	 * 
-	 * }
-	 */
-
 	@Override
 	public void update(Change c)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("SONO IL PLAY ho ricevuto il cambiamento  " + c);
-		update2(c);
 		this.notifyObserver(c);
-	}
-
-	public void update2(Change c)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		this.notifyObserver(c);
-
 	}
 
 	public void createNewPlayer(String name)
@@ -446,18 +414,32 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		if (players == null) {
 			this.players = new ArrayList<Player>();
 		}
+		if (players.size() < 4) {
+			Player player = new Player(UUID.randomUUID(), this, name);
+			players.add(player);
+			player.registerObserver(this);
+			notifyObserver(new ChangeNewPlayer(player, this));
 
-		Player player = new Player(UUID.randomUUID(), this, name);
-		System.out.println("IL PLAY CORRENTE: " + this);
-		players.add(player);
-		player.registerObserver(this);
-		notifyObserver(new ChangeNewPlayer(player, this));
+			if (players.size() == 2) {
+				Thread.sleep(10 * 10000);
+				initializePlay();
+			}
+		} else if (players.size() == 4) {
+			this.players = new ArrayList<Player>();
+			if (players == null) {
+				this.players = new ArrayList<Player>();
+			}
+			if (players.size() < 4) {
+				Player player = new Player(UUID.randomUUID(), this, name);
+				players.add(player);
+				player.registerObserver(this);
+				notifyObserver(new ChangeNewPlayer(player, this));
 
-		if (players.size() == 2) {
-			initializePlay();
-
-			// verifyNumberOfPlayer(name);
-			return;
+				if (players.size() == 2) {
+					Thread.sleep(10 * 10000);
+					initializePlay();
+				}
+			}
 		}
 
 	}
@@ -490,24 +472,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	// else if(players.size()==4)
 
-	// {
-
-	/*
-	 * initializePlay();
-	 * 
-	 * return;
-	 * 
-	 * }
-	 * 
-	 */
-
 	private void initializePlay()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("sono in initializePlay()");
 		initializePlayer();
-		System.out.println("ho fatto initializePlayer()");
 		initializeBoard();
-		System.out.println("ho fatto initializeBoard()");
 		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
 		this.notifyObserver(changeInitializePlay);
 	}
