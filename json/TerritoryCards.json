@@ -1,0 +1,173 @@
+[{"name":"castle",
+  "type":"territoryCard",
+  "period":3,
+  "immediateEffect":[
+    {"type":"GainCoin", "amount":2},
+    {"type":"GainVictoryPoint", "amount":2}
+  ]
+},
+{"name":"hamlet",
+  "type":"territoryCard",
+  "period":1,
+  "immediateEffect":[
+  ]
+},
+{"name":"monastery",
+  "type":"territoryCard",
+  "period":1,
+  "immediateEffect":[
+    {"type":"GainServant", "amount":1},
+    {"type":"GainMilitaryPoint", "amount":2}
+  ]
+},
+{"name":"tradingPost",
+  "type":"territoryCard",
+  "period":1,
+  "immediateEffect":[
+  ]
+},
+{"name":"forest",
+  "type":"territoryCard",
+  "period":1,
+  "immediateEffect":[
+    {"type":"GainWood", "amount":1}
+  ]
+},
+{"name":"fortress",
+  "type":"territoryCard",
+  "period":1,
+  "immediateEffect":[
+  ]
+},
+{"name":"city",
+  "type":"territoryCard",
+  "period":1,
+  "immediateEffect":[
+    {"type":"GainCoin", "amount":3}
+  ]
+},
+{"name":"gravelPit",
+  "type":"territoryCard",
+  "period":1,
+  "immediateEffect":[
+    {"type":"GainStone", "amount":2}
+  ]
+},
+{"name":"miningVillage",
+  "type":"territoryCard",
+  "period":2,
+  "immediateEffect":[
+    {"type":"GainStone", "amount":1},
+    {"type":"GainServant", "amount":2}
+  ]
+},
+{"name":"hermitage",
+  "type":"territoryCard",
+  "period":2,
+  "immediateEffect":[
+    {"type":"GainFaithPoint", "amount":1}
+  ]
+},
+{"name":"dukedom",
+  "type":"territoryCard",
+  "period":2,
+  "immediateEffect":[
+    {"type":"GainCoin", "amount":4}
+  ]
+},
+{"name":"countryHouse",
+  "type":"territoryCard",
+  "period":2,
+  "immediateEffect":[
+  ]
+},
+{"name":"possession",
+  "type":"territoryCard",
+  "period":2,
+  "immediateEffect":[
+    {"type":"GainWood", "amount":1},
+    {"type":"GainServant", "amount":2}
+  ]
+},
+{"name":"mountainVillage",
+  "type":"territoryCard",
+  "period":2,
+  "immediateEffect":[
+    {"type":"Gainservant", "amount":1}
+  ]
+},
+{"name":"goldmine",
+  "type":"territoryCard",
+  "period":2,
+  "immediateEffect":[
+    {"type":"GainCoin", "amount":1}
+  ]
+},
+{"name":"stoneQuarry",
+  "type":"territoryCard",
+  "period":2,
+  "immediateEffect":[
+    {"type":"GainWood", "amount":1}
+  ]
+},
+{"name":"borough",
+  "type":"territoryCard",
+  "period":3,
+  "immediateEffect":[
+    {"type":"GainServant", "amount":1},
+    {"type":"GainMilitaryPoint", "amount":2}
+  ]
+},
+{"name":"mercantileCity",
+  "type":"territoryCard",
+  "period":3,
+  "immediateEffect":[
+    {"type":"GainCoin", "amount":1},
+    {"type":"Gainservant", "amount":1}
+  ]
+},
+{"name":"estate",
+  "type":"territoryCard",
+  "period":3,
+  "immediateEffect":[
+    {"type":"GainWood", "amount":1},
+    {"type":"GainVictoryPoint", "amount":1}
+  ]
+},
+{"name":"colony",
+  "type":"territoryCard",
+  "period":3,
+  "immediateEffect":[
+    {"type":"GainMilitaryPoint", "amount":2}
+  ]
+},
+{"name":"sanctuary",
+  "type":"territoryCard",
+  "period":3,
+  "immediateEffect":[
+    {"type":"GainFaithPoint", "amount":1}
+  ]
+},
+{"name":"marbleQuarry",
+  "type":"territoryCard",
+  "period":3,
+  "immediateEffect":[
+    {"type":"GainVictoryPoint", "amount":3}
+  ]
+},
+{"name":"province",
+  "type":"territoryCard",
+  "period":3,
+  "immediateEffect":[
+    {"type":"GainStone", "amount":1},
+    {"type":"GainPrivilegeCouncil", "amount":1}
+  ]
+},
+{"name":"wood",
+  "type":"territoryCard",
+  "period":1,
+  "immediateEffect":[
+    {"type":"GainWood", "amount":1}
+  ]
+}
+]
