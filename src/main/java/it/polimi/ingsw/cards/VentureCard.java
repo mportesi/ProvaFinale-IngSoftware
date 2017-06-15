@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
+import it.polimi.ingsw.effects.HasPrivilege;
 
 public class VentureCard extends Card {
 	private int alternativeCostBoolean;
@@ -30,6 +31,7 @@ public class VentureCard extends Card {
 		this.effects=effects;
 		immediateEffects = effects.createListOfEffect();
 		alternativeCost=true;
+		setGainPrivilegeCouncil();
 		
 	};
 
@@ -40,6 +42,7 @@ public class VentureCard extends Card {
 		militaryCost = 0;
 		this.effects = effects;
 		immediateEffects = effects.createListOfEffect();
+		setGainPrivilegeCouncil();
 	}
 
 	public VentureCard(String type, String name, int period, int militaryRequirement, int militaryCost,
@@ -51,7 +54,7 @@ public class VentureCard extends Card {
 		cost = null;
 		this.effects=effects;
 		immediateEffects = effects.createListOfEffect();
-
+		setGainPrivilegeCouncil();
 	};
 
 	@Override
@@ -155,5 +158,17 @@ public class VentureCard extends Card {
 	}
 	public int getMilitaryCost(){
 		return militaryCost;
+	}
+	public boolean isGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
+	}
+
+	public void setGainPrivilegeCouncil() {
+		for (Effect e : immediateEffects) {
+			if (e instanceof HasPrivilege) {
+				this.gainPrivilegeCouncil = true;
+			}
+		}
+		
 	}
 }
