@@ -23,6 +23,7 @@ public class ChangeRound implements Change {
 	public void applyChange(ClientModel client) {
 		
 		client.setRound(round);
+		client.setBoard(board);
 		client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());
 		client.getPlayer().getWhiteRelative().setValue(board.getWhiteDice().getValue());
 		client.getPlayer().getOrangeRelative().setValue(board.getOrangeDice().getValue());

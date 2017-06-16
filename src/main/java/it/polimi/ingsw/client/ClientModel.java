@@ -101,8 +101,7 @@ public class ClientModel implements Serializable{
 
 	public void setMarket(MarketBuilding market, Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		for(MarketBuilding m: board.getMarket()){
-			if(m.equals(market)){
-				System.out.println("sono nell'if");
+			if(m.getType().equals(market.getType())){
 				m.setOccupied(player, relative, m);
 			}
 		}

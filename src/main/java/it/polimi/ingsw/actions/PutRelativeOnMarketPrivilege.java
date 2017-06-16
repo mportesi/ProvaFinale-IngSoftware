@@ -39,7 +39,7 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 
 	@Override
 	public boolean isApplicable() {
-		if (market.IsOccupied()) {
+		if (market.isOccupied()) {
 			return false;
 		} else if (relative.getValue() >= market.getCost()) {
 			return true;

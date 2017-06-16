@@ -51,12 +51,11 @@ public class CommandLineInterface implements Serializable {
 		switch (input) {
 		case 1: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())) {
-				System.out.println("has boolean relative black" + client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative()));
 				relative = client.getPlayer().getBlackRelative();
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
-				chooseTheRelative();
+				relative= chooseTheRelative();
 				break;
 			}
 
@@ -67,7 +66,7 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
-				chooseTheRelative();
+				relative= chooseTheRelative();
 				break;
 			}
 
@@ -78,7 +77,7 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
-				chooseTheRelative();
+				relative= chooseTheRelative();
 				break;
 			}
 
@@ -89,21 +88,22 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
-				chooseTheRelative();
+				relative= chooseTheRelative();
 				break;
 			}
-
+		
 		}
-		}
-		if(input<0 || input> 4){
+		default:{
 			System.out.println("\nError: insert again");
-			chooseTheRelative();
-			}
+			relative= chooseTheRelative();
+			break;
+		}
+		}
 		}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
-			chooseTheRelative();
-			
+			relative= chooseTheRelative();
+			return relative;
 		}
 		
 		

@@ -482,6 +482,16 @@ public class Player extends Observable<Change> implements Serializable {
 
 
 
+	public void setFreeAllRelatives() {
+		hasBlackRelative=true;
+		hasOrangeRelative=true;
+		hasWhiteRelative=true;
+		hasNeutralRelative=true;
+		
+	}
+
+
+
 	
 	
 
