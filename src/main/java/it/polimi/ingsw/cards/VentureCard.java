@@ -158,10 +158,10 @@ public class VentureCard extends Card {
 		return cost.get("servant");
 	}
 	public int getMilitaryReq(){
-		if( cost.get("militaryRequirement")==null){
-			return 0;
+		if(cost.get("militaryRequirement")!=null){
+			return militaryRequirement;
 		}
-		return militaryRequirement;
+		return 0;
 	}
 	public int getMilitaryCost(){
 		if( cost.get("militaryCost")==null){

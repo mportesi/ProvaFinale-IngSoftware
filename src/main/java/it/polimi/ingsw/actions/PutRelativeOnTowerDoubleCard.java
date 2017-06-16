@@ -166,6 +166,9 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 	private boolean checkSecondCardCost(){
 		boolean value=false;
 		cardToGive = tower.floors.get(floor).getCard();
+		if(secondT.floors.get(secondF).getCard()==null){
+			return false;
+		}
 		secondCardToGive = secondT.floors.get(secondF).getCard();
 		if(((CharacterCard) cardToGive).getSecondCardValue()>=secondT.floors.get(floor).getCost()){
 			if(((CharacterCard) cardToGive).getSecondCard().equals(secondCardToGive.getType()) || ((CharacterCard) cardToGive).getSecondCard()=="anyone"){
