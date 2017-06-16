@@ -82,7 +82,8 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	
 	@Override
 	public String toString() {
-		if(player!=null){
+		if(isOccupied){
+			System.out.println("is occupied");
 			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\nWith bonus: " + bonus +"\nIs occupied by " +player+ " with the relative " + relative.getColor());
 		}
 		return ("The market of type: " + type + "\n" + "With cost: " + cost +"\nWithBonus: " + bonus + "\nIs free!");
@@ -100,7 +101,7 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 
 
 	public void setOccupied(Player player, Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		isOccupied = true;
+		this.isOccupied = true;
 		this.relative=relative;
 		this.player=player;
 	}
