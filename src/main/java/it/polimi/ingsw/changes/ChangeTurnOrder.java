@@ -18,6 +18,7 @@ public class ChangeTurnOrder implements Change {
 	@Override
 	public void applyChange(ClientModel client) {
 		client.setCurrentTurnOrder(currentTurnOrder);
+		System.out.println("The current turn order is: "+ currentTurnOrder);
 	}
 
 

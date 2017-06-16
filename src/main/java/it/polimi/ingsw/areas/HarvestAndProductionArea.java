@@ -117,6 +117,7 @@ public class HarvestAndProductionArea extends Observable<Change> implements Seri
 
 	@Override
 	public String toString() {
+		
 		if (valueOfRightArea == 0 && malus == 0) {
 			if (leftRelative != null) {
 				return ("The harvestAndProductionArea of type: " + type + " is: \n" + "The left value is "

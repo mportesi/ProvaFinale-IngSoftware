@@ -15,5 +15,11 @@ public class HasPrivilege extends Effect{
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 	}
+	
+	@Override
+	public String toString(){
+		return ("Effect: gainPrivilegeCouncil");
+	}
+	
 
 }

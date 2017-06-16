@@ -410,7 +410,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 				notifyObserver(new ChangeNewPlayer(player, this));
 
 				if (players.size() == 2) {
-					Thread.sleep(10 * 10000);
+					Thread.sleep(10 * 1000000);
 					initializePlay();
 				}
 			}

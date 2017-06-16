@@ -206,11 +206,11 @@ public class Board extends Observable<Change> implements Serializable {
 		return ("Board" + "\n" + territoryTower + "\n" + buildingTower + "\n" + characterTower + "\n" + ventureTower
 				+ "\n" + councilPalace + "\n" + market.get(0) + "\n" + market.get(1) + "\n" + market.get(2) + "\n"
 				+ market.get(3) + "\n" + harvestArea + "\n" + productionArea + "\n" + blackDice + "\n" + whiteDice
-				+ "\n" + orangeDice);}
+				+ "\n" + orangeDice + "\nNumber of players: "+ numberOfPlayers);}
 		else{
 			return("Board" + "\n" + territoryTower + "\n\n" + buildingTower + "\n\n" + characterTower + "\n\n" + ventureTower
 					+ "\n\n\n" + councilPalace + "\n\n\n" + market.get(0) + "\n\n" + market.get(1) + "\n\n\n" + harvestArea + "\n\n" + productionArea + "\n\n\n" + blackDice + "\n" + whiteDice
-					+ "\n" + orangeDice);
+					+ "\n" + orangeDice + "\nNumber of players: "+ numberOfPlayers);
 		}
 	}
 
