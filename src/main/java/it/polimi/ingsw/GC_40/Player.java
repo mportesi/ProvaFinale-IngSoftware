@@ -268,7 +268,7 @@ public class Player extends Observable<Change> implements Serializable {
 			territoryCard.add((TerritoryCard) card);
 			ChangeTerritoryCard changeTerritoryCard = new ChangeTerritoryCard(this, territoryCard);
 			play.notifyObserver(changeTerritoryCard);}
-			else play.notifyObserver(new ChangeNotApplicable(this));
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much territory cards!"));
 			break;
 		}
 		case "buildingCard": {
@@ -276,7 +276,7 @@ public class Player extends Observable<Change> implements Serializable {
 			buildingCard.add((BuildingCard) card);
 			ChangeBuildingCard changeBuildingCard = new ChangeBuildingCard(this, buildingCard);
 			play.notifyObserver(changeBuildingCard);}
-			else play.notifyObserver(new ChangeNotApplicable(this));
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much building cards!"));
 			break;
 		}
 		case "characterCard": {
@@ -284,7 +284,7 @@ public class Player extends Observable<Change> implements Serializable {
 			characterCard.add((CharacterCard) card);
 			ChangeCharacterCard changeCharacterCard = new ChangeCharacterCard(this, characterCard);
 			play.notifyObserver(changeCharacterCard);}
-			else play.notifyObserver(new ChangeNotApplicable(this));
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much character cards!"));
 			break;
 		}
 		case "ventureCard": {
@@ -292,7 +292,7 @@ public class Player extends Observable<Change> implements Serializable {
 			ventureCard.add((VentureCard) card);
 			ChangeVentureCard changeVentureCard = new ChangeVentureCard(this, ventureCard);
 			play.notifyObserver(changeVentureCard);}
-			else play.notifyObserver(new ChangeNotApplicable(this));
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much venture cards!"));
 			break;
 		}
 		}
@@ -414,7 +414,7 @@ public class Player extends Observable<Change> implements Serializable {
 		if(relative.equals(orangeRelative)){
 			hasOrangeRelative=false;
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			hasNeutralRelative=false;
 		}
 		
@@ -430,7 +430,7 @@ public class Player extends Observable<Change> implements Serializable {
 		if(relative.equals(orangeRelative)){
 			return hasOrangeRelative;
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			return hasNeutralRelative;
 		}
 		return false;

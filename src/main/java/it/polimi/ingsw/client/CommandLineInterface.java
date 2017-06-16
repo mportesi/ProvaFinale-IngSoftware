@@ -45,15 +45,19 @@ public class CommandLineInterface implements Serializable {
 		System.out.println("Il tuo stato è: \n" + client.getPlayer());
 		System.out.println("\n\nLa board è: \n" + client.getBoard());
 		System.out.println("\n Choose what relative you want to use: \n 1)  black \n 2) white \n 3) orange \n 4) neutral");
-		int input = scanner.nextInt();
 		Relative relative = null;
-		try{switch (input) {
+		int input=0;
+		try{ input = scanner.nextInt();
+		switch (input) {
 		case 1: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())) {
+				System.out.println("has boolean relative black" + client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative()));
 				relative = client.getPlayer().getBlackRelative();
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
+				chooseTheRelative();
+				break;
 			}
 
 		}
@@ -63,6 +67,8 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
+				chooseTheRelative();
+				break;
 			}
 
 		}
@@ -72,6 +78,8 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
+				chooseTheRelative();
+				break;
 			}
 
 		}
@@ -81,19 +89,25 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
+				chooseTheRelative();
+				break;
 			}
 
 		}
-		default: {
+		}
+		if(input<0 || input> 4){
 			System.out.println("\nError: insert again");
-			relative = chooseTheRelative();
-			return relative;
-		}}}
+			chooseTheRelative();
+			}
+		}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
-			relative = chooseTheRelative();
+			chooseTheRelative();
 			
 		}
+		
+		
+		
 		System.out.println("\nHow many servants do you want to use?");
 		boolean legalServant = false; // loop until a legal servant numbers is given
 		while (!legalServant) {
@@ -121,11 +135,11 @@ public class CommandLineInterface implements Serializable {
 		System.out.println("3) Market");
 		System.out.println("4) HarvestArea");
 		System.out.println("5) ProductionArea");
-		scanner.nextLine();
-		int input = scanner.nextInt();
+		
 
 		PutRelative putRelative = null;
-		try{switch (input) {
+		try{int input = scanner.nextInt();
+			switch (input) {
 		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
@@ -172,12 +186,7 @@ public class CommandLineInterface implements Serializable {
 
 			break;
 		}
-
-		default: {
-			System.out.println("\nError: insert again");
-			putRelative = chooseTheAction(relative);
-			break;
-		}}}
+}}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			putRelative = chooseTheAction(relative);

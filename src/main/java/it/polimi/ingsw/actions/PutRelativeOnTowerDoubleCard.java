@@ -15,6 +15,7 @@ import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
@@ -88,7 +89,7 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 			play.changeCurrentPlayer();
 		}
 		else {
-			play.actionNotApplicable(player);
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative here!"));
 		}
 		return;
 	}
