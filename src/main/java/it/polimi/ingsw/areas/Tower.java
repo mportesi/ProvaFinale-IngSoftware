@@ -42,7 +42,6 @@ public class Tower extends Observable<Change> implements Serializable {
 		case 1:
 			{
 			deck = deck1;
-			
 			break;
 			}
 		case 2:
@@ -55,6 +54,8 @@ public class Tower extends Observable<Change> implements Serializable {
 			}
 		}
 				for(int i=0; i<4; i++){
+					System.out.println(floors.get(i));
+					System.out.println(deck.get(i));
 				floors.get(i).currentCard = deck.remove(i);
 				
 				}
