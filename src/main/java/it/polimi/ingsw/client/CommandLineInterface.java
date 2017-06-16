@@ -51,7 +51,6 @@ public class CommandLineInterface implements Serializable {
 		switch (input) {
 		case 1: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())) {
-				System.out.println("has boolean relative black" + client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative()));
 				relative = client.getPlayer().getBlackRelative();
 				break;
 			} else {
@@ -104,8 +103,7 @@ public class CommandLineInterface implements Serializable {
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			relative= chooseTheRelative();
-			
-			
+			return relative;
 		}
 		
 		

@@ -35,12 +35,12 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 
 	@Override
 	public boolean isApplicable() {
-		if (market.IsOccupied()) {
+		if (market.isOccupied()) {
 			return false;
 		} else if (relative.getValue() >= market.getCost()) {
 			return true;
-		} else
-			return false;
+		} else{
+			return false;}
 	}
 
 	@Override
