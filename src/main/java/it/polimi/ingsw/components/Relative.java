@@ -14,10 +14,12 @@ public class Relative implements Serializable{
 	private Player player;
 	private ColorDice color;
 	private int value;
+	private int servantsUsed;
 	
 	public Relative(ColorDice color, Player player){
 		this.color = color;
 		this.player=player;
+		this.servantsUsed=0;
 	}
 	
 	
@@ -31,6 +33,7 @@ public class Relative implements Serializable{
 	
 	public void setValueServant(int n){
 		this.value= value + n;
+		this.servantsUsed=n;
 	}
 	
 	public void setValue(int value){
@@ -74,6 +77,11 @@ public class Relative implements Serializable{
 		} else if (!player.equals(other.player))
 			return false;
 		return true;
+	}
+
+
+	public int getServantsUsed() {
+		return servantsUsed;
 	}
 
 

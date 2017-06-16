@@ -76,7 +76,7 @@ public class ClientRMIConnection implements Serializable {
 					String inputLine = stdIn.nextLine();
 					Relative relative=commandLineInterface.chooseTheRelative();
 					int servant=commandLineInterface.chooseServants(relative);
-					serverStub.notifyObserver(new SetServant(servant, clientModel.getPlayer()));
+					serverStub.notifyObserver(new SetServant(servant, clientModel.getPlayer(), relative));
 					PutRelative putRelative = commandLineInterface.chooseTheAction(relative);
 					serverStub.notifyObserver(putRelative);
 					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());

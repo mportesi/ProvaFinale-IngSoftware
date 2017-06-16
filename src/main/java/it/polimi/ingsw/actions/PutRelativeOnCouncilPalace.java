@@ -51,6 +51,10 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			councilPalace.applyEffect(play, player, bonus);
 			play.changeCurrentPlayer();
 		} else {
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
 			play.notifyObserver( new ChangeNotApplicable(player, "the relative hasn't enough value!"));
 		}
 

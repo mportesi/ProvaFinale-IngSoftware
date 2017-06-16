@@ -82,6 +82,10 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 			play.changeCurrentPlayer();
 		}
 		else {
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
 			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative here!"));
 		}
 		return;

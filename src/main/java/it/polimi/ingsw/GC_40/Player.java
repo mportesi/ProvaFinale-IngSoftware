@@ -460,7 +460,7 @@ public class Player extends Observable<Change> implements Serializable {
 			hasOrangeRelative=true;
 			
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			hasNeutralRelative=true;
 			
 		}
@@ -492,6 +492,26 @@ public class Player extends Observable<Change> implements Serializable {
 		activeRelatives.add(orangeRelative);
 		activeRelatives.add(whiteRelative);
 		
+	}
+
+
+
+	public Relative getRelative(Relative relative) {
+		if(relative.equals(blackRelative)){
+			return blackRelative;
+		}
+		if(relative.equals(whiteRelative)){
+			return whiteRelative;
+		}
+		if(relative.equals(orangeRelative)){
+			return orangeRelative;
+			
+		}
+		if(relative.equals(neutralRelative)){
+			return neutralRelative;
+			
+		}
+		return null;
 	}
 
 

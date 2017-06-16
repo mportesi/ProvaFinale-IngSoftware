@@ -57,6 +57,10 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 			play.changeCurrentPlayer();
 		}
 		else {
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
 			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on this market!"));
 		}
 		return;

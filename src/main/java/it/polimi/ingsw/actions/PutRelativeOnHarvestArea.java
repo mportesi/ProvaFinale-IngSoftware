@@ -92,6 +92,10 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 			}
 			play.changeCurrentPlayer();
 		} else {
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
 			play.notifyObserver( new ChangeNotApplicable(player, "the relative hasn't enough value!"));
 		}
 	}
