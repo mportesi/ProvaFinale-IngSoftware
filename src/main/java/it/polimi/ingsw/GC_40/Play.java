@@ -73,6 +73,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		changeRound();
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
 		this.notifyObserver(changeInitializeBoard);
+		
 
 	}
 
@@ -453,8 +454,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		initializePlayer();
 		initializeBoard();
-		ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
-		this.notifyObserver(changeInitializePlay);
+		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder (currentTurnOrder);
+		this.notifyObserver(changeTurnOrder);
+		/*ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
+		this.notifyObserver(changeInitializePlay);*/
 	}
 
 	public Board getBoard() {
