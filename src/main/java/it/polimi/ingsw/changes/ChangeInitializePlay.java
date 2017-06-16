@@ -17,7 +17,6 @@ public class ChangeInitializePlay implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		System.out.println("The game can start");
 	}
 
 }
