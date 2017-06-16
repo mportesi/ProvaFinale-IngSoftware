@@ -44,7 +44,7 @@ public class CommandLineInterface implements Serializable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Il tuo stato è: \n" + client.getPlayer());
 		System.out.println("\n\nLa board è: \n" + client.getBoard());
-		System.out.println("\n Choose what relative you want to use: \n 1)  black \n 2) white \n 3) orange \n 4) neutral");
+		System.out.println("\n Choose what relative you want to use: \n 1) black \n 2) white \n 3) orange \n 4) neutral");
 		Relative relative = null;
 		int input=0;
 		while (!scanner.hasNextInt()) scanner.next();
@@ -111,8 +111,9 @@ public class CommandLineInterface implements Serializable {
 		
 		System.out.println("\nHow many servants do you want to use?");
 		boolean legalServant = false; // loop until a legal servant numbers is given
+		int valueServant=0;
 		while (!legalServant) {
-			int valueServant = scanner.nextInt();
+			 valueServant = scanner.nextInt();
 			if (valueServant <= client.getPlayer().getServant()) {
 				relative.setValueServant(valueServant);
 				//client.getPlayer().decrementServant(valueServant);
@@ -123,8 +124,7 @@ public class CommandLineInterface implements Serializable {
 			}
 		}
 		System.out.println("\nThe value of the relative with servant is  " + relative.getValue());
-		return relative;
-
+		return valueServant;
 	}
 
 	public PutRelative chooseTheAction(Relative relative)
