@@ -19,6 +19,7 @@ import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 
 public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements PutRelative {
 	private Tower tower;
@@ -41,7 +42,7 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 
 	}
 
-	public boolean isApplicable() {
+	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
 			if (relative.getValue() >= tower.floors.get(floor).getCost()) {
@@ -94,13 +95,37 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 		return;
 	}
 
-	public boolean checkCardCost() {
+	public boolean checkCardCost() throws FileNotFoundException, IOException, ParseException {
 		cardToGive = tower.floors.get(floor).getCard();
 		boolean check = false;
+		JsonMilitaryPointForTerritory jsonMilitaryPointForTerritory = new JsonMilitaryPointForTerritory();
+		jsonMilitaryPointForTerritory.importMilitaryPointForTerritory();
+		
+		if (player.counter("territory")==2 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheThirdCard()){
+			check = false;
+			return check;
+		}
+		
+		if (player.counter("territory")==3 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheFourthCard()){
+			check = false;
+			return check;
+		}
+		if (player.counter("territory")==4 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheFifthCard()){
+			check = false;
+			return check;
+		}
+		if (player.counter("territory")==5 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheSixthCard()){
+			check = false;
+			return check;
+		}
+		
+		
 		if (cardToGive instanceof CharacterCard) {
-			if (player.getCoin() >= ((CharacterCard) cardToGive).getCostCoin()) {
+			if (((CharacterCard) cardToGive).getCostCoin() == 0
+					|| player.getCoin() >= ((CharacterCard) cardToGive).getCostCoin()) {
 				check = true;
-				return check;
+			} else {
+				check = false;
 			}
 		}
 		if (cardToGive instanceof TerritoryCard) {
@@ -108,46 +133,28 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 			return check;
 		}
 		if (cardToGive instanceof BuildingCard) {
-			if (player.getCoin() >= ((BuildingCard) cardToGive).getCostCoin()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getWood() >= ((BuildingCard) cardToGive).getCostWood()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getStone() >= ((BuildingCard) cardToGive).getCostStone()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getServant() >= ((BuildingCard) cardToGive).getCostServant()) {
-				check = true;
+			if (((BuildingCard) cardToGive).getCostCoin() == 0 || player.getCoin() >= ((BuildingCard) cardToGive).getCostCoin()) {
+				if (((BuildingCard) cardToGive).getCostWood() == 0 || player.getWood() >= ((BuildingCard) cardToGive).getCostWood()) {
+					if (((BuildingCard) cardToGive).getCostStone() == 0 || player.getStone() >= ((BuildingCard) cardToGive).getCostStone()) {
+						if (((BuildingCard) cardToGive).getCostServant() == 0 || player.getServant() >= ((BuildingCard) cardToGive).getCostServant()) {
+							check = true;
+						}
+					}
+				}
 			} else {
 				check = false;
 			}
 			return check;
 		}
 		if (cardToGive instanceof VentureCard) {
-			if (player.getCoin() >= ((VentureCard) cardToGive).getCostCoin()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getWood() >= ((VentureCard) cardToGive).getCostWood()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getStone() >= ((VentureCard) cardToGive).getCostStone()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getServant() >= ((VentureCard) cardToGive).getCostServant()) {
-				check = true;
+			if (((VentureCard) cardToGive).getCostCoin() == 0 || player.getCoin() >= ((VentureCard) cardToGive).getCostCoin()) {
+				if (((VentureCard) cardToGive).getCostWood() == 0 || player.getWood() >= ((VentureCard) cardToGive).getCostWood()) {
+					if (((VentureCard) cardToGive).getCostStone() == 0 || player.getStone() >= ((VentureCard) cardToGive).getCostStone()) {
+						if (((VentureCard) cardToGive).getCostServant() == 0 || player.getServant() >= ((VentureCard) cardToGive).getCostServant()) {
+							check = true;
+						}
+					}
+				}
 			} else {
 				check = false;
 			}

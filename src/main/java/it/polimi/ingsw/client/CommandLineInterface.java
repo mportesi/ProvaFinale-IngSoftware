@@ -106,9 +106,10 @@ public class CommandLineInterface implements Serializable {
 			relative= chooseTheRelative();
 			return relative;
 		}*/
+		return relative;
+	}
 		
-		
-		
+		public int chooseServants(Relative relative){
 		System.out.println("\nHow many servants do you want to use?");
 		boolean legalServant = false; // loop until a legal servant numbers is given
 		int valueServant=0;
@@ -119,8 +120,7 @@ public class CommandLineInterface implements Serializable {
 				//client.getPlayer().decrementServant(valueServant);
 				legalServant = true;
 			} else {
-				System.out
-						.println("\nNot enough servant, you have only " + client.getPlayer().getServant() + " servant.");
+				System.out.println("\nNot enough servant, you have only " + client.getPlayer().getServant() + " servant.");
 			}
 		}
 		System.out.println("\nThe value of the relative with servant is  " + relative.getValue());
