@@ -94,7 +94,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	
 	@Override
 	public String toString(){
-		return ("CouncilPalace: "+"\nActionValue: " + value +"\n"+ "PrivilegeCouncil bonus: "+ bonusPrivilegeCouncil + "\nCoin bonus: "+bonusCoin + "\n"+ "Effect: "+ councilPalaceEffect + "\nThe actual order is: "+ printOrder());
+		return ("CouncilPalace: "+"\nActionValue: " + value +"\n"+ "PrivilegeCouncil bonus: "+ bonusPrivilegeCouncil + "\nCoin bonus: "+bonusCoin + "\n"+ "Effect: gainPrivilegeCouncil" + "\nThe actual order is: "+ printOrder());
 	}
 	
 	public ArrayList<String> printOrder(){

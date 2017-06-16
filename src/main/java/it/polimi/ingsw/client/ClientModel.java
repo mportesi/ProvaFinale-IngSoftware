@@ -13,6 +13,7 @@ import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.Relative;
 
@@ -132,6 +133,8 @@ public class ClientModel implements Serializable{
 		
 		return board.getMarket(i);
 	}
+	
+
 
 
 	public void setBoard(Board board) {

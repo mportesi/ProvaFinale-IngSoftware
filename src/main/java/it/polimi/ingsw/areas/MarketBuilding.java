@@ -100,7 +100,7 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 
 
 	public void setOccupied(Player player, Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		isOccupied = true;
+		this.isOccupied = true;
 		this.relative=relative;
 		this.player=player;
 	}

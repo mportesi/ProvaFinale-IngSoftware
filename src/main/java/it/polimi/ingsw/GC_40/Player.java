@@ -34,6 +34,7 @@ public class Player extends Observable<Change> implements Serializable {
 	private int faithPoint;
 	private int victoryPoint;
 	private int militaryPoint;
+	private ArrayList <Relative> activeRelatives;
 	private ArrayList<TerritoryCard> territoryCard;
 	private ArrayList<CharacterCard> characterCard;
 	private ArrayList<BuildingCard> buildingCard;
@@ -53,10 +54,16 @@ public class Player extends Observable<Change> implements Serializable {
 	public Player(UUID ID, Play play, String name) {
 		this.ID = ID;
 		this.name = name;
+		
 		blackRelative= new Relative(ColorDice.BLACK, this);
 		whiteRelative= new Relative(ColorDice.WHITE, this);
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
 		neutralRelative= new Relative(null, this);
+		activeRelatives = new ArrayList <Relative>();
+		activeRelatives.add(blackRelative);
+		activeRelatives.add(neutralRelative);
+		activeRelatives.add(orangeRelative);
+		activeRelatives.add(whiteRelative);
 		territoryCard= new ArrayList<>();
 		buildingCard= new ArrayList<>();
 		ventureCard= new ArrayList<>();
@@ -73,9 +80,12 @@ public class Player extends Observable<Change> implements Serializable {
 	@Override
 	public String toString(){
 		return ("The player is\n " + "Name: " + name +  "\nColor: " + color + "\nCoin: " +coin + "\nWood: "+ wood +"\nStone: "+ stone + "\nServant: "+ servant + "\nFaithPoint: " + faithPoint + "\nMilitaryPoint: "+ militaryPoint + "\nVictoryPoint: "+ victoryPoint+ "\nTerritoryCard: " + territoryCard + "\nCharacterCard: "
-				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nLeaderTile: "+ leader);
+				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nLeaderTile: "+ leader + "\nThe active relative are: " +activeRelatives);
 	}
-
+	
+	public void removeRelative (Relative relative){
+		activeRelatives.remove(relative);
+	}
 	public int resourceCounter() {
 		return coin + wood + stone + servant;
 	}
@@ -407,6 +417,7 @@ public class Player extends Observable<Change> implements Serializable {
 	public void setOccupiedRelative(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=false;
+			
 		}
 		if(relative.equals(whiteRelative)){
 			hasWhiteRelative=false;
@@ -476,6 +487,10 @@ public class Player extends Observable<Change> implements Serializable {
 		hasOrangeRelative=true;
 		hasWhiteRelative=true;
 		hasNeutralRelative=true;
+		activeRelatives.add(blackRelative);
+		activeRelatives.add(neutralRelative);
+		activeRelatives.add(orangeRelative);
+		activeRelatives.add(whiteRelative);
 		
 	}
 

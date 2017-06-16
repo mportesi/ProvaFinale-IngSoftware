@@ -25,6 +25,7 @@ public class ChangeOccupiedRelative implements Change {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(this.player.getName().equals(client.getPlayer().getName())){
 			client.getPlayer().setOccupiedRelative(relative);
+			client.getPlayer().removeRelative(relative);
 			System.out.println("For this round you cannot use anymore the relative " + relative.getColor());
 		}
 

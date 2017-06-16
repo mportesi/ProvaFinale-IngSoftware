@@ -42,6 +42,10 @@ public class Relative implements Serializable{
 		return player;
 	}
 
+	@Override
+	public String toString(){
+		return ("Relative " + color);
+	}
 
 	@Override
 	public int hashCode() {

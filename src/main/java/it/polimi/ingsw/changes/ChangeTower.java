@@ -27,6 +27,19 @@ public class ChangeTower implements Change {
 	@Override
 	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		client.setTower(tower, floor, player, relative);
+		if(tower.getType().equals("territory")){
+			client.getTerritoryTower().getFloor(floor).currentCard = null;
+		}
+		if(tower.getType().equals("building")){
+			client.getBuildingTower().getFloor(floor).currentCard = null;
+		}
+		if(tower.getType().equals("character")){
+			client.getCharacterTower().getFloor(floor).currentCard = null;
+		}
+		if(tower.getType().equals("venture")){
+			client.getVentureTower().getFloor(floor).currentCard = null;
+		}
+
 		System.out.println("\nThe board is changed!\n" + client.getBoard());
 	}
 
