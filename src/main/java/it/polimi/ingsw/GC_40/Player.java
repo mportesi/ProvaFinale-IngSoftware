@@ -487,6 +487,10 @@ public class Player extends Observable<Change> implements Serializable {
 		hasOrangeRelative=true;
 		hasWhiteRelative=true;
 		hasNeutralRelative=true;
+		activeRelatives.add(blackRelative);
+		activeRelatives.add(neutralRelative);
+		activeRelatives.add(orangeRelative);
+		activeRelatives.add(whiteRelative);
 		
 	}
 
