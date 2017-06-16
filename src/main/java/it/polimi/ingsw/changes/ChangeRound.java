@@ -21,7 +21,6 @@ public class ChangeRound implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		
 		client.setRound(round);
 		client.setBoard(board);
 		client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());

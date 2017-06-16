@@ -15,6 +15,7 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
@@ -74,6 +75,8 @@ public class ClientRMIConnection implements Serializable {
 					System.out.println("\nPress a key to start the action");
 					String inputLine = stdIn.nextLine();
 					Relative relative=commandLineInterface.chooseTheRelative();
+					int servant=commandLineInterface.chooseServants(relative);
+					serverStub.notifyObserver(new SetServant(servant, clientModel.getPlayer()));
 					PutRelative putRelative = commandLineInterface.chooseTheAction(relative);
 					serverStub.notifyObserver(putRelative);
 					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());

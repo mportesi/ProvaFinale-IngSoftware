@@ -463,5 +463,9 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public void update() {
 	}
 
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
 
 }
