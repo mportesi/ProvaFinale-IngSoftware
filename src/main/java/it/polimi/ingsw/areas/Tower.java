@@ -135,7 +135,7 @@ public class Tower extends Observable<Change> implements Serializable {
 	}
 
 	public int getCost() {
-		return cost;
+		return 3;
 	}
 
 

@@ -27,6 +27,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	private int floor;
 	private Player player;
 	private Card cardToGive;
+	boolean payForOccupied = false;
 
 	public PutRelativeOnTower(Player player, Tower tower, int floor, Relative relative) {
 		this.relative = relative;
@@ -43,6 +44,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 					check = checkCardCost();
 					if (tower.isPresentAnyone()) {
 						if (player.getCoin() >= tower.getCost()) {
+							payForOccupied=true;
 							return check;
 						} else
 							check = false;
@@ -59,6 +61,10 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
+			if (payForOccupied == true){
+				player.decrementCoin(tower.getCost(), play);
+			
+			}
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));

@@ -30,6 +30,7 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	Player player;
 	Card cardToGive;
 	String bonus;
+	boolean payForOccupied = false;
 
 	public PutRelativeOnTowerPrivilege(Player player, Tower tower, int floor, Relative relative, String bonus) {
 		this.relative = relative;
@@ -47,6 +48,7 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 					check = checkCardCost();
 					if (tower.isPresentAnyone()) {
 						if (player.getCoin() >= tower.getCost()) {
+							payForOccupied = true;
 							return check;
 						} else
 							check = false;
@@ -63,6 +65,10 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
+			if (payForOccupied == true){
+				player.decrementCoin(tower.getCost(), play);
+			
+			}
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			player.setOccupiedRelative(relative);
