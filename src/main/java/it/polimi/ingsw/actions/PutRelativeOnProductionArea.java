@@ -14,6 +14,7 @@ import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeHarvestLeftArea;
 import it.polimi.ingsw.changes.ChangeHarvestRightArea;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeProductionLeftArea;
 import it.polimi.ingsw.changes.ChangeProductionRightArea;
@@ -94,7 +95,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 			play.changeCurrentPlayer();
 		}
 		else {
-			play.actionNotApplicable(player);
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on production area!"));
 		}
 		return;
 	}

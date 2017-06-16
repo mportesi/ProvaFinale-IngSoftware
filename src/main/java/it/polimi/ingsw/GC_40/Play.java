@@ -462,11 +462,5 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public void update() {
 	}
 
-	public void actionNotApplicable(Player player)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		ChangeNotApplicable changeNotApplicable = new ChangeNotApplicable(player);
-		this.notifyObserver(changeNotApplicable);
-
-	}
 
 }

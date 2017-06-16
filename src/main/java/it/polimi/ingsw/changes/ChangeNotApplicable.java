@@ -10,16 +10,18 @@ import it.polimi.ingsw.client.ClientModel;
 
 public class ChangeNotApplicable implements Change {
 	private Player player;
+	private String string;
 	
-	public ChangeNotApplicable(Player player){
+	public ChangeNotApplicable(Player player, String string){
 		this.player=player;
+		this.string=string;
 	}
 
 	@Override
 	public void applyChange(ClientModel client)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(client.getPlayer().getName().equals(player.getName())){
-			System.out.println("The action did by " + player.getName() + "wasn't correct!");
+			System.out.println("The action did by " + player.getName() + "wasn't correct because: " + string);
 			client.setCurrentPlayer(player);
 		}
 
