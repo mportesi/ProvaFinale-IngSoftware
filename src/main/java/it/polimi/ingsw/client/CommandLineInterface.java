@@ -47,7 +47,8 @@ public class CommandLineInterface implements Serializable {
 		System.out.println("\n Choose what relative you want to use: \n 1) black \n 2) white \n 3) orange \n 4) neutral");
 		Relative relative = null;
 		int input=0;
-		try{ input = scanner.nextInt();
+		while (!scanner.hasNextInt()) scanner.next();
+		/*try{*/ input = scanner.nextInt();
 		switch (input) {
 		case 1: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())) {
@@ -99,17 +100,16 @@ public class CommandLineInterface implements Serializable {
 			break;
 		}
 		}
-		}
+		/*}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			relative= chooseTheRelative();
 			return relative;
-		}
+		}*/
 		return relative;
-
 	}
-	
-	public int chooseServants(Relative relative){
+		
+		public int chooseServants(Relative relative){
 		System.out.println("\nHow many servants do you want to use?");
 		boolean legalServant = false; // loop until a legal servant numbers is given
 		int valueServant=0;
@@ -120,8 +120,7 @@ public class CommandLineInterface implements Serializable {
 				//client.getPlayer().decrementServant(valueServant);
 				legalServant = true;
 			} else {
-				System.out
-						.println("\nNot enough servant, you have only " + client.getPlayer().getServant() + " servant.");
+				System.out.println("\nNot enough servant, you have only " + client.getPlayer().getServant() + " servant.");
 			}
 		}
 		System.out.println("\nThe value of the relative with servant is  " + relative.getValue());
@@ -140,7 +139,8 @@ public class CommandLineInterface implements Serializable {
 		
 
 		PutRelative putRelative = null;
-		try{int input = scanner.nextInt();
+		while (!scanner.hasNextInt()) scanner.next();
+		/*try{*/int input = scanner.nextInt();
 			switch (input) {
 		case 1: {
 			Tower tower = chooseTower();
@@ -188,12 +188,17 @@ public class CommandLineInterface implements Serializable {
 
 			break;
 		}
-}}
+		default:{
+			System.out.println("Try again");
+			putRelative=chooseTheAction(relative);
+		}
+		}
+		/*}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			putRelative = chooseTheAction(relative);
 			
-		}
+		}*/
 
 		return putRelative;
 	}
@@ -244,8 +249,10 @@ public class CommandLineInterface implements Serializable {
 	private boolean chooseAlternativeCost() {
 		boolean choice = false;
 		System.out.println("\nChoose if you prefer: \n 1)military cost \n 2)the other cost");
-		try{
-		switch (scanner.nextInt()) {
+		/*try{*/
+		while (!scanner.hasNextInt()) scanner.next();
+		int input= scanner.nextInt();
+		switch (input) {
 		case 1: {
 			choice = true;
 			return choice;
@@ -258,12 +265,13 @@ public class CommandLineInterface implements Serializable {
 			System.out.println("\nError: insert again");
 			choice = chooseAlternativeCost();
 		}
-		}}
+		}
+		/*}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			choice = chooseAlternativeCost();
 			
-		}
+		}*/
 		return choice;
 	}
 
@@ -274,9 +282,10 @@ public class CommandLineInterface implements Serializable {
 		System.out.println("2) Building tower");
 		System.out.println("3) Character tower");
 		System.out.println("4) Venture tower");
+		while (!scanner.hasNextInt()) scanner.next();
 		int input = scanner.nextInt();
 		Tower tower;
-		try{
+		/*try{*/
 		switch (input) {
 		case 1: {
 			tower = this.client.getTerritoryTower();
@@ -298,28 +307,31 @@ public class CommandLineInterface implements Serializable {
 			System.out.println("\nError: insert again");
 			tower = chooseTower();
 			return tower;
-		}}}
+		}}
+		/*}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			tower = chooseTower();
 			
-		}
-		return null;
+		}*/
+		//return null;
 	}
 
 	public int chooseFloor() {
 		System.out.println("\nChoose the number of the floor:");
 		int floor;
-		try{floor = scanner.nextInt();
+		while (!scanner.hasNextInt()) scanner.next();
+		/*try{*/floor = scanner.nextInt();
 		floor -= 1;
 		if (floor < 0 || floor > 4) {
 			System.out.println("\nThat floor don't exist!");
 			floor = chooseFloor();
-		}}
+		}
+		/*}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			floor = chooseFloor();
-		}
+		}*/
 		
 		return (floor);
 	}
@@ -334,11 +346,12 @@ public class CommandLineInterface implements Serializable {
 		System.out.println("5) 2 militaryPoint");
 		String resource=null;
 		int choice=0;
-		try{choice = scanner.nextInt();}
-		catch(InputMismatchException e){
+		while (!scanner.hasNextInt()) scanner.next();
+		/*try{*/choice = scanner.nextInt();//}
+		/*catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			choosePrivilegeCouncil();
-		}
+		}*/
 		switch(choice){
 		case 1:{ resource="coin";
 				break;
@@ -379,11 +392,12 @@ public class CommandLineInterface implements Serializable {
 			}
 			// Choose if you want to place the relative left or right
 			System.out.println("\nChoose where you want to put your relative: \n1) left \n2) right");
-			try{choice=scanner.nextInt();}
-			catch(InputMismatchException e){
+			while (!scanner.hasNextInt()) scanner.next();
+			/*try{*/choice=scanner.nextInt();//}
+			/*catch(InputMismatchException e){
 				System.out.println("\nError: insert again");
 				chooseHarvestArea();
-			}
+			}*/
 			if (choice < 1 || choice > 2) {
 				System.out.println("\nError: insert again");
 				chooseHarvestArea();
@@ -414,11 +428,12 @@ public class CommandLineInterface implements Serializable {
 			}
 		// Choose if you want to place the relative left or right
 		System.out.println("\nChoose where you want to put your relative: \n1) left \n2) right");
-		try{choice=scanner.nextInt();}
-		catch(InputMismatchException e){
+		while (!scanner.hasNextInt()) scanner.next();
+		/*try{*/choice=scanner.nextInt();//}
+		/*catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
 			chooseProductionArea();
-		}
+		}*/
 		if (choice < 1 || choice > 2) {
 			System.out.println("\nError: insert again");
 			chooseProductionArea();
