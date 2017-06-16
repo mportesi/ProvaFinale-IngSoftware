@@ -439,8 +439,14 @@ public class Player extends Observable<Change> implements Serializable {
 
 
 	public void setFreeRelative(Relative relative) {
+<<<<<<< Updated upstream
 		System.out.println(relative);
 		System.out.println(blackRelative);
+=======
+		// TODO Auto-generated method stub
+		
+	
+>>>>>>> Stashed changes
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=true;
 		}
