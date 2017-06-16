@@ -12,7 +12,6 @@ import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
-import it.polimi.ingsw.changes.ChangeGiveBackServants;
 import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
@@ -72,8 +71,8 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 		}
 		else {
 			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
 				relative.setValueServant(0);
-				play.notifyObserver(new ChangeGiveBackServants(player, relative, relative.getServantsUsed()));
 			}
 			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative here!"));
 		}
