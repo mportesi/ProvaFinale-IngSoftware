@@ -87,6 +87,12 @@ public class PrivilegeCouncil implements Serializable{
 		}
 	}
 	
+	@Override
+	public String toString() {
+		return ("Privilege with effect: " + effectOfPrivilegeCouncil);
+		
+	}
+	
 
 }
 
