@@ -56,7 +56,7 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
-				chooseTheRelative();
+				relative= chooseTheRelative();
 				break;
 			}
 
@@ -67,7 +67,7 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
-				chooseTheRelative();
+				relative= chooseTheRelative();
 				break;
 			}
 
@@ -78,7 +78,7 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
-				chooseTheRelative();
+				relative= chooseTheRelative();
 				break;
 			}
 
@@ -89,20 +89,22 @@ public class CommandLineInterface implements Serializable {
 				break;
 			} else {
 				System.out.println("\nYou cannot use this relative, it is already used");
-				chooseTheRelative();
+				relative= chooseTheRelative();
 				break;
 			}
-
+		
 		}
-		}
-		if(input<0 || input> 4){
+		default:{
 			System.out.println("\nError: insert again");
-			chooseTheRelative();
-			}
+			relative= chooseTheRelative();
+			break;
+		}
+		}
 		}
 		catch(InputMismatchException e){
 			System.out.println("\nError: insert again");
-			chooseTheRelative();
+			relative= chooseTheRelative();
+			
 			
 		}
 		

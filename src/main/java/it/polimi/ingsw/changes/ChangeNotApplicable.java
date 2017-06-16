@@ -21,7 +21,7 @@ public class ChangeNotApplicable implements Change {
 	public void applyChange(ClientModel client)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(client.getPlayer().getName().equals(player.getName())){
-			System.out.println("The action did by " + player.getName() + "wasn't correct because: " + string);
+			System.out.println("The action did by " + player.getName() + " wasn't correct because: " + string);
 			client.setCurrentPlayer(player);
 		}
 
