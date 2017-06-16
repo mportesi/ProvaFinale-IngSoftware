@@ -124,16 +124,20 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		return players;
 	}
 
-	public synchronized void changeTurnOrder()
+	public void changeTurnOrder()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
 		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
 		ArrayList<Player> councilPalaceOrder = board.getCouncilPalace().getOrder();
-
+		ArrayList<Player> currentTurnOrder2= new ArrayList<>();
+		for (Player player : currentTurnOrder){
+		currentTurnOrder2.add(player);
+		}
+		
 		for (Player checkedPlayer : councilPalaceOrder) {
 			nextTurnOrder.add(checkedPlayer);
 
-			for (Player nowPlayer : currentTurnOrder) {
+			for (Player nowPlayer : currentTurnOrder2) {
 				if (nowPlayer.equals(checkedPlayer)) {
 					currentTurnOrder.remove(nowPlayer);
 				}
@@ -144,9 +148,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 		for (Player p : currentTurnOrder) {
 			nextTurnOrder.add(p);
-			currentTurnOrder.remove(p);
 		}
-
+		currentTurnOrder.clear();
 		currentTurnOrder.addAll(nextTurnOrder);
 		nextTurnOrder.clear();
 
