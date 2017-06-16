@@ -42,9 +42,12 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
+			if (!(councilPalace.isAlreadyPresent(player))){
 			play.getBoard().getCouncilPalace().addPlayer(player, relative);
-			//Notify the observers that there is a new player in the council palace
 			play.notifyObserver(new ChangeCouncilPalace(player, relative));
+			}
+			//Notify the observers that there is a new player in the council palace
+			player.incrementCoin(councilPalace.getBonusCoin(), play);
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// The player receive the bonus

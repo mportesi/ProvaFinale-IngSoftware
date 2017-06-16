@@ -52,7 +52,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		return value;
 	}
 
-	private int getBonusCoin() {
+	public int getBonusCoin() {
 		return bonusCoin;
 	}
 
@@ -107,4 +107,20 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		}
 		return name;
 	}
-}
+
+	public boolean isAlreadyPresent(Player player) {
+		for (Player p : order){
+			
+			if (p.getName().equals(player.getName())){
+				System.out.println("CP true");
+				return true;
+			}
+		}
+		System.out.println("CP false");
+		return false;
+		}
+		
+		
+	
+
+	}
