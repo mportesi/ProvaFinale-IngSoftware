@@ -53,7 +53,7 @@ public class Tower extends Observable<Change> implements Serializable {
 			break;
 			}
 		}
-				for(int i=0; i<4; i++){
+				for(int i=3; i>=0; i--){
 					System.out.println(floors.get(i));
 					System.out.println(deck.get(i));
 				floors.get(i).currentCard = deck.remove(i);
