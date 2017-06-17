@@ -53,7 +53,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 		
 		
 		case "right" : {
-			if (relative.getValue() >= productionArea.getValueOfRightArea()) {
+			if (relative.getValue() >= (productionArea.getValueOfRightArea()-productionArea.getMalus())) {
 				if (!(productionArea.isAlreadyPresent(player)) || relative.getColor() == null) {
 					return true;
 				}
@@ -85,7 +85,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				play.notifyObserver(new ChangeProductionRightArea(relative));
 				player.setOccupiedRelative(relative);
 				play.notifyObserver(new ChangeOccupiedRelative(player, relative));
-				int malus = play.getBoard().getHarvestArea().getMalus();
+				int malus = play.getBoard().getProductionArea().getMalus();
 				relative.setValue(-malus);
 				int newValue= relative.getValue();
 				GainProductionValue gainProductionValue = new GainProductionValue(newValue); 

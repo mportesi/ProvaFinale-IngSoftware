@@ -51,7 +51,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 
 		case "right": {
 
-			if (relative.getValue() >= harvestArea.getValueOfRightArea()) {
+			if (relative.getValue() >= (harvestArea.getValueOfRightArea()-harvestArea.getMalus())) {
 				if (!(harvestArea.isAlreadyPresent(player)) || relative.getColor() == null) {
 					return true;
 				}
