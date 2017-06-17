@@ -207,11 +207,20 @@ public class CommandLineInterface implements Serializable {
 		PutRelative putRelative = null;
 		switch (tower.getType()) {
 		case "territory": {
+			if(client.getBoard().getTerritoryTower().getFloor(floor).getCard()!=null){
 			if (client.getBoard().getTerritoryTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
 				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative,
 						choosePrivilegeCouncil());
 			} else {
 				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+			}}
+			else{
+				System.out.println("It is occupied by another player. Choose again!");
+				try {
+					chooseTheAction(relative);
+				} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 			break;
 		}
