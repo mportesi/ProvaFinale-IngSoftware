@@ -43,11 +43,12 @@ public class Relative implements Serializable{
 
 	public Player getPlayer() {
 		return player;
+
 	}
 
 	@Override
 	public String toString(){
-		return ("Relative " + color);
+		return ("Relative " + color +" of player " + player.getName());
 	}
 
 	@Override

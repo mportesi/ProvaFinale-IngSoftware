@@ -382,7 +382,7 @@ public class CommandLineInterface implements Serializable {
 			break;
 		}
 		}
-		if (choice < 1 || choice > 4) {
+		if (choice < 1 || choice > 5) {
 			System.out.println("\nError: insert again");
 			choosePrivilegeCouncil();
 		}
