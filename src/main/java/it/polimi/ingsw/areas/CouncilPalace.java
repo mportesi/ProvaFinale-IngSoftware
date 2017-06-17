@@ -28,6 +28,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	private int value;
 	private List <Effect> councilPalaceEffect;
 	private ArrayList<Player> order;
+	private ArrayList <Relative> relatives = new ArrayList <Relative>();
 	private int orderIndex = 0;
 
 	public CouncilPalace(int bonusPrivilegeCouncil, int bonusCoin, int value){
@@ -94,7 +95,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	
 	@Override
 	public String toString(){
-		return ("CouncilPalace: "+"\nActionValue: " + value +"\n"+ "PrivilegeCouncil bonus: "+ bonusPrivilegeCouncil + "\nCoin bonus: "+bonusCoin + "\n"+ "Effect: gainPrivilegeCouncil" + "\nThe actual order is: "+ printOrder());
+		return ("CouncilPalace: "+"\nActionValue: " + value +"\n"+ "PrivilegeCouncil bonus: "+ bonusPrivilegeCouncil + "\nCoin bonus: "+bonusCoin + "\n"+ "Effect: gainPrivilegeCouncil" + "\nRelatives:  "+ relatives +"\nThe actual order is: "+ printOrder());
 	}
 	
 	public ArrayList<String> printOrder(){
@@ -119,6 +120,10 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		System.out.println("CP false");
 		return false;
 		}
+
+	public ArrayList <Relative> getRelatives() {
+		return relatives;
+	}
 		
 		
 	

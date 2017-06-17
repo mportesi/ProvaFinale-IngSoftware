@@ -47,7 +47,8 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			play.notifyObserver(new ChangeCouncilPalace(player, relative));
 			}
 			//Notify the observers that there is a new player in the council palace
-			player.incrementCoin(councilPalace.getBonusCoin(), play);
+			
+			councilPalace.getRelatives().add(relative);
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// The player receive the bonus

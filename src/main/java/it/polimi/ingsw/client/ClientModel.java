@@ -35,7 +35,7 @@ public class ClientModel implements Serializable{
 
 	public void setCouncilPalace(Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getCouncilPalace().addPlayer(player, relative);
-		
+		board.getCouncilPalace().getRelatives().add(relative);
 	}
 
 
