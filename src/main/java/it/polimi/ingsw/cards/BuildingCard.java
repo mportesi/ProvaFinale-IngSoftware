@@ -92,11 +92,13 @@ public class BuildingCard extends Card {
 			return gainPrivilegeCouncil;
 		}
 		public void setGainPrivilegeCouncil() {
-			for (Effect e : immediateEffects) {
+			for (Effect e : this.immediateEffects) {
 				if (e instanceof HasPrivilege) {
 					this.gainPrivilegeCouncil = true;
 				}
 			}
-			
+		}
+		public boolean getGainPrivilegeCouncil() {
+			return gainPrivilegeCouncil;
 		}
 }

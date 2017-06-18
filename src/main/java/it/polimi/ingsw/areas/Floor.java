@@ -49,7 +49,7 @@ public class Floor extends Observable<Change> implements Serializable {
 		return type;
 	}
 
-	private Effect getBonusEffect() {
+	public Effect getBonusEffect() {
 		return bonusEffect;
 	}
 
