@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.UUID;
 
 import org.json.simple.parser.ParseException;
@@ -146,5 +147,34 @@ public class TowerTest {
 		      boolean isPresent= tower.isPresent(player1);
 		      assertTrue(isPresent);
 	}
+	
+	public void testHashCode()  throws Throwable{
+	      ArrayList<Card> arrayList0 = new ArrayList<Card>();
+	      LinkedList<Floor> linkedList0 = new LinkedList<Floor>();
+	      ArrayList<Floor> arrayList1 = new ArrayList<Floor>(linkedList0);
+	      Play play0 = new Play();
+	      Tower tower0 = new Tower("M", arrayList0, arrayList0, arrayList0, arrayList1, play0);
+	      tower0.hashCode();
+	  }
+	
+	public void testEquals1()  throws Throwable  {
+	      ArrayList<Card> arrayList0 = new ArrayList<Card>();
+	      LinkedList<Floor> linkedList0 = new LinkedList<Floor>();
+	      ArrayList<Floor> arrayList1 = new ArrayList<Floor>(linkedList0);
+	      Play play0 = new Play();
+	      Tower tower0 = new Tower("M", arrayList0, arrayList0, arrayList0, arrayList1, play0);
+	      String string0 = tower0.getType();
+	      assertEquals("M", string0);
+	  }
+	
+	 public void testEquals2()  throws Throwable  {
+	      ArrayList<Card> arrayList0 = new ArrayList<Card>();
+	      Play play0 = new Play();
+	      Tower tower0 = new Tower("", arrayList0, arrayList0, arrayList0, (ArrayList<Floor>) null, play0);
+	      String string0 = tower0.getType();
+	      assertEquals("", string0);
+	  }
+	 
+	 
 
 }
