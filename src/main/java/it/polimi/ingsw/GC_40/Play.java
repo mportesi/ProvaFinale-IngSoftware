@@ -388,7 +388,9 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		if (players == null) {
 			this.players = new ArrayList<Player>();
 		}
-		if (players.size() < 4) {
+		
+		
+		if (players!=null && players.size() < 4) {
 			JsonPersonalBonusTiles jsonPersonalBonusTiles = new JsonPersonalBonusTiles();
 			jsonPersonalBonusTiles.importPersonalBonusTiles();
 			PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
@@ -400,15 +402,13 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			notifyObserver(new ChangeNewPlayer(player, this));
 
 			if (players.size() == 2) {
-				Thread.sleep(10 * 100);
+				Thread.sleep((long) 10 * 100);
 				System.out.println("E' scaduto il timeout!");
 				initializePlay();
 			}
 		} else if (players.size() == 4) {
 			this.players = new ArrayList<Player>();
-			if (players == null) {
-				this.players = new ArrayList<Player>();
-			}
+		
 			if (players.size() < 4) {
 				Player player = new Player(UUID.randomUUID(), this, name);
 				players.add(player);
@@ -416,7 +416,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 				notifyObserver(new ChangeNewPlayer(player, this));
 
 				if (players.size() == 2) {
-					Thread.sleep(10 * 100);
+					Thread.sleep((long)10 * 100);
 					System.out.println("E' scaduto il timeout");
 					initializePlay();
 				}

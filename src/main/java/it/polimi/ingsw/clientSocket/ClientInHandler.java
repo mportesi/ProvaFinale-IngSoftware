@@ -47,7 +47,8 @@ public class ClientInHandler implements Runnable {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+				}
 			}
 		}
 	}
-}
+

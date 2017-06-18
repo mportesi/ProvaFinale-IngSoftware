@@ -68,29 +68,10 @@ public class ClientRMIConnection implements Serializable {
 			if (clientModel.getCurrentPlayer() != null) {
 				float timeoutActions = (float) (System.currentTimeMillis() + 50 * 10000);
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
-					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn.");
-					Timer timer = new Timer();
-					timer.schedule(new TimerTask() {
-						@Override
-						public void run() {
-							System.out.println("It ran out of time!");
-							ShiftPlayer shiftPlayer = new ShiftPlayer();
-							try {
-								serverStub.notifyObserver(shiftPlayer);
-							} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
-					}, 20 * 10000); // TODO IMPORTARE DA JSON }}
+					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn."); 
 					// Capture input from user
-					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel);
-					System.out.println("\nPress a key to start the action");
-					String inputLine = stdIn.nextLine();
-					Relative relative = commandLineInterface.chooseTheRelative();
-					int servant = commandLineInterface.chooseServants(relative);
-					serverStub.notifyObserver(new SetServant(servant, clientModel.getPlayer(), relative));
-					PutRelative putRelative = commandLineInterface.chooseTheAction(relative);
-					serverStub.notifyObserver(putRelative);
+					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub);
+					commandLineInterface.input();
 					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
 				}
 
@@ -98,7 +79,7 @@ public class ClientRMIConnection implements Serializable {
 
 			}
 			// otherwise it is slow
-			Thread.sleep(10 * 100);
+			Thread.sleep((long)10 * 100);
 
 		}
 	}

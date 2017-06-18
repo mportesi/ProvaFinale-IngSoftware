@@ -21,7 +21,32 @@ public class TowerTest {
 
 	@Test
 	public void testRefreshTower() {
-		
+		 ArrayList<Card> cards = new ArrayList<Card>();
+	      ArrayList<Floor> floors = new ArrayList<Floor>();
+	      Play play=null;
+	      try {
+			play = new Play();
+	      } catch (NullPointerException | IOException | ParseException e1) {
+			e1.printStackTrace();
+	      }
+	      Tower tower = new Tower("", cards, cards, cards, floors, play);
+	      Card card=new Card(null, null, 1);
+	      cards.add(card);
+	      cards.add(card);
+	      cards.add(card);
+	      cards.add(card);
+	      GainCoin gainCoin= new GainCoin(0);
+	      Floor floor = new Floor((String) null, 0, gainCoin);
+	      Floor floor1 = new Floor((String) null, 0, gainCoin);
+	      Floor floor2 = new Floor((String) null, 0, gainCoin);
+	      Floor floor3 = new Floor((String) null, 0, gainCoin);
+	      floors.add(floor);
+	      floors.add(floor1);
+	      floors.add(floor2);
+	      floors.add(floor3);
+	      tower.refreshTower(1);
+	      assertTrue(floor.getCard().equals(card));
+	      assertFalse(tower.isPresentAnyone());
 	}
 	
 	@Test

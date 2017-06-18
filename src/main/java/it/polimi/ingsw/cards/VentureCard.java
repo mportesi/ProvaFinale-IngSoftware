@@ -60,7 +60,7 @@ public class VentureCard extends Card {
 
 	@Override
 	public void payCost(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if (militaryRequirement == 0 && militaryCost == 0 || payAlternativeCost == false) {
+		if (militaryRequirement == 0 && militaryCost == 0 || !payAlternativeCost) {
 			for (String key : cost.keySet()) {
 				switch (key) {
 				case "coin": {
@@ -81,7 +81,7 @@ public class VentureCard extends Card {
 				}
 				}
 			}
-		} else if (cost.isEmpty() || payAlternativeCost == true) {
+		} else if (cost.isEmpty() || payAlternativeCost) {
 			player.decrementMilitaryPoint(militaryCost, play);
 		}
 		return;
@@ -111,7 +111,7 @@ public class VentureCard extends Card {
 		}
 	}
 	
-	public void applyPrivilegeBonus(Play play, Player player, String resource){
+	public void applyPrivilegeBonus(Play play, Player player, String resource) throws InterruptedException{
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
 			gain.apply(player, play);
@@ -125,6 +125,7 @@ public class VentureCard extends Card {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -174,11 +175,14 @@ public class VentureCard extends Card {
 	}
 
 	public void setGainPrivilegeCouncil() {
-		for (Effect e : immediateEffects) {
+		for (Effect e : this.immediateEffects) {
 			if (e instanceof HasPrivilege) {
 				this.gainPrivilegeCouncil = true;
 			}
 		}
 		
+	}
+	public boolean getGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
 	}
 }

@@ -30,6 +30,7 @@ public class CharacterCard extends Card {
 		this.costCoin = costCoin;
 		this.effects=effects;
 		immediateEffects = effects.createListOfEffect();
+		setGainPrivilegeCouncil();
 	}
 
 	public CharacterCard(String type, String name, int period, int costCoin, String card, int value,
@@ -67,7 +68,7 @@ public class CharacterCard extends Card {
 		}
 	}
 	
-	public void applyPrivilegeBonus(Play play, Player player, String resource){
+	public void applyPrivilegeBonus(Play play, Player player, String resource) throws InterruptedException{
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
 			gain.apply(player, play);
@@ -81,6 +82,7 @@ public class CharacterCard extends Card {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	
@@ -107,6 +109,17 @@ public class CharacterCard extends Card {
 	}
 	public int getDiscountServant(){
 		return discount.get("servant");
+	}
+	public void setGainPrivilegeCouncil() {
+		for (Effect e : this.immediateEffects) {
+			if (e instanceof HasPrivilege) {
+				this.gainPrivilegeCouncil = true;
+			}
+		}
+		
+	}
+	public boolean getGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
 	}
 	
 }

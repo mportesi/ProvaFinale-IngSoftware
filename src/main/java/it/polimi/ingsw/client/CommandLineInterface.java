@@ -5,18 +5,14 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.actions.*;
-import it.polimi.ingsw.actions.PutRelative;
-import it.polimi.ingsw.actions.PutRelativeOnCouncilPalace;
-import it.polimi.ingsw.actions.PutRelativeOnHarvestArea;
-import it.polimi.ingsw.actions.PutRelativeOnMarket;
-import it.polimi.ingsw.actions.PutRelativeOnProductionArea;
-import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.colors.ColorDice;
@@ -27,15 +23,40 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class CommandLineInterface implements Serializable {
 
-	private Scanner scanner;
+	private transient Scanner scanner;
 	private ClientModel client;
+	private ServerRMIConnectionViewRemote serverStub;
 	private boolean firstTime;
 
-	public CommandLineInterface(ClientModel client) {
+	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub) {
 		scanner = new Scanner(System.in);
 		this.client = client;
+		this.serverStub=serverStub;
 	}
 
+	public void input() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				System.out.println("It ran out of time!");
+				ShiftPlayer shiftPlayer = new ShiftPlayer();
+				try {
+					serverStub.notifyObserver(shiftPlayer);
+				} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}, (long) 20 * 10000); //TODO IMPORT FROM JSON
+		System.out.println("\nPress a key to start the action");
+		String inputLine = scanner.nextLine();
+		Relative relative = chooseTheRelative();
+		int servant =chooseServants(relative);
+		serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative));
+		PutRelative putRelative = chooseTheAction(relative);
+		serverStub.notifyObserver(putRelative);
+		
+	}
 	public void printTheBoard() {
 		client.getBoard();
 	}
@@ -209,8 +230,9 @@ public class CommandLineInterface implements Serializable {
 		case "territory": {
 			if(client.getBoard().getTerritoryTower().getFloor(floor).getCard()!=null){
 			if (client.getBoard().getTerritoryTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
+				String bonus = choosePrivilegeCouncil();
 				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative,
-						choosePrivilegeCouncil());
+						bonus);
 			} else {
 				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
 			}}
@@ -244,8 +266,9 @@ public class CommandLineInterface implements Serializable {
 				putRelative = new PutRelativeOnTowerAltCost(client.getPlayer(), tower, floor, relative,
 						chooseAlternativeCost());
 			} else if (client.getBoard().getVentureTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
+				String bonus=choosePrivilegeCouncil();
 				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative,
-						choosePrivilegeCouncil());
+						bonus);
 			} else {
 				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
 			}
