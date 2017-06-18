@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
+import it.polimi.ingsw.effects.HasPrivilege;
 
 public class BuildingCard extends Card {
 	
@@ -24,6 +25,7 @@ public class BuildingCard extends Card {
 		this.cost=cost;
 		this.effects=effects;
 		immediateEffects = effects.createListOfEffect();
+		setGainPrivilegeCouncil();
 	}
 	
 	
@@ -88,5 +90,13 @@ public class BuildingCard extends Card {
 		}
 		public boolean isGainPrivilegeCouncil() {
 			return gainPrivilegeCouncil;
+		}
+		public void setGainPrivilegeCouncil() {
+			for (Effect e : immediateEffects) {
+				if (e instanceof HasPrivilege) {
+					this.gainPrivilegeCouncil = true;
+				}
+			}
+			
 		}
 }
