@@ -48,7 +48,7 @@ public class Floor implements Serializable {
 		return type;
 	}
 
-	private Effect getBonusEffect() {
+	public Effect getBonusEffect() {
 		return bonusEffect;
 	}
 

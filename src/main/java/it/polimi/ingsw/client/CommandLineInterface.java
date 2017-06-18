@@ -230,8 +230,9 @@ public class CommandLineInterface implements Serializable {
 		case "territory": {
 			if(client.getBoard().getTerritoryTower().getFloor(floor).getCard()!=null){
 			if (client.getBoard().getTerritoryTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
+				String bonus = choosePrivilegeCouncil();
 				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative,
-						choosePrivilegeCouncil());
+						bonus);
 			} else {
 				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
 			}}
@@ -265,8 +266,9 @@ public class CommandLineInterface implements Serializable {
 				putRelative = new PutRelativeOnTowerAltCost(client.getPlayer(), tower, floor, relative,
 						chooseAlternativeCost());
 			} else if (client.getBoard().getVentureTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
+				String bonus=choosePrivilegeCouncil();
 				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative,
-						choosePrivilegeCouncil());
+						bonus);
 			} else {
 				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
 			}
