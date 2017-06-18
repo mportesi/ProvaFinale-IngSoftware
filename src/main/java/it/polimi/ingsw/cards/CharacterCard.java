@@ -1,3 +1,4 @@
+
 package it.polimi.ingsw.cards;
 
 import java.io.FileNotFoundException;

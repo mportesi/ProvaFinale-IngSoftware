@@ -77,7 +77,6 @@ public class PrivilegeCouncil implements Serializable{
 	
 	public void applyEffect(Play play, Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createEffectOfPrivilegeCouncil(resource);
-		System.out.println("effetti del priv + " +effectOfPrivilegeCouncil);
 		for (Effect e : effectOfPrivilegeCouncil) {
 			if (e != null) {
 				e.apply(player, play);
