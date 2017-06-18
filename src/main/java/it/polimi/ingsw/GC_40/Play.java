@@ -134,10 +134,28 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 		ArrayList<Player> nextTurnOrder = new ArrayList<Player>();
 		ArrayList<Player> councilPalaceOrder = board.getCouncilPalace().getOrder();
-		ArrayList<Player> currentTurnOrder2= new ArrayList<>();
-		for (Player player : currentTurnOrder){
+		ArrayList<Player> currentTurnOrder2= new ArrayList<Player>();
+		
+		for (Player p : councilPalaceOrder){
+			nextTurnOrder.add(p);
+		}
+		
+		for (Player p : currentTurnOrder){
+			if (!(board.getCouncilPalace().isAlreadyPresent(p))){
+				nextTurnOrder.add(p);
+			}
+		}
+		
+		currentTurnOrder = nextTurnOrder;
+		
+		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder(currentTurnOrder);
+		this.notifyObserver(changeTurnOrder);
+		
+		/*for (Player player : currentTurnOrder){
 		currentTurnOrder2.add(player);
 		}
+		
+		
 		
 		for (Player checkedPlayer : councilPalaceOrder) {
 			nextTurnOrder.add(checkedPlayer);
@@ -161,13 +179,14 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder(currentTurnOrder);
 
 		this.notifyObserver(changeTurnOrder);
+	}*/
 	}
 
 	public void changeCurrentPlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int i = 0;
 
-		while (currentTurnOrder.get(i) != currentPlayer) {
+		while (currentTurnOrder.get(i) != currentPlayer && i<currentTurnOrder.size()-1) {
 			i++;
 		}
 		if (i == (currentTurnOrder.size() - 1)) {
