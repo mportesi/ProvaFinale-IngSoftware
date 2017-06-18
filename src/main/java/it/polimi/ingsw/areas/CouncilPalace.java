@@ -28,13 +28,14 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	private int value;
 	private List <Effect> councilPalaceEffect;
 	private ArrayList<Player> order;
-	private ArrayList <Relative> relatives = new ArrayList <Relative>();
+	private ArrayList <Relative> relatives;
 	private int orderIndex = 0;
 
 	public CouncilPalace(int bonusPrivilegeCouncil, int bonusCoin, int value){
 		this.bonusPrivilegeCouncil = bonusPrivilegeCouncil;
 		this.bonusCoin = bonusCoin;
 		this.value = value;
+		relatives = new ArrayList <Relative>();
 		councilPalaceEffect= new ArrayList<>();
 		order = new ArrayList<Player>();
 	}
@@ -123,6 +124,21 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 
 	public ArrayList <Relative> getRelatives() {
 		return relatives;
+	}
+
+	public void removePlayer(Player player) {
+		Player playerToRemove=null;
+		Relative relativeToRemove=null;
+		for(int i=0; i<order.size(); i++){
+			if(player.getID().equals(order.get(i))){
+				playerToRemove=order.get(i);
+			}
+			if(relatives.get(i).getPlayer().getID().equals(player.getID())){
+				relativeToRemove=relatives.get(i);
+			}
+		}
+		order.remove(playerToRemove);
+		relatives.remove(relativeToRemove);
 	}
 		
 		

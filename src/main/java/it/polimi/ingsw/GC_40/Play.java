@@ -19,6 +19,8 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.RegisterClient;
+import it.polimi.ingsw.areas.Floor;
+import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeCoin;
@@ -28,6 +30,7 @@ import it.polimi.ingsw.changes.ChangeInitializeBoard;
 import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
 import it.polimi.ingsw.changes.ChangeNotApplicable;
+import it.polimi.ingsw.changes.ChangeNumberOfPlayers;
 import it.polimi.ingsw.changes.ChangePeriod;
 import it.polimi.ingsw.changes.ChangePlayer;
 import it.polimi.ingsw.changes.ChangeRound;
@@ -355,6 +358,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	}
 
 	public void endGame() {
+		ChangeEndGame changeEndGame= new ChangeEndGame();
 		// restituisce la classifica e il vincitore
 	}
 
@@ -473,6 +477,26 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public ArrayList<Player> getPlayers() {
 		return players;
+	}
+
+	public void removePlayer(Player player) {
+		Player playerToRemove=null;
+		for(int i=0; i<players.size(); i++){
+			if (players.get(i).getID().equals(player.getID())){
+				playerToRemove=players.get(i);
+			}
+		}
+		players.remove(playerToRemove);
+		board.remove(player);
+		if(players.size()==1){
+			endGame();
+		}
+		try {
+			notifyObserver(new ChangeNumberOfPlayers(players.size(), player, board));
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 

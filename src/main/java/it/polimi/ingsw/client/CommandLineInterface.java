@@ -48,13 +48,25 @@ public class CommandLineInterface implements Serializable {
 				}
 			}
 		}, (long) 20 * 10000); //TODO IMPORT FROM JSON
-		System.out.println("\nPress a key to start the action");
+		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 		String inputLine = scanner.nextLine();
+		int input=scanner.nextInt();
+		switch(input){
+		case 1:{
 		Relative relative = chooseTheRelative();
 		int servant =chooseServants(relative);
 		serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative));
 		PutRelative putRelative = chooseTheAction(relative);
 		serverStub.notifyObserver(putRelative);
+		break;}
+		case 2:{
+			printTheBoard();
+			break;
+		}
+		case 3:{
+			serverStub.notifyObserver(new Quit(client.getPlayer()));
+		}
+		}
 		
 	}
 	public void printTheBoard() {

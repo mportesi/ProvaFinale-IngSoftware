@@ -107,6 +107,8 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 
 	public void setFree() {
 		isOccupied = false;
+		player=null;
+		relative=null;
 	}
 
 	public void setPlayer(Player player) {
@@ -145,5 +147,13 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		} else if (!marketEffect.equals(other.marketEffect))
 			return false;
 		return true;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public Relative getRelative() {
+		return relative;
 	}
 }
