@@ -51,7 +51,7 @@ public class ClientOutHandler implements Runnable {
 			e.printStackTrace();
 		}
 		try
-        {Thread.sleep(5*1000);}
+        {Thread.sleep((long)5*1000);}
     catch (Exception e)
         {e.printStackTrace();
 	}
@@ -60,7 +60,7 @@ public class ClientOutHandler implements Runnable {
 		}
 		player = clientModel.getPlayer();
 		System.out.println(player.getName());
-		cli = new CommandLineInterface(clientModel);
+		cli = new CommandLineInterface(clientModel, null);
 		while (true) {
 			try
 	        {Thread.sleep(0);}

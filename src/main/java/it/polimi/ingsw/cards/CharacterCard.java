@@ -66,7 +66,7 @@ public class CharacterCard extends Card {
 		}
 	}
 	
-	public void applyPrivilegeBonus(Play play, Player player, String resource){
+	public void applyPrivilegeBonus(Play play, Player player, String resource) throws InterruptedException{
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
 			gain.apply(player, play);
@@ -80,6 +80,7 @@ public class CharacterCard extends Card {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	

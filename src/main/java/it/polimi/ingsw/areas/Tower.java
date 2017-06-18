@@ -54,8 +54,9 @@ public class Tower implements Serializable {
 		}
 				for(int i=3; i>=0; i--){
 					floors.get(i).currentCard = deck.remove(i);
-				
+					floors.get(i).setFree();
 				}
+				
 		
 	}
 
