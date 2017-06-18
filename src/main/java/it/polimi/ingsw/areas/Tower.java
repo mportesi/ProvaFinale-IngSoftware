@@ -137,6 +137,10 @@ public class Tower implements Serializable {
 		return 3;
 	}
 
+	public ArrayList<Floor> getFloors() {
+		return floors;
+	}
+
 
 
 }

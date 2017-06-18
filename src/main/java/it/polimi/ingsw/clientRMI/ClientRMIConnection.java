@@ -64,7 +64,7 @@ public class ClientRMIConnection implements Serializable {
 		// the server)
 		serverStub.registerClient(rmiView, name);
 
-		while (true) {
+		while (!clientModel.getEndGame()) {
 			if (clientModel.getCurrentPlayer() != null) {
 				float timeoutActions = (float) (System.currentTimeMillis() + 50 * 10000);
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {

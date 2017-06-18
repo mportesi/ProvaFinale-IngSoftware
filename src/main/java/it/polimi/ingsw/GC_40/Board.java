@@ -274,6 +274,70 @@ public class Board extends Observable<Change> implements Serializable {
 		return numberOfPlayers;
 	}
 
+	public void remove(Player player) {
+		if(councilPalace.isAlreadyPresent(player)){
+			councilPalace.removePlayer(player);
+		}
+		for(MarketBuilding m: market){
+			if(m.isOccupied() && m.getPlayer().getID().equals(player.getID())){
+				m.setFree();
+			}
+		}
+		for(Floor f: buildingTower.getFloors()){
+			if(!f.isFree() && f.getPlayer().getID().equals(player.getID())){
+				f.setFree();
+			}
+		}
+		for(Floor f: territoryTower.getFloors()){
+			if(!f.isFree() && f.getPlayer().getID().equals(player.getID())){
+				f.setFree();
+			}
+		}
+		for(Floor f: characterTower.getFloors()){
+			if(!f.isFree() && f.getPlayer().getID().equals(player.getID())){
+				f.setFree();
+			}
+		}
+		for(Floor f: ventureTower.getFloors()){
+			if(!f.isFree() && f.getPlayer().getID().equals(player.getID())){
+				f.setFree();
+			}
+		}
+		if(harvestArea.isAlreadyPresent(player)){
+			if(harvestArea.getLeftRelative().getPlayer().getID().equals(player.getID())){
+				try {
+					harvestArea.setLeftRelativeOnHarvest(null);
+				} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			Relative relativeToRemove=null;
+			for(Relative r: harvestArea.getRightRelatives()){
+				if(r.getPlayer().getID().equals(player.getID())){
+					relativeToRemove=r;
+				}
+			}
+			harvestArea.getRightRelatives().remove(relativeToRemove);
+		}
+		if(productionArea.isAlreadyPresent(player)){
+			if(productionArea.getLeftRelative().getPlayer().getID().equals(player.getID())){
+				try {
+					harvestArea.setLeftRelativeOnProduction(null);
+				} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			Relative relativeToRemove=null;
+			for(Relative r: productionArea.getRightRelatives()){
+				if(r.getPlayer().getID().equals(player.getID())){
+					relativeToRemove=r;
+				}
+			}
+			productionArea.getRightRelatives().remove(relativeToRemove);
+		}
+		
+	}
+
 	
 
 }

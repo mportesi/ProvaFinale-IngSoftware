@@ -26,6 +26,7 @@ public class ClientModel implements Serializable{
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private ArrayList<ClientModel> clients;
+	private boolean endGame;
 	
 	
 	public ClientModel(){
@@ -166,6 +167,17 @@ public class ClientModel implements Serializable{
 
 	public String getName() {
 		return name;
+	}
+
+
+	public void setEndGame() {
+		endGame=true;
+	}
+
+
+	public boolean getEndGame() {
+		// TODO Auto-generated method stub
+		return endGame;
 	}
 
 	
