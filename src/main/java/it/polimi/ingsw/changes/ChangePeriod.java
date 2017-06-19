@@ -11,7 +11,9 @@ public class ChangePeriod implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		
 		client.setPeriod(period);
+		System.out.println("The period " + (period-1) + " is finished!");
 	}
 
 }

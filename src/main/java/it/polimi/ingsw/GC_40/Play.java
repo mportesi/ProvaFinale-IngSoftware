@@ -73,12 +73,15 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.board = new Board(this, players.size());
 		board.registerObserver(this);
-		this.round = 0;
-		this.period = 0;
+		
+		this.round = 6;
+		this.period = 3;
 		changePeriod();
-		changeRound();
+
+			changeRound();
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
 		this.notifyObserver(changeInitializeBoard);
+	
 		
 
 	}
@@ -149,6 +152,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 		
 		currentTurnOrder = nextTurnOrder;
+		changeCurrentPlayer();
 		
 		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder(currentTurnOrder);
 		this.notifyObserver(changeTurnOrder);
@@ -210,14 +214,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public void changeRound()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if (round == 2 || round == 4 || round == 6) {
-			if (period == 3) {
-				changePeriod();
-				return;
-			} else
-				changePeriod();
-
-		}
+		
 		if (round != 0) {
 			changeTurnOrder();
 		}
@@ -255,19 +252,30 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
 		}
-
 		ChangeRound changeRound = new ChangeRound(round, board);
 		this.notifyObserver(changeRound);
+		
+		if (round-1 == 2 || round-1 == 4 || round-1 == 6) {
+			if (period == 3) {
+				changePeriod();
+				return;
+			} else
+				changePeriod();
+			}
+		
 	}
 
 	public void changePeriod()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		period++;
+		System.out.println("il periodo è : " + period );
 
 		if (period == 4) {
 			checkWinner();
 		} else {
+			
 			ChangePeriod changePeriod = new ChangePeriod(period);
+			this.notifyObserver(changePeriod);
 		}
 
 	}
@@ -387,7 +395,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public void checkWinner()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		ArrayList<Player> winners = new ArrayList<>();
+		System.out.println("Sono nel checkWinner()");
+		ArrayList<Player> winners = new ArrayList<Player>();
 		int max = 0;
 		for (Player p : currentTurnOrder) {
 			if (p.getVictoryPoint() > max) {
@@ -430,7 +439,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			notifyObserver(new ChangeNewPlayer(player, this));
 
 			if (players.size() == 2) {
-				Thread.sleep((long) timeOutStartPlay * 1000);
+				Thread.sleep((long) timeOutStartPlay );
 				System.out.println("E' scaduto il timeout!");
 				initializePlay();
 			}

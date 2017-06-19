@@ -280,7 +280,7 @@ public class CommandLineInterface implements Serializable {
 			break;
 		}
 		case "character": {
-			if (client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()) {
+			if (client.getBoard().getCharacterTower().getFloor(floor).getCard()!=null && client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()) {
 				Tower tower2 = chooseTower();
 				int floor2 = chooseFloor();
 				putRelative = new PutRelativeOnTowerDoubleCard(client.getPlayer(), tower, floor, relative, tower2,
