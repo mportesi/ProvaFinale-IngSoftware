@@ -44,7 +44,7 @@ public class Server {
 
 	}
 	
-	/*private void startSocket() throws IOException {
+	private void startSocket() throws IOException {
 
 		// creates the thread pool to handle clients
 		ExecutorService executor = Executors.newCachedThreadPool();
@@ -62,7 +62,7 @@ public class Server {
 			ServerSocketView view = new ServerSocketView(socket, play);
 
 			// the view observes the model
-			this.gioco.registerObserver(view);
+			this.play.registerObserver(view);
 
 			// the controller observes the view
 			view.registerObserver(this.controller);
@@ -70,7 +70,7 @@ public class Server {
 			// a new thread handle the connection with the view
 			executor.submit(view);
 		}
-	}*/
+	}
 	
 	public void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
@@ -89,9 +89,10 @@ public class Server {
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException, NullPointerException, ParseException {
 		Server server = new Server();
-		/*System.out.println("START SOCKET");
-		server.startSocket();*/
 		System.out.println("START RMI");
 		server.startRMI();
+		System.out.println("START SOCKET");
+		server.startSocket();
+		
 	}
 }

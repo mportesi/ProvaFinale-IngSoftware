@@ -33,6 +33,10 @@ public class CommandLineInterface implements Serializable {
 		this.client = client;
 		this.serverStub=serverStub;
 	}
+	public CommandLineInterface(ClientModel client){
+		scanner = new Scanner(System.in);
+		this.client=client;
+	}
 
 	public void input() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		Timer timer = new Timer();
@@ -69,6 +73,7 @@ public class CommandLineInterface implements Serializable {
 		}
 		
 	}
+	
 	public void printTheBoard() {
 		client.getBoard();
 	}
