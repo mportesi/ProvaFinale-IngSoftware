@@ -12,6 +12,7 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.GC_40.TimerAction;
 import it.polimi.ingsw.actions.*;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
@@ -19,6 +20,7 @@ import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
+import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class CommandLineInterface implements Serializable {
@@ -33,55 +35,54 @@ public class CommandLineInterface implements Serializable {
 		this.client = client;
 		this.serverStub = serverStub;
 	}
-	public CommandLineInterface(ClientModel client){
+
+	public CommandLineInterface(ClientModel client) {
 		scanner = new Scanner(System.in);
-		this.client=client;
+		this.client = client;
 	}
 
 	public void input()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		/*
-		 * Timer timer = new Timer(); timer.schedule(new TimerTask() {
-		 * 
-		 * @Override public void run() {
-		 * System.out.println("It ran out of time!"); ShiftPlayer shiftPlayer =
-		 * new ShiftPlayer(); try { serverStub.notifyObserver(shiftPlayer); }
-		 * catch (NullPointerException | IOException | ParseException |
-		 * InterruptedException e) { e.printStackTrace(); } } }, (long) 20 *
-		 * 10000); //TODO IMPORT FROM JSON
-		 */
+		JsonTimeOut jsonTimeOut = new JsonTimeOut();
+		int timeOutAction = jsonTimeOut.getTimeOutAction();
+		Timer timer = new Timer();
+		timer.schedule(new TimerAction(serverStub) { public void run() {
+			System.out.println("It ran out of time!");
+			ShiftPlayer shiftPlayer = new ShiftPlayer();
+			try {
+				serverStub.notifyObserver(shiftPlayer);
+			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
+				e.printStackTrace();
+			}
+		}}, (long) timeOutAction*1000); // TODO IMPORT FROM JSON
+		
+		
 
-		long timeoutActions = 10000;
-		long previousTime = System.currentTimeMillis();
-		while (System.currentTimeMillis() - previousTime < timeoutActions) {
-			System.out.println(previousTime);
-			System.out.println(System.currentTimeMillis());
-			System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
-			String inputLine = scanner.nextLine();
-			int input = scanner.nextInt();
-			switch (input) {
-			case 1: {
-				Relative relative = chooseTheRelative();
-				int servant = chooseServants(relative);
-				serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative));
-				PutRelative putRelative = chooseTheAction(relative);
-				serverStub.notifyObserver(putRelative);
-				break;
-			}
-			case 2: {
-				printTheBoard();
-				break;
-			}
-			case 3: {
-				serverStub.notifyObserver(new Quit(client.getPlayer()));
-			}
-			}
+		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
+		String inputLine = scanner.nextLine();
+		int input = scanner.nextInt();
+		switch (input) {
+		case 1: {
+			Relative relative = chooseTheRelative();
+			int servant = chooseServants(relative);
+			serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative));
+			PutRelative putRelative = chooseTheAction(relative);
+			serverStub.notifyObserver(putRelative);
+			break;
 		}
-		System.out.println("It ran out of time!");
-		ShiftPlayer shiftPlayer = new ShiftPlayer();
+		case 2: {
+			printTheBoard();
+			break;
+		}
+		case 3: {
+			serverStub.notifyObserver(new Quit(client.getPlayer()));
+		}
+		}
+		timer.cancel();
+		
 
 	}
-	
+
 	public void printTheBoard() {
 		client.getBoard();
 	}
