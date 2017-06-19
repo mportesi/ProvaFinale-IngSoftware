@@ -141,6 +141,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 		
 		for (Player p : currentTurnOrder){
+	
 			if (!(board.getCouncilPalace().isAlreadyPresent(p))){
 				nextTurnOrder.add(p);
 			}
@@ -202,6 +203,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 		if (changeRound == 4) {
 			changeRound();
+			changeRound = 0;
 		}
 	}
 

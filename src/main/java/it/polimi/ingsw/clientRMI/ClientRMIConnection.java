@@ -66,13 +66,13 @@ public class ClientRMIConnection implements Serializable {
 
 		while (!clientModel.getEndGame()) {
 			if (clientModel.getCurrentPlayer() != null) {
-				float timeoutActions = (float) (System.currentTimeMillis() + 50 * 10000);
+				
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
 					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn."); 
 					// Capture input from user
 					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub);
 					commandLineInterface.input();
-					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
+					//System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
 				}
 
 	
