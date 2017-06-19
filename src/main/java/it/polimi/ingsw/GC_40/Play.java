@@ -119,6 +119,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			p.setMilitaryPoint(0);
 			p.setVictoryPoint(0);
 			p.setFaithPoint(0);
+			p.getNeutralRelative().setValue(0);
 		}
 		giveStartingCoin(currentTurnOrder);
 	}
