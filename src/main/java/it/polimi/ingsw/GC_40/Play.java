@@ -49,6 +49,7 @@ import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.json.JsonFinalVictoryPoint;
 import it.polimi.ingsw.json.JsonPersonalBonusTiles;
+import it.polimi.ingsw.json.JsonTimeOut;
 
 public class Play extends Observable<Change> implements Observer<Change>, Serializable {
 	private ArrayList<Player> players;
@@ -410,7 +411,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public void createNewPlayer(String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-
+		JsonTimeOut jsonTimeOut = new JsonTimeOut();
+		int timeOutStartPlay = jsonTimeOut.getTimeOutStartPlay();
 		if (players == null) {
 			this.players = new ArrayList<Player>();
 		}
@@ -428,7 +430,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			notifyObserver(new ChangeNewPlayer(player, this));
 
 			if (players.size() == 2) {
-				Thread.sleep((long) 10 * 100);
+				Thread.sleep((long) timeOutStartPlay * 1000);
 				System.out.println("E' scaduto il timeout!");
 				initializePlay();
 			}
@@ -442,7 +444,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 				notifyObserver(new ChangeNewPlayer(player, this));
 
 				if (players.size() == 2) {
-					Thread.sleep((long)10 * 100);
+					Thread.sleep((long) timeOutStartPlay * 1000);
 					System.out.println("E' scaduto il timeout");
 					initializePlay();
 				}
