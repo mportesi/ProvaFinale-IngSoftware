@@ -57,12 +57,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private boolean start;
-	private int numberOfPlay;
+	private int match;
 
 	// costruttore
 	public Play(int numberOfPlay) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
-		this.numberOfPlay=numberOfPlay;
+		this.match=numberOfPlay;
 		/*
 		 * this.board=new Board(); this.players=new ArrayList<Player>();
 		 * this.round=0; this.period=0;
@@ -190,7 +190,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			currentPlayer = currentTurnOrder.get(i + 1);
 		}
 
-		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
+		ChangePlayer changePlayer = new ChangePlayer(currentPlayer, this);
 
 		this.notifyObserver(changePlayer);
 
@@ -406,14 +406,14 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.notifyObserver(c);
 	}
 
-	public void createNewPlayer(String name)
+	public void createNewPlayer(String name, int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
 		if (players == null) {
 			this.players = new ArrayList<Player>();
 		}
 		if (players.size() < 4) {
-			Player player = new Player(UUID.randomUUID(), name);
+			Player player = new Player(UUID.randomUUID(), name, match);
 			players.add(player);
 			notifyObserver(new ChangeNewPlayer(player, this));
 
@@ -427,7 +427,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 				this.players = new ArrayList<Player>();
 			}
 			if (players.size() < 4) {
-				Player player = new Player(UUID.randomUUID(), name);
+				Player player = new Player(UUID.randomUUID(), name, match);
 				players.add(player);
 				notifyObserver(new ChangeNewPlayer(player, this));
 
@@ -491,6 +491,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		ChangeNotApplicable changeNotApplicable = new ChangeNotApplicable(player);
 		this.notifyObserver(changeNotApplicable);
 
+	}
+
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
 	}
 
 }

@@ -32,7 +32,7 @@ public class Server {
 	private final static int RMI_PORT = 52365;
 
 	private ArrayList<Play> play;
-	private int numberOfPlayers;
+	private volatile int numberOfPlayers;
 	private ArrayList<Controller> controller;
 	private ArrayList<ServerRMIConnectionView> serverRMIConnectionView;
 	
@@ -112,5 +112,22 @@ public class Server {
 		server.startSocket();*/
 		System.out.println("START RMI");
 		server.startRMI();
+	}
+
+	public void newMatch(ClientRMIConnectionViewRemote clientStub, String name) throws FileNotFoundException, NullPointerException, IOException, ParseException, AlreadyBoundException, InterruptedException {
+		// TODO Auto-generated method stub
+		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
+		int i=1;
+		this.play.add(new Play(i));
+		this.controller.add(new Controller(play.get(i)));
+		serverRMIConnectionView.add(new ServerRMIConnectionView(this, i));
+		serverRMIConnectionView.get(i).registerObserver(this.controller.get(i));
+		this.play.get(i).registerObserver(serverRMIConnectionView.get(i));
+		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView.get(i), 0);
+		System.out.println("binding the server implementation to the registry");
+		registry.bind(NAME, serverRMIConnectionView.get(i));
+		i++;
+		serverRMIConnectionView.get(i).registerClient(clientStub, name);
+		
 	}
 }

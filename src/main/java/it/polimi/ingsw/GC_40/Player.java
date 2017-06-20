@@ -25,6 +25,7 @@ import it.polimi.ingsw.components.Relative;
 
 public class Player implements Serializable {
 	private UUID ID;
+	private int match;
 	private String name;
 	private ColorPlayer color;
 	private int coin;
@@ -49,8 +50,9 @@ public class Player implements Serializable {
 	private boolean hasOrangeRelative;
 	private boolean hasNeutralRelative;
 
-	public Player(UUID ID, String name) {
+	public Player(UUID ID, String name, int match) {
 		this.ID = ID;
+		this.match=match;
 		this.name = name;
 		blackRelative= new Relative(ColorDice.BLACK, this);
 		whiteRelative= new Relative(ColorDice.WHITE, this);
@@ -461,6 +463,13 @@ public class Player implements Serializable {
 	public void setPersonalBonusTile(PersonalBonusTile personalBonusTileSimple) {
 		// TODO Auto-generated method stub
 		personalBonusTileSimple = personalBonusTileSimple;
+	}
+
+
+
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
 	}
 	
 

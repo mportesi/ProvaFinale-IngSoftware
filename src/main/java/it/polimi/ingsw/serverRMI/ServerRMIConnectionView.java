@@ -2,6 +2,7 @@ package it.polimi.ingsw.serverRMI;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,7 +12,9 @@ import java.util.TimerTask;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Controller;
 import it.polimi.ingsw.GC_40.Observer;
+import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.InitializeGame;
 import it.polimi.ingsw.actions.PutRelative;
@@ -39,12 +42,31 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		// System.out.println("CLIENT REGISTRATO");
-		this.clients.add(clientStub);
+		
 		server.setNumberOfPlayers(clients.size());
 		// System.out.println(clients.get(0));
-		RegisterClient registerClient = new RegisterClient(name);
+		if(clients.size()<4){
+		this.clients.add(clientStub);
+		RegisterClient registerClient = new RegisterClient(name, 0);
 		// System.out.println("notifico di registerClient() il controller");
-		this.notifyObserver(registerClient);
+		this.notifyObserver(registerClient);}
+		else{
+			//crea nuova partita
+			int i=1;
+			Play play=new Play(i);
+			Controller controller=new Controller (play);
+			play.registerObserver(this);
+			this.registerObserver(controller);
+			RegisterClient registerClient = new RegisterClient(name, i);
+			this.notifyObserver(registerClient);
+			/*try {
+				server.newMatch(clientStub, name);
+			} catch (AlreadyBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+			
+		}
 
 	}
 
