@@ -84,7 +84,7 @@ public class ClientOutHandler implements Runnable {
 								e1.printStackTrace();
 							}
 						}
-					}, (long) 20 * 10000); //TODO IMPORT FROM JSON
+					}, (long) 200 * 1000); //TODO IMPORT FROM JSON
 					System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 					//String inputLine = stdIn.nextLine();
 					int input=stdIn.nextInt();
@@ -134,6 +134,7 @@ public class ClientOutHandler implements Runnable {
 			        {e.printStackTrace();
 				}
 					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
+					timer.cancel();
 					
 					
 					/*try {
