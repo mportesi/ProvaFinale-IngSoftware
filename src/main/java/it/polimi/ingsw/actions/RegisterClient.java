@@ -15,6 +15,7 @@ import it.polimi.ingsw.changes.ChangeNewPlayer;
 public class RegisterClient extends Observable<Change> implements Action {
 	private String name;
 	private int match;
+	private Play play;
 	
 	public RegisterClient(String name, int match){
 		this.name=name;
@@ -23,7 +24,13 @@ public class RegisterClient extends Observable<Change> implements Action {
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		this.play = play;
 		play.createNewPlayer(name, match);
+	}
+	
+	@Override
+	public int getPlay(){
+		return match;
 	}
 
 }

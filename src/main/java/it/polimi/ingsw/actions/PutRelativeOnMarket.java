@@ -21,6 +21,7 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 	Relative relative;
 	MarketBuilding market;
 	Player player;
+	private Play play;
 	
 	public PutRelativeOnMarket(Player player,Relative relative, MarketBuilding market){
 		this.player=player;
@@ -44,9 +45,11 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		this.play = play;
 		if (isApplicable()) {
 			// set the market as occupied because none can put other relatives
 			// in that space
+			
 			market.setOccupied(player, relative, market);
 			play.notifyObserver(new ChangeMarket(player, relative, market));
 			player.setOccupiedRelative(relative);
@@ -59,6 +62,11 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 			play.actionNotApplicable(player);
 		}
 		return;
+	}
+	
+	@Override
+	public Play getPlay(){
+		return play;
 	}
 
 }

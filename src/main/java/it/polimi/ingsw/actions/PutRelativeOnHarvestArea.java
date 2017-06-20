@@ -24,6 +24,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 	HarvestAndProductionArea harvestArea;
 	Player player;
 	String area;
+	Play play;
 
 	public PutRelativeOnHarvestArea(Player player, Relative relative, HarvestAndProductionArea harvestArea,
 			String area) {
@@ -35,7 +36,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 
 	@Override
 	public boolean isApplicable() {
-
+		
 		switch (area) {
 		case "left": {
 			System.out.println("sono nel case left");
@@ -69,6 +70,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 	@Override
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		this.play = play;
 		if (isApplicable()) {
 			System.out.println("The action is applicable()");
 			// If the left position is free, the player put the relative there.
@@ -101,5 +103,10 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 		} else {
 			play.actionNotApplicable(player);
 		}
+	}
+	
+	@Override
+	public Play getPlay(){
+		return play;
 	}
 }

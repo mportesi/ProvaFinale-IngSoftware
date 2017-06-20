@@ -15,10 +15,12 @@ import it.polimi.ingsw.components.Relative;
 
 public class PutRelativeOnCouncilPalace extends Observable<Change> implements PutRelative {
 
-	Relative relative;
+	private Relative relative;
 	Player player;
 	CouncilPalace councilPalace;
 	String bonus;
+	Play play;
+	
 
 	public PutRelativeOnCouncilPalace(Player player, Relative relative, CouncilPalace councilPalace, String bonus) {
 		this.player = player;
@@ -26,7 +28,8 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		this.bonus = bonus;
 		this.councilPalace = councilPalace;
 	}
-
+	
+	
 	@Override
 	public boolean isApplicable() {
 		// the required value is 1 to put a relative on the CouncilPalace
@@ -41,6 +44,7 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 	@Override
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		this.play = play;
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
 			play.getBoard().getCouncilPalace().addPlayer(player, relative);
@@ -56,5 +60,10 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 			play.actionNotApplicable(player);
 		}
 
+	}
+	
+	@Override
+	public Play getPlay(){
+		return play;
 	}
 }

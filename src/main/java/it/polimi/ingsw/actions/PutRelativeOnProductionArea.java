@@ -26,6 +26,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 	HarvestAndProductionArea productionArea;
 	Player player;
 	String area; 
+	Play play;
 
 	public PutRelativeOnProductionArea(Player player, Relative relative, HarvestAndProductionArea productionArea, String area){
 		this.player = player;
@@ -67,6 +68,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		this.play = play;
 		if (isApplicable()) {
 			// If the left position is free, the player put the relative there.
 			if (area == "left") {
@@ -99,6 +101,11 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 		return;
 	}
 
+	
+	@Override
+	public Play getPlay(){
+		return play;
+	}
 	
 	
 	

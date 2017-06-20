@@ -24,6 +24,7 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 	MarketBuilding market;
 	Player player;
 	String bonus;
+	Play play;
 	
 	public PutRelativeOnMarketPrivilege(Player player,Relative relative, MarketBuilding market,String bonus){
 		this.player=player;
@@ -48,6 +49,7 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		this.play = play;
 		if (isApplicable()) {
 			// set the market as occupied because none can put other relatives
 			// in that space
@@ -66,6 +68,11 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 		else {
 			play.actionNotApplicable(player);
 		}
+	}
+	
+	@Override
+	public Play getPlay(){
+		return play;
 	}
 
 }
