@@ -28,7 +28,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	private int value;
 	private List <Effect> councilPalaceEffect;
 	private ArrayList<Player> order;
-	private ArrayList <Relative> relatives;
+	private ArrayList <Relative> relatives = new ArrayList <Relative>();
 	private int orderIndex = 0;
 
 	public CouncilPalace(int bonusPrivilegeCouncil, int bonusCoin, int value){
