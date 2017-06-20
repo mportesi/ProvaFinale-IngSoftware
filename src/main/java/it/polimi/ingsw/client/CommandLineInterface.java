@@ -164,6 +164,7 @@ public class CommandLineInterface implements Serializable {
 		int valueServant = 0;
 		while (!legalServant) {
 			valueServant = scanner.nextInt();
+		//	System.out.println("il client ha servi: "+client.getPlayer().getServant());
 			if (valueServant <= client.getPlayer().getServant()) {
 				relative.setValueServant(valueServant);
 				// client.getPlayer().decrementServant(valueServant);

@@ -13,13 +13,13 @@ public class SetServant implements Action {
 	private int servant;
 	private Player player;
 	private Relative relative;
-	int match;
+	private int match;
 	
 	public SetServant(int servant, Player player, Relative relative, int match){
 		this.servant=servant;
 		this.player=player;
 		this.relative=relative;
-		this.match = match;
+		
 	}
 	
 	@Override

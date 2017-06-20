@@ -72,16 +72,16 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.initializing = true;
 	}
 
-	public void initializeBoard()
+	public void initializeBoard(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.board = new Board(this, players.size());
+		this.match = match;
 		board.registerObserver(this);
-		
+		System.out.println("match in board: " + match);
 		this.round = 0;
 		this.period = 0;
 		changePeriod();
-
-			changeRound();
+		changeRound();
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
 		this.notifyObserver(changeInitializeBoard);
 	
@@ -101,7 +101,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
-	public void initializePlayer()
+	public void initializePlayer(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		
@@ -256,6 +256,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
 		}
+		
+		System.out.println("match! :" + match);
 		ChangeRound changeRound = new ChangeRound(round, board, match);
 		this.notifyObserver(changeRound);
 		
@@ -447,7 +449,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			if(players.size()!=4){
 			Thread.sleep((long) timeOutStartPlay );
 			System.out.println("E' scaduto il timeout!");}
-			initializePlay();
+			initializePlay(match);
 		}
 
 	}
@@ -480,11 +482,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	// else if(players.size()==4)
 
-	private void initializePlay()
+	private void initializePlay(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.initializing = false;
-		initializePlayer();
-		initializeBoard();
+		initializePlayer(match);
+		initializeBoard(match);
 		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder (currentTurnOrder);
 		this.notifyObserver(changeTurnOrder);
 		/*ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());

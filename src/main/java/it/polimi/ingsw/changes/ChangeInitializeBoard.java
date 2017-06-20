@@ -17,6 +17,7 @@ public class ChangeInitializeBoard implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		System.out.println("CP: " + currentPlayer.getMatch() + client.getPlayer().getMatch());
 		if (currentPlayer.getMatch() == client.getPlayer().getMatch()){
 		client.setBoard(board);
 		client.setCurrentPlayer(currentPlayer);
