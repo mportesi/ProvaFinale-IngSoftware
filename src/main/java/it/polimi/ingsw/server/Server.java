@@ -32,8 +32,8 @@ public class Server {
 	private final static int PORT = 29999;
 	private final static int RMI_PORT = 52365;
 
-	private Play play;
-	private Controller controller;
+	//private Play play;
+	//private Controller controller;
 	private MasterController masterController;
 	private ServerRMIConnectionView serverRMIConnectionView;
 	
@@ -41,10 +41,8 @@ public class Server {
 	private final String NAME="Lorenzo Il Magnifico";
 
 	public Server() throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		this.play=new Play(0);
-		this.controller = new Controller (play);
 		this.masterController = new MasterController();
-		masterController.addController(controller, 0);
+		
 
 	}
 	
@@ -82,7 +80,7 @@ public class Server {
 		System.out.println("constructing the rmi registry");
 		serverRMIConnectionView=new ServerRMIConnectionView(this);
 		serverRMIConnectionView.registerObserver(this.masterController);
-		this.play.registerObserver(serverRMIConnectionView);
+		//this.play.registerObserver(serverRMIConnectionView);
 		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView, 0);
 		System.out.println("binding the server implementation to the registry");
 		registry.bind(NAME, serverRMIConnectionView);

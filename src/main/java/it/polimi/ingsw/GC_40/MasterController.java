@@ -10,26 +10,25 @@ import it.polimi.ingsw.actions.Action;
 
 
 public class MasterController implements Observer<Action>{
-	private HashMap <Controller, Integer> controllers;
+	private HashMap <Integer, Controller> controllers;
 	
 	public MasterController(){
-		controllers = new HashMap <Controller, Integer> ();
+		controllers = new HashMap <Integer, Controller> ();
 	}
 	
 	public void addController(Controller controller, int match){
-		this.controllers.put(controller, match);
+		this.controllers.put(match, controller);
 	}
 
 	@Override
 	public void update(Action action)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println(controllers);1
-		for (Controller c : controllers.keySet()){
-			
-		if (action.getPlay() == controllers.get(c)){
-			action.apply(c.getPlay());
-		}
-		}
+		System.out.println(controllers);
+		
+		action.apply(controllers.get(action.getPlay()).getPlay());
+		
+		
+		
 		
 	}
 

@@ -44,6 +44,9 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		if(clients.size()<4){
+			Play play=new Play(0);
+			Controller controller = new Controller (play);
+			server.getMasterController().addController(controller, 0);
 		this.clients.add(clientStub);
 		RegisterClient registerClient = new RegisterClient(name, 0);
 		// System.out.println("notifico di registerClient() il controller");
