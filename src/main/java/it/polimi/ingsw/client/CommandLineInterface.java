@@ -65,7 +65,7 @@ public class CommandLineInterface implements Serializable {
 		case 1: {
 			Relative relative = chooseTheRelative();
 			int servant = chooseServants(relative);
-			serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative));
+			serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative, client.getPlayer().getMatch()));
 			PutRelative putRelative = chooseTheAction(relative);
 			serverStub.notifyObserver(putRelative);
 			break;
@@ -75,7 +75,7 @@ public class CommandLineInterface implements Serializable {
 			break;
 		}
 		case 3: {
-			serverStub.notifyObserver(new Quit(client.getPlayer()));
+			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
 		}
 		}
 		timer.cancel();
@@ -195,13 +195,13 @@ public class CommandLineInterface implements Serializable {
 		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
-			putRelative = chooseThePutRelativeOnTower(client.getPlayer().getMatch(), tower, floor, relative);
+			putRelative = chooseThePutRelativeOnTower(tower, floor, relative);
 			break;
 		}
 		case 2: {
 			String bonus = choosePrivilegeCouncil();
 			putRelative = new PutRelativeOnCouncilPalace(client.getPlayer(), relative,
-					client.getBoard().getCouncilPalace(), bonus);
+					client.getBoard().getCouncilPalace(), bonus, client.getPlayer().getMatch());
 			break;
 		}
 		case 3: {
@@ -212,29 +212,29 @@ public class CommandLineInterface implements Serializable {
 				MarketBuilding market = client.getMarket(number);
 				if (number == 4) {
 					putRelative = new PutRelativeOnMarketPrivilege(client.getPlayer(), relative, market,
-							choosePrivilegeCouncil());
+							choosePrivilegeCouncil(), client.getPlayer().getMatch());
 				} else {
-					putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market);
+					putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market, client.getPlayer().getMatch());
 				}
 			} else {
 				System.out.println("\nChoose the market to put your relative: \n 1)Gain coin \n 2)Gain servant");
 				int number = scanner.nextInt();
 				MarketBuilding market = client.getMarket(number - 1);
-				putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market);
+				putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market, client.getPlayer().getMatch());
 			}
 			break;
 		}
 		case 4: {
 			String harvestArea = chooseHarvestArea();
 			putRelative = new PutRelativeOnHarvestArea(client.getPlayer(), relative, client.getBoard().getHarvestArea(),
-					harvestArea);
+					harvestArea, client.getPlayer().getMatch());
 
 			break;
 		}
 		case 5: {
 			String productionArea = chooseProductionArea();
 			putRelative = new PutRelativeOnProductionArea(client.getPlayer(), relative,
-					client.getBoard().getProductionArea(), productionArea);
+					client.getBoard().getProductionArea(), productionArea, client.getPlayer().getMatch());
 
 			break;
 		}
@@ -261,9 +261,9 @@ public class CommandLineInterface implements Serializable {
 			if (client.getBoard().getTerritoryTower().getFloor(floor).getCard() != null) {
 				if (client.getBoard().getTerritoryTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
 					String bonus = choosePrivilegeCouncil();
-					putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative, bonus);
+					putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative, bonus, client.getPlayer().getMatch());
 				} else {
-					putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+					putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative, client.getPlayer().getMatch());
 				}
 			} else {
 				System.out.println("It is occupied by another player. Choose again!");
@@ -276,7 +276,7 @@ public class CommandLineInterface implements Serializable {
 			break;
 		}
 		case "building": {
-			putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+			putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative, client.getPlayer().getMatch());
 			break;
 		}
 		case "character": {
@@ -284,21 +284,21 @@ public class CommandLineInterface implements Serializable {
 				Tower tower2 = chooseTower();
 				int floor2 = chooseFloor();
 				putRelative = new PutRelativeOnTowerDoubleCard(client.getPlayer(), tower, floor, relative, tower2,
-						floor2);
+						floor2, client.getPlayer().getMatch());
 			} else {
-				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative, client.getPlayer().getMatch());
 			}
 			break;
 		}
 		case "venture": {
 			if (client.getBoard().getVentureTower().getFloor(floor).getCard().getAlternativeCost()) {
 				putRelative = new PutRelativeOnTowerAltCost(client.getPlayer(), tower, floor, relative,
-						chooseAlternativeCost());
+						chooseAlternativeCost(), client.getPlayer().getMatch());
 			} else if (client.getBoard().getVentureTower().getFloor(floor).getCard().getGainPrivilegeCouncil()) {
 				String bonus = choosePrivilegeCouncil();
-				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative, bonus);
+				putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative, bonus, client.getPlayer().getMatch());
 			} else {
-				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative);
+				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative, client.getPlayer().getMatch());
 			}
 			break;
 		}

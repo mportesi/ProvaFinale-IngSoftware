@@ -31,13 +31,15 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	Card cardToGive;
 	String bonus;
 	boolean payForOccupied = false;
+	int match;
 
-	public PutRelativeOnTowerPrivilege(Player player, Tower tower, int floor, Relative relative, String bonus) {
+	public PutRelativeOnTowerPrivilege(Player player, Tower tower, int floor, Relative relative, String bonus, int match) {
 		this.relative = relative;
 		this.player = player;
 		this.tower = tower;
 		this.floor = floor;
 		this.bonus = bonus;
+		this.match = match;
 	}
 
 	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
@@ -160,4 +162,11 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 		}
 		return check;
 	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
+	}
+	
 }

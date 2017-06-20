@@ -35,14 +35,14 @@ public class MasterController implements Observer <Action>{
 			Controller controller = new Controller (play);
 			controllers.put(0, controller);
 			play.registerObserver(serverRMIConnectionView);
-			RegisterClient registerClient = new RegisterClient (name);
+			RegisterClient registerClient = new RegisterClient (name, 0);
 			registerClient.apply(play);
 		}
 		
 		else {
 			
 			if (matches.get(matches.size()-1).getInitializing()){
-				RegisterClient registerClient = new RegisterClient (name);
+				RegisterClient registerClient = new RegisterClient (name, matches.size()-1);
 				registerClient.apply(matches.get(matches.size()-1));
 			}
 			else {
@@ -52,7 +52,7 @@ public class MasterController implements Observer <Action>{
 				Controller controller = new Controller (newPlay);
 				controllers.put(numberOfMatch, controller);
 				newPlay.registerObserver(serverRMIConnectionView);
-				RegisterClient registerClient = new RegisterClient (name);
+				RegisterClient registerClient = new RegisterClient (name, numberOfMatch);
 				registerClient.apply(newPlay);
 			}
 		}

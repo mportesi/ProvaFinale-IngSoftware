@@ -25,12 +25,14 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 	MarketBuilding market;
 	Player player;
 	String bonus;
+	int match;
 	
-	public PutRelativeOnMarketPrivilege(Player player,Relative relative, MarketBuilding market,String bonus){
+	public PutRelativeOnMarketPrivilege(Player player,Relative relative, MarketBuilding market,String bonus, int match){
 		this.player=player;
 		this.relative=relative;
 		this.market=market;
 		this.bonus=bonus;
+		this.match = match;
 	}
 	
 	public void setMarket(MarketBuilding market){
@@ -69,6 +71,12 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 			}
 			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on this market!"));
 		}
+	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
 	}
 
 }

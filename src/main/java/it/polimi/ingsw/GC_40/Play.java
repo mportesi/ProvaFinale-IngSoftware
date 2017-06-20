@@ -422,7 +422,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.notifyObserver(c);
 	}
 
-	public void createNewPlayer(String name)
+	public void createNewPlayer(String name, int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		JsonTimeOut jsonTimeOut = new JsonTimeOut();
 		int timeOutStartPlay = jsonTimeOut.getTimeOutStartPlay();

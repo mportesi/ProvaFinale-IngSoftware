@@ -28,12 +28,14 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	private Player player;
 	private Card cardToGive;
 	boolean payForOccupied = false;
+	int match;
 
-	public PutRelativeOnTower(Player player, Tower tower, int floor, Relative relative) {
+	public PutRelativeOnTower(Player player, Tower tower, int floor, Relative relative, int match) {
 		this.relative = relative;
 		this.player = player;
 		this.tower = tower;
 		this.floor = floor;
+		this.match = match;
 	}
 
 	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
@@ -154,4 +156,12 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		}
 		return check;
 	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
+	}
+	
+	
 }

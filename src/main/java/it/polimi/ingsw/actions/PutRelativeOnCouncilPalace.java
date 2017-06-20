@@ -65,4 +65,10 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		}
 
 	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
+	}
 }

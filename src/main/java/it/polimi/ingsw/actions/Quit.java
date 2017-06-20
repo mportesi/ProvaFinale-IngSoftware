@@ -10,9 +10,11 @@ import it.polimi.ingsw.GC_40.Player;
 
 public class Quit implements Action {
 	private Player player;
+	int match;
 	
-	public Quit(Player player){
+	public Quit(Player player, int match){
 		this.player=player;
+		this.match = match;
 	}
 
 	@Override
@@ -21,5 +23,13 @@ public class Quit implements Action {
 		play.removePlayer(player);
 
 	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
+	}
+	
+	
 
 }
