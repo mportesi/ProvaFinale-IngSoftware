@@ -7,6 +7,10 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.BoxLayout;
 import java.awt.Component;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LorenzoIlMagnifico {
 
@@ -60,6 +64,16 @@ public class LorenzoIlMagnifico {
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_1.setIcon(new ImageIcon("/Users/Chiara/Desktop/punchh.jpg"));
 		frame.getContentPane().add(lblNewLabel_1);
+		
+		JButton btnNewButton = new JButton("Value");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setForeground(new Color(0, 0, 255));
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.setBackground(Color.BLACK);
+		
 	}
 
 }
