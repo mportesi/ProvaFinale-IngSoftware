@@ -13,6 +13,7 @@ import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeHarvestLeftArea;
 import it.polimi.ingsw.changes.ChangeHarvestRightArea;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainHarvestValue;
@@ -39,13 +40,9 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 		
 		switch (area) {
 		case "left": {
-			System.out.println("sono nel case left");
 			if (relative.getValue() >= harvestArea.getValueOfLeftArea()) {
-				System.out.println("Sono nell'if che verifica il valore dell'azione");
 				if (harvestArea.getLeftRelative() == null) {
-					System.out.println("sono nell'if che verifica che la zona a sx sia libera");
 					if ((!(harvestArea.isAlreadyPresent(player)) || relative.getColor() == null)) {
-						System.out.println("sono nell'if che verifica che anche nella sinistra non ci sia nessuno");
 						return true;
 					}
 				}
@@ -55,7 +52,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 
 		case "right": {
 
-			if (relative.getValue() >= harvestArea.getValueOfRightArea()) {
+			if (relative.getValue() >= (harvestArea.getValueOfRightArea()-harvestArea.getMalus())) {
 				if (!(harvestArea.isAlreadyPresent(player)) || relative.getColor() == null) {
 					return true;
 				}
@@ -72,10 +69,8 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.play = play;
 		if (isApplicable()) {
-			System.out.println("The action is applicable()");
 			// If the left position is free, the player put the relative there.
 			if (area.equals("left")) {
-				System.out.println("Sono nel case left");
 				harvestArea.setLeftRelativeOnHarvest(relative);
 				play.notifyObserver(new ChangeHarvestLeftArea(relative));
 				
@@ -83,7 +78,6 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 				play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 				GainHarvestValue gainHarvestValue = new GainHarvestValue(relative.getValue());
 				gainHarvestValue.apply(player, play);
-				System.out.println(player);
 
 			}
 			// Else he put the relative on the other side with the penalty
@@ -97,11 +91,14 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 				int newValue = relative.getValue();
 				GainHarvestValue gainHarvestValue = new GainHarvestValue(newValue);
 				gainHarvestValue.apply(player, play);
-				System.out.println(player);
 			}
 			play.changeCurrentPlayer();
 		} else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "the relative hasn't enough value!"));
 		}
 	}
 	

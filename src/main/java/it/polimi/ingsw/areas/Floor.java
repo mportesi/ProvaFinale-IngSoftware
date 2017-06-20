@@ -16,7 +16,7 @@ import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
 
-public class Floor extends Observable<Change> implements Serializable {
+public class Floor implements Serializable {
 	
 	private String type;
 	private int cost;
@@ -42,14 +42,13 @@ public class Floor extends Observable<Change> implements Serializable {
 		setRelative(null);
 		player = null;
 		isFree = true;
-		registerObserver(play);
 	}
 
 	private String getType() {
 		return type;
 	}
 
-	private Effect getBonusEffect() {
+	public Effect getBonusEffect() {
 		return bonusEffect;
 	}
 
@@ -75,6 +74,8 @@ public class Floor extends Observable<Change> implements Serializable {
 	}
 
 	public void setFree() {
+		this.player=null;
+		this.relative=null;
 		isFree = true;
 	}
 

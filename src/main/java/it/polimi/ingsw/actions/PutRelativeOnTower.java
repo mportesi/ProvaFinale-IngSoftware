@@ -15,6 +15,7 @@ import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
@@ -26,6 +27,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	private int floor;
 	private Player player;
 	private Card cardToGive;
+	boolean payForOccupied = false;
 
 	public PutRelativeOnTower(Player player, Tower tower, int floor, Relative relative) {
 		this.relative = relative;
@@ -37,20 +39,16 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
-			System.out.println("tower is free");
 			if (relative.getValue() >= tower.floors.get(floor).getCost()) {
-				System.out.println("The relative has the bigger value");
 				if (tower.isPresent(player) == false) {
-					System.out.println("There isn't the player");
-					System.out.println("true");
 					check = checkCardCost();
 					if (tower.isPresentAnyone()) {
 						if (player.getCoin() >= tower.getCost()) {
+							payForOccupied=true;
 							return check;
 						} else
 							check = false;
 					}
-					System.out.println(check);
 					return check;
 				}
 			}
@@ -63,21 +61,28 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
+			if (payForOccupied == true){
+				player.decrementCoin(tower.getCost(), play);
+			
+			}
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
-			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
-			System.out.println(tower.floors.get(floor).getPlayer());
 			cardToGive = tower.floors.get(floor).giveCard();
+			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			cardToGive.payCost(player, play);
 			player.addCard(cardToGive, play);
 			cardToGive.applyEffect(player, play);
-			tower.floors.get(floor).bonusEffect.apply(player, play);
-			System.out.println(player);
+			if(tower.floors.get(floor).bonusEffect!=null){
+					tower.floors.get(floor).bonusEffect.apply(player, play);}
 			play.changeCurrentPlayer();
 		}
 		else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative here!"));
 		}
 		return;
 	}
@@ -120,53 +125,28 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 			return check;
 		}
 		if (cardToGive instanceof BuildingCard) {
-			if (((BuildingCard) cardToGive).getCostCoin() == 0
-					|| player.getCoin() >= ((BuildingCard) cardToGive).getCostCoin()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (((BuildingCard) cardToGive).getCostWood() == 0
-					|| player.getWood() >= ((BuildingCard) cardToGive).getCostWood()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (((BuildingCard) cardToGive).getCostStone() == 0
-					|| player.getStone() >= ((BuildingCard) cardToGive).getCostStone()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (((BuildingCard) cardToGive).getCostServant() == 0
-					|| player.getServant() >= ((BuildingCard) cardToGive).getCostServant()) {
-				check = true;
+			if (((BuildingCard) cardToGive).getCostCoin() == 0 || player.getCoin() >= ((BuildingCard) cardToGive).getCostCoin()) {
+				if (((BuildingCard) cardToGive).getCostWood() == 0 || player.getWood() >= ((BuildingCard) cardToGive).getCostWood()) {
+					if (((BuildingCard) cardToGive).getCostStone() == 0 || player.getStone() >= ((BuildingCard) cardToGive).getCostStone()) {
+						if (((BuildingCard) cardToGive).getCostServant() == 0 || player.getServant() >= ((BuildingCard) cardToGive).getCostServant()) {
+							check = true;
+						}
+					}
+				}
 			} else {
 				check = false;
 			}
 			return check;
 		}
 		if (cardToGive instanceof VentureCard) {
-			if (((VentureCard) cardToGive).getCostWood() == 0
-					|| player.getCoin() >= ((VentureCard) cardToGive).getCostCoin()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getWood() >= ((VentureCard) cardToGive).getCostWood()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (((VentureCard) cardToGive).getCostStone() == 0
-					|| player.getStone() >= ((VentureCard) cardToGive).getCostStone()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (((VentureCard) cardToGive).getCostServant() == 0
-					|| player.getServant() >= ((VentureCard) cardToGive).getCostServant()) {
-				check = true;
+			if (((VentureCard) cardToGive).getCostCoin() == 0 || player.getCoin() >= ((VentureCard) cardToGive).getCostCoin()) {
+				if (((VentureCard) cardToGive).getCostWood() == 0 || player.getWood() >= ((VentureCard) cardToGive).getCostWood()) {
+					if (((VentureCard) cardToGive).getCostStone() == 0 || player.getStone() >= ((VentureCard) cardToGive).getCostStone()) {
+						if (((VentureCard) cardToGive).getCostServant() == 0 || player.getServant() >= ((VentureCard) cardToGive).getCostServant()) {
+							check = true;
+						}
+					}
+				}
 			} else {
 				check = false;
 			}

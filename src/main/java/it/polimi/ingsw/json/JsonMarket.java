@@ -38,12 +38,9 @@ public class JsonMarket {
 			bonusMap.put(typeBonus, amount);
 		}
 		
-		System.out.println(bonusMap);
 		MarketListOfEffect marketEffect = new MarketListOfEffect(bonusMap);
 		MarketBuilding m = new MarketBuilding (type, marketEffect, costOfMarket);
 		marketBuilding.add(m);
-		
-		System.out.println("STAMPO I MARKET"+m);
 		
 	
 		
@@ -52,8 +49,6 @@ public class JsonMarket {
 	}
 
 	public MarketBuilding getMarketBuilding(int i) throws FileNotFoundException, IOException, ParseException {
-		
-		// TODO Auto-generated method stub
 		return marketBuilding.get(i);
 	}
 }

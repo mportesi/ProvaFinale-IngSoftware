@@ -40,24 +40,30 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 
 	}
 
-	// PROBLEMA
 	@Override
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.play = play;
 		if (isApplicable()) {
 			// The player puts a relative on the councilPalace
+			if (!(councilPalace.isAlreadyPresent(player))){
 			play.getBoard().getCouncilPalace().addPlayer(player, relative);
-			//Notify the observers that there is a new player in the council palace
 			play.notifyObserver(new ChangeCouncilPalace(player, relative));
+			}
+			//Notify the observers that there is a new player in the council palace
+			
+			councilPalace.getRelatives().add(relative);
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// The player receive the bonus
-			// TODO give player the council privilege bonus choice
 			councilPalace.applyEffect(play, player, bonus);
 			play.changeCurrentPlayer();
 		} else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "the relative hasn't enough value!"));
 		}
 
 	}

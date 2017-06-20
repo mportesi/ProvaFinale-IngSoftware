@@ -50,6 +50,7 @@ public class JsonPersonalBonusTiles {
 				bonusHarvestMap.put(typeBonus1, amount1);
 			
 			}
+		
 			
 			PersonalBonusTileListOfProductionEffect personalBonusTileProductionListOfEffect = new PersonalBonusTileListOfProductionEffect (bonusProductionMap);
 			PersonalBonusTileListOfHarvestEffect personalBonusTileHarvestListOfEffect = new PersonalBonusTileListOfHarvestEffect (bonusHarvestMap);
@@ -58,11 +59,10 @@ public class JsonPersonalBonusTiles {
 			personalBonusTiles.add(personalBonusTile1);
 			}
 			
+		
 	}
 
 	public PersonalBonusTile getPersonalBonusTiles(int i) {
-		
-		// TODO Auto-generated method stub
 		return personalBonusTiles.get(i);
 	}
 

@@ -37,22 +37,17 @@ public class GainPrivilegeCouncil extends Effect {
 	
 	@Override
 	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// Resource resource = chooseResource();
 		privilegeCouncil.applyEffect(play, player, resource);
-		
-	//metto uno switch e incremento a seconda del case
-
 	}
 
 	public void apply(Player player, String resource) {
-		// TODO Auto-generated method stub
 		
 	}
 	
 
 	@Override
 	public String toString(){
-		return ("Effect: gain " + privilege + " privilegeCouncil in "+ resource  );
+		return ("Effect: gain" + privilege + " privilegeCouncil in "+ resource  );
 	}
 
 

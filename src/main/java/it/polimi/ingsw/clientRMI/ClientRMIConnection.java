@@ -10,11 +10,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
@@ -51,39 +54,33 @@ public class ClientRMIConnection implements Serializable {
 		// register the client view in the server side (to receive messages from
 		// the server)
 
-		
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
 
-		System.out.println("Tell me your name");
+		System.out.println("\nTell me your name\n");
 		String name = stdIn.nextLine();
 		clientModel.setName(name);
-	
+
 		// register the client view in the server side (to receive messages from
 		// the server)
 		serverStub.registerClient(rmiView, name);
-		
-		System.out.println("Press a key if you want to play otherwise write 'quit'");
-		
-		while (stdIn.nextLine()!="quit") {
-			if(clientModel.getCurrentPlayer()!=null){
+
+		while (!clientModel.getEndGame()) {
+			if (clientModel.getCurrentPlayer() != null) {
 				
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
-					System.out.println(clientModel.getCurrentPlayer().getName());
-					System.out.println(clientModel.getPlayer());
-					
+					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn."); 
 					// Capture input from user
-					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel);
-					System.out.println("Press a key to start the action");
-					String inputLine = stdIn.nextLine();
-					Relative relative=commandLineInterface.chooseTheRelative();
-					PutRelative putRelative = commandLineInterface.chooseTheAction(relative);
-					serverStub.notifyObserver(putRelative);
-					System.out.println("Il nuovo stato è: " + clientModel.getPlayer());
+					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub);
+					commandLineInterface.input();
+					//System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
+				}
 
-			}}
+	
+
+			}
+			// otherwise it is slow
+			Thread.sleep((long)10 * 100);
+
 		}
-
 	}
-
-
 }

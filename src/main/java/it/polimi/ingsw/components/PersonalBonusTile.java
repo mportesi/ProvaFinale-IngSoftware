@@ -35,6 +35,7 @@ public class PersonalBonusTile implements Serializable{
 	ArrayList <Effect> harvest;
 	
 	public PersonalBonusTile (String type, PersonalBonusTileListOfProductionEffect productionEffect, PersonalBonusTileListOfHarvestEffect harvestEffect, int costProduction, int costHarvest) throws FileNotFoundException, IOException, ParseException{
+		this.type = type;
 		this.costProduction = costProduction;
 		this.costHarvest = costHarvest;
 		this.harvestEffect=harvestEffect;
@@ -67,6 +68,12 @@ public class PersonalBonusTile implements Serializable{
 			}
 		}
 	}
+	
+	@Override
+	public String toString() {
+			return ("PersonalBonusTile of type: " + type + "\n" + "With costProduction: " + costProduction +  "\nWith costHarves: " + costHarvest + "\nWith productionEffect: " + production +"\nWith harvestEffect: " +harvest);
+		}
+		
 
 	public int getCostHarvest() {
 		return costHarvest;

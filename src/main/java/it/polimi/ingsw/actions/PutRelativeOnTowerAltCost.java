@@ -12,6 +12,7 @@ import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
@@ -23,6 +24,7 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 	Player player;
 	Card cardToGive;
 	boolean choice;
+	boolean payForOccupied = false;
 
 	public PutRelativeOnTowerAltCost(Player player, Tower tower, int floor, Relative relative, boolean choice) {
 		this.relative = relative;
@@ -35,20 +37,16 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 	public boolean isApplicable() {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
-			System.out.println("tower is free");
 			if (relative.getValue() >= tower.floors.get(floor).getCost()) {
-				System.out.println("The relative has the bigger value");
 				if (tower.isPresent(player) == false) {
-					System.out.println("There isn't the player");
-					System.out.println("true");
 					check = checkCardCost();
 					if (tower.isPresentAnyone()) {
 						if (player.getCoin() >= tower.getCost()) {
+							payForOccupied = true;
 							return check;
 						} else
 							check = false;
 					}
-					System.out.println(check);
 					return check;
 				}
 			}
@@ -61,6 +59,10 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
+			if (payForOccupied == true){
+				player.decrementCoin(tower.getCost(), play);
+			
+			}
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			player.setOccupiedRelative(relative);
@@ -74,7 +76,11 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 			play.changeCurrentPlayer();
 		}
 		else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative here!"));
 		}
 		return;
 	}

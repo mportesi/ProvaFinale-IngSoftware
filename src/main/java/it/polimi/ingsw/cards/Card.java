@@ -32,7 +32,7 @@ public class Card implements Serializable {
 	protected String type;
 	protected String name;
 	protected int period;
-	protected boolean gainPrivilegeCouncil; //TODO
+	protected boolean gainPrivilegeCouncil;
 	protected boolean getCard;
 	protected boolean alternativeCost;
 	
@@ -64,7 +64,7 @@ public class Card implements Serializable {
 	public void chooseCost(boolean cost){
 		//for venture card
 	}
-	public void applyPrivilegeBonus(Player player,String resource){
+	public void applyPrivilegeBonus(Player player,String resource) throws InterruptedException{
 	}
 
 	public boolean getGainPrivilegeCouncil() {
@@ -77,6 +77,10 @@ public class Card implements Serializable {
 
 	public boolean getAlternativeCost() {
 		return alternativeCost;
+	}
+
+	public void applyPrivilegeBonus(Play play, Player player, String bonus) throws InterruptedException {
+		
 	}
 
 	

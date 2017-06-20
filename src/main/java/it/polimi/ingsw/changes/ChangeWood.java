@@ -18,12 +18,6 @@ public class ChangeWood implements Change {
 		if(client.getName().equals(player.getName())){
 			client.getPlayer().setWood(wood);
 		}
-		/*for (Player p : client.getPlayers()) {
-			if (player.equals(p)) {
-				p.setWood(wood);
-			}
-		}*/
-
 	}
 
 }

@@ -14,8 +14,17 @@ public class ChangeWinners implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		System.out.println("The winners are" + winners);
+		client.setEndGame();
+		System.out.println("The winners are " + printWinner());
 
+	}
+	
+	public ArrayList <String> printWinner(){
+		ArrayList <String> name = new ArrayList <String>();
+		for (Player p : winners){
+			name.add(p.getName());
+		}
+		return name;
 	}
 
 }

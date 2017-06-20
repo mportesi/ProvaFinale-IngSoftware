@@ -14,6 +14,7 @@ import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeHarvestLeftArea;
 import it.polimi.ingsw.changes.ChangeHarvestRightArea;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeProductionLeftArea;
 import it.polimi.ingsw.changes.ChangeProductionRightArea;
@@ -53,7 +54,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 		
 		
 		case "right" : {
-			if (relative.getValue() >= productionArea.getValueOfRightArea()) {
+			if (relative.getValue() >= (productionArea.getValueOfRightArea()-productionArea.getMalus())) {
 				if (!(productionArea.isAlreadyPresent(player)) || relative.getColor() == null) {
 					return true;
 				}
@@ -71,7 +72,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 		this.play = play;
 		if (isApplicable()) {
 			// If the left position is free, the player put the relative there.
-			if (area == "left") {
+			if (area.equals("left")) {
 				productionArea.setLeftRelativeOnProduction(relative);
 				play.notifyObserver(new ChangeProductionLeftArea(relative));
 				player.setOccupiedRelative(relative);
@@ -86,7 +87,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				play.notifyObserver(new ChangeProductionRightArea(relative));
 				player.setOccupiedRelative(relative);
 				play.notifyObserver(new ChangeOccupiedRelative(player, relative));
-				int malus = play.getBoard().getHarvestArea().getMalus();
+				int malus = play.getBoard().getProductionArea().getMalus();
 				relative.setValue(-malus);
 				int newValue= relative.getValue();
 				GainProductionValue gainProductionValue = new GainProductionValue(newValue); 
@@ -96,7 +97,11 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 			play.changeCurrentPlayer();
 		}
 		else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on production area!"));
 		}
 		return;
 	}

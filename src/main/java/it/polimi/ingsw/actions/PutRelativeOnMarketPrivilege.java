@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeMarket;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.components.Relative;
@@ -39,7 +40,7 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 
 	@Override
 	public boolean isApplicable() {
-		if (market.IsOccupied()) {
+		if (market.isOccupied()) {
 			return false;
 		} else if (relative.getValue() >= market.getCost()) {
 			return true;
@@ -58,15 +59,17 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// take the bonus
-			//market.giveBonus(player, market);
-			//market.applyEffect(player);
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(bonus);
 			gain.apply(player, play);
 			play.changeCurrentPlayer();
 			
 		}
 		else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on this market!"));
 		}
 	}
 	

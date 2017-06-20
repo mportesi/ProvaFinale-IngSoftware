@@ -11,7 +11,7 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.effects.Effect;
 
 public abstract class CreateListOfEffect implements Serializable{
-	protected Map<String, Integer> immediateEffect;
+	protected transient Map<String, Integer> immediateEffect;
 	
 	public CreateListOfEffect(Map<String, Integer> immediateEffect){
 		this.immediateEffect=immediateEffect;

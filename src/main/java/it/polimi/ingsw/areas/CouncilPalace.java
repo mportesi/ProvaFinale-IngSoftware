@@ -28,12 +28,14 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	private int value;
 	private List <Effect> councilPalaceEffect;
 	private ArrayList<Player> order;
+	private ArrayList <Relative> relatives = new ArrayList <Relative>();
 	private int orderIndex = 0;
 
 	public CouncilPalace(int bonusPrivilegeCouncil, int bonusCoin, int value){
 		this.bonusPrivilegeCouncil = bonusPrivilegeCouncil;
 		this.bonusCoin = bonusCoin;
 		this.value = value;
+		relatives = new ArrayList <Relative>();
 		councilPalaceEffect= new ArrayList<>();
 		order = new ArrayList<Player>();
 	}
@@ -52,7 +54,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		return value;
 	}
 
-	private int getBonusCoin() {
+	public int getBonusCoin() {
 		return bonusCoin;
 	}
 
@@ -94,6 +96,52 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	
 	@Override
 	public String toString(){
-		return ("ActionValue: " + value +"\n"+ "PrivilegeCouncil bonus: "+ bonusPrivilegeCouncil + "Coin bonus: "+bonusCoin + "\n"+ "The actual order is: "+ order);
+		return ("CouncilPalace: "+"\nActionValue: " + value +"\n"+ "PrivilegeCouncil bonus: "+ bonusPrivilegeCouncil + "\nCoin bonus: "+bonusCoin + "\n"+ "Effect: gainPrivilegeCouncil" + "\nRelatives:  "+ relatives +"\nThe actual order is: "+ printOrder());
 	}
-}
+	
+	public ArrayList<String> printOrder(){
+		ArrayList<String> name= new ArrayList<String>();
+		if (order != null){
+		for (Player p : order){
+			p.getName();
+			name.add(p.getName());
+		}
+		}
+		return name;
+	}
+
+	public boolean isAlreadyPresent(Player player) {
+		for (Player p : order){
+			
+			if (p.getName().equals(player.getName())){
+				System.out.println("CP true");
+				return true;
+			}
+		}
+		System.out.println("CP false");
+		return false;
+		}
+
+	public ArrayList <Relative> getRelatives() {
+		return relatives;
+	}
+
+	public void removePlayer(Player player) {
+		Player playerToRemove=null;
+		Relative relativeToRemove=null;
+		for(int i=0; i<order.size(); i++){
+			if(player.getID().equals(order.get(i))){
+				playerToRemove=order.get(i);
+			}
+			if(relatives.get(i).getPlayer().getID().equals(player.getID())){
+				relativeToRemove=relatives.get(i);
+			}
+		}
+		order.remove(playerToRemove);
+		relatives.remove(relativeToRemove);
+	}
+		
+		
+	
+
+	}

@@ -23,7 +23,7 @@ public class ChangeCouncilPalace implements Change {
 	@Override
 	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		client.setCouncilPalace(player, relative);
-		System.out.println("Ho fatto il change del council");
+		System.out.println("\nThe board is changed!\n" + client.getBoard());
 	}
 	
 

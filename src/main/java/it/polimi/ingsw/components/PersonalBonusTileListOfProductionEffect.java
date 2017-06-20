@@ -28,42 +28,43 @@ public class PersonalBonusTileListOfProductionEffect extends CreateListOfEffect{
 		for (String key : immediateEffect.keySet()) {
 			keys.add(key);
 		}
+		
 		for (int i = 0; i < keys.size(); i++) {
 			String effect = keys.get(i);
 			int costProductionEffect = immediateEffect.get(effect);
 			switch (effect) {
-			case "GainCoin": {
+			case "coin": {
 				GainCoin gainCoin = new GainCoin(costProductionEffect);
 				productionEffect.add(gainCoin);
 				break;
 			}
 			
-			case "GainWood": {
+			case "wood": {
 				GainWood gainWood = new GainWood(costProductionEffect);
 				productionEffect.add(gainWood);
 				break;
 			}
-			case "GainStone": {
+			case "stone": {
 				GainStone gainStone = new GainStone(costProductionEffect);
 				productionEffect.add(gainStone);
 				break;
 			}
-			case "GainServant": {
+			case "servant": {
 				GainServant gainServant = new GainServant(costProductionEffect);
 				productionEffect.add(gainServant);
 				break;
 			}
-			case "GainVictoryPoint": {
+			case "victoryPoint": {
 				GainVictoryPoint gainVictoryPoint = new GainVictoryPoint(costProductionEffect);
 				productionEffect.add(gainVictoryPoint);
 				break;
 			}
-			case "GainFaithPoint": {
+			case "faithPoint": {
 				GainFaithPoint gainFaithPoint = new GainFaithPoint(costProductionEffect);
 				productionEffect.add(gainFaithPoint);
 				break;
 			}
-			case "GainMilitaryPoint": {
+			case "militaryPoint": {
 				GainMilitaryPoint gainMilitaryPoint = new GainMilitaryPoint(costProductionEffect);
 				productionEffect.add(gainMilitaryPoint);
 				break;

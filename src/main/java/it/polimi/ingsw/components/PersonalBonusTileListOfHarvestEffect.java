@@ -35,38 +35,38 @@ public class PersonalBonusTileListOfHarvestEffect extends CreateListOfEffect{
 			String effect = keys.get(i);
 			int costHarvestEffect = immediateEffect.get(effect);
 			switch (effect) {
-			case "GainCoin": {
+			case "coin": {
 				GainCoin gainCoin = new GainCoin(costHarvestEffect);
 				harvestEffect.add(gainCoin);
 				break;
 			}
 			
-			case "GainWood": {
+			case "wood": {
 				GainWood gainWood = new GainWood(costHarvestEffect);
 				harvestEffect.add(gainWood);
 				break;
 			}
-			case "GainStone": {
+			case "stone": {
 				GainStone gainStone = new GainStone(costHarvestEffect);
 				harvestEffect.add(gainStone);
 				break;
 			}
-			case "GainServant": {
+			case "servant": {
 				GainServant gainServant = new GainServant(costHarvestEffect);
 				harvestEffect.add(gainServant);
 				break;
 			}
-			case "GainVictoryPoint": {
+			case "victoryPoint": {
 				GainVictoryPoint gainVictoryPoint = new GainVictoryPoint(costHarvestEffect);
 				harvestEffect.add(gainVictoryPoint);
 				break;
 			}
-			case "GainFaithPoint": {
+			case "faithPoint": {
 				GainFaithPoint gainFaithPoint = new GainFaithPoint(costHarvestEffect);
 				harvestEffect.add(gainFaithPoint);
 				break;
 			}
-			case "GainMilitaryPoint": {
+			case "militaryPoint": {
 				GainMilitaryPoint gainMilitaryPoint = new GainMilitaryPoint(costHarvestEffect);
 				harvestEffect.add(gainMilitaryPoint);
 				break;

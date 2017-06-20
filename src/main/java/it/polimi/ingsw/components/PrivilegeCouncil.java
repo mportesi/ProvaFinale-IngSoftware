@@ -34,7 +34,7 @@ public class PrivilegeCouncil implements Serializable{
 		this.bonusFaithPoint = bonusFaithPoint;
 		this.bonusMilitaryPoint = bonusMilitaryPoint;
 		this.bonusServant = bonusServant;
-		this.effectOfPrivilegeCouncil= new ArrayList<>();
+		this.effectOfPrivilegeCouncil= new ArrayList<Effect>();
 	}
 	
 	
@@ -48,25 +48,25 @@ public class PrivilegeCouncil implements Serializable{
 			 break;
 		}
 		
-		case "bonusServant" : {
+		case "servant" : {
 			GainServant gainServant = new GainServant (bonusServant);
 			effectOfPrivilegeCouncil.add(gainServant);
 			break;
 		}
 		
-		case "bonusCoin" : {
+		case "coin" : {
 			GainCoin gainCoin = new GainCoin (bonusCoin);
 			effectOfPrivilegeCouncil.add(gainCoin);
 			break;
 		}
 		
-		case "bonusMilitaryPoint" : {
+		case "militaryPoint" : {
 			GainMilitaryPoint gainMilitaryPoint = new GainMilitaryPoint (bonusMilitaryPoint);
 			effectOfPrivilegeCouncil.add(gainMilitaryPoint);
 			break;
 		}
 		
-		case "bonusFaithPoint" : {
+		case "faithPoint" : {
 			GainFaithPoint gainFaithPoint = new GainFaithPoint (bonusFaithPoint);
 			effectOfPrivilegeCouncil.add(gainFaithPoint);
 			break;
@@ -77,7 +77,6 @@ public class PrivilegeCouncil implements Serializable{
 	
 	public void applyEffect(Play play, Player player, String resource) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		createEffectOfPrivilegeCouncil(resource);
-
 		for (Effect e : effectOfPrivilegeCouncil) {
 			if (e != null) {
 				e.apply(player, play);
@@ -87,17 +86,12 @@ public class PrivilegeCouncil implements Serializable{
 		}
 	}
 	
-	/*
-	
-	public static void giveBonus(Piece piece, Player player){
-		piece.incrementPrivilegeCouncil(player);
-		
-		}
-
-	//It is useless in this class but this class extend Piece
 	@Override
-	public void incrementPrivilegeCouncil(Player player) {
-		return;
-	} */
+	public String toString() {
+		return ("Privilege with effect: " + effectOfPrivilegeCouncil);
+		
+	}
+	
+
 }
 

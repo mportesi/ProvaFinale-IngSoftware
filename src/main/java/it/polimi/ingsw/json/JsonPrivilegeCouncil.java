@@ -25,6 +25,7 @@ public class JsonPrivilegeCouncil {
 		int bonusFaithPoint = ((Long) privilegeCouncilObj.get("bonusFaithPoint")).intValue();
 		
 		privilegeCouncil = new PrivilegeCouncil(bonusWoodAndStone, bonusServant, bonusCoinP, bonusMilitaryPoint, bonusFaithPoint);
+		
 }
 	public PrivilegeCouncil getPrivilegeCouncil(){
 		return privilegeCouncil;

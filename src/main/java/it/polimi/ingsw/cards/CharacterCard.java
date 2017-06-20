@@ -1,3 +1,4 @@
+
 package it.polimi.ingsw.cards;
 
 import java.io.FileNotFoundException;
@@ -22,12 +23,14 @@ public class CharacterCard extends Card {
 	private Map<String, Integer> discount;
 	private CharacterListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
+	private boolean gainPrivilegeCouncil=false;
 
 	public CharacterCard(String type, String name, int period, int costCoin, CharacterListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.costCoin = costCoin;
 		this.effects=effects;
 		immediateEffects = effects.createListOfEffect();
+		setGainPrivilegeCouncil();
 	}
 
 	public CharacterCard(String type, String name, int period, int costCoin, String card, int value,
@@ -65,29 +68,58 @@ public class CharacterCard extends Card {
 		}
 	}
 	
-	public void applyPrivilegeBonus(Play play, Player player, String resource){
+	public void applyPrivilegeBonus(Play play, Player player, String resource) throws InterruptedException{
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
 			gain.apply(player, play);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	
 	public int getCostCoin(){
 		return costCoin;
 	}
+	public boolean isGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
+	}
+	public String getSecondCard(){
+		return card;
+	}
+	public int getSecondCardValue(){
+		return value;
+	}
+	public int getDiscountCoin(){
+		return discount.get("coin");
+	}
+	public int getDiscountWood(){
+		return discount.get("wood");
+	}
+	public int getDiscountStone(){
+		return discount.get("stone");
+	}
+	public int getDiscountServant(){
+		return discount.get("servant");
+	}
+	public void setGainPrivilegeCouncil() {
+		for (Effect e : this.immediateEffects) {
+			if (e instanceof HasPrivilege) {
+				this.gainPrivilegeCouncil = true;
+			}
+		}
+		
+	}
+	public boolean getGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
+	}
+	
 }

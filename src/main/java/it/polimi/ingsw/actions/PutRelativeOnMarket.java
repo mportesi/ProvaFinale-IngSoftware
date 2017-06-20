@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeMarket;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
@@ -35,12 +36,12 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 
 	@Override
 	public boolean isApplicable() {
-		if (market.IsOccupied()) {
+		if (market.isOccupied()) {
 			return false;
 		} else if (relative.getValue() >= market.getCost()) {
 			return true;
-		} else
-			return false;
+		} else{
+			return false;}
 	}
 
 	@Override
@@ -59,7 +60,11 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 			play.changeCurrentPlayer();
 		}
 		else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on this market!"));
 		}
 		return;
 	}

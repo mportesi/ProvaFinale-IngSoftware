@@ -42,70 +42,36 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 	@Override
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+<<<<<<<
 		
 		if(clients.size()<4){
 			Play play=new Play(0);
 			Controller controller = new Controller (play);
 			server.getMasterController().addController(controller, 0);
+=======
+
+>>>>>>>
 		this.clients.add(clientStub);
-		RegisterClient registerClient = new RegisterClient(name, 0);
-		// System.out.println("notifico di registerClient() il controller");
-		this.notifyObserver(registerClient);}
-		else{
-			//crea nuova partita
-			this.clients.add(clientStub);
-			int i=1;
-			Play play=new Play(i);
-			matches.add(play);
-			Controller controller=new Controller (play);
-			server.getMasterController().addController(controller, i);
-			play.registerObserver(this);
-			this.registerObserver(controller);
-			RegisterClient registerClient = new RegisterClient(name, i);
-			this.notifyObserver(registerClient);
-			/*try {
-				server.newMatch(clientStub, name);
-			} catch (AlreadyBoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
-			
-		}
+		RegisterClient registerClient = new RegisterClient(name);
+		this.notifyObserver(registerClient);
 
 	}
 
-	/*
-	 * @Override public void initializeGame(ClientRMIConnectionViewRemote
-	 * clientStub) throws FileNotFoundException, NullPointerException,
-	 * IOException, ParseException, InterruptedException { /*InitializeGame
-	 * initializeGame = new InitializeGame();
-	 * this.notifyObserver(initializeGame); //
-	 * System.out.println("notifico di initializeGame() il controller"); }
-	 */
 
 	@Override
 	public void update(Change change)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// System.out.println("SENDING THE CHANGE TO THE CLIENT");
 		try {
-			// System.out.println(change);
 			for (ClientRMIConnectionViewRemote clientstub : this.clients) {
-				// System.out.println("sono nel Server prima di fare
-				// updateClient(c)");
 				clientstub.updateClient(change);
-				System.out.println("ho fatto il change sul client " + change);
-				// System.out.println("sono nel Server dopo aver fatto
-				// updateClient(c)");
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 
 	}
 

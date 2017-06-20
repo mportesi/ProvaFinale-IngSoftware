@@ -21,16 +21,14 @@ public class ChangeRound implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		
 		client.setRound(round);
+		client.setBoard(board);
 		client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());
 		client.getPlayer().getWhiteRelative().setValue(board.getWhiteDice().getValue());
 		client.getPlayer().getOrangeRelative().setValue(board.getOrangeDice().getValue());
-		client.getPlayer().setFreeRelative(client.getPlayer().getBlackRelative());
-		client.getPlayer().setFreeRelative(client.getPlayer().getWhiteRelative());
-		client.getPlayer().setFreeRelative(client.getPlayer().getOrangeRelative());
-		client.getPlayer().setFreeRelative(client.getPlayer().getNeutralRelative());
-
+		client.getPlayer().setFreeAllRelatives();
+		System.out.println("It's finished the " + (round-1) + " round");
+		System.out.println("The new board is: " + client.getBoard());
 	}
 
 }

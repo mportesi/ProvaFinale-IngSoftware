@@ -15,11 +15,13 @@ import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
+import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 
 public class PutRelativeOnTowerPrivilege extends Observable<Change> implements PutRelative {
 	Tower tower;
@@ -28,6 +30,7 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	Player player;
 	Card cardToGive;
 	String bonus;
+	boolean payForOccupied = false;
 
 	public PutRelativeOnTowerPrivilege(Player player, Tower tower, int floor, Relative relative, String bonus) {
 		this.relative = relative;
@@ -37,23 +40,19 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 		this.bonus = bonus;
 	}
 
-	public boolean isApplicable() {
+	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
-			System.out.println("tower is free");
 			if (relative.getValue() >= tower.floors.get(floor).getCost()) {
-				System.out.println("The relative has the bigger value");
 				if (tower.isPresent(player) == false) {
-					System.out.println("There isn't the player");
-					System.out.println("true");
 					check = checkCardCost();
 					if (tower.isPresentAnyone()) {
 						if (player.getCoin() >= tower.getCost()) {
+							payForOccupied = true;
 							return check;
 						} else
 							check = false;
 					}
-					System.out.println(check);
 					return check;
 				}
 			}
@@ -66,6 +65,10 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
+			if (payForOccupied == true){
+				player.decrementCoin(tower.getCost(), play);
+			
+			}
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 			play.notifyObserver(new ChangeTower(tower, floor,player, relative));
 			player.setOccupiedRelative(relative);
@@ -74,23 +77,53 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 			cardToGive.payCost(player, play);
 			player.addCard(cardToGive, play);
 			cardToGive.applyEffect(player, play);
-			cardToGive.applyPrivilegeBonus(player, bonus);
-			tower.floors.get(floor).bonusEffect.apply(player, play);
+			cardToGive.applyPrivilegeBonus(play, player, bonus);
+			if(tower.floors.get(floor).getBonusEffect()!=null){
+				tower.floors.get(floor).bonusEffect.apply(player, play);
+			}
 			play.changeCurrentPlayer();
 		}
 		else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative here!"));
 		}
 		return;
 	}
 
-	public boolean checkCardCost() {
+	public boolean checkCardCost() throws FileNotFoundException, IOException, ParseException {
 		cardToGive = tower.floors.get(floor).getCard();
 		boolean check = false;
+		JsonMilitaryPointForTerritory jsonMilitaryPointForTerritory = new JsonMilitaryPointForTerritory();
+		jsonMilitaryPointForTerritory.importMilitaryPointForTerritory();
+		
+		if (player.counter("territory")==2 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheThirdCard()){
+			check = false;
+			return check;
+		}
+		
+		if (player.counter("territory")==3 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheFourthCard()){
+			check = false;
+			return check;
+		}
+		if (player.counter("territory")==4 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheFifthCard()){
+			check = false;
+			return check;
+		}
+		if (player.counter("territory")==5 && player.getMilitaryPoint() < jsonMilitaryPointForTerritory.getForTheSixthCard()){
+			check = false;
+			return check;
+		}
+		
+		
 		if (cardToGive instanceof CharacterCard) {
-			if (player.getCoin() >= ((CharacterCard) cardToGive).getCostCoin()) {
+			if (((CharacterCard) cardToGive).getCostCoin() == 0
+					|| player.getCoin() >= ((CharacterCard) cardToGive).getCostCoin()) {
 				check = true;
-				return check;
+			} else {
+				check = false;
 			}
 		}
 		if (cardToGive instanceof TerritoryCard) {
@@ -98,46 +131,28 @@ public class PutRelativeOnTowerPrivilege extends Observable<Change> implements P
 			return check;
 		}
 		if (cardToGive instanceof BuildingCard) {
-			if (player.getCoin() >= ((BuildingCard) cardToGive).getCostCoin()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getWood() >= ((BuildingCard) cardToGive).getCostWood()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getStone() >= ((BuildingCard) cardToGive).getCostStone()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getServant() >= ((BuildingCard) cardToGive).getCostServant()) {
-				check = true;
+			if (((BuildingCard) cardToGive).getCostCoin() == 0 || player.getCoin() >= ((BuildingCard) cardToGive).getCostCoin()) {
+				if (((BuildingCard) cardToGive).getCostWood() == 0 || player.getWood() >= ((BuildingCard) cardToGive).getCostWood()) {
+					if (((BuildingCard) cardToGive).getCostStone() == 0 || player.getStone() >= ((BuildingCard) cardToGive).getCostStone()) {
+						if (((BuildingCard) cardToGive).getCostServant() == 0 || player.getServant() >= ((BuildingCard) cardToGive).getCostServant()) {
+							check = true;
+						}
+					}
+				}
 			} else {
 				check = false;
 			}
 			return check;
 		}
 		if (cardToGive instanceof VentureCard) {
-			if (player.getCoin() >= ((VentureCard) cardToGive).getCostCoin()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getWood() >= ((VentureCard) cardToGive).getCostWood()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getStone() >= ((VentureCard) cardToGive).getCostStone()) {
-				check = true;
-			} else {
-				check = false;
-			}
-			if (player.getServant() >= ((VentureCard) cardToGive).getCostServant()) {
-				check = true;
+			if (((VentureCard) cardToGive).getCostCoin() == 0 || player.getCoin() >= ((VentureCard) cardToGive).getCostCoin()) {
+				if (((VentureCard) cardToGive).getCostWood() == 0 || player.getWood() >= ((VentureCard) cardToGive).getCostWood()) {
+					if (((VentureCard) cardToGive).getCostStone() == 0 || player.getStone() >= ((VentureCard) cardToGive).getCostStone()) {
+						if (((VentureCard) cardToGive).getCostServant() == 0 || player.getServant() >= ((VentureCard) cardToGive).getCostServant()) {
+							check = true;
+						}
+					}
+				}
 			} else {
 				check = false;
 			}

@@ -35,12 +35,14 @@ public class Player implements Serializable {
 	private int faithPoint;
 	private int victoryPoint;
 	private int militaryPoint;
+	private ArrayList <Relative> activeRelatives;
 	private ArrayList<TerritoryCard> territoryCard;
 	private ArrayList<CharacterCard> characterCard;
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
 	private ArrayList<LeaderTile> leader;
-	private PersonalBonusTile personalBonusTile;
+	private PersonalBonusTile personalBonusTileSimple;
+	private PersonalBonusTile personalBonusTileAdvcanced;
 	private Relative blackRelative;
 	private Relative whiteRelative;
 	private Relative orangeRelative;
@@ -54,10 +56,16 @@ public class Player implements Serializable {
 		this.ID = ID;
 		this.match=match;
 		this.name = name;
+		
 		blackRelative= new Relative(ColorDice.BLACK, this);
 		whiteRelative= new Relative(ColorDice.WHITE, this);
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
 		neutralRelative= new Relative(null, this);
+		activeRelatives = new ArrayList <Relative>();
+	/*	activeRelatives.add(blackRelative);
+		activeRelatives.add(neutralRelative);
+		activeRelatives.add(orangeRelative);
+		activeRelatives.add(whiteRelative);*/
 		territoryCard= new ArrayList<>();
 		buildingCard= new ArrayList<>();
 		ventureCard= new ArrayList<>();
@@ -73,9 +81,12 @@ public class Player implements Serializable {
 	@Override
 	public String toString(){
 		return ("The player is\n " + "Name: " + name +  "\nColor: " + color + "\nCoin: " +coin + "\nWood: "+ wood +"\nStone: "+ stone + "\nServant: "+ servant + "\nFaithPoint: " + faithPoint + "\nMilitaryPoint: "+ militaryPoint + "\nVictoryPoint: "+ victoryPoint+ "\nTerritoryCard: " + territoryCard + "\nCharacterCard: "
-				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nLeaderTile: "+ leader);
+				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nLeaderTile: "+ leader + "\nThe active relative are: " +activeRelatives);
 	}
-
+	
+	public void removeRelative (Relative relative){
+		activeRelatives.remove(relative);
+	}
 	public int resourceCounter() {
 		return coin + wood + stone + servant;
 	}
@@ -268,6 +279,7 @@ public class Player implements Serializable {
 			territoryCard.add((TerritoryCard) card);
 			ChangeTerritoryCard changeTerritoryCard = new ChangeTerritoryCard(this, territoryCard);
 			play.notifyObserver(changeTerritoryCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much territory cards!"));
 			break;
 		}
 		case "buildingCard": {
@@ -275,6 +287,7 @@ public class Player implements Serializable {
 			buildingCard.add((BuildingCard) card);
 			ChangeBuildingCard changeBuildingCard = new ChangeBuildingCard(this, buildingCard);
 			play.notifyObserver(changeBuildingCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much building cards!"));
 			break;
 		}
 		case "characterCard": {
@@ -282,6 +295,7 @@ public class Player implements Serializable {
 			characterCard.add((CharacterCard) card);
 			ChangeCharacterCard changeCharacterCard = new ChangeCharacterCard(this, characterCard);
 			play.notifyObserver(changeCharacterCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much character cards!"));
 			break;
 		}
 		case "ventureCard": {
@@ -289,6 +303,7 @@ public class Player implements Serializable {
 			ventureCard.add((VentureCard) card);
 			ChangeVentureCard changeVentureCard = new ChangeVentureCard(this, ventureCard);
 			play.notifyObserver(changeVentureCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much venture cards!"));
 			break;
 		}
 		}
@@ -399,14 +414,11 @@ public class Player implements Serializable {
 		return neutralRelative;
 	}
 
-	public PersonalBonusTile getPersonalBonusTile() {
-	
-		return personalBonusTile;
-	}
 
 	public void setOccupiedRelative(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=false;
+			
 		}
 		if(relative.equals(whiteRelative)){
 			hasWhiteRelative=false;
@@ -414,7 +426,7 @@ public class Player implements Serializable {
 		if(relative.equals(orangeRelative)){
 			hasOrangeRelative=false;
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			hasNeutralRelative=false;
 		}
 		
@@ -430,7 +442,7 @@ public class Player implements Serializable {
 		if(relative.equals(orangeRelative)){
 			return hasOrangeRelative;
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			return hasNeutralRelative;
 		}
 		return false;
@@ -439,9 +451,6 @@ public class Player implements Serializable {
 
 
 	public void setFreeRelative(Relative relative) {
-		// TODO Auto-generated method stub
-		System.out.println(relative);
-		System.out.println(blackRelative);
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=true;
 		}
@@ -452,7 +461,7 @@ public class Player implements Serializable {
 			hasOrangeRelative=true;
 			
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			hasNeutralRelative=true;
 			
 		}
@@ -460,17 +469,55 @@ public class Player implements Serializable {
 
 
 
-	public void setPersonalBonusTile(PersonalBonusTile personalBonusTileSimple) {
-		// TODO Auto-generated method stub
-		personalBonusTileSimple = personalBonusTileSimple;
+	public void setPersonalBonusTile(PersonalBonusTile personalBonusTileSimple, PersonalBonusTile personalBonusTileAdvanced) {
+		this.personalBonusTileSimple = personalBonusTileSimple;
+		this.personalBonusTileAdvcanced = personalBonusTileAdvanced;
+		
 	}
 
 
 
-	public int getMatch() {
-		// TODO Auto-generated method stub
-		return match;
+	public PersonalBonusTile getPersonalBonusTileSimple() {
+		return personalBonusTileSimple;
 	}
+
+
+
+	public void setFreeAllRelatives() {
+		hasBlackRelative=true;
+		hasOrangeRelative=true;
+		hasWhiteRelative=true;
+		hasNeutralRelative=true;
+		activeRelatives.add(blackRelative);
+		activeRelatives.add(neutralRelative);
+		activeRelatives.add(orangeRelative);
+		activeRelatives.add(whiteRelative);
+		
+	}
+
+
+
+	public Relative getRelative(Relative relative) {
+		if(relative.equals(blackRelative)){
+			return blackRelative;
+		}
+		if(relative.equals(whiteRelative)){
+			return whiteRelative;
+		}
+		if(relative.equals(orangeRelative)){
+			return orangeRelative;
+			
+		}
+		if(relative.equals(neutralRelative)){
+			return neutralRelative;
+			
+		}
+		return null;
+	}
+
+
+
+	
 	
 
 

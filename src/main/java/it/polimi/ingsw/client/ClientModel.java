@@ -13,6 +13,7 @@ import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.Relative;
 
@@ -24,37 +25,20 @@ public class ClientModel implements Serializable{
 	private int period;
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
-	//private boolean startPlay;
 	private ArrayList<ClientModel> clients;
+	private boolean endGame;
 	
 	
 	public ClientModel(){
-		//players= new ArrayList<Player>();
-		//currentTurnOrder= new ArrayList<Player>();
 		
 	}
-	
-	/*public ArrayList<Player> getPlayers() {
-		
-		return players;
-	}*/
 
 
 	public void setCouncilPalace(Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getCouncilPalace().addPlayer(player, relative);
-		
+		board.getCouncilPalace().getRelatives().add(relative);
 	}
 
-
-	/*public void addPlayer(Player player) {
-		players= new ArrayList<Player>();
-		players.add(player);
-		this.player=player;
-		for(int i=0; i<players.size(); i++){
-		System.out.println("I giocatori sono:" + players.get(i).getName());}
-		
-		
-	}*/
 
 	public void setPeriod(int period) {
 		this.period=period;
@@ -119,8 +103,8 @@ public class ClientModel implements Serializable{
 
 	public void setMarket(MarketBuilding market, Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		for(MarketBuilding m: board.getMarket()){
-			if(m.equals(market)){
-				market.setOccupied(player, relative, m);
+			if(m.getType().equals(market.getType())){
+				m.setOccupied(player, relative, m);
 			}
 		}
 		
@@ -150,12 +134,12 @@ public class ClientModel implements Serializable{
 		
 		return board.getMarket(i);
 	}
+	
+
 
 
 	public void setBoard(Board board) {
 		this.board=board;
-		//System.out.println(board);
-		//players= new ArrayList<Player>();
 		
 	}
 
@@ -172,29 +156,28 @@ public class ClientModel implements Serializable{
 		return player;
 	}
 
-	/*public void setStartPlay(boolean b) {
-		startPlay=true;
-		
-	}
-
-	public boolean getStartPlay() {
-		// TODO Auto-generated method stub
-		return startPlay;
-	}*/
 
 	public Player getCurrentPlayer() {
-		// TODO Auto-generated method stub
 		return currentPlayer;
 	}
 
 	public void setName(String name) {
-		// TODO Auto-generated method stub
 		this.name = name;
 	}
 
 	public String getName() {
-		
 		return name;
+	}
+
+
+	public void setEndGame() {
+		endGame=true;
+	}
+
+
+	public boolean getEndGame() {
+		// TODO Auto-generated method stub
+		return endGame;
 	}
 
 	

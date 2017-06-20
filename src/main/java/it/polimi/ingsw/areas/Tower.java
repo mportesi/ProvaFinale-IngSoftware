@@ -11,7 +11,7 @@ import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.components.Relative;
 
-public class Tower extends Observable<Change> implements Serializable {
+public class Tower implements Serializable {
 	private String type;
 	public ArrayList<Floor> floors;
 	private ArrayList<Card> deck1;
@@ -26,7 +26,6 @@ public class Tower extends Observable<Change> implements Serializable {
 		this.deck2 = deck2;
 		this.deck3 = deck3;
 		this.floors = floors;
-		registerObserver(play);
 	}
 
 	public String getType() {
@@ -42,7 +41,6 @@ public class Tower extends Observable<Change> implements Serializable {
 		case 1:
 			{
 			deck = deck1;
-			
 			break;
 			}
 		case 2:
@@ -54,10 +52,11 @@ public class Tower extends Observable<Change> implements Serializable {
 			break;
 			}
 		}
-				for(int i=0; i<4; i++){
-				floors.get(i).currentCard = deck.remove(i);
-				
+				for(int i=3; i>=0; i--){
+					floors.get(i).currentCard = deck.remove(i);
+					floors.get(i).setFree();
 				}
+				
 		
 	}
 
@@ -135,7 +134,11 @@ public class Tower extends Observable<Change> implements Serializable {
 	}
 
 	public int getCost() {
-		return cost;
+		return 3;
+	}
+
+	public ArrayList<Floor> getFloors() {
+		return floors;
 	}
 
 

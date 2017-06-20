@@ -63,7 +63,7 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		return bonus;
 	}
 
-	private String getType() {
+	public String getType() {
 		return type;
 	}
 
@@ -82,15 +82,15 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	
 	@Override
 	public String toString() {
-		if(player!=null){
-			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\nWith bonus: " + bonus +"\nIs occupied by " +player+ " with the relative " + relative.getColor());
+		if(isOccupied){
+			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\nWith bonus: " + bonus +"\nIs occupied by " +player.getName()+ " with the relative " + relative.getColor());
 		}
-		return ("The market of type: " + type + "\n" + "With cost: " + cost +"\nWithBonus: " + bonus + "\nIs free!");
+		else return ("The market of type: " + type + "\n" + "With cost: " + cost +"\nWithBonus: " + bonus + "\nIs free!");
 	}
 
 	
 
-	public boolean IsOccupied() {
+	public boolean isOccupied() {
 		return isOccupied;
 	}
 
@@ -100,13 +100,15 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 
 
 	public void setOccupied(Player player, Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		isOccupied = true;
+		this.isOccupied = true;
 		this.relative=relative;
 		this.player=player;
 	}
 
 	public void setFree() {
 		isOccupied = false;
+		player=null;
+		relative=null;
 	}
 
 	public void setPlayer(Player player) {
@@ -145,5 +147,13 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		} else if (!marketEffect.equals(other.marketEffect))
 			return false;
 		return true;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public Relative getRelative() {
+		return relative;
 	}
 }
