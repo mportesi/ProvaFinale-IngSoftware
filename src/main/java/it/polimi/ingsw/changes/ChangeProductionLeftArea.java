@@ -19,9 +19,10 @@ public class ChangeProductionLeftArea implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if(client.getPlayer().getMatch()==relative.getPlayer().getMatch()){
 		client.setProductionLeftArea(relative);
 		System.out.println("\nThe board is changed!\n" + client.getBoard());
-
+	}
 	}
 
 }

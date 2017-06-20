@@ -12,8 +12,11 @@ public class ChangePlayer implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if (currentPlayer.getMatch() == client.getPlayer().getMatch()){
 		client.setCurrentPlayer(currentPlayer);
 		System.out.println("It's the " + currentPlayer.getName() + "'s turn.");
 	}
+	}
+	
 
 }

@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.CharacterCard;
@@ -26,6 +27,7 @@ import it.polimi.ingsw.components.Relative;
 public class Player extends Observable<Change> implements Serializable {
 	private UUID ID;
 	private String name;
+	private int match;
 	private ColorPlayer color;
 	private int coin;
 	private int wood;
@@ -51,10 +53,10 @@ public class Player extends Observable<Change> implements Serializable {
 	private boolean hasOrangeRelative;
 	private boolean hasNeutralRelative;
 
-	public Player(UUID ID, Play play, String name) {
+	public Player(UUID ID, Play play, String name, int match) {
 		this.ID = ID;
 		this.name = name;
-		
+		this.match = match;
 		blackRelative= new Relative(ColorDice.BLACK, this);
 		whiteRelative= new Relative(ColorDice.WHITE, this);
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
@@ -512,6 +514,13 @@ public class Player extends Observable<Change> implements Serializable {
 			
 		}
 		return null;
+	}
+
+
+
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
 	}
 
 

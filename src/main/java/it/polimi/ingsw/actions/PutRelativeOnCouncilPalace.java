@@ -19,12 +19,14 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 	Player player;
 	CouncilPalace councilPalace;
 	String bonus;
+	int match;
 
-	public PutRelativeOnCouncilPalace(Player player, Relative relative, CouncilPalace councilPalace, String bonus) {
+	public PutRelativeOnCouncilPalace(Player player, Relative relative, CouncilPalace councilPalace, String bonus, int match) {
 		this.player = player;
 		this.relative = relative;
 		this.bonus = bonus;
 		this.councilPalace = councilPalace;
+		this.match = match;
 	}
 
 	@Override

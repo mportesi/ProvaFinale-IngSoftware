@@ -16,13 +16,13 @@ public class TimerAction extends TimerTask {
 	}
 	@Override
 	public void run() {
-		System.out.println("It ran out of time!");
+		/*System.out.println("It ran out of time!");
 		ShiftPlayer shiftPlayer = new ShiftPlayer();
 		try {
 			serverStub.notifyObserver(shiftPlayer);
 		} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

@@ -62,11 +62,14 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private int changeRound;
-
+	private int match;
+	private boolean initializing;
+	
 	// costruttore
-	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public Play(int match) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
 		changeRound=0;
+		this.initializing = true;
 	}
 
 	public void initializeBoard()
@@ -74,8 +77,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.board = new Board(this, players.size());
 		board.registerObserver(this);
 		
-		this.round = 6;
-		this.period = 3;
+		this.round = 0;
+		this.period = 0;
 		changePeriod();
 
 			changeRound();
@@ -253,7 +256,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
 		}
-		ChangeRound changeRound = new ChangeRound(round, board);
+		ChangeRound changeRound = new ChangeRound(round, board, match);
 		this.notifyObserver(changeRound);
 		
 		if (round-1 == 2 || round-1 == 4 || round-1 == 6) {
@@ -275,7 +278,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			checkWinner();
 		} else {
 			
-			ChangePeriod changePeriod = new ChangePeriod(period);
+			ChangePeriod changePeriod = new ChangePeriod(period,match);
 			this.notifyObserver(changePeriod);
 		}
 
@@ -390,7 +393,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	}
 
 	public void endGame() {
-		ChangeEndGame changeEndGame= new ChangeEndGame();
+		ChangeEndGame changeEndGame= new ChangeEndGame(match);
 		// restituisce la classifica e il vincitore
 	}
 
@@ -433,32 +436,18 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			jsonPersonalBonusTiles.importPersonalBonusTiles();
 			PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
 			PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
-			Player player = new Player(UUID.randomUUID(), this, name);
+			Player player = new Player(UUID.randomUUID(), this, name, match);
 			players.add(player);
 			player.setPersonalBonusTile(personalBonusTileSimple, personalBonusTileAdvanced);
 			player.registerObserver(this);
-			notifyObserver(new ChangeNewPlayer(player, this));
-
-			if (players.size() == 2) {
-				Thread.sleep((long) timeOutStartPlay );
-				System.out.println("E' scaduto il timeout!");
-				initializePlay();
-			}
-		} else if (players.size() == 4) {
-			this.players = new ArrayList<Player>();
+			notifyObserver(new ChangeNewPlayer(player, match));
 		
-			if (players.size() < 4) {
-				Player player = new Player(UUID.randomUUID(), this, name);
-				players.add(player);
-				player.registerObserver(this);
-				notifyObserver(new ChangeNewPlayer(player, this));
-
-				if (players.size() == 2) {
-					Thread.sleep((long) timeOutStartPlay * 1000);
-					System.out.println("E' scaduto il timeout");
-					initializePlay();
-				}
-			}
+		}
+		if (players.size() == 2) {
+			if(players.size()!=4){
+			Thread.sleep((long) timeOutStartPlay );
+			System.out.println("E' scaduto il timeout!");}
+			initializePlay();
 		}
 
 	}
@@ -493,6 +482,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	private void initializePlay()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		this.initializing = false;
 		initializePlayer();
 		initializeBoard();
 		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder (currentTurnOrder);
@@ -531,6 +521,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			e.printStackTrace();
 		}
 		
+	}
+
+	public boolean getInitializing() {
+		// TODO Auto-generated method stub
+		return initializing;
 	}
 
 

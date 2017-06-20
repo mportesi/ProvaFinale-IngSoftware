@@ -24,4 +24,10 @@ public class RegisterClient extends Observable<Change> implements Action {
 		play.createNewPlayer(name);
 	}
 
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

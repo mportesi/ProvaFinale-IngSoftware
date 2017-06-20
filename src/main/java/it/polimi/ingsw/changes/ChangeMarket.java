@@ -24,8 +24,9 @@ public class ChangeMarket implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if(client.getPlayer().getMatch()==player.getMatch()){
 		client.setMarket(market, player, relative);
-		System.out.println("\nThe board is changed!\n" + client.getBoard());
+		System.out.println("\nThe board is changed!\n" + client.getBoard());}
 	}
 
 }

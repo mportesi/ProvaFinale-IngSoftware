@@ -17,8 +17,9 @@ public class ChangeTurnOrder implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if(client.getPlayer().getMatch()==currentTurnOrder.get(0).getMatch()){
 		client.setCurrentTurnOrder(currentTurnOrder);
-		System.out.println("The current turn order is: "+ printCurrentTurnOrder());
+		System.out.println("The current turn order is: "+ printCurrentTurnOrder());}
 	}
 
 	public ArrayList <String> printCurrentTurnOrder(){

@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Controller;
+import it.polimi.ingsw.GC_40.MasterController;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
@@ -30,21 +31,21 @@ public class Server {
 	private final static int PORT = 29999;
 	private final static int RMI_PORT = 52365;
 
-	private Play play;
+	//private Play play;
 
-	private Controller controller;
+	private MasterController masterController;
 	
 	
 	private final String NAME="Lorenzo Il Magnifico";
 
 	public Server() throws FileNotFoundException, NullPointerException, IOException, ParseException {
-		this.play = new Play();
-		this.controller = new Controller(play);
+	//	this.play = new Play();
+		this.masterController = new MasterController();
 		
 
 	}
 	
-	private void startSocket() throws IOException {
+/*	private void startSocket() throws IOException {
 
 		// creates the thread pool to handle clients
 		ExecutorService executor = Executors.newCachedThreadPool();
@@ -70,14 +71,14 @@ public class Server {
 			// a new thread handle the connection with the view
 			executor.submit(view);
 		}
-	}
+	} */
 	
 	public void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
 		System.out.println("constructing the rmi registry");
-		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView();
-		serverRMIConnectionView.registerObserver(this.controller);
-		this.play.registerObserver(serverRMIConnectionView);
+		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView(this);
+		serverRMIConnectionView.registerObserver(this.masterController);
+		//this.play.registerObserver(serverRMIConnectionView);
 		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView, 0);
 		System.out.println("binding the server implementation to the registry");
 		registry.bind(NAME, serverRMIConnectionView);
@@ -92,7 +93,12 @@ public class Server {
 		System.out.println("START RMI");
 		server.startRMI();
 		System.out.println("START SOCKET");
-		server.startSocket();
+	//	server.startSocket();
 		
+	}
+
+	public MasterController getMasterController() {
+		// TODO Auto-generated method stub
+		return masterController;
 	}
 }

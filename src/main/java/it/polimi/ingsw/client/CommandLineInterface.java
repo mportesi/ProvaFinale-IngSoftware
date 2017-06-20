@@ -48,7 +48,7 @@ public class CommandLineInterface implements Serializable {
 		Timer timer = new Timer();
 		timer.schedule(new TimerAction(serverStub) { public void run() {
 			System.out.println("It ran out of time!");
-			ShiftPlayer shiftPlayer = new ShiftPlayer();
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
 			try {
 				serverStub.notifyObserver(shiftPlayer);
 			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
@@ -195,7 +195,7 @@ public class CommandLineInterface implements Serializable {
 		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
-			putRelative = chooseThePutRelativeOnTower(tower, floor, relative);
+			putRelative = chooseThePutRelativeOnTower(client.getPlayer().getMatch(), tower, floor, relative);
 			break;
 		}
 		case 2: {

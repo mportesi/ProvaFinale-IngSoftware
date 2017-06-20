@@ -13,14 +13,17 @@ import it.polimi.ingsw.client.ClientModel;
 public class ChangeRound implements Change {
 	private int round;
 	private Board board;
+	private int match;
 	
-	public ChangeRound(int round, Board board){
+	public ChangeRound(int round, Board board, int match){
 	this.board = board;
 	this.round = round;
+	this.match=match;
 	}
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if(client.getPlayer().getMatch()==match){
 		client.setRound(round);
 		client.setBoard(board);
 		client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());
@@ -29,6 +32,6 @@ public class ChangeRound implements Change {
 		client.getPlayer().setFreeAllRelatives();
 		System.out.println("It's finished the " + (round-1) + " round");
 		System.out.println("The new board is: " + client.getBoard());
-	}
+	}}
 
 }
