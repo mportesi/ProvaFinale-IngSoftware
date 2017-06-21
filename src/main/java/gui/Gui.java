@@ -22,7 +22,7 @@ public class Gui extends Application {
 
         initRootLayout();
 
-        showPersonOverview();
+        showBoard();
     }
 
     /**
@@ -47,15 +47,14 @@ public class Gui extends Application {
     /**
      * Shows the person overview inside the root layout.
      */
-    public void showPersonOverview() {
+    public void showBoard() {
         try {
-            // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Gui.class.getResource("GuiNew.fxml"));
-            AnchorPane personOverview = (AnchorPane) loader.load();
-
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(personOverview);
+            AnchorPane board = (AnchorPane) loader.load();
+            //imageView board=(ImageView) AnchorPane.getChildren().get(0)
+            
+            rootLayout.setCenter(board);
         } catch (IOException e) {
             e.printStackTrace();
         }

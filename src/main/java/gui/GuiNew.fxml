@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
    <children>
       <ImageView fitHeight="419.0" fitWidth="289.0">
          <image>
@@ -25,29 +25,29 @@
          </image>
       </ImageView>
       <Label layoutX="302.0" layoutY="155.0" prefHeight="20.0" prefWidth="68.0" text="Character" />
-      <Label layoutX="32.0" layoutY="132.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="32.0" layoutY="180.0" prefHeight="53.0" prefWidth="44.0" />
-      <Label layoutX="84.0" layoutY="30.0" prefHeight="53.0" prefWidth="44.0" />
-      <Label layoutX="84.0" layoutY="79.0" prefHeight="53.0" prefWidth="44.0" />
-      <Label layoutX="84.0" layoutY="136.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="84.0" layoutY="180.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="135.0" layoutY="34.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="135.0" layoutY="83.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="135.0" layoutY="132.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="186.0" layoutY="34.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="135.0" layoutY="180.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="186.0" layoutY="83.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="186.0" layoutY="132.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="186.0" layoutY="180.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="134.0" layoutY="233.0" prefHeight="25.0" prefWidth="75.0" />
-      <Label layoutX="54.0" layoutY="328.0" prefHeight="25.0" prefWidth="52.0" />
-      <Label layoutX="60.0" layoutY="361.0" prefHeight="25.0" prefWidth="52.0" />
-      <Label layoutX="32.0" layoutY="328.0" prefHeight="25.0" prefWidth="21.0" />
-      <Label layoutX="32.0" layoutY="361.0" prefHeight="25.0" prefWidth="21.0" />
-      <Label layoutX="154.0" layoutY="328.0" prefHeight="17.0" prefWidth="14.0" />
-      <Label layoutX="179.0" layoutY="328.0" prefHeight="17.0" prefWidth="14.0" />
-      <Label layoutX="216.0" layoutY="353.0" prefHeight="17.0" prefWidth="14.0" />
-      <Label layoutX="201.0" layoutY="332.0" prefHeight="17.0" prefWidth="14.0" />
+      <Label layoutX="32.0" layoutY="132.0" prefHeight="419.0" prefWidth="629.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="32.0" layoutY="180.0" prefHeight="419.0" prefWidth="629.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label fx:id="characterTower4" layoutX="84.0" layoutY="30.0" prefHeight="53.0" prefWidth="44.0" />
+      <Label fx:id="characterTower3" layoutX="84.0" layoutY="79.0" prefHeight="53.0" prefWidth="44.0" />
+      <Label fx:id="characterTower2" layoutX="84.0" layoutY="136.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="characterTower1" layoutX="84.0" layoutY="180.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="buildingTower4" layoutX="135.0" layoutY="34.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="buildingTower3" layoutX="135.0" layoutY="83.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="buildingTower2" layoutX="135.0" layoutY="132.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="ventureTower4" layoutX="186.0" layoutY="34.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="buildingTower1" layoutX="135.0" layoutY="180.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="ventureTower3" layoutX="186.0" layoutY="83.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="ventureTower2" layoutX="186.0" layoutY="132.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="ventureTower1" layoutX="186.0" layoutY="180.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="councilPalace" layoutX="134.0" layoutY="233.0" prefHeight="25.0" prefWidth="75.0" />
+      <Label fx:id="productionRight" layoutX="54.0" layoutY="328.0" prefHeight="25.0" prefWidth="52.0" />
+      <Label fx:id="harvestRight" layoutX="60.0" layoutY="361.0" prefHeight="25.0" prefWidth="52.0" />
+      <Label fx:id="productionLeft" layoutX="32.0" layoutY="328.0" prefHeight="25.0" prefWidth="21.0" />
+      <Label fx:id="harvestLeft" layoutX="32.0" layoutY="361.0" prefHeight="25.0" prefWidth="21.0" />
+      <Label fx:id="market1" layoutX="154.0" layoutY="328.0" prefHeight="17.0" prefWidth="14.0" />
+      <Label fx:id="market2" layoutX="179.0" layoutY="328.0" prefHeight="17.0" prefWidth="14.0" />
+      <Label fx:id="market4" layoutX="216.0" layoutY="353.0" prefHeight="17.0" prefWidth="14.0" />
+      <Label fx:id="market3" layoutX="201.0" layoutY="332.0" prefHeight="17.0" prefWidth="14.0" />
       <Label layoutX="322.0" layoutY="209.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="361.0" layoutY="209.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="442.0" layoutY="209.0" prefHeight="69.0" prefWidth="44.0" />
@@ -78,13 +78,15 @@
       <RadioButton layoutX="576.0" layoutY="217.0" mnemonicParsing="false" />
       <Button layoutX="561.0" layoutY="12.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="51.0" text="Quit" />
       <Label layoutX="302.0" layoutY="95.0" prefHeight="20.0" prefWidth="68.0" text="Venture" />
-      <Label layoutX="150.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
-      <Label layoutX="179.0" layoutY="365.0" prefHeight="17.0" prefWidth="14.0" />
-      <Label layoutX="201.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
-      <Label layoutX="22.0" layoutY="87.0" prefHeight="45.0" prefWidth="44.0" />
-      <Label layoutX="32.0" layoutY="34.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="blackDice" layoutX="150.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
+      <Label fx:id="whiteDice" layoutX="172.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
+      <Label fx:id="orangeDice" layoutX="201.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
+      <Label fx:id="territoryTower3" layoutX="22.0" layoutY="87.0" onMouseClicked="#putRelative" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="territoryTower4" layoutX="32.0" layoutY="34.0" onMouseClicked="#putRelative" prefHeight="45.0" prefWidth="44.0" />
       <Label layoutX="59.0" layoutY="258.0" prefHeight="34.0" prefWidth="27.0" />
       <Label layoutX="72.0" layoutY="258.0" prefHeight="34.0" prefWidth="27.0" />
       <Label layoutX="106.0" layoutY="259.0" prefHeight="34.0" prefWidth="27.0" />
+      <Label fx:id="territoryTower2" layoutX="31.0" layoutY="136.0" prefHeight="45.0" prefWidth="44.0" />
+      <Label fx:id="territoryTower1" layoutX="31.0" layoutY="180.0" prefHeight="45.0" prefWidth="44.0" />
    </children>
 </AnchorPane>
