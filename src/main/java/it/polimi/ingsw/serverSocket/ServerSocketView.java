@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.changes.Change;
+import it.polimi.ingsw.changes.ChangeBuildingCard;
 
 public class ServerSocketView extends ServerView implements Runnable {
 	
@@ -22,8 +23,9 @@ public class ServerSocketView extends ServerView implements Runnable {
 	public ServerSocketView(Socket socket, Play model) throws IOException {
 		// creates the streams to communicate with the client-side, and the reference to the model
 		this.socket = socket;
-		this.socketIn = new ObjectInputStream(socket.getInputStream());
+		
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
+		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.model=model;
 	}
 
@@ -31,9 +33,12 @@ public class ServerSocketView extends ServerView implements Runnable {
 	@Override
 	public void update(Change o) {
 		System.out.println("Sending to the client " + o);
+		
+		
 
 		// sending the info to the client
 		try {
+			this.socketOut.reset();
 			this.socketOut.writeObject(o);
 			this.socketOut.flush();
 

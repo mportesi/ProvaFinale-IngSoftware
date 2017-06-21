@@ -77,7 +77,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.board = new Board(this, players.size());
 		this.match = match;
 		board.registerObserver(this);
-		System.out.println("match in board: " + match);
+		
 		this.round = 0;
 		this.period = 0;
 		changePeriod();
