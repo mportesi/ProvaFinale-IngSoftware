@@ -31,10 +31,12 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 	private Card cardToGive;
 	private Card secondCardToGive;
 	boolean payForOccupied = false;
+	int match;
 
 	public PutRelativeOnTowerDoubleCard(Player player, Tower tower, int floor, Relative relative, Tower seconT,
-			int secondF) {
+			int secondF, int match) {
 		this.relative = relative;
+		this.match = match;
 		this.player = player;
 		this.tower = tower;
 		this.floor = floor;
@@ -226,4 +228,11 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 		player.incrementWood(((CharacterCard) cardToGive).getDiscountWood(), play);
 		player.incrementStone(((CharacterCard) cardToGive).getDiscountStone(), play);
 	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
+	}
+	
 }

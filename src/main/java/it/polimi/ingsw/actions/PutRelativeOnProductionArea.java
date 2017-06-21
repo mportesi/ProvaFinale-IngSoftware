@@ -27,12 +27,14 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 	HarvestAndProductionArea productionArea;
 	Player player;
 	String area; 
+	int match;
 
-	public PutRelativeOnProductionArea(Player player, Relative relative, HarvestAndProductionArea productionArea, String area){
+	public PutRelativeOnProductionArea(Player player, Relative relative, HarvestAndProductionArea productionArea, String area, int match){
 		this.player = player;
 		this.relative=relative;
 		this.area = area;
 		this.productionArea=productionArea;
+		this.match = match;
 	}
 	
 	@Override
@@ -102,6 +104,12 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on production area!"));
 		}
 		return;
+	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
 	}
 
 	

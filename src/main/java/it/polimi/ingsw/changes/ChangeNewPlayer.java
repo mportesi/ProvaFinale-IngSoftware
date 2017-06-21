@@ -20,21 +20,22 @@ import it.polimi.ingsw.client.ClientModel;
 
 public class ChangeNewPlayer extends Observable<Change> implements Change {
 	private Player player;
-	private Play play;
+	private int match;
 	
 
 	
-	public ChangeNewPlayer(Player player, Play play){
+	public ChangeNewPlayer(Player player, int match){
 		this.player=player;
-		this.play=play;
+		this.match=match;
 	}
 	
 	@Override
 	public void applyChange(ClientModel client) {
 		if (client.getName().equals(player.getName())){
-		player.registerObserver(play);
 		client.setPlayer(player);
+		System.out.println("ho registrato: " + player.getName());
 		}
+		
 	}
 
 	@Override

@@ -22,11 +22,13 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 	Relative relative;
 	MarketBuilding market;
 	Player player;
+	int match;
 	
-	public PutRelativeOnMarket(Player player,Relative relative, MarketBuilding market){
+	public PutRelativeOnMarket(Player player,Relative relative, MarketBuilding market, int match){
 		this.player=player;
 		this.relative=relative;
 		this.market=market;
+		this.match = match;
 	}
 	
 	public void setMarket(MarketBuilding market){
@@ -64,6 +66,12 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on this market!"));
 		}
 		return;
+	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
 	}
 
 }

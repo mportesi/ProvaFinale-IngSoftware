@@ -14,4 +14,8 @@ public abstract interface Action extends Serializable {
 	
 	public abstract void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 
+	public abstract int getMatch();
+
+	
+
 }

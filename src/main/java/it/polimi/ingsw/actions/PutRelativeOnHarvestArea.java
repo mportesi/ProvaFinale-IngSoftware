@@ -25,13 +25,15 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 	HarvestAndProductionArea harvestArea;
 	Player player;
 	String area;
-
+	int match;
+	
 	public PutRelativeOnHarvestArea(Player player, Relative relative, HarvestAndProductionArea harvestArea,
-			String area) {
+			String area, int match) {
 		this.player = player;
 		this.relative = relative;
 		this.area = area;
 		this.harvestArea = harvestArea;
+		this.match = match;
 	}
 
 	@Override
@@ -98,5 +100,11 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 			}
 			play.notifyObserver( new ChangeNotApplicable(player, "the relative hasn't enough value!"));
 		}
+	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
 	}
 }

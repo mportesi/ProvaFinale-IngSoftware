@@ -72,7 +72,7 @@ public class ClientRMIConnection implements Serializable {
 					// Capture input from user
 					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub);
 					commandLineInterface.input();
-					//System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
+					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
 				}
 
 	

@@ -23,12 +23,13 @@ public class ChangeNumberOfPlayers implements Change {
 	@Override
 	public void applyChange(ClientModel client)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if(client.getPlayer().getMatch()==player.getMatch()){
 		client.setBoard(board);
 		if(numberOfPlayers>=2){
 		System.out.println(player.getName() + " has disconnected. Now you are only in " + numberOfPlayers);}
 		else{
 			System.out.println(player.getName() + " has disconnected. You won");
-		}
+		}}
 		
 
 	}
