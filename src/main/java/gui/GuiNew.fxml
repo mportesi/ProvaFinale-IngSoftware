@@ -11,17 +11,17 @@
    <children>
       <ImageView fitHeight="419.0" fitWidth="289.0">
          <image>
-            <Image url="@src/main/java/ImagesModified/GB2.png" />
+            <Image url="@../ImagesModified/GB2.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="217.0" fitWidth="239.0" layoutX="322.0" layoutY="202.0">
          <image>
-            <Image url="@src/main/java/ImagesModified/punchh.jpg" />
+            <Image url="@../ImagesModified/punchh.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="217.0" fitWidth="33.0" layoutX="289.0" layoutY="202.0">
          <image>
-            <Image url="@src/main/java/ImagesModified/plancina3.png" />
+            <Image url="@../ImagesModified/plancina3.png" />
          </image>
       </ImageView>
       <Label layoutX="302.0" layoutY="155.0" prefHeight="20.0" prefWidth="68.0" text="Character" />
