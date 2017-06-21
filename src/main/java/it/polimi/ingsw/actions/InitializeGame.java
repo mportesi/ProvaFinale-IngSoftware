@@ -18,8 +18,8 @@ public class InitializeGame extends Observable<Change> implements Action {
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		play.initializePlayer();
-		play.initializeBoard();
+		play.initializePlayer(match);
+		play.initializeBoard(match);
 		
 	}
 

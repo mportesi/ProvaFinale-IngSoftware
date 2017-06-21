@@ -54,7 +54,7 @@ public class CommandLineInterface implements Serializable {
 			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
 				e.printStackTrace();
 			}
-		}}, (long) timeOutAction*1000); // TODO IMPORT FROM JSON
+		}}, (long) timeOutAction); // TODO IMPORT FROM JSON
 		
 		
 
@@ -79,6 +79,7 @@ public class CommandLineInterface implements Serializable {
 		}
 		}
 		timer.cancel();
+		timer=new Timer();
 		
 
 	}
