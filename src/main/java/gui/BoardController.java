@@ -12,10 +12,13 @@ import java.rmi.RemoteException;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.server.Server;
 import javafx.fxml.FXML;
 
 public class BoardController {
+	
+	private ClientModel client;
 
 	@FXML
     private ImageView territoryTower1;
@@ -82,10 +85,67 @@ public class BoardController {
 	
 	private Gui gui;
 	
-	public void initializeBoard(){
+	public void initializeBoard(ClientModel client){
 		
-		Image image = new Image ("ImagesModified/devcards_f_en_c_2.png");
-		territoryTower4.setImage(image); 
+		String string;
+		string = client.getTerritoryTower().getFloor(4).getCard().getName();
+		Image image1 = new Image ("ImagesModified/"+"devcards_f_en_c_2"+".png");
+		
+		string = client.getTerritoryTower().getFloor(3).getCard().getName();
+		Image image2 = new Image ("ImagesModified/"+string+".png");
+		
+		string = client.getTerritoryTower().getFloor(2).getCard().getName();
+		Image image3 = new Image ("ImagesModified/"+string+".png");
+		
+		string = client.getTerritoryTower().getFloor(1).getCard().getName();
+		Image image4 = new Image ("ImagesModified/"+string+".png");
+		
+		string = client.getBuildingTower().getFloor(4).getCard().getName();
+		Image image5 = new Image ("ImagesModified/"+string+".png");
+		string = client.getBuildingTower().getFloor(3).getCard().getName();
+		Image image6 = new Image ("ImagesModified/"+string+".png");
+		string= client.getBuildingTower().getFloor(2).getCard().getName();
+		Image image7 = new Image ("ImagesModified/"+string+".png");
+		string = client.getBuildingTower().getFloor(1).getCard().getName();
+		Image image8 = new Image ("ImagesModified/"+string+".png");
+		string = client.getVentureTower().getFloor(4).getCard().getName();
+		Image image9 = new Image ("ImagesModified/"+string+".png");
+		string = client.getVentureTower().getFloor(3).getCard().getName();
+		Image image10 = new Image ("ImagesModified/"+string+".png");
+		string = client.getVentureTower().getFloor(2).getCard().getName();
+		Image image11 = new Image ("ImagesModified/"+string+".png");
+		string = client.getVentureTower().getFloor(1).getCard().getName();
+		Image image12 = new Image ("ImagesModified/"+string+".png");
+		string = client.getCharacterTower().getFloor(4).getCard().getName();
+		Image image13 = new Image ("ImagesModified/"+string+".png");
+		string = client.getCharacterTower().getFloor(3).getCard().getName();
+		Image image14 = new Image ("ImagesModified/"+string+".png");
+		string = client.getCharacterTower().getFloor(2).getCard().getName();
+		Image image15 = new Image ("ImagesModified/"+string+".png");
+		string = client.getCharacterTower().getFloor(1).getCard().getName();
+		Image image16 = new Image ("ImagesModified/"+string+".png");
+		
+		
+		
+		
+		territoryTower4.setImage(image1);
+		territoryTower3.setImage(image2);
+		territoryTower2.setImage(image3);
+		territoryTower1.setImage(image4);
+		buildingTower4.setImage(image5);
+		buildingTower3.setImage(image6);
+		buildingTower2.setImage(image7);
+		buildingTower1.setImage(image8);
+		ventureTower4.setImage(image9);
+		ventureTower3.setImage(image10);
+		ventureTower2.setImage(image11);
+		ventureTower1.setImage(image12);
+		characterTower4.setImage(image13);
+		characterTower3.setImage(image14);
+		characterTower2.setImage(image15);
+		characterTower1.setImage(image16);
+		
+		
 		/*ImageView image = new ImageView(getClass().getResource("plancina3.png").toExternalForm());
 		territoryTower1.setImage(image);*/
 	};

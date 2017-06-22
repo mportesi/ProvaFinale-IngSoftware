@@ -6,19 +6,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
    <children>
-      <ImageView fitHeight="217.0" fitWidth="239.0" layoutX="518.0" layoutY="220.0">
+      <ImageView fitHeight="217.0" fitWidth="239.0" layoutX="527.0" layoutY="255.0">
          <image>
             <Image url="@../ImagesModified/punchh.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="217.0" fitWidth="33.0" layoutX="468.0" layoutY="220.0">
+      <ImageView fitHeight="217.0" fitWidth="33.0" layoutX="481.0" layoutY="252.0">
          <image>
             <Image url="@../ImagesModified/plancina3.png" />
          </image>
       </ImageView>
-      <Label layoutX="452.0" layoutY="153.0" prefHeight="20.0" prefWidth="68.0" text="Character" />
+      <Label layoutX="427.0" layoutY="155.0" prefHeight="20.0" prefWidth="68.0" text="Character" />
       <Label fx:id="councilPalace" layoutX="134.0" layoutY="233.0" prefHeight="25.0" prefWidth="75.0" />
       <Label fx:id="productionRight" layoutX="54.0" layoutY="328.0" prefHeight="25.0" prefWidth="52.0" />
       <Label fx:id="harvestRight" layoutX="60.0" layoutY="361.0" prefHeight="25.0" prefWidth="52.0" />
@@ -30,7 +30,7 @@
       <Label fx:id="market3" layoutX="201.0" layoutY="332.0" prefHeight="17.0" prefWidth="14.0" />
       <Label layoutX="322.0" layoutY="209.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="361.0" layoutY="209.0" prefHeight="69.0" prefWidth="44.0" />
-      <Label layoutX="442.0" layoutY="209.0" prefHeight="69.0" prefWidth="44.0" />
+      <Label layoutX="442.0" layoutY="217.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="397.0" layoutY="211.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="471.0" layoutY="209.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="515.0" layoutY="211.0" prefHeight="69.0" prefWidth="44.0" />
@@ -38,7 +38,7 @@
       <Label layoutX="361.0" layoutY="298.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="397.0" layoutY="294.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="441.0" layoutY="298.0" prefHeight="69.0" prefWidth="44.0" />
-      <Label layoutX="471.0" layoutY="298.0" prefHeight="69.0" prefWidth="44.0" />
+      <Label layoutX="496.0" layoutY="275.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="512.0" layoutY="294.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="403.0" layoutY="81.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="362.0" layoutY="80.0" prefHeight="69.0" prefWidth="44.0" />
@@ -53,7 +53,7 @@
       <Label layoutX="524.0" layoutY="129.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="555.0" layoutY="131.0" prefHeight="69.0" prefWidth="44.0" />
       <Button fx:id="quit" layoutX="718.0" layoutY="12.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="51.0" text="Quit" />
-      <Label layoutX="451.0" layoutY="106.0" prefHeight="20.0" prefWidth="68.0" text="Venture" />
+      <Label layoutX="428.0" layoutY="104.0" prefHeight="20.0" prefWidth="68.0" text="Venture" />
       <Label fx:id="blackDice" layoutX="150.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
       <Label fx:id="whiteDice" layoutX="179.0" layoutY="365.0" prefHeight="17.0" prefWidth="14.0" />
       <Label fx:id="orangeDice" layoutX="201.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
@@ -80,7 +80,7 @@
       <ImageView fx:id="ventureTower3" fitHeight="67.0" fitWidth="42.0" layoutX="180.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="ventureTower2" fitHeight="67.0" fitWidth="42.0" layoutX="180.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="ventureTower1" fitHeight="67.0" fitWidth="42.0" layoutX="178.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="490.0" fitWidth="307.0" layoutX="-1.0">
+      <ImageView fitHeight="577.0" fitWidth="424.0" layoutX="-1.0">
          <image>
             <Image url="@../../../../../../lorenzo_materiale_grafico_compr/gameboard_f_c.jpeg" />
          </image>
