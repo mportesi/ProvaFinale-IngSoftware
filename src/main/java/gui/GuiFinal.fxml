@@ -8,14 +8,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
    <children>
-      <ImageView fitHeight="217.0" fitWidth="239.0" layoutX="527.0" layoutY="255.0">
+      <ImageView fitHeight="217.0" fitWidth="239.0" layoutX="518.0" layoutY="220.0" rotate="-90.0">
          <image>
-            <Image url="@../ImagesModified/punchh.jpg" />
+            <Image url="@../Images/punchboard.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="217.0" fitWidth="33.0" layoutX="481.0" layoutY="252.0">
          <image>
-            <Image url="@../ImagesModified/plancina3.png" />
+            <Image url="@../Images/personalbonustile.png" />
          </image>
       </ImageView>
       <Label layoutX="427.0" layoutY="155.0" prefHeight="20.0" prefWidth="68.0" text="Character" />
@@ -82,7 +82,7 @@
       <ImageView fx:id="ventureTower1" fitHeight="67.0" fitWidth="42.0" layoutX="178.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="577.0" fitWidth="424.0" layoutX="-1.0">
          <image>
-            <Image url="@../../../../../../lorenzo_materiale_grafico_compr/gameboard_f_c.jpeg" />
+            <Image url="@../Images/gameboard.png" />
          </image>
       </ImageView>
    </children>

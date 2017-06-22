@@ -13,8 +13,7 @@ public class Gui extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	private String host = "127.0.0.1";
-	private int rmi_port = 52365;
+	
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -63,7 +62,6 @@ public class Gui extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Gui.class.getResource("Welcome.fxml"));
 			AnchorPane welcome = (AnchorPane) loader.load();
-			WelcomeController welcomeController=new WelcomeController(rmi_port, host);
 			rootLayout.setCenter(welcome);
 		} catch (IOException e) {
 			e.printStackTrace();
