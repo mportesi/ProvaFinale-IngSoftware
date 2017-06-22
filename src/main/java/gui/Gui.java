@@ -21,8 +21,8 @@ public class Gui extends Application {
 		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
 		initRootLayout();
-		//welcome();
-		showBoard();
+		welcome();
+		//showBoard();
 	}
 
 	/**
@@ -95,5 +95,9 @@ public class Gui extends Application {
 	public static void main(String[] args) {
 		launch(args);
 
+	}
+
+	public BorderPane getRootLayout() {
+		return rootLayout;
 	}
 }

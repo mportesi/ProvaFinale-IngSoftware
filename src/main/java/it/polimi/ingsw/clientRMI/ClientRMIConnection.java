@@ -36,8 +36,9 @@ public class ClientRMIConnection implements Serializable {
 		RMI_PORT = rmi_port;
 		HOST = host;
 	}
+	
 
-	public void startClient() throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
+	public void startClient(boolean commandLine) throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
 			NullPointerException, ParseException, InterruptedException {
 		clientModel = new ClientModel();
 
@@ -55,7 +56,7 @@ public class ClientRMIConnection implements Serializable {
 		// the server)
 
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
-
+		if(commandLine){
 		System.out.println("\nTell me your name\n");
 		String name = stdIn.nextLine();
 		clientModel.setName(name);
@@ -82,5 +83,6 @@ public class ClientRMIConnection implements Serializable {
 			Thread.sleep((long)10 * 100);
 
 		}
-	}
+	}}
+	
 }
