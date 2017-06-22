@@ -52,7 +52,7 @@ public class Client implements Serializable {
 					client.startClient();
 				} else {
 					ClientRMIConnection client = new ClientRMIConnection(rmi_port, host);
-					client.startClient();
+					client.startClient(true);
 				}
 
 			}

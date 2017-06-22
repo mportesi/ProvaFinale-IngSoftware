@@ -74,8 +74,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.board = new Board(this, players.size());
 		board.registerObserver(this);
 		
-		this.round = 6;
-		this.period = 3;
+		this.round = 0;
+		this.period = 0;
 		changePeriod();
 
 			changeRound();
