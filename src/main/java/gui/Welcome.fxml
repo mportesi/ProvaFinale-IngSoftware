@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WelcomeController">
    <children>
       <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0">
          <image>
@@ -30,7 +29,7 @@
             <Font name="Blackadder ITC" size="30.0" />
          </font>
       </Button>
-      <Button layoutX="314.0" layoutY="212.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="116.0" text="Rmi" textAlignment="CENTER">
+      <Button fx:id="rmi" layoutX="314.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#rmi" prefHeight="70.0" prefWidth="116.0" text="Rmi" textAlignment="CENTER">
          <font>
             <Font name="Blackadder ITC" size="30.0" />
          </font>
