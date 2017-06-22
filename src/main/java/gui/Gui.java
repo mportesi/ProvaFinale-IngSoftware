@@ -21,7 +21,8 @@ public class Gui extends Application {
 		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
 		initRootLayout();
-		welcome();
+		//welcome();
+		showBoard();
 	}
 
 	/**
@@ -46,7 +47,7 @@ public class Gui extends Application {
 	public void showBoard() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Gui.class.getResource("GuiNew.fxml"));
+			loader.setLocation(Gui.class.getResource("GuiFinal.fxml"));
 			AnchorPane board = (AnchorPane) loader.load();
 			// imageView board=(ImageView) AnchorPane.getChildren().get(0)
 
