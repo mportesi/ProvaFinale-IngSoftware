@@ -3,6 +3,8 @@ package gui;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
@@ -16,37 +18,37 @@ import javafx.fxml.FXML;
 public class BoardController {
 
 	@FXML
-    private Label territoryTower1;
+    private ImageView territoryTower1;
 	@FXML
-    private Label territoryTower2;
+    private ImageView territoryTower2;
 	@FXML
-    private Label territoryTower3;
+    private ImageView territoryTower3;
 	@FXML
-    private Label territoryTower4;
+    private ImageView territoryTower4;
 	@FXML
-    private Label buildingTower1;
+    private ImageView buildingTower1;
 	@FXML
-    private Label buildingTower2;
+    private ImageView buildingTower2;
 	@FXML
-    private Label buildingTower3;
+    private ImageView buildingTower3;
 	@FXML
-    private Label buildingTower4;
+    private ImageView buildingTower4;
 	@FXML
-    private Label characterTower1;
+    private ImageView characterTower1;
 	@FXML
-    private Label characterTower2;
+    private ImageView characterTower2;
 	@FXML
-    private Label characterTower3;
+    private ImageView characterTower3;
 	@FXML
-    private Label characterTower4;
+    private ImageView characterTower4;
 	@FXML
-    private Label ventureTower1;
+    private ImageView ventureTower1;
 	@FXML
-    private Label ventureTower2;
+    private ImageView ventureTower2;
 	@FXML
-    private Label ventureTower3;
+    private ImageView ventureTower3;
 	@FXML
-    private Label ventureTower4;
+    private ImageView ventureTower4;
 	@FXML
 	private Label councilPalace;
 	@FXML
@@ -75,10 +77,17 @@ public class BoardController {
 	private Button quit;
 	
 	
+	
+	
+	
 	private Gui gui;
 	
 	public void initializeBoard(){
 		
+		Image image = new Image ("coin_1_front.png");
+		territoryTower1.setImage(image);
+		/*ImageView image = new ImageView(getClass().getResource("plancina3.png").toExternalForm());
+		territoryTower1.setImage(image);*/
 	};
 	
 	public void putRelative(){
