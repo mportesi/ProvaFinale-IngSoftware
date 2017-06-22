@@ -1,6 +1,5 @@
 package gui;
 
-
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -12,76 +11,90 @@ import javafx.stage.Stage;
 
 public class Gui extends Application {
 
-    private Stage primaryStage;
-    private BorderPane rootLayout;
+	private Stage primaryStage;
+	private BorderPane rootLayout;
+	private String host = "127.0.0.1";
+	private int rmi_port = 52365;
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Lorenzo Il Magnifico");
+	@Override
+	public void start(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
-        initRootLayout();
-        register();
-        showBoard();
-    }
+		initRootLayout();
+		welcome();
+	}
 
-    /**
-     * Initializes the root layout.
-     */
-    public void initRootLayout() {
-        try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Gui.class.getResource("RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+	/**
+	 * Initializes the root layout.
+	 */
+	public void initRootLayout() {
+		try {
+			// Load root layout from fxml file.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Gui.class.getResource("RootLayout.fxml"));
+			rootLayout = (BorderPane) loader.load();
 
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+			// Show the scene containing the root layout.
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    /**
-     * Shows the person overview inside the root layout.
-     */
-    public void showBoard() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Gui.class.getResource("GuiNew.fxml"));
-            AnchorPane board = (AnchorPane) loader.load();
-            //imageView board=(ImageView) AnchorPane.getChildren().get(0)
-            
-            rootLayout.setCenter(board);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void register(){try {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Gui.class.getResource("GuiLogin.fxml"));
-        AnchorPane board = (AnchorPane) loader.load();
-        //imageView board=(ImageView) AnchorPane.getChildren().get(0)
-        
-        rootLayout.setCenter(board);
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    	
-    }
+	public void showBoard() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Gui.class.getResource("GuiNew.fxml"));
+			AnchorPane board = (AnchorPane) loader.load();
+			// imageView board=(ImageView) AnchorPane.getChildren().get(0)
 
-    /**
-     * Returns the main stage.
-     * @return
-     */
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
+			rootLayout.setCenter(board);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public void welcome() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Gui.class.getResource("Welcome.fxml"));
+			AnchorPane welcome = (AnchorPane) loader.load();
+			WelcomeController welcomeController=new WelcomeController(rmi_port, host);
+			rootLayout.setCenter(welcome);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void register() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Gui.class.getResource("GuiLogin.fxml"));
+			AnchorPane login = (AnchorPane) loader.load();
+			// imageView board=(ImageView) AnchorPane.getChildren().get(0)
+
+			rootLayout.setCenter(login);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Returns the main stage.
+	 * 
+	 * @return
+	 */
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+
+	}
 }
