@@ -6,24 +6,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
    <children>
-      <ImageView fitHeight="419.0" fitWidth="289.0">
-         <image>
-            <Image url="@../ImagesModified/GB2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="217.0" fitWidth="239.0" layoutX="322.0" layoutY="202.0">
+      <ImageView fitHeight="217.0" fitWidth="239.0" layoutX="518.0" layoutY="220.0">
          <image>
             <Image url="@../ImagesModified/punchh.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="217.0" fitWidth="33.0" layoutX="289.0" layoutY="202.0">
+      <ImageView fitHeight="217.0" fitWidth="33.0" layoutX="468.0" layoutY="220.0">
          <image>
             <Image url="@../ImagesModified/plancina3.png" />
          </image>
       </ImageView>
-      <Label layoutX="302.0" layoutY="155.0" prefHeight="20.0" prefWidth="68.0" text="Character" />
+      <Label layoutX="452.0" layoutY="153.0" prefHeight="20.0" prefWidth="68.0" text="Character" />
       <Label fx:id="councilPalace" layoutX="134.0" layoutY="233.0" prefHeight="25.0" prefWidth="75.0" />
       <Label fx:id="productionRight" layoutX="54.0" layoutY="328.0" prefHeight="25.0" prefWidth="52.0" />
       <Label fx:id="harvestRight" layoutX="60.0" layoutY="361.0" prefHeight="25.0" prefWidth="52.0" />
@@ -57,18 +52,18 @@
       <Label layoutX="477.0" layoutY="127.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="524.0" layoutY="129.0" prefHeight="69.0" prefWidth="44.0" />
       <Label layoutX="555.0" layoutY="131.0" prefHeight="69.0" prefWidth="44.0" />
-      <Button fx:id="quit" layoutX="561.0" layoutY="12.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="51.0" text="Quit" />
-      <Label layoutX="302.0" layoutY="95.0" prefHeight="20.0" prefWidth="68.0" text="Venture" />
+      <Button fx:id="quit" layoutX="718.0" layoutY="12.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="51.0" text="Quit" />
+      <Label layoutX="451.0" layoutY="106.0" prefHeight="20.0" prefWidth="68.0" text="Venture" />
       <Label fx:id="blackDice" layoutX="150.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
       <Label fx:id="whiteDice" layoutX="179.0" layoutY="365.0" prefHeight="17.0" prefWidth="14.0" />
       <Label fx:id="orangeDice" layoutX="201.0" layoutY="373.0" prefHeight="17.0" prefWidth="14.0" />
       <Label layoutX="59.0" layoutY="258.0" prefHeight="34.0" prefWidth="27.0" />
       <Label layoutX="72.0" layoutY="258.0" prefHeight="34.0" prefWidth="27.0" />
       <Label layoutX="106.0" layoutY="259.0" prefHeight="34.0" prefWidth="27.0" />
-      <Button layoutX="291.0" layoutY="42.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="485.0" layoutY="42.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="417.0" layoutY="43.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="357.0" layoutY="43.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="442.0" layoutY="45.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="637.0" layoutY="45.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="570.0" layoutY="45.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="505.0" layoutY="45.0" mnemonicParsing="false" text="Button" />
       <ImageView fx:id="territoryTower4" fitHeight="67.0" fitWidth="42.0" layoutX="26.0" layoutY="20.0" onMousePressed="#initializeBoard" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="territoryTower3" fitHeight="67.0" fitWidth="42.0" layoutX="28.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="territoryTower2" fitHeight="67.0" fitWidth="42.0" layoutX="27.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" />
@@ -85,5 +80,10 @@
       <ImageView fx:id="ventureTower3" fitHeight="67.0" fitWidth="42.0" layoutX="180.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="ventureTower2" fitHeight="67.0" fitWidth="42.0" layoutX="180.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="ventureTower1" fitHeight="67.0" fitWidth="42.0" layoutX="178.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="490.0" fitWidth="307.0" layoutX="-1.0">
+         <image>
+            <Image url="@../../../../../../lorenzo_materiale_grafico_compr/gameboard_f_c.jpeg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

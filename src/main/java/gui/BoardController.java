@@ -84,8 +84,8 @@ public class BoardController {
 	
 	public void initializeBoard(){
 		
-		Image image = new Image ("coin_1_front.png");
-		territoryTower1.setImage(image);
+		Image image = new Image ("ImagesModified/devcards_f_en_c_2.png");
+		territoryTower4.setImage(image); 
 		/*ImageView image = new ImageView(getClass().getResource("plancina3.png").toExternalForm());
 		territoryTower1.setImage(image);*/
 	};
