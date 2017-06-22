@@ -21,7 +21,7 @@ public class Gui extends Application {
         this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
         initRootLayout();
-
+        register();
         showBoard();
     }
 
@@ -58,6 +58,19 @@ public class Gui extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void register(){try {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Gui.class.getResource("GuiLogin.fxml"));
+        AnchorPane board = (AnchorPane) loader.load();
+        //imageView board=(ImageView) AnchorPane.getChildren().get(0)
+        
+        rootLayout.setCenter(board);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    	
     }
 
     /**

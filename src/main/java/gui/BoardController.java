@@ -86,6 +86,6 @@ public class BoardController {
 	}
 	
 	public void quit(){
-		quit.
+
 	}
 }
