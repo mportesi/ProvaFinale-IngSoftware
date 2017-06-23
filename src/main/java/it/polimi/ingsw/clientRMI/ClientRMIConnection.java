@@ -16,6 +16,7 @@ import java.util.TimerTask;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Observer;
+import it.polimi.ingsw.GC_40.TimerAction;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
@@ -23,6 +24,7 @@ import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class ClientRMIConnection implements Serializable {
@@ -70,9 +72,17 @@ public class ClientRMIConnection implements Serializable {
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
 					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn."); 
 					// Capture input from user
+					
 					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub);
+					//commandLineInterface.setTo(true);
+					
 					commandLineInterface.input();
+					
+					if (clientModel.getQuit() != true){
+						
+					
 					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
+				
 				}
 
 	
@@ -82,5 +92,5 @@ public class ClientRMIConnection implements Serializable {
 			Thread.sleep((long)10 * 100);
 
 		}
-	}
+		}}
 }

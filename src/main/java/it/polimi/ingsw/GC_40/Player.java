@@ -52,6 +52,7 @@ public class Player extends Observable<Change> implements Serializable {
 	private boolean hasWhiteRelative;
 	private boolean hasOrangeRelative;
 	private boolean hasNeutralRelative;
+	private boolean quit;
 
 	public Player(UUID ID, Play play, String name, int match) {
 		this.ID = ID;
@@ -521,6 +522,20 @@ public class Player extends Observable<Change> implements Serializable {
 	public int getMatch() {
 		// TODO Auto-generated method stub
 		return match;
+	}
+
+
+
+	public void setQuit(boolean b) {
+		// TODO Auto-generated method stub
+		quit = b;
+	}
+
+
+
+	public boolean getQuit() {
+		// TODO Auto-generated method stub
+		return quit;
 	}
 
 
