@@ -42,12 +42,16 @@ public class WelcomeController {
 	private String host = "127.0.0.1";
 	private int rmi_port = 52365;
 	private final String NAME = "LorenzoIlMagnifico";
+	ClientRMIConnectionView rmiView;
 	/*public WelcomeController(int rmi_port, String host){
 		client = new ClientRMIConnection(rmi_port, host);
 	}*/
 	
 	private ServerRMIConnectionViewRemote serverStub;
 	
+	public void register(String name){
+		serverStub.registerClient(rmiView, name);
+	}
 	
 	@FXML
 	public void rmi(){
