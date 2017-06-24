@@ -65,17 +65,17 @@ public class ClientRMIConnection implements Serializable {
 		String name = stdIn.nextLine();
 		clientModel.setName(name);
 		serverStub.registerClient(rmiView, name);
-		boolean firstWhile=true;
+		
 		
 		while (!clientModel.getEndGame()) {
 			if (clientModel.getCurrentPlayer() != null) {
 
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
-					firstWhile=false;
-					if(firstWhile){
-					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn.");}
 					
-					JsonTimeOut jsonTimeOut = new JsonTimeOut();
+					
+					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn.");
+					
+					/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
 					int timeOutAction = jsonTimeOut.getTimeOutAction();
 					Timer timer = new Timer();
 					timer.schedule(new TimerAction(serverStub) { public void run() {
@@ -99,8 +99,7 @@ public class ClientRMIConnection implements Serializable {
 						}
 
 					});
-					if(firstWhile){
-					action.start();}
+					action.start();*/
 					/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
 					int timeOutAction = jsonTimeOut.getTimeOutAction();
 					TimerActionTry timerAction=new TimerActionTry(serverStub, clientModel, action);
@@ -118,22 +117,8 @@ public class ClientRMIConnection implements Serializable {
 					 * executor.submit(timerAction);
 					 */
 					// Capture input from user
-<<<<<<<
 					
 
-=======
-					
-					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub);
-					//commandLineInterface.setTo(true);
-					
-					commandLineInterface.input();
-					
-					if (clientModel.getQuit() != true){
-						
-					
-					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
-				
->>>>>>>
 				}
 
 				/*
@@ -154,7 +139,6 @@ public class ClientRMIConnection implements Serializable {
 			}
 
 		}
-<<<<<<<
 		// otherwise it is slow
 		try {
 			Thread.sleep((long) 10 * 100);
@@ -163,7 +147,4 @@ public class ClientRMIConnection implements Serializable {
 		}
 
 	}
-=======
-		}}
->>>>>>>
 }

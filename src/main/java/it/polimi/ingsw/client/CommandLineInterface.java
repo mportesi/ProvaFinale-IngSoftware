@@ -51,9 +51,9 @@ public class CommandLineInterface implements Serializable, Callable {
 	
 	public void esci() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException{
 
-<<<<<<<
+
 	@SuppressWarnings("deprecation")
-=======
+
 		ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
 		serverStub.notifyObserver(shiftPlayer);
 		to = false;
@@ -63,18 +63,18 @@ public class CommandLineInterface implements Serializable, Callable {
 	
 	}
 	
->>>>>>>
+
 	public void input()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-<<<<<<<
+
 		/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
-=======
+
 		
 		
 			
 	
 		JsonTimeOut jsonTimeOut = new JsonTimeOut();
->>>>>>>
+
 		int timeOutAction = jsonTimeOut.getTimeOutAction();
 		Timer timer = new Timer();
 		timer.schedule(new TimerAction(serverStub) { public void run() {
@@ -85,15 +85,15 @@ public class CommandLineInterface implements Serializable, Callable {
 			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
 				e.printStackTrace();
 			}
-<<<<<<<
+
 		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
 		int input = scanner.nextInt();
 		timer.cancel();
-		switch (input) {
-=======
+		/*switch (input) {
+
 			System.exit(0);
-		}}, (long) timeOutAction); 
+		}}, (long) timeOutAction); */
 		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 		
 		
@@ -104,14 +104,14 @@ public class CommandLineInterface implements Serializable, Callable {
 		//String inputLine = scanner.nextLine();
 		
 		try{
-		int input =scanner.nextInt();
+		int input0=scanner.nextInt();
 		}
 		catch(IllegalStateException | NoSuchElementException e){
 			System.out.println("Sorry, the scanner is closed");
 		}
 		
 		switch (input0) {
->>>>>>>
+
 		case 1: {
 			Relative relative = chooseTheRelative();
 			int servant = chooseServants(relative);
@@ -140,30 +140,17 @@ public class CommandLineInterface implements Serializable, Callable {
 			break;
 			}
 		}
-<<<<<<<
 		}}
 		/*else{
 			scanner.close();
 		}*/
 		//timer.cancel();
 	//	timer=new Timer();
-=======
-		
+
 	
 		}
->>>>>>>
 		
 		
-		
-	/*	timer.cancel();
-		timer=new Timer();*/
-		
-		
-		
-		
-
-	}
-	
 
 	public void printTheBoard() {
 		client.getBoard();
@@ -607,13 +594,11 @@ public class CommandLineInterface implements Serializable, Callable {
 		}
 	}
 
-<<<<<<<
 	@Override
 	public String call() throws Exception {
 		return null;
 	}
 
-=======
 	public boolean isTo() {
 		return to;
 	}
@@ -622,7 +607,5 @@ public class CommandLineInterface implements Serializable, Callable {
 		this.to = to;
 	}
 
-	
 
->>>>>>>
 }
