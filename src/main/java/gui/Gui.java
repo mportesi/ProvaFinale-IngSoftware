@@ -22,7 +22,8 @@ public class Gui extends Application {
 
 		initRootLayout();
 		welcome();
-		//showBoard();
+		register();
+		showBoard();
 	}
 
 	/**

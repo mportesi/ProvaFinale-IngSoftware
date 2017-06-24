@@ -11,7 +11,7 @@
    <children>
       <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../ImagesModified/sfondo.jpg" />
+            <Image url="@../Images/background.jpg" />
          </image>
       </ImageView>
       <Label layoutX="39.0" layoutY="41.0" prefHeight="77.0" prefWidth="547.0" text="Welcome to Lorenzo Il Magnifico" textAlignment="CENTER" textFill="#401d0d">
