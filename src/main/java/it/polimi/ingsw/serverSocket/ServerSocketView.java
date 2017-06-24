@@ -80,6 +80,7 @@ public class ServerSocketView extends ServerView implements Runnable {
 				if(object instanceof RegisterClientSocket){
 					RegisterClientSocket register= (RegisterClientSocket) object;
 					String name=register.getName();
+					System.out.println("registro il client:" + name);
 					registerClient(name);
 					
 				}

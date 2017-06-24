@@ -75,6 +75,7 @@ public class MasterController implements Observer <Action>{
 		else {
 			
 			if (matches.get(matches.size()-1).getInitializing()){
+				matches.get(matches.size()-1).registerObserver(serverSocketView);
 				RegisterClient registerClient = new RegisterClient (name, matches.size()-1);
 				registerClient.apply(matches.get(matches.size()-1));
 			}
