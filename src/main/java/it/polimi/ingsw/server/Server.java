@@ -45,7 +45,7 @@ public class Server {
 
 	}
 	
-/*	private void startSocket() throws IOException {
+	private void startSocket() throws IOException {
 
 		// creates the thread pool to handle clients
 		ExecutorService executor = Executors.newCachedThreadPool();
@@ -60,18 +60,18 @@ public class Server {
 			Socket socket = serverSocket.accept();
 
 			// creates the view (server side) associated with the new client
-			ServerSocketView view = new ServerSocketView(socket, play);
+			ServerSocketView view = new ServerSocketView(socket,this);
 
 			// the view observes the model
-			this.play.registerObserver(view);
+			//this.play.registerObserver(view);
 
 			// the controller observes the view
-			view.registerObserver(this.controller);
+			view.registerObserver(this.masterController);
 
 			// a new thread handle the connection with the view
 			executor.submit(view);
 		}
-	} */
+	} 
 	
 	public void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
@@ -93,7 +93,7 @@ public class Server {
 		System.out.println("START RMI");
 		server.startRMI();
 		System.out.println("START SOCKET");
-	//	server.startSocket();
+		server.startSocket();
 		
 	}
 
