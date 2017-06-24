@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Callable;
 
 import org.json.simple.parser.ParseException;
 
@@ -23,17 +24,19 @@ import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
-public class CommandLineInterface implements Serializable {
+public class CommandLineInterface implements Serializable, Callable {
 
 	private transient Scanner scanner;
 	private ClientModel client;
 	private ServerRMIConnectionViewRemote serverStub;
 	private boolean firstTime;
+	private Timer timer;
 
-	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub) {
+	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub, Timer timer) {
 		scanner = new Scanner(System.in);
 		this.client = client;
 		this.serverStub = serverStub;
+		this.timer=timer;
 	}
 
 	public CommandLineInterface(ClientModel client) {
@@ -41,9 +44,10 @@ public class CommandLineInterface implements Serializable {
 		this.client = client;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void input()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		JsonTimeOut jsonTimeOut = new JsonTimeOut();
+		/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
 		int timeOutAction = jsonTimeOut.getTimeOutAction();
 		Timer timer = new Timer();
 		timer.schedule(new TimerAction(serverStub) { public void run() {
@@ -54,13 +58,10 @@ public class CommandLineInterface implements Serializable {
 			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
 				e.printStackTrace();
 			}
-		}}, (long) timeOutAction); // TODO IMPORT FROM JSON
-		
-		
-
-		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
-		String inputLine = scanner.nextLine();
+		}}, (long) timeOutAction); */
+		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
 		int input = scanner.nextInt();
+		timer.cancel();
 		switch (input) {
 		case 1: {
 			Relative relative = chooseTheRelative();
@@ -77,9 +78,12 @@ public class CommandLineInterface implements Serializable {
 		case 3: {
 			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
 		}
-		}
-		timer.cancel();
-		timer=new Timer();
+		}}
+		/*else{
+			scanner.close();
+		}*/
+		//timer.cancel();
+	//	timer=new Timer();
 		
 
 	}
@@ -525,6 +529,11 @@ public class CommandLineInterface implements Serializable {
 			productionArea = "left";
 			return productionArea;
 		}
+	}
+
+	@Override
+	public String call() throws Exception {
+		return null;
 	}
 
 }

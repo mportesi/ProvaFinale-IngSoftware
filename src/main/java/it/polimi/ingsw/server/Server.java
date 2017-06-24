@@ -98,7 +98,6 @@ public class Server {
 	}
 
 	public MasterController getMasterController() {
-		// TODO Auto-generated method stub
 		return masterController;
 	}
 }
