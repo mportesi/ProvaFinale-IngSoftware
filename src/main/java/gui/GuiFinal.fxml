@@ -53,29 +53,30 @@
       <ImageView fx:id="territoryTower4" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="ventureTower2" fitHeight="76.0" fitWidth="51.0" layoutX="361.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="ventureTower1" fitHeight="76.0" fitWidth="51.0" layoutX="360.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower21" fitHeight="76.0" fitWidth="51.0" layoutX="632.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower211" fitHeight="76.0" fitWidth="51.0" layoutX="714.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower212" fitHeight="76.0" fitWidth="51.0" layoutX="785.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower213" fitHeight="76.0" fitWidth="51.0" layoutX="865.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower214" fitHeight="76.0" fitWidth="51.0" layoutX="940.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower215" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower216" fitHeight="76.0" fitWidth="51.0" layoutX="632.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower217" fitHeight="76.0" fitWidth="51.0" layoutX="707.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="venture1" fitHeight="76.0" fitWidth="51.0" layoutX="632.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="venture2" fitHeight="76.0" fitWidth="51.0" layoutX="714.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="venture3" fitHeight="76.0" fitWidth="51.0" layoutX="785.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="venture4" fitHeight="76.0" fitWidth="51.0" layoutX="865.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="venture5" fitHeight="76.0" fitWidth="51.0" layoutX="940.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="venture6" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="character1" fitHeight="76.0" fitWidth="51.0" layoutX="632.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="character2" fitHeight="76.0" fitWidth="51.0" layoutX="707.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="territoryTower218" fitHeight="76.0" fitWidth="51.0" layoutX="785.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower219" fitHeight="76.0" fitWidth="51.0" layoutX="865.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2110" fitHeight="76.0" fitWidth="51.0" layoutX="797.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2111" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2112" fitHeight="76.0" fitWidth="51.0" layoutX="624.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2113" fitHeight="76.0" fitWidth="51.0" layoutX="707.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2114" fitHeight="76.0" fitWidth="51.0" layoutX="785.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2115" fitHeight="76.0" fitWidth="51.0" layoutX="865.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2116" fitHeight="76.0" fitWidth="51.0" layoutX="940.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2117" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2118" fitHeight="76.0" fitWidth="51.0" layoutX="632.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2119" fitHeight="76.0" fitWidth="51.0" layoutX="707.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2120" fitHeight="76.0" fitWidth="51.0" layoutX="785.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2121" fitHeight="76.0" fitWidth="51.0" layoutX="865.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2122" fitHeight="76.0" fitWidth="51.0" layoutX="940.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2123" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="character4" fitHeight="76.0" fitWidth="51.0" layoutX="865.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="character3" fitHeight="76.0" fitWidth="51.0" layoutX="797.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="character6" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="building1" fitHeight="76.0" fitWidth="51.0" layoutX="624.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="building2" fitHeight="76.0" fitWidth="51.0" layoutX="707.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="building3" fitHeight="76.0" fitWidth="51.0" layoutX="785.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="building4" fitHeight="76.0" fitWidth="51.0" layoutX="865.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="building5" fitHeight="76.0" fitWidth="51.0" layoutX="940.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="building6" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territory1" fitHeight="76.0" fitWidth="51.0" layoutX="632.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territory2" fitHeight="76.0" fitWidth="51.0" layoutX="707.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territory3" fitHeight="76.0" fitWidth="51.0" layoutX="785.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territory4" fitHeight="76.0" fitWidth="51.0" layoutX="865.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territory5" fitHeight="76.0" fitWidth="51.0" layoutX="940.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territory6" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="character5" fitHeight="76.0" fitWidth="51.0" layoutX="941.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

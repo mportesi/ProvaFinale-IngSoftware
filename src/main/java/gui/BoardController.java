@@ -19,7 +19,60 @@ import javafx.fxml.FXML;
 public class BoardController {
 	
 	private ClientModel client;
+	
 
+	@FXML
+    private ImageView territory1;
+	@FXML
+    private ImageView territory2;
+	@FXML
+    private ImageView territory3;
+	@FXML
+    private ImageView territory4;
+	@FXML
+    private ImageView territory5;
+	@FXML
+    private ImageView territory6;
+	
+	@FXML
+    private ImageView building1;
+	@FXML
+    private ImageView building2;
+	@FXML
+    private ImageView building3;
+	@FXML
+    private ImageView building4;
+	@FXML
+    private ImageView building5;
+	@FXML
+    private ImageView building6;
+	
+	@FXML
+    private ImageView character1;
+	@FXML
+    private ImageView character2;
+	@FXML
+    private ImageView character3;
+	@FXML
+    private ImageView character4;
+	@FXML
+    private ImageView character5;
+	@FXML
+    private ImageView character6;
+	
+	@FXML
+    private ImageView venture1;
+	@FXML
+    private ImageView venture2;
+	@FXML
+    private ImageView venture3;
+	@FXML
+    private ImageView venture4;
+	@FXML
+    private ImageView venture5;
+	@FXML
+    private ImageView venture6;
+	
 	@FXML
     private ImageView territoryTower1;
 	@FXML
