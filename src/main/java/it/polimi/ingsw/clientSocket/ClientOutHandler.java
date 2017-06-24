@@ -101,6 +101,7 @@ public class ClientOutHandler implements Runnable {
 					}
 					int servant = cli.chooseServants(relative);
 					try{
+						socketOut.reset();
 						socketOut.writeObject(new SetServant(servant, clientModel.getPlayer(), relative,clientModel.getPlayer().getMatch()));
 					} catch (IOException e1) {
 						e1.printStackTrace();
@@ -113,6 +114,7 @@ public class ClientOutHandler implements Runnable {
 						e.printStackTrace();
 					}
 					try{
+						socketOut.reset();
 						socketOut.writeObject(putRelative);
 					} catch (IOException e1) {
 						e1.printStackTrace();
@@ -124,6 +126,7 @@ public class ClientOutHandler implements Runnable {
 					}
 					case 3:{
 						try{
+							socketOut.reset();
 							socketOut.writeObject(new Quit(clientModel.getPlayer(),clientModel.getPlayer().getMatch()));
 						} catch (IOException e1) {
 							e1.printStackTrace();
