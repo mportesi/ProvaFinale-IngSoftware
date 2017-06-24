@@ -45,7 +45,7 @@ public class WelcomeController {
 		try {
 			client = new ClientRMIConnection(rmi_port, host);
 			client.startClient(false);
-			openNewScene("GuiLogin.fxml");
+			Parent page=openNewScene("GuiLogin.fxml");
 			
 		} catch (AlreadyBoundException | NullPointerException | NotBoundException | IOException | ParseException
 				| InterruptedException e) {
@@ -55,7 +55,7 @@ public class WelcomeController {
 	}
 	
 	@FXML
-	public void openNewScene(String fxml){
+	public Parent openNewScene(String fxml){
 	        Parent page=null;
 			try {
 				page = FXMLLoader.load(WelcomeController.class.getResource(fxml), null, new JavaFXBuilderFactory());
@@ -63,6 +63,7 @@ public class WelcomeController {
 				e.printStackTrace();
 			}
 			rmi.getScene().setRoot(page);
+			return page;
 	}
 							
 }
