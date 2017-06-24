@@ -15,6 +15,7 @@ public class ChangePlayer implements Change {
 		if (currentPlayer.getMatch() == client.getPlayer().getMatch()){
 		client.setCurrentPlayer(currentPlayer);
 		System.out.println("It's the " + currentPlayer.getName() + "'s turn.");
+		
 	}
 	}
 	

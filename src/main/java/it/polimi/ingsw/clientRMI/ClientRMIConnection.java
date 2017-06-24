@@ -118,8 +118,22 @@ public class ClientRMIConnection implements Serializable {
 					 * executor.submit(timerAction);
 					 */
 					// Capture input from user
+<<<<<<<
 					
 
+=======
+					
+					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub);
+					//commandLineInterface.setTo(true);
+					
+					commandLineInterface.input();
+					
+					if (clientModel.getQuit() != true){
+						
+					
+					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
+				
+>>>>>>>
 				}
 
 				/*
@@ -140,6 +154,7 @@ public class ClientRMIConnection implements Serializable {
 			}
 
 		}
+<<<<<<<
 		// otherwise it is slow
 		try {
 			Thread.sleep((long) 10 * 100);
@@ -148,4 +163,7 @@ public class ClientRMIConnection implements Serializable {
 		}
 
 	}
+=======
+		}}
+>>>>>>>
 }

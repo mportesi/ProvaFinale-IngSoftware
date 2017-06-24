@@ -3,7 +3,9 @@ package it.polimi.ingsw.client;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,6 +33,9 @@ public class CommandLineInterface implements Serializable, Callable {
 	private ServerRMIConnectionViewRemote serverStub;
 	private boolean firstTime;
 	private Timer timer;
+	int input0=0;
+	private boolean to = true;
+	
 
 	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub, Timer timer) {
 		scanner = new Scanner(System.in);
@@ -43,26 +48,70 @@ public class CommandLineInterface implements Serializable, Callable {
 		scanner = new Scanner(System.in);
 		this.client = client;
 	}
+	
+	public void esci() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException{
 
+<<<<<<<
 	@SuppressWarnings("deprecation")
+=======
+		ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+		serverStub.notifyObserver(shiftPlayer);
+		to = false;
+		scanner.close();
+		System.out.println("The scanner is closed!");
+		
+	
+	}
+	
+>>>>>>>
 	public void input()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+<<<<<<<
 		/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
+=======
+		
+		
+			
+	
+		JsonTimeOut jsonTimeOut = new JsonTimeOut();
+>>>>>>>
 		int timeOutAction = jsonTimeOut.getTimeOutAction();
 		Timer timer = new Timer();
 		timer.schedule(new TimerAction(serverStub) { public void run() {
 			System.out.println("It ran out of time!");
-			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			//ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
 			try {
-				serverStub.notifyObserver(shiftPlayer);
+				esci();
 			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
 				e.printStackTrace();
 			}
+<<<<<<<
 		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
 		int input = scanner.nextInt();
 		timer.cancel();
 		switch (input) {
+=======
+			System.exit(0);
+		}}, (long) timeOutAction); 
+		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
+		
+		
+
+		
+		
+	
+		//String inputLine = scanner.nextLine();
+		
+		try{
+		int input =scanner.nextInt();
+		}
+		catch(IllegalStateException | NoSuchElementException e){
+			System.out.println("Sorry, the scanner is closed");
+		}
+		
+		switch (input0) {
+>>>>>>>
 		case 1: {
 			Relative relative = chooseTheRelative();
 			int servant = chooseServants(relative);
@@ -76,17 +125,45 @@ public class CommandLineInterface implements Serializable, Callable {
 			break;
 		}
 		case 3: {
+			
 			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
+			client.setQuit(true);
+			while (!scanner.hasNextInt())
+				scanner.next();
+			int input0 = scanner.nextInt();
+			
+			switch(0){
+			case 0: 
+				System.out.println("reconnect");
+				serverStub.notifyObserver(new Reconnect(client.getPlayer(), client.getPlayer().getMatch()));
+				
+			break;
+			}
 		}
+<<<<<<<
 		}}
 		/*else{
 			scanner.close();
 		}*/
 		//timer.cancel();
 	//	timer=new Timer();
+=======
+		
+	
+		}
+>>>>>>>
+		
+		
+		
+	/*	timer.cancel();
+		timer=new Timer();*/
+		
+		
+		
 		
 
 	}
+	
 
 	public void printTheBoard() {
 		client.getBoard();
@@ -96,8 +173,7 @@ public class CommandLineInterface implements Serializable, Callable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Il tuo stato è: \n" + client.getPlayer());
 		System.out.println("\n\nLa board è: \n" + client.getBoard());
-		System.out
-				.println("\n Choose what relative you want to use: \n 1) black \n 2) white \n 3) orange \n 4) neutral");
+		System.out.println("\n Choose what relative you want to use: \n 1) black \n 2) white \n 3) orange \n 4) neutral");
 		Relative relative = null;
 		int input = 0;
 		while (!scanner.hasNextInt())
@@ -531,9 +607,22 @@ public class CommandLineInterface implements Serializable, Callable {
 		}
 	}
 
+<<<<<<<
 	@Override
 	public String call() throws Exception {
 		return null;
 	}
 
+=======
+	public boolean isTo() {
+		return to;
+	}
+
+	public void setTo(boolean to) {
+		this.to = to;
+	}
+
+	
+
+>>>>>>>
 }

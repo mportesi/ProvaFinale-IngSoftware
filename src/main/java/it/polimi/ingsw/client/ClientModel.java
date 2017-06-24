@@ -27,6 +27,7 @@ public class ClientModel implements Serializable{
 	private ArrayList<Player> currentTurnOrder;
 	private ArrayList<ClientModel> clients;
 	private boolean endGame;
+	private boolean quit = false;
 	
 	
 	public ClientModel(){
@@ -178,6 +179,17 @@ public class ClientModel implements Serializable{
 	public boolean getEndGame() {
 		// TODO Auto-generated method stub
 		return endGame;
+	}
+
+
+	public void setQuit(boolean b) {
+		// TODO Auto-generated method stub
+		quit = b;
+	}
+	
+	public boolean getQuit() {
+		// TODO Auto-generated method stub
+		return quit;
 	}
 
 	
