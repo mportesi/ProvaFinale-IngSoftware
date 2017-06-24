@@ -29,9 +29,9 @@ public class ClientInHandler implements Runnable {
 			// handles input messages coming from the server
 			try {
 				Object object=socketIn.readObject();
-				System.out.println("ricevuto oggetto");
+				//System.out.println("ricevuto oggetto");
 				if (object instanceof Change){
-					System.out.println("ricevuto change");
+					System.out.println("ricevuto change"+ object);
 					((Change) object).applyChange(clientModel);
 					System.out.println(" change apply");
 
