@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,8 +30,8 @@ public class CommandLineInterface implements Serializable {
 	private transient Scanner scanner;
 	private ClientModel client;
 	private ServerRMIConnectionViewRemote serverStub;
-
-	private boolean to;
+	int input0=0;
+	private boolean to = true;
 	
 
 	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub) {
@@ -45,10 +46,14 @@ public class CommandLineInterface implements Serializable {
 	}
 	
 	public void esci() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException{
+
 		ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
 		serverStub.notifyObserver(shiftPlayer);
 		to = false;
+		scanner.close();
+		System.out.println("The scanner is closed!");
 		
+	
 	}
 	
 	public void input()
@@ -56,7 +61,7 @@ public class CommandLineInterface implements Serializable {
 		
 		
 			
-				
+	
 		JsonTimeOut jsonTimeOut = new JsonTimeOut();
 		int timeOutAction = jsonTimeOut.getTimeOutAction();
 		Timer timer = new Timer();
@@ -68,20 +73,25 @@ public class CommandLineInterface implements Serializable {
 			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
 				e.printStackTrace();
 			}
-		}}, (long) timeOutAction*10000); // TODO IMPORT FROM JSON*/
-		
-		
-		
+			System.exit(0);
+		}}, (long) timeOutAction); 
 		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 		
+		
+
+		
+		
 	
+		//String inputLine = scanner.nextLine();
 		
-		String inputLine = scanner.nextLine();
+		try{
+		int input =scanner.nextInt();
+		}
+		catch(IllegalStateException | NoSuchElementException e){
+			System.out.println("Sorry, the scanner is closed");
+		}
 		
-		int input = scanner.nextInt();
-		
-		
-		switch (input) {
+		switch (input0) {
 		case 1: {
 			Relative relative = chooseTheRelative();
 			int servant = chooseServants(relative);
@@ -111,13 +121,16 @@ public class CommandLineInterface implements Serializable {
 			}
 		}
 		
+	
+		}
+		
+		
 		
 	/*	timer.cancel();
 		timer=new Timer();*/
-		}
 		
-		timer.cancel();
-		return;
+		
+		
 		
 
 	}
