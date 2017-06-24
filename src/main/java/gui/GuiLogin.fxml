@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.RegisterClientController">
    <children>
       <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../ImagesModified/sfondo.jpg" />
+            <Image url="@../Images/background.jpg" />
          </image>
       </ImageView>
       <Label fx:id="text" layoutX="56.0" layoutY="43.0" prefHeight="151.0" prefWidth="520.0" text="Please, insert your name:" textFill="#4d210e">
@@ -26,6 +25,6 @@
             <Font name="Blackadder ITC" size="59.0" />
          </font>
       </TextField>
-      <Button layoutX="500.0" layoutY="285.0" mnemonicParsing="false" onAction="#registerClient" text="Button" />
+      <Button fx:id="button" layoutX="500.0" layoutY="285.0" mnemonicParsing="false" onAction="#registerClient" text="Button" />
    </children>
 </AnchorPane>

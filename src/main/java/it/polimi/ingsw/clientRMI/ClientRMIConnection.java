@@ -56,6 +56,7 @@ public class ClientRMIConnection implements Serializable {
 		// the server)
 
 		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
+		
 		if(commandLine){
 		System.out.println("\nTell me your name\n");
 		String name = stdIn.nextLine();
@@ -84,5 +85,10 @@ public class ClientRMIConnection implements Serializable {
 
 		}
 	}}
+
+
+	public ClientModel getClientModel() {
+		return clientModel;
+	}
 	
 }
