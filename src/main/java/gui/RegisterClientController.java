@@ -3,6 +3,8 @@ package gui;
 import java.io.IOException;
 
 import it.polimi.ingsw.client.ClientModel;
+import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
+import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -13,7 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 public class RegisterClientController {
-
+	 private String playerName;
+	
+	 
 	@FXML
 	private TextField name;
 	@FXML
@@ -27,8 +31,13 @@ public class RegisterClientController {
 	
 	
 	@FXML
-	public void registerClient() {
-
+	public void registerClient() throws InterruptedException {
+		client = new ClientModel();
+		playerName = text.getText();
+		client.setName(playerName);
+		//serverStub.registerClient(rmiView, name); Va chiamato nella classe Welcome perchè ha bisogno del serverStub
+		
+		
 		openNewScene("GuiFinal.fxml");
 	}
 

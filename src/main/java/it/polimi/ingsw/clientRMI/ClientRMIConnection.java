@@ -84,7 +84,11 @@ public class ClientRMIConnection implements Serializable {
 			Thread.sleep((long)10 * 100);
 
 		}
-	}}
+	}
+	
+		else {
+			}
+		}
 
 
 	public ClientModel getClientModel() {

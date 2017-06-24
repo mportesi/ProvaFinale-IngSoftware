@@ -20,11 +20,11 @@
             <Font name="Blackadder ITC" size="59.0" />
          </font>
       </Label>
-      <TextField fx:id="name" layoutX="103.0" layoutY="172.0" onKeyPressed="#registerClient" prefHeight="73.0" prefWidth="381.0">
+      <TextField fx:id="name" layoutX="103.0" layoutY="172.0" prefHeight="73.0" prefWidth="381.0">
          <font>
             <Font name="Blackadder ITC" size="59.0" />
          </font>
       </TextField>
-      <Button fx:id="button" layoutX="500.0" layoutY="285.0" mnemonicParsing="false" onAction="#registerClient" text="Button" />
+      <Button fx:id="button" layoutX="500.0" layoutY="285.0" mnemonicParsing="false" onMouseClicked="#registerClient" text="Button" />
    </children>
 </AnchorPane>

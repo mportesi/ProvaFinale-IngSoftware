@@ -21,8 +21,9 @@ public class Gui extends Application {
 		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
 		initRootLayout();
-		welcome();
+		
 		register();
+		welcome();
 		//showBoard();
 	}
 
