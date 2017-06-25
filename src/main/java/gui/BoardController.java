@@ -241,8 +241,7 @@ public class BoardController {
 		
 		
 		buildingTower1.setImage(image1);
-		Object obj = ((ImageView) event.getSource());
-		System.out.println(obj);
+		
 		
 		territoryTower3.setImage(image2);
 		territoryTower2.setImage(image3);
