@@ -2,7 +2,10 @@ package gui;
 
 import java.io.IOException;
 
+import org.json.simple.parser.ParseException;
+
 import it.polimi.ingsw.client.ClientModel;
+import it.polimi.ingsw.clientRMI.ClientRMIConnectionView;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 import javafx.fxml.FXML;
@@ -27,17 +30,23 @@ public class RegisterClientController {
 	@FXML
 	private Button button;
 	
-	private ClientModel client;
+	@FXML
+	private WelcomeController welcomeController;
+	
+	public ClientModel client;
+	public ServerRMIConnectionViewRemote serverStub=new ServerRMIConnectionView();
+	public ClientRMIConnectionView rmiView;
 	
 	
 	@FXML
 	public void registerClient() throws InterruptedException {
-		client = new ClientModel();
 		playerName = text.getText();
 		client.setName(playerName);
-		//serverStub.registerClient(rmiView, name); Va chiamato nella classe Welcome perchè ha bisogno del serverStub
-		
-		
+		try {
+			serverStub.registerClient(rmiView, playerName);
+		} catch (NullPointerException | IOException | ParseException e) {
+			e.printStackTrace();
+		} 
 		openNewScene("GuiFinal.fxml");
 	}
 
@@ -50,6 +59,18 @@ public class RegisterClientController {
 			e.printStackTrace();
 		}
 		button.getScene().setRoot(page);
+	}
+
+	public void setClient(ClientModel clientModel) {
+		this.client=clientModel;	
+	}
+
+	public void setServerStub(ServerRMIConnectionViewRemote serverStub) {
+		this.serverStub=serverStub;
+	}
+
+	public void setClientRMIConnectionView(ClientRMIConnectionView rmiView) {
+		this.rmiView=rmiView;
 	}
 
 }

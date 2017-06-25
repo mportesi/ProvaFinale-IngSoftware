@@ -22,7 +22,7 @@ public class Gui extends Application {
 
 		initRootLayout();
 		
-		register();
+		//register();
 		welcome();
 		//showBoard();
 	}
