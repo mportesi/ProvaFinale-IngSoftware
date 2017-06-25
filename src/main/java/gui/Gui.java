@@ -22,9 +22,9 @@ public class Gui extends Application {
 
 		/*initRootLayout();
 		
-		register();
-		welcome();*/
-		showBoard();
+		//register();
+		welcome();
+		//showBoard();
 	}
 
 	/**

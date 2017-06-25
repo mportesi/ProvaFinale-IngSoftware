@@ -38,25 +38,26 @@ public class WelcomeController {
 	
 	private Gui gui;
 	private ClientRMIConnection client;
-	private ClientModel clientModel;
+	private ClientModel clientModel= new ClientModel();
 	private String host = "127.0.0.1";
 	private int rmi_port = 52365;
 	private final String NAME = "LorenzoIlMagnifico";
-	ClientRMIConnectionView rmiView;
-	/*public WelcomeController(int rmi_port, String host){
-		client = new ClientRMIConnection(rmi_port, host);
-	}*/
-	
+	private ClientRMIConnectionView rmiView;
 	private ServerRMIConnectionViewRemote serverStub;
 	
-	public void register(String name){
-		serverStub.registerClient(rmiView, name);
-	}
+	/*public void register(String name){
+		try {
+			serverStub.registerClient(rmiView, name);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
 	
 	@FXML
 	public void rmi(){
 		try {
-			client = new ClientRMIConnection(rmi_port, host);
+			/*client = new ClientRMIConnection(rmi_port, host);
 			clientModel = new ClientModel();
 
 			Registry registry = LocateRegistry.getRegistry(host, rmi_port);
@@ -66,15 +67,15 @@ public class WelcomeController {
 
 			ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
 			
-			//client.startClient(false);
-			Parent page=openNewScene("GuiLogin.fxml");
+			*/
+			client = new ClientRMIConnection(rmi_port, host);
+			client.startClient(false);
+			clientModel=new ClientModel();
+			openNewSceneTry("GuiLogin.fxml");
 			
 			
 			
-			
-			
-			
-		} catch (AlreadyBoundException | NullPointerException | NotBoundException | IOException e) {
+		} catch (AlreadyBoundException | NullPointerException | NotBoundException | IOException | ParseException | InterruptedException e) {
 			e.printStackTrace();
 		}
 		
@@ -85,11 +86,29 @@ public class WelcomeController {
 	        Parent page=null;
 			try {
 				page = FXMLLoader.load(WelcomeController.class.getResource(fxml), null, new JavaFXBuilderFactory());
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			rmi.getScene().setRoot(page);
 			return page;
+	}
+	
+	@FXML
+	public void openNewSceneTry(String fxml){
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		//fxmlLoader.setLocation(getClass().getResource(fxml));
+		try {
+			Parent page = fxmlLoader.load(WelcomeController.class.getResource(fxml), null, new JavaFXBuilderFactory());
+			//AnchorPane frame = fxmlLoader.load();
+			rmi.getScene().setRoot(page);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(fxml.equals("GuiLogin.fxml")){
+		RegisterClientController registerClient = (RegisterClientController) fxmlLoader.getController();
+		registerClient.serverStub=serverStub;
+		}
 	}
 							
 }

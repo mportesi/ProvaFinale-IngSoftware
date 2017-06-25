@@ -86,8 +86,7 @@ public class ClientRMIConnection implements Serializable {
 		}
 	}
 	
-		else {
-			}
+		
 		}
 
 
