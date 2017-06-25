@@ -10,15 +10,37 @@ import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 
+import org.evosuite.shaded.antlr.debug.Event;
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.client.ClientModel;
+import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.server.Server;
 import javafx.fxml.FXML;
 
 public class BoardController {
 	
 	private ClientModel client;
+	private Relative relative;
+	private Player player;
+	
+	public BoardController(){
+		
+	}
+	
+	
+	
+	@FXML
+    private Button white;
+	@FXML
+    private Button neutral;
+	@FXML
+    private Button orange;
+	@FXML
+    private Button black;
+	
 	
 
 	@FXML
@@ -132,19 +154,56 @@ public class BoardController {
 	@FXML
 	private Button quit;
 	
-	
-	
-	
-	
 	private Gui gui;
 	
-	public void initializeBoard(){
+	
+
+
+	@FXML
+	public void chooseWhiteRelative(){
+		relative = client.getPlayer().getWhiteRelative();
+		
+	}
+	
+
+	@FXML
+	public void chooseOrangeRelative(){
+		relative = client.getPlayer().getOrangeRelative();
+		
+		
+	}
+	
+
+	@FXML
+	public void chooseBlackRelative(){
+		relative = client.getPlayer().getBlackRelative();
+		
+		
+	}
+	
+
+	@FXML
+	public void chooseNeutralRelative(){
+		relative = client.getPlayer().getNeutralRelative();
+		
+	}
+	
+	// ????? per tutte e 4 la torri??????
+	@FXML
+	public void putRelativeOnTerritoryTower1(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 1, relative);
+		
+	}
+
+	@FXML
+	
+	public void initializeBoard(Event event){
 		
 		String string;
-		//string = client.getTerritoryTower().getFloor(4).getCard().getName();
-		Image image1 = new Image ("ImagesModified/"+"devcards_f_en_c_2"+".png");
+		string = client.getTerritoryTower().getFloor(4).getCard().getName();
+		Image image1 = new Image ("Images/"+"coin_1_front"+".png");
 		
-	/*	string = client.getTerritoryTower().getFloor(3).getCard().getName();
+		string = client.getTerritoryTower().getFloor(3).getCard().getName();
 		Image image2 = new Image ("ImagesModified/"+string+".png");
 		
 		string = client.getTerritoryTower().getFloor(2).getCard().getName();
@@ -177,12 +236,15 @@ public class BoardController {
 		Image image15 = new Image ("ImagesModified/"+string+".png");
 		string = client.getCharacterTower().getFloor(1).getCard().getName();
 		Image image16 = new Image ("ImagesModified/"+string+".png");
-		*/
+		
 		
 		
 		
 		buildingTower1.setImage(image1);
-	/*	territoryTower3.setImage(image2);
+		Object obj = ((ImageView) event.getSource());
+		System.out.println(obj);
+		
+		territoryTower3.setImage(image2);
 		territoryTower2.setImage(image3);
 		territoryTower1.setImage(image4);
 		buildingTower4.setImage(image5);
@@ -196,16 +258,13 @@ public class BoardController {
 		characterTower4.setImage(image13);
 		characterTower3.setImage(image14);
 		characterTower2.setImage(image15);
-		characterTower1.setImage(image16);*/
+		characterTower1.setImage(image16);
 		
 		
 		/*ImageView image = new ImageView(getClass().getResource("plancina3.png").toExternalForm());
 		territoryTower1.setImage(image);*/
 	};
 	
-	public void putRelative(){
-		
-	}
 	
 	public void quit(){
 

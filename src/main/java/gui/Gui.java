@@ -20,11 +20,11 @@ public class Gui extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
-		initRootLayout();
+		/*initRootLayout();
 		
 		register();
-		welcome();
-		//showBoard();
+		welcome();*/
+		showBoard();
 	}
 
 	/**
