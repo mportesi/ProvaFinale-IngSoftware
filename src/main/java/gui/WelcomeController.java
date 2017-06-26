@@ -38,7 +38,7 @@ public class WelcomeController {
 	
 	private Gui gui;
 	private ClientRMIConnection client;
-	private ClientModel clientModel= new ClientModel();
+	private ClientModel clientModel;
 	private String host = "127.0.0.1";
 	private int rmi_port = 52365;
 	private final String NAME = "LorenzoIlMagnifico";
@@ -70,7 +70,7 @@ public class WelcomeController {
 			*/
 			client = new ClientRMIConnection(rmi_port, host);
 			client.startClient(false);
-			clientModel=new ClientModel();
+			clientModel=client.getClientModel();
 			openNewSceneTry("GuiLogin.fxml");
 			
 			
@@ -107,7 +107,7 @@ public class WelcomeController {
 		}
 		if(fxml.equals("GuiLogin.fxml")){
 		RegisterClientController registerClient = (RegisterClientController) fxmlLoader.getController();
-		registerClient.serverStub=serverStub;
+		registerClient.client=clientModel;
 		}
 	}
 							
