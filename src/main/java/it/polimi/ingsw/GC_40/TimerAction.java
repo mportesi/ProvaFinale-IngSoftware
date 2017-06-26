@@ -17,10 +17,11 @@ public class TimerAction extends TimerTask {
 		this.serverStub = serverStub;
 	}
 	
-	public void input(){
+	/*public void input(){
 		CommandLineInterface cli= new CommandLineInterface();
 		
-	}
+	}*/
+	
 	@Override
 	public void run() {
 		/*System.out.println("It ran out of time!");
