@@ -16,6 +16,11 @@ public class TimerAction extends TimerTask {
 	public TimerAction(ServerRMIConnectionViewRemote serverStub){
 		this.serverStub = serverStub;
 	}
+	
+	public void input(){
+		CommandLineInterface cli= new CommandLineInterface();
+		
+	}
 	@Override
 	public void run() {
 		/*System.out.println("It ran out of time!");

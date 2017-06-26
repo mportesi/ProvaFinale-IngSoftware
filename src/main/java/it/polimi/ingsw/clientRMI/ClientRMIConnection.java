@@ -47,7 +47,7 @@ public class ClientRMIConnection implements Serializable {
 	}
 
 	public void startClient() throws NotBoundException, FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		clientModel = new ClientModel();
+		
 
 		Scanner stdIn = new Scanner(System.in);
 
@@ -60,6 +60,7 @@ public class ClientRMIConnection implements Serializable {
 		serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
 		// register the client view in the server side (to receive messages from
 		// the server)
+		clientModel = new ClientModel(serverStub);
 		rmiView = new ClientRMIConnectionView(clientModel);
 		System.out.println("\nTell me your name\n");
 		String name = stdIn.nextLine();
@@ -73,7 +74,7 @@ public class ClientRMIConnection implements Serializable {
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
 					
 					
-					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn.");
+					//System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn.");
 					
 					/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
 					int timeOutAction = jsonTimeOut.getTimeOutAction();

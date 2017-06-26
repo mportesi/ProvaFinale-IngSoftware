@@ -26,7 +26,7 @@ import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
-public class CommandLineInterface implements Serializable, Callable {
+public class CommandLineInterface implements Serializable, Runnable {
 
 	private transient Scanner scanner;
 	private ClientModel client;
@@ -594,17 +594,18 @@ public class CommandLineInterface implements Serializable, Callable {
 		}
 	}
 
-	@Override
-	public String call() throws Exception {
-		return null;
-	}
-
 	public boolean isTo() {
 		return to;
 	}
 
 	public void setTo(boolean to) {
 		this.to = to;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 
