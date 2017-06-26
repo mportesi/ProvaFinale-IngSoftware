@@ -67,8 +67,8 @@ public class ClientModel implements Serializable{
 		CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
 		action = new Thread(() -> {
 			try{
-				
-				System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
+				/*if(currentPlayer.getName().equals(currentPlayer.getName())){
+				System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");*/
 				if(action!=null){
 				commandLineInterface.input();}
 			}
@@ -78,6 +78,7 @@ public class ClientModel implements Serializable{
 
 		});
 		action.start();
+		System.out.println("è partito");
 		timer.schedule(new TimerAction(serverStub) { public void run() {
 			System.out.println("It ran out of time!");
 			ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
