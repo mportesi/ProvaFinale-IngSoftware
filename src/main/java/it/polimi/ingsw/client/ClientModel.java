@@ -34,7 +34,7 @@ public class ClientModel implements Serializable{
 	private boolean endGame;
 	private boolean quit = false;
 	private ServerRMIConnectionViewRemote serverStub;
-	
+	private Thread action;
 	
 	public ClientModel(ServerRMIConnectionViewRemote serverStub){
 		this.serverStub=serverStub;
@@ -65,10 +65,12 @@ public class ClientModel implements Serializable{
 		int timeOutAction = jsonTimeOut.getTimeOutAction();
 		Timer timer = new Timer();
 		CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
-		Thread action = new Thread(() -> {
+		action = new Thread(() -> {
 			try{
+				
 				System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
-				commandLineInterface.input();
+				if(action!=null){
+				commandLineInterface.input();}
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -79,10 +81,10 @@ public class ClientModel implements Serializable{
 		timer.schedule(new TimerAction(serverStub) { public void run() {
 			System.out.println("It ran out of time!");
 			ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
+			action=null;
 			try {
 				serverStub.notifyObserver(shiftPlayer);
 			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}}, (long) (timeOutAction-150)*1000);
