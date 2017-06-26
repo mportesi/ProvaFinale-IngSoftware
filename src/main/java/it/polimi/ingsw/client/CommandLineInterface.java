@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Callable;
 
 import org.json.simple.parser.ParseException;
 
@@ -27,7 +28,7 @@ import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
-public class CommandLineInterface implements Serializable {
+public class CommandLineInterface implements Serializable, Runnable {
 
 	private BufferedReader in;
 //	private transient Scanner scanner;
@@ -40,6 +41,7 @@ public class CommandLineInterface implements Serializable {
 	//	scanner = new Scanner(System.in);
 		this.client = client;
 		this.serverStub = serverStub;
+		this.timer=timer;
 	}
 
 	public CommandLineInterface(ClientModel client) {
@@ -50,6 +52,9 @@ public class CommandLineInterface implements Serializable {
 	
 	public void esci() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException{
 
+
+	@SuppressWarnings("deprecation")
+
 		ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
 		serverStub.notifyObserver(shiftPlayer);
 		
@@ -59,13 +64,18 @@ public class CommandLineInterface implements Serializable {
 	
 	}
 	
+
 	public void input()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+
+		/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
+
 		
 		
 			
 	
 		JsonTimeOut jsonTimeOut = new JsonTimeOut();
+
 		int timeOutAction = jsonTimeOut.getTimeOutAction();
 		Timer timer = new Timer();
 		timer.schedule(new TimerAction(serverStub) { public void run() {
@@ -76,8 +86,15 @@ public class CommandLineInterface implements Serializable {
 			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
 				e.printStackTrace();
 			}
+
+		}}, (long) timeOutAction); */
+		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
+		int input = scanner.nextInt();
+		timer.cancel();
+		/*switch (input) {
+
 			System.exit(0);
-		}}, (long) timeOutAction); 
+		}}, (long) timeOutAction); */
 		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 		
 		
@@ -119,21 +136,17 @@ public class CommandLineInterface implements Serializable {
 			break;
 			}
 		}
-		
+		}}
+		/*else{
+			scanner.close();
+		}*/
+		//timer.cancel();
+	//	timer=new Timer();
+
 	
 		}
 		
 		
-		
-	/*	timer.cancel();
-		timer=new Timer();*/
-		
-		
-		
-		
-
-	}
-	
 
 	public void printTheBoard() {
 		client.getBoard();
@@ -595,5 +608,6 @@ public class CommandLineInterface implements Serializable {
 
 	
 	
+
 
 }

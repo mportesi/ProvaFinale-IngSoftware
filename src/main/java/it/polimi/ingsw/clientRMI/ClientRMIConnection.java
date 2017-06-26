@@ -12,11 +12,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.GC_40.TimerAction;
+import it.polimi.ingsw.GC_40.TimerActionTry;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
@@ -39,58 +46,106 @@ public class ClientRMIConnection implements Serializable {
 		HOST = host;
 	}
 
-	public void startClient() throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
-			NullPointerException, ParseException, InterruptedException {
-		clientModel = new ClientModel();
+	public void startClient() throws NotBoundException, FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		
 
 		Scanner stdIn = new Scanner(System.in);
 
-		// System.setProperty("java.rmi.server.hostname", "192.168.1.2");
-
-		// Get the remote registry
-		Registry registry = LocateRegistry.getRegistry(HOST, RMI_PORT);
-
-		// get the stub (local object) of the remote view
-		ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
-
+		// Get the remote registry and get the stub (local object) of the remote
+		// view
+		Registry registry;
+		ServerRMIConnectionViewRemote serverStub ;
+		ClientRMIConnectionView rmiView;
+		registry = LocateRegistry.getRegistry(HOST, RMI_PORT);
+		serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
 		// register the client view in the server side (to receive messages from
 		// the server)
-
-		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
-
+		clientModel = new ClientModel(serverStub);
+		rmiView = new ClientRMIConnectionView(clientModel);
 		System.out.println("\nTell me your name\n");
 		String name = stdIn.nextLine();
 		clientModel.setName(name);
-
-		// register the client view in the server side (to receive messages from
-		// the server)
 		serverStub.registerClient(rmiView, name);
-
+		
+		
 		while (!clientModel.getEndGame()) {
 			if (clientModel.getCurrentPlayer() != null) {
-				
+
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
-					System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn."); 
+					
+					
+					//System.out.println("\nIt's the " + clientModel.getCurrentPlayer().getName() + "'s turn.");
+					
+					/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
+					int timeOutAction = jsonTimeOut.getTimeOutAction();
+					Timer timer = new Timer();
+					timer.schedule(new TimerAction(serverStub) { public void run() {
+						System.out.println("It ran out of time!");
+						ShiftPlayer shiftPlayer = new ShiftPlayer(clientModel.getPlayer().getMatch());
+						try {
+							serverStub.notifyObserver(shiftPlayer);
+						} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}}, (long) (timeOutAction-150)*1000);
+					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub, timer);
+					Thread action = new Thread(() -> {
+						try{
+							System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
+							commandLineInterface.input();
+						}
+						catch(Exception e){
+							e.printStackTrace();
+						}
+
+					});
+					action.start();*/
+					/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
+					int timeOutAction = jsonTimeOut.getTimeOutAction();
+					TimerActionTry timerAction=new TimerActionTry(serverStub, clientModel, action);
+					try {
+						action.start();
+						timerAction.call();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					*/
+					/*
+					 * ExecutorService executor =
+					 * Executors.newSingleThreadExecutor(); TimerActionTry
+					 * timerAction=new TimerActionTry(); Future<String> future =
+					 * executor.submit(timerAction);
+					 */
 					// Capture input from user
 					
-					CommandLineInterface commandLineInterface = new CommandLineInterface(clientModel, serverStub);
-					//commandLineInterface.setTo(true);
-					
-					commandLineInterface.input();
-					
-					if (clientModel.getQuit() != true){
-						
-					
-					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
-				
+
 				}
 
-	
-
+				/*
+				 * try{ timerAction.call(); if(timerAction.getTimeout()){
+				 * 
+				 * JsonTimeOut jsonTimeOut = new JsonTimeOut(); int
+				 * timeOutAction = jsonTimeOut.getTimeOutAction(); else{ throw
+				 * TimeOutException; } } catch(Exception e){
+				 * future.cancel(true);
+				 * System.out.println("It's run out of time!"); ShiftPlayer
+				 * shiftPlayer = new
+				 * ShiftPlayer(clientModel.getPlayer().getMatch());
+				 * serverStub.notifyObserver(shiftPlayer);
+				 * 
+				 * } executor.shutdownNow();
+				 */
+				//System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
 			}
-			// otherwise it is slow
-			Thread.sleep((long)10 * 100);
 
 		}
-		}}
+		// otherwise it is slow
+		try {
+			Thread.sleep((long) 10 * 100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+	}
 }
