@@ -39,7 +39,6 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub, Timer timer) {
 		in = new BufferedReader(new InputStreamReader(System.in));
-	//	scanner = new Scanner(System.in);
 		this.client = client;
 		this.serverStub = serverStub;
 		this.timer=timer;
@@ -47,7 +46,6 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 	public CommandLineInterface(ClientModel client) {
 		in = new BufferedReader(new InputStreamReader(System.in));
-		//scanner = new Scanner(System.in);
 		this.client = client;
 	}
 	
