@@ -64,11 +64,12 @@ public class ClientModel implements Serializable{
 		}
 		int timeOutAction = jsonTimeOut.getTimeOutAction();
 		Timer timer = new Timer();
-		CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
+		
 		action = new Thread(() -> {
 			try{
 				/*if(currentPlayer.getName().equals(currentPlayer.getName())){
 				System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");*/
+				CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
 				if(action!=null){
 				commandLineInterface.input();}
 			}

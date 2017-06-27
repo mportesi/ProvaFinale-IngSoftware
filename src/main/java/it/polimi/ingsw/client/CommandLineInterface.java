@@ -96,39 +96,35 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 			System.exit(0);
 		}}, (long) timeOutAction); */
-		//System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
+		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 		
 		
-
-		
-		
-	
-		//String inputLine = scanner.nextLine();
-		
-		
-		String input = in.readLine();
+		int input = Integer.parseInt(in.readLine());
 		System.out.println(input);
-		timer.cancel();
+		
 		
 		switch (input) {
-		case "1": {
+		case 1: {
 			Relative relative = chooseTheRelative();
 			int servant = chooseServants(relative);
 			serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative, client.getPlayer().getMatch()));
 			PutRelative putRelative = chooseTheAction(relative);
 			serverStub.notifyObserver(putRelative);
+			timer.cancel();
 			break;
 		}
-		case "2": {
+		case 2: {
+			timer.cancel();
 			printTheBoard();
+			
 			break;
 		}
-		case "3": {
-			
+		case 3: {
+			timer.cancel();
 			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
 			client.setQuit(true);
 			
-			int input0 = in.read();
+			int input0 = Integer.parseInt(in.readLine());
 			
 			switch(input0){
 			case 0: 
@@ -139,11 +135,6 @@ public class CommandLineInterface implements Serializable, Runnable {
 			}
 		}
 		}}
-		/*else{
-			scanner.close();
-		}*/
-		//timer.cancel();
-	//	timer=new Timer();
 
 	
 		}
@@ -160,10 +151,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		System.out.println("\n\nLa board è: \n" + client.getBoard());
 		System.out.println("\n Choose what relative you want to use: \n 1) black \n 2) white \n 3) orange \n 4) neutral");
 		Relative relative = null;
-		int input = 0;
-		//while (!scanner.hasNextInt())
-			
-		/* try{ */ input = in.read();
+		int input = Integer.parseInt(in.readLine());
 		switch (input) {
 		case 1: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())) {
@@ -215,11 +203,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			break;
 		}
 		}
-		/*
-		 * } catch(InputMismatchException e){
-		 * System.out.println("\nError: insert again"); relative=
-		 * chooseTheRelative(); return relative; }
-		 */
+		
 		return relative;
 	}
 
@@ -229,11 +213,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 										// given
 		int valueServant = 0;
 		while (!legalServant) {
-			valueServant = in.read();
-		//	System.out.println("il client ha servi: "+client.getPlayer().getServant());
+			valueServant = Integer.parseInt(in.readLine());
+			System.out.println(valueServant);
 			if (valueServant <= client.getPlayer().getServant()) {
 				relative.setValueServant(valueServant);
-				// client.getPlayer().decrementServant(valueServant);
 				legalServant = true;
 			} else {
 				System.out.println(
@@ -255,9 +238,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		System.out.println("5) ProductionArea");
 
 		PutRelative putRelative = null;
-		//while (!scanner.hasNextInt())
-			//scanner.next();
-		/* try{ */int input = in.read();
+		int input = Integer.parseInt(in.readLine());
 		switch (input) {
 		case 1: {
 			Tower tower = chooseTower();
@@ -310,13 +291,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			putRelative = chooseTheAction(relative);
 		}
 		}
-		/*
-		 * } catch(InputMismatchException e){
-		 * System.out.println("\nError: insert again"); putRelative =
-		 * chooseTheAction(relative);
-		 * 
-		 * }
-		 */
+		
 
 		return putRelative;
 	}
@@ -379,7 +354,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		/* try{ */
 		//while (!scanner.hasNextInt())
 			//scanner.next();
-		int input = in.read();
+		int input = Integer.parseInt(in.readLine());
 		switch (input) {
 		case 1: {
 			choice = true;
@@ -413,7 +388,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		System.out.println("4) Venture tower");
 	//	while (!scanner.hasNextInt())
 	//		scanner.next();
-		int input = in.read();
+		int input = Integer.parseInt(in.readLine());
 		Tower tower;
 		/* try{ */
 		switch (input) {
@@ -439,21 +414,13 @@ public class CommandLineInterface implements Serializable, Runnable {
 			return tower;
 		}
 		}
-		/*
-		 * } catch(InputMismatchException e){
-		 * System.out.println("\nError: insert again"); tower = chooseTower();
-		 * 
-		 * }
-		 */
-		// return null;
+		
 	}
 
 	public int chooseFloor() throws IOException {
 		System.out.println("\nChoose the number of the floor:");
 		int floor;
-		//while (!scanner.hasNextInt())
-			//scanner.next();
-		/* try{ */floor = in.read();
+		floor = Integer.parseInt(in.readLine());
 		floor -= 1;
 		if (floor < 0 || floor > 4) {
 			System.out.println("\nThat floor don't exist!");
@@ -477,19 +444,12 @@ public class CommandLineInterface implements Serializable, Runnable {
 		System.out.println("5) 2 militaryPoint");
 		String resource = null;
 		int choice = 0;
-		//while (!scanner.hasNextInt())
-			//scanner.next();
-		/* try{ */try {
-			choice = in.read();
+		
+		try {
+			choice = Integer.parseInt(in.readLine());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}// }
-		/*
-		 * catch(InputMismatchException e){
-		 * System.out.println("\nError: insert again");
-		 * choosePrivilegeCouncil(); }
-		 */
+		}
 		switch (choice) {
 		case 1: {
 			resource = "coin";
@@ -531,19 +491,11 @@ public class CommandLineInterface implements Serializable, Runnable {
 			}
 			// Choose if you want to place the relative left or right
 			System.out.println("\nChoose where you want to put your relative: \n1) left \n2) right");
-		//	while (!scanner.hasNextInt())
-			//	scanner.next();
-			/* try{ */try {
-				choice = in.read();
+			try {
+				choice = Integer.parseInt(in.readLine());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}// }
-			/*
-			 * catch(InputMismatchException e){
-			 * System.out.println("\nError: insert again"); chooseHarvestArea();
-			 * }
-			 */
+			}
 			if (choice < 1 || choice > 2) {
 				System.out.println("\nError: insert again");
 				chooseHarvestArea();
@@ -574,19 +526,11 @@ public class CommandLineInterface implements Serializable, Runnable {
 			}
 			// Choose if you want to place the relative left or right
 			System.out.println("\nChoose where you want to put your relative: \n1) left \n2) right");
-			//while (!scanner.hasNextInt())
-			//	scanner.next();
-			/* try{ */try {
-				choice = in.read();
+			try {
+				choice = Integer.parseInt(in.readLine());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}// }
-			/*
-			 * catch(InputMismatchException e){
-			 * System.out.println("\nError: insert again");
-			 * chooseProductionArea(); }
-			 */
+			}
 			if (choice < 1 || choice > 2) {
 				System.out.println("\nError: insert again");
 				chooseProductionArea();
@@ -609,7 +553,6 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		
 	}
 
