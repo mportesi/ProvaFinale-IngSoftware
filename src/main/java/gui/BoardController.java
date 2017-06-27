@@ -190,14 +190,72 @@ public class BoardController {
 	
 	// ????? per tutte e 4 la torri??????
 	@FXML
-	public void putRelativeOnTerritoryTower1(){
-		//PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 1, relative);
-		
+	public void putRelativeOnTerritory1(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 1, relative, client.getMatch());	
 	}
-
 	@FXML
+	public void putRelativeOnTerritory2(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 2, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnTerritory3(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 3, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnTerritory4(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 4, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnBuilding1(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getBuildingTower(), 1, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnBuilding2(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getBuildingTower(), 2, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnBuilding3(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getBuildingTower(), 3, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnBuilding4(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getBuildingTower(), 4, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnCharacter1(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getCharacterTower(), 1, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnCharacter2(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getCharacterTower(), 2, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnCharacter3(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getCharacterTower(), 3, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnCharacter4(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getCharacterTower(), 4, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnVenture1(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 1, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnVenture2(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 2, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnVenture3(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 3, relative, client.getMatch());	
+	}
+	@FXML
+	public void putRelativeOnVenture4(){
+		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 4, relative, client.getMatch());	
+	}
 	
-	public void initializeBoard(Event event){
+	@FXML
+	public void initializeBoard(){
 		
 		String string;
 		string = client.getTerritoryTower().getFloor(4).getCard().getName();

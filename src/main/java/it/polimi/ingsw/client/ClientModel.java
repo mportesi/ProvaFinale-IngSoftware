@@ -8,6 +8,7 @@ import java.util.Timer;
 
 import org.json.simple.parser.ParseException;
 
+import gui.BoardController;
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.GC_40.TimerAction;
@@ -35,9 +36,13 @@ public class ClientModel implements Serializable{
 	private boolean quit = false;
 	private ServerRMIConnectionViewRemote serverStub;
 	private Thread action;
+	private boolean gui;
+	private boolean cli;
+	private BoardController boardControllerGUI;
 	
 	public ClientModel(ServerRMIConnectionViewRemote serverStub){
 		this.serverStub=serverStub;
+		this.gui=true;
 	}
 
 
@@ -184,6 +189,14 @@ public class ClientModel implements Serializable{
 		this.board=board;
 		
 	}
+	
+	public void initializeBoard(Board board) {
+		this.board=board;
+		if(gui){
+			boardControllerGUI.initializeBoard();
+		}
+		
+	}
 
 	public Board getBoard() {
 		return board;
@@ -218,19 +231,34 @@ public class ClientModel implements Serializable{
 
 
 	public boolean getEndGame() {
-		// TODO Auto-generated method stub
 		return endGame;
 	}
 
 
 	public void setQuit(boolean b) {
-		// TODO Auto-generated method stub
 		quit = b;
 	}
 	
 	public boolean getQuit() {
-		// TODO Auto-generated method stub
 		return quit;
+	}
+
+
+	public int getMatch() {
+		return player.getMatch();
+	}
+
+
+	public void setCli(boolean b) {
+		cli=b;
+	}
+	public void setGui(boolean b) {
+		gui=b;
+	}
+
+
+	public void setBoardController(BoardController boardController) {
+		this.boardControllerGUI=boardController;
 	}
 
 	

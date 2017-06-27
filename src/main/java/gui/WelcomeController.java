@@ -57,9 +57,6 @@ public class WelcomeController {
 		String playerName = name.getText();
 		clientModel.setName(playerName);
 		try {
-			System.out.println(serverStub);
-			System.out.println(rmiView);
-			System.out.println(playerName);
 			serverStub.registerClient(rmiView, playerName);
 		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
@@ -104,6 +101,7 @@ public class WelcomeController {
 				page = fxmlLoader.load();
 				BoardController boardController=fxmlLoader.getController();
 				boardController.setClient(clientModel);
+				clientModel.setBoardController(boardController);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

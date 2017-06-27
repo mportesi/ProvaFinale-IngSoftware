@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Dice;
+import javafx.event.Event;
 
 public class ChangeInitializeBoard implements Change {
 	private Board board;
@@ -19,7 +20,7 @@ public class ChangeInitializeBoard implements Change {
 	public void applyChange(ClientModel client) {
 		System.out.println("CP: " + currentPlayer.getMatch() + client.getPlayer().getMatch());
 		if (currentPlayer.getMatch() == client.getPlayer().getMatch()){
-		client.setBoard(board);
+		client.initializeBoard(board);
 		client.setCurrentPlayer(currentPlayer);
 	}
 	}

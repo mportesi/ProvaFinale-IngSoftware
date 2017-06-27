@@ -69,13 +69,17 @@ public class ClientRMIConnection implements Serializable {
 		rmiView = new ClientRMIConnectionView(clientModel);
 		
 		if(commandLine){
+		clientModel.setCli(true);
+		clientModel.setGui(false);
 		System.out.println("\nTell me your name\n");
 		String name = stdIn.nextLine();
 		clientModel.setName(name);
-		serverStub.registerClient(rmiView, name);
+		serverStub.registerClient(rmiView, name);}
 		
 		
-		while (!clientModel.getEndGame()) {
+		
+		
+		/*while (!clientModel.getEndGame()) {
 			if (clientModel.getCurrentPlayer() != null) {
 
 				while (clientModel.getCurrentPlayer().getName().equals(clientModel.getPlayer().getName())) {
@@ -127,7 +131,7 @@ public class ClientRMIConnection implements Serializable {
 					// Capture input from user
 					
 
-				}
+	//}
 
 				/*
 				 * try{ timerAction.call(); if(timerAction.getTimeout()){
@@ -144,7 +148,7 @@ public class ClientRMIConnection implements Serializable {
 				 * } executor.shutdownNow();
 				 */
 				//System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
-			}
+		/*	}
 
 		}
 		// otherwise it is slow
@@ -154,7 +158,7 @@ public class ClientRMIConnection implements Serializable {
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 	
 		
 		}
