@@ -58,6 +58,8 @@ public class WelcomeController {
 		clientModel.setName(playerName);
 		try {
 			System.out.println(serverStub);
+			System.out.println(rmiView);
+			System.out.println(playerName);
 			serverStub.registerClient(rmiView, playerName);
 		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
@@ -82,6 +84,7 @@ public class WelcomeController {
 			client = new ClientRMIConnection(rmi_port, host);
 			client.startClient(false);
 			serverStub= client.getServerStub();
+			rmiView=client.getRmiView();
 			clientModel=client.getClientModel();
 			//openNewSceneTry("GuiLogin.fxml");
 			
@@ -96,9 +99,11 @@ public class WelcomeController {
 	@FXML
 	public Parent openNewScene(String fxml){
 	        Parent page=null;
+	        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
 			try {
-				page = FXMLLoader.load(WelcomeController.class.getResource(fxml), null, new JavaFXBuilderFactory());
-				
+				page = fxmlLoader.load();
+				BoardController boardController=fxmlLoader.getController();
+				boardController.setClient(clientModel);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

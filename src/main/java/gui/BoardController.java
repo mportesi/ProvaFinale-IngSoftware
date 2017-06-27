@@ -268,4 +268,10 @@ public class BoardController {
 	public void quit(){
 
 	}
+
+
+	public void setClient(ClientModel clientModel) {
+		client=clientModel;
+		
+	}
 }

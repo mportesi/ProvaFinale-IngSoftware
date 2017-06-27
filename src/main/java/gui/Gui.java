@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -20,7 +21,7 @@ public class Gui extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
-		/*initRootLayout();
+		initRootLayout();
 		
 		//register();
 		welcome();
@@ -40,6 +41,7 @@ public class Gui extends Application {
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
+			primaryStage.setFullScreen(true);
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -52,7 +54,8 @@ public class Gui extends Application {
 			loader.setLocation(Gui.class.getResource("GuiFinal.fxml"));
 			AnchorPane board = (AnchorPane) loader.load();
 			// imageView board=(ImageView) AnchorPane.getChildren().get(0)
-
+			ToolBar toolbar = new ToolBar();
+			rootLayout.setTop(toolbar);
 			rootLayout.setCenter(board);
 		} catch (IOException e) {
 			e.printStackTrace();

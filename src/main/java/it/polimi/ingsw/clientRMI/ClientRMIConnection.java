@@ -32,6 +32,7 @@ public class ClientRMIConnection implements Serializable {
 	private CommandLineInterface commandLineInterface;
 	private ClientModel clientModel;
 	private ServerRMIConnectionViewRemote serverStub;
+	private ClientRMIConnectionView rmiView;
 
 	public ClientRMIConnection(int rmi_port, String host) {
 		RMI_PORT = rmi_port;
@@ -56,7 +57,7 @@ public class ClientRMIConnection implements Serializable {
 		// register the client view in the server side (to receive messages from
 		// the server)
 
-		ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
+		rmiView = new ClientRMIConnectionView(clientModel);
 		
 		if(commandLine){
 		System.out.println("\nTell me your name\n");
@@ -98,6 +99,10 @@ public class ClientRMIConnection implements Serializable {
 
 	public ServerRMIConnectionViewRemote getServerStub() {
 		return serverStub;
+	}
+	
+	public ClientRMIConnectionView getRmiView() {
+		return rmiView;
 	}
 	
 }

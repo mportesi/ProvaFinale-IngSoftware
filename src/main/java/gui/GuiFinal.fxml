@@ -25,17 +25,17 @@
       <ImageView fx:id="characterTower2" fitHeight="76.0" fitWidth="51.0" layoutX="160.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="303.0" fitWidth="468.0" layoutX="618.0" layoutY="432.0">
          <image>
-            <Image url="@../../../../../../PLANCIA.jpg" />
+            <Image url="@../Images/PLANCIA.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="120.0" fitWidth="468.0" layoutX="618.0" layoutY="317.0">
          <image>
-            <Image url="@../../../../../../PLANCIA%20BLU.jpg" />
+            <Image url="@../Images/PLANCIA%20BLU%20copia.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="131.0" fitWidth="468.0" layoutX="618.0" layoutY="188.0">
          <image>
-            <Image url="@../../../../../../PLANCIA%20VIOLA.jpg" />
+            <Image url="@../Images/PLANCIA%20VIOLA.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="territoryTower3" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
