@@ -32,7 +32,7 @@ public class Relative implements Serializable{
 	}
 	
 	public void setValueServant(int n){
-		this.value= value + n;
+		this.value=value+n;
 		this.servantsUsed=n;
 	}
 	

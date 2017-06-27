@@ -14,8 +14,9 @@ public class ChangeWinners implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if(client.getPlayer().getMatch()==winners.get(0).getMatch()){
 		client.setEndGame();
-		System.out.println("The winners are " + printWinner());
+		System.out.println("The winners are " + printWinner());}
 
 	}
 	

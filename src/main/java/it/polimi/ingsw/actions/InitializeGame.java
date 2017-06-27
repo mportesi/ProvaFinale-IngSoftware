@@ -10,13 +10,23 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.changes.Change;
 
 public class InitializeGame extends Observable<Change> implements Action {
+	private int match;
 	
+	public InitializeGame(int match){
+		this.match = match;
+	}
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		play.initializePlayer();
-		play.initializeBoard();
+		play.initializePlayer(match);
+		play.initializeBoard(match);
 		
 	}
+
+	public int getMatch() {
+		return match;
+	}
+
+	
 
 }

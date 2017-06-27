@@ -53,6 +53,7 @@ import it.polimi.ingsw.json.JsonTimeOut;
 
 public class Play extends Observable<Change> implements Observer<Change>, Serializable {
 	private ArrayList<Player> players;
+	private ArrayList <Player> disconnectedPlayers;
 	private Dice blackDice;
 	private Dice whiteDice;
 	private Dice orangeDice;
@@ -62,23 +63,27 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private int round;
 	private ArrayList<Player> currentTurnOrder;
 	private int changeRound;
-
+	private int match;
+	private boolean initializing;
+	
 	// costruttore
-	public Play() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+	public Play(int match) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
+		this.disconnectedPlayers = new ArrayList <Player>();
 		changeRound=0;
+		this.initializing = true;
 	}
 
-	public void initializeBoard()
+	public void initializeBoard(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.board = new Board(this, players.size());
+		this.match = match;
 		board.registerObserver(this);
 		
 		this.round = 0;
 		this.period = 0;
 		changePeriod();
-
-			changeRound();
+		changeRound();
 		ChangeInitializeBoard changeInitializeBoard = new ChangeInitializeBoard(board, currentPlayer);
 		this.notifyObserver(changeInitializeBoard);
 	
@@ -98,7 +103,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
-	public void initializePlayer()
+	public void initializePlayer(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		
@@ -206,6 +211,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
 
 		this.notifyObserver(changePlayer);
+		
+		
 
 		if (changeRound == 4) {
 			changeRound();
@@ -253,7 +260,9 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
 		}
-		ChangeRound changeRound = new ChangeRound(round, board);
+		
+		System.out.println("match! :" + match);
+		ChangeRound changeRound = new ChangeRound(round, board, match);
 		this.notifyObserver(changeRound);
 		
 		if (round-1 == 2 || round-1 == 4 || round-1 == 6) {
@@ -275,7 +284,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			checkWinner();
 		} else {
 			
-			ChangePeriod changePeriod = new ChangePeriod(period);
+			ChangePeriod changePeriod = new ChangePeriod(period,match);
 			this.notifyObserver(changePeriod);
 		}
 
@@ -390,7 +399,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	}
 
 	public void endGame() {
-		ChangeEndGame changeEndGame= new ChangeEndGame();
+		ChangeEndGame changeEndGame= new ChangeEndGame(match);
 		// restituisce la classifica e il vincitore
 	}
 
@@ -419,7 +428,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.notifyObserver(c);
 	}
 
-	public void createNewPlayer(String name)
+	public void createNewPlayer(String name, int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		JsonTimeOut jsonTimeOut = new JsonTimeOut();
 		int timeOutStartPlay = jsonTimeOut.getTimeOutStartPlay();
@@ -433,32 +442,18 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			jsonPersonalBonusTiles.importPersonalBonusTiles();
 			PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
 			PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
-			Player player = new Player(UUID.randomUUID(), this, name);
+			Player player = new Player(UUID.randomUUID(), this, name, match);
 			players.add(player);
 			player.setPersonalBonusTile(personalBonusTileSimple, personalBonusTileAdvanced);
 			player.registerObserver(this);
-			notifyObserver(new ChangeNewPlayer(player, this));
-
-			if (players.size() == 2) {
-				Thread.sleep((long) timeOutStartPlay );
-				System.out.println("E' scaduto il timeout!");
-				initializePlay();
-			}
-		} else if (players.size() == 4) {
-			this.players = new ArrayList<Player>();
+			notifyObserver(new ChangeNewPlayer(player, match));
 		
-			if (players.size() < 4) {
-				Player player = new Player(UUID.randomUUID(), this, name);
-				players.add(player);
-				player.registerObserver(this);
-				notifyObserver(new ChangeNewPlayer(player, this));
-
-				if (players.size() == 2) {
-					Thread.sleep((long) timeOutStartPlay * 1000);
-					System.out.println("E' scaduto il timeout");
-					initializePlay();
-				}
-			}
+		}
+		if (players.size() == 2) {
+			if(players.size()!=4){
+			Thread.sleep((long) timeOutStartPlay *50);
+			System.out.println("E' scaduto il timeout!");}
+			initializePlay(match);
 		}
 
 	}
@@ -491,10 +486,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	// else if(players.size()==4)
 
-	private void initializePlay()
+	private void initializePlay(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		initializePlayer();
-		initializeBoard();
+		this.initializing = false;
+		initializePlayer(match);
+		initializeBoard(match);
 		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder (currentTurnOrder);
 		this.notifyObserver(changeTurnOrder);
 		/*ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
@@ -513,15 +509,24 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		return players;
 	}
 
-	public void removePlayer(Player player) {
+	public void removePlayer(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		Player playerToRemove=null;
 		for(int i=0; i<players.size(); i++){
 			if (players.get(i).getID().equals(player.getID())){
 				playerToRemove=players.get(i);
+				players.remove(playerToRemove);
 			}
 		}
-		players.remove(playerToRemove);
-		board.remove(player);
+		
+		//board.remove(player);
+		currentTurnOrder.remove(player);
+		ChangeTurnOrder changeCurrentTurnOrder = new ChangeTurnOrder(currentTurnOrder);
+		notifyObserver(changeCurrentTurnOrder);
+		changeCurrentPlayer();
+		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
+
+		this.notifyObserver(changePlayer);
+		
 		if(players.size()==1){
 			endGame();
 		}
@@ -530,6 +535,42 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+	}
+
+	public boolean getInitializing() {
+		// TODO Auto-generated method stub
+		return initializing;
+	}
+
+	public ArrayList <Player> getDisconnectedPlayers() {
+		// TODO Auto-generated method stub
+		return disconnectedPlayers;
+	}
+
+	public ArrayList<Player> getCurrentTurnOrder() {
+		// TODO Auto-generated method stub
+		return currentTurnOrder;
+	}
+
+	public void reconnect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		players.add(player);
+		disconnectedPlayers.remove(player);
+		System.out.println(currentTurnOrder);
+		ChangeTurnOrder changeCurrentTurnOrder = new ChangeTurnOrder(currentTurnOrder);
+		try {
+			notifyObserver(changeCurrentTurnOrder);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 

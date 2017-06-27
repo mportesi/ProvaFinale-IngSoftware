@@ -26,6 +26,7 @@ public class ChangeTower implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if(client.getPlayer().getMatch()==player.getMatch()){
 		client.setTower(tower, floor, player, relative);
 		if(tower.getType().equals("territory")){
 			client.getTerritoryTower().getFloor(floor).currentCard = null;
@@ -41,6 +42,6 @@ public class ChangeTower implements Change {
 		}
 
 		System.out.println("\nThe board is changed!\n" + client.getBoard());
-	}
+	}}
 
 }

@@ -13,6 +13,7 @@ import it.polimi.ingsw.actions.InitializeGame;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.actions.Quit;
 import it.polimi.ingsw.actions.RegisterClient;
+import it.polimi.ingsw.actions.RegisterClientSocket;
 import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.client.ClientModel;
@@ -41,7 +42,8 @@ public class ClientOutHandler implements Runnable {
 		Scanner stdIn = new Scanner(System.in);
 		String name= stdIn.nextLine();
 		clientModel.setName(name);
-		RegisterClient register = new RegisterClient(name);
+		RegisterClientSocket register=new RegisterClientSocket(name);
+		//RegisterClient register = new RegisterClient(name);
 		//this.player= clientModel.getPlayer();
 		//cli = new CommandLineInterface(player, clientModel);
 		try {
@@ -77,14 +79,14 @@ public class ClientOutHandler implements Runnable {
 						@Override
 						public void run() {
 							System.out.println("It ran out of time!");
-							ShiftPlayer shiftPlayer = new ShiftPlayer();
+							ShiftPlayer shiftPlayer = new ShiftPlayer(clientModel.getPlayer().getMatch());
 							try{
 								socketOut.writeObject(shiftPlayer);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
 						}
-					}, (long) 20 * 10000); //TODO IMPORT FROM JSON
+					}, (long) 200 * 1000); //TODO IMPORT FROM JSON
 					System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 					//String inputLine = stdIn.nextLine();
 					int input=stdIn.nextInt();
@@ -99,7 +101,8 @@ public class ClientOutHandler implements Runnable {
 					}
 					int servant = cli.chooseServants(relative);
 					try{
-						socketOut.writeObject(new SetServant(servant, clientModel.getPlayer(), relative));
+						socketOut.reset();
+						socketOut.writeObject(new SetServant(servant, clientModel.getPlayer(), relative,clientModel.getPlayer().getMatch()));
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -111,6 +114,7 @@ public class ClientOutHandler implements Runnable {
 						e.printStackTrace();
 					}
 					try{
+						socketOut.reset();
 						socketOut.writeObject(putRelative);
 					} catch (IOException e1) {
 						e1.printStackTrace();
@@ -122,7 +126,8 @@ public class ClientOutHandler implements Runnable {
 					}
 					case 3:{
 						try{
-							socketOut.writeObject(new Quit(clientModel.getPlayer()));
+							socketOut.reset();
+							socketOut.writeObject(new Quit(clientModel.getPlayer(),clientModel.getPlayer().getMatch()));
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
@@ -134,6 +139,7 @@ public class ClientOutHandler implements Runnable {
 			        {e.printStackTrace();
 				}
 					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
+					timer.cancel();
 					
 					
 					/*try {

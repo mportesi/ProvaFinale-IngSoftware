@@ -14,14 +14,23 @@ import it.polimi.ingsw.changes.ChangeNewPlayer;
 
 public class RegisterClient extends Observable<Change> implements Action {
 	private String name;
+	private int match;
 	
-	public RegisterClient(String name){
+	public RegisterClient(String name, int match){
 		this.name=name;
+		this.match = match;
 	}
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		play.createNewPlayer(name);
+		play.createNewPlayer(name, match);
+		
+	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

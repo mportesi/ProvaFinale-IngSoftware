@@ -4,11 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Timer;
 
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.GC_40.TimerAction;
+import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
 import it.polimi.ingsw.areas.MarketBuilding;
@@ -16,6 +19,8 @@ import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.json.JsonTimeOut;
+import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class ClientModel implements Serializable{
 	private Player player;
@@ -27,10 +32,12 @@ public class ClientModel implements Serializable{
 	private ArrayList<Player> currentTurnOrder;
 	private ArrayList<ClientModel> clients;
 	private boolean endGame;
+	private boolean quit = false;
+	private ServerRMIConnectionViewRemote serverStub;
+	private Thread action;
 	
-	
-	public ClientModel(){
-		
+	public ClientModel(ServerRMIConnectionViewRemote serverStub){
+		this.serverStub=serverStub;
 	}
 
 
@@ -47,6 +54,41 @@ public class ClientModel implements Serializable{
 
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer=currentPlayer;
+		//chiamo cli in un thread
+		//scatta timer thread a null
+		JsonTimeOut jsonTimeOut=null;
+		try {
+			jsonTimeOut = new JsonTimeOut();
+		} catch (IOException | ParseException e1) {
+			e1.printStackTrace();
+		}
+		int timeOutAction = jsonTimeOut.getTimeOutAction();
+		Timer timer = new Timer();
+		CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
+		action = new Thread(() -> {
+			try{
+				/*if(currentPlayer.getName().equals(currentPlayer.getName())){
+				System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");*/
+				if(action!=null){
+				commandLineInterface.input();}
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+
+		});
+		action.start();
+		System.out.println("è partito");
+		timer.schedule(new TimerAction(serverStub) { public void run() {
+			System.out.println("It ran out of time!");
+			ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
+			action=null;
+			try {
+				serverStub.notifyObserver(shiftPlayer);
+			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+				e.printStackTrace();
+			}
+		}}, (long) (timeOutAction-150)*1000);
 		
 	}
 
@@ -178,6 +220,17 @@ public class ClientModel implements Serializable{
 	public boolean getEndGame() {
 		// TODO Auto-generated method stub
 		return endGame;
+	}
+
+
+	public void setQuit(boolean b) {
+		// TODO Auto-generated method stub
+		quit = b;
+	}
+	
+	public boolean getQuit() {
+		// TODO Auto-generated method stub
+		return quit;
 	}
 
 	

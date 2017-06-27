@@ -26,7 +26,7 @@ public class TowerTest {
 	      ArrayList<Floor> floors = new ArrayList<Floor>();
 	      Play play=null;
 	      try {
-			play = new Play();
+			play = new Play(0);
 	      } catch (NullPointerException | IOException | ParseException e1) {
 			e1.printStackTrace();
 	      }
@@ -56,7 +56,7 @@ public class TowerTest {
 	      ArrayList<Floor> floors = new ArrayList<Floor>();
 	      Play play=null;
 	      try {
-			play = new Play();
+			play = new Play(0);
 	      } catch (NullPointerException | IOException | ParseException e1) {
 			e1.printStackTrace();
 	      }
@@ -74,13 +74,13 @@ public class TowerTest {
 	      ArrayList<Floor> floors = new ArrayList<Floor>();
 	      Play play=null;
 	      try {
-			play = new Play();
+			play = new Play(0);
 	      } catch (NullPointerException | IOException | ParseException e1) {
 			e1.printStackTrace();
 	      }
 	      Tower tower = new Tower("", cards, cards, cards, floors, play);
 	      UUID uUID = UUID.randomUUID();
-	      Player player = new Player(uUID, play, "");
+	      Player player = new Player(uUID, play, "", 0);
 	      GainCoin gainCoin= new GainCoin(0);
 	      Floor floor = new Floor((String) null, 0, gainCoin);
 	      Relative relative = new Relative(ColorDice.BLACK, player);
@@ -100,15 +100,15 @@ public class TowerTest {
 	      ArrayList<Floor> floors = new ArrayList<Floor>();
 	      Play play=null;
 	      try {
-			play = new Play();
+			play = new Play(0);
 	      } catch (NullPointerException | IOException | ParseException e1) {
 			e1.printStackTrace();
 	      }
 	      Tower tower = new Tower("", cards, cards, cards, floors, play);
 	      UUID uUID1 = UUID.randomUUID();
-	      Player player1 = new Player(uUID1, play, "");
+	      Player player1 = new Player(uUID1, play, "", 0);
 	      UUID uUID2 = UUID.randomUUID();
-	      Player player2 = new Player(uUID2, play, "");
+	      Player player2 = new Player(uUID2, play, "",0);
 	      GainCoin gainCoin= new GainCoin(0);
 	      Floor floor = new Floor((String) null, 0, gainCoin);
 	      Relative relative = new Relative(ColorDice.BLACK, player1);
@@ -128,13 +128,13 @@ public class TowerTest {
 	      ArrayList<Floor> floors = new ArrayList<Floor>();
 	      Play play=null;
 	      try {
-			play = new Play();
+			play = new Play(0);
 	      } catch (NullPointerException | IOException | ParseException e1) {
 			e1.printStackTrace();
 	      }
 	      Tower tower = new Tower("", cards, cards, cards, floors, play);
 	      UUID uUID1 = UUID.randomUUID();
-	      Player player1 = new Player(uUID1, play, "");
+	      Player player1 = new Player(uUID1, play, "", 0);
 	      GainCoin gainCoin= new GainCoin(0);
 	      Floor floor = new Floor((String) null, 0, gainCoin);
 	      Relative relative = new Relative(ColorDice.BLACK, player1);
@@ -152,7 +152,7 @@ public class TowerTest {
 	      ArrayList<Card> arrayList0 = new ArrayList<Card>();
 	      LinkedList<Floor> linkedList0 = new LinkedList<Floor>();
 	      ArrayList<Floor> arrayList1 = new ArrayList<Floor>(linkedList0);
-	      Play play0 = new Play();
+	      Play play0 = new Play(0);
 	      Tower tower0 = new Tower("M", arrayList0, arrayList0, arrayList0, arrayList1, play0);
 	      tower0.hashCode();
 	  }
@@ -161,7 +161,7 @@ public class TowerTest {
 	      ArrayList<Card> arrayList0 = new ArrayList<Card>();
 	      LinkedList<Floor> linkedList0 = new LinkedList<Floor>();
 	      ArrayList<Floor> arrayList1 = new ArrayList<Floor>(linkedList0);
-	      Play play0 = new Play();
+	      Play play0 = new Play(0);
 	      Tower tower0 = new Tower("M", arrayList0, arrayList0, arrayList0, arrayList1, play0);
 	      String string0 = tower0.getType();
 	      assertEquals("M", string0);
@@ -169,7 +169,7 @@ public class TowerTest {
 	
 	 public void testEquals2()  throws Throwable  {
 	      ArrayList<Card> arrayList0 = new ArrayList<Card>();
-	      Play play0 = new Play();
+	      Play play0 = new Play(0);
 	      Tower tower0 = new Tower("", arrayList0, arrayList0, arrayList0, (ArrayList<Floor>) null, play0);
 	      String string0 = tower0.getType();
 	      assertEquals("", string0);

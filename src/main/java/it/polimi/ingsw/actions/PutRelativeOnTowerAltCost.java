@@ -25,12 +25,14 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 	Card cardToGive;
 	boolean choice;
 	boolean payForOccupied = false;
+	int match;
 
-	public PutRelativeOnTowerAltCost(Player player, Tower tower, int floor, Relative relative, boolean choice) {
+	public PutRelativeOnTowerAltCost(Player player, Tower tower, int floor, Relative relative, boolean choice, int match) {
 		this.relative = relative;
 		this.player = player;
 		this.tower = tower;
 		this.floor = floor;
+		this.match= match;
 		this.choice = choice;
 	}
 
@@ -96,4 +98,11 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 		}
 		return check;
 	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
+	}
+	
 }
