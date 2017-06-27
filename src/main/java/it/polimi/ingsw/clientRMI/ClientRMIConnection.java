@@ -31,6 +31,7 @@ public class ClientRMIConnection implements Serializable {
 	private String NAME = "Lorenzo Il Magnifico";
 	private CommandLineInterface commandLineInterface;
 	private ClientModel clientModel;
+	private ServerRMIConnectionViewRemote serverStub;
 
 	public ClientRMIConnection(int rmi_port, String host) {
 		RMI_PORT = rmi_port;
@@ -50,7 +51,7 @@ public class ClientRMIConnection implements Serializable {
 		Registry registry = LocateRegistry.getRegistry(HOST, RMI_PORT);
 
 		// get the stub (local object) of the remote view
-		ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
+		serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
 
 		// register the client view in the server side (to receive messages from
 		// the server)
@@ -92,6 +93,11 @@ public class ClientRMIConnection implements Serializable {
 
 	public ClientModel getClientModel() {
 		return clientModel;
+	}
+
+
+	public ServerRMIConnectionViewRemote getServerStub() {
+		return serverStub;
 	}
 	
 }

@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -35,6 +36,12 @@ public class WelcomeController {
 	private Button socket;
 	@FXML
 	private Button rmi;
+	@FXML
+	private TextField name;
+	@FXML
+	private Label text;
+	@FXML
+	private Button button;
 	
 	private Gui gui;
 	private ClientRMIConnection client;
@@ -45,14 +52,18 @@ public class WelcomeController {
 	private ClientRMIConnectionView rmiView;
 	private ServerRMIConnectionViewRemote serverStub;
 	
-	/*public void register(String name){
+	@FXML
+	public void registerClient() throws InterruptedException {
+		String playerName = name.getText();
+		clientModel.setName(playerName);
 		try {
-			serverStub.registerClient(rmiView, name);
-		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-			// TODO Auto-generated catch block
+			System.out.println(serverStub);
+			serverStub.registerClient(rmiView, playerName);
+		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
-		}
-	}*/
+		} 
+		openNewScene("GuiFinal.fxml");
+	}
 	
 	@FXML
 	public void rmi(){
@@ -70,8 +81,9 @@ public class WelcomeController {
 			*/
 			client = new ClientRMIConnection(rmi_port, host);
 			client.startClient(false);
+			serverStub= client.getServerStub();
 			clientModel=client.getClientModel();
-			openNewSceneTry("GuiLogin.fxml");
+			//openNewSceneTry("GuiLogin.fxml");
 			
 			
 			
@@ -94,7 +106,7 @@ public class WelcomeController {
 			return page;
 	}
 	
-	@FXML
+	/*@FXML
 	public void openNewSceneTry(String fxml){
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		//fxmlLoader.setLocation(getClass().getResource(fxml));
@@ -109,6 +121,6 @@ public class WelcomeController {
 		RegisterClientController registerClient = (RegisterClientController) fxmlLoader.getController();
 		registerClient.client=clientModel;
 		}
-	}
+	}*/
 							
 }
