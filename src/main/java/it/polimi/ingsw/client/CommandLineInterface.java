@@ -34,9 +34,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 //	private transient Scanner scanner;
 	private ClientModel client;
 	private ServerRMIConnectionViewRemote serverStub;
+	private Timer timer;
 	
 
-	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub) {
+	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub, Timer timer) {
 		in = new BufferedReader(new InputStreamReader(System.in));
 	//	scanner = new Scanner(System.in);
 		this.client = client;
@@ -89,13 +90,13 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
-		int input = scanner.nextInt();
-		timer.cancel();
+		//int input = scanner.nextInt();
+		
 		/*switch (input) {
 
 			System.exit(0);
 		}}, (long) timeOutAction); */
-		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
+		//System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 		
 		
 
@@ -105,11 +106,12 @@ public class CommandLineInterface implements Serializable, Runnable {
 		//String inputLine = scanner.nextLine();
 		
 		
-		int input = in.read();
-		
+		String input = in.readLine();
+		System.out.println(input);
+		timer.cancel();
 		
 		switch (input) {
-		case 1: {
+		case "1": {
 			Relative relative = chooseTheRelative();
 			int servant = chooseServants(relative);
 			serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative, client.getPlayer().getMatch()));
@@ -117,11 +119,11 @@ public class CommandLineInterface implements Serializable, Runnable {
 			serverStub.notifyObserver(putRelative);
 			break;
 		}
-		case 2: {
+		case "2": {
 			printTheBoard();
 			break;
 		}
-		case 3: {
+		case "3": {
 			
 			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
 			client.setQuit(true);
@@ -603,6 +605,12 @@ public class CommandLineInterface implements Serializable, Runnable {
 			productionArea = "left";
 			return productionArea;
 		}
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 
