@@ -68,11 +68,6 @@ public class CommandLineInterface implements Serializable, Runnable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
 		/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
-
-		
-		
-			
-	
 		JsonTimeOut jsonTimeOut = new JsonTimeOut();
 
 		int timeOutAction = jsonTimeOut.getTimeOutAction();
@@ -88,19 +83,9 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
-		//int input = scanner.nextInt();
-		
-		/*switch (input) {
-
-			System.exit(0);
-		}}, (long) timeOutAction); */
 		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
-		
-		
 		int input = Integer.parseInt(in.readLine());
-		System.out.println(input);
-		
-		
+	
 		switch (input) {
 		case 1: {
 			timer.cancel();
