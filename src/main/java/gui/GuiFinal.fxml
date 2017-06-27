@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#initializeBoard" prefHeight="735.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
    <children>
       <ImageView fitHeight="303.0" fitWidth="51.0" layoutX="565.0" layoutY="432.0">
          <image>
@@ -13,10 +13,10 @@
          </image>
       </ImageView>
       <Button fx:id="quit" layoutX="1022.0" layoutY="14.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="51.0" text="Quit" />
-      <Button layoutX="714.0" layoutY="45.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="714.0" layoutY="91.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="793.0" layoutY="91.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="793.0" layoutY="45.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="black" layoutX="714.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#chooseBlackRelative" text="Black" />
+      <Button fx:id="white" layoutX="714.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#chooseWhiteRelative" text="White" />
+      <Button fx:id="neutral" layoutX="793.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#chooseNeutralRelative" text="Neutral" />
+      <Button fx:id="orange" layoutX="793.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#chooseOrangeRelative" text="Orange" />
       <ImageView fitHeight="736.0" fitWidth="565.0">
          <image>
             <Image url="@../Images/gameboard.png" />
