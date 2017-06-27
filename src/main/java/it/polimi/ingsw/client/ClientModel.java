@@ -69,6 +69,7 @@ public class ClientModel implements Serializable{
 			try{
 				/*if(currentPlayer.getName().equals(currentPlayer.getName())){
 				System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");*/
+				System.out.println("action: " + action);
 				if(action!=null){
 				commandLineInterface.input();}
 			}

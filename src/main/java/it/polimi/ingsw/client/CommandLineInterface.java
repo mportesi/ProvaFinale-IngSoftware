@@ -96,7 +96,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 			System.exit(0);
 		}}, (long) timeOutAction); */
-		//System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
+		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
 		
 		
 
