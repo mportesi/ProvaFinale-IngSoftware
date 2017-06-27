@@ -214,8 +214,9 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		
 
 		if (changeRound == 4) {
-			changeRound();
 			changeRound = 0;
+			changeRound();
+			
 		}
 	}
 
@@ -263,15 +264,9 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		ChangeRound changeRound = new ChangeRound(round, board, match);
 		this.notifyObserver(changeRound);
 		
-		if (round-1 == 2 || round-1 == 4 || round-1 == 6) {
-			if (period == 3) {
-				changePeriod();
-				return;
-			} else
-				changePeriod();
-			}
-		
-	}
+		if ((round-1) == 2 || (round-1) == 4 || (round-1) == 6) {
+			changePeriod();
+	}}
 
 	public void changePeriod()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
