@@ -105,12 +105,12 @@ public class CommandLineInterface implements Serializable, Runnable {
 		
 		switch (input) {
 		case 1: {
+			timer.cancel();
 			Relative relative = chooseTheRelative();
 			int servant = chooseServants(relative);
 			serverStub.notifyObserver(new SetServant(servant, client.getPlayer(), relative, client.getPlayer().getMatch()));
 			PutRelative putRelative = chooseTheAction(relative);
 			serverStub.notifyObserver(putRelative);
-			timer.cancel();
 			break;
 		}
 		case 2: {

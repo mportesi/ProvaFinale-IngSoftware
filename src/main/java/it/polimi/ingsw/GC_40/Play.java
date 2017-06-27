@@ -207,7 +207,6 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		} else {
 			currentPlayer = currentTurnOrder.get(i + 1);
 		}
-		System.out.println(changeRound);
 		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
 
 		this.notifyObserver(changePlayer);
@@ -261,7 +260,6 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
 		}
 		
-		System.out.println("match! :" + match);
 		ChangeRound changeRound = new ChangeRound(round, board, match);
 		this.notifyObserver(changeRound);
 		
