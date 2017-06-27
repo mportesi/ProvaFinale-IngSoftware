@@ -54,9 +54,10 @@ public class ClientModel implements Serializable {
 
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
+		
 		// chiamo cli in un thread
 		// scatta timer thread a null
-		if (currentPlayer.getName().equals(currentPlayer.getName())) {
+		if (!endGame && currentPlayer.getName().equals(currentPlayer.getName())) {
 			JsonTimeOut jsonTimeOut = null;
 			try {
 				jsonTimeOut = new JsonTimeOut();
