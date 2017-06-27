@@ -34,7 +34,7 @@ public class RegisterClientController {
 	private WelcomeController welcomeController;
 	
 	public ClientModel client;
-	public ServerRMIConnectionViewRemote serverStub=new ServerRMIConnectionView();
+	public ServerRMIConnectionViewRemote serverStub;
 	public ClientRMIConnectionView rmiView;
 	
 	

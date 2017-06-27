@@ -51,7 +51,7 @@ public class ClientRMIConnection implements Serializable {
 
 	public void startClient(boolean commandLine) throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
 			NullPointerException, ParseException, InterruptedException {
-		clientModel = new ClientModel();
+		
 
 		Scanner stdIn = new Scanner(System.in);
 
@@ -62,7 +62,7 @@ public class ClientRMIConnection implements Serializable {
 
 		// get the stub (local object) of the remote view
 		serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
-
+		clientModel = new ClientModel(serverStub);
 		// register the client view in the server side (to receive messages from
 		// the server)
 

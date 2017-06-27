@@ -191,7 +191,7 @@ public class BoardController {
 	// ????? per tutte e 4 la torri??????
 	@FXML
 	public void putRelativeOnTerritoryTower1(){
-		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 1, relative);
+		//PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 1, relative);
 		
 	}
 

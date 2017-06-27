@@ -71,7 +71,7 @@ public class Server {
 			// a new thread handle the connection with the view
 			executor.submit(view);
 		}
-	} 
+	} */
 	
 	public void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
