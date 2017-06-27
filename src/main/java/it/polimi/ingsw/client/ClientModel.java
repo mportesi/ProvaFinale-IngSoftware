@@ -57,7 +57,7 @@ public class ClientModel implements Serializable {
 		
 		// chiamo cli in un thread
 		// scatta timer thread a null
-		if (!endGame && currentPlayer.getName().equals(currentPlayer.getName())) {
+		if (!endGame && currentPlayer.getName().equals(player.getName())) {
 			JsonTimeOut jsonTimeOut = null;
 			try {
 				jsonTimeOut = new JsonTimeOut();
@@ -87,17 +87,18 @@ public class ClientModel implements Serializable {
 				public void run() {
 					System.out.println("It ran out of time!");
 					ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
-					action.stop();
+					
+
 					//action=null;
 					try {
 						serverStub.notifyObserver(shiftPlayer);
-						this.cancel();
 						timer.cancel();
+						action.sleep(100000);
 					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
-			}, (long) (timeOutAction - 150) * 1000);
+			}, (long) (timeOutAction - 150) * 150);
 		}
 
 	}

@@ -59,10 +59,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private Dice orangeDice;
 	private Player currentPlayer;
 	private Board board;
-	private int period;
-	private int round;
+	private volatile int period = 0;
+	private volatile int round;
 	private ArrayList<Player> currentTurnOrder;
-	private int changeRound;
+	private volatile int changeRound;
 	private int match;
 	private boolean initializing;
 	
@@ -207,18 +207,20 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		} else {
 			currentPlayer = currentTurnOrder.get(i + 1);
 		}
-		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
-
-		this.notifyObserver(changePlayer);
+		
 		
 		
 
 		if (changeRound == 4) {
 			changeRound = 0;
-			System.out.println("ChangeRound è 4");
+			
 			changeRound();
 			
 		}
+		
+		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
+
+		this.notifyObserver(changePlayer);
 	}
 
 	public void changeRound()
