@@ -511,6 +511,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public void removePlayer(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		Player playerToRemove=null;
+		
 		for(int i=0; i<players.size(); i++){
 			if (players.get(i).getID().equals(player.getID())){
 				playerToRemove=players.get(i);
