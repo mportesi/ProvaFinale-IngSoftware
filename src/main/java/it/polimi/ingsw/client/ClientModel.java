@@ -67,6 +67,7 @@ public class ClientModel implements Serializable{
 		
 		action = new Thread(() -> {
 			try{
+				
 				if(currentPlayer.getName().equals(currentPlayer.getName())){
 				CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
 				if(action!=null){
@@ -79,16 +80,20 @@ public class ClientModel implements Serializable{
 		});
 		action.start();
 		System.out.println("è partito");
-		timer.schedule(new TimerAction(serverStub) { public void run() {
+		timer.schedule(new TimerAction(serverStub) { @SuppressWarnings("deprecation")
+		public void run() {
 			System.out.println("It ran out of time!");
 			ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
-			action=null;
+			
+			action.stop();
 			try {
 				serverStub.notifyObserver(shiftPlayer);
+				timer.cancel();
+				this.cancel();
 			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 				e.printStackTrace();
 			}
-		}}, (long) (timeOutAction-150)*1000);
+		}}, (long) (timeOutAction-150)*10);
 		
 	}
 

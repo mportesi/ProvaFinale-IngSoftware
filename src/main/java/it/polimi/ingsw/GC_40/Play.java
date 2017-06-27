@@ -197,7 +197,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public void changeCurrentPlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int i = 0;
-
+		System.out.println("The round is: " + changeRound);
 		while (currentTurnOrder.get(i) != currentPlayer && i<currentTurnOrder.size()-1) {
 			i++;
 		}
@@ -214,8 +214,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		
 
 		if (changeRound == 4) {
-			changeRound();
 			changeRound = 0;
+			System.out.println("ChangeRound è 4");
+			changeRound();
+			
 		}
 	}
 
