@@ -52,7 +52,7 @@ public class ClientModel implements Serializable {
 		this.period = period;
 	}
 
-	public void setCurrentPlayer(Player currentPlayer) {
+	public synchronized void  setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
 		
 		// chiamo cli in un thread
@@ -98,7 +98,7 @@ public class ClientModel implements Serializable {
 						e.printStackTrace();
 					}
 				}
-			}, (long) (timeOutAction - 150) * 150);
+			}, (long) (timeOutAction - 150) * 10);
 		}
 
 	}
