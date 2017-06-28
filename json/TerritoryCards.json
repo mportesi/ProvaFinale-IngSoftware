@@ -6,7 +6,7 @@
     {"type":"GainVictoryPoint", "amount":2}
   ]
 },
-{"name":"hamlet",
+{"name":"village",
   "type":"territoryCard",
   "period":1,
   "immediateEffect":[
@@ -20,7 +20,7 @@
     {"type":"GainMilitaryPoint", "amount":2}
   ]
 },
-{"name":"tradingPost",
+{"name":"commercialHub",
   "type":"territoryCard",
   "period":1,
   "immediateEffect":[
@@ -33,7 +33,7 @@
     {"type":"GainWood", "amount":1}
   ]
 },
-{"name":"fortress",
+{"name":"citadel",
   "type":"territoryCard",
   "period":1,
   "immediateEffect":[
@@ -75,13 +75,13 @@
     {"type":"GainCoin", "amount":4}
   ]
 },
-{"name":"countryHouse",
+{"name":"manorHouse",
   "type":"territoryCard",
   "period":2,
   "immediateEffect":[
   ]
 },
-{"name":"possession",
+{"name":"estate",
   "type":"territoryCard",
   "period":2,
   "immediateEffect":[
@@ -89,28 +89,28 @@
     {"type":"GainServant", "amount":2}
   ]
 },
-{"name":"mountainVillage",
+{"name":"mountainTown",
   "type":"territoryCard",
   "period":2,
   "immediateEffect":[
     {"type":"Gainservant", "amount":1}
   ]
 },
-{"name":"goldmine",
+{"name":"goldMine",
   "type":"territoryCard",
   "period":2,
   "immediateEffect":[
     {"type":"GainCoin", "amount":1}
   ]
 },
-{"name":"stoneQuarry",
+{"name":"rockPit",
   "type":"territoryCard",
   "period":2,
   "immediateEffect":[
     {"type":"GainWood", "amount":1}
   ]
 },
-{"name":"borough",
+{"name":"fortifiedTown",
   "type":"territoryCard",
   "period":3,
   "immediateEffect":[
@@ -118,7 +118,7 @@
     {"type":"GainMilitaryPoint", "amount":2}
   ]
 },
-{"name":"mercantileCity",
+{"name":"tradingTown",
   "type":"territoryCard",
   "period":3,
   "immediateEffect":[
@@ -126,7 +126,7 @@
     {"type":"Gainservant", "amount":1}
   ]
 },
-{"name":"estate",
+{"name":"farm",
   "type":"territoryCard",
   "period":3,
   "immediateEffect":[
@@ -148,7 +148,7 @@
     {"type":"GainFaithPoint", "amount":1}
   ]
 },
-{"name":"marbleQuarry",
+{"name":"marblePit",
   "type":"territoryCard",
   "period":3,
   "immediateEffect":[

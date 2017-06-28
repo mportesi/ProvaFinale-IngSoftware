@@ -44,7 +44,7 @@
     ]
   },
   {
-    "name":"hostingBeggars",
+    "name":"hostingPanhandlers",
     "type":"ventureCard",
     "period":1,
     "alternativeCostBoolean":0,
@@ -57,7 +57,7 @@
     ]
   },
   {
-    "name":"fightingHeresy",
+    "name":"fightingHeresies",
     "type":"ventureCard",
     "period":1,
     "alternativeCostBoolean":0,
@@ -80,19 +80,6 @@
       {"type":"coin", "amount":4}],
     "immediateEffect":[
       {"type":"GainMilitaryPoint", "amount":5}
-    ]
-  },
-  {
-    "name":"militaryCampaign",
-    "type":"ventureCard",
-    "period":1,
-    "alternativeCostBoolean":0,
-    "militaryRequirement":3,
-    "militaryCost":2,
-    "cost":[
-      {"type":"wood", "amount":3}],
-    "immediateEffect":[
-      {"type":"GainCoin", "amount":3}
     ]
   },
   {
@@ -122,7 +109,7 @@
       {"type":"stone", "amount":2}
     ],
     "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":4}
+      {"type":"GainFaithPoint", "amount":3}
     ]
   },
   {
@@ -132,14 +119,13 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":3,
     "militaryCost":2,
-    "cost":[
-      {"type":"wood", "amount":3}],
+    "cost":[],
     "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":4}
+      {"type":"GainCoin", "amount":3}
     ]
   },
   {
-    "name":"buildingTheRamparts",
+    "name":"buildingTheBastions",
     "type":"ventureCard",
     "period":2,
     "alternativeCostBoolean":0,
@@ -180,7 +166,7 @@
     ]
   },
   {
-    "name":"welcomingForeigners",
+    "name":"hostingForeigners",
     "type":"ventureCard",
     "period":2,
     "alternativeCostBoolean":0,
@@ -193,7 +179,7 @@
     ]
   },
   {
-    "name":"diggingFunnels",
+    "name":"improvingTheCanals",
     "type":"ventureCard",
     "period":2,
     "alternativeCostBoolean":0,
@@ -230,9 +216,9 @@
     "cost":[
       {"type":"coin", "amount":2},
       {"type":"wood", "amount":2},
-      {"type":"stone", "amount":4}],
+      {"type":"stone", "amount":2}],
     "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":3}
+      {"type":"GainFaithPoint", "amount":2}
     ]
   },
   {
@@ -249,7 +235,7 @@
     ]
   },
   {
-    "name":"commissioningSacredArt",
+    "name":"promotingSacredArt",
     "type":"ventureCard",
     "period":3,
     "alternativeCostBoolean":0,
@@ -274,9 +260,9 @@
       {"type":"wood", "amount":3},
       {"type":"stone", "amount":3}
     ],
-    "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":1},
-      {"type":"GetCard", "amount":7}
+     "getCard":"anyone", "valueGetCard":7, "discount":[],
+      "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":1}
     ]
   },
   {
@@ -351,7 +337,7 @@
       {"type":"stone", "amount":3}
     ],
     "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":3}
+      {"type":"GainFaithPoint", "amount":2}
     ]
   }
   

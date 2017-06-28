@@ -49,7 +49,7 @@
   ]
 },
 {
-  "name":"builder",
+  "name":"stonemason",
   "type":"characterCard",
   "period":1,
   "costCoin":4,
@@ -57,7 +57,7 @@
   ]
 },
 {
-  "name":"leader",
+  "name":"warlord",
   "type":"characterCard",
   "period":1,
   "costCoin":2,
@@ -75,7 +75,7 @@
   ]
 },
 {
-  "name":"farmer",
+  "name":"peasant",
   "type":"characterCard",
   "period":2,
   "costCoin":4,
@@ -169,7 +169,7 @@
     {"type":"GivePrivilegeCouncil", "amount":1} ]
 },
 {
-  "name":"courtesan",
+  "name":"paramour",
   "type":"characterCard",
   "period":3,
   "costCoin":7,

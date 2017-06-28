@@ -20,7 +20,7 @@
       {"type":"GainVictoryPoint", "amount":6}
     ]
   },
-  { "name":"carpentry",
+  { "name":"carpenter'sShop",
     "type":"buildingCard",
     "period":1,
     "cost":[
@@ -42,7 +42,7 @@
       {"type":"GainVictoryPoint", "amount":5}
     ]
   },
-  {"name":"archOfTriumph",
+  {"name":"TriumphalArch",
    "type":"buildingCard",
    "period":1,
     "cost":[
@@ -74,7 +74,7 @@
         {"type":"GainFaithPoint", "amount":1}
     ]
   },
-  {"name":"stonecutter",
+  {"name":"stonemason'sShop",
     "type":"buildingCard",
     "period":1,
     "cost":[
@@ -85,7 +85,7 @@
         {"type":"GainVictoryPoint", "amount":2}
       ]  
   },
-  {"name":"guildOfSculptores",
+  {"name":"sculptors'Guild",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -95,7 +95,7 @@
         {"type":"GainVictoryPoint", "amount":6}
       ]  
   },
-  {"name":"guildOfBuilders",
+  {"name":"stonemasons'Guild",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -106,7 +106,7 @@
         {"type":"GainVictoryPoint", "amount":4}
       ]  
   },
-  {"name":"guildOfPainters",
+  {"name":"painters'Guild",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -116,7 +116,7 @@
         {"type":"GainVictoryPoint", "amount":5}
       ]  
   },
-  {"name":"market",
+  {"name":"marketplace",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -160,7 +160,7 @@
         {"type":"GainVictoryPoint", "amount":4}
       ]  
   },
-  {"name":"barrack",
+  {"name":"barracks",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -230,19 +230,19 @@
         {"type":"GainVictoryPoint", "amount":7}
       ]  
   },
-  {"name":"headframe",
+  {"name":"stronghold",
     "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"coin", "amount":2},
         {"type":"wood", "amount":2},
-        {"type":"stone", "amount":4}
+        {"type":"stone", "amount":2}
       ],
     "immediateEffect":[
-        {"type":"GainVictoryPoint", "amount":9}
+        {"type":"GainVictoryPoint", "amount":8}
       ]  
   },
-  {"name":"basilica",
+  {"name":"church",
     "type":"buildingCard",
     "period":3,
     "cost":[

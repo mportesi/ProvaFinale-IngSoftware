@@ -258,42 +258,43 @@ public class BoardController {
 	public void initializeBoard(){
 		
 		String string;
-		string = client.getTerritoryTower().getFloor(4).getCard().getName();
-		Image image1 = new Image ("Images/"+"coin_1_front"+".png");
-		
 		string = client.getTerritoryTower().getFloor(3).getCard().getName();
-		Image image2 = new Image ("ImagesModified/"+string+".png");
+		System.out.println(string);
+		Image image1 = new Image ("Cards/"+string+".png");
 		
 		string = client.getTerritoryTower().getFloor(2).getCard().getName();
-		Image image3 = new Image ("ImagesModified/"+string+".png");
+		Image image2 = new Image ("Cards/"+string+".png");
 		
 		string = client.getTerritoryTower().getFloor(1).getCard().getName();
-		Image image4 = new Image ("ImagesModified/"+string+".png");
+		Image image3 = new Image ("Cards/"+string+".png");
 		
-		string = client.getBuildingTower().getFloor(4).getCard().getName();
-		Image image5 = new Image ("ImagesModified/"+string+".png");
+		string = client.getTerritoryTower().getFloor(0).getCard().getName();
+		Image image4 = new Image ("Cards/"+string+".png");
+		
 		string = client.getBuildingTower().getFloor(3).getCard().getName();
-		Image image6 = new Image ("ImagesModified/"+string+".png");
-		string= client.getBuildingTower().getFloor(2).getCard().getName();
-		Image image7 = new Image ("ImagesModified/"+string+".png");
-		string = client.getBuildingTower().getFloor(1).getCard().getName();
-		Image image8 = new Image ("ImagesModified/"+string+".png");
-		string = client.getVentureTower().getFloor(4).getCard().getName();
-		Image image9 = new Image ("ImagesModified/"+string+".png");
+		Image image5 = new Image ("Cards/"+string+".png");
+		string = client.getBuildingTower().getFloor(2).getCard().getName();
+		Image image6 = new Image ("Cards/"+string+".png");
+		string= client.getBuildingTower().getFloor(1).getCard().getName();
+		Image image7 = new Image ("Cards/"+string+".png");
+		string = client.getBuildingTower().getFloor(0).getCard().getName();
+		Image image8 = new Image ("Cards/"+string+".png");
 		string = client.getVentureTower().getFloor(3).getCard().getName();
-		Image image10 = new Image ("ImagesModified/"+string+".png");
+		Image image9 = new Image ("Cards/"+string+".png");
 		string = client.getVentureTower().getFloor(2).getCard().getName();
-		Image image11 = new Image ("ImagesModified/"+string+".png");
+		Image image10 = new Image ("Cards/"+string+".png");
 		string = client.getVentureTower().getFloor(1).getCard().getName();
-		Image image12 = new Image ("ImagesModified/"+string+".png");
-		string = client.getCharacterTower().getFloor(4).getCard().getName();
-		Image image13 = new Image ("ImagesModified/"+string+".png");
+		Image image11 = new Image ("Cards/"+string+".png");
+		string = client.getVentureTower().getFloor(0).getCard().getName();
+		Image image12 = new Image ("Cards/"+string+".png");
 		string = client.getCharacterTower().getFloor(3).getCard().getName();
-		Image image14 = new Image ("ImagesModified/"+string+".png");
+		Image image13 = new Image ("Cards/"+string+".png");
 		string = client.getCharacterTower().getFloor(2).getCard().getName();
-		Image image15 = new Image ("ImagesModified/"+string+".png");
+		Image image14 = new Image ("Cards/"+string+".png");
 		string = client.getCharacterTower().getFloor(1).getCard().getName();
-		Image image16 = new Image ("ImagesModified/"+string+".png");
+		Image image15 = new Image ("Cards/"+string+".png");
+		string = client.getCharacterTower().getFloor(0).getCard().getName();
+		Image image16 = new Image ("Cards/"+string+".png");
 		
 		
 		
