@@ -317,6 +317,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 				switch (type) {
 				case "victoryPointForTerritory": {
 					int numberOfTerritoryCard = p.counter("territoryCard");
+					System.out.println("The player " + p + "has " + numberOfTerritoryCard +" territoryCard");
 					if (numberOfTerritoryCard >= 1) {
 						p.incrementVictoryPoint(f.getFinalVictoryPointForOne(), this);
 
@@ -346,6 +347,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 				case "victoryPointForCharacter": {
 					int numberOfCharacterCard = p.counter("characterCard");
+					System.out.println("The player " + p + "has " + numberOfCharacterCard +" characterCard");
 					if (numberOfCharacterCard >= 1) {
 						p.incrementVictoryPoint(f.getFinalVictoryPointForOne(), this);
 
@@ -375,6 +377,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 				case "victoryPointForResource": {
 					int numberOfResource = p.resourceCounter();
+					System.out.println("The player " + p + "has " + numberOfResource +" resources");
 					p.incrementVictoryPoint(f.getFinalVictoryPointForFive() * (numberOfResource / 5), this);
 					break;
 				}

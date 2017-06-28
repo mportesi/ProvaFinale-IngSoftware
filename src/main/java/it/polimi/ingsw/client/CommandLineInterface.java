@@ -130,8 +130,9 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 	public Relative chooseTheRelative()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("Il tuo stato è: \n" + client.getPlayer());
+		
 		System.out.println("\n\nLa board è: \n" + client.getBoard());
+		System.out.println("Il tuo stato è: \n" + client.getPlayer());
 		System.out.println("\n Choose what relative you want to use: \n 1) black \n 2) white \n 3) orange \n 4) neutral");
 		Relative relative = null;
 		int input = Integer.parseInt(in.readLine());
@@ -239,7 +240,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			if (client.getBoard().getNumberOfPlayers() == 4) {
 				System.out.println(
 						"\nChoose the market to put your relative: \n 1)Gain coin \n 2)Gain servant \n 3)Gain military point and coin \n 4)Gain two different privilege Council");
-				int number = in.read();
+				int number = Integer.parseInt(in.readLine());
 				MarketBuilding market = client.getMarket(number);
 				if (number == 4) {
 					putRelative = new PutRelativeOnMarketPrivilege(client.getPlayer(), relative, market,
@@ -249,7 +250,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 				}
 			} else {
 				System.out.println("\nChoose the market to put your relative: \n 1)Gain coin \n 2)Gain servant");
-				int number = in.read();
+				int number = Integer.parseInt(in.readLine());
 				MarketBuilding market = client.getMarket(number - 1);
 				putRelative = new PutRelativeOnMarket(client.getPlayer(), relative, market, client.getPlayer().getMatch());
 			}
