@@ -193,7 +193,8 @@ public class ClientModel implements Serializable{
 	public void initializeBoard(Board board) {
 		this.board=board;
 		if(gui){
-			boardControllerGUI.initializeBoard();
+			boardControllerGUI = new BoardController();
+			boardControllerGUI.initializeBoard(this);
 		}
 		
 	}

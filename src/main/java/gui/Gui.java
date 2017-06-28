@@ -18,6 +18,7 @@ public class Gui extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 

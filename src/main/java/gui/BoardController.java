@@ -15,6 +15,7 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.actions.PutRelativeOnTower;
+import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.server.Server;
@@ -254,8 +255,14 @@ public class BoardController {
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 4, relative, client.getMatch());	
 	}
 	
+	public void initializeBoard(ClientModel client){
+		this.client = client;
+		initializeBoard1(territoryTower4);
+	}
+	
+	
 	@FXML
-	public void initializeBoard(){
+	public void initializeBoard1(ImageView territoryTower4){
 		
 		String string;
 		string = client.getTerritoryTower().getFloor(3).getCard().getName();
@@ -297,11 +304,7 @@ public class BoardController {
 		Image image16 = new Image ("Cards/"+string+".png");
 		
 		
-		
-		
-		buildingTower1.setImage(image1);
-		
-		
+		territoryTower4.setImage(image1);
 		territoryTower3.setImage(image2);
 		territoryTower2.setImage(image3);
 		territoryTower1.setImage(image4);
