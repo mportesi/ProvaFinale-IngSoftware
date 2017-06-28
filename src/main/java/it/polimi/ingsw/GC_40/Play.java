@@ -194,7 +194,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	}*/
 	}
 
-	public void changeCurrentPlayer()
+	public synchronized void changeCurrentPlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int i = 0;
 		System.out.println("The round is: " + changeRound);
@@ -223,14 +223,16 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.notifyObserver(changePlayer);
 	}
 
-	public void changeRound()
+	public synchronized void changeRound()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		if (round != 0) {
 			changeTurnOrder();
 		}
 		round += 1;
-
+		if ((round-1) == 2 || (round-1) == 4 || (round-1) == 6) {
+			changePeriod();}
+		
 		// refresh tower( place new card and remove family member)
 		board.getTerritoryTower().refreshTower(period);
 		board.getBuildingTower().refreshTower(period);
@@ -267,9 +269,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		ChangeRound changeRound = new ChangeRound(round, board, match);
 		this.notifyObserver(changeRound);
 		
-		if ((round-1) == 2 || (round-1) == 4 || (round-1) == 6) {
-			changePeriod();
-	}}
+		
+	}
 
 	public void changePeriod()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
