@@ -230,7 +230,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			changeTurnOrder();
 		}
 		round += 1;
-
+		
 		// refresh tower( place new card and remove family member)
 		board.getTerritoryTower().refreshTower(period);
 		board.getBuildingTower().refreshTower(period);
