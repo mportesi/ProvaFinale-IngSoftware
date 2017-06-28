@@ -274,7 +274,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public synchronized void changePeriod()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		period++;
-		System.out.println("il periodo è : " + period );
+		
 
 		if (period == 4) {
 			checkWinner();
@@ -402,8 +402,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public void checkWinner()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Sono nel checkWinner()");
+		ChangeEndGame changeEndGame = new ChangeEndGame(match);
+		notifyObserver(changeEndGame);
 		ArrayList<Player> winners = new ArrayList<Player>();
 		int max = 0;
+		giveFinalPoint();
 		for (Player p : currentTurnOrder) {
 			if (p.getVictoryPoint() > max) {
 				max = p.getVictoryPoint();

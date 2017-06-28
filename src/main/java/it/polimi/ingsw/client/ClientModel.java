@@ -93,12 +93,12 @@ public class ClientModel implements Serializable {
 					try {
 						serverStub.notifyObserver(shiftPlayer);
 						timer.cancel();
-						action.sleep(100000);
+						//action.sleep(1000000000);
 					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
-			}, (long) (timeOutAction - 150) * 10);
+			}, (long) (timeOutAction - 150) * 300);
 		}
 
 	}
