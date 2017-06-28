@@ -258,6 +258,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		board.getWhiteDice().setValue();
 
 		for (Player p : players) {
+			
 			p.setFreeAllRelatives();
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());

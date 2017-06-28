@@ -37,6 +37,7 @@ public class ClientModel implements Serializable {
 	private boolean quit = false;
 	private ServerRMIConnectionViewRemote serverStub;
 	private Thread action;
+	private Timer timer = new Timer();
 
 	public ClientModel(ServerRMIConnectionViewRemote serverStub) {
 		this.serverStub = serverStub;
@@ -65,7 +66,7 @@ public class ClientModel implements Serializable {
 				e1.printStackTrace();
 			}
 			int timeOutAction = jsonTimeOut.getTimeOutAction();
-			Timer timer = new Timer();
+			timer = new Timer();
 			
 			action = new Thread(() -> {
 				try {
@@ -93,7 +94,7 @@ public class ClientModel implements Serializable {
 					try {
 						serverStub.notifyObserver(shiftPlayer);
 						timer.cancel();
-						action.sleep(1000000000);
+						action.sleep(1000000000*10000000);
 					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -178,6 +179,10 @@ public class ClientModel implements Serializable {
 		return board.getVentureTower();
 	}
 
+	public Timer getTimer(){
+		return timer;
+	}
+	
 	public MarketBuilding getMarket(int i) {
 
 		return board.getMarket(i);
