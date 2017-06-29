@@ -1,6 +1,7 @@
 package gui;
 
 
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,12 +15,17 @@ import org.evosuite.shaded.antlr.debug.Event;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
+import it.polimi.ingsw.actions.PutRelativeOnCouncilPalace;
+import it.polimi.ingsw.actions.PutRelativeOnHarvestArea;
+import it.polimi.ingsw.actions.PutRelativeOnMarket;
 import it.polimi.ingsw.actions.PutRelativeOnTower;
+import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.server.Server;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 
 public class BoardController {
 	
@@ -272,6 +278,70 @@ public class BoardController {
 	public void putRelativeOnVenture4(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 4, relative, client.getMatch());
 		welcomeController.putRelative(putRelativeOnTower);
+	}
+	@FXML
+	public void putRelativeOnCouncilPalace(){
+		String bonus= openPrivilegeCouncil();//todo 
+		PutRelativeOnCouncilPalace putRelativeOnCouncilPalace= new PutRelativeOnCouncilPalace(client.getPlayer(),relative, client.getBoard().getCouncilPalace(), bonus, client.getMatch());
+		welcomeController.putRelative(putRelativeOnCouncilPalace);
+	}
+	@FXML
+	public void putRelativeOnMarket1(){
+		PutRelativeOnMarket putRelativeOnMarket= new PutRelativeOnMarket(client.getPlayer(),relative, client.getMarket(1), client.getMatch());
+		welcomeController.putRelative(putRelativeOnMarket);
+	}
+	@FXML
+	public void putRelativeOnMarket2(){
+		PutRelativeOnMarket putRelativeOnMarket= new PutRelativeOnMarket(client.getPlayer(),relative, client.getMarket(2), client.getMatch());
+		welcomeController.putRelative(putRelativeOnMarket);
+	}
+	@FXML
+	public void putRelativeOnMarket3(){
+		PutRelativeOnMarket putRelativeOnMarket= new PutRelativeOnMarket(client.getPlayer(),relative, client.getMarket(3), client.getMatch());
+		welcomeController.putRelative(putRelativeOnMarket);
+	}
+	@FXML
+	public void putRelativeOnMarket4(){
+		PutRelativeOnMarket putRelativeOnMarket= new PutRelativeOnMarket(client.getPlayer(),relative, client.getMarket(4), client.getMatch());
+		welcomeController.putRelative(putRelativeOnMarket);
+	}
+	@FXML
+	public void putRelativeOnHarvestLeft(){
+		PutRelativeOnHarvestArea putRelativeOnHarvestArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getHarvestArea(),"left", client.getMatch());
+		welcomeController.putRelative(putRelativeOnHarvestArea);
+	}
+	@FXML
+	public void putRelativeOnHarvestRight(){
+		PutRelativeOnHarvestArea putRelativeOnHarvestArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getHarvestArea(),"right", client.getMatch());
+		welcomeController.putRelative(putRelativeOnHarvestArea);
+	}
+	@FXML
+	public void putRelativeOnProductionLeft(){
+		PutRelativeOnHarvestArea putRelativeOnHarvestArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getProductionArea(),"left", client.getMatch());
+		welcomeController.putRelative(putRelativeOnHarvestArea);
+	}
+	@FXML
+	public void putRelativeOnProductionRight(){
+		PutRelativeOnHarvestArea putRelativeOnHarvestArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getProductionArea(),"right", client.getMatch());
+		welcomeController.putRelative(putRelativeOnHarvestArea);
+	}
+	//TODO
+	@FXML
+	public String openPrivilegeCouncil(){
+		/*Parent page=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
+		try {
+			page = fxmlLoader.load();
+			BoardController boardController=fxmlLoader.getController();
+			System.out.println("BC " + boardController);
+			System.out.println("CM " + client);
+			boardController.setClient(client);
+			clientModel.setBoardController(boardController);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		rmi.getScene().setRoot(page);*/
+		return null;
 	}
 	
 	public void initializeBoard(ClientModel client){
