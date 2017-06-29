@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.clientRMI.ClientRMIConnection;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionView;
@@ -57,11 +58,12 @@ public class WelcomeController {
 		String playerName = name.getText();
 		clientModel.setName(playerName);
 		try {
+			openNewScene("GuiFinal.fxml");
 			serverStub.registerClient(rmiView, playerName);
 		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
 		} 
-		openNewScene("GuiFinal.fxml");
+		
 	}
 	
 	@FXML
@@ -100,7 +102,10 @@ public class WelcomeController {
 			try {
 				page = fxmlLoader.load();
 				BoardController boardController=fxmlLoader.getController();
+				System.out.println("BC " + boardController);
+				System.out.println("CM " + clientModel);
 				boardController.setClient(clientModel);
+				boardController.setWelcomeController(this);
 				clientModel.setBoardController(boardController);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -109,6 +114,14 @@ public class WelcomeController {
 			return page;
 	}
 	
+	public void putRelative(Action action){
+		try {
+			serverStub.notifyObserver(action);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	/*@FXML
 	public void openNewSceneTry(String fxml){
 		FXMLLoader fxmlLoader = new FXMLLoader();

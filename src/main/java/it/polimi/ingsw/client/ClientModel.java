@@ -93,7 +93,7 @@ public class ClientModel implements Serializable{
 			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 				e.printStackTrace();
 			}
-		}}, (long) (timeOutAction-150)*1000);
+		}}, (long) (timeOutAction)*100000);
 		
 	}
 
@@ -193,8 +193,7 @@ public class ClientModel implements Serializable{
 	public void initializeBoard(Board board) {
 		this.board=board;
 		if(gui){
-			boardControllerGUI = new BoardController();
-			boardControllerGUI.initializeBoard(this);
+			boardControllerGUI.initializeBoard1();
 		}
 		
 	}
