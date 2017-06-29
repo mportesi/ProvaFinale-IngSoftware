@@ -78,5 +78,14 @@
       <ImageView fx:id="territory5" fitHeight="76.0" fitWidth="51.0" layoutX="940.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="territory6" fitHeight="76.0" fitWidth="51.0" layoutX="1015.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="character5" fitHeight="76.0" fitWidth="51.0" layoutX="941.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="productionLeft" fitHeight="31.0" fitWidth="28.0" layoutX="64.0" layoutY="588.0" onMouseClicked="#putRelativeOnProductionLeft" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="harvestLeft" fitHeight="31.0" fitWidth="28.0" layoutX="64.0" layoutY="645.0" onMouseClicked="#putRelativeOnHarvestLeft" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="market1" fitHeight="31.0" fitWidth="28.0" layoutX="308.0" layoutY="573.0" onMouseClicked="#putRelativeOnMarket1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="market2" fitHeight="31.0" fitWidth="28.0" layoutX="347.0" layoutY="573.0" onMouseClicked="#putRelativeOnMarket2" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="market3" fitHeight="31.0" fitWidth="28.0" layoutX="397.0" layoutY="589.0" onMouseClicked="#putRelativeOnMarket3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="market4" fitHeight="31.0" fitWidth="28.0" layoutX="425.0" layoutY="619.0" onMouseClicked="#putRelativeOnMarket4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="294.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="346.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="387.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
