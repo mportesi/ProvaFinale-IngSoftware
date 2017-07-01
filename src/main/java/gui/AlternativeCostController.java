@@ -56,7 +56,7 @@ public class AlternativeCostController {
 	}
 
 	public void setAlternativeCost(boolean b) {
-		this.boardController.setAlternativeCost(b);
+		this.boardController.setAlternativeCostBool(b);
 	}
 	
 	

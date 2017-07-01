@@ -63,6 +63,7 @@ public class BoardController {
 	private String bonus;
 	private String alternativeCost;
 	private boolean privilegeOpen;
+	private boolean alternativeCostBool;
 	private ArrayList <ImageView> councilPalace;
 	private ArrayList <ImageView> harvestRight;
 	private ArrayList <ImageView> productionRight;
@@ -1797,6 +1798,11 @@ public class BoardController {
 
 	public void setAlternativeCost(String choice) {
 		this.alternativeCost = choice;
+		
+	}
+
+	public void setAlternativeCostBool(boolean b) {
+		this.alternativeCostBool = b;
 		
 	}
 }
