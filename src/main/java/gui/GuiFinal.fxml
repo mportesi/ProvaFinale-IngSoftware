@@ -87,5 +87,6 @@
       <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="294.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="346.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="387.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="councilPalace" fitHeight="46.0" fitWidth="128.0" layoutX="269.0" layoutY="408.0" onMouseClicked="#putRelativeOnCouncilPalace" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -91,6 +91,7 @@ public class WelcomeController {
 				System.out.println("BC " + boardController);
 				System.out.println("CM " + clientModel);
 				boardController.setClient(clientModel);
+				boardController.setPlayer(clientModel.getPlayer());
 				boardController.setServerStub(serverStub);
 				clientModel.setBoardController(boardController);
 			} catch (IOException e) {

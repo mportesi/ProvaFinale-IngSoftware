@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PrivilegeController">
    <children>
       <ImageView fitHeight="291.0" fitWidth="481.0" layoutY="-2.0">
          <image>
@@ -20,10 +19,10 @@
             <Font name="Blackadder ITC" size="32.0" />
          </font>
       </Label>
-      <Button layoutX="71.0" layoutY="98.0" mnemonicParsing="false" text="1 wood and 1 stone" />
-      <Button layoutX="305.0" layoutY="192.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="2 servants" />
-      <Button layoutX="192.0" layoutY="141.0" mnemonicParsing="false" text="2 military points" />
-      <Button layoutX="305.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="1 faith point" />
-      <Button layoutX="75.0" layoutY="192.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="2 coins" />
+      <Button fx:id="woodAndStone" layoutX="71.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#woodAndStonePrivilege" text="1 wood and 1 stone" />
+      <Button fx:id="servant" layoutX="305.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#servantPrivilege" prefHeight="25.0" prefWidth="115.0" text="2 servants" />
+      <Button fx:id="militaryPoint" layoutX="192.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="#militaryPointPrivilege" text="2 military points" />
+      <Button fx:id="faithPoint" layoutX="305.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#faithPointPrivilege" prefHeight="25.0" prefWidth="115.0" text="1 faith point" />
+      <Button fx:id="coin" layoutX="75.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#coinPrivilege" prefHeight="25.0" prefWidth="115.0" text="2 coins" />
    </children>
 </AnchorPane>
