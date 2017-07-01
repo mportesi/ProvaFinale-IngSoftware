@@ -61,6 +61,7 @@ public class BoardController {
 	private ServerRMIConnectionViewRemote serverStub;
 	private Image relativeImage;
 	private String bonus;
+	private String alternativeCost;
 	private boolean privilegeOpen;
 	private ArrayList <ImageView> councilPalace;
 	private ArrayList <ImageView> harvestRight;
@@ -1791,6 +1792,11 @@ public class BoardController {
 
 	public void setHarvestLeftArea(Relative relative2) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void setAlternativeCost(String choice) {
+		this.alternativeCost = choice;
 		
 	}
 }
