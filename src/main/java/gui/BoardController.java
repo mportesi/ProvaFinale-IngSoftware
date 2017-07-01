@@ -1,19 +1,25 @@
 package gui;
 
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.evosuite.shaded.antlr.debug.Event;
 import org.json.simple.parser.ParseException;
@@ -43,6 +49,7 @@ import it.polimi.ingsw.server.Server;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 
 public class BoardController {
 
@@ -54,8 +61,82 @@ public class BoardController {
 	private ServerRMIConnectionViewRemote serverStub;
 	private Image relativeImage;
 	private String bonus;
+	private String alternativeCost;
 	private boolean privilegeOpen;
+	private boolean alternativeCostBool;
+	private ArrayList <ImageView> councilPalace;
+	private ArrayList <ImageView> harvestRight;
+	private ArrayList <ImageView> productionRight;
+	private int i =0;
+	private int j = 0;
+	private int k =0;
 
+	@FXML
+	private ImageView councilPalace1;
+	
+	@FXML
+	private ImageView councilPalace2;
+	
+	@FXML
+	private ImageView councilPalace3;
+	
+	@FXML
+	private ImageView councilPalace4;
+	
+	@FXML
+	private ImageView councilPalace5;
+	
+
+	@FXML
+	private ImageView productionRight1;
+	
+	@FXML
+	private ImageView productionRight2;
+	
+	@FXML
+	private ImageView productionRight3;
+	
+	@FXML
+	private ImageView productionRight4;
+	
+	@FXML
+	private ImageView productionRight5;
+	@FXML
+	private ImageView harvestRight1;
+	
+	@FXML
+	private ImageView harvestRight2;
+	
+	@FXML
+	private ImageView harvestRight3;
+	
+	@FXML
+	private ImageView harvestRight4;
+	
+	@FXML
+	private ImageView harvestRight5;
+	
+	@FXML
+	private ImageView councilPalace6;
+	
+	@FXML
+	private ImageView councilPalace7;
+	
+	@FXML
+	private ImageView councilPalace8;
+	
+	@FXML
+	private ImageView councilPalace9;
+	
+	@FXML
+	private ImageView councilPalace10;
+	
+	@FXML
+	private ImageView councilPalace11;
+	
+	@FXML
+	private ImageView councilPalace12;
+	
 	@FXML
 	private TextArea nameFxml;
 	@FXML
@@ -155,8 +236,7 @@ public class BoardController {
 	private ImageView ventureTower3;
 	@FXML
 	private ImageView ventureTower4;
-	@FXML
-	private ImageView councilPalace;
+
 	@FXML
 	private ImageView market1;
 	@FXML
@@ -167,12 +247,10 @@ public class BoardController {
 	private ImageView market4;
 	@FXML
 	private ImageView harvestLeft;
-	@FXML
-	private ImageView harvestRight;
+
 	@FXML
 	private ImageView productionLeft;
-	@FXML
-	private ImageView productionRight;
+
 	@FXML
 	private ImageView blackDice;
 	@FXML
@@ -185,25 +263,25 @@ public class BoardController {
 	@FXML
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
-		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite.png");
+		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite1.png");
 	}
 
 	@FXML
 	public void chooseOrangeRelative() {
 		relative = client.getPlayer().getOrangeRelative();
-		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange.png");
+		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange1.png");
 	}
 
 	@FXML
 	public void chooseBlackRelative() {
 		relative = client.getPlayer().getBlackRelative();
-		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack.png");
+		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack1.png");
 	}
 
 	@FXML
 	public void chooseNeutralRelative() {
 		relative = client.getPlayer().getNeutralRelative();
-		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral.png");
+		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral1.png");
 	}
 
 	@FXML
@@ -1027,6 +1105,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnCouncilPalace() {
 		try {
+			
 			if (relative != null) {
 				if (relative.getValue() >= 1) {
 					openPrivilegeCouncil();
@@ -1036,6 +1115,8 @@ public class BoardController {
 							client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus,
 							client.getMatch());
 					serverStub.notifyObserver(putRelativeOnCouncilPalace);
+					councilPalace.get(i).setImage(relativeImage);
+					i++;
 
 				} else {
 					openMessage("NotEnoughValueMessage.fxml");
@@ -1173,6 +1254,8 @@ public class BoardController {
 		if (relative != null) {
 			PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(client.getPlayer(),
 					relative, client.getBoard().getHarvestArea(), "right", client.getMatch());
+			harvestRight.get(j).setImage(relativeImage);
+			j++;
 			try {
 				serverStub.notifyObserver(putRelativeOnHarvestArea);
 			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
@@ -1220,6 +1303,8 @@ public class BoardController {
 		if (relative != null) {
 			PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
 					client.getPlayer(), relative, client.getBoard().getProductionArea(), "right", client.getMatch());
+			productionRight.get(k).setImage(relativeImage);
+			k++;
 			try {
 				serverStub.notifyObserver(putRelativeOnProductionArea);
 			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
@@ -1262,11 +1347,38 @@ public class BoardController {
 
 	@FXML
 	public void initializeBoard1() {
+		harvestRight = new ArrayList <ImageView>();
+		harvestRight.add(0, harvestRight1);
+		harvestRight.add(1, harvestRight2);
+		harvestRight.add(2, harvestRight3);
+		harvestRight.add(3, harvestRight4);
+		harvestRight.add(4, harvestRight5);
+		productionRight = new ArrayList <ImageView>();
+		productionRight.add(0, productionRight1);
+		productionRight.add(1, productionRight2);
+		productionRight.add(2, productionRight3);
+		productionRight.add(3, productionRight4);
+		productionRight.add(4, productionRight5);
+		councilPalace = new ArrayList <ImageView>();
+		councilPalace.add(0, councilPalace1);
+		councilPalace.add(1, councilPalace2);
+		councilPalace.add(2, councilPalace3);
+		councilPalace.add(3, councilPalace4);
+		councilPalace.add(4, councilPalace5);
+		councilPalace.add(5, councilPalace6);
+		councilPalace.add(6, councilPalace7);
+		councilPalace.add(7, councilPalace8);
+		councilPalace.add(8, councilPalace9);
+		councilPalace.add(9, councilPalace10);
+		councilPalace.add(10, councilPalace11);
+		councilPalace.add(11, councilPalace12);
+		
 		String string;
 		string = client.getTerritoryTower().getFloor(3).getCard().getName();
 		System.out.println(string);
 		Image image1 = new Image("Cards/" + string + ".png");
 		System.out.println(image1);
+		
 		string = client.getTerritoryTower().getFloor(2).getCard().getName();
 		Image image2 = new Image("Cards/" + string + ".png");
 
@@ -1695,6 +1807,16 @@ public class BoardController {
 
 	public void setHarvestLeftArea(Relative relative2) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void setAlternativeCost(String choice) {
+		this.alternativeCost = choice;
+		
+	}
+
+	public void setAlternativeCostBool(boolean b) {
+		this.alternativeCostBool = b;
 		
 	}
 }

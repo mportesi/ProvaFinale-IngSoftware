@@ -59,7 +59,9 @@ public class Gui extends Application {
 			e.printStackTrace();
 		}
 	}*/
-
+	
+	
+	
 	public void welcome() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
