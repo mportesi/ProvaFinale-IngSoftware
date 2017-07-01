@@ -193,7 +193,7 @@ public class ClientModel implements Serializable{
 	public void initializeBoard(Board board) {
 		this.board=board;
 		if(gui){
-			boardControllerGUI.initializeBoard1();
+			boardControllerGUI.initializeBoard(this);
 		}
 		
 	}
@@ -258,7 +258,9 @@ public class ClientModel implements Serializable{
 
 
 	public void setBoardController(BoardController boardController) {
+		System.out.println(boardController);
 		this.boardControllerGUI=boardController;
+		System.out.println(boardControllerGUI);
 	}
 
 	

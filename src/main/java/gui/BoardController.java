@@ -2,10 +2,12 @@ package gui;
 
 
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
@@ -24,6 +26,7 @@ import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.server.Server;
+import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -33,12 +36,8 @@ public class BoardController {
 	private Relative relative;
 	private Player player;
 	private WelcomeController welcomeController;
-	
-	public BoardController(){
-		
-	}
-	
-	
+	private Gui gui;
+	private ServerRMIConnectionViewRemote serverStub;
 	
 	@FXML
     private Button white;
@@ -48,8 +47,6 @@ public class BoardController {
     private Button orange;
 	@FXML
     private Button black;
-	
-	
 
 	@FXML
     private ImageView territory1;
@@ -136,194 +133,291 @@ public class BoardController {
 	@FXML
     private ImageView ventureTower4;
 	@FXML
-	private Label councilPalace;
+	private ImageView councilPalace;
 	@FXML
-	private Label market1;
+	private ImageView market1;
 	@FXML
-	private Label market2;
+	private ImageView market2;
 	@FXML
-	private Label market3;
+	private ImageView market3;
 	@FXML
-	private Label market4;
+	private ImageView market4;
 	@FXML
-	private Label harvestLeft;
+	private ImageView harvestLeft;
 	@FXML
-	private Label harvestRight;
+	private ImageView harvestRight;
 	@FXML
-	private Label productionLeft;
+	private ImageView productionLeft;
 	@FXML
-	private Label productionRight;
+	private ImageView productionRight;
 	@FXML
-	private Label blackDice;
+	private ImageView blackDice;
 	@FXML
-	private Label whiteDice;
+	private ImageView whiteDice;
 	@FXML
-	private Label orangeDice;
+	private ImageView orangeDice;
 	@FXML
 	private Button quit;
-	
-	private Gui gui;
-	
 	
 
 
 	@FXML
 	public void chooseWhiteRelative(){
 		relative = client.getPlayer().getWhiteRelative();
-		
 	}
 	
-
 	@FXML
 	public void chooseOrangeRelative(){
 		relative = client.getPlayer().getOrangeRelative();
-		
-		
 	}
 	
-
 	@FXML
 	public void chooseBlackRelative(){
 		relative = client.getPlayer().getBlackRelative();
-		
-		
 	}
 	
-
 	@FXML
 	public void chooseNeutralRelative(){
 		relative = client.getPlayer().getNeutralRelative();
-		
 	}
 	
-	// ????? per tutte e 4 la torri??????
+	
 	@FXML
 	public void putRelativeOnTerritory1(){
-		territoryTower1.setImage(null);
+		if(relative!=null){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 1, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+			territoryTower1.setImage(null);
+			this.relative=null;
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}}
+		else{
+			try {
+				openMessage("ChooseTheRelativeMessage.fxml");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	@FXML
 	public void putRelativeOnTerritory2(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 2, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnTerritory3(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 3, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnTerritory4(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getTerritoryTower(), 4, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnBuilding1(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getBuildingTower(), 1, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnBuilding2(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getBuildingTower(), 2, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnBuilding3(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getBuildingTower(), 3, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnBuilding4(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getBuildingTower(), 4, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnCharacter1(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getCharacterTower(), 1, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnCharacter2(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getCharacterTower(), 2, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnCharacter3(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getCharacterTower(), 3, relative, client.getMatch());	
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnCharacter4(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getCharacterTower(), 4, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	@FXML
 	public void putRelativeOnVenture1(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 1, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnVenture2(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 2, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnVenture3(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 3, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnVenture4(){
 		PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(), client.getVentureTower(), 4, relative, client.getMatch());
-		welcomeController.putRelative(putRelativeOnTower);
+		try {
+			serverStub.notifyObserver(putRelativeOnTower);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnCouncilPalace(){
 		String bonus= openPrivilegeCouncil();//todo 
 		PutRelativeOnCouncilPalace putRelativeOnCouncilPalace= new PutRelativeOnCouncilPalace(client.getPlayer(),relative, client.getBoard().getCouncilPalace(), bonus, client.getMatch());
-		welcomeController.putRelative(putRelativeOnCouncilPalace);
+		try {
+			serverStub.notifyObserver(putRelativeOnCouncilPalace);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnMarket1(){
 		PutRelativeOnMarket putRelativeOnMarket= new PutRelativeOnMarket(client.getPlayer(),relative, client.getMarket(1), client.getMatch());
-		welcomeController.putRelative(putRelativeOnMarket);
+		try {
+			serverStub.notifyObserver(putRelativeOnMarket);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnMarket2(){
 		PutRelativeOnMarket putRelativeOnMarket= new PutRelativeOnMarket(client.getPlayer(),relative, client.getMarket(2), client.getMatch());
-		welcomeController.putRelative(putRelativeOnMarket);
+		try {
+			serverStub.notifyObserver(putRelativeOnMarket);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnMarket3(){
 		PutRelativeOnMarket putRelativeOnMarket= new PutRelativeOnMarket(client.getPlayer(),relative, client.getMarket(3), client.getMatch());
-		welcomeController.putRelative(putRelativeOnMarket);
+		try {
+			serverStub.notifyObserver(putRelativeOnMarket);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnMarket4(){
 		PutRelativeOnMarket putRelativeOnMarket= new PutRelativeOnMarket(client.getPlayer(),relative, client.getMarket(4), client.getMatch());
-		welcomeController.putRelative(putRelativeOnMarket);
+		try {
+			serverStub.notifyObserver(putRelativeOnMarket);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnHarvestLeft(){
 		PutRelativeOnHarvestArea putRelativeOnHarvestArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getHarvestArea(),"left", client.getMatch());
-		welcomeController.putRelative(putRelativeOnHarvestArea);
+		try {
+			serverStub.notifyObserver(putRelativeOnHarvestArea);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnHarvestRight(){
 		PutRelativeOnHarvestArea putRelativeOnHarvestArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getHarvestArea(),"right", client.getMatch());
-		welcomeController.putRelative(putRelativeOnHarvestArea);
+		try {
+			serverStub.notifyObserver(putRelativeOnHarvestArea);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnProductionLeft(){
-		PutRelativeOnHarvestArea putRelativeOnHarvestArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getProductionArea(),"left", client.getMatch());
-		welcomeController.putRelative(putRelativeOnHarvestArea);
+		PutRelativeOnHarvestArea putRelativeOnProductionArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getProductionArea(),"left", client.getMatch());
+		try {
+			serverStub.notifyObserver(putRelativeOnProductionArea);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void putRelativeOnProductionRight(){
-		PutRelativeOnHarvestArea putRelativeOnHarvestArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getProductionArea(),"right", client.getMatch());
-		welcomeController.putRelative(putRelativeOnHarvestArea);
+		PutRelativeOnHarvestArea putRelativeOnProductionArea= new PutRelativeOnHarvestArea(client.getPlayer(),relative, client.getBoard().getProductionArea(),"right", client.getMatch());
+		try {
+			serverStub.notifyObserver(putRelativeOnProductionArea);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	//TODO
 	@FXML
@@ -348,11 +442,9 @@ public class BoardController {
 		this.client = client;
 		initializeBoard1();
 	}
-	
-	
+
 	@FXML
 	public void initializeBoard1(){
-		
 		String string;
 		string = client.getTerritoryTower().getFloor(3).getCard().getName();
 		System.out.println(string);
@@ -411,8 +503,6 @@ public class BoardController {
 		characterTower1.setImage(image16);
 		
 		
-		/*ImageView image = new ImageView(getClass().getResource("plancina3.png").toExternalForm());
-		territoryTower1.setImage(image);*/
 	};
 	
 	
@@ -421,14 +511,26 @@ public class BoardController {
 	}
 
 
-	public void setClient(ClientModel clientModel) {
-		client=clientModel;
-		
+	public void setClient(ClientModel clientModel) {	
 	}
-
 
 	public void setWelcomeController(WelcomeController welcomeController) {
-		this.welcomeController = welcomeController;
-		
 	}
+
+
+	public void setServerStub(ServerRMIConnectionViewRemote serverStub) {
+		this.serverStub=serverStub;
+	}
+	
+	public void openMessage(String string) throws Exception {               
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(string));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));  
+                stage.show();
+        } catch(Exception e) {
+           e.printStackTrace();
+          }
+}
 }

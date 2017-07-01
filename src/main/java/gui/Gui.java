@@ -24,9 +24,7 @@ public class Gui extends Application {
 
 		initRootLayout();
 		
-		//register();
 		welcome();
-		//showBoard();
 	}
 
 	/**
@@ -42,14 +40,13 @@ public class Gui extends Application {
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
-			primaryStage.setFullScreen(true);
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void showBoard() {
+	/*public void showBoard() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Gui.class.getResource("GuiFinal.fxml"));
@@ -61,7 +58,7 @@ public class Gui extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public void welcome() {
 		try {
@@ -75,7 +72,7 @@ public class Gui extends Application {
 
 	}
 
-	public void register() {
+	/*public void register() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Gui.class.getResource("GuiLogin.fxml"));
@@ -87,7 +84,7 @@ public class Gui extends Application {
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 
 	/**
 	 * Returns the main stage.

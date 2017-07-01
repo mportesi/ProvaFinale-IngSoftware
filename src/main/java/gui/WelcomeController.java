@@ -5,6 +5,7 @@ import java.nio.channels.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
@@ -58,7 +59,7 @@ public class WelcomeController {
 		String playerName = name.getText();
 		clientModel.setName(playerName);
 		try {
-			openNewScene("GuiFinal.fxml");
+			openNewScene();
 			serverStub.registerClient(rmiView, playerName);
 		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
@@ -69,26 +70,11 @@ public class WelcomeController {
 	@FXML
 	public void rmi(){
 		try {
-			/*client = new ClientRMIConnection(rmi_port, host);
-			clientModel = new ClientModel();
-
-			Registry registry = LocateRegistry.getRegistry(host, rmi_port);
-
-			ServerRMIConnectionViewRemote serverStub = (ServerRMIConnectionViewRemote) registry.lookup(NAME);
-
-
-			ClientRMIConnectionView rmiView = new ClientRMIConnectionView(clientModel);
-			
-			*/
 			client = new ClientRMIConnection(rmi_port, host);
 			client.startClient(false);
 			serverStub= client.getServerStub();
 			rmiView=client.getRmiView();
 			clientModel=client.getClientModel();
-			//openNewSceneTry("GuiLogin.fxml");
-			
-			
-			
 		} catch (AlreadyBoundException | NullPointerException | NotBoundException | IOException | ParseException | InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -96,32 +82,32 @@ public class WelcomeController {
 	}
 	
 	@FXML
-	public Parent openNewScene(String fxml){
+	public Parent openNewScene(){
 	        Parent page=null;
-	        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
 			try {
-				page = fxmlLoader.load();
+				FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("GuiFinal.fxml"));
+				page =fxmlLoader.load();
 				BoardController boardController=fxmlLoader.getController();
 				System.out.println("BC " + boardController);
 				System.out.println("CM " + clientModel);
 				boardController.setClient(clientModel);
-				boardController.setWelcomeController(this);
+				boardController.setServerStub(serverStub);
 				clientModel.setBoardController(boardController);
 			} catch (IOException e) {
 				e.printStackTrace();
+				return null;
 			}
 			rmi.getScene().setRoot(page);
 			return page;
 	}
 	
-	public void putRelative(Action action){
+	/*public void putRelative(Action action){
 		try {
 			serverStub.notifyObserver(action);
 		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	/*@FXML
 	public void openNewSceneTry(String fxml){
 		FXMLLoader fxmlLoader = new FXMLLoader();
