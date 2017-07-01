@@ -111,22 +111,32 @@ public class ClientModel implements Serializable{
 
 	public void setHarvestLeftArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getHarvestArea().setLeftRelativeOnHarvest(relative);
+		if(gui){
+			boardControllerGUI.setHarvestLeftArea(relative);
+		}
 	}
 
 
 	public void setProductionLeftArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getProductionArea().setLeftRelativeOnProduction(relative);
-		
+		if(gui){
+			boardControllerGUI.setProductionLeftArea(relative);
+		}
 	}
 	
 	public void setProductionRightArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getProductionArea().setRightRelativeOnProduction(relative);
-		
+		if(gui){
+			boardControllerGUI.setProductionLeftArea(relative);
+		}
 	}
 
 
 	public void setHarvestRightArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getHarvestArea().setRightRelativeOnHarvest(relative);
+		if(gui){
+			boardControllerGUI.setHarvestLeftArea(relative);
+		}
 		
 	}
 
@@ -144,7 +154,9 @@ public class ClientModel implements Serializable{
 		if(tower.getType().equals("venture")){
 			board.getVentureTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
-		
+		if(gui){
+			boardControllerGUI.setTower(tower, floor, player, relative);
+		}
 	}
 
 
@@ -153,6 +165,9 @@ public class ClientModel implements Serializable{
 			if(m.getType().equals(market.getType())){
 				m.setOccupied(player, relative, m);
 			}
+		}
+		if(gui){
+			boardControllerGUI.setMarket(market, player, relative);
 		}
 		
 	}
@@ -187,6 +202,9 @@ public class ClientModel implements Serializable{
 
 	public void setBoard(Board board) {
 		this.board=board;
+		if(gui){
+			boardControllerGUI.setBoard();
+		}
 		
 	}
 	
