@@ -88,8 +88,6 @@ public class WelcomeController {
 				FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("GuiFinal.fxml"));
 				page =fxmlLoader.load();
 				BoardController boardController=fxmlLoader.getController();
-				System.out.println("BC " + boardController);
-				System.out.println("CM " + clientModel);
 				boardController.setClient(clientModel);
 				boardController.setPlayer(clientModel.getPlayer());
 				boardController.setServerStub(serverStub);

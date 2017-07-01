@@ -15,7 +15,9 @@ public class ChangeColor implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if (client.getPlayer().getName().equals(player.getName())){
 		client.getPlayer().setColor(color);
+		}
 	}
 
 }
