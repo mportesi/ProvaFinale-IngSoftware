@@ -4,6 +4,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -54,6 +56,12 @@ public class BoardController {
 	private String bonus;
 	private boolean privilegeOpen;
 
+	@FXML
+	private TextArea nameFxml;
+	@FXML
+	private TextArea currentTurnOrderFxml;
+	@FXML
+	private TextArea colorFxml;
 	@FXML
 	private Button white;
 	@FXML
@@ -1294,7 +1302,10 @@ public class BoardController {
 		characterTower3.setImage(image14);
 		characterTower2.setImage(image15);
 		characterTower1.setImage(image16);
-
+		
+		//nameFxml.appendText("You are " + client.getPlayer().getName());
+		//colorFxml.appendText("Your color is " + client.getPlayer().getColor());
+		//currentTurnOrderFxml.appendText("The order is" + client.getCurrentTurnOrder());
 	};
 
 	public void quit() {

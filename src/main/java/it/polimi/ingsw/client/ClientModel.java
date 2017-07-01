@@ -281,6 +281,11 @@ public class ClientModel implements Serializable{
 		System.out.println(boardControllerGUI);
 	}
 
+
+	public String getCurrentTurnOrder() {
+		return currentTurnOrder.toString();
+	}
+
 	
 
 }
