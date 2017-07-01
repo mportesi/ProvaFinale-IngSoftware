@@ -1264,11 +1264,7 @@ public class BoardController {
 			if (relative != null) {
 				if (relative.getValue() >= 1) {
 					openPrivilegeCouncil();
-					while(waitPrivilege()==0){
-						Thread.sleep(20);
-					};
 					if(!privilegeOpen){
-						System.out.println("faccio la putRelative");
 					PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 							client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus,
 							client.getMatch());
@@ -1290,12 +1286,7 @@ public class BoardController {
 		}
 	}
 	
-	public int waitPrivilege(){
-		if(!privilegeOpen){
-			return 1;
-		}
-		else return 0;
-	}
+	
 	public void putRelative(Event event){
 		
 	}
@@ -1501,12 +1492,11 @@ public class BoardController {
 			stage.show();
 			PrivilegeController privilegeController = fxmlLoader.getController();
 			privilegeController.setBoardController(this);
-			while(privilegeOpen){
-				
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void setPrivilege(boolean open) {

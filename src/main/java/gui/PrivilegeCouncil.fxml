@@ -19,10 +19,10 @@
             <Font name="Blackadder ITC" size="32.0" />
          </font>
       </Label>
-      <Button fx:id="woodAndStone" layoutX="71.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#woodAndStonePrivilege" text="1 wood and 1 stone" />
-      <Button fx:id="servant" layoutX="305.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#servantPrivilege" prefHeight="25.0" prefWidth="115.0" text="2 servants" />
-      <Button fx:id="militaryPoint" layoutX="192.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="#militaryPointPrivilege" text="2 military points" />
-      <Button fx:id="faithPoint" layoutX="305.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#faithPointPrivilege" prefHeight="25.0" prefWidth="115.0" text="1 faith point" />
-      <Button fx:id="coin" layoutX="75.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#coinPrivilege" prefHeight="25.0" prefWidth="115.0" text="2 coins" />
+      <Button fx:id="woodAndStone" layoutX="71.0" layoutY="98.0" mnemonicParsing="false" onAction="#woodAndStonePrivilege" onMouseClicked="#woodAndStonePrivilege" text="1 wood and 1 stone" />
+      <Button fx:id="servant" layoutX="305.0" layoutY="192.0" mnemonicParsing="false" onAction="#servantPrivilege" onMouseClicked="#servantPrivilege" prefHeight="25.0" prefWidth="115.0" text="2 servants" />
+      <Button fx:id="militaryPoint" layoutX="192.0" layoutY="141.0" mnemonicParsing="false" onAction="#militaryPointPrivilege" onMouseClicked="#militaryPointPrivilege" text="2 military points" />
+      <Button fx:id="faithPoint" layoutX="305.0" layoutY="98.0" mnemonicParsing="false" onAction="#faithPointPrivilege" onMouseClicked="#faithPointPrivilege" prefHeight="25.0" prefWidth="115.0" text="1 faith point" />
+      <Button fx:id="coin" layoutX="75.0" layoutY="192.0" mnemonicParsing="false" onAction="#coinPrivilege" onMouseClicked="#coinPrivilege" prefHeight="25.0" prefWidth="115.0" text="2 coins" />
    </children>
 </AnchorPane>
