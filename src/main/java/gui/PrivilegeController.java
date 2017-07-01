@@ -19,6 +19,14 @@ public class PrivilegeController {
 	private Button servant;
 	private BoardController boardController;
 	
+	public boolean waitClick(){
+		if(coin.isPressed()||woodAndStone.isPressed() || faithPoint.isPressed() || militaryPoint.isPressed() ||servant.isPressed() ){
+			return true;
+		}
+		
+		else return false;
+	}
+	
 	@FXML
 	public void coinPrivilege(ActionEvent event){
 		choice= "coin";
