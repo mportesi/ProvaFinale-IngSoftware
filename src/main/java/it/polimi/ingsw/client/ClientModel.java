@@ -41,12 +41,11 @@ public class ClientModel implements Serializable {
 	private boolean gui;
 	private boolean cli;
 	private BoardController boardControllerGUI;
+	private Timer timer = new Timer();
 	
 	public ClientModel(ServerRMIConnectionViewRemote serverStub){
 		this.serverStub=serverStub;
 		this.gui=true;
-	private Timer timer = new Timer();
-
 	}
 
 	public void setCouncilPalace(Player player, Relative relative)
@@ -127,9 +126,6 @@ public class ClientModel implements Serializable {
 		}
 	}
 
-	public void setProductionLeftArea(Relative relative)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		board.getProductionArea().setLeftRelativeOnProduction(relative);
 
 	public void setProductionLeftArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getProductionArea().setLeftRelativeOnProduction(relative);
@@ -146,9 +142,7 @@ public class ClientModel implements Serializable {
 		}
 	}
 
-	public void setHarvestRightArea(Relative relative)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		board.getHarvestArea().setRightRelativeOnHarvest(relative);
+	
 
 	public void setHarvestRightArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getHarvestArea().setRightRelativeOnHarvest(relative);
@@ -215,9 +209,7 @@ public class ClientModel implements Serializable {
 		return board.getMarket(i);
 	}
 
-	public void setBoard(Board board) {
-		this.board = board;
-
+	
 
 	public void setBoard(Board board) {
 		this.board=board;
