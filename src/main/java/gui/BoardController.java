@@ -271,7 +271,8 @@ public class BoardController {
 							if (checkCardCost(client.getTerritoryTower(), 1, isPresentAnyone)) {
 								if (client.getTerritoryTower().getFloor(0).getCard().getGainPrivilegeCouncil()) {
 									openPrivilegeCouncil();
-
+									while (privilegeOpen) {
+									}
 									PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 											client.getPlayer(), client.getTerritoryTower(), 1, relative, bonus,
 											client.getMatch());
@@ -321,6 +322,8 @@ public class BoardController {
 							if (checkCardCost(client.getTerritoryTower(), 2, isPresentAnyone)) {
 								if (client.getTerritoryTower().getFloor(2).getCard().getGainPrivilegeCouncil()) {
 									openPrivilegeCouncil();
+									while (privilegeOpen) {
+									}
 									PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 											client.getPlayer(), client.getTerritoryTower(), 2, relative, bonus,
 											client.getMatch());
@@ -368,6 +371,8 @@ public class BoardController {
 							if (checkCardCost(client.getTerritoryTower(), 3, isPresentAnyone)) {
 								if (client.getTerritoryTower().getFloor(1).getCard().getGainPrivilegeCouncil()) {
 									openPrivilegeCouncil();
+									while (privilegeOpen) {
+									}
 									PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 											client.getPlayer(), client.getTerritoryTower(), 3, relative, bonus,
 											client.getMatch());
@@ -797,6 +802,8 @@ public class BoardController {
 							if (checkCardCost(client.getVentureTower(), 0, isPresentAnyone)) {
 								if (client.getVentureTower().getFloor(0).getCard().getGainPrivilegeCouncil()) {
 									openPrivilegeCouncil();
+									while (privilegeOpen) {
+									}
 									PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 											client.getPlayer(), client.getVentureTower(), 0, relative, bonus,
 											client.getMatch());
@@ -854,6 +861,8 @@ public class BoardController {
 							if (checkCardCost(client.getVentureTower(), 1, isPresentAnyone)) {
 								if (client.getVentureTower().getFloor(1).getCard().getGainPrivilegeCouncil()) {
 									openPrivilegeCouncil();
+									while (privilegeOpen) {
+									}
 									PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 											client.getPlayer(), client.getVentureTower(), 1, relative, bonus,
 											client.getMatch());
@@ -911,6 +920,8 @@ public class BoardController {
 							if (checkCardCost(client.getVentureTower(), 2, isPresentAnyone)) {
 								if (client.getVentureTower().getFloor(2).getCard().getGainPrivilegeCouncil()) {
 									openPrivilegeCouncil();
+									while (privilegeOpen) {
+									}
 									PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 											client.getPlayer(), client.getVentureTower(), 2, relative, bonus,
 											client.getMatch());
@@ -968,6 +979,8 @@ public class BoardController {
 							if (checkCardCost(client.getVentureTower(), 3, isPresentAnyone)) {
 								if (client.getVentureTower().getFloor(3).getCard().getGainPrivilegeCouncil()) {
 									openPrivilegeCouncil();
+									while (privilegeOpen) {
+									}
 									PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 											client.getPlayer(), client.getVentureTower(), 3, relative, bonus,
 											client.getMatch());
@@ -1016,7 +1029,9 @@ public class BoardController {
 		try {
 			if (relative != null) {
 				if (relative.getValue() >= 1) {
-					openPrivilegeCouncil();// todo
+					openPrivilegeCouncil();
+					while (privilegeOpen) {
+					}
 					PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 							client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus,
 							client.getMatch());

@@ -21,30 +21,35 @@ public class PrivilegeController {
 	public void coinPrivilege(){
 		choice= "coin";
 		boardController.setBonus(choice);
+		boardController.setPrivilege(false);
 	}
 	
 	@FXML
 	public void woodAndStonePrivilege(){
 		choice= "woodAndStone";
 		boardController.setBonus(choice);
+		boardController.setPrivilege(false);
 	}
 	
 	@FXML
 	public void militaryPointPrivilege(){
 		choice= "militaryPoint";
 		boardController.setBonus(choice);
+		boardController.setPrivilege(false);
 	}
 	
 	@FXML
 	public void faithPointPrivilege(){
 		choice= "faithPoint";
 		boardController.setBonus(choice);
+		boardController.setPrivilege(false);
 	}
 	
 	@FXML
 	public void servantPrivilege(){
 		choice= "servant";
 		boardController.setBonus(choice);
+		boardController.setPrivilege(false);
 	}
 
 	public String getChoice() {
