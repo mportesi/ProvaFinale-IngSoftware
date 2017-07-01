@@ -74,7 +74,32 @@ public class BoardController {
 	private int i =0;
 	private int j = 0;
 	private int k =0;
-
+	private ArrayList <ImageView> territoryCard;
+	private ArrayList <ImageView> buildingCard;
+	private ArrayList <ImageView> ventureCard;
+	private ArrayList <ImageView> characterCard;
+	private int territory = 0;
+	private int venture = 0;
+	private int character = 0;
+	private int building = 0;
+	private Image image1;
+	private Image image2;
+	private Image image3;
+	private Image image4;
+	private Image image5;
+	private Image image6;
+	private Image image7;
+	private Image image8;
+	private Image image9;
+	private Image image10;
+	private Image image11;
+	private Image image12;
+	private Image image13;
+	private Image image14;
+	private Image image15;
+	private Image image16;
+	
+	
 	@FXML
 	private ImageView councilPalace1;
 	
@@ -314,6 +339,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								territoryTower1.setImage(relativeImage);
+								territoryCard.get(territory).setImage(image4);
+								territory++;
 								this.relative = null;
 
 							} else {
@@ -365,6 +392,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								territoryTower2.setImage(relativeImage);
+								territoryCard.get(territory).setImage(image3);
+								territory++;
 								this.relative = null;
 
 							} else {
@@ -416,6 +445,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								territoryTower3.setImage(relativeImage);
+								territoryCard.get(territory).setImage(image2);
+								territory++;
 								this.relative = null;
 
 							} else {
@@ -465,6 +496,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								territoryTower4.setImage(relativeImage);
+								territoryCard.get(territory).setImage(image1);
+								territory++;
 								this.relative = null;
 
 							} else {
@@ -507,6 +540,8 @@ public class BoardController {
 										client.getBuildingTower(), 0, relative, client.getMatch());
 								serverStub.notifyObserver(putRelativeOnTower);
 								buildingTower1.setImage(relativeImage);
+								buildingCard.get(building).setImage(image8);
+								building++;
 								this.relative = null;
 							}
 
@@ -550,6 +585,8 @@ public class BoardController {
 										client.getBuildingTower(), 1, relative, client.getMatch());
 								serverStub.notifyObserver(putRelativeOnTower);
 								buildingTower2.setImage(relativeImage);
+								buildingCard.get(building).setImage(image7);
+								building++;
 								this.relative = null;
 							}
 
@@ -593,6 +630,8 @@ public class BoardController {
 										client.getBuildingTower(), 2, relative, client.getMatch());
 								serverStub.notifyObserver(putRelativeOnTower);
 								buildingTower3.setImage(relativeImage);
+								buildingCard.get(building).setImage(image6);
+								building++;
 								this.relative = null;
 							} else {
 								openMessage("NotEnoughtResourceMessage.fxml");
@@ -634,6 +673,8 @@ public class BoardController {
 										client.getBuildingTower(), 3, relative, client.getMatch());
 								serverStub.notifyObserver(putRelativeOnTower);
 								buildingTower4.setImage(relativeImage);
+								buildingCard.get(building).setImage(image5);
+								building++;
 								this.relative = null;
 							} else {
 								openMessage("NotEnoughtResourceMessage.fxml");
@@ -686,6 +727,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								characterTower1.setImage(relativeImage);
+								characterCard.get(character).setImage(image16);
+								character++;
 								this.relative = null;
 
 							} else {
@@ -739,6 +782,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								characterTower2.setImage(relativeImage);
+								characterCard.get(character).setImage(image15);
+								character++;
 								this.relative = null;
 
 							} else {
@@ -792,6 +837,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								characterTower3.setImage(relativeImage);
+								characterCard.get(character).setImage(image14);
+								character++;
 								this.relative = null;
 
 							} else {
@@ -845,6 +892,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								characterTower1.setImage(relativeImage);
+								characterCard.get(character).setImage(image13);
+								character++;
 								this.relative = null;
 
 							} else {
@@ -904,6 +953,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								ventureTower1.setImage(relativeImage);
+								ventureCard.get(venture).setImage(image12);
+								venture++;
 								this.relative = null;
 
 							} else {
@@ -963,6 +1014,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								ventureTower2.setImage(relativeImage);
+								ventureCard.get(venture).setImage(image11);
+								venture++;
 								this.relative = null;
 
 							} else {
@@ -1022,6 +1075,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								ventureTower3.setImage(relativeImage);
+								ventureCard.get(venture).setImage(image10);
+								venture++;
 								this.relative = null;
 
 							} else {
@@ -1081,6 +1136,8 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								ventureTower4.setImage(relativeImage);
+								ventureCard.get(venture).setImage(image9);
+								venture++;
 								this.relative = null;
 
 							} else {
@@ -1366,6 +1423,39 @@ public class BoardController {
 
 	@FXML
 	public void initializeBoard1() {
+		territoryCard = new ArrayList <ImageView>();
+		territoryCard.add(0, territory1);
+		territoryCard.add(1, territory2);
+		territoryCard.add(2, territory3);
+		territoryCard.add(3, territory4);
+		territoryCard.add(4, territory5);
+		territoryCard.add(5, territory6);
+		
+		buildingCard = new ArrayList <ImageView>();
+		buildingCard.add(0, building1);
+		buildingCard.add(1, building2);
+		buildingCard.add(2, building3);
+		buildingCard.add(3, building4);
+		buildingCard.add(4, building5);
+		buildingCard.add(5, building6);
+		
+		ventureCard = new ArrayList <ImageView>();
+		ventureCard.add(0, venture1);
+		ventureCard.add(1, venture2);
+		ventureCard.add(2, venture3);
+		ventureCard.add(3, venture4);
+		ventureCard.add(4, venture5);
+		ventureCard.add(5, venture6);
+		
+		characterCard = new ArrayList <ImageView>();
+		characterCard.add(0, character1);
+		characterCard.add(1, character2);
+		characterCard.add(2, character3);
+		characterCard.add(3, character4);
+		characterCard.add(4, character5);
+		characterCard.add(5, character6);
+		
+		
 		
 		harvestRight = new ArrayList <ImageView>();
 		harvestRight.add(0, harvestRight1);
@@ -1396,42 +1486,42 @@ public class BoardController {
 		String string;
 		string = client.getTerritoryTower().getFloor(3).getCard().getName();
 		System.out.println(string);
-		Image image1 = new Image("Cards/" + string + ".png");
+		image1 = new Image("Cards/" + string + ".png");
 		System.out.println(image1);
 		
 		string = client.getTerritoryTower().getFloor(2).getCard().getName();
-		Image image2 = new Image("Cards/" + string + ".png");
+		image2 = new Image("Cards/" + string + ".png");
 
 		string = client.getTerritoryTower().getFloor(1).getCard().getName();
-		Image image3 = new Image("Cards/" + string + ".png");
+		image3 = new Image("Cards/" + string + ".png");
 
 		string = client.getTerritoryTower().getFloor(0).getCard().getName();
-		Image image4 = new Image("Cards/" + string + ".png");
+		image4 = new Image("Cards/" + string + ".png");
 
 		string = client.getBuildingTower().getFloor(3).getCard().getName();
-		Image image5 = new Image("Cards/" + string + ".png");
+		image5 = new Image("Cards/" + string + ".png");
 		string = client.getBuildingTower().getFloor(2).getCard().getName();
-		Image image6 = new Image("Cards/" + string + ".png");
+		image6 = new Image("Cards/" + string + ".png");
 		string = client.getBuildingTower().getFloor(1).getCard().getName();
-		Image image7 = new Image("Cards/" + string + ".png");
+		image7 = new Image("Cards/" + string + ".png");
 		string = client.getBuildingTower().getFloor(0).getCard().getName();
-		Image image8 = new Image("Cards/" + string + ".png");
+		image8 = new Image("Cards/" + string + ".png");
 		string = client.getVentureTower().getFloor(3).getCard().getName();
-		Image image9 = new Image("Cards/" + string + ".png");
+		image9 = new Image("Cards/" + string + ".png");
 		string = client.getVentureTower().getFloor(2).getCard().getName();
-		Image image10 = new Image("Cards/" + string + ".png");
+		image10 = new Image("Cards/" + string + ".png");
 		string = client.getVentureTower().getFloor(1).getCard().getName();
-		Image image11 = new Image("Cards/" + string + ".png");
+		image11 = new Image("Cards/" + string + ".png");
 		string = client.getVentureTower().getFloor(0).getCard().getName();
-		Image image12 = new Image("Cards/" + string + ".png");
+		image12 = new Image("Cards/" + string + ".png");
 		string = client.getCharacterTower().getFloor(3).getCard().getName();
-		Image image13 = new Image("Cards/" + string + ".png");
+		image13 = new Image("Cards/" + string + ".png");
 		string = client.getCharacterTower().getFloor(2).getCard().getName();
-		Image image14 = new Image("Cards/" + string + ".png");
+		image14 = new Image("Cards/" + string + ".png");
 		string = client.getCharacterTower().getFloor(1).getCard().getName();
-		Image image15 = new Image("Cards/" + string + ".png");
+		image15 = new Image("Cards/" + string + ".png");
 		string = client.getCharacterTower().getFloor(0).getCard().getName();
-		Image image16 = new Image("Cards/" + string + ".png");
+		image16 = new Image("Cards/" + string + ".png");
 
 		territoryTower4.setImage(image1);
 		territoryTower3.setImage(image2);
