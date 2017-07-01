@@ -25,6 +25,7 @@ public class ChangeRound implements Change {
 	public void applyChange(ClientModel client) {
 		System.out.println("c :"+ client.getPlayer().getMatch() + "match: "+ match);
 		if(client.getPlayer().getMatch()==match){
+		
 		client.setRound(round);
 		client.setBoard(board);
 		client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());

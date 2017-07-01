@@ -1,7 +1,9 @@
 package it.polimi.ingsw.client;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -23,7 +25,7 @@ import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
-public class ClientModel implements Serializable{
+public class ClientModel implements Serializable {
 	private Player player;
 	private String name;
 	private volatile Player currentPlayer;
@@ -43,79 +45,91 @@ public class ClientModel implements Serializable{
 	public ClientModel(ServerRMIConnectionViewRemote serverStub){
 		this.serverStub=serverStub;
 		this.gui=true;
+	private Timer timer = new Timer();
+
 	}
 
-
-	public void setCouncilPalace(Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void setCouncilPalace(Player player, Relative relative)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getCouncilPalace().addPlayer(player, relative);
 		board.getCouncilPalace().getRelatives().add(relative);
 	}
 
-
 	public void setPeriod(int period) {
-		this.period=period;
+		this.period = period;
 	}
-
 
 	public void setCurrentPlayer(Player currentPlayer) {
-		this.currentPlayer=currentPlayer;
-		//chiamo cli in un thread
-		//scatta timer thread a null
-		JsonTimeOut jsonTimeOut=null;
-		try {
-			jsonTimeOut = new JsonTimeOut();
-		} catch (IOException | ParseException e1) {
-			e1.printStackTrace();
-		}
-		int timeOutAction = jsonTimeOut.getTimeOutAction();
-		Timer timer = new Timer();
-		CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
-		action = new Thread(() -> {
-			try{
-				/*if(currentPlayer.getName().equals(currentPlayer.getName())){
-				System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");*/
-				if(action!=null){
-				commandLineInterface.input();}
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-
-		});
-		action.start();
-		System.out.println("è partito");
-		timer.schedule(new TimerAction(serverStub) { public void run() {
-			System.out.println("It ran out of time!");
-			ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
-			action=null;
-			try {
-				serverStub.notifyObserver(shiftPlayer);
-			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-				e.printStackTrace();
-			}
-		}}, (long) (timeOutAction)*100000);
+		this.currentPlayer = currentPlayer;
 		
-	}
+		// chiamo cli in un thread
+		// scatta timer thread a null
+		if (!endGame && currentPlayer.getName().equals(player.getName())) {
+			JsonTimeOut jsonTimeOut = null;
+			try {
+				jsonTimeOut = new JsonTimeOut();
+			} catch (IOException | ParseException e1) {
+				e1.printStackTrace();
+			}
+			int timeOutAction = jsonTimeOut.getTimeOutAction();
+			timer = new Timer();
+			
+			action = new Thread(() -> {
+				try {
 
+					CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
+					
+						if (action != null) {
+							
+							commandLineInterface.input();
+						
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			});
+			action.start();
+			timer.schedule(new TimerAction(serverStub) {
+				public void run() {
+					System.out.println("It ran out of time!");
+					ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
+					
+
+					//action=null;
+					try {
+						serverStub.notifyObserver(shiftPlayer);
+						timer.cancel();
+						action.sleep(1000000000*10000000);
+					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}, (long) (timeOutAction - 150) * 300);
+		}
+
+	}
 
 	public void setRound(int round) {
-		this.round=round;
+		this.round = round;
 	}
-
 
 	public void setCurrentTurnOrder(ArrayList<Player> currentTurnOrder) {
-		this.currentTurnOrder=currentTurnOrder;
-		
+		this.currentTurnOrder = currentTurnOrder;
+
 	}
 
-
-	public void setHarvestLeftArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void setHarvestLeftArea(Relative relative)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getHarvestArea().setLeftRelativeOnHarvest(relative);
 		if(gui){
 			boardControllerGUI.setHarvestLeftArea(relative);
 		}
 	}
 
+	public void setProductionLeftArea(Relative relative)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		board.getProductionArea().setLeftRelativeOnProduction(relative);
 
 	public void setProductionLeftArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getProductionArea().setLeftRelativeOnProduction(relative);
@@ -123,14 +137,18 @@ public class ClientModel implements Serializable{
 			boardControllerGUI.setProductionLeftArea(relative);
 		}
 	}
-	
-	public void setProductionRightArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+
+	public void setProductionRightArea(Relative relative)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getProductionArea().setRightRelativeOnProduction(relative);
 		if(gui){
 			boardControllerGUI.setProductionLeftArea(relative);
 		}
 	}
 
+	public void setHarvestRightArea(Relative relative)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		board.getHarvestArea().setRightRelativeOnHarvest(relative);
 
 	public void setHarvestRightArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getHarvestArea().setRightRelativeOnHarvest(relative);
@@ -140,18 +158,18 @@ public class ClientModel implements Serializable{
 		
 	}
 
-
-	public void setTower(Tower tower, int floor, Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		if(tower.getType().equals("territory")){
+	public void setTower(Tower tower, int floor, Player player, Relative relative)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if (tower.getType().equals("territory")) {
 			board.getTerritoryTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
-		if(tower.getType().equals("building")){
+		if (tower.getType().equals("building")) {
 			board.getBuildingTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
-		if(tower.getType().equals("character")){
+		if (tower.getType().equals("character")) {
 			board.getCharacterTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
-		if(tower.getType().equals("venture")){
+		if (tower.getType().equals("venture")) {
 			board.getVentureTower().getFloor(floor).setPlayer(player, relative, tower, floor);
 		}
 		if(gui){
@@ -159,10 +177,10 @@ public class ClientModel implements Serializable{
 		}
 	}
 
-
-	public void setMarket(MarketBuilding market, Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		for(MarketBuilding m: board.getMarket()){
-			if(m.getType().equals(market.getType())){
+	public void setMarket(MarketBuilding market, Player player, Relative relative)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		for (MarketBuilding m : board.getMarket()) {
+			if (m.getType().equals(market.getType())) {
 				m.setOccupied(player, relative, m);
 			}
 		}
@@ -172,32 +190,33 @@ public class ClientModel implements Serializable{
 		
 	}
 
-
 	public Tower getTerritoryTower() {
 		return board.getTerritoryTower();
 	}
-
 
 	public Tower getBuildingTower() {
 		return board.getBuildingTower();
 	}
 
-
 	public Tower getCharacterTower() {
 		return board.getCharacterTower();
 	}
-	
+
 	public Tower getVentureTower() {
 		return board.getVentureTower();
 	}
 
-
-	public MarketBuilding getMarket(int i) {
-		
-		return board.getMarket(i);
+	public Timer getTimer(){
+		return timer;
 	}
 	
+	public MarketBuilding getMarket(int i) {
 
+		return board.getMarket(i);
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
 
 
 	public void setBoard(Board board) {
@@ -221,14 +240,13 @@ public class ClientModel implements Serializable{
 	}
 
 	public void setPlayer(Player player) {
-		this.player=player;
-		
+		this.player = player;
+
 	}
 
 	public Player getPlayer() {
 		return player;
 	}
-
 
 	public Player getCurrentPlayer() {
 		return currentPlayer;
@@ -242,21 +260,18 @@ public class ClientModel implements Serializable{
 		return name;
 	}
 
-
 	public void setEndGame() {
-		endGame=true;
+		endGame = true;
 	}
-
 
 	public boolean getEndGame() {
 		return endGame;
 	}
 
-
 	public void setQuit(boolean b) {
 		quit = b;
 	}
-	
+
 	public boolean getQuit() {
 		return quit;
 	}

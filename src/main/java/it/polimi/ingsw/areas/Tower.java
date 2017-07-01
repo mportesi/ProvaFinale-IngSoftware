@@ -36,6 +36,7 @@ public class Tower implements Serializable {
 	// To empty the towers at the end of the round and to recharge them with new
 	// cards
 	public void refreshTower(int period) {
+	
 		ArrayList<Card> deck = new ArrayList<Card>();
 		switch (period) {
 		case 1:
@@ -53,6 +54,7 @@ public class Tower implements Serializable {
 			}
 		}
 				for(int i=3; i>=0; i--){
+					System.out.println("la dim di deck è " + deck.size());
 					floors.get(i).currentCard = deck.remove(i);
 					floors.get(i).setFree();
 				}
