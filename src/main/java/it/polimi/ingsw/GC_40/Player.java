@@ -490,11 +490,36 @@ public class Player extends Observable<Change> implements Serializable {
 		hasOrangeRelative=true;
 		hasWhiteRelative=true;
 		hasNeutralRelative=true;
+		for (Relative r : activeRelatives){
+			if (!isPresent(blackRelative)){
 		activeRelatives.add(blackRelative);
+			}
+			if (!isPresent(neutralRelative)){
 		activeRelatives.add(neutralRelative);
+			}
+			if (!isPresent(orangeRelative)){
 		activeRelatives.add(orangeRelative);
+			}
+			if (!isPresent(whiteRelative)){
 		activeRelatives.add(whiteRelative);
+			}
 		
+	}
+	}
+
+
+
+	private boolean isPresent(Relative relative) {
+		for (Relative r : activeRelatives){
+			if (r == relative){
+				return true;
+			}
+		}
+			
+		return false;
+			
+	
+	
 	}
 
 

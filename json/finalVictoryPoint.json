@@ -1,0 +1,37 @@
+[{"type": "victoryPointForTerritory",
+   "victoryPointForOne":0,
+   "victoryPointForTwo":0,
+   "victoryPointForThree":1,
+   "victoryPointForFour":4,
+   "victoryPointForFive":10,
+   "victoryPointForSix":20
+  
+},
+
+{"type": "victoryPointForCharacter",
+   "victoryPointForOne":1,
+   "victoryPointForTwo":3,
+   "victoryPointForThree":6,
+   "victoryPointForFour":10,
+   "victoryPointForFive":15,
+   "victoryPointForSix":21
+  },
+{"type": "victoryPointForResource",
+   "victoryPointForOne":0,
+   "victoryPointForTwo":0,
+   "victoryPointForThree":0,
+   "victoryPointForFour":0,
+    "victoryPointForFive":1,
+    "victoryPointForSix":0
+  },
+  
+{
+  "type" : "finalVictoryPointForMilitary",
+  "victoryPointForOne":5,
+   "victoryPointForTwo":2,
+   "victoryPointForThree":0,
+   "victoryPointForFour":0,
+    "victoryPointForFive":0,
+    "victoryPointForSix":0
+}]
+  

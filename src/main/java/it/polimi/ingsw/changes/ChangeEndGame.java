@@ -19,7 +19,7 @@ public class ChangeEndGame implements Change {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(client.getPlayer().getMatch()==match){
 		client.setEndGame();
-		System.out.println("The game is finished! Bye bye");
+		System.out.println("The game is finished! Wait for the rank ");
 		}
 
 	}

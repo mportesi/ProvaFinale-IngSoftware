@@ -11,13 +11,14 @@ public class FinalVictoryPoint {
 	private int finalVictoryPointForFive;
 	private int finalVictoryPointForSix;
 	
-	public FinalVictoryPoint(int finalVictoryPointForOne, int finalVictoryPointForTwo, int finalVictoryPointForThree, int finalVictoryPointForFour, int finalVictoryPointForFive, int finalVictoryPointForSix){
+	public FinalVictoryPoint(String type, int finalVictoryPointForOne, int finalVictoryPointForTwo, int finalVictoryPointForThree, int finalVictoryPointForFour, int finalVictoryPointForFive, int finalVictoryPointForSix){
 		this.finalVictoryPointForOne = finalVictoryPointForOne;
 		this.finalVictoryPointForTwo = finalVictoryPointForTwo;
 		this.finalVictoryPointForThree = finalVictoryPointForThree;
 		this.finalVictoryPointForFour = finalVictoryPointForFour;
 		this.finalVictoryPointForFive = finalVictoryPointForFive;
 		this.finalVictoryPointForSix = finalVictoryPointForSix;
+		this.type = type;
 	}
 	
 	public String getType() {

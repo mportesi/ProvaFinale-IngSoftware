@@ -18,7 +18,6 @@ public class ShiftPlayer implements Action {
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		play.changeCurrentPlayer();
-
 	}
 
 	public int getMatch() {

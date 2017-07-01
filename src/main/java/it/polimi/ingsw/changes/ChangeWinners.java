@@ -16,13 +16,24 @@ public class ChangeWinners implements Change {
 	public void applyChange(ClientModel client) {
 		if(client.getPlayer().getMatch()==winners.get(0).getMatch()){
 		client.setEndGame();
+		for (Player p : winners){
+			rank(p);
+		}
 		System.out.println("The winners are " + printWinner());}
 
 	}
 	
+	private void rank(Player player) {
+		System.out.println("Player "+ player.getName() + ":\n" + "VictoryPoint: " + player.getVictoryPoint() + "\nMilitaryPoint: " + player.getMilitaryPoint());
+			
+		}
+		
+	
+
 	public ArrayList <String> printWinner(){
 		ArrayList <String> name = new ArrayList <String>();
 		for (Player p : winners){
+			
 			name.add(p.getName());
 		}
 		return name;

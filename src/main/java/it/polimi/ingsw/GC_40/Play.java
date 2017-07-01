@@ -59,10 +59,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private Dice orangeDice;
 	private Player currentPlayer;
 	private Board board;
-	private int period;
-	private int round;
+	private volatile int period = 0;
+	private volatile int round;
 	private ArrayList<Player> currentTurnOrder;
-	private int changeRound;
+	private volatile int changeRound;
 	private int match;
 	private boolean initializing;
 	
@@ -194,10 +194,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	}*/
 	}
 
-	public void changeCurrentPlayer()
+	public synchronized void changeCurrentPlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int i = 0;
-
+		System.out.println("The round is: " + changeRound);
 		while (currentTurnOrder.get(i) != currentPlayer && i<currentTurnOrder.size()-1) {
 			i++;
 		}
@@ -207,27 +207,30 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		} else {
 			currentPlayer = currentTurnOrder.get(i + 1);
 		}
-		System.out.println(changeRound);
-		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
-
-		this.notifyObserver(changePlayer);
+		
 		
 		
 
 		if (changeRound == 4) {
-			changeRound();
 			changeRound = 0;
+			
+			changeRound();
+			
 		}
+		
+		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
+
+		this.notifyObserver(changePlayer);
 	}
 
-	public void changeRound()
+	public synchronized void changeRound()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		if (round != 0) {
 			changeTurnOrder();
 		}
 		round += 1;
-
+		
 		// refresh tower( place new card and remove family member)
 		board.getTerritoryTower().refreshTower(period);
 		board.getBuildingTower().refreshTower(period);
@@ -255,30 +258,24 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		board.getWhiteDice().setValue();
 
 		for (Player p : players) {
+			
 			p.setFreeAllRelatives();
 			p.getBlackRelative().setValue(board.getBlackDice().getValue());
 			p.getWhiteRelative().setValue(board.getWhiteDice().getValue());
 			p.getOrangeRelative().setValue(board.getOrangeDice().getValue());
 		}
 		
-		System.out.println("match! :" + match);
 		ChangeRound changeRound = new ChangeRound(round, board, match);
 		this.notifyObserver(changeRound);
 		
-		if (round-1 == 2 || round-1 == 4 || round-1 == 6) {
-			if (period == 3) {
-				changePeriod();
-				return;
-			} else
-				changePeriod();
-			}
-		
-	}
+		if ((round-1) == 1 || (round-1) == 3 || (round-1) == 5) {
+			changePeriod();
+	}}
 
-	public void changePeriod()
+	public synchronized void changePeriod()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		period++;
-		System.out.println("il periodo è : " + period );
+		
 
 		if (period == 4) {
 			checkWinner();
@@ -321,6 +318,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 				switch (type) {
 				case "victoryPointForTerritory": {
 					int numberOfTerritoryCard = p.counter("territoryCard");
+					System.out.println("The player " + p + "has " + numberOfTerritoryCard +" territoryCard");
 					if (numberOfTerritoryCard >= 1) {
 						p.incrementVictoryPoint(f.getFinalVictoryPointForOne(), this);
 
@@ -350,6 +348,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 				case "victoryPointForCharacter": {
 					int numberOfCharacterCard = p.counter("characterCard");
+					System.out.println("The player " + p + "has " + numberOfCharacterCard +" characterCard");
 					if (numberOfCharacterCard >= 1) {
 						p.incrementVictoryPoint(f.getFinalVictoryPointForOne(), this);
 
@@ -379,6 +378,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 				case "victoryPointForResource": {
 					int numberOfResource = p.resourceCounter();
+					System.out.println("The player " + p + "has " + numberOfResource +" resources");
 					p.incrementVictoryPoint(f.getFinalVictoryPointForFive() * (numberOfResource / 5), this);
 					break;
 				}
@@ -406,8 +406,11 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public void checkWinner()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Sono nel checkWinner()");
+		ChangeEndGame changeEndGame = new ChangeEndGame(match);
+		notifyObserver(changeEndGame);
 		ArrayList<Player> winners = new ArrayList<Player>();
 		int max = 0;
+		giveFinalPoint();
 		for (Player p : currentTurnOrder) {
 			if (p.getVictoryPoint() > max) {
 				max = p.getVictoryPoint();
@@ -511,6 +514,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public void removePlayer(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		Player playerToRemove=null;
+		
 		for(int i=0; i<players.size(); i++){
 			if (players.get(i).getID().equals(player.getID())){
 				playerToRemove=players.get(i);

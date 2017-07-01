@@ -19,7 +19,7 @@ public class ChangeTurnOrder implements Change {
 	public void applyChange(ClientModel client) {
 		System.out.println("Client di " + client.getPlayer().getMatch() + "CurrentTurnOrder.get(0) " + currentTurnOrder.get(0).getMatch());
 		if(client.getPlayer().getMatch()==currentTurnOrder.get(0).getMatch()){
-		client.setCurrentTurnOrder(currentTurnOrder);
+		//client.setCurrentTurnOrder(currentTurnOrder);
 		System.out.println("The current turn order is: "+ printCurrentTurnOrder());}
 	}
 
