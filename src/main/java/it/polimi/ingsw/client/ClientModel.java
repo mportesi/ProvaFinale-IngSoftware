@@ -104,7 +104,7 @@ public class ClientModel implements Serializable {
 						e.printStackTrace();
 					}
 				}
-			}, (long) (timeOutAction - 150) * 300);
+			}, (long) (timeOutAction) * 1000);
 		}
 
 	}

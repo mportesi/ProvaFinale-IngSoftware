@@ -24,6 +24,8 @@ import java.util.List;
 import org.evosuite.shaded.antlr.debug.Event;
 import org.json.simple.parser.ParseException;
 
+import com.sun.javafx.tk.Toolkit;
+
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.actions.PutRelativeOnCouncilPalace;
 import it.polimi.ingsw.actions.PutRelativeOnHarvestArea;
@@ -47,6 +49,8 @@ import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 import it.polimi.ingsw.server.Server;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -62,7 +66,7 @@ public class BoardController {
 	private Image relativeImage;
 	private String bonus;
 	private String alternativeCost;
-	private boolean privilegeOpen;
+	private Boolean privilegeOpen;
 	private boolean alternativeCostBool;
 	private ArrayList <ImageView> councilPalace;
 	private ArrayList <ImageView> harvestRight;
@@ -1109,14 +1113,17 @@ public class BoardController {
 			if (relative != null) {
 				if (relative.getValue() >= 1) {
 					openPrivilegeCouncil();
-					while (privilegeOpen) {
-					}
+					while(waitPrivilege()==0){
+						Thread.sleep(20);
+					};
+					if(!privilegeOpen){
+						System.out.println("faccio la putRelative");
 					PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 							client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus,
 							client.getMatch());
 					serverStub.notifyObserver(putRelativeOnCouncilPalace);
 					councilPalace.get(i).setImage(relativeImage);
-					i++;
+					i++;}
 
 				} else {
 					openMessage("NotEnoughValueMessage.fxml");
@@ -1129,6 +1136,16 @@ public class BoardController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public int waitPrivilege(){
+		if(!privilegeOpen){
+			return 1;
+		}
+		else return 0;
+	}
+	public void putRelative(Event event){
+		
 	}
 
 	@FXML
@@ -1330,7 +1347,9 @@ public class BoardController {
 			stage.show();
 			PrivilegeController privilegeController = fxmlLoader.getController();
 			privilegeController.setBoardController(this);
-			// stage.onCloseRequestProperty().setValue();
+			while(privilegeOpen){
+				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1347,6 +1366,7 @@ public class BoardController {
 
 	@FXML
 	public void initializeBoard1() {
+		
 		harvestRight = new ArrayList <ImageView>();
 		harvestRight.add(0, harvestRight1);
 		harvestRight.add(1, harvestRight2);

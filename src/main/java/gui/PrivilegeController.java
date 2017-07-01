@@ -1,5 +1,7 @@
 package gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -18,35 +20,35 @@ public class PrivilegeController {
 	private BoardController boardController;
 	
 	@FXML
-	public void coinPrivilege(){
+	public void coinPrivilege(ActionEvent event){
 		choice= "coin";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
 	}
 	
 	@FXML
-	public void woodAndStonePrivilege(){
+	public void woodAndStonePrivilege(ActionEvent event){
 		choice= "woodAndStone";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
 	}
 	
 	@FXML
-	public void militaryPointPrivilege(){
+	public void militaryPointPrivilege(ActionEvent event){
 		choice= "militaryPoint";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
 	}
 	
 	@FXML
-	public void faithPointPrivilege(){
+	public void faithPointPrivilege(ActionEvent event){
 		choice= "faithPoint";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
 	}
 	
 	@FXML
-	public void servantPrivilege(){
+	public void servantPrivilege(ActionEvent event){
 		choice= "servant";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
