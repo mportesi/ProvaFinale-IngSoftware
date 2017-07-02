@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
@@ -43,9 +40,9 @@
             <Image url="@../Images/PLANCIA%20VIOLA.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="territoryTower3" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="150.0" onMouseClicked="#putRelativeOnTerritory3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower2" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="226.0" onMouseClicked="#putRelativeOnTerritory2" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower1" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="325.0" onMouseClicked="#putRelativeOnTerritory1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territoryTower3" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="150.0" onMouseClicked="#openPrivilegeCouncilForTerritory3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territoryTower2" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="237.0" onMouseClicked="#openPrivilegeCouncilForTerritory2" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territoryTower1" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="325.0" onMouseClicked="#openPrivilegeCouncilForTerritory1" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="characterTower4" fitHeight="76.0" fitWidth="51.0" layoutX="160.0" layoutY="66.0" onMouseClicked="#putRelativeOnCharacter4" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="characterTower3" fitHeight="76.0" fitWidth="51.0" layoutX="160.0" layoutY="150.0" onMouseClicked="#putRelativeOnCharacter3" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="characterTower1" fitHeight="76.0" fitWidth="51.0" layoutX="160.0" layoutY="325.0" onMouseClicked="#putRelativeOnCharacter1" pickOnBounds="true" preserveRatio="true" />
@@ -53,11 +50,11 @@
       <ImageView fx:id="buildingTower3" fitHeight="76.0" fitWidth="51.0" layoutX="257.0" layoutY="150.0" onMouseClicked="#putRelativeOnBuilding3" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="buildingTower2" fitHeight="76.0" fitWidth="51.0" layoutX="257.0" layoutY="237.0" onMouseClicked="#putRelativeOnBuilding2" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="buildingTower1" fitHeight="76.0" fitWidth="51.0" layoutX="257.0" layoutY="317.0" onMouseClicked="#putRelativeOnBuilding1" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="ventureTower4" fitHeight="76.0" fitWidth="51.0" layoutX="360.0" layoutY="66.0" onMouseClicked="#putRelativeOnVenture4" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="ventureTower3" fitHeight="76.0" fitWidth="51.0" layoutX="360.0" layoutY="150.0" onMouseClicked="#putRelativeOnVenture3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="territoryTower4" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="66.0" onMouseClicked="#putRelativeOnTerritory4" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="ventureTower2" fitHeight="76.0" fitWidth="51.0" layoutX="361.0" layoutY="237.0" onMouseClicked="#putRelativeOnVenture2" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="ventureTower1" fitHeight="76.0" fitWidth="51.0" layoutX="360.0" layoutY="317.0" onMouseClicked="#putRelativeOnVenture1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ventureTower4" fitHeight="76.0" fitWidth="51.0" layoutX="360.0" layoutY="66.0" onMouseClicked="#openPageForVenture4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ventureTower3" fitHeight="76.0" fitWidth="51.0" layoutX="360.0" layoutY="150.0" onMouseClicked="#openPageForVenture3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="territoryTower4" fitHeight="76.0" fitWidth="51.0" layoutX="64.0" layoutY="66.0" onMouseClicked="#openPrivilegeCouncilForTerritory4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ventureTower2" fitHeight="76.0" fitWidth="51.0" layoutX="361.0" layoutY="237.0" onMouseClicked="#openPageForVenture2" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ventureTower1" fitHeight="76.0" fitWidth="51.0" layoutX="360.0" layoutY="317.0" onMouseClicked="#openPageForVenture1" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="venture1" fitHeight="76.0" fitWidth="51.0" layoutX="632.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="venture2" fitHeight="76.0" fitWidth="51.0" layoutX="714.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="venture3" fitHeight="76.0" fitWidth="51.0" layoutX="785.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
@@ -88,7 +85,7 @@
       <ImageView fx:id="market1" fitHeight="31.0" fitWidth="28.0" layoutX="308.0" layoutY="573.0" onMouseClicked="#putRelativeOnMarket1" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="market2" fitHeight="31.0" fitWidth="28.0" layoutX="347.0" layoutY="573.0" onMouseClicked="#putRelativeOnMarket2" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="market3" fitHeight="31.0" fitWidth="28.0" layoutX="397.0" layoutY="589.0" onMouseClicked="#putRelativeOnMarket3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="market4" fitHeight="31.0" fitWidth="28.0" layoutX="425.0" layoutY="619.0" onMouseClicked="#putRelativeOnMarket4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="market4" fitHeight="31.0" fitWidth="28.0" layoutX="425.0" layoutY="619.0" onMouseClicked="#openPrivilegeCouncilForMarket4" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="294.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="346.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="31.0" fitWidth="28.0" layoutX="387.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
