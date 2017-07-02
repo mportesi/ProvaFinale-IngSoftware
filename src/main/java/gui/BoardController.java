@@ -69,9 +69,9 @@ public class BoardController {
 	private ArrayList<ImageView> councilPalace;
 	private ArrayList<ImageView> harvestRight;
 	private ArrayList<ImageView> productionRight;
-	private int i = 0;
-	private int j = 0;
-	private int k = 0;
+	private volatile int i = 0;
+	private volatile int j = 0;
+	private volatile int k = 0;
 	private ArrayList<ImageView> territoryCard;
 	private ArrayList<ImageView> buildingCard;
 	private ArrayList<ImageView> ventureCard;
@@ -1409,18 +1409,16 @@ public class BoardController {
 	}
 
 	@FXML
-	public void putRelativeOnHarvestRight() {
+	public void putRelativeOnHarvestRight() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException {
 		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		if (relative != null) {
 			PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(client.getPlayer(),
 					relative, client.getBoard().getHarvestArea(), "right", client.getMatch());
+			serverStub.notifyObserver(putRelativeOnHarvestArea);
 			harvestRight.get(j).setImage(relativeImage);
-			j++;
-			try {
-				serverStub.notifyObserver(putRelativeOnHarvestArea);
-			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-				e.printStackTrace();
-			}
+			
+				j++;
+			
 		} else {
 			try {
 				openMessage("ChooseTheRelativeMessage.fxml");
@@ -1468,18 +1466,18 @@ public class BoardController {
 	}
 
 	@FXML
-	public void putRelativeOnProductionRight() {
+	public void putRelativeOnProductionRight() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException {
 		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		if (relative != null) {
 			PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
 					client.getPlayer(), relative, client.getBoard().getProductionArea(), "right", client.getMatch());
+			serverStub.notifyObserver(putRelativeOnProductionArea);
 			productionRight.get(k).setImage(relativeImage);
-			k++;
-			try {
-				serverStub.notifyObserver(putRelativeOnProductionArea);
-			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-				e.printStackTrace();
-			}
+			
+		
+				
+				k++;
+				
 		} else {
 			try {
 				openMessage("ChooseTheRelativeMessage.fxml");
@@ -1644,7 +1642,7 @@ public class BoardController {
 							openMessage("AnotherRelativeInTowerMessage.fxml");
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
+						openMessage("NotEnoughValueMessage.fxml");
 						relative = null;
 					}
 				} else {
@@ -2634,13 +2632,112 @@ public class BoardController {
 		}
 	}
 
-	public void setProductionLeftArea(Relative relative2) {
-		// TODO Auto-generated method stub
+	public void setHarvestLeftArea(Relative relative2, Player player2) {
+		String relativeColor;
+		switch (relative2.getColor()) {
+		case ORANGE: {
+			relativeColor = "RelativeOrange";
+			break;
+		}
+		case WHITE: {
+			relativeColor = "RelativeWhite";
+			break;
+		}
+		case BLACK: {
+			relativeColor = "RelativeBlack";
+			break;
+		}
+		default: {
+			relativeColor = "RelativeNeutral";
+			break;
+		}
+
+		}
+		Image harvestLeftImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
+		
+				harvestLeft.setImage(harvestLeftImage);
+				
+	}
+	
+	public void setProductionRightArea(Relative relative2, Player player2){
+		String relativeColor;
+		switch (relative2.getColor()) {
+		case ORANGE: {
+			relativeColor = "RelativeOrange";
+			break;
+		}
+		case WHITE: {
+			relativeColor = "RelativeWhite";
+			break;
+		}
+		case BLACK: {
+			relativeColor = "RelativeBlack";
+			break;
+		}
+		default: {
+			relativeColor = "RelativeNeutral";
+			break;
+		}
+
+		}
+		Image productionRightImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
+		
+				productionRight.get(k).setImage(productionRightImage);
+				
 
 	}
+	
+	public void setHarvestRightArea(Relative relative2, Player player2){
+		String relativeColor;
+		switch (relative2.getColor()) {
+		case ORANGE: {
+			relativeColor = "RelativeOrange";
+			break;
+		}
+		case WHITE: {
+			relativeColor = "RelativeWhite";
+			break;
+		}
+		case BLACK: {
+			relativeColor = "RelativeBlack";
+			break;
+		}
+		default: {
+			relativeColor = "RelativeNeutral";
+			break;
+		}
 
-	public void setHarvestLeftArea(Relative relative2) {
-		// TODO Auto-generated method stub
+		}
+		Image harvestRightImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
+		
+				harvestRight.get(j).setImage(harvestRightImage);
+	}
+	
+	public void setProductionLeftArea(Relative relative2, Player player2) {
+		String relativeColor;
+		switch (relative2.getColor()) {
+		case ORANGE: {
+			relativeColor = "RelativeOrange";
+			break;
+		}
+		case WHITE: {
+			relativeColor = "RelativeWhite";
+			break;
+		}
+		case BLACK: {
+			relativeColor = "RelativeBlack";
+			break;
+		}
+		default: {
+			relativeColor = "RelativeNeutral";
+			break;
+		}
+
+		}
+		Image productionLeftImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
+		
+				productionLeft.setImage(productionLeftImage);
+				
 
 	}
 	
