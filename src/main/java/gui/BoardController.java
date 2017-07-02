@@ -63,6 +63,7 @@ public class BoardController {
 	private Player player;
 	private WelcomeController welcomeController;
 	private Gui gui;
+	private ArrayList <Player> currentTurnOrder;
 	private ServerRMIConnectionViewRemote serverStub;
 	private Image relativeImage;
 	private ArrayList<ImageView> councilPalace;
@@ -361,6 +362,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnTerritory1() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getTerritoryTower(), 0, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -369,6 +371,10 @@ public class BoardController {
 			territoryCard.get(territory).setImage(territoryImage1);
 			territory++;
 			this.relative = null;
+			}
+			else {
+				openMessage("NotYourTurn.fxml");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2382,5 +2388,11 @@ public class BoardController {
 	
 	public ClientModel getClient() {
 		return client;
+	}
+
+	public void giveCurrentTurnOrder(ArrayList <Player> currentTurnOrder) {
+		currentTurnOrder = new ArrayList<Player>();
+		this.currentTurnOrder = currentTurnOrder;
+		
 	}
 }
