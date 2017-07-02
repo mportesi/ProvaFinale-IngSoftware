@@ -20,7 +20,7 @@ public class ServantController {
 	private TextField servantToUse;
 	
 	
-	@FXML
+	/*@FXML
 	public void setValueWithServant() {
 		try{
 		String valueNew = servantToUse.getText();
@@ -54,6 +54,6 @@ public class ServantController {
 	public void setRelative(Relative relative) {
 		this.relative=relative;
 		
-	}
+	}*/
 
 }
