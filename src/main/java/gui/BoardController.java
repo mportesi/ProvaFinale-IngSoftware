@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -98,6 +99,16 @@ public class BoardController {
 	private Image image14;
 	private Image image15;
 	private Image image16;
+	
+	@FXML
+	private TextField coin;
+	@FXML
+	private TextField wood;
+	@FXML
+	private TextField stone;
+	@FXML
+	private TextField servant;
+	
 	
 	
 	@FXML
@@ -283,13 +294,18 @@ public class BoardController {
 
 	@FXML
 	private ImageView productionLeft;
+	
 
 	@FXML
-	private ImageView blackDice;
+	private TextArea servantToUse;
 	@FXML
-	private ImageView whiteDice;
+	private TextField valueWithServant;
 	@FXML
-	private ImageView orangeDice;
+	private TextField blackDice;
+	@FXML
+	private TextField whiteDice;
+	@FXML
+	private TextField orangeDice;
 	@FXML
 	private Button quit;
 
@@ -297,24 +313,57 @@ public class BoardController {
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite1.png");
+		try {
+			openMessage("HowManyServants.fxml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
+	@FXML
+	public void setValueWithServant() {
+		String valueNew = servantToUse.getText();
+		int value = Integer.parseInt(valueNew);
+		relative.setValueServant(value);
+		valueWithServant.setText(valueNew);
+		
+	}
+	
 	@FXML
 	public void chooseOrangeRelative() {
 		relative = client.getPlayer().getOrangeRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange1.png");
+		try {
+			openMessage("HowManyServants.fxml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@FXML
 	public void chooseBlackRelative() {
 		relative = client.getPlayer().getBlackRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack1.png");
+		try {
+			openMessage("HowManyServants.fxml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@FXML
 	public void chooseNeutralRelative() {
 		relative = client.getPlayer().getNeutralRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral1.png");
+		try {
+			openMessage("HowManyServants.fxml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@FXML
@@ -343,6 +392,7 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								territoryTower1.setImage(relativeImage);
+								setPlayer();
 								territoryCard.get(territory).setImage(image4);
 								territory++;
 								this.relative = null;
@@ -396,6 +446,7 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								territoryTower2.setImage(relativeImage);
+								setPlayer();
 								territoryCard.get(territory).setImage(image3);
 								territory++;
 								this.relative = null;
@@ -449,18 +500,19 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								territoryTower3.setImage(relativeImage);
+								setPlayer();
 								territoryCard.get(territory).setImage(image2);
 								territory++;
 								this.relative = null;
 
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("NotEnoughResourceMessage.fxml");
 							}
 						} else {
 							openMessage("AnotherRelativeInTowerMessage.fxml");
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
+						openMessage("NotEnoughValueMessage.fxml");
 						relative = null;
 					}
 				} else {
@@ -500,6 +552,7 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								territoryTower4.setImage(relativeImage);
+								setPlayer();
 								territoryCard.get(territory).setImage(image1);
 								territory++;
 								this.relative = null;
@@ -544,19 +597,20 @@ public class BoardController {
 										client.getBuildingTower(), 0, relative, client.getMatch());
 								serverStub.notifyObserver(putRelativeOnTower);
 								buildingTower1.setImage(relativeImage);
+								setPlayer();
 								buildingCard.get(building).setImage(image8);
 								building++;
 								this.relative = null;
 							}
 
 							else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("NotEnoughResourceMessage.fxml");
 							}
 						} else {
 							openMessage("AnotherRelativeInTowerMessage.fxml");
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
+						openMessage("NotEnoughValueMessage.fxml");
 						relative = null;
 					}
 				} else {
@@ -589,6 +643,7 @@ public class BoardController {
 										client.getBuildingTower(), 1, relative, client.getMatch());
 								serverStub.notifyObserver(putRelativeOnTower);
 								buildingTower2.setImage(relativeImage);
+								setPlayer();
 								buildingCard.get(building).setImage(image7);
 								building++;
 								this.relative = null;
@@ -634,6 +689,7 @@ public class BoardController {
 										client.getBuildingTower(), 2, relative, client.getMatch());
 								serverStub.notifyObserver(putRelativeOnTower);
 								buildingTower3.setImage(relativeImage);
+								setPlayer();
 								buildingCard.get(building).setImage(image6);
 								building++;
 								this.relative = null;
@@ -677,6 +733,7 @@ public class BoardController {
 										client.getBuildingTower(), 3, relative, client.getMatch());
 								serverStub.notifyObserver(putRelativeOnTower);
 								buildingTower4.setImage(relativeImage);
+								setPlayer();
 								buildingCard.get(building).setImage(image5);
 								building++;
 								this.relative = null;
@@ -731,6 +788,7 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								characterTower1.setImage(relativeImage);
+								setPlayer();
 								characterCard.get(character).setImage(image16);
 								character++;
 								this.relative = null;
@@ -786,6 +844,7 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								characterTower2.setImage(relativeImage);
+								setPlayer();
 								characterCard.get(character).setImage(image15);
 								character++;
 								this.relative = null;
@@ -841,6 +900,7 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								characterTower3.setImage(relativeImage);
+								setPlayer();
 								characterCard.get(character).setImage(image14);
 								character++;
 								this.relative = null;
@@ -896,6 +956,7 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								characterTower1.setImage(relativeImage);
+								setPlayer();
 								characterCard.get(character).setImage(image13);
 								character++;
 								this.relative = null;
@@ -957,6 +1018,7 @@ public class BoardController {
 									serverStub.notifyObserver(putRelativeOnTower);
 								}
 								ventureTower1.setImage(relativeImage);
+								setPlayer();
 								ventureCard.get(venture).setImage(image12);
 								venture++;
 								this.relative = null;
@@ -1004,6 +1066,11 @@ public class BoardController {
 											client.getPlayer(), client.getVentureTower(), 1, relative, bonus,
 											client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower2.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image11);
+									venture++;
+									this.relative = null;
 								} else if (client.getBoard().getVentureTower().getFloor(1).getCard()
 										.getAlternativeCost()) {
 									boolean military = false; // TODO
@@ -1012,15 +1079,22 @@ public class BoardController {
 											client.getPlayer(), client.getVentureTower(), 1, relative, military,
 											client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower2.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image11);
+									venture++;
+									this.relative = null;
 								} else {
 									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 											client.getVentureTower(), 1, relative, client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower2.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image11);
+									venture++;
+									this.relative = null;
 								}
-								ventureTower2.setImage(relativeImage);
-								ventureCard.get(venture).setImage(image11);
-								venture++;
-								this.relative = null;
+								
 
 							} else {
 								openMessage("NotEnoughtResourceMessage.fxml");
@@ -1065,6 +1139,10 @@ public class BoardController {
 											client.getPlayer(), client.getVentureTower(), 2, relative, bonus,
 											client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower3.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image10);
+									venture++;
 								} else if (client.getBoard().getVentureTower().getFloor(2).getCard()
 										.getAlternativeCost()) {
 									boolean military = false; // TODO
@@ -1073,14 +1151,20 @@ public class BoardController {
 											client.getPlayer(), client.getVentureTower(), 2, relative, military,
 											client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower3.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image10);
+									venture++;
 								} else {
 									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 											client.getVentureTower(), 2, relative, client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower3.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image10);
+									venture++;
 								}
-								ventureTower3.setImage(relativeImage);
-								ventureCard.get(venture).setImage(image10);
-								venture++;
+								
 								this.relative = null;
 
 							} else {
@@ -1126,6 +1210,10 @@ public class BoardController {
 											client.getPlayer(), client.getVentureTower(), 3, relative, bonus,
 											client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower4.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image9);
+									venture++;
 								} else if (client.getBoard().getVentureTower().getFloor(3).getCard()
 										.getAlternativeCost()) {
 									boolean military = false; // TODO
@@ -1134,14 +1222,20 @@ public class BoardController {
 											client.getPlayer(), client.getVentureTower(), 3, relative, military,
 											client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower4.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image9);
+									venture++;
 								} else {
 									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 											client.getVentureTower(), 3, relative, client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									ventureTower4.setImage(relativeImage);
+									setPlayer();
+									ventureCard.get(venture).setImage(image9);
+									venture++;
 								}
-								ventureTower4.setImage(relativeImage);
-								ventureCard.get(venture).setImage(image9);
-								venture++;
+								
 								this.relative = null;
 
 							} else {
@@ -1179,6 +1273,7 @@ public class BoardController {
 							client.getMatch());
 					serverStub.notifyObserver(putRelativeOnCouncilPalace);
 					councilPalace.get(i).setImage(relativeImage);
+					setPlayer();
 					i++;}
 
 				} else {
@@ -1226,6 +1321,8 @@ public class BoardController {
 							client.getMarket(1), client.getMatch());
 					serverStub.notifyObserver(putRelativeOnMarket);
 					market2.setImage(relativeImage);
+					setPlayer();
+
 				} else {
 					openMessage("NotEnoughValueMessage.fxml");
 					relative = null;
@@ -1423,6 +1520,17 @@ public class BoardController {
 
 	@FXML
 	public void initializeBoard1() {
+		setPlayer();
+		String value;
+		value = String.valueOf(client.getBoard().getWhiteDice().getValue());
+		whiteDice.setText(value);
+		
+		value = String.valueOf(client.getBoard().getOrangeDice().getValue());
+		orangeDice.setText(value);
+		
+		value = String.valueOf(client.getBoard().getBlackDice().getValue());
+		blackDice.setText(value);
+		
 		territoryCard = new ArrayList <ImageView>();
 		territoryCard.add(0, territory1);
 		territoryCard.add(1, territory2);
@@ -1699,6 +1807,19 @@ public class BoardController {
 		this.bonus = choice;
 	}
 
+	public void setPlayer(){
+		String value;
+		value = String.valueOf(client.getPlayer().getCoin());
+		coin.setText(value);
+		value = String.valueOf(client.getPlayer().getWood());
+		wood.setText(value);
+		value = String.valueOf(client.getPlayer().getStone());
+		stone.setText(value);
+		value = String.valueOf(client.getPlayer().getServant());
+		servant.setText(value);
+	}
+	
+	
 	public void setBoard() {
 		String string;
 		string = client.getTerritoryTower().getFloor(3).getCard().getName();
@@ -1778,7 +1899,7 @@ public class BoardController {
 		}
 
 		}
-		Image marketImage = new Image("Images/" + player2.getColor() + relativeColor + ".png");
+		Image marketImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
 		switch (market.getType()) {
 		case "1": {
 			market1.setImage(marketImage);
@@ -1820,7 +1941,7 @@ public class BoardController {
 		}
 
 		}
-		Image towerImage = new Image("Images/" + player2.getColor() + relativeColor + ".png");
+		Image towerImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
 		System.out.println(tower.getType());
 		switch (tower.getType()) {
 		case "territory": {
