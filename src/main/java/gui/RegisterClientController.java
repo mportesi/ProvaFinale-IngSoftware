@@ -40,11 +40,9 @@ public class RegisterClientController {
 	public void registerClient() throws InterruptedException {
 		playerName = name.getText();
 		client.setName(playerName);
-		System.out.println(playerName);
 		try {
 			openNewScene();
 			serverStub.registerClient(rmiView, playerName);
-			System.out.println("the name is" + client.getPlayer().getName());
 			
 		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
@@ -60,15 +58,14 @@ public class RegisterClientController {
 			page =fxmlLoader.load();
 			BoardController boardController=fxmlLoader.getController();
 			boardController.setClient(client);
-			System.out.println("the name is" + playerName);
 			boardController.setPlayer(client.getPlayer());
 			boardController.setServerStub(serverStub);
 			client.setBoardController(boardController);
-			System.out.println(boardController.getClient());
+			text.getScene().setRoot(page);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		name.getScene().setRoot(page);
+		
 	}
 
 	public void setClient(ClientModel clientModel) {
