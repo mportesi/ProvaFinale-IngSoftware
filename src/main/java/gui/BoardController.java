@@ -1648,9 +1648,6 @@ public class BoardController {
 		characterTower2.setImage(image15);
 		characterTower1.setImage(image16);
 		
-		nameFxml.setAccessibleText("Name: " + client.getPlayer().getName());
-		colorFxml.setAccessibleText("Color: " + client.getPlayer().getColor().toString());
-		
 	};
 
 	public void quit() {
@@ -2052,8 +2049,8 @@ public class BoardController {
 		
 	}
 
-	public void giveCurrentTurnOrder() {
-		currentTurnOrderFxml.setAccessibleText("The current order is " + client.getCurrentTurnOrder());
-		currentPlayerFxml.setAccessibleText("It's " + client.getCurrentPlayer().getName() + "'s turn.");
+	
+	public ClientModel getClient() {
+		return client;
 	}
 }

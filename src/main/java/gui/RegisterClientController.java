@@ -38,14 +38,18 @@ public class RegisterClientController {
 	
 	@FXML
 	public void registerClient() throws InterruptedException {
-		playerName = text.getText();
+		playerName = name.getText();
 		client.setName(playerName);
+		System.out.println(playerName);
 		try {
+			openNewScene();
 			serverStub.registerClient(rmiView, playerName);
+			System.out.println("the name is" + client.getPlayer().getName());
+			
 		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
 		} 
-		openNewScene();
+		
 	}
 
 	@FXML
@@ -56,9 +60,11 @@ public class RegisterClientController {
 			page =fxmlLoader.load();
 			BoardController boardController=fxmlLoader.getController();
 			boardController.setClient(client);
+			System.out.println("the name is" + playerName);
 			boardController.setPlayer(client.getPlayer());
 			boardController.setServerStub(serverStub);
 			client.setBoardController(boardController);
+			System.out.println(boardController.getClient());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

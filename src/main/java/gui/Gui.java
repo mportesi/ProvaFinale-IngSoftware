@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class Gui extends Application {
 
 	private Stage primaryStage;
-	private AnchorPane rootLayout;
+	private BorderPane rootLayout;
 	
 
 	@Override
@@ -23,7 +23,7 @@ public class Gui extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
-		//initRootLayout();
+		initRootLayout();
 		
 		welcome();
 	}
@@ -31,12 +31,12 @@ public class Gui extends Application {
 	/**
 	 * Initializes the root layout.
 	 */
-	/*public void initRootLayout() {
+	public void initRootLayout() {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Gui.class.getResource("RootLayout.fxml"));
-			rootLayout =  loader.load();
+			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
@@ -45,7 +45,7 @@ public class Gui extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 	/*public void showBoard() {
 		try {
@@ -67,10 +67,7 @@ public class Gui extends Application {
 		try {
 			FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Welcome.fxml"));
 			Parent page =fxmlLoader.load();
-			Scene scene= new Scene(page);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			primaryStage.setResizable(true);
+			rootLayout.setCenter(page);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -105,7 +102,7 @@ public class Gui extends Application {
 
 	}
 
-	public AnchorPane getRootLayout() {
+	public BorderPane getRootLayout() {
 		return rootLayout;
 	}
 }
