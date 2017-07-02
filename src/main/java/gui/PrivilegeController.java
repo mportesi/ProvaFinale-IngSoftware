@@ -20,50 +20,250 @@ public class PrivilegeController {
 	private Button servant;
 	private BoardController boardController;
 	private Stage stage;
-	
-	
+	private String type;
+
 	@FXML
-	public void coinPrivilege(){
-		choice= "coin";
-		boardController.setBonus(choice);
-		boardController.setPrivilege(false);
-		boardController.putRelativeOnCouncilPalace();
+	public void coinPrivilege() {
+		choice = "coin";
+		switch ("type") {
+		case "councilPalace": {
+			boardController.putRelativeOnCouncilPalace(choice);
+			break;
+		}
+		case "territory1": {
+			boardController.putRelativeOnTerritory1Privilege(choice);
+			break;
+		}
+		case "territory2": {
+			boardController.putRelativeOnTerritory2Privilege(choice);
+			break;
+		}
+		case "territory3": {
+			boardController.putRelativeOnTerritory3Privilege(choice);
+			break;
+		}
+		case "territory4": {
+			boardController.putRelativeOnTerritory4Privilege(choice);
+			break;
+		}
+		case "venture1": {
+			boardController.putRelativeOnVenture1Privilege(choice);
+			break;
+		}
+		case "venture2": {
+			boardController.putRelativeOnVenture2Privilege(choice);
+			break;
+		}
+		case "venture3": {
+			boardController.putRelativeOnVenture3Privilege(choice);
+			break;
+		}
+		case "venture4": {
+			boardController.putRelativeOnVenture4Privilege(choice);
+			break;
+		}
+		case "market4":{
+			boardController.putRelativeOnMarket4(choice);
+			break;
+		}
+		}
+
 		stage.close();
 	}
-	
+
 	@FXML
-	public void woodAndStonePrivilege(){
-		choice= "woodAndStone";
-		boardController.setBonus(choice);
-		boardController.setPrivilege(false);
-		boardController.putRelativeOnCouncilPalace();
+	public void woodAndStonePrivilege() {
+		choice = "woodAndStone";
+		switch ("type") {
+		case "councilPalace": {
+			boardController.putRelativeOnCouncilPalace(choice);
+			break;
+		}
+		case "territory1": {
+			boardController.putRelativeOnTerritory1Privilege(choice);
+			break;
+		}
+		case "territory2": {
+			boardController.putRelativeOnTerritory2Privilege(choice);
+			break;
+		}
+		case "territory3": {
+			boardController.putRelativeOnTerritory3Privilege(choice);
+			break;
+		}
+		case "territory4": {
+			boardController.putRelativeOnTerritory4Privilege(choice);
+			break;
+		}
+		case "venture1": {
+			boardController.putRelativeOnVenture1Privilege(choice);
+			break;
+		}
+		case "venture2": {
+			boardController.putRelativeOnVenture2Privilege(choice);
+			break;
+		}
+		case "venture3": {
+			boardController.putRelativeOnVenture3Privilege(choice);
+			break;
+		}
+		case "venture4": {
+			boardController.putRelativeOnVenture4Privilege(choice);
+			break;
+		}
+		case "market4":{
+			boardController.putRelativeOnMarket4(choice);
+			break;
+		}
+		}
+
 		stage.close();
 	}
-	
+
 	@FXML
-	public void militaryPointPrivilege(){
-		choice= "militaryPoint";
-		boardController.setBonus(choice);
-		boardController.setPrivilege(false);
-		boardController.putRelativeOnCouncilPalace();
+	public void militaryPointPrivilege() {
+		choice = "militaryPoint";
+		switch ("type") {
+		case "councilPalace": {
+			boardController.putRelativeOnCouncilPalace(choice);
+			break;
+		}
+		case "market4":{
+			boardController.putRelativeOnMarket4(choice);
+			break;
+		}
+		case "territory1": {
+			boardController.putRelativeOnTerritory1Privilege(choice);
+			break;
+		}
+		case "territory2": {
+			boardController.putRelativeOnTerritory2Privilege(choice);
+			break;
+		}
+		case "territory3": {
+			boardController.putRelativeOnTerritory3Privilege(choice);
+			break;
+		}
+		case "territory4": {
+			boardController.putRelativeOnTerritory4Privilege(choice);
+			break;
+		}
+		case "venture1": {
+			boardController.putRelativeOnVenture1Privilege(choice);
+			break;
+		}
+		case "venture2": {
+			boardController.putRelativeOnVenture2Privilege(choice);
+			break;
+		}
+		case "venture3": {
+			boardController.putRelativeOnVenture3Privilege(choice);
+			break;
+		}
+		case "venture4": {
+			boardController.putRelativeOnVenture4Privilege(choice);
+			break;
+		}
+		}
+
 		stage.close();
 	}
-	
+
 	@FXML
-	public void faithPointPrivilege(){
-		choice= "faithPoint";
-		boardController.setBonus(choice);
-		boardController.setPrivilege(false);
-		boardController.putRelativeOnCouncilPalace();
+	public void faithPointPrivilege() {
+		choice = "faithPoint";
+		switch ("type") {
+		case "councilPalace": {
+			boardController.putRelativeOnCouncilPalace(choice);
+			break;
+		}
+		case "market4":{
+			boardController.putRelativeOnMarket4(choice);
+			break;
+		}
+		case "territory1": {
+			boardController.putRelativeOnTerritory1Privilege(choice);
+			break;
+		}
+		case "territory2": {
+			boardController.putRelativeOnTerritory2Privilege(choice);
+			break;
+		}
+		case "territory3": {
+			boardController.putRelativeOnTerritory3Privilege(choice);
+			break;
+		}
+		case "territory4": {
+			boardController.putRelativeOnTerritory4Privilege(choice);
+			break;
+		}
+		case "venture1": {
+			boardController.putRelativeOnVenture1Privilege(choice);
+			break;
+		}
+		case "venture2": {
+			boardController.putRelativeOnVenture2Privilege(choice);
+			break;
+		}
+		case "venture3": {
+			boardController.putRelativeOnVenture3Privilege(choice);
+			break;
+		}
+		case "venture4": {
+			boardController.putRelativeOnVenture4Privilege(choice);
+			break;
+		}
+		}
+
 		stage.close();
 	}
-	
+
 	@FXML
-	public void servantPrivilege(){
-		choice= "servant";
-		boardController.setBonus(choice);
-		boardController.setPrivilege(false);
-		boardController.putRelativeOnCouncilPalace();
+	public void servantPrivilege() {
+		choice = "servant";
+		switch ("type") {
+		case "councilPalace": {
+			boardController.putRelativeOnCouncilPalace(choice);
+			break;
+		}
+		case "market4":{
+			boardController.putRelativeOnMarket4(choice);
+			break;
+		}
+		case "territory1": {
+			boardController.putRelativeOnTerritory1Privilege(choice);
+			break;
+		}
+		case "territory2": {
+			boardController.putRelativeOnTerritory2Privilege(choice);
+			break;
+		}
+		case "territory3": {
+			boardController.putRelativeOnTerritory3Privilege(choice);
+			break;
+		}
+		case "territory4": {
+			boardController.putRelativeOnTerritory4Privilege(choice);
+			break;
+		}
+		case "venture1": {
+			boardController.putRelativeOnVenture1Privilege(choice);
+			break;
+		}
+		case "venture2": {
+			boardController.putRelativeOnVenture2Privilege(choice);
+			break;
+		}
+		case "venture3": {
+			boardController.putRelativeOnVenture3Privilege(choice);
+			break;
+		}
+		case "venture4": {
+			boardController.putRelativeOnVenture4Privilege(choice);
+			break;
+		}
+		}
+
 		stage.close();
 	}
 
@@ -72,17 +272,15 @@ public class PrivilegeController {
 	}
 
 	public void setBoardController(BoardController boardController) {
-		this.boardController=boardController;
-	}
-
-	public void setPrivilege(boolean b) {
-		this.boardController.setPrivilege(b);
+		this.boardController = boardController;
 	}
 
 	public void setStage(Stage stage) {
-		this.stage=stage;
+		this.stage = stage;
 	}
-	
-	
+
+	public void setType(String string) {
+		this.type = string;
+	}
 
 }
