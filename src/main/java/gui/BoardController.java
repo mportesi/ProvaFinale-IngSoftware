@@ -307,7 +307,7 @@ public class BoardController {
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite1.png");
-		try {
+		/*try {
 			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -315,7 +315,7 @@ public class BoardController {
 
 	}
 
-	@FXML
+	/*@FXML
 	public void openServant(Relative relative){
 		try{
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HowManyServants.fxml"));
@@ -339,12 +339,16 @@ public class BoardController {
 		
 		valueWithServant.setText(relative.getValue() + value);
 	}
-
+*/
+	@FXML
+	public void setValueWithServant(){
+		
+	}
 	@FXML
 	public void chooseOrangeRelative() {
 		this.relative = client.getPlayer().getOrangeRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange1.png");
-		try {
+		/*try {
 			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -357,7 +361,7 @@ public class BoardController {
 		relative = client.getPlayer().getBlackRelative();
 		System.out.println("The relative: "+ relative);
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack1.png");
-		try {
+		/*try {
 			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -370,7 +374,7 @@ public class BoardController {
 		relative = client.getPlayer().getNeutralRelative();
 		
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral1.png");
-		try {
+		/*try {
 			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
