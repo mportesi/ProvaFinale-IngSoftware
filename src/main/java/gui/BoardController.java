@@ -319,6 +319,8 @@ public class BoardController {
 	@FXML
 	public void setValueWithServant() {
 		
+		//
+		
 		String valueNew = valueWithServant.getText();
 		int value = Integer.parseInt(valueNew);
 		System.out.println(value);
@@ -1470,6 +1472,7 @@ public class BoardController {
 	@FXML
 	public void openPrivilegeCouncil() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (relative.getValue() >= 1) {
 					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PrivilegeCouncil.fxml"));
@@ -1489,13 +1492,18 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	@FXML
 	public void openPrivilegeCouncilForMarket4(){
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (relative.getValue() >= client.getMarket(3).getCost()) {
 					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PrivilegeCouncil.fxml"));
@@ -1515,7 +1523,10 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} else{
+			openMessage("NotYorTurn.fxml");
+		}}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1523,6 +1534,7 @@ public class BoardController {
 	@FXML
 	public void openPrivilegeCouncilForTerritory1() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			boolean isPresentAnyone = false;
 			if (relative != null) {
 				if (client.getTerritoryTower().getFloor(0).isFree()) {
@@ -1563,7 +1575,9 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 		}
-
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (
 
 		Exception e) {
@@ -1575,6 +1589,7 @@ public class BoardController {
 	@FXML
 	public void openPrivilegeCouncilForTerritory2() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			boolean isPresentAnyone = false;
 			if (relative != null) {
 				if (client.getTerritoryTower().getFloor(1).isFree()) {
@@ -1615,6 +1630,9 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 
 		catch (
 
@@ -1627,6 +1645,7 @@ public class BoardController {
 	@FXML
 	public void openPrivilegeCouncilForTerritory3() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			boolean isPresentAnyone = false;
 			if (relative != null) {
 				if (client.getTerritoryTower().getFloor(2).isFree()) {
@@ -1667,6 +1686,9 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 
 		catch (
 
@@ -1679,6 +1701,7 @@ public class BoardController {
 	@FXML
 	public void openPrivilegeCouncilForTerritory4() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			boolean isPresentAnyone = false;
 			if (relative != null) {
 				if (client.getTerritoryTower().getFloor(3).isFree()) {
@@ -1719,7 +1742,9 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 		}
-
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (
 
 		Exception e) {
@@ -1731,6 +1756,7 @@ public class BoardController {
 	@FXML
 	public void openPageForVenture1() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			boolean isPresentAnyone = false;
 			if (relative != null) {
 				if (client.getVentureTower().getFloor(0).isFree()) {
@@ -1783,6 +1809,9 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -1797,6 +1826,7 @@ public class BoardController {
 	@FXML
 	public void openPageForVenture2() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			boolean isPresentAnyone = false;
 			if (relative != null) {
 				if (client.getVentureTower().getFloor(1).isFree()) {
@@ -1849,7 +1879,9 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 		}
-
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (
 
 		Exception e) {
@@ -1861,6 +1893,7 @@ public class BoardController {
 	@FXML
 	public void openPageForVenture3() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			boolean isPresentAnyone = false;
 			if (relative != null) {
 				if (client.getVentureTower().getFloor(2).isFree()) {
@@ -1913,6 +1946,9 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 
 		catch (
 
@@ -1925,6 +1961,7 @@ public class BoardController {
 	@FXML
 	public void openPageForVenture4() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			boolean isPresentAnyone = false;
 			if (relative != null) {
 				if (client.getVentureTower().getFloor(3).isFree()) {
@@ -1977,6 +2014,10 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 			}
 		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
+
 
 		catch (
 
