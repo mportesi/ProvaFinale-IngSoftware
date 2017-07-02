@@ -63,6 +63,7 @@ public class BoardController {
 	private Player player;
 	private WelcomeController welcomeController;
 	private Gui gui;
+	private ArrayList <Player> currentTurnOrder;
 	private ServerRMIConnectionViewRemote serverStub;
 	private Image relativeImage;
 	private ArrayList<ImageView> councilPalace;
@@ -299,6 +300,8 @@ public class BoardController {
 	private TextField orangeDice;
 	@FXML
 	private Button quit;
+	@FXML
+	private Button ok;
 
 	@FXML
 	public void chooseWhiteRelative() {
@@ -308,7 +311,7 @@ public class BoardController {
 			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} */
 
 	}
 
@@ -339,43 +342,46 @@ public class BoardController {
 
 	@FXML
 	public void chooseOrangeRelative() {
-		relative = client.getPlayer().getOrangeRelative();
+		this.relative = client.getPlayer().getOrangeRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange1.png");
 		try {
 			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+*/
 	}
 
 	@FXML
 	public void chooseBlackRelative() {
 		relative = client.getPlayer().getBlackRelative();
+		System.out.println("The relative: "+ relative);
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack1.png");
 		try {
 			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} */
 
 	}
 
 	@FXML
 	public void chooseNeutralRelative() {
 		relative = client.getPlayer().getNeutralRelative();
+		
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral1.png");
 		try {
 			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} */
 
 	}
 
 	@FXML
 	public void putRelativeOnTerritory1() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getTerritoryTower(), 0, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -384,6 +390,10 @@ public class BoardController {
 			territoryCard.get(territory).setImage(territoryImage1);
 			territory++;
 			this.relative = null;
+			}
+			else {
+				openMessage("NotYorTurn.fxml");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -393,6 +403,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnTerritory2() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getTerritoryTower(), 1, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -401,15 +412,22 @@ public class BoardController {
 			territoryCard.get(territory).setImage(territoryImage2);
 			territory++;
 			this.relative = null;
+			}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 	@FXML
 	public void putRelativeOnTerritory3() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getTerritoryTower(), 2, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -418,6 +436,10 @@ public class BoardController {
 			territoryCard.get(territory).setImage(territoryImage3);
 			territory++;
 			this.relative = null;
+			}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -427,6 +449,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnTerritory4() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getTerritoryTower(), 3, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -435,6 +458,10 @@ public class BoardController {
 			territoryCard.get(territory).setImage(territoryImage4);
 			territory++;
 			this.relative = null;
+			}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -443,6 +470,7 @@ public class BoardController {
 	
 	public void putRelativeOnTerritory1Privilege(String bonus) {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 					client.getTerritoryTower(), 0, relative, bonus, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -451,6 +479,10 @@ public class BoardController {
 			territoryCard.get(territory).setImage(territoryImage1);
 			territory++;
 			this.relative = null;
+			}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -458,6 +490,7 @@ public class BoardController {
 	
 	public void putRelativeOnTerritory2Privilege(String bonus) {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 					client.getTerritoryTower(), 1, relative, bonus, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -466,12 +499,17 @@ public class BoardController {
 			territoryCard.get(territory).setImage(territoryImage2);
 			territory++;
 			this.relative = null;
+			}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void putRelativeOnTerritory3Privilege(String bonus) {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 					client.getTerritoryTower(), 2, relative, bonus, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -480,12 +518,18 @@ public class BoardController {
 			territoryCard.get(territory).setImage(territoryImage3);
 			territory++;
 			this.relative = null;
+			}
+		
+		else{
+			openMessage("NotYorTurn.fxml");
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void putRelativeOnTerritory4Privilege(String bonus) {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 					client.getTerritoryTower(), 3, relative, bonus, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -493,7 +537,11 @@ public class BoardController {
 			setPlayer();
 			territoryCard.get(territory).setImage(territoryImage4);
 			territory++;
-			this.relative = null;
+			this.relative = null;}
+
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -503,6 +551,7 @@ public class BoardController {
 	public void putRelativeOnBuilding1() {
 		boolean isPresentAnyone = false;
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (client.getBuildingTower().getFloor(0).isFree()) {
 					if (relative.getValue() >= client.getBuildingTower().getFloor(0).getCost()) {
@@ -540,7 +589,13 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+			
+		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+			catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -549,6 +604,7 @@ public class BoardController {
 	public void putRelativeOnBuilding2() {
 		boolean isPresentAnyone = false;
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (client.getBuildingTower().getFloor(1).isFree()) {
 					if (relative.getValue() >= client.getBuildingTower().getFloor(1).getCost()) {
@@ -586,7 +642,11 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -595,6 +655,7 @@ public class BoardController {
 	public void putRelativeOnBuilding3() {
 		boolean isPresentAnyone = false;
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (client.getBuildingTower().getFloor(2).isFree()) {
 					if (relative.getValue() >= client.getBuildingTower().getFloor(2).getCost()) {
@@ -630,7 +691,12 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -639,6 +705,7 @@ public class BoardController {
 	public void putRelativeOnBuilding4() {
 		boolean isPresentAnyone = false;
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (client.getBuildingTower().getFloor(3).isFree()) {
 					if (relative.getValue() >= client.getBuildingTower().getFloor(3).getCost()) {
@@ -674,7 +741,12 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -683,6 +755,7 @@ public class BoardController {
 	public void putRelativeOnCharacter1() {
 		boolean isPresentAnyone = false;
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (client.getCharacterTower().getFloor(0).isFree()) {
 					if (relative.getValue() >= client.getCharacterTower().getFloor(0).getCost()) {
@@ -730,7 +803,12 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -739,6 +817,7 @@ public class BoardController {
 	public void putRelativeOnCharacter2() {
 		boolean isPresentAnyone = false;
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (client.getCharacterTower().getFloor(1).isFree()) {
 					if (relative.getValue() >= client.getCharacterTower().getFloor(1).getCost()) {
@@ -775,7 +854,7 @@ public class BoardController {
 							openMessage("AnotherRelativeInTowerMessage.fxml");
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
+						openMessage("NotEnoughValueMessage.fxml");
 						relative = null;
 					}
 				} else {
@@ -786,7 +865,12 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -795,6 +879,7 @@ public class BoardController {
 	public void putRelativeOnCharacter3() {
 		boolean isPresentAnyone = false;
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (client.getCharacterTower().getFloor(2).isFree()) {
 					if (relative.getValue() >= client.getCharacterTower().getFloor(2).getCost()) {
@@ -842,7 +927,12 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -851,6 +941,7 @@ public class BoardController {
 	public void putRelativeOnCharacter4() {
 		boolean isPresentAnyone = false;
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (client.getCharacterTower().getFloor(3).isFree()) {
 					if (relative.getValue() >= client.getCharacterTower().getFloor(3).getCost()) {
@@ -898,7 +989,11 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -906,6 +1001,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnVenture1() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getVentureTower(), 0, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -914,7 +1010,13 @@ public class BoardController {
 		ventureCard.get(venture).setImage(ventureImage1);
 		venture++;
 		this.relative = null;
-		} catch (Exception e) {
+		} 
+		
+		else{
+			openMessage("NotYorTurn.fxml");
+		}
+	}
+	catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -922,6 +1024,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnVenture2() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getVentureTower(), 1, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -930,7 +1033,13 @@ public class BoardController {
 			ventureCard.get(venture).setImage(ventureImage2);
 			venture++;
 			this.relative = null;
-		} catch (Exception e) {
+		} 
+
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+			catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -938,6 +1047,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnVenture3() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getVentureTower(), 2, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -945,7 +1055,12 @@ public class BoardController {
 			setPlayer();
 			ventureCard.get(venture).setImage(ventureImage3);
 			venture++;
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -953,6 +1068,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnVenture4() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 					client.getVentureTower(), 3, relative, client.getMatch());
 			serverStub.notifyObserver(putRelativeOnTower);
@@ -960,13 +1076,19 @@ public class BoardController {
 			setPlayer();
 			ventureCard.get(venture).setImage(ventureImage4);
 			venture++;
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void putRelativeOnVenture1Privilege(String bonus) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 				client.getPlayer(), client.getVentureTower(), 0, relative, bonus,
 				client.getMatch());
@@ -975,6 +1097,10 @@ public class BoardController {
 		setPlayer();
 		ventureCard.get(venture).setImage(ventureImage1);
 		venture++;}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
+		
 		catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -982,6 +1108,7 @@ public class BoardController {
 	
 	public void putRelativeOnVenture2Privilege(String bonus) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 				client.getPlayer(), client.getVentureTower(), 1, relative, bonus,
 				client.getMatch());
@@ -990,6 +1117,9 @@ public class BoardController {
 		setPlayer();
 		ventureCard.get(venture).setImage(ventureImage2);
 		venture++;}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -997,6 +1127,7 @@ public class BoardController {
 	
 	public void putRelativeOnVenture3Privilege(String bonus) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 				client.getPlayer(), client.getVentureTower(), 2, relative, bonus,
 				client.getMatch());
@@ -1005,6 +1136,9 @@ public class BoardController {
 		setPlayer();
 		ventureCard.get(venture).setImage(ventureImage3);
 		venture++;}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -1012,6 +1146,7 @@ public class BoardController {
 	
 	public void putRelativeOnVenture4Privilege(String bonus) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
 				client.getPlayer(), client.getVentureTower(), 3, relative, bonus,
 				client.getMatch());
@@ -1020,6 +1155,9 @@ public class BoardController {
 		setPlayer();
 		ventureCard.get(venture).setImage(ventureImage4);
 		venture++;}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -1027,6 +1165,7 @@ public class BoardController {
 	
 	public void putRelativeOnVenture1Alternative(boolean alternativeCost) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(
 				client.getPlayer(), client.getVentureTower(), 0, relative, alternativeCost,
 				client.getMatch());
@@ -1035,6 +1174,9 @@ public class BoardController {
 		setPlayer();
 		ventureCard.get(venture).setImage(ventureImage1);
 		venture++;}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1042,6 +1184,7 @@ public class BoardController {
 	
 	public void putRelativeOnVenture2Alternative(boolean alternativeCost) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(
 				client.getPlayer(), client.getVentureTower(), 1, relative, alternativeCost,
 				client.getMatch());
@@ -1050,6 +1193,9 @@ public class BoardController {
 		setPlayer();
 		ventureCard.get(venture).setImage(ventureImage2);
 		venture++;}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1057,6 +1203,7 @@ public class BoardController {
 	
 	public void putRelativeOnVenture3Alternative(boolean alternativeCost) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(
 				client.getPlayer(), client.getVentureTower(), 2, relative, alternativeCost,
 				client.getMatch());
@@ -1065,6 +1212,9 @@ public class BoardController {
 		setPlayer();
 		ventureCard.get(venture).setImage(ventureImage3);
 		venture++;}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1072,6 +1222,7 @@ public class BoardController {
 	
 	public void putRelativeOnVenture4Alternative(boolean alternativeCost) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(
 				client.getPlayer(), client.getVentureTower(), 3, relative, alternativeCost,
 				client.getMatch());
@@ -1080,6 +1231,9 @@ public class BoardController {
 		setPlayer();
 		ventureCard.get(venture).setImage(ventureImage4);
 		venture++;}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1088,6 +1242,7 @@ public class BoardController {
 
 	public void putRelativeOnCouncilPalace(String bonus) {
 		try{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 						PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 								client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus,
 								client.getMatch());
@@ -1098,7 +1253,10 @@ public class BoardController {
 						i++;
 
 		
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1106,6 +1264,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnMarket1() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (relative.getValue() >= client.getMarket(0).getCost()) {
 					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
@@ -1120,7 +1279,11 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1128,6 +1291,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnMarket2() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (relative.getValue() >= client.getMarket(1).getCost()) {
 					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
@@ -1144,7 +1308,10 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1152,6 +1319,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnMarket3() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (relative.getValue() >= client.getMarket(2).getCost()) {
 					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
@@ -1166,7 +1334,10 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} else{
+			openMessage("NotYorTurn.fxml");
+		}}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1174,12 +1345,17 @@ public class BoardController {
 	
 	public void putRelativeOnMarket4(String bonus) {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 					PutRelativeOnMarketPrivilege putRelativeOnMarket = new PutRelativeOnMarketPrivilege(
 							client.getPlayer(), relative, client.getMarket(3), bonus, client.getMatch());
 					serverStub.notifyObserver(putRelativeOnMarket);
 					market4.setImage(relativeImage);
 				
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1187,6 +1363,7 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnHarvestLeft() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (relative.getValue() >= client.getBoard().getHarvestArea().getValueOfLeftArea()) {
 					if (client.getBoard().getHarvestArea().getLeftRelative() == null) {
@@ -1208,13 +1385,18 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		} 
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	public void putRelativeOnHarvestRight() {
+		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		if (relative != null) {
 			PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(client.getPlayer(),
 					relative, client.getBoard().getHarvestArea(), "right", client.getMatch());
@@ -1228,15 +1410,20 @@ public class BoardController {
 		} else {
 			try {
 				openMessage("ChooseTheRelativeMessage.fxml");
-			} catch (Exception e) {
+			} 
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
+		else{
+			openMessage("NotYorTurn.fxml");
+		}}
 
 	@FXML
 	public void putRelativeOnProductionLeft() {
 		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 			if (relative != null) {
 				if (relative.getValue() >= client.getBoard().getProductionArea().getValueOfLeftArea()) {
 					if (client.getBoard().getProductionArea().getLeftRelative() == null) {
@@ -1257,13 +1444,18 @@ public class BoardController {
 				openMessage("ChooseTheRelativeMessage.fxml");
 
 			}
-		} catch (Exception e) {
+		}
+			else{
+				openMessage("NotYorTurn.fxml");
+			}}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	public void putRelativeOnProductionRight() {
+		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
 		if (relative != null) {
 			PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
 					client.getPlayer(), relative, client.getBoard().getProductionArea(), "right", client.getMatch());
@@ -1282,6 +1474,10 @@ public class BoardController {
 			}
 		}
 	}
+
+		else{
+			openMessage("NotYorTurn.fxml");
+		}}
 
 	@FXML
 	public void openPrivilegeCouncil() {
@@ -1649,13 +1845,13 @@ public class BoardController {
 									putRelativeOnVenture2();
 								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("NotEnoughResourceMessage.fxml");
 							}
 						} else {
 							openMessage("AnotherRelativeInTowerMessage.fxml");
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
+						openMessage("NotEnoughValueMessage.fxml");
 						relative = null;
 					}
 				} else {
@@ -1713,7 +1909,7 @@ public class BoardController {
 									putRelativeOnVenture3();
 								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("NotEnoughResourceMessage.fxml");
 							}
 						} else {
 							openMessage("AnotherRelativeInTowerMessage.fxml");
@@ -1777,13 +1973,13 @@ public class BoardController {
 									putRelativeOnVenture4();
 								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("NotEnoughResourceMessage.fxml");
 							}
 						} else {
 							openMessage("AnotherRelativeInTowerMessage.fxml");
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
+						openMessage("NotEnoughValueMessage.fxml");
 						relative = null;
 					}
 				} else {
@@ -2398,5 +2594,11 @@ public class BoardController {
 	
 	public ClientModel getClient() {
 		return client;
+	}
+
+	public void giveCurrentTurnOrder(ArrayList <Player> currentTurnOrder) {
+		currentTurnOrder = new ArrayList<Player>();
+		this.currentTurnOrder = currentTurnOrder;
+		
 	}
 }
