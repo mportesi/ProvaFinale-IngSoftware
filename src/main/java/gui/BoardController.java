@@ -288,8 +288,7 @@ public class BoardController {
 	@FXML
 	private ImageView productionLeft;
 
-	@FXML
-	private TextArea servantToUse;
+	
 	@FXML
 	private TextField valueWithServant;
 	@FXML
@@ -306,7 +305,7 @@ public class BoardController {
 		relative = client.getPlayer().getWhiteRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite1.png");
 		try {
-			openMessage("HowManyServants.fxml");
+			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -314,12 +313,28 @@ public class BoardController {
 	}
 
 	@FXML
-	public void setValueWithServant() {
-		String valueNew = servantToUse.getText();
-		int value = Integer.parseInt(valueNew);
-		relative.setValueServant(value);
-		valueWithServant.setText(valueNew);
-
+	public void openServant(Relative relative){
+		try{
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HowManyServants.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
+		ServantController servantController = fxmlLoader.getController();
+		servantController.setBoardController(this);
+		servantController.setStage(stage);
+		servantController.setRelative(relative);
+		servantController.setClientModel(client);
+		servantController.setServerRMIConnectionViewRemote(serverStub);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setValueWithServant(Relative relative, String value){
+		
+		valueWithServant.setText(relative.getValue() + value);
 	}
 
 	@FXML
@@ -327,7 +342,7 @@ public class BoardController {
 		relative = client.getPlayer().getOrangeRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange1.png");
 		try {
-			openMessage("HowManyServants.fxml");
+			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -339,7 +354,7 @@ public class BoardController {
 		relative = client.getPlayer().getBlackRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack1.png");
 		try {
-			openMessage("HowManyServants.fxml");
+			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -351,7 +366,7 @@ public class BoardController {
 		relative = client.getPlayer().getNeutralRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral1.png");
 		try {
-			openMessage("HowManyServants.fxml");
+			openServant(relative);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1078,6 +1093,7 @@ public class BoardController {
 								client.getMatch());
 						serverStub.notifyObserver(putRelativeOnCouncilPalace);
 						councilPalace.get(i).setImage(relativeImage);
+						System.out.println("faccio put council");
 						setPlayer();
 						i++;
 

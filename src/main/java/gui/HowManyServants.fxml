@@ -2,11 +2,22 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ServantController">
    <children>
-      <Label layoutX="70.0" layoutY="23.0" prefHeight="35.0" prefWidth="456.0" text="How many servants do you want to use?" />
-      <TextArea fx:id="servantToUse" layoutX="342.0" layoutY="19.0" onKeyPressed="#setValueWithServant" prefHeight="35.0" prefWidth="8.0" />
+      <ImageView fitHeight="94.0" fitWidth="597.0">
+         <image>
+            <Image url="@../Images/background.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="40.0" layoutY="23.0" prefHeight="41.0" prefWidth="520.0" text="How many servants do you want to use?" textFill="#6b3521">
+         <font>
+            <Font name="Blackadder ITC" size="28.0" />
+         </font></Label>
+      <TextArea fx:id="servantToUse" layoutX="439.0" layoutY="33.0" onKeyPressed="#setValueWithServant" prefHeight="35.0" prefWidth="8.0" />
    </children>
 </AnchorPane>
