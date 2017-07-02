@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class PrivilegeController {
 	private String choice;
@@ -18,48 +19,52 @@ public class PrivilegeController {
 	@FXML
 	private Button servant;
 	private BoardController boardController;
+	private Stage stage;
 	
-	public boolean waitClick(){
-		if(coin.isPressed()||woodAndStone.isPressed() || faithPoint.isPressed() || militaryPoint.isPressed() ||servant.isPressed() ){
-			return true;
-		}
-		
-		else return false;
-	}
 	
 	@FXML
-	public void coinPrivilege(ActionEvent event){
+	public void coinPrivilege(){
 		choice= "coin";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
+		boardController.putRelativeOnCouncilPalace();
+		stage.close();
 	}
 	
 	@FXML
-	public void woodAndStonePrivilege(ActionEvent event){
+	public void woodAndStonePrivilege(){
 		choice= "woodAndStone";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
+		boardController.putRelativeOnCouncilPalace();
+		stage.close();
 	}
 	
 	@FXML
-	public void militaryPointPrivilege(ActionEvent event){
+	public void militaryPointPrivilege(){
 		choice= "militaryPoint";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
+		boardController.putRelativeOnCouncilPalace();
+		stage.close();
 	}
 	
 	@FXML
-	public void faithPointPrivilege(ActionEvent event){
+	public void faithPointPrivilege(){
 		choice= "faithPoint";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
+		boardController.putRelativeOnCouncilPalace();
+		stage.close();
 	}
 	
 	@FXML
-	public void servantPrivilege(ActionEvent event){
+	public void servantPrivilege(){
 		choice= "servant";
 		boardController.setBonus(choice);
 		boardController.setPrivilege(false);
+		boardController.putRelativeOnCouncilPalace();
+		stage.close();
 	}
 
 	public String getChoice() {
@@ -72,6 +77,10 @@ public class PrivilegeController {
 
 	public void setPrivilege(boolean b) {
 		this.boardController.setPrivilege(b);
+	}
+
+	public void setStage(Stage stage) {
+		this.stage=stage;
 	}
 	
 	

@@ -66,7 +66,7 @@ public class BoardController {
 	private Image relativeImage;
 	private String bonus;
 	private String alternativeCost;
-	private Boolean privilegeOpen;
+	private boolean privilegeOpen;
 	private boolean alternativeCostBool;
 	private ArrayList <ImageView> councilPalace;
 	private ArrayList <ImageView> harvestRight;
@@ -115,7 +115,9 @@ public class BoardController {
 	@FXML
 	private ImageView councilPalace5;
 	
-
+	@FXML
+	private Button councilPalaceButton;
+	
 	@FXML
 	private ImageView productionRight1;
 	
@@ -167,11 +169,13 @@ public class BoardController {
 	private ImageView councilPalace12;
 	
 	@FXML
-	private TextArea nameFxml;
+	private Label nameFxml;
 	@FXML
-	private TextArea currentTurnOrderFxml;
+	private Label currentTurnOrderFxml;
 	@FXML
-	private TextArea colorFxml;
+	private Label colorFxml;
+	@FXML
+	private Label currentPlayerFxml;
 	@FXML
 	private Button white;
 	@FXML
@@ -1169,7 +1173,6 @@ public class BoardController {
 			
 			if (relative != null) {
 				if (relative.getValue() >= 1) {
-					openPrivilegeCouncil();
 					if(!privilegeOpen){
 					PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 							client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus,
@@ -1191,10 +1194,6 @@ public class BoardController {
 		}
 	}
 	
-	
-	public void putRelative(Event event){
-		
-	}
 
 	@FXML
 	public void putRelativeOnMarket1() {
@@ -1388,6 +1387,8 @@ public class BoardController {
 	public void openPrivilegeCouncil() {
 		setPrivilege(true);
 		try {
+			if (relative != null) {
+				if (relative.getValue() >= 1) {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PrivilegeCouncil.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
@@ -1395,6 +1396,15 @@ public class BoardController {
 			stage.show();
 			PrivilegeController privilegeController = fxmlLoader.getController();
 			privilegeController.setBoardController(this);
+			privilegeController.setStage(stage);
+			}
+				else {
+					openMessage("NotEnoughValueMessage.fxml");
+					relative = null;
+				}
+			} else {
+				openMessage("ChooseTheRelativeMessage.fxml");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1530,9 +1540,9 @@ public class BoardController {
 		characterTower2.setImage(image15);
 		characterTower1.setImage(image16);
 		
-		//nameFxml.appendText("You are " + client.getPlayer().getName());
-		//colorFxml.appendText("Your color is " + client.getPlayer().getColor());
-		//currentTurnOrderFxml.appendText("The order is" + client.getCurrentTurnOrder());
+		nameFxml.setAccessibleText("Name: " + client.getPlayer().getName());
+		colorFxml.setAccessibleText("Color: " + client.getPlayer().getColor().toString());
+		
 	};
 
 	public void quit() {
@@ -1550,7 +1560,7 @@ public class BoardController {
 		this.serverStub = serverStub;
 	}
 
-	public void openMessage(String string) throws Exception {
+	public void openMessage(String string) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(string));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -1561,6 +1571,7 @@ public class BoardController {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public boolean checkCardCost(Tower tower, int i, boolean isPresentAnyone)
 			throws FileNotFoundException, IOException, ParseException {
@@ -1918,5 +1929,10 @@ public class BoardController {
 	public void setAlternativeCostBool(boolean b) {
 		this.alternativeCostBool = b;
 		
+	}
+
+	public void giveCurrentTurnOrder() {
+		currentTurnOrderFxml.setAccessibleText("The current order is " + client.getCurrentTurnOrder());
+		currentPlayerFxml.setAccessibleText("It's " + client.getCurrentPlayer().getName() + "'s turn.");
 	}
 }

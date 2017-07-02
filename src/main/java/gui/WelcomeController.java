@@ -38,12 +38,11 @@ public class WelcomeController {
 	private Button socket;
 	@FXML
 	private Button rmi;
-	@FXML
+	/*@FXML
 	private TextField name;
 	@FXML
-	private Label text;
-	@FXML
-	private Button button;
+	private Label text;*/
+	
 	
 	private Gui gui;
 	private ClientRMIConnection client;
@@ -54,7 +53,7 @@ public class WelcomeController {
 	private ClientRMIConnectionView rmiView;
 	private ServerRMIConnectionViewRemote serverStub;
 	
-	@FXML
+	/*@FXML
 	public void registerClient() throws InterruptedException {
 		String playerName = name.getText();
 		clientModel.setName(playerName);
@@ -65,7 +64,7 @@ public class WelcomeController {
 			e.printStackTrace();
 		} 
 		
-	}
+	}*/
 	
 	@FXML
 	public void rmi(){
@@ -75,6 +74,7 @@ public class WelcomeController {
 			serverStub= client.getServerStub();
 			rmiView=client.getRmiView();
 			clientModel=client.getClientModel();
+			openNewScene();
 		} catch (AlreadyBoundException | NullPointerException | NotBoundException | IOException | ParseException | InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -85,15 +85,17 @@ public class WelcomeController {
 	public Parent openNewScene(){
 	        Parent page=null;
 			try {
-				FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("GuiFinal.fxml"));
+				FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("GuiLogin.fxml"));
 				page =fxmlLoader.load();
-				BoardController boardController=fxmlLoader.getController();
-				System.out.println("BC " + boardController);
-				System.out.println("CM " + clientModel);
+				RegisterClientController registerClientController=fxmlLoader.getController();
+				registerClientController.setClient(clientModel);
+				registerClientController.setClientRMIConnectionView(rmiView);
+				registerClientController.setServerStub(serverStub);
+				/*BoardController boardController=fxmlLoader.getController();
 				boardController.setClient(clientModel);
 				boardController.setPlayer(clientModel.getPlayer());
 				boardController.setServerStub(serverStub);
-				clientModel.setBoardController(boardController);
+				clientModel.setBoardController(boardController);*/
 			} catch (IOException e) {
 				e.printStackTrace();
 				return null;

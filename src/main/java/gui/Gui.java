@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +14,7 @@ import javafx.stage.Stage;
 public class Gui extends Application {
 
 	private Stage primaryStage;
-	private BorderPane rootLayout;
+	private AnchorPane rootLayout;
 	
 
 	@Override
@@ -22,7 +23,7 @@ public class Gui extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Lorenzo Il Magnifico");
 
-		initRootLayout();
+		//initRootLayout();
 		
 		welcome();
 	}
@@ -30,12 +31,12 @@ public class Gui extends Application {
 	/**
 	 * Initializes the root layout.
 	 */
-	public void initRootLayout() {
+	/*public void initRootLayout() {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Gui.class.getResource("RootLayout.fxml"));
-			rootLayout = (BorderPane) loader.load();
+			rootLayout =  loader.load();
 
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
@@ -44,7 +45,7 @@ public class Gui extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/*public void showBoard() {
 		try {
@@ -64,10 +65,12 @@ public class Gui extends Application {
 	
 	public void welcome() {
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Gui.class.getResource("Welcome.fxml"));
-			AnchorPane welcome = (AnchorPane) loader.load();
-			rootLayout.setCenter(welcome);
+			FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Welcome.fxml"));
+			Parent page =fxmlLoader.load();
+			Scene scene= new Scene(page);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			primaryStage.setResizable(true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -102,7 +105,7 @@ public class Gui extends Application {
 
 	}
 
-	public BorderPane getRootLayout() {
+	public AnchorPane getRootLayout() {
 		return rootLayout;
 	}
 }

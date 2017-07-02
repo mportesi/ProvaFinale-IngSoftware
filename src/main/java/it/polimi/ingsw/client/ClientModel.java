@@ -115,6 +115,9 @@ public class ClientModel implements Serializable {
 
 	public void setCurrentTurnOrder(ArrayList<Player> currentTurnOrder) {
 		this.currentTurnOrder = currentTurnOrder;
+		if(gui){
+			boardControllerGUI.giveCurrentTurnOrder();
+		}
 
 	}
 

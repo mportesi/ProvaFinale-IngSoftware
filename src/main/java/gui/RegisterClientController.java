@@ -27,8 +27,6 @@ public class RegisterClientController {
 	private ImageView background;
 	@FXML
 	private Label text;
-	@FXML
-	private Button button;
 	
 	@FXML
 	private WelcomeController welcomeController;
@@ -47,18 +45,24 @@ public class RegisterClientController {
 		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
 		} 
-		openNewScene("GuiFinal.fxml");
+		openNewScene();
 	}
 
 	@FXML
-	public void openNewScene(String fxml) {
+	public void openNewScene() {
 		Parent page = null;
 		try {
-			page = FXMLLoader.load(WelcomeController.class.getResource(fxml), null, new JavaFXBuilderFactory());
+			FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("GuiFinal.fxml"));
+			page =fxmlLoader.load();
+			BoardController boardController=fxmlLoader.getController();
+			boardController.setClient(client);
+			boardController.setPlayer(client.getPlayer());
+			boardController.setServerStub(serverStub);
+			client.setBoardController(boardController);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		button.getScene().setRoot(page);
+		name.getScene().setRoot(page);
 	}
 
 	public void setClient(ClientModel clientModel) {
