@@ -123,7 +123,7 @@ public class PrivilegeController {
 	@FXML
 	public void militaryPointPrivilege() {
 		choice = "militaryPoint";
-		switch ("type") {
+		switch (type) {
 		case "councilPalace": {
 			boardController.putRelativeOnCouncilPalace(choice);
 			break;
