@@ -104,6 +104,8 @@ public class BoardController {
 	private TextField stone;
 	@FXML
 	private TextField servant;
+	@FXML
+	private TextField name;
 	
 	@FXML
 	private ImageView current1;
@@ -2349,6 +2351,8 @@ public class BoardController {
 	
 
 	public void setPlayer() {
+		name.setText(client.getPlayer().getName());
+	//	nameFxml= new Label(client.getPlayer().getName());;
 		String value;
 		value = String.valueOf(client.getPlayer().getCoin());
 		coin.setText(value);
