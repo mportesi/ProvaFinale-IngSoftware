@@ -35,6 +35,7 @@ import it.polimi.ingsw.actions.PutRelativeOnMarketPrivilege;
 import it.polimi.ingsw.actions.PutRelativeOnProductionArea;
 import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.actions.PutRelativeOnTowerAltCost;
+import it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCard;
 import it.polimi.ingsw.actions.PutRelativeOnTowerPrivilege;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.MarketBuilding;
@@ -63,7 +64,7 @@ public class BoardController {
 	private Player player;
 	private WelcomeController welcomeController;
 	private Gui gui;
-	private ArrayList <Player> currentTurnOrder;
+	private ArrayList<Player> currentTurnOrder;
 	private ServerRMIConnectionViewRemote serverStub;
 	private Image relativeImage;
 	private ArrayList<ImageView> councilPalace;
@@ -96,6 +97,8 @@ public class BoardController {
 	private Image ventureImage2;
 	private Image ventureImage3;
 	private Image ventureImage4;
+	private boolean doubleCard;
+	private int firstTower;
 	@FXML
 	private TextField coin;
 	@FXML
@@ -289,7 +292,6 @@ public class BoardController {
 	@FXML
 	private ImageView productionLeft;
 
-	
 	@FXML
 	private TextField valueWithServant;
 	@FXML
@@ -307,44 +309,36 @@ public class BoardController {
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite1.png");
-		/*try {
-			openServant(relative);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} */
+		/*
+		 * try { openServant(relative); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
 
 	}
 
-	/*@FXML
-	public void openServant(Relative relative){
-		try{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HowManyServants.fxml"));
-		Parent root1 = (Parent) fxmlLoader.load();
-		Stage stage = new Stage();
-		stage.setScene(new Scene(root1));
-		stage.show();
-		ServantController servantController = fxmlLoader.getController();
-		servantController.setBoardController(this);
-		servantController.setStage(stage);
-		servantController.setRelative(relative);
-		servantController.setClientModel(client);
-		servantController.setServerRMIConnectionViewRemote(serverStub);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void setValueWithServant(Relative relative, String value){
-		
-		valueWithServant.setText(relative.getValue() + value);
-	}
-*/
+	/*
+	 * @FXML public void openServant(Relative relative){ try{ FXMLLoader
+	 * fxmlLoader = new
+	 * FXMLLoader(getClass().getResource("HowManyServants.fxml")); Parent root1
+	 * = (Parent) fxmlLoader.load(); Stage stage = new Stage();
+	 * stage.setScene(new Scene(root1)); stage.show(); ServantController
+	 * servantController = fxmlLoader.getController();
+	 * servantController.setBoardController(this);
+	 * servantController.setStage(stage);
+	 * servantController.setRelative(relative);
+	 * servantController.setClientModel(client);
+	 * servantController.setServerRMIConnectionViewRemote(serverStub); } catch
+	 * (Exception e) { e.printStackTrace(); } }
+	 * 
+	 * public void setValueWithServant(Relative relative, String value){
+	 * 
+	 * valueWithServant.setText(relative.getValue() + value); }
+	 */
 	@FXML
-	public void setValueWithServant(){
-		
+	public void setValueWithServant() {
+
 		//
-		
+
 		String valueNew = valueWithServant.getText();
 		int value = Integer.parseInt(valueNew);
 		System.out.println(value);
@@ -354,58 +348,54 @@ public class BoardController {
 		System.out.println(relative.getValue());
 
 	}
+
 	@FXML
 	public void chooseOrangeRelative() {
 		this.relative = client.getPlayer().getOrangeRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange1.png");
-		/*try {
-			openServant(relative);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-*/
+		/*
+		 * try { openServant(relative); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
 	}
 
 	@FXML
 	public void chooseBlackRelative() {
 		relative = client.getPlayer().getBlackRelative();
-		System.out.println("The relative: "+ relative);
+		System.out.println("The relative: " + relative);
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack1.png");
-		/*try {
-			openServant(relative);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} */
+		/*
+		 * try { openServant(relative); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
 
 	}
 
 	@FXML
 	public void chooseNeutralRelative() {
 		relative = client.getPlayer().getNeutralRelative();
-		
+
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral1.png");
-		/*try {
-			openServant(relative);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} */
+		/*
+		 * try { openServant(relative); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
 
 	}
 
 	@FXML
 	public void putRelativeOnTerritory1() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-					client.getTerritoryTower(), 0, relative, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			territoryTower1.setImage(relativeImage);
-			setPlayer();
-			territoryCard.get(territory).setImage(territoryImage1);
-			territory++;
-			this.relative = null;
-			}
-			else {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+						client.getTerritoryTower(), 0, relative, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				territoryTower1.setImage(relativeImage);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage1);
+				territory++;
+				this.relative = null;
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 
@@ -417,41 +407,38 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnTerritory2() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-					client.getTerritoryTower(), 1, relative, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			territoryTower2.setImage(relativeImage);
-			setPlayer();
-			territoryCard.get(territory).setImage(territoryImage2);
-			territory++;
-			this.relative = null;
-			}
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+						client.getTerritoryTower(), 1, relative, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				territoryTower2.setImage(relativeImage);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage2);
+				territory++;
+				this.relative = null;
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	@FXML
 	public void putRelativeOnTerritory3() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-					client.getTerritoryTower(), 2, relative, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			territoryTower3.setImage(relativeImage);
-			setPlayer();
-			territoryCard.get(territory).setImage(territoryImage3);
-			territory++;
-			this.relative = null;
-			}
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+						client.getTerritoryTower(), 2, relative, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				territoryTower3.setImage(relativeImage);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage3);
+				territory++;
+				this.relative = null;
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 
@@ -463,17 +450,16 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnTerritory4() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-					client.getTerritoryTower(), 3, relative, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			territoryTower4.setImage(relativeImage);
-			setPlayer();
-			territoryCard.get(territory).setImage(territoryImage4);
-			territory++;
-			this.relative = null;
-			}
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+						client.getTerritoryTower(), 3, relative, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				territoryTower4.setImage(relativeImage);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage4);
+				territory++;
+				this.relative = null;
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 
@@ -481,79 +467,80 @@ public class BoardController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void putRelativeOnTerritory1Privilege(String bonus) {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
-					client.getTerritoryTower(), 0, relative, bonus, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			territoryTower1.setImage(relativeImage);
-			setPlayer();
-			territoryCard.get(territory).setImage(territoryImage1);
-			territory++;
-			this.relative = null;
-			}
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
+						client.getTerritoryTower(), 0, relative, bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				territoryTower1.setImage(relativeImage);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage1);
+				territory++;
+				this.relative = null;
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void putRelativeOnTerritory2Privilege(String bonus) {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
-					client.getTerritoryTower(), 1, relative, bonus, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			territoryTower2.setImage(relativeImage);
-			setPlayer();
-			territoryCard.get(territory).setImage(territoryImage2);
-			territory++;
-			this.relative = null;
-			}
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
+						client.getTerritoryTower(), 1, relative, bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				territoryTower2.setImage(relativeImage);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage2);
+				territory++;
+				this.relative = null;
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	public void putRelativeOnTerritory3Privilege(String bonus) {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
-					client.getTerritoryTower(), 2, relative, bonus, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			territoryTower3.setImage(relativeImage);
-			setPlayer();
-			territoryCard.get(territory).setImage(territoryImage3);
-			territory++;
-			this.relative = null;
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
+						client.getTerritoryTower(), 2, relative, bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				territoryTower3.setImage(relativeImage);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage3);
+				territory++;
+				this.relative = null;
 			}
-		
-		else{
-			openMessage("NotYorTurn.fxml");
-		}
+
+			else {
+				openMessage("NotYorTurn.fxml");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	public void putRelativeOnTerritory4Privilege(String bonus) {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
-					client.getTerritoryTower(), 3, relative, bonus, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			territoryTower4.setImage(relativeImage);
-			setPlayer();
-			territoryCard.get(territory).setImage(territoryImage4);
-			territory++;
-			this.relative = null;}
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
+						client.getTerritoryTower(), 3, relative, bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				territoryTower4.setImage(relativeImage);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage4);
+				territory++;
+				this.relative = null;
+			}
 
-			else{
+			else {
 				openMessage("NotYorTurn.fxml");
 			}
 		} catch (Exception e) {
@@ -565,51 +552,49 @@ public class BoardController {
 	public void putRelativeOnBuilding1() {
 		boolean isPresentAnyone = false;
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (client.getBuildingTower().getFloor(0).isFree()) {
-					if (relative.getValue() >= client.getBuildingTower().getFloor(0).getCost()) {
-						if (client.getBuildingTower().isPresent(player) == false) {
-							if (client.getBuildingTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getBuildingTower(), 0, isPresentAnyone)) {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (client.getBuildingTower().getFloor(0).isFree()) {
+						if (relative.getValue() >= client.getBuildingTower().getFloor(0).getCost()) {
+							if (client.getBuildingTower().isPresent(player) == false) {
+								if (client.getBuildingTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getBuildingTower(), 0, isPresentAnyone)) {
 
-								PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-										client.getBuildingTower(), 0, relative, client.getMatch());
-								serverStub.notifyObserver(putRelativeOnTower);
-								buildingTower1.setImage(relativeImage);
-								setPlayer();
-								buildingCard.get(building).setImage(buildingImage1);
-								building++;
-								this.relative = null;
-							}
+									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+											client.getBuildingTower(), 0, relative, client.getMatch());
+									serverStub.notifyObserver(putRelativeOnTower);
+									buildingTower1.setImage(relativeImage);
+									setPlayer();
+									buildingCard.get(building).setImage(buildingImage1);
+									building++;
+									this.relative = null;
+								}
 
-							else {
-								openMessage("NotEnoughResourceMessage.fxml");
+								else {
+									openMessage("NotEnoughResourceMessage.fxml");
+								}
+							} else {
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
+
 			} else {
-
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-			
-		}
-			else{
 				openMessage("NotYorTurn.fxml");
 			}
-		}
-			catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -618,49 +603,48 @@ public class BoardController {
 	public void putRelativeOnBuilding2() {
 		boolean isPresentAnyone = false;
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (client.getBuildingTower().getFloor(1).isFree()) {
-					if (relative.getValue() >= client.getBuildingTower().getFloor(1).getCost()) {
-						if (client.getBuildingTower().isPresent(player) == false) {
-							if (client.getBuildingTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getBuildingTower(), 1, isPresentAnyone)) {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (client.getBuildingTower().getFloor(1).isFree()) {
+						if (relative.getValue() >= client.getBuildingTower().getFloor(1).getCost()) {
+							if (client.getBuildingTower().isPresent(player) == false) {
+								if (client.getBuildingTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getBuildingTower(), 1, isPresentAnyone)) {
 
-								PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-										client.getBuildingTower(), 1, relative, client.getMatch());
-								serverStub.notifyObserver(putRelativeOnTower);
-								buildingTower2.setImage(relativeImage);
-								setPlayer();
-								buildingCard.get(building).setImage(buildingImage2);
-								building++;
-								this.relative = null;
-							}
+									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+											client.getBuildingTower(), 1, relative, client.getMatch());
+									serverStub.notifyObserver(putRelativeOnTower);
+									buildingTower2.setImage(relativeImage);
+									setPlayer();
+									buildingCard.get(building).setImage(buildingImage2);
+									building++;
+									this.relative = null;
+								}
 
-							else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								else {
+									openMessage("NotEnoughtResourceMessage.fxml");
+								}
+							} else {
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-		}
-			else{
 				openMessage("NotYorTurn.fxml");
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -669,48 +653,46 @@ public class BoardController {
 	public void putRelativeOnBuilding3() {
 		boolean isPresentAnyone = false;
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (client.getBuildingTower().getFloor(2).isFree()) {
-					if (relative.getValue() >= client.getBuildingTower().getFloor(2).getCost()) {
-						if (client.getBuildingTower().isPresent(player) == false) {
-							if (client.getBuildingTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getBuildingTower(), 2, isPresentAnyone)) {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (client.getBuildingTower().getFloor(2).isFree()) {
+						if (relative.getValue() >= client.getBuildingTower().getFloor(2).getCost()) {
+							if (client.getBuildingTower().isPresent(player) == false) {
+								if (client.getBuildingTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getBuildingTower(), 2, isPresentAnyone)) {
 
-								PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-										client.getBuildingTower(), 2, relative, client.getMatch());
-								serverStub.notifyObserver(putRelativeOnTower);
-								buildingTower3.setImage(relativeImage);
-								setPlayer();
-								buildingCard.get(building).setImage(buildingImage3);
-								building++;
-								this.relative = null;
+									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+											client.getBuildingTower(), 2, relative, client.getMatch());
+									serverStub.notifyObserver(putRelativeOnTower);
+									buildingTower3.setImage(relativeImage);
+									setPlayer();
+									buildingCard.get(building).setImage(buildingImage3);
+									building++;
+									this.relative = null;
+								} else {
+									openMessage("NotEnoughtResourceMessage.fxml");
+								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-		} 
-			else{
 				openMessage("NotYorTurn.fxml");
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -719,58 +701,57 @@ public class BoardController {
 	public void putRelativeOnBuilding4() {
 		boolean isPresentAnyone = false;
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (client.getBuildingTower().getFloor(3).isFree()) {
-					if (relative.getValue() >= client.getBuildingTower().getFloor(3).getCost()) {
-						if (client.getBuildingTower().isPresent(player) == false) {
-							if (client.getBuildingTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getBuildingTower(), 3, isPresentAnyone)) {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (client.getBuildingTower().getFloor(3).isFree()) {
+						if (relative.getValue() >= client.getBuildingTower().getFloor(3).getCost()) {
+							if (client.getBuildingTower().isPresent(player) == false) {
+								if (client.getBuildingTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getBuildingTower(), 3, isPresentAnyone)) {
 
-								PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-										client.getBuildingTower(), 3, relative, client.getMatch());
-								serverStub.notifyObserver(putRelativeOnTower);
-								buildingTower4.setImage(relativeImage);
-								setPlayer();
-								buildingCard.get(building).setImage(buildingImage4);
-								building++;
-								this.relative = null;
+									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+											client.getBuildingTower(), 3, relative, client.getMatch());
+									serverStub.notifyObserver(putRelativeOnTower);
+									buildingTower4.setImage(relativeImage);
+									setPlayer();
+									buildingCard.get(building).setImage(buildingImage4);
+									building++;
+									this.relative = null;
+								} else {
+									openMessage("NotEnoughtResourceMessage.fxml");
+								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-		} 
-			else{
 				openMessage("NotYorTurn.fxml");
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	
+
 	@FXML
 	public void putRelativeOnCharacter1() {
-		boolean isPresentAnyone = false;
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
+			boolean isPresentAnyone = false;
+			if (doubleCard) {
 				if (client.getCharacterTower().getFloor(0).isFree()) {
 					if (relative.getValue() >= client.getCharacterTower().getFloor(0).getCost()) {
 						if (client.getCharacterTower().isPresent(player) == false) {
@@ -778,28 +759,18 @@ public class BoardController {
 								isPresentAnyone = true;
 							}
 							if (checkCardCost(client.getCharacterTower(), 0, isPresentAnyone)) {
-								if (client.getCharacterTower().getFloor(0).getCard().getGetCard()) {
-									// TODO
-									// PutRelativeOnTowerDouble
-									// putRelativeOnTower =
-									// new PutRelativeOnTowerDouble(
-									// client.getPlayer(),
-									// client.getCharacterTower(), 1, relative,
-									// bonus,
-									// client.getMatch());
-									// serverStub.notifyObserver(putRelativeOnTower);
-								} else {
-									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-											client.getCharacterTower(), 0, relative, client.getMatch());
+	
+									PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(
+											client.getPlayer(), client.getCharacterTower(), firstTower, relative,
+											client.getCharacterTower(), 0, client.getMatch());
 									serverStub.notifyObserver(putRelativeOnTower);
+									characterTower1.setImage(null);
+									setPlayer();
+									characterCard.get(character).setImage(characterImage1);
+									character++;
+									this.relative = null;
 								}
-								characterTower1.setImage(relativeImage);
-								setPlayer();
-								characterCard.get(character).setImage(characterImage1);
-								character++;
-								this.relative = null;
-
-							} else {
+							 else {
 								openMessage("NotEnoughtResourceMessage.fxml");
 							}
 						} else {
@@ -812,89 +783,153 @@ public class BoardController {
 				} else {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
-			} else {
-
-				openMessage("ChooseTheRelativeMessage.fxml");
-
 			}
-		} 
-			else{
+
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null && (!doubleCard)) {
+					if (client.getCharacterTower().getFloor(0).isFree()) {
+						if (relative.getValue() >= client.getCharacterTower().getFloor(0).getCost()) {
+							if (client.getCharacterTower().isPresent(player) == false) {
+								if (client.getCharacterTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getCharacterTower(), 0, isPresentAnyone)) {
+									if (client.getCharacterTower().getFloor(0).getCard().getGetCard()) {
+										doubleCard = true;
+										openMessage("ChooseTheDoubleCard.fxml");
+										firstTower = 0;
+									} else {
+										PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(
+												client.getPlayer(), client.getCharacterTower(), 0, relative,
+												client.getMatch());
+										serverStub.notifyObserver(putRelativeOnTower);
+									}
+									characterTower1.setImage(relativeImage);
+									setPlayer();
+									characterCard.get(character).setImage(characterImage1);
+									character++;
+									this.relative = null;
+
+								} else {
+									openMessage("NotEnoughtResourceMessage.fxml");
+								}
+							} else {
+								openMessage("AnotherRelativeInTowerMessage.fxml");
+							}
+						} else {
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
+						}
+					} else {
+						openMessage("SpaceOccupiedMessage.fxml");
+					}
+				} else {
+
+					openMessage("ChooseTheRelativeMessage.fxml");
+
+				}
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	public void putRelativeOnCharacter2() {
-		boolean isPresentAnyone = false;
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (client.getCharacterTower().getFloor(1).isFree()) {
-					if (relative.getValue() >= client.getCharacterTower().getFloor(1).getCost()) {
-						if (client.getCharacterTower().isPresent(player) == false) {
-							if (client.getCharacterTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getCharacterTower(), 1, isPresentAnyone)) {
-								if (client.getCharacterTower().getFloor(1).getCard().getGetCard()) {
-									// TODO
-									// PutRelativeOnTowerDouble
-									// putRelativeOnTower =
-									// new PutRelativeOnTowerDouble(
-									// client.getPlayer(),
-									// client.getCharacterTower(), 1, relative,
-									// bonus,
-									// client.getMatch());
-									// serverStub.notifyObserver(putRelativeOnTower);
-								} else {
-									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-											client.getCharacterTower(), 1, relative, client.getMatch());
-									serverStub.notifyObserver(putRelativeOnTower);
-								}
-								characterTower2.setImage(relativeImage);
+		boolean isPresentAnyone = false;
+		if (doubleCard) {
+			if (client.getCharacterTower().getFloor(1).isFree()) {
+				if (relative.getValue() >= client.getCharacterTower().getFloor(1).getCost()) {
+					if (client.getCharacterTower().isPresent(player) == false) {
+						if (client.getCharacterTower().isPresentAnyone()) {
+							isPresentAnyone = true;
+						}
+						if (checkCardCost(client.getCharacterTower(), 1, isPresentAnyone)) {
+
+								PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(
+										client.getPlayer(), client.getCharacterTower(), firstTower, relative,
+										client.getCharacterTower(), 1, client.getMatch());
+								serverStub.notifyObserver(putRelativeOnTower);
+								characterTower2.setImage(null);
 								setPlayer();
 								characterCard.get(character).setImage(characterImage2);
 								character++;
 								this.relative = null;
-
-							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
 							}
-						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+						 else {
+							openMessage("NotEnoughtResourceMessage.fxml");
 						}
 					} else {
-						openMessage("NotEnoughValueMessage.fxml");
-						relative = null;
+						openMessage("AnotherRelativeInTowerMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("NotEnoughtValueMessage.fxml");
+					relative = null;
 				}
 			} else {
-
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-		} 
-			else{
-				openMessage("NotYorTurn.fxml");
+				openMessage("SpaceOccupiedMessage.fxml");
 			}
 		}
-		catch (Exception e) {
+		
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (client.getCharacterTower().getFloor(1).isFree()) {
+						if (relative.getValue() >= client.getCharacterTower().getFloor(1).getCost()) {
+							if (client.getCharacterTower().isPresent(player) == false) {
+								if (client.getCharacterTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getCharacterTower(), 1, isPresentAnyone)) {
+									if (client.getCharacterTower().getFloor(1).getCard().getGetCard()) {
+										doubleCard = true;
+										openMessage("ChooseTheDoubleCard.fxml");
+										firstTower = 1;
+									} else {
+										PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(
+												client.getPlayer(), client.getCharacterTower(), 1, relative,
+												client.getMatch());
+										serverStub.notifyObserver(putRelativeOnTower);
+									
+									characterTower2.setImage(relativeImage);
+									setPlayer();
+									characterCard.get(character).setImage(characterImage2);
+									character++;
+									this.relative = null;
+									}
+								} else {
+									openMessage("NotEnoughtResourceMessage.fxml");
+								}
+							} else {
+								openMessage("AnotherRelativeInTowerMessage.fxml");
+							}
+						} else {
+							openMessage("NotEnoughValueMessage.fxml");
+							relative = null;
+						}
+					} else {
+						openMessage("SpaceOccupiedMessage.fxml");
+					}
+				} else {
+
+					openMessage("ChooseTheRelativeMessage.fxml");
+
+				}
+			} else {
+				openMessage("NotYorTurn.fxml");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	public void putRelativeOnCharacter3() {
-		boolean isPresentAnyone = false;
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
+			boolean isPresentAnyone = false;
+			if (doubleCard) {
 				if (client.getCharacterTower().getFloor(2).isFree()) {
 					if (relative.getValue() >= client.getCharacterTower().getFloor(2).getCost()) {
 						if (client.getCharacterTower().isPresent(player) == false) {
@@ -902,28 +937,18 @@ public class BoardController {
 								isPresentAnyone = true;
 							}
 							if (checkCardCost(client.getCharacterTower(), 2, isPresentAnyone)) {
-								if (client.getCharacterTower().getFloor(2).getCard().getGetCard()) {
-									// TODO
-									// PutRelativeOnTowerDouble
-									// putRelativeOnTower =
-									// new PutRelativeOnTowerDouble(
-									// client.getPlayer(),
-									// client.getCharacterTower(), 1, relative,
-									// bonus,
-									// client.getMatch());
-									// serverStub.notifyObserver(putRelativeOnTower);
-								} else {
-									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-											client.getCharacterTower(), 2, relative, client.getMatch());
-									serverStub.notifyObserver(putRelativeOnTower);
-								}
-								characterTower3.setImage(relativeImage);
-								setPlayer();
-								characterCard.get(character).setImage(characterImage3);
-								character++;
-								this.relative = null;
 
-							} else {
+									PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(
+											client.getPlayer(), client.getCharacterTower(), firstTower, relative,
+											client.getCharacterTower(), 2, client.getMatch());
+									serverStub.notifyObserver(putRelativeOnTower);
+									characterTower3.setImage(null);
+									setPlayer();
+									characterCard.get(character).setImage(characterImage3);
+									character++;
+									this.relative = null;
+								}
+							 else {
 								openMessage("NotEnoughtResourceMessage.fxml");
 							}
 						} else {
@@ -936,27 +961,63 @@ public class BoardController {
 				} else {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
-			} else {
-
-				openMessage("ChooseTheRelativeMessage.fxml");
-
 			}
-		}
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (client.getCharacterTower().getFloor(2).isFree()) {
+						if (relative.getValue() >= client.getCharacterTower().getFloor(2).getCost()) {
+							if (client.getCharacterTower().isPresent(player) == false) {
+								if (client.getCharacterTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getCharacterTower(), 2, isPresentAnyone)) {
+									if (client.getCharacterTower().getFloor(2).getCard().getGetCard()) {
+										doubleCard = true;
+										openMessage("ChooseTheDoubleCard.fxml");
+										firstTower = 2;
+									} else {
+										PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(
+												client.getPlayer(), client.getCharacterTower(), 2, relative,
+												client.getMatch());
+										serverStub.notifyObserver(putRelativeOnTower);
+									
+									characterTower3.setImage(relativeImage);
+									setPlayer();
+									characterCard.get(character).setImage(characterImage3);
+									character++;
+									this.relative = null;
+									}
+								} else {
+									openMessage("NotEnoughtResourceMessage.fxml");
+								}
+							} else {
+								openMessage("AnotherRelativeInTowerMessage.fxml");
+							}
+						} else {
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
+						}
+					} else {
+						openMessage("SpaceOccupiedMessage.fxml");
+					}
+				} else {
+
+					openMessage("ChooseTheRelativeMessage.fxml");
+
+				}
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	public void putRelativeOnCharacter4() {
-		boolean isPresentAnyone = false;
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
+			boolean isPresentAnyone = false;
+			if (doubleCard) {
 				if (client.getCharacterTower().getFloor(3).isFree()) {
 					if (relative.getValue() >= client.getCharacterTower().getFloor(3).getCost()) {
 						if (client.getCharacterTower().isPresent(player) == false) {
@@ -964,28 +1025,18 @@ public class BoardController {
 								isPresentAnyone = true;
 							}
 							if (checkCardCost(client.getCharacterTower(), 3, isPresentAnyone)) {
-								if (client.getCharacterTower().getFloor(3).getCard().getGetCard()) {
-									// TODO
-									// PutRelativeOnTowerDouble
-									// putRelativeOnTower =
-									// new PutRelativeOnTowerDouble(
-									// client.getPlayer(),
-									// client.getCharacterTower(), 1, relative,
-									// bonus,
-									// client.getMatch());
-									// serverStub.notifyObserver(putRelativeOnTower);
-								} else {
-									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-											client.getCharacterTower(), 3, relative, client.getMatch());
-									serverStub.notifyObserver(putRelativeOnTower);
-								}
-								characterTower1.setImage(relativeImage);
-								setPlayer();
-								characterCard.get(character).setImage(characterImage4);
-								character++;
-								this.relative = null;
 
-							} else {
+									PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(
+											client.getPlayer(), client.getCharacterTower(), firstTower, relative,
+											client.getCharacterTower(), 3, client.getMatch());
+									serverStub.notifyObserver(putRelativeOnTower);
+									characterTower4.setImage(null);
+									setPlayer();
+									characterCard.get(character).setImage(characterImage4);
+									character++;
+									this.relative = null;
+								}
+							 else {
 								openMessage("NotEnoughtResourceMessage.fxml");
 							}
 						} else {
@@ -998,16 +1049,54 @@ public class BoardController {
 				} else {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
-			} else {
-
-				openMessage("ChooseTheRelativeMessage.fxml");
-
 			}
-		} 
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (client.getCharacterTower().getFloor(3).isFree()) {
+						if (relative.getValue() >= client.getCharacterTower().getFloor(3).getCost()) {
+							if (client.getCharacterTower().isPresent(player) == false) {
+								if (client.getCharacterTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getCharacterTower(), 3, isPresentAnyone)) {
+									if (client.getCharacterTower().getFloor(3).getCard().getGetCard()) {
+										doubleCard = true;
+										openMessage("ChooseTheDoubleCard.fxml");
+										firstTower = 3;
+									} else {
+										PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(
+												client.getPlayer(), client.getCharacterTower(), 3, relative,
+												client.getMatch());
+										serverStub.notifyObserver(putRelativeOnTower);
+									
+									characterTower1.setImage(relativeImage);
+									setPlayer();
+									characterCard.get(character).setImage(characterImage4);
+									character++;
+									this.relative = null;
+									}
+								} else {
+									openMessage("NotEnoughtResourceMessage.fxml");
+								}
+							} else {
+								openMessage("AnotherRelativeInTowerMessage.fxml");
+							}
+						} else {
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
+						}
+					} else {
+						openMessage("SpaceOccupiedMessage.fxml");
+					}
+				} else {
+
+					openMessage("ChooseTheRelativeMessage.fxml");
+
+				}
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1015,22 +1104,21 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnVenture1() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-					client.getVentureTower(), 0, relative, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower1.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage1);
-		venture++;
-		this.relative = null;
-		} 
-		
-		else{
-			openMessage("NotYorTurn.fxml");
-		}
-	}
-	catch (Exception e) {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+						client.getVentureTower(), 0, relative, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower1.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage1);
+				venture++;
+				this.relative = null;
+			}
+
+			else {
+				openMessage("NotYorTurn.fxml");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1038,22 +1126,21 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnVenture2() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-					client.getVentureTower(), 1, relative, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			ventureTower2.setImage(relativeImage);
-			setPlayer();
-			ventureCard.get(venture).setImage(ventureImage2);
-			venture++;
-			this.relative = null;
-		} 
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+						client.getVentureTower(), 1, relative, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower2.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage2);
+				venture++;
+				this.relative = null;
+			}
 
-			else{
+			else {
 				openMessage("NotYorTurn.fxml");
 			}
-		}
-			catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1061,20 +1148,18 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnVenture3() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-					client.getVentureTower(), 2, relative, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			ventureTower3.setImage(relativeImage);
-			setPlayer();
-			ventureCard.get(venture).setImage(ventureImage3);
-			venture++;
-		} 
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+						client.getVentureTower(), 2, relative, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower3.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage3);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1082,195 +1167,183 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnVenture4() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
-					client.getVentureTower(), 3, relative, client.getMatch());
-			serverStub.notifyObserver(putRelativeOnTower);
-			ventureTower4.setImage(relativeImage);
-			setPlayer();
-			ventureCard.get(venture).setImage(ventureImage4);
-			venture++;
-		} 
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
+						client.getVentureTower(), 3, relative, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower4.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage4);
+				venture++;
+			} else {
+				openMessage("NotYorTurn.fxml");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void putRelativeOnVenture1Privilege(String bonus) {
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
+						client.getVentureTower(), 0, relative, bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower1.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage1);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 		}
+
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void putRelativeOnVenture1Privilege(String bonus) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
-				client.getPlayer(), client.getVentureTower(), 0, relative, bonus,
-				client.getMatch());
-		serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower1.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage1);
-		venture++;}
-			else{
-				openMessage("NotYorTurn.fxml");
-			}}
-		
-		catch (Exception e) {
-					e.printStackTrace();
-				}
-	}
-	
+
 	public void putRelativeOnVenture2Privilege(String bonus) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
-				client.getPlayer(), client.getVentureTower(), 1, relative, bonus,
-				client.getMatch());
-		serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower2.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage2);
-		venture++;}
-			else{
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
+						client.getVentureTower(), 1, relative, bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower2.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage2);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
-					e.printStackTrace();
-				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void putRelativeOnVenture3Privilege(String bonus) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
-				client.getPlayer(), client.getVentureTower(), 2, relative, bonus,
-				client.getMatch());
-		serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower3.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage3);
-		venture++;}
-			else{
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
+						client.getVentureTower(), 2, relative, bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower3.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage3);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
-					e.printStackTrace();
-				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void putRelativeOnVenture4Privilege(String bonus) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(
-				client.getPlayer(), client.getVentureTower(), 3, relative, bonus,
-				client.getMatch());
-		serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower4.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage4);
-		venture++;}
-			else{
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
+						client.getVentureTower(), 3, relative, bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower4.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage4);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
-					e.printStackTrace();
-				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void putRelativeOnVenture1Alternative(boolean alternativeCost) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(
-				client.getPlayer(), client.getVentureTower(), 0, relative, alternativeCost,
-				client.getMatch());
-		serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower1.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage1);
-		venture++;}
-			else{
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(client.getPlayer(),
+						client.getVentureTower(), 0, relative, alternativeCost, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower1.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage1);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void putRelativeOnVenture2Alternative(boolean alternativeCost) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(
-				client.getPlayer(), client.getVentureTower(), 1, relative, alternativeCost,
-				client.getMatch());
-		serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower2.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage2);
-		venture++;}
-			else{
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(client.getPlayer(),
+						client.getVentureTower(), 1, relative, alternativeCost, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower2.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage2);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void putRelativeOnVenture3Alternative(boolean alternativeCost) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(
-				client.getPlayer(), client.getVentureTower(), 2, relative, alternativeCost,
-				client.getMatch());
-		serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower3.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage3);
-		venture++;}
-			else{
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(client.getPlayer(),
+						client.getVentureTower(), 2, relative, alternativeCost, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower3.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage3);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void putRelativeOnVenture4Alternative(boolean alternativeCost) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(
-				client.getPlayer(), client.getVentureTower(), 3, relative, alternativeCost,
-				client.getMatch());
-		serverStub.notifyObserver(putRelativeOnTower);
-		ventureTower4.setImage(relativeImage);
-		setPlayer();
-		ventureCard.get(venture).setImage(ventureImage4);
-		venture++;}
-			else{
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(client.getPlayer(),
+						client.getVentureTower(), 3, relative, alternativeCost, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnTower);
+				ventureTower4.setImage(relativeImage);
+				setPlayer();
+				ventureCard.get(venture).setImage(ventureImage4);
+				venture++;
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 
 	public void putRelativeOnCouncilPalace(String bonus) {
-		try{
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-						PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
-								client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus,
-								client.getMatch());
-						serverStub.notifyObserver(putRelativeOnCouncilPalace);
-						councilPalace.get(i).setImage(relativeImage);
-						System.out.println("faccio put council");
-						setPlayer();
-						i++;
+		try {
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
+						client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnCouncilPalace);
+				councilPalace.get(i).setImage(relativeImage);
+				System.out.println("faccio put council");
+				setPlayer();
+				i++;
 
-		
-		} 
-			else{
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1278,26 +1351,25 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnMarket1() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (relative.getValue() >= client.getMarket(0).getCost()) {
-					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
-							client.getMarket(0), client.getMatch());
-					serverStub.notifyObserver(putRelativeOnMarket);
-					market1.setImage(relativeImage);
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (relative.getValue() >= client.getMarket(0).getCost()) {
+						PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
+								client.getMarket(0), client.getMatch());
+						serverStub.notifyObserver(putRelativeOnMarket);
+						market1.setImage(relativeImage);
+					} else {
+						openMessage("NotEnoughValueMessage.fxml");
+						relative = null;
+					}
 				} else {
-					openMessage("NotEnoughValueMessage.fxml");
-					relative = null;
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-		} 
-			else{
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1305,27 +1377,27 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnMarket2() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (relative.getValue() >= client.getMarket(1).getCost()) {
-					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
-							client.getMarket(1), client.getMatch());
-					serverStub.notifyObserver(putRelativeOnMarket);
-					market2.setImage(relativeImage);
-					setPlayer();
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (relative.getValue() >= client.getMarket(1).getCost()) {
+						PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
+								client.getMarket(1), client.getMatch());
+						serverStub.notifyObserver(putRelativeOnMarket);
+						market2.setImage(relativeImage);
+						setPlayer();
 
+					} else {
+						openMessage("NotEnoughValueMessage.fxml");
+						relative = null;
+					}
 				} else {
-					openMessage("NotEnoughValueMessage.fxml");
-					relative = null;
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-		} 
-			else{
 				openMessage("NotYorTurn.fxml");
-			}}catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1333,43 +1405,41 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnMarket3() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (relative.getValue() >= client.getMarket(2).getCost()) {
-					PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
-							client.getMarket(2), client.getMatch());
-					serverStub.notifyObserver(putRelativeOnMarket);
-					market3.setImage(relativeImage);
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (relative.getValue() >= client.getMarket(2).getCost()) {
+						PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
+								client.getMarket(2), client.getMatch());
+						serverStub.notifyObserver(putRelativeOnMarket);
+						market3.setImage(relativeImage);
+					} else {
+						openMessage("NotEnoughValueMessage.fxml");
+						relative = null;
+					}
 				} else {
-					openMessage("NotEnoughValueMessage.fxml");
-					relative = null;
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-
+				openMessage("NotYorTurn.fxml");
 			}
-		} else{
-			openMessage("NotYorTurn.fxml");
-		}}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	
 	public void putRelativeOnMarket4(String bonus) {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-					PutRelativeOnMarketPrivilege putRelativeOnMarket = new PutRelativeOnMarketPrivilege(
-							client.getPlayer(), relative, client.getMarket(3), bonus, client.getMatch());
-					serverStub.notifyObserver(putRelativeOnMarket);
-					market4.setImage(relativeImage);
-				
-		} 
-			else{
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				PutRelativeOnMarketPrivilege putRelativeOnMarket = new PutRelativeOnMarketPrivilege(client.getPlayer(),
+						relative, client.getMarket(3), bonus, client.getMatch());
+				serverStub.notifyObserver(putRelativeOnMarket);
+				market4.setImage(relativeImage);
+
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1377,178 +1447,177 @@ public class BoardController {
 	@FXML
 	public void putRelativeOnHarvestLeft() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (relative.getValue() >= client.getBoard().getHarvestArea().getValueOfLeftArea()) {
-					if (client.getBoard().getHarvestArea().getLeftRelative() == null) {
-						PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(
-								client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
-								client.getMatch());
-						serverStub.notifyObserver(putRelativeOnHarvestArea);
-						harvestLeft.setImage(relativeImage);
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (relative.getValue() >= client.getBoard().getHarvestArea().getValueOfLeftArea()) {
+						if (client.getBoard().getHarvestArea().getLeftRelative() == null) {
+							PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(
+									client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
+									client.getMatch());
+							serverStub.notifyObserver(putRelativeOnHarvestArea);
+							harvestLeft.setImage(relativeImage);
 
+						} else {
+							openMessage("SpaceOccupiedMessage.fxml");
+
+						}
 					} else {
-						openMessage("SpaceOccupiedMessage.fxml");
-
+						openMessage("NotEnoughValueMessage.fxml");
+						relative = null;
 					}
 				} else {
-					openMessage("NotEnoughValueMessage.fxml");
-					relative = null;
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-		} 
-			else{
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
-	public void putRelativeOnHarvestRight() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException {
-		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		if (relative != null) {
-			PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(client.getPlayer(),
-					relative, client.getBoard().getHarvestArea(), "right", client.getMatch());
-			serverStub.notifyObserver(putRelativeOnHarvestArea);
-			harvestRight.get(j).setImage(relativeImage);
-			
+	public void putRelativeOnHarvestRight() throws FileNotFoundException, NullPointerException, RemoteException,
+			IOException, ParseException, InterruptedException {
+		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			if (relative != null) {
+				PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(client.getPlayer(),
+						relative, client.getBoard().getHarvestArea(), "right", client.getMatch());
+				serverStub.notifyObserver(putRelativeOnHarvestArea);
+				harvestRight.get(j).setImage(relativeImage);
+
 				j++;
-			
-		} else {
-			try {
-				openMessage("ChooseTheRelativeMessage.fxml");
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
+
+			} else {
+				try {
+					openMessage("ChooseTheRelativeMessage.fxml");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+		} else {
+			openMessage("NotYorTurn.fxml");
 		}
 	}
-		else{
-			openMessage("NotYorTurn.fxml");
-		}}
 
 	@FXML
 	public void putRelativeOnProductionLeft() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (relative.getValue() >= client.getBoard().getProductionArea().getValueOfLeftArea()) {
-					if (client.getBoard().getProductionArea().getLeftRelative() == null) {
-						PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
-								client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
-								client.getMatch());
-						serverStub.notifyObserver(putRelativeOnProductionArea);
-						productionLeft.setImage(relativeImage);
-					} else {
-						openMessage("SpaceOccupiedMessage.fxml");
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (relative.getValue() >= client.getBoard().getProductionArea().getValueOfLeftArea()) {
+						if (client.getBoard().getProductionArea().getLeftRelative() == null) {
+							PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
+									client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
+									client.getMatch());
+							serverStub.notifyObserver(putRelativeOnProductionArea);
+							productionLeft.setImage(relativeImage);
+						} else {
+							openMessage("SpaceOccupiedMessage.fxml");
 
+						}
+					} else {
+						openMessage("NotEnoughValueMessage.fxml");
+						relative = null;
 					}
 				} else {
-					openMessage("NotEnoughValueMessage.fxml");
-					relative = null;
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-
-			}
-		}
-			else{
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
-	public void putRelativeOnProductionRight() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException {
-		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-		if (relative != null) {
-			PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
-					client.getPlayer(), relative, client.getBoard().getProductionArea(), "right", client.getMatch());
-			serverStub.notifyObserver(putRelativeOnProductionArea);
-			productionRight.get(k).setImage(relativeImage);
-			
-		
-				
+	public void putRelativeOnProductionRight() throws FileNotFoundException, NullPointerException, RemoteException,
+			IOException, ParseException, InterruptedException {
+		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			if (relative != null) {
+				PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
+						client.getPlayer(), relative, client.getBoard().getProductionArea(), "right",
+						client.getMatch());
+				serverStub.notifyObserver(putRelativeOnProductionArea);
+				productionRight.get(k).setImage(relativeImage);
+
 				k++;
-				
-		} else {
-			try {
-				openMessage("ChooseTheRelativeMessage.fxml");
-			} catch (Exception e) {
-				e.printStackTrace();
+
+			} else {
+				try {
+					openMessage("ChooseTheRelativeMessage.fxml");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
-	}
 
-		else{
+		else {
 			openMessage("NotYorTurn.fxml");
-		}}
+		}
+	}
 
 	@FXML
 	public void openPrivilegeCouncil() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (relative.getValue() >= 1) {
-					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PrivilegeCouncil.fxml"));
-					Parent root1 = (Parent) fxmlLoader.load();
-					Stage stage = new Stage();
-					stage.setScene(new Scene(root1));
-					stage.show();
-					PrivilegeController privilegeController = fxmlLoader.getController();
-					privilegeController.setBoardController(this);
-					privilegeController.setStage(stage);
-					privilegeController.setType("councilPalace");
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (relative.getValue() >= 1) {
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PrivilegeCouncil.fxml"));
+						Parent root1 = (Parent) fxmlLoader.load();
+						Stage stage = new Stage();
+						stage.setScene(new Scene(root1));
+						stage.show();
+						PrivilegeController privilegeController = fxmlLoader.getController();
+						privilegeController.setBoardController(this);
+						privilegeController.setStage(stage);
+						privilegeController.setType("councilPalace");
+					} else {
+						openMessage("NotEnoughValueMessage.fxml");
+						relative = null;
+					}
 				} else {
-					openMessage("NotEnoughValueMessage.fxml");
-					relative = null;
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
-			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-			}
 
-		} 
-			else{
+			} else {
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	@FXML
-	public void openPrivilegeCouncilForMarket4(){
+	public void openPrivilegeCouncilForMarket4() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			if (relative != null) {
-				if (relative.getValue() >= client.getMarket(3).getCost()) {
-					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PrivilegeCouncil.fxml"));
-					Parent root1 = (Parent) fxmlLoader.load();
-					Stage stage = new Stage();
-					stage.setScene(new Scene(root1));
-					stage.show();
-					PrivilegeController privilegeController = fxmlLoader.getController();
-					privilegeController.setBoardController(this);
-					privilegeController.setStage(stage);
-					privilegeController.setType("market4");
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (relative != null) {
+					if (relative.getValue() >= client.getMarket(3).getCost()) {
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PrivilegeCouncil.fxml"));
+						Parent root1 = (Parent) fxmlLoader.load();
+						Stage stage = new Stage();
+						stage.setScene(new Scene(root1));
+						stage.show();
+						PrivilegeController privilegeController = fxmlLoader.getController();
+						privilegeController.setBoardController(this);
+						privilegeController.setStage(stage);
+						privilegeController.setType("market4");
+					} else {
+						openMessage("NotEnoughValueMessage.fxml");
+						relative = null;
+					}
 				} else {
-					openMessage("NotEnoughValueMessage.fxml");
-					relative = null;
+					openMessage("ChooseTheRelativeMessage.fxml");
+
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-
+				openMessage("NotYorTurn.fxml");
 			}
-		} else{
-			openMessage("NotYorTurn.fxml");
-		}}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1556,105 +1625,104 @@ public class BoardController {
 	@FXML
 	public void openPrivilegeCouncilForTerritory1() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			boolean isPresentAnyone = false;
-			if (relative != null) {
-				if (client.getTerritoryTower().getFloor(0).isFree()) {
-					if (relative.getValue() >= client.getTerritoryTower().getFloor(0).getCost()) {
-						if (client.getTerritoryTower().isPresent(player) == false) {
-							if (client.getTerritoryTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getTerritoryTower(), 0, isPresentAnyone)) {
-								if (client.getTerritoryTower().getFloor(0).getCard().getGainPrivilegeCouncil()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("PrivilegeCouncil.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									PrivilegeController privilegeController = fxmlLoader.getController();
-									privilegeController.setBoardController(this);
-									privilegeController.setStage(stage);
-									privilegeController.setType("territory1");
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				boolean isPresentAnyone = false;
+				if (relative != null) {
+					if (client.getTerritoryTower().getFloor(0).isFree()) {
+						if (relative.getValue() >= client.getTerritoryTower().getFloor(0).getCost()) {
+							if (client.getTerritoryTower().isPresent(player) == false) {
+								if (client.getTerritoryTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getTerritoryTower(), 0, isPresentAnyone)) {
+									if (client.getTerritoryTower().getFloor(0).getCard().getGainPrivilegeCouncil()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("PrivilegeCouncil.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										PrivilegeController privilegeController = fxmlLoader.getController();
+										privilegeController.setBoardController(this);
+										privilegeController.setStage(stage);
+										privilegeController.setType("territory1");
+									} else {
+										putRelativeOnTerritory1();
+									}
 								} else {
-									putRelativeOnTerritory1();
+									openMessage("NotEnoughtResourceMessage.fxml");
 								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-			}
-		}
-			else{
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (
+			}
+		} catch (
 
 		Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	@FXML
 	public void openPrivilegeCouncilForTerritory2() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			boolean isPresentAnyone = false;
-			if (relative != null) {
-				if (client.getTerritoryTower().getFloor(1).isFree()) {
-					if (relative.getValue() >= client.getTerritoryTower().getFloor(1).getCost()) {
-						if (client.getTerritoryTower().isPresent(player) == false) {
-							if (client.getTerritoryTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getTerritoryTower(), 1, isPresentAnyone)) {
-								if (client.getTerritoryTower().getFloor(1).getCard().getGainPrivilegeCouncil()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("PrivilegeCouncil.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									PrivilegeController privilegeController = fxmlLoader.getController();
-									privilegeController.setBoardController(this);
-									privilegeController.setStage(stage);
-									privilegeController.setType("territory2");
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				boolean isPresentAnyone = false;
+				if (relative != null) {
+					if (client.getTerritoryTower().getFloor(1).isFree()) {
+						if (relative.getValue() >= client.getTerritoryTower().getFloor(1).getCost()) {
+							if (client.getTerritoryTower().isPresent(player) == false) {
+								if (client.getTerritoryTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getTerritoryTower(), 1, isPresentAnyone)) {
+									if (client.getTerritoryTower().getFloor(1).getCard().getGainPrivilegeCouncil()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("PrivilegeCouncil.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										PrivilegeController privilegeController = fxmlLoader.getController();
+										privilegeController.setBoardController(this);
+										privilegeController.setStage(stage);
+										privilegeController.setType("territory2");
+									} else {
+										putRelativeOnTerritory2();
+									}
 								} else {
-									putRelativeOnTerritory2();
+									openMessage("NotEnoughtResourceMessage.fxml");
 								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
+				openMessage("NotYorTurn.fxml");
 			}
 		}
-			else{
-				openMessage("NotYorTurn.fxml");
-			}}
 
 		catch (
 
@@ -1667,50 +1735,50 @@ public class BoardController {
 	@FXML
 	public void openPrivilegeCouncilForTerritory3() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			boolean isPresentAnyone = false;
-			if (relative != null) {
-				if (client.getTerritoryTower().getFloor(2).isFree()) {
-					if (relative.getValue() >= client.getTerritoryTower().getFloor(2).getCost()) {
-						if (client.getTerritoryTower().isPresent(player) == false) {
-							if (client.getTerritoryTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getTerritoryTower(), 2, isPresentAnyone)) {
-								if (client.getTerritoryTower().getFloor(2).getCard().getGainPrivilegeCouncil()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("PrivilegeCouncil.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									PrivilegeController privilegeController = fxmlLoader.getController();
-									privilegeController.setBoardController(this);
-									privilegeController.setStage(stage);
-									privilegeController.setType("territory3");
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				boolean isPresentAnyone = false;
+				if (relative != null) {
+					if (client.getTerritoryTower().getFloor(2).isFree()) {
+						if (relative.getValue() >= client.getTerritoryTower().getFloor(2).getCost()) {
+							if (client.getTerritoryTower().isPresent(player) == false) {
+								if (client.getTerritoryTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getTerritoryTower(), 2, isPresentAnyone)) {
+									if (client.getTerritoryTower().getFloor(2).getCard().getGainPrivilegeCouncil()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("PrivilegeCouncil.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										PrivilegeController privilegeController = fxmlLoader.getController();
+										privilegeController.setBoardController(this);
+										privilegeController.setStage(stage);
+										privilegeController.setType("territory3");
+									} else {
+										putRelativeOnTerritory3();
+									}
 								} else {
-									putRelativeOnTerritory3();
+									openMessage("NotEnoughtResourceMessage.fxml");
 								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
+				openMessage("NotYorTurn.fxml");
 			}
 		}
-			else{
-				openMessage("NotYorTurn.fxml");
-			}}
 
 		catch (
 
@@ -1719,258 +1787,255 @@ public class BoardController {
 		}
 
 	}
-	
+
 	@FXML
 	public void openPrivilegeCouncilForTerritory4() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			boolean isPresentAnyone = false;
-			if (relative != null) {
-				if (client.getTerritoryTower().getFloor(3).isFree()) {
-					if (relative.getValue() >= client.getTerritoryTower().getFloor(3).getCost()) {
-						if (client.getTerritoryTower().isPresent(player) == false) {
-							if (client.getTerritoryTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getTerritoryTower(), 3, isPresentAnyone)) {
-								if (client.getTerritoryTower().getFloor(3).getCard().getGainPrivilegeCouncil()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("PrivilegeCouncil.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									PrivilegeController privilegeController = fxmlLoader.getController();
-									privilegeController.setBoardController(this);
-									privilegeController.setStage(stage);
-									privilegeController.setType("territory4");
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				boolean isPresentAnyone = false;
+				if (relative != null) {
+					if (client.getTerritoryTower().getFloor(3).isFree()) {
+						if (relative.getValue() >= client.getTerritoryTower().getFloor(3).getCost()) {
+							if (client.getTerritoryTower().isPresent(player) == false) {
+								if (client.getTerritoryTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getTerritoryTower(), 3, isPresentAnyone)) {
+									if (client.getTerritoryTower().getFloor(3).getCard().getGainPrivilegeCouncil()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("PrivilegeCouncil.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										PrivilegeController privilegeController = fxmlLoader.getController();
+										privilegeController.setBoardController(this);
+										privilegeController.setStage(stage);
+										privilegeController.setType("territory4");
+									} else {
+										putRelativeOnTerritory3();
+									}
 								} else {
-									putRelativeOnTerritory3();
+									openMessage("NotEnoughtResourceMessage.fxml");
 								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-			}
-		}
-			else{
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (
+			}
+		} catch (
 
 		Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	@FXML
 	public void openPageForVenture1() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			boolean isPresentAnyone = false;
-			if (relative != null) {
-				if (client.getVentureTower().getFloor(0).isFree()) {
-					if (relative.getValue() >= client.getVentureTower().getFloor(0).getCost()) {
-						if (client.getVentureTower().isPresent(player) == false) {
-							if (client.getVentureTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getVentureTower(), 0, isPresentAnyone)) {
-								if (client.getVentureTower().getFloor(0).getCard().getGainPrivilegeCouncil()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("PrivilegeCouncil.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									PrivilegeController privilegeController = fxmlLoader.getController();
-									privilegeController.setBoardController(this);
-									privilegeController.setStage(stage);
-									privilegeController.setType("venture1");
-								} else if (client.getBoard().getVentureTower().getFloor(0).getCard()
-										.getAlternativeCost()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("AlternativeCost.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									AlternativeCostController alternativeCostController = fxmlLoader.getController();
-									alternativeCostController.setBoardController(this);
-									alternativeCostController.setStage(stage);
-									alternativeCostController.setType("venture1");
-								}else {
-									putRelativeOnVenture1();
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				boolean isPresentAnyone = false;
+				if (relative != null) {
+					if (client.getVentureTower().getFloor(0).isFree()) {
+						if (relative.getValue() >= client.getVentureTower().getFloor(0).getCost()) {
+							if (client.getVentureTower().isPresent(player) == false) {
+								if (client.getVentureTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getVentureTower(), 0, isPresentAnyone)) {
+									if (client.getVentureTower().getFloor(0).getCard().getGainPrivilegeCouncil()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("PrivilegeCouncil.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										PrivilegeController privilegeController = fxmlLoader.getController();
+										privilegeController.setBoardController(this);
+										privilegeController.setStage(stage);
+										privilegeController.setType("venture1");
+									} else if (client.getBoard().getVentureTower().getFloor(0).getCard()
+											.getAlternativeCost()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("AlternativeCost.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										AlternativeCostController alternativeCostController = fxmlLoader
+												.getController();
+										alternativeCostController.setBoardController(this);
+										alternativeCostController.setStage(stage);
+										alternativeCostController.setType("venture1");
+									} else {
+										putRelativeOnVenture1();
+									}
+								} else {
+									openMessage("NotEnoughtResourceMessage.fxml");
 								}
 							} else {
-								openMessage("NotEnoughtResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
+				openMessage("NotYorTurn.fxml");
 			}
 		}
-			else{
-				openMessage("NotYorTurn.fxml");
-			}}
 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	
-
-	
 
 	@FXML
 	public void openPageForVenture2() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			boolean isPresentAnyone = false;
-			if (relative != null) {
-				if (client.getVentureTower().getFloor(1).isFree()) {
-					if (relative.getValue() >= client.getVentureTower().getFloor(1).getCost()) {
-						if (client.getVentureTower().isPresent(player) == false) {
-							if (client.getVentureTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getVentureTower(), 1, isPresentAnyone)) {
-								if (client.getVentureTower().getFloor(1).getCard().getGainPrivilegeCouncil()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("PrivilegeCouncil.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									PrivilegeController privilegeController = fxmlLoader.getController();
-									privilegeController.setBoardController(this);
-									privilegeController.setStage(stage);
-									privilegeController.setType("venture2");
-								} else if (client.getBoard().getVentureTower().getFloor(1).getCard()
-										.getAlternativeCost()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("AlternativeCost.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									AlternativeCostController alternativeCostController = fxmlLoader.getController();
-									alternativeCostController.setBoardController(this);
-									alternativeCostController.setStage(stage);
-									alternativeCostController.setType("venture2");
-								}else {
-									putRelativeOnVenture2();
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				boolean isPresentAnyone = false;
+				if (relative != null) {
+					if (client.getVentureTower().getFloor(1).isFree()) {
+						if (relative.getValue() >= client.getVentureTower().getFloor(1).getCost()) {
+							if (client.getVentureTower().isPresent(player) == false) {
+								if (client.getVentureTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getVentureTower(), 1, isPresentAnyone)) {
+									if (client.getVentureTower().getFloor(1).getCard().getGainPrivilegeCouncil()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("PrivilegeCouncil.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										PrivilegeController privilegeController = fxmlLoader.getController();
+										privilegeController.setBoardController(this);
+										privilegeController.setStage(stage);
+										privilegeController.setType("venture2");
+									} else if (client.getBoard().getVentureTower().getFloor(1).getCard()
+											.getAlternativeCost()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("AlternativeCost.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										AlternativeCostController alternativeCostController = fxmlLoader
+												.getController();
+										alternativeCostController.setBoardController(this);
+										alternativeCostController.setStage(stage);
+										alternativeCostController.setType("venture2");
+									} else {
+										putRelativeOnVenture2();
+									}
+								} else {
+									openMessage("NotEnoughResourceMessage.fxml");
 								}
 							} else {
-								openMessage("NotEnoughResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
-			}
-		}
-			else{
 				openMessage("NotYorTurn.fxml");
-			}}
-		catch (
+			}
+		} catch (
 
 		Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	@FXML
 	public void openPageForVenture3() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			boolean isPresentAnyone = false;
-			if (relative != null) {
-				if (client.getVentureTower().getFloor(2).isFree()) {
-					if (relative.getValue() >= client.getVentureTower().getFloor(2).getCost()) {
-						if (client.getVentureTower().isPresent(player) == false) {
-							if (client.getVentureTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getVentureTower(), 2, isPresentAnyone)) {
-								if (client.getVentureTower().getFloor(2).getCard().getGainPrivilegeCouncil()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("PrivilegeCouncil.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									PrivilegeController privilegeController = fxmlLoader.getController();
-									privilegeController.setBoardController(this);
-									privilegeController.setStage(stage);
-									privilegeController.setType("venture3");
-								} else if (client.getBoard().getVentureTower().getFloor(2).getCard()
-										.getAlternativeCost()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("AlternativeCost.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									AlternativeCostController alternativeCostController = fxmlLoader.getController();
-									alternativeCostController.setBoardController(this);
-									alternativeCostController.setStage(stage);
-									alternativeCostController.setType("venture3");
-								}else {
-									putRelativeOnVenture3();
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				boolean isPresentAnyone = false;
+				if (relative != null) {
+					if (client.getVentureTower().getFloor(2).isFree()) {
+						if (relative.getValue() >= client.getVentureTower().getFloor(2).getCost()) {
+							if (client.getVentureTower().isPresent(player) == false) {
+								if (client.getVentureTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getVentureTower(), 2, isPresentAnyone)) {
+									if (client.getVentureTower().getFloor(2).getCard().getGainPrivilegeCouncil()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("PrivilegeCouncil.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										PrivilegeController privilegeController = fxmlLoader.getController();
+										privilegeController.setBoardController(this);
+										privilegeController.setStage(stage);
+										privilegeController.setType("venture3");
+									} else if (client.getBoard().getVentureTower().getFloor(2).getCard()
+											.getAlternativeCost()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("AlternativeCost.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										AlternativeCostController alternativeCostController = fxmlLoader
+												.getController();
+										alternativeCostController.setBoardController(this);
+										alternativeCostController.setStage(stage);
+										alternativeCostController.setType("venture3");
+									} else {
+										putRelativeOnVenture3();
+									}
+								} else {
+									openMessage("NotEnoughResourceMessage.fxml");
 								}
 							} else {
-								openMessage("NotEnoughResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughtValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughtValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
+				openMessage("NotYorTurn.fxml");
 			}
 		}
-			else{
-				openMessage("NotYorTurn.fxml");
-			}}
 
 		catch (
 
@@ -1979,67 +2044,67 @@ public class BoardController {
 		}
 
 	}
-	
+
 	@FXML
 	public void openPageForVenture4() {
 		try {
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())){
-			boolean isPresentAnyone = false;
-			if (relative != null) {
-				if (client.getVentureTower().getFloor(3).isFree()) {
-					if (relative.getValue() >= client.getVentureTower().getFloor(3).getCost()) {
-						if (client.getVentureTower().isPresent(player) == false) {
-							if (client.getVentureTower().isPresentAnyone()) {
-								isPresentAnyone = true;
-							}
-							if (checkCardCost(client.getVentureTower(), 3, isPresentAnyone)) {
-								if (client.getVentureTower().getFloor(3).getCard().getGainPrivilegeCouncil()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("PrivilegeCouncil.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									PrivilegeController privilegeController = fxmlLoader.getController();
-									privilegeController.setBoardController(this);
-									privilegeController.setStage(stage);
-									privilegeController.setType("venture4");
-								} else if (client.getBoard().getVentureTower().getFloor(3).getCard()
-										.getAlternativeCost()) {
-									FXMLLoader fxmlLoader = new FXMLLoader(
-											getClass().getResource("AlternativeCost.fxml"));
-									Parent root1 = (Parent) fxmlLoader.load();
-									Stage stage = new Stage();
-									stage.setScene(new Scene(root1));
-									stage.show();
-									AlternativeCostController alternativeCostController = fxmlLoader.getController();
-									alternativeCostController.setBoardController(this);
-									alternativeCostController.setStage(stage);
-									alternativeCostController.setType("venture4");
-								}else {
-									putRelativeOnVenture4();
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				boolean isPresentAnyone = false;
+				if (relative != null) {
+					if (client.getVentureTower().getFloor(3).isFree()) {
+						if (relative.getValue() >= client.getVentureTower().getFloor(3).getCost()) {
+							if (client.getVentureTower().isPresent(player) == false) {
+								if (client.getVentureTower().isPresentAnyone()) {
+									isPresentAnyone = true;
+								}
+								if (checkCardCost(client.getVentureTower(), 3, isPresentAnyone)) {
+									if (client.getVentureTower().getFloor(3).getCard().getGainPrivilegeCouncil()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("PrivilegeCouncil.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										PrivilegeController privilegeController = fxmlLoader.getController();
+										privilegeController.setBoardController(this);
+										privilegeController.setStage(stage);
+										privilegeController.setType("venture4");
+									} else if (client.getBoard().getVentureTower().getFloor(3).getCard()
+											.getAlternativeCost()) {
+										FXMLLoader fxmlLoader = new FXMLLoader(
+												getClass().getResource("AlternativeCost.fxml"));
+										Parent root1 = (Parent) fxmlLoader.load();
+										Stage stage = new Stage();
+										stage.setScene(new Scene(root1));
+										stage.show();
+										AlternativeCostController alternativeCostController = fxmlLoader
+												.getController();
+										alternativeCostController.setBoardController(this);
+										alternativeCostController.setStage(stage);
+										alternativeCostController.setType("venture4");
+									} else {
+										putRelativeOnVenture4();
+									}
+								} else {
+									openMessage("NotEnoughResourceMessage.fxml");
 								}
 							} else {
-								openMessage("NotEnoughResourceMessage.fxml");
+								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("AnotherRelativeInTowerMessage.fxml");
+							openMessage("NotEnoughValueMessage.fxml");
+							relative = null;
 						}
 					} else {
-						openMessage("NotEnoughValueMessage.fxml");
-						relative = null;
+						openMessage("SpaceOccupiedMessage.fxml");
 					}
 				} else {
-					openMessage("SpaceOccupiedMessage.fxml");
+					openMessage("ChooseTheRelativeMessage.fxml");
 				}
 			} else {
-				openMessage("ChooseTheRelativeMessage.fxml");
+				openMessage("NotYorTurn.fxml");
 			}
 		}
-			else{
-				openMessage("NotYorTurn.fxml");
-			}}
-
 
 		catch (
 
@@ -2048,8 +2113,6 @@ public class BoardController {
 		}
 
 	}
-	
-
 
 	public void initializeBoard(ClientModel client) {
 		// this.client = client;
@@ -2333,8 +2396,6 @@ public class BoardController {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-
-	
 
 	public void setPlayer() {
 		String value;
@@ -2654,12 +2715,12 @@ public class BoardController {
 
 		}
 		Image harvestLeftImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
-		
-				harvestLeft.setImage(harvestLeftImage);
-				
+
+		harvestLeft.setImage(harvestLeftImage);
+
 	}
-	
-	public void setProductionRightArea(Relative relative2, Player player2){
+
+	public void setProductionRightArea(Relative relative2, Player player2) {
 		String relativeColor;
 		switch (relative2.getColor()) {
 		case ORANGE: {
@@ -2681,13 +2742,12 @@ public class BoardController {
 
 		}
 		Image productionRightImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
-		
-				productionRight.get(k).setImage(productionRightImage);
-				
+
+		productionRight.get(k).setImage(productionRightImage);
 
 	}
-	
-	public void setHarvestRightArea(Relative relative2, Player player2){
+
+	public void setHarvestRightArea(Relative relative2, Player player2) {
 		String relativeColor;
 		switch (relative2.getColor()) {
 		case ORANGE: {
@@ -2709,10 +2769,10 @@ public class BoardController {
 
 		}
 		Image harvestRightImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
-		
-				harvestRight.get(j).setImage(harvestRightImage);
+
+		harvestRight.get(j).setImage(harvestRightImage);
 	}
-	
+
 	public void setProductionLeftArea(Relative relative2, Player player2) {
 		String relativeColor;
 		switch (relative2.getColor()) {
@@ -2735,20 +2795,18 @@ public class BoardController {
 
 		}
 		Image productionLeftImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
-		
-				productionLeft.setImage(productionLeftImage);
-				
+
+		productionLeft.setImage(productionLeftImage);
 
 	}
-	
-	
+
 	public ClientModel getClient() {
 		return client;
 	}
 
-	public void giveCurrentTurnOrder(ArrayList <Player> currentTurnOrder) {
+	public void giveCurrentTurnOrder(ArrayList<Player> currentTurnOrder) {
 		currentTurnOrder = new ArrayList<Player>();
 		this.currentTurnOrder = currentTurnOrder;
-		
+
 	}
 }
