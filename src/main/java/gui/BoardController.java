@@ -2783,6 +2783,30 @@ public class BoardController {
 		productionRight.get(k).setImage(productionRightImage);
 
 	}
+	public void setCouncilPalace(Player player2, Relative relative2) {
+		String relativeColor;
+		switch (relative2.getColor()) {
+		case ORANGE: {
+			relativeColor = "RelativeOrange";
+			break;
+		}
+		case WHITE: {
+			relativeColor = "RelativeWhite";
+			break;
+		}
+		case BLACK: {
+			relativeColor = "RelativeBlack";
+			break;
+		}
+		default: {
+			relativeColor = "RelativeNeutral";
+			break;
+		}
+
+		}
+		Image councilPalaceImage = new Image("Images/" + player2 + relativeColor + "1.png");
+		councilPalace.get(i).setImage(councilPalaceImage);
+	}
 	
 	public void setHarvestRightArea(Relative relative2){
 		String relativeColor;
@@ -2806,8 +2830,7 @@ public class BoardController {
 
 		}
 		Image harvestRightImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
-		
-				harvestRight.get(j).setImage(harvestRightImage);
+		harvestRight.get(j).setImage(harvestRightImage);
 	}
 	
 	public void setProductionLeftArea(Relative relative2) {
