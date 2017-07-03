@@ -25,7 +25,7 @@ public class PrivilegeController {
 	@FXML
 	public void coinPrivilege() {
 		choice = "coin";
-		switch ("type") {
+		switch (type) {
 		case "councilPalace": {
 			boardController.putRelativeOnCouncilPalace(choice);
 			break;
