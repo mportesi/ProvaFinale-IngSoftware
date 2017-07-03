@@ -125,7 +125,7 @@ public class ClientModel implements Serializable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getHarvestArea().setLeftRelativeOnHarvest(relative);
 		if(gui){
-			boardControllerGUI.setHarvestLeftArea(relative, player);
+			boardControllerGUI.setHarvestLeftArea(relative);
 		}
 	}
 
@@ -133,7 +133,7 @@ public class ClientModel implements Serializable {
 	public void setProductionLeftArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getProductionArea().setLeftRelativeOnProduction(relative);
 		if(gui){
-			boardControllerGUI.setProductionLeftArea(relative, player);
+			boardControllerGUI.setProductionLeftArea(relative);
 		}
 	}
 
@@ -141,7 +141,7 @@ public class ClientModel implements Serializable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getProductionArea().setRightRelativeOnProduction(relative);
 		if(gui){
-			boardControllerGUI.setProductionRightArea(relative, player);
+			boardControllerGUI.setProductionRightArea(relative);
 		}
 	}
 
@@ -150,7 +150,7 @@ public class ClientModel implements Serializable {
 	public void setHarvestRightArea(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getHarvestArea().setRightRelativeOnHarvest(relative);
 		if(gui){
-			boardControllerGUI.setHarvestRightArea(relative, player);
+			boardControllerGUI.setHarvestRightArea(relative);
 		}
 		
 	}

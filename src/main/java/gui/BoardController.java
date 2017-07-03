@@ -107,6 +107,16 @@ public class BoardController {
 	private TextField stone;
 	@FXML
 	private TextField servant;
+	
+	@FXML
+	private ImageView current1;
+	@FXML
+	private ImageView current2;
+	@FXML
+	private ImageView current3;
+	@FXML
+	private ImageView current4;
+	
 
 	@FXML
 	private ImageView councilPalace1;
@@ -2245,6 +2255,8 @@ public class BoardController {
 		characterTower3.setImage(characterImage3);
 		characterTower2.setImage(characterImage2);
 		characterTower1.setImage(characterImage1);
+		
+		
 
 	};
 
@@ -2409,7 +2421,29 @@ public class BoardController {
 		servant.setText(value);
 	}
 
+	
+	public void setCurrentTurnOrder(){
+		Image image0 = new Image("Images/" + currentTurnOrder.get(0).getColor() + "Piece.png");
+		current1.setImage(image0);
+		Image image1 = new Image("Images/" + currentTurnOrder.get(1).getColor() + "Piece.png");
+		current2.setImage(image1);
+		if (currentTurnOrder.size() == 3){
+			Image image2 = new Image("Images/" + currentTurnOrder.get(2).getColor() + "Piece.png");
+			current3.setImage(image2);	
+		}
+		if (currentTurnOrder.size()==4)
+		{
+			Image image2 = new Image("Images/" + currentTurnOrder.get(2).getColor() + "Piece.png");
+			current3.setImage(image2);	
+			Image image3 = new Image("Images/" + currentTurnOrder.get(3).getColor() + "Piece.png");
+			current4.setImage(image3);	
+		}
+		
+	}
+	
 	public void setBoard() {
+		
+		//setCurrentTurnOrder();
 		String value;
 		value = String.valueOf(client.getBoard().getWhiteDice().getValue());
 		whiteDice.setText(value);
@@ -2693,7 +2727,7 @@ public class BoardController {
 		}
 	}
 
-	public void setHarvestLeftArea(Relative relative2, Player player2) {
+	public void setHarvestLeftArea(Relative relative2) {
 		String relativeColor;
 		switch (relative2.getColor()) {
 		case ORANGE: {
@@ -2714,13 +2748,13 @@ public class BoardController {
 		}
 
 		}
-		Image harvestLeftImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
-
-		harvestLeft.setImage(harvestLeftImage);
-
+		Image harvestLeftImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
+		
+				harvestLeft.setImage(harvestLeftImage);
+				
 	}
-
-	public void setProductionRightArea(Relative relative2, Player player2) {
+	
+	public void setProductionRightArea(Relative relative2){
 		String relativeColor;
 		switch (relative2.getColor()) {
 		case ORANGE: {
@@ -2741,13 +2775,16 @@ public class BoardController {
 		}
 
 		}
-		Image productionRightImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
+		Image productionRightImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
+		
+				productionRight.get(k).setImage(productionRightImage);
+				
 
 		productionRight.get(k).setImage(productionRightImage);
 
 	}
-
-	public void setHarvestRightArea(Relative relative2, Player player2) {
+	
+	public void setHarvestRightArea(Relative relative2){
 		String relativeColor;
 		switch (relative2.getColor()) {
 		case ORANGE: {
@@ -2768,12 +2805,12 @@ public class BoardController {
 		}
 
 		}
-		Image harvestRightImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
-
-		harvestRight.get(j).setImage(harvestRightImage);
+		Image harvestRightImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
+		
+				harvestRight.get(j).setImage(harvestRightImage);
 	}
-
-	public void setProductionLeftArea(Relative relative2, Player player2) {
+	
+	public void setProductionLeftArea(Relative relative2) {
 		String relativeColor;
 		switch (relative2.getColor()) {
 		case ORANGE: {
@@ -2794,7 +2831,10 @@ public class BoardController {
 		}
 
 		}
-		Image productionLeftImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
+		Image productionLeftImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
+		
+				productionLeft.setImage(productionLeftImage);
+				
 
 		productionLeft.setImage(productionLeftImage);
 
@@ -2804,9 +2844,10 @@ public class BoardController {
 		return client;
 	}
 
-	public void giveCurrentTurnOrder(ArrayList<Player> currentTurnOrder) {
-		currentTurnOrder = new ArrayList<Player>();
+	public void giveCurrentTurnOrder(ArrayList <Player> currentTurnOrder) {
+		this.currentTurnOrder = new ArrayList<Player>();
 		this.currentTurnOrder = currentTurnOrder;
-
+		setCurrentTurnOrder();
+		
 	}
 }
