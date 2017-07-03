@@ -52,6 +52,9 @@ public class ClientModel implements Serializable {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		board.getCouncilPalace().addPlayer(player, relative);
 		board.getCouncilPalace().getRelatives().add(relative);
+		if(gui){
+			boardControllerGUI.setCouncilPalace(player, relative);
+		}
 	}
 
 	public void setPeriod(int period) {
