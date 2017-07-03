@@ -2412,8 +2412,9 @@ public class BoardController {
 	}
 
 	public void setPlayer() {
+		
 		name.setText(client.getPlayer().getName());
-	//	nameFxml= new Label(client.getPlayer().getName());;
+		nameFxml= new Label(client.getPlayer().getName());;
 		String value;
 		value = String.valueOf(client.getPlayer().getCoin());
 		coin.setText(value);
