@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Timer;
 
@@ -14,6 +15,7 @@ import gui.BoardController;
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.GC_40.TimerAction;
+import it.polimi.ingsw.actions.Quit;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
@@ -27,6 +29,7 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class ClientModel implements Serializable {
 	private Player player;
+	private BufferedReader in;
 	private String name;
 	private volatile Player currentPlayer;
 	private Board board;
@@ -44,8 +47,10 @@ public class ClientModel implements Serializable {
 	private Timer timer = new Timer();
 	
 	public ClientModel(ServerRMIConnectionViewRemote serverStub){
+		in = new BufferedReader(new InputStreamReader(System.in));
 		this.serverStub=serverStub;
 		this.gui=true;
+	
 	}
 
 	public void setCouncilPalace(Player player, Relative relative)
@@ -95,6 +100,79 @@ public class ClientModel implements Serializable {
 			timer.schedule(new TimerAction(serverStub) {
 				public void run() {
 					System.out.println("It ran out of time!");
+					
+							try {
+								try {
+									timer.cancel();
+									serverStub.notifyObserver(new Quit(player, player.getMatch()));
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							} catch (FileNotFoundException e3) {
+								// TODO Auto-generated catch block
+								e3.printStackTrace();
+							} catch (NullPointerException e3) {
+								// TODO Auto-generated catch block
+								e3.printStackTrace();
+							} catch (RemoteException e3) {
+								// TODO Auto-generated catch block
+								e3.printStackTrace();
+							} catch (IOException e3) {
+								// TODO Auto-generated catch block
+								e3.printStackTrace();
+							} catch (ParseException e3) {
+								// TODO Auto-generated catch block
+								e3.printStackTrace();
+							}
+					
+						setQuit(true);
+						
+						
+						
+						
+						int input0;
+						try {
+							input0 = Integer.parseInt(in.readLine());
+							switch(input0){
+							case 0: 
+								System.out.println("reconnect");
+								try {
+									try {
+										serverStub.notifyObserver(new Reconnect(player, player.getMatch()));
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								} catch (FileNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (NullPointerException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (RemoteException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (ParseException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								
+							break;
+							}
+						} catch (NumberFormatException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					
+					
 					ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
 					
 
@@ -102,15 +180,16 @@ public class ClientModel implements Serializable {
 					try {
 						serverStub.notifyObserver(shiftPlayer);
 						timer.cancel();
-						action.sleep(1000000000*10000000);
+						
 					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 						e.printStackTrace();
 					}
+					}
+				}, (long) (timeOutAction) * 20);
 				}
-			}, (long) (timeOutAction) * 1000);
-		}
 
 	}
+		
 
 	public void setRound(int round) {
 		this.round = round;

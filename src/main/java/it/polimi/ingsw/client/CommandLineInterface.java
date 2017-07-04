@@ -106,7 +106,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			timer.cancel();
 			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
 			client.setQuit(true);
-			
+		
 			int input0 = Integer.parseInt(in.readLine());
 			
 			switch(input0){
