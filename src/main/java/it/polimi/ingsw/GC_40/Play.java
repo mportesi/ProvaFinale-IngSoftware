@@ -398,9 +398,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 	}
 
-	public void endGame() {
+	public void endGame() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		ChangeEndGame changeEndGame= new ChangeEndGame(match);
 		// restituisce la classifica e il vincitore
+		notifyObserver(changeEndGame);
 	}
 
 	public void checkWinner()
