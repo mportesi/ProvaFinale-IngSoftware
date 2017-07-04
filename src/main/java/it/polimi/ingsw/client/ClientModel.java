@@ -109,6 +109,10 @@ public class ClientModel implements Serializable {
 				}
 			}, (long) (timeOutAction) * 1000);
 		}
+		
+		if(gui){
+			boardControllerGUI.setCurrentPlayer();
+		}
 
 	}
 
@@ -239,6 +243,9 @@ public class ClientModel implements Serializable {
 
 	public void setPlayer(Player player) {
 		this.player = player;
+		if(gui){
+			boardControllerGUI.setPlayer(player);
+		}
 
 	}
 
