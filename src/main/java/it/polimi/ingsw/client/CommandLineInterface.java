@@ -83,7 +83,8 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
-		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit");
+		System.out.println("Your status is: "+client.getPlayer());
+		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit ");
 		int input = Integer.parseInt(in.readLine());
 	
 		switch (input) {
@@ -117,6 +118,8 @@ public class CommandLineInterface implements Serializable, Runnable {
 			break;
 			}
 		}
+		
+		
 		}}
 
 	
