@@ -137,39 +137,44 @@
             <Font name="Blackadder ITC" size="33.0" />
          </font>
       </Text>
-      <Text fx:id="stone" fill="#57250d" layoutX="796.0" layoutY="711.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.000008314847946">
+      <Text fx:id="stone" fill="#d70505" layoutX="796.0" layoutY="711.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.000008314847946">
          <font>
-            <Font name="Blackadder ITC" size="35.0" />
+            <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
    
   
-      <Text fx:id="wood" fill="#57250d" layoutX="714.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.000008314847946">
+      <Text fx:id="wood" fill="#eb0707" layoutX="714.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.000008314847946">
          <font>
-            <Font name="Blackadder ITC" size="35.0" />
+            <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <Text fx:id="coin" fill="#57250d" layoutX="639.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.000008314847946">
+      <Text fx:id="coin" fill="#eb0e0e" layoutX="639.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.000008314847946">
          <font>
-            <Font name="Blackadder ITC" size="35.0" />
+            <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <Text fx:id="orangeDice" fill="#57250d" layoutX="387.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
+      <Text fx:id="orangeDice" fill="#e10f0f" layoutX="387.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
          <font>
-            <Font name="Blackadder ITC" size="35.0" />
+            <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <Text fx:id="whiteDice" fill="#57250d" layoutX="336.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
+      <Text fx:id="whiteDice" fill="#ee0707" layoutX="344.0" layoutY="665.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.000006675720215">
          <font>
-            <Font name="Blackadder ITC" size="35.0" />
+            <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <Text fx:id="blackDice" fill="#57250d" layoutX="292.0" layoutY="667.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
+      <Text fx:id="blackDice" fill="#e40a0a" layoutX="292.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
          <font>
-            <Font name="Blackadder ITC" size="35.0" />
+            <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <TextField fx:id="servant" layoutX="1002.0" layoutY="138.0" prefHeight="31.0" prefWidth="28.0" />
-      <Button fx:id="switchTurn" layoutX="1048.0" layoutY="139.0" mnemonicParsing="false" text="Switch" />
+      <TextField fx:id="servantInserted" layoutX="1002.0" layoutY="138.0" prefHeight="31.0" prefWidth="28.0" />
+      <Button fx:id="switchTurn" layoutX="1048.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#switchTurn" text="Switch" />
+      <Text fx:id="servant" fill="#d70505" layoutX="865.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.000008314847946">
+         <font>
+            <Font name="Blackadder ITC" size="26.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
