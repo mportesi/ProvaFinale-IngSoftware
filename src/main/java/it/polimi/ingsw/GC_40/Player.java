@@ -53,6 +53,16 @@ public class Player extends Observable<Change> implements Serializable {
 	private boolean hasOrangeRelative;
 	private boolean hasNeutralRelative;
 	private boolean quit;
+	private int charCardBonus=0;
+	private int ventCardBonus=0;
+	private int buildCardBonus=0;
+	private int terrCardBonus=0;
+	private int harvestBonus=0;
+	private int productionBonus=0;
+	private int charCardGoldCost=0;
+	private int buildCardStoneCost=0;
+	private int buildCardWoodCost=0;
+	
 
 	public Player(UUID ID, Play play, String name, int match) {
 		this.ID = ID;
