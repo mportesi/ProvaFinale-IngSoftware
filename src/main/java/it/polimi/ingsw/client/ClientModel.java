@@ -184,6 +184,7 @@ public class ClientModel implements Serializable {
 						
 					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 						e.printStackTrace();
+						
 					}
 					}
 				}, (long) (timeOutAction) * 50);
