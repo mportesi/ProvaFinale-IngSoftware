@@ -187,7 +187,7 @@ public class ClientModel implements Serializable {
 						
 					}
 					}
-				}, (long) (timeOutAction) * 50);
+				}, (long) (timeOutAction) * 100);
 				
 		}
 		
