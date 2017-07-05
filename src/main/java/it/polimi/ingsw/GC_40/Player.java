@@ -548,8 +548,52 @@ public class Player extends Observable<Change> implements Serializable {
 		return quit;
 	}
 
+	public int getCharCardBonus(){
+		return charCardBonus;
+	}
+	
+	public void addCharCardBonus(int n){
+		charCardBonus += n;
+	}
 
-
+	public int getBuildCardBonus(){
+		return buildCardBonus;
+	}
+	
+	public void addBuildCardBonus(int n){
+		buildCardBonus +=n;
+	}
+	
+	public int getVentCardBonus(){
+		return ventCardBonus;
+	}
+	
+	public void addVentCardBonus(int n){
+		ventCardBonus += n;
+	}
+	public int getTerrCardBonus(){
+		return terrCardBonus;
+	}
+	
+	public void addTerrCardBonus(int n){
+		terrCardBonus += n;
+	}
+	
+	public int getProductionBonus(){
+		return productionBonus;
+	}
+	
+	public void addProductionBonus(int n){
+		productionBonus += n;
+	}
+	
+	public int getHarvestBonus(){
+		return harvestBonus;
+	}
+	
+	public void addHarvestBonus(int n){
+		harvestBonus += n;
+	}
 	
 	
 

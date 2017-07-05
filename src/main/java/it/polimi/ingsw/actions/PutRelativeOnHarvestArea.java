@@ -91,6 +91,8 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 				int malus = play.getBoard().getHarvestArea().getMalus();
 				relative.setValue(-malus);
 				int newValue = relative.getValue();
+				//apply the territory permanent effect
+				applyPermanentEffect(play);
 				GainHarvestValue gainHarvestValue = new GainHarvestValue(newValue);
 				gainHarvestValue.apply(player, play);
 			}
