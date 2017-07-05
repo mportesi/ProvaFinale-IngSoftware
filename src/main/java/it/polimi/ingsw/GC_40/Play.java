@@ -522,27 +522,28 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 				players.remove(playerToRemove);
 			}
 		}
-		
+		try {
+			notifyObserver(new ChangeNumberOfPlayers(players.size(), player, board));
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			e.printStackTrace();
+		}
 		//board.remove(player);
 		currentTurnOrder.remove(player);
 		if (currentTurnOrder.size()>1){
 		ChangeTurnOrder changeCurrentTurnOrder = new ChangeTurnOrder(currentTurnOrder);
 		notifyObserver(changeCurrentTurnOrder);
 		changeCurrentPlayer();
-		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
+	/*	ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
 
-		this.notifyObserver(changePlayer);
+		this.notifyObserver(changePlayer);*/
 		}
 		
 		if(players.size()==1){
-			checkWinner();
 			endGame();
+			checkWinner();
+			
 		}
-		try {
-			notifyObserver(new ChangeNumberOfPlayers(players.size(), player, board));
-		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-			e.printStackTrace();
-		}
+		
 		
 	}
 

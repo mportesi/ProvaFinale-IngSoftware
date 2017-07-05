@@ -184,11 +184,12 @@ public class ClientModel implements Serializable {
 						
 					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 						e.printStackTrace();
+						
 					}
 					}
+				}, (long) (timeOutAction) * 50);
 				
-			}, (long) (timeOutAction) * 1000);
-}
+		}
 		
 		if(gui){
 			boardControllerGUI.setCurrentPlayer();
