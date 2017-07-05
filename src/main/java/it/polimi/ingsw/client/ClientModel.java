@@ -71,6 +71,7 @@ public class ClientModel implements Serializable {
 		
 		// chiamo cli in un thread
 		// scatta timer thread a null
+		System.out.println("The EG is: " +endGame);
 		if (!endGame && currentPlayer.getName().equals(player.getName())) {
 			JsonTimeOut jsonTimeOut = null;
 			try {
@@ -185,6 +186,8 @@ public class ClientModel implements Serializable {
 						e.printStackTrace();
 					}
 					}
+				}, (long) (timeOutAction) * 10);
+				}
 			}, (long) (timeOutAction) * 1000);
 }
 		

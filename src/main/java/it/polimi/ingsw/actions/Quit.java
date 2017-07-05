@@ -12,7 +12,7 @@ public class Quit implements Action {
 	private Player player;
 	int match;
 	
-	public Quit(Player player, int match){
+	public Quit (Player player, int match){
 		this.player=player;
 		this.match = match;
 	}
@@ -23,6 +23,7 @@ public class Quit implements Action {
 		play.getDisconnectedPlayers().add(player);
 		play.removePlayer(player);
 		player.setQuit(true);
+		
 
 	}
 

@@ -407,8 +407,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	public void checkWinner()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		System.out.println("Sono nel checkWinner()");
-		ChangeEndGame changeEndGame = new ChangeEndGame(match);
-		notifyObserver(changeEndGame);
+	/*	ChangeEndGame changeEndGame = new ChangeEndGame(match);
+		notifyObserver(changeEndGame);*/
 		ArrayList<Player> winners = new ArrayList<Player>();
 		int max = 0;
 		giveFinalPoint();
@@ -525,14 +525,17 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		
 		//board.remove(player);
 		currentTurnOrder.remove(player);
+		if (currentTurnOrder.size()>1){
 		ChangeTurnOrder changeCurrentTurnOrder = new ChangeTurnOrder(currentTurnOrder);
 		notifyObserver(changeCurrentTurnOrder);
 		changeCurrentPlayer();
 		ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
 
 		this.notifyObserver(changePlayer);
+		}
 		
 		if(players.size()==1){
+			checkWinner();
 			endGame();
 		}
 		try {
