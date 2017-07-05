@@ -185,10 +185,8 @@ public class ClientModel implements Serializable {
 						e.printStackTrace();
 					}
 					}
-				}, (long) (timeOutAction) * 20);
-				}
 			}, (long) (timeOutAction) * 1000);
-		}
+}
 		
 		if(gui){
 			boardControllerGUI.setCurrentPlayer();
@@ -385,6 +383,13 @@ public class ClientModel implements Serializable {
 
 	public String getCurrentTurnOrder() {
 		return currentTurnOrder.toString();
+	}
+
+	public void actionNotApplicable() {
+		if(gui){
+			boardControllerGUI.actionNotApplicable();
+		}
+		
 	}
 
 	
