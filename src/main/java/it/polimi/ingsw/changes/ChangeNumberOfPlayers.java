@@ -33,11 +33,8 @@ public class ChangeNumberOfPlayers implements Change {
 			System.out.println("Press '0' if you want to reconnect");
 		}
 		}
-		else{
-			System.out.println(player.getName() + " has disconnected. You won");
-		}}
 		
 
 	}
-
+	}
 }

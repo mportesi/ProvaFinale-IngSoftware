@@ -878,7 +878,7 @@ public class BoardController {
 						openMessage("AnotherRelativeInTowerMessage.fxml");
 					}
 				} else {
-					openMessage("NotEnoughtValueMessage.fxml");
+					openMessage("NotEnoughValueMessage.fxml");
 					relative = null;
 				}
 			} else {
