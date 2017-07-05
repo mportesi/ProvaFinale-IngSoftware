@@ -73,8 +73,8 @@ public class BoardController {
 	private ArrayList<ImageView> councilPalace;
 	private ArrayList<ImageView> harvestRight;
 	private ArrayList<ImageView> productionRight;
-	private volatile int i = 0;
-	private volatile int j = 0;
+	private volatile  int i = 0;
+	private volatile   int j = 0;
 	private volatile int k = 0;
 	private ArrayList<ImageView> territoryCard;
 	private ArrayList<ImageView> buildingCard;
@@ -111,7 +111,9 @@ public class BoardController {
 	@FXML
 	private Text stone;
 	@FXML
-	private TextField servant;
+	private Text servant;
+	@FXML
+	private TextField servantInserted;
 	@FXML
 	private Text name;
 	@FXML
@@ -961,7 +963,7 @@ public class BoardController {
 				}
 			}
 
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			if (!doubleCard && client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (relative != null && (!doubleCard)) {
 					if (client.getCharacterTower().getFloor(0).isFree()) {
 						if (relative.getValue() >= client.getCharacterTower().getFloor(0).getCost()) {
@@ -1046,7 +1048,7 @@ public class BoardController {
 				}
 			}
 
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			if (!doubleCard && client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (relative != null) {
 					if (client.getCharacterTower().getFloor(1).isFree()) {
 						if (relative.getValue() >= client.getCharacterTower().getFloor(1).getCost()) {
@@ -1129,7 +1131,7 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 			}
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			if (!doubleCard && client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (relative != null) {
 					if (client.getCharacterTower().getFloor(2).isFree()) {
 						if (relative.getValue() >= client.getCharacterTower().getFloor(2).getCost()) {
@@ -1212,7 +1214,7 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 			}
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			if (!doubleCard && client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (relative != null) {
 					if (client.getCharacterTower().getFloor(3).isFree()) {
 						if (relative.getValue() >= client.getCharacterTower().getFloor(3).getCost()) {
@@ -1704,9 +1706,10 @@ public class BoardController {
 				PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(client.getPlayer(),
 						relative, client.getBoard().getHarvestArea(), "right", client.getMatch());
 				serverStub.notifyObserver(putRelativeOnHarvestArea);
+				
 				harvestRight.get(j).setImage(relativeImage);
-
 				j++;
+		
 
 			} else {
 				try {
@@ -2984,9 +2987,9 @@ public class BoardController {
 
 		}
 		Image productionRightImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
-
-		productionRight.get(k).setImage(productionRightImage);
-
+		while(productionRight.get(k).getImage()!=null){
+			k++;
+		}
 		productionRight.get(k).setImage(productionRightImage);
 
 	}
@@ -3038,6 +3041,9 @@ public class BoardController {
 
 		}
 		Image harvestRightImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
+		while(harvestRight.get(j).getImage()!=null){
+			j++;
+		}
 		harvestRight.get(j).setImage(harvestRightImage);
 	}
 
