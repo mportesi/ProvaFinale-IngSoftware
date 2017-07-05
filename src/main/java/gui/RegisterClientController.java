@@ -58,7 +58,6 @@ public class RegisterClientController {
 			page =fxmlLoader.load();
 			BoardController boardController=fxmlLoader.getController();
 			boardController.setClient(client);
-			boardController.setPlayer(client.getPlayer());
 			boardController.setServerStub(serverStub);
 			client.setBoardController(boardController);
 			text.getScene().setRoot(page);

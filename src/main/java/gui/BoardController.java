@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -109,7 +111,14 @@ public class BoardController {
 	private TextField servant;
 	@FXML
 	private TextField name;
-	
+	@FXML
+	private TextField color;
+	@FXML
+	private TextField currentPlayer;
+	@FXML
+	private Text addServant;
+	@FXML
+	private Text nameFxml;
 	@FXML
 	private ImageView current1;
 	@FXML
@@ -188,14 +197,6 @@ public class BoardController {
 	@FXML
 	private ImageView councilPalace12;
 
-	@FXML
-	private Label nameFxml;
-	@FXML
-	private Label currentTurnOrderFxml;
-	@FXML
-	private Label colorFxml;
-	@FXML
-	private Label currentPlayerFxml;
 	@FXML
 	private Button white;
 	@FXML
@@ -1662,7 +1663,7 @@ public class BoardController {
 										putRelativeOnTerritory1();
 									}
 								} else {
-									openMessage("NotEnoughtResourceMessage.fxml");
+									openMessage("NotEnoughResourceMessage.fxml");
 								}
 							} else {
 								openMessage("AnotherRelativeInTowerMessage.fxml");
@@ -1772,13 +1773,13 @@ public class BoardController {
 										putRelativeOnTerritory3();
 									}
 								} else {
-									openMessage("NotEnoughtResourceMessage.fxml");
+									openMessage("NotEnoughResourceMessage.fxml");
 								}
 							} else {
 								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("NotEnoughtValueMessage.fxml");
+							openMessage("NotEnoughValueMessage.fxml");
 							relative = null;
 						}
 					} else {
@@ -1828,7 +1829,7 @@ public class BoardController {
 										putRelativeOnTerritory3();
 									}
 								} else {
-									openMessage("NotEnoughtResourceMessage.fxml");
+									openMessage("NotEnoughResourceMessage.fxml");
 								}
 							} else {
 								openMessage("AnotherRelativeInTowerMessage.fxml");
@@ -1895,13 +1896,13 @@ public class BoardController {
 										putRelativeOnVenture1();
 									}
 								} else {
-									openMessage("NotEnoughtResourceMessage.fxml");
+									openMessage("NotEnoughResourceMessage.fxml");
 								}
 							} else {
 								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("NotEnoughtValueMessage.fxml");
+							openMessage("NotEnoughValueMessage.fxml");
 							relative = null;
 						}
 					} else {
@@ -2035,7 +2036,7 @@ public class BoardController {
 								openMessage("AnotherRelativeInTowerMessage.fxml");
 							}
 						} else {
-							openMessage("NotEnoughtValueMessage.fxml");
+							openMessage("NotEnoughValueMessage.fxml");
 							relative = null;
 						}
 					} else {
@@ -2406,15 +2407,15 @@ public class BoardController {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void setPlayer(Player player) {
 		this.player = player;
+		name.setText(client.getPlayer().getName());
+		nameFxml.setText(client.getPlayer().getName());
 	}
-
+	@FXML
 	public void setPlayer() {
 		
-		name.setText(client.getPlayer().getName());
-		nameFxml= new Label(client.getPlayer().getName());;
 		String value;
 		value = String.valueOf(client.getPlayer().getCoin());
 		coin.setText(value);
@@ -2877,5 +2878,26 @@ public class BoardController {
 		this.currentTurnOrder = currentTurnOrder;
 		setCurrentTurnOrder();
 		
+	}
+
+	public void setCurrentPlayer() {
+		currentPlayer.setText("The current player is: " + client.getCurrentPlayer().getName());
+		color.setText(client.getPlayer().getColor().toString());
+		if(!player.getName().equals(client.getCurrentPlayer().getName())){
+			black.setVisible(false);
+			white.setVisible(false);
+			orange.setVisible(false);
+			neutral.setVisible(false);
+			servant.setVisible(false);
+			addServant.setVisible(false);
+		}
+		else{
+			black.setVisible(true);
+			white.setVisible(true);
+			orange.setVisible(true);
+			neutral.setVisible(true);
+			servant.setVisible(true);
+			addServant.setVisible(true);
+		}
 	}
 }
