@@ -23,6 +23,7 @@ public class ChangeNotApplicable implements Change {
 		if(client.getPlayer().getMatch()==player.getMatch() && client.getPlayer().getName().equals(player.getName())){
 			System.out.println("The action did by " + player.getName() + " wasn't correct because: " + string);
 			client.setCurrentPlayer(player);
+			client.actionNotApplicable();
 		}
 
 	}

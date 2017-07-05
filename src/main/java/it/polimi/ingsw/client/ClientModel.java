@@ -387,6 +387,13 @@ public class ClientModel implements Serializable {
 		return currentTurnOrder.toString();
 	}
 
+	public void actionNotApplicable() {
+		if(gui){
+			boardControllerGUI.actionNotApplicable();
+		}
+		
+	}
+
 	
 
 }
