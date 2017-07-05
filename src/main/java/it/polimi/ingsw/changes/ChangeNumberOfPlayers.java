@@ -26,7 +26,7 @@ public class ChangeNumberOfPlayers implements Change {
 		if(client.getPlayer().getMatch()==player.getMatch()){
 		client.setBoard(board);
 		
-		if(numberOfPlayers>=2){
+		
 		System.out.println(player.getName() + " has disconnected. Now you are only in " + numberOfPlayers);
 		
 		if (client.getPlayer().getName().equals(player.getName())){
@@ -37,4 +37,4 @@ public class ChangeNumberOfPlayers implements Change {
 
 	}
 	}
-}
+

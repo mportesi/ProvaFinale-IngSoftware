@@ -186,9 +186,8 @@ public class ClientModel implements Serializable {
 						e.printStackTrace();
 					}
 					}
-				}, (long) (timeOutAction) * 10);
-				}
-			}, (long) (timeOutAction) * 1000);
+				}, (long) (timeOutAction) * 50);
+				
 		}
 		
 		if(gui){
