@@ -18,6 +18,8 @@ public class BuildingCard extends Card {
 	private Map<String, Integer> cost;
 	private BuildingListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
+	private ArrayList<Effect> permanentEffects;
+	private int permanentCost=0;
 	private boolean gainPrivilegeCouncil=false;
 	
 	public BuildingCard(String type, String name, int period, Map<String, Integer> cost, BuildingListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
@@ -100,5 +102,13 @@ public class BuildingCard extends Card {
 		}
 		public boolean getGainPrivilegeCouncil() {
 			return gainPrivilegeCouncil;
+		}
+		
+		public int getPermanentCost(){
+			return permanentCost;
+		}
+		
+		public ArrayList<Effect> getPermanentEffect(){
+			return permanentEffects;
 		}
 }

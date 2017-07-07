@@ -21,6 +21,7 @@
   "period":1,
   "costCoin":4,
   "immediateEffect":[
+    {"type":"GainCharCardBonus", "amount":2}
   ]
 },
 {
@@ -29,7 +30,8 @@
   "period":1,
   "costCoin":2,
   "immediateEffect":[
-    {"type":"GainPrivilegeCouncil", "amount":1}
+    {"type":"GainPrivilegeCouncil", "amount":1},
+    {"type":"GainVentCardBonus","amount":2}
   ]
 },
 {
@@ -38,6 +40,7 @@
   "period":1,
   "costCoin":3,
   "immediateEffect":[
+    {"type":"GainHarvestBonus","amount":2}
   ]
 },
 {
@@ -46,6 +49,7 @@
   "period":1,
   "costCoin":3,
   "immediateEffect":[
+    {"type":"GainProductionBonus","amount":2}
   ]
 },
 {
@@ -54,6 +58,7 @@
   "period":1,
   "costCoin":4,
   "immediateEffect":[
+    {"type":"GainBuildCardBonus","amount":2}
   ]
 },
 {
@@ -62,7 +67,8 @@
   "period":1,
   "costCoin":2,
   "immediateEffect":[
-    {"type":"GainMilitaryPoint", "amount":3}
+    {"type":"GainMilitaryPoint", "amount":3},
+    {"type":"GainTerrCardBonus","amount":2}
   ]
 },
 {
@@ -80,6 +86,7 @@
   "period":2,
   "costCoin":4,
   "immediateEffect":[
+    {"type":"GainHarvestBonus","amount":3}
   ]
 },
 {
@@ -113,6 +120,7 @@
   "period":2,
   "costCoin":4,
   "immediateEffect":[
+    {"type":"GainProductionBonus","amount":3}
   ]
 },
 {

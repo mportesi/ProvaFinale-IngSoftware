@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -21,10 +22,14 @@ import it.polimi.ingsw.GC_40.TimerAction;
 import it.polimi.ingsw.actions.*;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
+import it.polimi.ingsw.effects.GainResourceForCost;
+import it.polimi.ingsw.effects.GainResourceForCostAlternative;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
@@ -230,6 +235,28 @@ public class CommandLineInterface implements Serializable, Runnable {
 		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
+			//check and apply the bonus from the character card
+			switch(tower.getType()) {
+			case "territory" :{
+				relative.addValue(client.getPlayer().getTerrCardBonus());
+				break;
+			}
+			case "building" :{
+				relative.addValue(client.getPlayer().getBuildCardBonus());
+				break;
+			}
+			case "character" :{
+				relative.addValue(client.getPlayer().getCharCardBonus());
+				break;
+			}
+			case "venture" :{
+				relative.addValue(client.getPlayer().getVentCardBonus());
+				break;
+			}
+			default:{
+				break;
+			}
+			}
 			putRelative = chooseThePutRelativeOnTower(tower, floor, relative);
 			break;
 		}
@@ -261,6 +288,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		}
 		case 4: {
 			String harvestArea = chooseHarvestArea();
+			relative.addValue(client.getPlayer().getHarvestBonus());
 			putRelative = new PutRelativeOnHarvestArea(client.getPlayer(), relative, client.getBoard().getHarvestArea(),
 					harvestArea, client.getPlayer().getMatch());
 
@@ -268,8 +296,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 		}
 		case 5: {
 			String productionArea = chooseProductionArea();
+			relative.addValue(client.getPlayer().getProductionBonus());
+			ArrayList<Effect> permanentEffect=chooseBuildingPermanentEff(client.getPlayer(), relative);
 			putRelative = new PutRelativeOnProductionArea(client.getPlayer(), relative,
-					client.getBoard().getProductionArea(), productionArea, client.getPlayer().getMatch());
+					client.getBoard().getProductionArea(), productionArea, client.getPlayer().getMatch(), permanentEffect);
 
 			break;
 		}
@@ -543,6 +573,59 @@ public class CommandLineInterface implements Serializable, Runnable {
 		
 	}
 
+	public void setTo(boolean to) {
+		this.to = to;
+	}
+	
+	public ArrayList<Effect> chooseBuildingPermanentEff(Player player, Relative relative){
+		ArrayList<Effect> chosenEffect=new ArrayList<Effect>();
+		for(BuildingCard card:player.getBuilding() ){
+			if(relative.getValue()>=card.getPermanentCost()){
+				for(Effect currentEffect:card.getPermanentEffect()){
+					System.out.println("Do you want to use this effect? ");
+					System.out.println(currentEffect.toString());
+					System.out.println("1) Yes\n 2) No");
+					int input=scanner.nextInt();
+					if(input==1){
+						
+						if(currentEffect instanceof GainResourceForCostAlternative){
+							System.out.print("Do you want to use the 1)first or 2)second?");
+							int choice=scanner.nextInt();
+							if(choice==1){
+								((GainResourceForCostAlternative) currentEffect).chooseAlt(false);
+							}
+							else{
+								((GainResourceForCostAlternative) currentEffect).chooseAlt(true);
+							}
+							if(currentEffect.isApplicable(player)){
+								chosenEffect.add(currentEffect);
+							}
+							else{
+								System.out.println("You dont have enough resource!");
+							}
+						}
+						
+						else if(currentEffect instanceof GainResourceForCost){
+							if(currentEffect.isApplicable(player)){
+								chosenEffect.add(currentEffect);
+							}
+							else{
+								System.out.println("You dont have enough resource!");
+							}
+						}
+						
+						else{
+							chosenEffect.add(currentEffect);
+						}
+						
+					}
+				}
+			}
+		}
+		return chosenEffect;
+		
+	}
+	
 
 	
 	
