@@ -20,7 +20,7 @@
             <Image url="@../Images/personalbonustile.png" />
          </image>
       </ImageView>
-      <Button fx:id="quit" layoutX="1061.0" layoutY="14.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="51.0" text="Quit" />
+      <Button fx:id="quit" layoutX="1061.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#quit" prefHeight="10.0" prefWidth="51.0" text="Quit" />
       <Button fx:id="black" layoutX="618.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#chooseBlackRelative" text="Black" />
       <Button fx:id="white" layoutX="690.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#chooseWhiteRelative" text="White" />
       <Button fx:id="neutral" layoutX="848.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#chooseNeutralRelative" text="Neutral" />

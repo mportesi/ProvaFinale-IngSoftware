@@ -39,6 +39,7 @@ import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.actions.PutRelativeOnTowerAltCost;
 import it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCard;
 import it.polimi.ingsw.actions.PutRelativeOnTowerPrivilege;
+import it.polimi.ingsw.actions.Quit;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.MarketBuilding;
@@ -334,8 +335,9 @@ public class BoardController {
 	@FXML
 	public void switchTurn() {
 		try {
+			if(client.getCurrentPlayer().equals(client.getPlayer())){
 			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getMatch());
-			serverStub.notifyObserver(shiftPlayer);
+			serverStub.notifyObserver(shiftPlayer);}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -2471,7 +2473,33 @@ public class BoardController {
 	};
 
 	public void quit() {
+		try {
+			//serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
+			client.setQuit(true);
+			openReconnect();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 
+		return;
+	}
+	
+	public void openReconnect(){
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Reconnect.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root1));
+			stage.show();
+			ReconnectController reconnectController = fxmlLoader.getController();
+			reconnectController.setStage(stage);
+			reconnectController.setServerStub(serverStub);
+			reconnectController.setClientModel(client);
+			reconnectController.setBoardController(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return;
 	}
 
 	public void setClient(ClientModel clientModel) {
@@ -3096,6 +3124,7 @@ public class BoardController {
 			neutral.setVisible(false);
 			servant.setVisible(false);
 			addServant.setVisible(false);
+			switchTurn.setVisible(false);
 		} else {
 			black.setVisible(true);
 			white.setVisible(true);
@@ -3103,6 +3132,7 @@ public class BoardController {
 			neutral.setVisible(true);
 			servant.setVisible(true);
 			addServant.setVisible(true);
+			switchTurn.setVisible(true);
 		}
 	}
 
