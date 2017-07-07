@@ -14,7 +14,8 @@
   "type":"territoryCard",
   "period":1,
   "immediateEffect":[
-  ]
+  ],
+  "permanentEffect":[]
 },
 {"name":"monastery",
   "type":"territoryCard",
@@ -204,7 +205,8 @@
   "period":3,
   "immediateEffect":[
     {"type":"GainMilitaryPoint", "amount":2}
-  ]
+  ],
+"permanentEffect":[]
 },
 {"name":"sanctuary",
   "type":"territoryCard",

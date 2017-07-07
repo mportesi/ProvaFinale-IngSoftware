@@ -573,24 +573,26 @@ public class CommandLineInterface implements Serializable, Runnable {
 		
 	}
 
-	public void setTo(boolean to) {
-		this.to = to;
-	}
+
 	
 	public ArrayList<Effect> chooseBuildingPermanentEff(Player player, Relative relative){
 		ArrayList<Effect> chosenEffect=new ArrayList<Effect>();
+		try {
 		for(BuildingCard card:player.getBuilding() ){
 			if(relative.getValue()>=card.getPermanentCost()){
 				for(Effect currentEffect:card.getPermanentEffect()){
 					System.out.println("Do you want to use this effect? ");
 					System.out.println(currentEffect.toString());
 					System.out.println("1) Yes\n 2) No");
-					int input=scanner.nextInt();
+					int input;
+					
+						input = Integer.parseInt(in.readLine());
+					
 					if(input==1){
 						
 						if(currentEffect instanceof GainResourceForCostAlternative){
 							System.out.print("Do you want to use the 1)first or 2)second?");
-							int choice=scanner.nextInt();
+							int choice=Integer.parseInt(in.readLine());
 							if(choice==1){
 								((GainResourceForCostAlternative) currentEffect).chooseAlt(false);
 							}
@@ -621,6 +623,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 					}
 				}
 			}
+		}
+		
+		} catch (NumberFormatException | IOException e) {
+			e.printStackTrace();
 		}
 		return chosenEffect;
 		
