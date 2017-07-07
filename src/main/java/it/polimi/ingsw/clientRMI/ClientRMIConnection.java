@@ -89,6 +89,7 @@ public class ClientRMIConnection implements Serializable {
 			}*/
 		clientModel.setCli(true);
 		clientModel.setGui(false);
+		System.out.println("\nTell me your name\n");
 		name = stdIn.nextLine();
 		clientModel.setName(name);
 		serverStub.registerClient(rmiView, name);}

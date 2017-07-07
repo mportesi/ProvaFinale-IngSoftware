@@ -74,7 +74,6 @@ public class ClientModel implements Serializable {
 
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
-		
 		// chiamo cli in un thread
 		// scatta timer thread a null
 		System.out.println("The EG is: " +endGame);

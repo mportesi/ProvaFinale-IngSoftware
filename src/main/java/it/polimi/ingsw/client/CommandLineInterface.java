@@ -88,7 +88,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
 		System.out.println("Your status is: "+client.getPlayer());
-		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit ");
+		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit \nIf you want to shift your turn press 9 in any moment");
 		int input = Integer.parseInt(in.readLine());
 	
 		switch (input) {
@@ -107,7 +107,12 @@ public class CommandLineInterface implements Serializable, Runnable {
 			
 			break;
 		}
-		case 3: {
+		case 9:{
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			serverStub.notifyObserver(shiftPlayer);
+			break;
+		}
+		case 4: {
 			timer.cancel();
 			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
 			client.setQuit(true);
@@ -144,6 +149,11 @@ public class CommandLineInterface implements Serializable, Runnable {
 		Relative relative = null;
 		int input = Integer.parseInt(in.readLine());
 		switch (input) {
+		case 9:{
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			serverStub.notifyObserver(shiftPlayer);
+			break;
+		}
 		case 1: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())) {
 				relative = client.getPlayer().getBlackRelative();
@@ -188,6 +198,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			}
 
 		}
+		
 		default: {
 			System.out.println("\nError: insert again");
 			relative = chooseTheRelative();
@@ -205,7 +216,40 @@ public class CommandLineInterface implements Serializable, Runnable {
 		int valueServant = 0;
 		while (!legalServant) {
 			valueServant = Integer.parseInt(in.readLine());
-			System.out.println(valueServant);
+			if(valueServant==9){
+				System.out.println("Do you want 1)9 servants 2)shift the turn?");
+				switch(Integer.parseInt(in.readLine())){
+				case 9:{
+					ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+					try {
+						serverStub.notifyObserver(shiftPlayer);
+					} catch (NullPointerException | ParseException | InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				}
+				case 1:{
+					if (valueServant <= client.getPlayer().getServant()) {
+						relative.setValueServant(valueServant);
+						legalServant = true;
+					} else {
+						System.out.println(
+								"\nNot enough servant, you have only " + client.getPlayer().getServant() + " servant.");
+					}
+					break;
+				}
+				case 2:{
+					ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+					try {
+						serverStub.notifyObserver(shiftPlayer);
+					} catch (NullPointerException | ParseException | InterruptedException e) {
+						e.printStackTrace();
+					}
+					break;
+				}
+				}
+			}
 			if (valueServant <= client.getPlayer().getServant()) {
 				relative.setValueServant(valueServant);
 				legalServant = true;
@@ -231,6 +275,16 @@ public class CommandLineInterface implements Serializable, Runnable {
 		PutRelative putRelative = null;
 		int input = Integer.parseInt(in.readLine());
 		switch (input) {
+		case 9:{
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			try {
+				serverStub.notifyObserver(shiftPlayer);
+			} catch (NullPointerException | ParseException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
 		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
@@ -372,6 +426,16 @@ public class CommandLineInterface implements Serializable, Runnable {
 			//scanner.next();
 		int input = Integer.parseInt(in.readLine());
 		switch (input) {
+		case 9:{
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			try {
+				serverStub.notifyObserver(shiftPlayer);
+			} catch (NullPointerException | ParseException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
 		case 1: {
 			choice = true;
 			return choice;
@@ -408,6 +472,16 @@ public class CommandLineInterface implements Serializable, Runnable {
 		Tower tower;
 		/* try{ */
 		switch (input) {
+		case 9:{
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			try {
+				serverStub.notifyObserver(shiftPlayer);
+			} catch (NullPointerException | ParseException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
 		case 1: {
 			tower = this.client.getTerritoryTower();
 			return tower;
@@ -438,7 +512,17 @@ public class CommandLineInterface implements Serializable, Runnable {
 		int floor;
 		floor = Integer.parseInt(in.readLine());
 		floor -= 1;
-		if (floor < 0 || floor > 4) {
+		if(floor==9){
+		
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			try {
+				serverStub.notifyObserver(shiftPlayer);
+			} catch (NullPointerException | ParseException | InterruptedException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		if (floor!=9 && (floor < 0 || floor > 4)) {
 			System.out.println("\nThat floor don't exist!");
 			floor = chooseFloor();
 		}
@@ -467,6 +551,16 @@ public class CommandLineInterface implements Serializable, Runnable {
 			e.printStackTrace();
 		}
 		switch (choice) {
+		case 9:{
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			try {
+				serverStub.notifyObserver(shiftPlayer);
+			} catch (NullPointerException | ParseException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
 		case 1: {
 			resource = "coin";
 			break;
