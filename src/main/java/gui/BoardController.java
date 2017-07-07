@@ -17,8 +17,10 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -51,6 +53,9 @@ import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.effects.Effect;
+import it.polimi.ingsw.effects.GainResourceForCost;
+import it.polimi.ingsw.effects.GainResourceForCostAlternative;
 import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 import it.polimi.ingsw.server.Server;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
@@ -61,7 +66,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 
 public class BoardController {
-
+	private BufferedReader in;
 	private ClientModel client;
 	private Relative relative;
 	private Player player;
@@ -73,6 +78,7 @@ public class BoardController {
 	private ArrayList<ImageView> councilPalace;
 	private ArrayList<ImageView> harvestRight;
 	private ArrayList<ImageView> productionRight;
+	private ArrayList<Effect> permanentEffect;
 	private volatile  int i = 0;
 	private volatile   int j = 0;
 	private volatile int k = 0;
@@ -1633,6 +1639,7 @@ public class BoardController {
 								client.getMarket(2), client.getMatch());
 						serverStub.notifyObserver(putRelativeOnMarket);
 						market3.setImage(relativeImage);
+						setPlayer();
 					} else {
 						openMessage("NotEnoughValueMessage.fxml");
 						relative = null;
@@ -1656,6 +1663,7 @@ public class BoardController {
 						relative, client.getMarket(3), bonus, client.getMatch());
 				serverStub.notifyObserver(putRelativeOnMarket);
 				market4.setImage(relativeImage);
+				setPlayer();
 
 			} else {
 				openMessage("NotYorTurn.fxml");
@@ -1670,6 +1678,7 @@ public class BoardController {
 		try {
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (relative != null) {
+					relative.addValue(client.getPlayer().getHarvestBonus());
 					if (relative.getValue() >= client.getBoard().getHarvestArea().getValueOfLeftArea()) {
 						if (client.getBoard().getHarvestArea().getLeftRelative() == null) {
 							PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(
@@ -1677,6 +1686,7 @@ public class BoardController {
 									client.getMatch());
 							serverStub.notifyObserver(putRelativeOnHarvestArea);
 							harvestLeft.setImage(relativeImage);
+							setPlayer();
 
 						} else {
 							openMessage("SpaceOccupiedMessage.fxml");
@@ -1703,11 +1713,13 @@ public class BoardController {
 			IOException, ParseException, InterruptedException {
 		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 			if (relative != null) {
+				relative.addValue(client.getPlayer().getHarvestBonus());
 				PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(client.getPlayer(),
 						relative, client.getBoard().getHarvestArea(), "right", client.getMatch());
 				serverStub.notifyObserver(putRelativeOnHarvestArea);
 				
 				harvestRight.get(j).setImage(relativeImage);
+				setPlayer();
 				j++;
 		
 
@@ -1725,16 +1737,20 @@ public class BoardController {
 
 	@FXML
 	public void putRelativeOnProductionLeft() {
+		permanentEffect = new ArrayList <Effect>();
 		try {
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (relative != null) {
 					if (relative.getValue() >= client.getBoard().getProductionArea().getValueOfLeftArea()) {
 						if (client.getBoard().getProductionArea().getLeftRelative() == null) {
+							relative.addValue(client.getPlayer().getProductionBonus());
+							permanentEffect=chooseBuildingPermanentEff(client.getPlayer(), relative);
 							PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
 									client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
-									client.getMatch());
+									client.getMatch(), permanentEffect);
 							serverStub.notifyObserver(putRelativeOnProductionArea);
 							productionLeft.setImage(relativeImage);
+							setPlayer();
 						} else {
 							openMessage("SpaceOccupiedMessage.fxml");
 
@@ -1755,16 +1771,81 @@ public class BoardController {
 		}
 	}
 
+	private ArrayList<Effect> chooseBuildingPermanentEff(Player player2, Relative relative2) {
+		ArrayList<Effect> chosenEffect=new ArrayList<Effect>();
+		in = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			System.out.println("sono nel for dei permanent");
+			for(BuildingCard card:player.getBuilding() ){
+				System.out.println("sono nel for dei permanent");
+				if(relative.getValue()>=card.getPermanentCost()){
+					for(Effect currentEffect:card.getPermanentEffect()){
+						System.out.println("Do you want to use this effect? ");
+						System.out.println(currentEffect.toString());
+						System.out.println("1) Yes\n 2) No");
+						int input;
+						
+							input = Integer.parseInt(in.readLine());
+						
+						if(input==1){
+							
+							if(currentEffect instanceof GainResourceForCostAlternative){
+								System.out.print("Do you want to use the 1)first or 2)second?");
+								int choice=Integer.parseInt(in.readLine());
+								if(choice==1){
+									((GainResourceForCostAlternative) currentEffect).chooseAlt(false);
+								}
+								else{
+									((GainResourceForCostAlternative) currentEffect).chooseAlt(true);
+								}
+								if(currentEffect.isApplicable(player)){
+									chosenEffect.add(currentEffect);
+								}
+								else{
+									System.out.println("You dont have enough resource!");
+								}
+							}
+							
+							else if(currentEffect instanceof GainResourceForCost){
+								if(currentEffect.isApplicable(player)){
+									chosenEffect.add(currentEffect);
+								}
+								else{
+									System.out.println("You dont have enough resource!");
+								}
+							}
+							
+							else{
+								chosenEffect.add(currentEffect);
+							}
+							
+						}
+					}
+				}
+			}
+			
+			} catch (NumberFormatException | IOException e) {
+				e.printStackTrace();
+			}
+			return chosenEffect;
+			
+		
+	}
+
 	@FXML
 	public void putRelativeOnProductionRight() throws FileNotFoundException, NullPointerException, RemoteException,
 			IOException, ParseException, InterruptedException {
+		permanentEffect = new ArrayList <Effect>();
 		if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 			if (relative != null) {
+				relative.addValue(client.getPlayer().getProductionBonus());
+				permanentEffect=chooseBuildingPermanentEff(client.getPlayer(), relative);
 				PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
-						client.getPlayer(), relative, client.getBoard().getProductionArea(), "right",
-						client.getMatch());
+						client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
+						client.getMatch(), permanentEffect);
 				serverStub.notifyObserver(putRelativeOnProductionArea);
 				productionRight.get(k).setImage(relativeImage);
+				setPlayer();
 
 				k++;
 
@@ -2930,6 +3011,7 @@ public class BoardController {
 			}
 			case 4: {
 				ventureTower4.setImage(towerImage);
+			                         
 				break;
 			}
 			}
