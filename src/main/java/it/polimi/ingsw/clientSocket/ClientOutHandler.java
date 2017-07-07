@@ -35,6 +35,7 @@ public class ClientOutHandler implements Runnable {
 
 	@Override
 	public void run() {
+
 		// Handles output messages, from the client to the server
 		System.out.println("RUNNING");
 		System.out.println("choose your name: ");

@@ -3,7 +3,6 @@ package it.polimi.ingsw.actions;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.json.simple.parser.ParseException;
 
@@ -20,7 +19,6 @@ import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeProductionLeftArea;
 import it.polimi.ingsw.changes.ChangeProductionRightArea;
 import it.polimi.ingsw.components.Relative;
-import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainProductionValue;
 
 
@@ -30,15 +28,13 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 	Player player;
 	String area; 
 	int match;
-	ArrayList<Effect> permanentEffect;
-	
-	public PutRelativeOnProductionArea(Player player, Relative relative, HarvestAndProductionArea productionArea, String area, int match, ArrayList<Effect> permanentEffect){
+
+	public PutRelativeOnProductionArea(Player player, Relative relative, HarvestAndProductionArea productionArea, String area, int match){
 		this.player = player;
 		this.relative=relative;
 		this.area = area;
 		this.productionArea=productionArea;
 		this.match = match;
-		this.permanentEffect=permanentEffect;
 	}
 	
 	@Override
@@ -83,9 +79,6 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 				GainProductionValue gainProductionValue = new GainProductionValue(relative.getValue()); 
 				gainProductionValue.apply(player, play);
-				for(Effect effect:permanentEffect){
-					effect.apply(player, play);
-				}
 				System.out.println(player);
 			}
 			// Else he put the relative on the other side with the penalty
@@ -99,9 +92,6 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				int newValue= relative.getValue();
 				GainProductionValue gainProductionValue = new GainProductionValue(newValue); 
 				gainProductionValue.apply(player, play);
-				for(Effect effect:permanentEffect){
-					effect.apply(player, play);
-				}
 				System.out.println(player);
 			}
 			play.changeCurrentPlayer();

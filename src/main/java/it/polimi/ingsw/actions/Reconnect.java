@@ -1,4 +1,4 @@
-package it.polimi.ingsw.client;
+package it.polimi.ingsw.actions;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,7 +7,6 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
-import it.polimi.ingsw.actions.Action;
 
 public class Reconnect implements Action {
 	

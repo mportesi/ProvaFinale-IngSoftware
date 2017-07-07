@@ -15,18 +15,13 @@ import it.polimi.ingsw.effects.HasPrivilege;
 
 public class TerritoryCard extends Card {
 	private TerritoryListOfEffect effects;
-	private TerritoryListOfEffect permanent;
 	private ArrayList<Effect> immediateEffects;
-	private ArrayList<Effect> permanentEffects;
 	private boolean gainPrivilegeCouncil=false;
-	private int permanentCost=0;
 
-	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects, TerritoryListOfEffect permanent) throws FileNotFoundException, IOException, ParseException {
+	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.effects=effects;
-		this.permanent=permanent;
 		immediateEffects = effects.createListOfEffect();
-		permanentEffects = permanent.createListOfEffect();
 		setGainPrivilegeCouncil();
 	}
 
@@ -78,16 +73,5 @@ public class TerritoryCard extends Card {
 	}
 	public boolean getGainPrivilegeCouncil() {
 		return gainPrivilegeCouncil;
-	}
-	
-	public void applyPermanentEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		for(Effect e : permanentEffects){
-			if(e!=null){
-				e.apply(player,play);
-			}
-		}
-	}
-	public int getPermanentCost(){
-		return permanentCost;
 	}
 }

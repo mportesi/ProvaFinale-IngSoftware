@@ -16,6 +16,7 @@ import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.GC_40.TimerAction;
 import it.polimi.ingsw.actions.Quit;
+import it.polimi.ingsw.actions.Reconnect;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
@@ -51,11 +52,6 @@ public class ClientModel implements Serializable {
 		this.serverStub=serverStub;
 		this.gui=true;
 	
-	}
-	
-	public ClientModel(){
-		in = new BufferedReader(new InputStreamReader(System.in));
-		this.gui=true;
 	}
 
 	public void setCouncilPalace(Player player, Relative relative)
@@ -163,7 +159,6 @@ public class ClientModel implements Serializable {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								} catch (ParseException e1) {
-									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
 								
@@ -192,7 +187,7 @@ public class ClientModel implements Serializable {
 						
 					}
 					}
-				}, (long) (timeOutAction) * 1000);
+				}, (long) (timeOutAction) * 100);
 				
 		}
 		

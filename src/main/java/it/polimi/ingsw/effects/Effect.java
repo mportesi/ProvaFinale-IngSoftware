@@ -13,10 +13,5 @@ public abstract class Effect implements Serializable {
 	
 	public abstract void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
 
-	public boolean isApplicable(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 }
