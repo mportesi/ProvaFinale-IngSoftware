@@ -8,29 +8,29 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 
-public class Reconnect implements Action {
-	
+public class ReconnectExit implements Action {
 	private int match;
-	private Player player;
+	private String name;
 	
-	public Reconnect (Player player, int match){
+	
+	public ReconnectExit (int match, String name){
 		this.match = match;
-		this.player = player;
+		this.name =name;
 	}
 	
 	@Override
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
-		play.reconnect(player);
-		player.setQuit(false);
+		//play.reconnect(player);
+		//player.setQuit(false);
 
 	}
 
 	@Override
 	public int getMatch() {
 		// TODO Auto-generated method stub
-		return match;
+		return 0;
 	}
 
 }

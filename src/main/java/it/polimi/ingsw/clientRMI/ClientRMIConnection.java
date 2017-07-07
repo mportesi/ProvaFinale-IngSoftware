@@ -25,6 +25,7 @@ import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.GC_40.TimerAction;
 import it.polimi.ingsw.GC_40.TimerActionTry;
 import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.actions.ReconnectExit;
 import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.changes.Change;
@@ -67,12 +68,28 @@ public class ClientRMIConnection implements Serializable {
 		// the server)
 
 		rmiView = new ClientRMIConnectionView(clientModel);
-		
+		String name;
 		if(commandLine){
+			/*System.out.println("If you want to reconnect press 1 else 0");{
+				switch(stdIn.nextInt()){
+				case(1):{
+					System.out.println("Insert number of your match");
+					int match= stdIn.nextInt();
+					System.out.println("\nTell me your name\n");
+					 name = stdIn.nextLine();
+					ReconnectExit reconnect= new ReconnectExit(match, name);
+					serverStub.notifyObserver(reconnect);
+					break;
+				}
+				default:{
+					System.out.println("\nTell me your name\n");
+					 name = stdIn.nextLine();
+				}
+				}
+			}*/
 		clientModel.setCli(true);
 		clientModel.setGui(false);
-		System.out.println("\nTell me your name\n");
-		String name = stdIn.nextLine();
+		name = stdIn.nextLine();
 		clientModel.setName(name);
 		serverStub.registerClient(rmiView, name);}
 		

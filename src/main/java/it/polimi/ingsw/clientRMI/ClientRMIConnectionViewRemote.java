@@ -14,5 +14,5 @@ public interface ClientRMIConnectionViewRemote extends Remote {
 	// Interface to receive information from the server
 
 	public void updateClient(Change c) throws RemoteException, FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException;
-	public ClientModel getClientModel();
+	
 }
