@@ -12,7 +12,9 @@ import it.polimi.ingsw.clientRMI.ClientRMIConnection;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionView;
 import it.polimi.ingsw.clientSocket.ClientSocketConnection;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.nio.channels.AlreadyBoundException;
 import java.rmi.NotBoundException;
@@ -23,27 +25,16 @@ public class Client implements Serializable {
 
 	public static void main(String args[]) throws IOException, AlreadyBoundException, NotBoundException,
 			NullPointerException, ParseException, InterruptedException {
-
-		Scanner in = new Scanner(System.in);
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String host = "127.0.0.1";
 		int rmi_port = 52365;
-		// int socket = 29999;
-		// clientStart= new ClientStart();
-		// clientModel= clientStart.start();
-
-		System.out.println("WELCOME");
-		System.out.println("This is Lorenzo il Magnifico \n");
-		System.out.println("Choose what you prefer:\n");
-		System.out.println("1) Command Line Interface");
-		System.out.println("2) Graphical User Interface");
-
-		int input = in.nextInt();
-		if (input == 1) {
+		
+		System.out.println("Welcome to Lorenzo il Magnifico \n");
 			System.out.println("Choose your connection:\n");
 			System.out.println("1) Socket");
 			System.out.println("2) Remote Method Invocation");
-			input = in.nextInt();
-
+			
+			int input = Integer.parseInt(in.readLine());
 			if (input != 1 && input != 2) {
 				System.out.println("Not valid value inserted");
 			} else {
@@ -54,9 +45,8 @@ public class Client implements Serializable {
 					ClientRMIConnection client = new ClientRMIConnection(rmi_port, host);
 					client.startClient(true);
 				}
-
-			}
 		}
+		
 		
 	}
 }

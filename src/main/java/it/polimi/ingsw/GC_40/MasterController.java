@@ -109,9 +109,22 @@ public class MasterController implements Observer <Action>{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
+
+
+
+
+	public void disconnect(ClientRMIConnectionViewRemote client) {
+		int numberMatch= client.getClientModel().getPlayer().getMatch();
+		for(Play p: matches){
+			if(p.getMatch()==numberMatch){
+				try {
+					p.removePlayer(client.getClientModel().getPlayer());
+				} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+					e.printStackTrace();
+				}}
+			}
+		}
 	
 	
 	

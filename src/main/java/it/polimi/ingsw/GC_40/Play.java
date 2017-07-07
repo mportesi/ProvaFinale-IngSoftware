@@ -527,15 +527,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 			e.printStackTrace();
 		}
-		//board.remove(player);
 		currentTurnOrder.remove(player);
 		if (currentTurnOrder.size()>1){
 		ChangeTurnOrder changeCurrentTurnOrder = new ChangeTurnOrder(currentTurnOrder);
 		notifyObserver(changeCurrentTurnOrder);
 		changeCurrentPlayer();
-	/*	ChangePlayer changePlayer = new ChangePlayer(currentPlayer);
-
-		this.notifyObserver(changePlayer);*/
+	
 		}
 		
 		if(players.size()==1){
@@ -581,6 +578,10 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 		
 		
+	}
+
+	public int getMatch() {
+		return match;
 	}
 
 
