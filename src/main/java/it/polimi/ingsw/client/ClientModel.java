@@ -106,6 +106,7 @@ public class ClientModel implements Serializable {
 								try {
 									timer.cancel();
 									serverStub.notifyObserver(new Quit(player, player.getMatch()));
+									
 								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -126,7 +127,9 @@ public class ClientModel implements Serializable {
 								// TODO Auto-generated catch block
 								e3.printStackTrace();
 							}
-					
+							if (gui){
+								boardControllerGUI.timeOut(player);
+							}
 						setQuit(true);
 						
 						
@@ -187,7 +190,7 @@ public class ClientModel implements Serializable {
 						
 					}
 					}
-				}, (long) (timeOutAction) * 100);
+				}, (long) (timeOutAction) * 1000);
 				
 		}
 		
