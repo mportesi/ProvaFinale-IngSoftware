@@ -53,16 +53,6 @@ public class Player extends Observable<Change> implements Serializable {
 	private boolean hasOrangeRelative;
 	private boolean hasNeutralRelative;
 	private boolean quit;
-	private int charCardBonus=0;
-	private int ventCardBonus=0;
-	private int buildCardBonus=0;
-	private int terrCardBonus=0;
-	private int harvestBonus=0;
-	private int productionBonus=0;
-	private int charCardGoldCost=0;
-	private int buildCardStoneCost=0;
-	private int buildCardWoodCost=0;
-	
 
 	public Player(UUID ID, Play play, String name, int match) {
 		this.ID = ID;
@@ -573,89 +563,8 @@ public class Player extends Observable<Change> implements Serializable {
 		return quit;
 	}
 
-	public int getCharCardBonus(){
-		return charCardBonus;
-	}
-	
-	public void addCharCardBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		charCardBonus += n;
-		ChangeCharBonus changeCharBonus= new ChangeCharBonus(this, charCardBonus);
-		play.notifyObserver(changeCharBonus);
-	}
-	
-	public void setCharCardBonus(int n){
-		charCardBonus = n;
-	}
 
-	public int getBuildCardBonus(){
-		return buildCardBonus;
-	}
-	
-	public void addBuildCardBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		buildCardBonus +=n;
-		ChangeBuildBonus changeBuildBonus=new ChangeBuildBonus(this, buildCardBonus);
-		play.notifyObserver(changeBuildBonus);
-	}
-	
-	public void setBuildCardBonus(int n){
-		buildCardBonus = n;
-	}
-	
-	public int getVentCardBonus(){
-		return ventCardBonus;
-	}
-	
-	public void addVentCardBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		ventCardBonus += n;
-		ChangeVentBonus changeVentBonus=new ChangeVentBonus(this, ventCardBonus);
-		play.notifyObserver(changeVentBonus);
-	}
-	
-	public void setVentCardBonus(int n){
-		ventCardBonus = n;
-	}
-	
-	public int getTerrCardBonus(){
-		return terrCardBonus;
-	}
-	
-	public void addTerrCardBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		terrCardBonus += n;
-		ChangeTerrBonus changeTerrBonus=new ChangeTerrBonus(this, terrCardBonus);
-		play.notifyObserver(changeTerrBonus);
-	}
-	
-	public void setTerrCardBonus(int n){
-		terrCardBonus = n;
-	}
-	
-	public int getProductionBonus(){
-		return productionBonus;
-	}
-	
-	public void addProductionBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		productionBonus += n;
-		ChangeProductionBonus changeProductionBonus=new ChangeProductionBonus(this, productionBonus);
-		play.notifyObserver(changeProductionBonus);
-	}
-	
-	public void setProductionBonus(int n){
-		productionBonus = n;
-	}
-	
-	public int getHarvestBonus(){
-		return harvestBonus;
-	}
-	
-	public void addHarvestBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
-		harvestBonus += n;
-		ChangeHarvestBonus changeHarvestBonus=new ChangeHarvestBonus(this, harvestBonus);
-		play.notifyObserver(changeHarvestBonus);
-	}
-	
-	public void setHarvestBonus(int n){
-		harvestBonus = n;
-	}
+
 	
 	
 

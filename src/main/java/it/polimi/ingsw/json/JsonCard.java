@@ -91,20 +91,8 @@ public class JsonCard {
 						immediateEffectMap.put(typeImmediateEffect, amount);
 					}
 					
-					JSONArray permanentEffect = (JSONArray) territoryParser.parse(card.get("permanentEffect").toString());
-					
-					Map<String, Integer> permanentEffectMap = new LinkedHashMap();
-					for (int i = 0; i < permanentEffect.size(); i++) {
-						JSONObject permanentEffectObject = (JSONObject) permanentEffect.get(i);
-						String typePermanentEffect = (String) permanentEffectObject.get("type");
-						int amount = ((Long) permanentEffectObject.get("amount")).intValue();
-						permanentEffectMap.put(typePermanentEffect, amount);
-					}
-					
 					TerritoryListOfEffect immediate= new TerritoryListOfEffect(immediateEffectMap);
-					TerritoryListOfEffect permanent= new TerritoryListOfEffect(permanentEffectMap);
-					
-					Card c = new TerritoryCard(type, name, period, immediate, permanent);
+					Card c = new TerritoryCard(type, name, period, immediate);
 					
 					territoryDeck.add(c);
 				}
