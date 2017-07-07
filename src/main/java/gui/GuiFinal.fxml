@@ -176,5 +176,11 @@
             <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
+      <Text layoutX="644.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faith Point:" />
+      <Text fx:id="faithPoint" layoutX="718.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="757.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MilitaryPoint: " />
+      <Text fx:id="militaryPoint" layoutX="841.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="874.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VictoryPoint: " />
+      <Text fx:id="victoryPoint" layoutX="966.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1.0" />
    </children>
 </AnchorPane>

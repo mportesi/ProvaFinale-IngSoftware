@@ -50,6 +50,7 @@ import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.ClientModel;
+import it.polimi.ingsw.client.Reconnect;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 import it.polimi.ingsw.server.Server;
@@ -112,6 +113,12 @@ public class BoardController {
 	private Text stone;
 	@FXML
 	private Text servant;
+	@FXML
+	private Text faithPoint;
+	@FXML
+	private Text militaryPoint;
+	@FXML
+	private Text victoryPoint;
 	@FXML
 	private TextField servantInserted;
 	@FXML
@@ -319,7 +326,9 @@ public class BoardController {
 	private Button quit;
 	@FXML
 	private Button ok;
-
+	@FXML
+	private Button reconnect;
+	
 	@FXML
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
@@ -2632,6 +2641,12 @@ public class BoardController {
 		stone.setText(value);
 		value = String.valueOf(client.getPlayer().getServant());
 		servant.setText(value);
+		value = String.valueOf(client.getPlayer().getFaithPoint());
+		faithPoint.setText(value);
+		value = String.valueOf(client.getPlayer().getMilitaryPoint());
+		militaryPoint.setText(value);
+		value = String.valueOf(client.getPlayer().getVictoryPoint());
+		victoryPoint.setText(value);
 	}
 
 	public void setCurrentTurnOrder() {
@@ -3108,6 +3123,26 @@ public class BoardController {
 
 	public void actionNotApplicable() {
 		openMessage("ActionNotApplicable.fxml");
+	}
+	
+	
+
+	@FXML
+	public void reconnect() {
+		try {
+			serverStub.notifyObserver(new Reconnect(client.getPlayer(), client.getMatch()));
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void timeOut(Player player) {
+		if (client.getPlayer().equals(player)){
+		openMessage("TimeFinishedMessage.fxml");
+		
+		
+		}
 	}
 	
 
