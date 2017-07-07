@@ -53,6 +53,11 @@ public class ClientModel implements Serializable {
 		this.gui=true;
 	
 	}
+	
+	public ClientModel(){
+		in = new BufferedReader(new InputStreamReader(System.in));
+		this.gui=true;
+	}
 
 	public void setCouncilPalace(Player player, Relative relative)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -187,7 +192,7 @@ public class ClientModel implements Serializable {
 						
 					}
 					}
-				}, (long) (timeOutAction) * 100);
+				}, (long) (timeOutAction) * 1000);
 				
 		}
 		

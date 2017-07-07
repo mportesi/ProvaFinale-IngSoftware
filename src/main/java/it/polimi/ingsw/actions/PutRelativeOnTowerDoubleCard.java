@@ -33,7 +33,7 @@ public class PutRelativeOnTowerDoubleCard extends Observable<Change> implements 
 	boolean payForOccupied = false;
 	int match;
 
-	public PutRelativeOnTowerDoubleCard(Player player, Tower tower, int floor, Relative relative, Tower seconT,
+	public PutRelativeOnTowerDoubleCard(Player player, Tower tower, int floor, Relative relative, Tower secondT,
 			int secondF, int match) {
 		this.relative = relative;
 		this.match = match;
