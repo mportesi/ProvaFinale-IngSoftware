@@ -25,7 +25,7 @@ public class Client implements Serializable {
 			NullPointerException, ParseException, InterruptedException {
 
 		Scanner in = new Scanner(System.in);
-		String host = "127.0.0.1";
+		String host = "192.168.1.107";
 		int rmi_port = 52365;
 		// int socket = 29999;
 		// clientStart= new ClientStart();

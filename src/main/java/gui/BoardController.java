@@ -330,6 +330,9 @@ public class BoardController {
 	@FXML
 	private Button reconnect;
 	
+	
+	   
+	
 	@FXML
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
