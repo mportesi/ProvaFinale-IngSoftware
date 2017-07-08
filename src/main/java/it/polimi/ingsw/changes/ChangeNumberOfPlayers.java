@@ -25,7 +25,7 @@ public class ChangeNumberOfPlayers implements Change {
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(client.getPlayer().getMatch()==player.getMatch()){
 		client.setBoard(board);
-		
+		client.setNumberOfPlayer(player);
 		
 		System.out.println(player.getName() + " has disconnected. Now you are only in " + numberOfPlayers);
 		

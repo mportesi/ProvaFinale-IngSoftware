@@ -61,6 +61,7 @@ public class RegisterClientController {
 			boardController.setServerStub(serverStub);
 			client.setBoardController(boardController);
 			text.getScene().setRoot(page);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

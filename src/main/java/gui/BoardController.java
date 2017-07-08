@@ -3252,6 +3252,10 @@ public class BoardController {
 		
 		}
 	}
+
+	public void setDisconnected(Player player2) {
+		openMessage("PlayerDisconnected.fxml");
+	}
 	
 
 }
