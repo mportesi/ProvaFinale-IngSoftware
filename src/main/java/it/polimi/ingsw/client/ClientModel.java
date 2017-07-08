@@ -75,6 +75,9 @@ public class ClientModel implements Serializable {
 
 	public void setPeriod(int period) {
 		this.period = period;
+		if(gui){
+			boardControllerGUI.setPeriod(period);
+		}
 	}
 
 	public void setCurrentPlayer(Player currentPlayer) {

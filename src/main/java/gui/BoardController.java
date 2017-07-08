@@ -337,7 +337,13 @@ public class BoardController {
 	private Button ok;
 	@FXML
 	private Button reconnect;
+	@FXML
+	private Text roundFxml;
+	@FXML
+	private Text periodFxml;
 	private ObjectOutputStream socketOut;
+	private int period;
+	private int round;
 	
 	@FXML
 	public void chooseWhiteRelative() {
@@ -354,6 +360,7 @@ public class BoardController {
 			if(serverStub!=null){
 			serverStub.notifyObserver(shiftPlayer);}
 			else if(socketOut!=null){
+				socketOut.reset();
 				socketOut.writeObject(shiftPlayer);}
 			}
 		} catch (Exception e) {
@@ -409,6 +416,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 					
 				territoryTower1.setImage(null);
@@ -426,6 +434,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower1.setImage(relativeImage);
 				setPlayer();
@@ -469,6 +478,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower2.setImage(relativeImage);
 				setPlayer();
@@ -496,6 +506,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower3.setImage(null);
 				setPlayer();
@@ -513,6 +524,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower3.setImage(relativeImage);
 				setPlayer();
@@ -539,6 +551,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower4.setImage(null);
 				setPlayer();
@@ -556,6 +569,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower4.setImage(relativeImage);
 				setPlayer();
@@ -582,6 +596,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower1.setImage(null);
 				setPlayer();
@@ -596,8 +611,10 @@ public class BoardController {
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 						client.getTerritoryTower(), 0 , relative,  bonus, client.getMatch());
 				if(serverStub!=null){
+					
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower1.setImage(relativeImage);
 				setPlayer();
@@ -622,6 +639,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower2.setImage(null);
 				setPlayer();
@@ -638,6 +656,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower2.setImage(relativeImage);
 				setPlayer();
@@ -662,6 +681,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower3.setImage(null);
 				setPlayer();
@@ -678,6 +698,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower3.setImage(relativeImage);
 				setPlayer();
@@ -718,6 +739,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower4.setImage(relativeImage);
 				setPlayer();
@@ -750,6 +772,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver(putRelativeOnTower);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject(putRelativeOnTower);}
 							buildingTower1.setImage(null);
 							setPlayer();
@@ -792,6 +815,7 @@ public class BoardController {
 									if(serverStub!=null){
 										serverStub.notifyObserver(putRelativeOnTower);}
 										else if(socketOut!=null){
+											socketOut.reset();
 											socketOut.writeObject(putRelativeOnTower);}
 									buildingTower1.setImage(relativeImage);
 									setPlayer();
@@ -846,6 +870,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver(putRelativeOnTower);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject(putRelativeOnTower);}
 							buildingTower2.setImage(null);
 							setPlayer();
@@ -888,6 +913,7 @@ public class BoardController {
 									if(serverStub!=null){
 										serverStub.notifyObserver(putRelativeOnTower);}
 										else if(socketOut!=null){
+											socketOut.reset();
 											socketOut.writeObject(putRelativeOnTower);}
 									buildingTower2.setImage(relativeImage);
 									setPlayer();
@@ -941,6 +967,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver(putRelativeOnTower);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject(putRelativeOnTower);}
 							buildingTower3.setImage(null);
 							setPlayer();
@@ -983,6 +1010,7 @@ public class BoardController {
 									if(serverStub!=null){
 										serverStub.notifyObserver(putRelativeOnTower);}
 										else if(socketOut!=null){
+											socketOut.reset();
 											socketOut.writeObject(putRelativeOnTower);}
 									buildingTower3.setImage(relativeImage);
 									setPlayer();
@@ -1034,6 +1062,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver(putRelativeOnTower);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject(putRelativeOnTower);}
 							buildingTower4.setImage(null);
 							setPlayer();
@@ -1076,6 +1105,7 @@ public class BoardController {
 									if(serverStub!=null){
 										serverStub.notifyObserver(putRelativeOnTower);}
 										else if(socketOut!=null){
+											socketOut.reset();
 											socketOut.writeObject(putRelativeOnTower);}
 									buildingTower4.setImage(relativeImage);
 									setPlayer();
@@ -1127,6 +1157,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver(putRelativeOnTower);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject(putRelativeOnTower);}
 							characterTower1.setImage(null);
 							setPlayer();
@@ -1166,6 +1197,7 @@ public class BoardController {
 										if(serverStub!=null){
 											serverStub.notifyObserver(putRelativeOnTower);}
 											else if(socketOut!=null){
+												socketOut.reset();
 												socketOut.writeObject(putRelativeOnTower);}
 									}
 									characterTower1.setImage(relativeImage);
@@ -1219,6 +1251,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver(putRelativeOnTower);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject(putRelativeOnTower);}
 							characterTower2.setImage(null);
 							setPlayer();
@@ -1258,6 +1291,7 @@ public class BoardController {
 										if(serverStub!=null){
 											serverStub.notifyObserver(putRelativeOnTower);}
 											else if(socketOut!=null){
+												socketOut.reset();
 												socketOut.writeObject(putRelativeOnTower);}
 										characterTower2.setImage(relativeImage);
 										setPlayer();
@@ -1310,6 +1344,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver(putRelativeOnTower);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject(putRelativeOnTower);}
 							characterTower3.setImage(null);
 							setPlayer();
@@ -1348,6 +1383,7 @@ public class BoardController {
 										if(serverStub!=null){
 											serverStub.notifyObserver(putRelativeOnTower);}
 											else if(socketOut!=null){
+												socketOut.reset();
 												socketOut.writeObject(putRelativeOnTower);}
 
 										characterTower3.setImage(relativeImage);
@@ -1401,6 +1437,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver(putRelativeOnTower);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject(putRelativeOnTower);}
 							characterTower4.setImage(null);
 							setPlayer();
@@ -1439,6 +1476,7 @@ public class BoardController {
 										if(serverStub!=null){
 											serverStub.notifyObserver(putRelativeOnTower);}
 											else if(socketOut!=null){
+												socketOut.reset();
 												socketOut.writeObject(putRelativeOnTower);}
 										characterTower1.setImage(relativeImage);
 										setPlayer();
@@ -1483,6 +1521,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower1.setImage(null);
 				setPlayer();
@@ -1503,6 +1542,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower1.setImage(relativeImage);
 				setPlayer();
@@ -1530,6 +1570,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower2.setImage(null);
 				setPlayer();
@@ -1549,6 +1590,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower2.setImage(relativeImage);
 				setPlayer();
@@ -1576,6 +1618,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower3.setImage(null);
 				setPlayer();
@@ -1595,6 +1638,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower3.setImage(relativeImage);
 				setPlayer();
@@ -1619,6 +1663,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower4.setImage(null);
 				setPlayer();
@@ -1638,6 +1683,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower4.setImage(relativeImage);
 				setPlayer();
@@ -1661,6 +1707,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower1.setImage(relativeImage);
 				setPlayer();
@@ -1686,6 +1733,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower2.setImage(relativeImage);
 				setPlayer();
@@ -1709,6 +1757,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower3.setImage(relativeImage);
 				setPlayer();
@@ -1755,6 +1804,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower1.setImage(relativeImage);
 				setPlayer();
@@ -1778,6 +1828,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower2.setImage(relativeImage);
 				setPlayer();
@@ -1801,6 +1852,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower3.setImage(relativeImage);
 				setPlayer();
@@ -1824,6 +1876,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnTower);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower4.setImage(relativeImage);
 				setPlayer();
@@ -1846,6 +1899,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnCouncilPalace);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnCouncilPalace);}
 				councilPalace.get(i).setImage(relativeImage);
 				setPlayer();
@@ -1870,6 +1924,7 @@ public class BoardController {
 						if(serverStub!=null){
 							serverStub.notifyObserver(putRelativeOnMarket);}
 							else if(socketOut!=null){
+								socketOut.reset();
 								socketOut.writeObject(putRelativeOnMarket);}
 						market1.setImage(relativeImage);
 					} else {
@@ -1899,6 +1954,7 @@ public class BoardController {
 						if(serverStub!=null){
 							serverStub.notifyObserver(putRelativeOnMarket);}
 							else if(socketOut!=null){
+								socketOut.reset();
 								socketOut.writeObject(putRelativeOnMarket);}
 						market2.setImage(relativeImage);
 						setPlayer();
@@ -1930,6 +1986,7 @@ public class BoardController {
 						if(serverStub!=null){
 							serverStub.notifyObserver(putRelativeOnMarket);}
 							else if(socketOut!=null){
+								socketOut.reset();
 								socketOut.writeObject(putRelativeOnMarket);}
 						market3.setImage(relativeImage);
 						setPlayer();
@@ -1957,6 +2014,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnMarket);}
 					else if(socketOut!=null){
+						socketOut.reset();
 						socketOut.writeObject(putRelativeOnMarket);}
 				market4.setImage(relativeImage);
 				setPlayer();
@@ -1983,6 +2041,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver( putRelativeOnHarvestArea);}
 								else if(socketOut!=null){
+									socketOut.reset();
 									socketOut.writeObject( putRelativeOnHarvestArea);}
 							harvestLeft.setImage(relativeImage);
 							setPlayer();
@@ -2018,6 +2077,7 @@ public class BoardController {
 				if(serverStub!=null){
 				serverStub.notifyObserver( putRelativeOnHarvestArea);}
 			else if(socketOut!=null){
+				socketOut.reset();
 				socketOut.writeObject( putRelativeOnHarvestArea);}
 				harvestRight.get(j).setImage(relativeImage);
 				setPlayer();
@@ -2052,6 +2112,7 @@ public class BoardController {
 							if(serverStub!=null){
 								serverStub.notifyObserver( putRelativeOnProductionArea);}
 							else if(socketOut!=null){
+								socketOut.reset();
 								socketOut.writeObject( putRelativeOnProductionArea);}
 							productionLeft.setImage(relativeImage);
 							setPlayer();
@@ -2150,6 +2211,7 @@ public class BoardController {
 				if(serverStub!=null){
 					serverStub.notifyObserver( putRelativeOnProductionArea);}
 				else if(socketOut!=null){
+					socketOut.reset();
 					socketOut.writeObject( putRelativeOnProductionArea);}
 				productionRight.get(k).setImage(relativeImage);
 				setPlayer();
@@ -3583,6 +3645,16 @@ public class BoardController {
 
 	public void setSocketOut(ObjectOutputStream socketOut) {
 		this.socketOut=socketOut;
+	}
+
+	public void setPeriod(int period) {
+		this.period=period;
+		periodFxml.setText("Period: " + period);
+	}
+	
+	public void setRound(int round) {
+		this.round=round;
+		roundFxml.setText("Round: " + round);
 	}
 	
 
