@@ -121,7 +121,7 @@ public class ClientModel implements Serializable {
 									
 								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
-									e3.printStackTrace();
+									e.printStackTrace();
 								} catch (NullPointerException e3) {
 									// TODO Auto-generated catch block
 									e3.printStackTrace();
@@ -319,10 +319,9 @@ public class ClientModel implements Serializable {
 						e.printStackTrace();
 						
 					}
-					}
-				}, (long) (timeOutAction) * 100);
+					
 				
-		}
+}
 		
 		if(gui){
 			boardControllerGUI.setCurrentPlayer();

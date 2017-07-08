@@ -21,6 +21,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ import it.polimi.ingsw.actions.PutRelativeOnProductionArea;
 import it.polimi.ingsw.actions.PutRelativeOnTower;
 import it.polimi.ingsw.actions.PutRelativeOnTowerAltCost;
 import it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCard;
+import it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCardHasPrivilege;
 import it.polimi.ingsw.actions.PutRelativeOnTowerPrivilege;
 import it.polimi.ingsw.actions.Quit;
 import it.polimi.ingsw.actions.ShiftPlayer;
@@ -53,7 +55,7 @@ import it.polimi.ingsw.cards.TerritoryCard;
 import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.ClientModel;
-import it.polimi.ingsw.client.Reconnect;
+import it.polimi.ingsw.actions.Reconnect;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainResourceForCost;
@@ -335,15 +337,12 @@ public class BoardController {
 	private Button ok;
 	@FXML
 	private Button reconnect;
+	private ObjectOutputStream socketOut;
 	
 	@FXML
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite1.png");
-		/*
-		 * try { openServant(relative); } catch (Exception e) {
-		 * e.printStackTrace(); }
-		 */
 
 	}
 
@@ -352,7 +351,11 @@ public class BoardController {
 		try {
 			if(client.getCurrentPlayer().equals(client.getPlayer())){
 			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getMatch());
+			if(serverStub!=null){
 			serverStub.notifyObserver(shiftPlayer);}
+			else if(socketOut!=null){
+				socketOut.writeObject(shiftPlayer);}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -403,7 +406,11 @@ public class BoardController {
 				if(doubleCard){
 				PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 						client.getCharacterTower(), firstTower, relative, client.getTerritoryTower(), 0,  client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
+					
 				territoryTower1.setImage(null);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage1);
@@ -416,7 +423,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 						client.getTerritoryTower(), 0, relative, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower1.setImage(relativeImage);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage1);
@@ -439,7 +449,10 @@ public class BoardController {
 				if (doubleCard){
 				PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 						client.getCharacterTower(), firstTower, relative, client.getTerritoryTower(), 1,  client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower2.setImage(null);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage2);
@@ -453,7 +466,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 						client.getTerritoryTower(), 1, relative, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower2.setImage(relativeImage);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage2);
@@ -477,7 +493,10 @@ public class BoardController {
 				if(doubleCard){
 				PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 						client.getCharacterTower(), firstTower, relative, client.getTerritoryTower(), 2,  client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower3.setImage(null);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage3);
@@ -491,7 +510,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 						client.getTerritoryTower(), 2, relative, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower3.setImage(relativeImage);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage3);
@@ -514,7 +536,10 @@ public class BoardController {
 				if (doubleCard){
 				PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 						client.getCharacterTower(), firstTower, relative, client.getTerritoryTower(), 3,  client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower4.setImage(null);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage4);
@@ -528,7 +553,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 						client.getTerritoryTower(), 3, relative, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower4.setImage(relativeImage);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage4);
@@ -549,9 +577,28 @@ public class BoardController {
 		
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (doubleCard){
+				PutRelativeOnTowerDoubleCardHasPrivilege putRelativeOnTower = new PutRelativeOnTowerDoubleCardHasPrivilege(client.getPlayer(),
+						client.getCharacterTower(), firstTower, relative, client.getTerritoryTower(), 0 , bonus, client.getMatch());
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
+				territoryTower1.setImage(null);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage1);
+				territory++;
+				this.relative = null;}
+			} else {
+				openMessage("NotYorTurn.fxml");
+			}
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (!doubleCard){
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
-						client.getTerritoryTower(), 0, relative, bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+						client.getTerritoryTower(), 0 , relative,  bonus, client.getMatch());
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower1.setImage(relativeImage);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage1);
@@ -567,17 +614,36 @@ public class BoardController {
 
 	public void putRelativeOnTerritory2Privilege(String bonus) {
 		try {
+
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (doubleCard){
+				PutRelativeOnTowerDoubleCardHasPrivilege putRelativeOnTower = new PutRelativeOnTowerDoubleCardHasPrivilege(client.getPlayer(),
+						client.getCharacterTower(), firstTower, relative, client.getTerritoryTower(), 1 , bonus, client.getMatch());
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
+				territoryTower2.setImage(null);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage2);
+				territory++;
+				this.relative = null;}
+			} else {
+				openMessage("NotYorTurn.fxml");
+			}
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (!doubleCard){
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
-						client.getTerritoryTower(), 1, relative, bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+						client.getTerritoryTower(), 1 , relative,  bonus, client.getMatch());
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower2.setImage(relativeImage);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage2);
 				territory++;
-				this.relative = null;
-				}
+				this.relative = null;}
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
@@ -588,20 +654,37 @@ public class BoardController {
 
 	public void putRelativeOnTerritory3Privilege(String bonus) {
 		try {
+
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (doubleCard){
+				PutRelativeOnTowerDoubleCardHasPrivilege putRelativeOnTower = new PutRelativeOnTowerDoubleCardHasPrivilege(client.getPlayer(),
+						client.getCharacterTower(), firstTower, relative, client.getTerritoryTower(), 2, bonus, client.getMatch());
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
+				territoryTower3.setImage(null);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage3);
+				territory++;
+				this.relative = null;}
+			} else {
+				openMessage("NotYorTurn.fxml");
+			}
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (!doubleCard){
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
-						client.getTerritoryTower(), 2, relative, bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+						client.getTerritoryTower(), 2 , relative,  bonus, client.getMatch());
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower3.setImage(relativeImage);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage3);
 				territory++;
-				this.relative = null;
-				}
-			}
-
-			else {
+				this.relative = null;}
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 		} catch (Exception e) {
@@ -611,20 +694,37 @@ public class BoardController {
 
 	public void putRelativeOnTerritory4Privilege(String bonus) {
 		try {
+
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (doubleCard){
+				PutRelativeOnTowerDoubleCardHasPrivilege putRelativeOnTower = new PutRelativeOnTowerDoubleCardHasPrivilege(client.getPlayer(),
+						client.getCharacterTower(), firstTower, relative, client.getTerritoryTower(), 3 , bonus, client.getMatch());
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
+				territoryTower4.setImage(null);
+				setPlayer();
+				territoryCard.get(territory).setImage(territoryImage4);
+				territory++;
+				this.relative = null;}
+			} else {
+				openMessage("NotYorTurn.fxml");
+			}
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+				if (!doubleCard){
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
-						client.getTerritoryTower(), 3, relative, bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+						client.getTerritoryTower(), 3, relative,  bonus, client.getMatch());
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				territoryTower4.setImage(relativeImage);
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage4);
 				territory++;
-				this.relative = null;
-				}
-			}
-
-			else {
+				this.relative = null;}
+			} else {
 				openMessage("NotYorTurn.fxml");
 			}
 		} catch (Exception e) {
@@ -647,7 +747,10 @@ public class BoardController {
 
 							PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 									client.getCharacterTower(), firstTower , relative, client.getBuildingTower(), 0, client.getMatch());
-							serverStub.notifyObserver(putRelativeOnTower);
+							if(serverStub!=null){
+								serverStub.notifyObserver(putRelativeOnTower);}
+								else if(socketOut!=null){
+									socketOut.writeObject(putRelativeOnTower);}
 							buildingTower1.setImage(null);
 							setPlayer();
 							buildingCard.get(building).setImage(buildingImage1);
@@ -686,7 +789,10 @@ public class BoardController {
 
 									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 											client.getBuildingTower(), 0, relative, client.getMatch());
-									serverStub.notifyObserver(putRelativeOnTower);
+									if(serverStub!=null){
+										serverStub.notifyObserver(putRelativeOnTower);}
+										else if(socketOut!=null){
+											socketOut.writeObject(putRelativeOnTower);}
 									buildingTower1.setImage(relativeImage);
 									setPlayer();
 									buildingCard.get(building).setImage(buildingImage1);
@@ -737,7 +843,10 @@ public class BoardController {
 
 							PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 									client.getCharacterTower(), firstTower , relative, client.getBuildingTower(), 1, client.getMatch());
-							serverStub.notifyObserver(putRelativeOnTower);
+							if(serverStub!=null){
+								serverStub.notifyObserver(putRelativeOnTower);}
+								else if(socketOut!=null){
+									socketOut.writeObject(putRelativeOnTower);}
 							buildingTower2.setImage(null);
 							setPlayer();
 							buildingCard.get(building).setImage(buildingImage2);
@@ -776,7 +885,10 @@ public class BoardController {
 
 									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 											client.getBuildingTower(), 1, relative, client.getMatch());
-									serverStub.notifyObserver(putRelativeOnTower);
+									if(serverStub!=null){
+										serverStub.notifyObserver(putRelativeOnTower);}
+										else if(socketOut!=null){
+											socketOut.writeObject(putRelativeOnTower);}
 									buildingTower2.setImage(relativeImage);
 									setPlayer();
 									buildingCard.get(building).setImage(buildingImage2);
@@ -826,7 +938,10 @@ public class BoardController {
 
 							PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 									client.getCharacterTower(), firstTower , relative, client.getBuildingTower(), 2, client.getMatch());
-							serverStub.notifyObserver(putRelativeOnTower);
+							if(serverStub!=null){
+								serverStub.notifyObserver(putRelativeOnTower);}
+								else if(socketOut!=null){
+									socketOut.writeObject(putRelativeOnTower);}
 							buildingTower3.setImage(null);
 							setPlayer();
 							buildingCard.get(building).setImage(buildingImage3);
@@ -865,7 +980,10 @@ public class BoardController {
 
 									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 											client.getBuildingTower(), 2, relative, client.getMatch());
-									serverStub.notifyObserver(putRelativeOnTower);
+									if(serverStub!=null){
+										serverStub.notifyObserver(putRelativeOnTower);}
+										else if(socketOut!=null){
+											socketOut.writeObject(putRelativeOnTower);}
 									buildingTower3.setImage(relativeImage);
 									setPlayer();
 									buildingCard.get(building).setImage(buildingImage3);
@@ -913,7 +1031,10 @@ public class BoardController {
 
 							PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 									client.getCharacterTower(), firstTower , relative, client.getBuildingTower(), 3, client.getMatch());
-							serverStub.notifyObserver(putRelativeOnTower);
+							if(serverStub!=null){
+								serverStub.notifyObserver(putRelativeOnTower);}
+								else if(socketOut!=null){
+									socketOut.writeObject(putRelativeOnTower);}
 							buildingTower4.setImage(null);
 							setPlayer();
 							buildingCard.get(building).setImage(buildingImage4);
@@ -952,7 +1073,10 @@ public class BoardController {
 
 									PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 											client.getBuildingTower(), 3, relative, client.getMatch());
-									serverStub.notifyObserver(putRelativeOnTower);
+									if(serverStub!=null){
+										serverStub.notifyObserver(putRelativeOnTower);}
+										else if(socketOut!=null){
+											socketOut.writeObject(putRelativeOnTower);}
 									buildingTower4.setImage(relativeImage);
 									setPlayer();
 									buildingCard.get(building).setImage(buildingImage4);
@@ -1000,7 +1124,10 @@ public class BoardController {
 							PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(
 									client.getPlayer(), client.getCharacterTower(), firstTower, relative,
 									client.getCharacterTower(), 0, client.getMatch());
-							serverStub.notifyObserver(putRelativeOnTower);
+							if(serverStub!=null){
+								serverStub.notifyObserver(putRelativeOnTower);}
+								else if(socketOut!=null){
+									socketOut.writeObject(putRelativeOnTower);}
 							characterTower1.setImage(null);
 							setPlayer();
 							characterCard.get(character).setImage(characterImage1);
@@ -1036,7 +1163,10 @@ public class BoardController {
 										PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(
 												client.getPlayer(), client.getCharacterTower(), 0, relative,
 												client.getMatch());
-										serverStub.notifyObserver(putRelativeOnTower);
+										if(serverStub!=null){
+											serverStub.notifyObserver(putRelativeOnTower);}
+											else if(socketOut!=null){
+												socketOut.writeObject(putRelativeOnTower);}
 									}
 									characterTower1.setImage(relativeImage);
 									setPlayer();
@@ -1086,7 +1216,10 @@ public class BoardController {
 							PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(
 									client.getPlayer(), client.getCharacterTower(), firstTower, relative,
 									client.getCharacterTower(), 1, client.getMatch());
-							serverStub.notifyObserver(putRelativeOnTower);
+							if(serverStub!=null){
+								serverStub.notifyObserver(putRelativeOnTower);}
+								else if(socketOut!=null){
+									socketOut.writeObject(putRelativeOnTower);}
 							characterTower2.setImage(null);
 							setPlayer();
 							characterCard.get(character).setImage(characterImage2);
@@ -1122,8 +1255,10 @@ public class BoardController {
 										PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(
 												client.getPlayer(), client.getCharacterTower(), 1, relative,
 												client.getMatch());
-										serverStub.notifyObserver(putRelativeOnTower);
-
+										if(serverStub!=null){
+											serverStub.notifyObserver(putRelativeOnTower);}
+											else if(socketOut!=null){
+												socketOut.writeObject(putRelativeOnTower);}
 										characterTower2.setImage(relativeImage);
 										setPlayer();
 										characterCard.get(character).setImage(characterImage2);
@@ -1172,7 +1307,10 @@ public class BoardController {
 							PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(
 									client.getPlayer(), client.getCharacterTower(), firstTower, relative,
 									client.getCharacterTower(), 2, client.getMatch());
-							serverStub.notifyObserver(putRelativeOnTower);
+							if(serverStub!=null){
+								serverStub.notifyObserver(putRelativeOnTower);}
+								else if(socketOut!=null){
+									socketOut.writeObject(putRelativeOnTower);}
 							characterTower3.setImage(null);
 							setPlayer();
 							characterCard.get(character).setImage(characterImage3);
@@ -1207,7 +1345,10 @@ public class BoardController {
 										PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(
 												client.getPlayer(), client.getCharacterTower(), 2, relative,
 												client.getMatch());
-										serverStub.notifyObserver(putRelativeOnTower);
+										if(serverStub!=null){
+											serverStub.notifyObserver(putRelativeOnTower);}
+											else if(socketOut!=null){
+												socketOut.writeObject(putRelativeOnTower);}
 
 										characterTower3.setImage(relativeImage);
 										setPlayer();
@@ -1257,7 +1398,10 @@ public class BoardController {
 							PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(
 									client.getPlayer(), client.getCharacterTower(), firstTower, relative,
 									client.getCharacterTower(), 3, client.getMatch());
-							serverStub.notifyObserver(putRelativeOnTower);
+							if(serverStub!=null){
+								serverStub.notifyObserver(putRelativeOnTower);}
+								else if(socketOut!=null){
+									socketOut.writeObject(putRelativeOnTower);}
 							characterTower4.setImage(null);
 							setPlayer();
 							characterCard.get(character).setImage(characterImage4);
@@ -1292,8 +1436,10 @@ public class BoardController {
 										PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(
 												client.getPlayer(), client.getCharacterTower(), 3, relative,
 												client.getMatch());
-										serverStub.notifyObserver(putRelativeOnTower);
-
+										if(serverStub!=null){
+											serverStub.notifyObserver(putRelativeOnTower);}
+											else if(socketOut!=null){
+												socketOut.writeObject(putRelativeOnTower);}
 										characterTower1.setImage(relativeImage);
 										setPlayer();
 										characterCard.get(character).setImage(characterImage4);
@@ -1334,7 +1480,10 @@ public class BoardController {
 				if (doubleCard){
 				PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 						client.getCharacterTower(), firstTower, relative, client.getVentureTower(), 0, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower1.setImage(null);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage1);
@@ -1351,7 +1500,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 						client.getVentureTower(), 0, relative, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower1.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage1);
@@ -1375,7 +1527,10 @@ public class BoardController {
 				if (doubleCard){
 				PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 						client.getCharacterTower(), firstTower, relative, client.getVentureTower(), 1, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower2.setImage(null);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage2);
@@ -1391,7 +1546,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 						client.getVentureTower(), 1, relative, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower2.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage2);
@@ -1415,7 +1573,10 @@ public class BoardController {
 				if (doubleCard){
 				PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 						client.getCharacterTower(), firstTower, relative, client.getVentureTower(), 2, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower3.setImage(null);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage3);
@@ -1431,7 +1592,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 						client.getVentureTower(), 2, relative, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower3.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage3);
@@ -1452,7 +1616,10 @@ public class BoardController {
 				if (doubleCard){
 				PutRelativeOnTowerDoubleCard putRelativeOnTower = new PutRelativeOnTowerDoubleCard(client.getPlayer(),
 						client.getCharacterTower(), firstTower, relative, client.getVentureTower(), 3, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower4.setImage(null);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage4);
@@ -1468,7 +1635,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),
 						client.getVentureTower(), 3, relative, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower4.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage4);
@@ -1488,7 +1658,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 						client.getVentureTower(), 0, relative, bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower1.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage1);
@@ -1510,7 +1683,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 						client.getVentureTower(), 1, relative, bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower2.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage2);
@@ -1530,7 +1706,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 						client.getVentureTower(), 2, relative, bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower3.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage3);
@@ -1550,7 +1729,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTowerPrivilege putRelativeOnTower = new PutRelativeOnTowerPrivilege(client.getPlayer(),
 						client.getVentureTower(), 3, relative, bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower4.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage4);
@@ -1570,7 +1752,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(client.getPlayer(),
 						client.getVentureTower(), 0, relative, alternativeCost, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower1.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage1);
@@ -1590,7 +1775,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(client.getPlayer(),
 						client.getVentureTower(), 1, relative, alternativeCost, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower2.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage2);
@@ -1610,7 +1798,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(client.getPlayer(),
 						client.getVentureTower(), 2, relative, alternativeCost, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower3.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage3);
@@ -1630,7 +1821,10 @@ public class BoardController {
 				if (!doubleCard){
 				PutRelativeOnTowerAltCost putRelativeOnTower = new PutRelativeOnTowerAltCost(client.getPlayer(),
 						client.getVentureTower(), 3, relative, alternativeCost, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnTower);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnTower);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnTower);}
 				ventureTower4.setImage(relativeImage);
 				setPlayer();
 				ventureCard.get(venture).setImage(ventureImage4);
@@ -1649,9 +1843,11 @@ public class BoardController {
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 						client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnCouncilPalace);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnCouncilPalace);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnCouncilPalace);}
 				councilPalace.get(i).setImage(relativeImage);
-				System.out.println("faccio put council");
 				setPlayer();
 				i++;
 
@@ -1671,7 +1867,10 @@ public class BoardController {
 					if (relative.getValue() >= client.getMarket(0).getCost()) {
 						PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
 								client.getMarket(0), client.getMatch());
-						serverStub.notifyObserver(putRelativeOnMarket);
+						if(serverStub!=null){
+							serverStub.notifyObserver(putRelativeOnMarket);}
+							else if(socketOut!=null){
+								socketOut.writeObject(putRelativeOnMarket);}
 						market1.setImage(relativeImage);
 					} else {
 						openMessage("NotEnoughValueMessage.fxml");
@@ -1697,7 +1896,10 @@ public class BoardController {
 					if (relative.getValue() >= client.getMarket(1).getCost()) {
 						PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
 								client.getMarket(1), client.getMatch());
-						serverStub.notifyObserver(putRelativeOnMarket);
+						if(serverStub!=null){
+							serverStub.notifyObserver(putRelativeOnMarket);}
+							else if(socketOut!=null){
+								socketOut.writeObject(putRelativeOnMarket);}
 						market2.setImage(relativeImage);
 						setPlayer();
 
@@ -1725,7 +1927,10 @@ public class BoardController {
 					if (relative.getValue() >= client.getMarket(2).getCost()) {
 						PutRelativeOnMarket putRelativeOnMarket = new PutRelativeOnMarket(client.getPlayer(), relative,
 								client.getMarket(2), client.getMatch());
-						serverStub.notifyObserver(putRelativeOnMarket);
+						if(serverStub!=null){
+							serverStub.notifyObserver(putRelativeOnMarket);}
+							else if(socketOut!=null){
+								socketOut.writeObject(putRelativeOnMarket);}
 						market3.setImage(relativeImage);
 						setPlayer();
 					} else {
@@ -1749,7 +1954,10 @@ public class BoardController {
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				PutRelativeOnMarketPrivilege putRelativeOnMarket = new PutRelativeOnMarketPrivilege(client.getPlayer(),
 						relative, client.getMarket(3), bonus, client.getMatch());
-				serverStub.notifyObserver(putRelativeOnMarket);
+				if(serverStub!=null){
+					serverStub.notifyObserver(putRelativeOnMarket);}
+					else if(socketOut!=null){
+						socketOut.writeObject(putRelativeOnMarket);}
 				market4.setImage(relativeImage);
 				setPlayer();
 
@@ -1772,7 +1980,10 @@ public class BoardController {
 							PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(
 									client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
 									client.getMatch());
-							serverStub.notifyObserver(putRelativeOnHarvestArea);
+							if(serverStub!=null){
+								serverStub.notifyObserver( putRelativeOnHarvestArea);}
+								else if(socketOut!=null){
+									socketOut.writeObject( putRelativeOnHarvestArea);}
 							harvestLeft.setImage(relativeImage);
 							setPlayer();
 
@@ -1804,8 +2015,10 @@ public class BoardController {
 				relative.addValue(client.getPlayer().getHarvestBonus());
 				PutRelativeOnHarvestArea putRelativeOnHarvestArea = new PutRelativeOnHarvestArea(client.getPlayer(),
 						relative, client.getBoard().getHarvestArea(), "right", client.getMatch());
-				serverStub.notifyObserver(putRelativeOnHarvestArea);
-				
+				if(serverStub!=null){
+				serverStub.notifyObserver( putRelativeOnHarvestArea);}
+			else if(socketOut!=null){
+				socketOut.writeObject( putRelativeOnHarvestArea);}
 				harvestRight.get(j).setImage(relativeImage);
 				setPlayer();
 				j++;
@@ -1836,7 +2049,10 @@ public class BoardController {
 							PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
 									client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
 									client.getMatch(), permanentEffect);
-							serverStub.notifyObserver(putRelativeOnProductionArea);
+							if(serverStub!=null){
+								serverStub.notifyObserver( putRelativeOnProductionArea);}
+							else if(socketOut!=null){
+								socketOut.writeObject( putRelativeOnProductionArea);}
 							productionLeft.setImage(relativeImage);
 							setPlayer();
 						} else {
@@ -1931,7 +2147,10 @@ public class BoardController {
 				PutRelativeOnProductionArea putRelativeOnProductionArea = new PutRelativeOnProductionArea(
 						client.getPlayer(), relative, client.getBoard().getHarvestArea(), "left",
 						client.getMatch(), permanentEffect);
-				serverStub.notifyObserver(putRelativeOnProductionArea);
+				if(serverStub!=null){
+					serverStub.notifyObserver( putRelativeOnProductionArea);}
+				else if(socketOut!=null){
+					socketOut.writeObject( putRelativeOnProductionArea);}
 				productionRight.get(k).setImage(relativeImage);
 				setPlayer();
 
@@ -2016,8 +2235,10 @@ public class BoardController {
 	@FXML
 	public void openPrivilegeCouncilForTerritory1() {
 		try {
+			boolean isPresentAnyone = false;
+			if(!doubleCard){
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
-				boolean isPresentAnyone = false;
+				
 				if (relative != null) {
 					if (client.getTerritoryTower().getFloor(0).isFree()) {
 						if (relative.getValue() >= client.getTerritoryTower().getFloor(0).getCost()) {
@@ -2058,8 +2279,31 @@ public class BoardController {
 				}
 			} else {
 				openMessage("NotYorTurn.fxml");
+			}}
+			else if(doubleCard){
+				if (client.getTerritoryTower().getFloor(0).isFree()) {
+					if (client.getTerritoryTower().isPresent(player) == false) {
+						if (client.getTerritoryTower().isPresentAnyone()) {
+							isPresentAnyone = true;
+						}
+						if (checkCardCost(client.getTerritoryTower(), 0, isPresentAnyone)) {
+							if (client.getTerritoryTower().getFloor(0).getCard().getGainPrivilegeCouncil()) {
+								FXMLLoader fxmlLoader = new FXMLLoader(
+										getClass().getResource("PrivilegeCouncil.fxml"));
+								Parent root1 = (Parent) fxmlLoader.load();
+								Stage stage = new Stage();
+								stage.setScene(new Scene(root1));
+								stage.show();
+								PrivilegeController privilegeController = fxmlLoader.getController();
+								privilegeController.setBoardController(this);
+								privilegeController.setStage(stage);
+								privilegeController.setType("territory1");
+							} else {
+								putRelativeOnTerritory1();
+							}
+				}
 			}
-		} catch (
+		} }}catch (
 
 		Exception e) {
 			e.printStackTrace();
@@ -2661,6 +2905,7 @@ public class BoardController {
 			ReconnectController reconnectController = fxmlLoader.getController();
 			reconnectController.setStage(stage);
 			reconnectController.setServerStub(serverStub);
+			reconnectController.setSocketOut(socketOut);
 			reconnectController.setClientModel(client);
 			reconnectController.setBoardController(this);
 		} catch (Exception e) {
@@ -3334,6 +3579,10 @@ public class BoardController {
 
 	public void setDisconnected(Player player2) {
 		openMessage("PlayerDisconnected.fxml");
+	}
+
+	public void setSocketOut(ObjectOutputStream socketOut) {
+		this.socketOut=socketOut;
 	}
 	
 
