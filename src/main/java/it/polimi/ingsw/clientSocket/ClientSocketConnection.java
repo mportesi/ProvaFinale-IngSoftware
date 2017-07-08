@@ -17,23 +17,25 @@ public class ClientSocketConnection {
 	private final static String IP = "127.0.0.1";
 	private ClientModel clientModel;
 
-	public void startClient() throws UnknownHostException, IOException {
-		clientModel = new ClientModel();
+	public void startClient(boolean commandLine) throws UnknownHostException, IOException {
 		Socket socket = new Socket(IP, PORT);
 
 		System.out.println("Connection created");
+		
+		ObjectOutputStream out=new ObjectOutputStream(socket.getOutputStream());
+		ObjectInputStream in=new ObjectInputStream(socket.getInputStream());
+		
+		clientModel = new ClientModel(true,out);
 		
 		
 
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		//Creates one thread to send messages to the server
-		executor.submit(new ClientOutHandler(
-				new ObjectOutputStream(socket.getOutputStream()), clientModel));
+		executor.submit(new ClientOutHandler(out, clientModel, commandLine));
 
 		//Creates one thread to receive messages from the server
-		executor.submit(new ClientInHandler(
-				new ObjectInputStream(socket.getInputStream()), clientModel));
+		executor.submit(new ClientInHandler(in, clientModel));
 	}
 	
 

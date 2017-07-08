@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 	private ClientModel client;
 	private ServerRMIConnectionViewRemote serverStub;
 	private Timer timer;
+	private ObjectOutputStream socketOut;
 	
 
 	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub, Timer timer) {
@@ -51,6 +53,13 @@ public class CommandLineInterface implements Serializable, Runnable {
 	public CommandLineInterface(ClientModel client) {
 		in = new BufferedReader(new InputStreamReader(System.in));
 		this.client = client;
+	}
+	
+	public CommandLineInterface(ClientModel client, ObjectOutputStream socketOut, Timer timer) {
+		in = new BufferedReader(new InputStreamReader(System.in));
+		this.client = client;
+		this.socketOut=socketOut;
+		this.timer=timer;
 	}
 	
 	public void esci() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException{
@@ -138,6 +147,65 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 	public void printTheBoard() {
 		client.getBoard();
+	}
+	
+	public void inputSocket() throws NumberFormatException, IOException, NullPointerException, ParseException, InterruptedException{
+		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
+			System.out.println("Your status is: "+client.getPlayer());
+			System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit \nIf you want to shift your turn press 0.");
+			int input = Integer.parseInt(in.readLine());
+		
+			switch (input) {
+			case 1: {
+				timer.cancel();
+				Relative relative = chooseTheRelative();
+				int servant = chooseServants(relative);
+				SetServant setServant=new SetServant(servant, client.getPlayer(), relative, client.getPlayer().getMatch());
+				socketOut.reset();
+				socketOut.writeObject(setServant);
+				PutRelative putRelative = chooseTheAction(relative);
+				socketOut.reset();
+				socketOut.writeObject(putRelative);
+				
+				break;
+			}
+			case 2: {
+				timer.cancel();
+				printTheBoard();
+				
+				break;
+			}
+			case 0:{
+				ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+				socketOut.reset();
+				socketOut.writeObject(shiftPlayer);
+				break;
+			}
+			case 4: {
+				timer.cancel();
+				Quit quit=new Quit(client.getPlayer(), client.getPlayer().getMatch());
+				socketOut.reset();
+				socketOut.writeObject(quit);
+				client.setQuit(true);
+			
+				int input0 = Integer.parseInt(in.readLine());
+				
+				switch(input0){
+				case 0: 
+					System.out.println("reconnect");
+					Reconnect reconnect =new Reconnect(client.getPlayer(), client.getPlayer().getMatch());
+					socketOut.reset();
+					socketOut.writeObject(reconnect);
+					
+				break;
+				}
+			}
+			
+			
+			}}
+
+		
+		
 	}
 
 	public Relative chooseTheRelative()

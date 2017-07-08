@@ -40,7 +40,7 @@ public class Client implements Serializable {
 			} else {
 				if (input == 1) {
 					ClientSocketConnection client = new ClientSocketConnection();
-					client.startClient();
+					client.startClient(true);
 				} else {
 					ClientRMIConnection client = new ClientRMIConnection(rmi_port, host);
 					client.startClient(true);

@@ -45,7 +45,7 @@ public class Server {
 
 	}
 	
-	/*private void startSocket() throws IOException {
+	private void startSocket() throws IOException {
 
 		// creates the thread pool to handle clients
 		ExecutorService executor = Executors.newCachedThreadPool();
@@ -71,7 +71,7 @@ public class Server {
 			// a new thread handle the connection with the view
 			executor.submit(view);
 		}
-	} */
+	} 
 	
 	public void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
@@ -92,8 +92,8 @@ public class Server {
 		Server server = new Server();
 		System.out.println("START RMI");
 		server.startRMI();
-		//System.out.println("START SOCKET");
-		//server.startSocket();
+		System.out.println("START SOCKET");
+		server.startSocket();
 		
 	}
 

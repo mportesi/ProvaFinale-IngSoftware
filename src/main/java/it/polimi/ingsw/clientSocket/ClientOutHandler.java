@@ -26,9 +26,11 @@ public class ClientOutHandler implements Runnable {
 	private ClientModel clientModel;
 	private CommandLineInterface cli;
 	private Player player;//= new Player();
-	public ClientOutHandler(ObjectOutputStream socketOut, ClientModel clientModel) {
+	private boolean commandLine;
+	public ClientOutHandler(ObjectOutputStream socketOut, ClientModel clientModel, boolean commandLine) {
 		this.socketOut = socketOut;
 		this.clientModel=clientModel;
+		this.commandLine=commandLine;
 		//this.player= clientModel.getPlayer();
 		//cli = new CommandLineInterface(this.clientModel.getPlayer(), clientModel);
 	}
@@ -36,22 +38,26 @@ public class ClientOutHandler implements Runnable {
 	@Override
 	public void run() {
 		// Handles output messages, from the client to the server
-		System.out.println("RUNNING");
-		System.out.println("choose your name: ");
-		Scanner stdIn = new Scanner(System.in);
-		String name= stdIn.nextLine();
-		clientModel.setName(name);
-		RegisterClientSocket register=new RegisterClientSocket(name);
-		//RegisterClient register = new RegisterClient(name);
-		//this.player= clientModel.getPlayer();
-		//cli = new CommandLineInterface(player, clientModel);
-		try {
-			socketOut.writeObject(register);
-			socketOut.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(commandLine){
+			clientModel.setCli(true);
+			clientModel.setGui(false);
+			System.out.println("RUNNING");
+			System.out.println("choose your name: ");
+			Scanner stdIn = new Scanner(System.in);
+			String name= stdIn.nextLine();
+			clientModel.setName(name);
+			RegisterClientSocket register=new RegisterClientSocket(name);
+			//RegisterClient register = new RegisterClient(name);
+			//this.player= clientModel.getPlayer();
+			//cli = new CommandLineInterface(player, clientModel);
+			try {
+				socketOut.writeObject(register);
+				socketOut.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		try
+		/*try
         {Thread.sleep((long)5*1000);}
     catch (Exception e)
         {e.printStackTrace();
@@ -140,24 +146,6 @@ public class ClientOutHandler implements Runnable {
 					System.out.println("\nNow your personal board is: \n" + clientModel.getPlayer());
 					timer.cancel();
 					
-					
-					/*try {
-						Relative relative=cli.chooseTheRelative();
-						action=cli.chooseTheAction(relative);
-					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-						e.printStackTrace();
-					}
-					System.out.println("test the action");
-		
-					try {
-						// Implements the communication protocol
-					//action=cli.chooseTheAction();
-					
-					socketOut.writeObject(action);
-					socketOut.flush();
-					}catch (IOException e1) {
-						e1.printStackTrace();
-					}*/
 				}
 			}
 			// otherwise it is slow
@@ -167,7 +155,7 @@ public class ClientOutHandler implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 			
 
 	}
