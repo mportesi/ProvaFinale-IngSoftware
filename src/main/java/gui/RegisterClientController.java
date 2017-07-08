@@ -49,7 +49,7 @@ public class RegisterClientController {
 		} 
 		
 	}
-
+// 2 uramaki hollor 1 uramaki philadelphia 1 hossomaki ebiten ebiyaky meshi tempura di verdure yaki udon
 	@FXML
 	public void openNewScene() {
 		Parent page = null;
@@ -61,6 +61,7 @@ public class RegisterClientController {
 			boardController.setServerStub(serverStub);
 			client.setBoardController(boardController);
 			text.getScene().setRoot(page);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

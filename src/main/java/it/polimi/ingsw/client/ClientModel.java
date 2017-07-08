@@ -116,14 +116,10 @@ public class ClientModel implements Serializable {
 						System.out.println("It ran out of time!");
 						
 								try {
-									try {
-										timer.cancel();
-										serverStub.notifyObserver(new Quit(player, player.getMatch()));
-									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-								} catch (FileNotFoundException e3) {
+									timer.cancel();
+									serverStub.notifyObserver(new Quit(player, player.getMatch()));
+									
+								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e3.printStackTrace();
 								} catch (NullPointerException e3) {
@@ -251,14 +247,17 @@ public class ClientModel implements Serializable {
 								// TODO Auto-generated catch block
 								e3.printStackTrace();
 							}
-									
-							setQuit(true);
-												
-							int input0;
-							try {
-								input0 = Integer.parseInt(in.readLine());
-								switch(input0){
-								case 0: 
+					
+						setQuit(true);
+						
+						
+						
+						
+						int input0;
+						try {
+							input0 = Integer.parseInt(in.readLine());
+							switch(input0){
+							case 0: 
 								System.out.println("reconnect");
 									try {
 										Reconnect reconnect=new Reconnect(player, player.getMatch());
@@ -305,8 +304,24 @@ public class ClientModel implements Serializable {
 								}, (long) (timeOutAction) * 1000);
 								
 						}
-			
-			
+						
+					
+					
+					ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
+					
+
+					//action=null;
+					try {
+						serverStub.notifyObserver(shiftPlayer);
+						timer.cancel();
+						
+					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+						e.printStackTrace();
+						
+					}
+					}
+				}, (long) (timeOutAction) * 100);
+				
 		}
 		
 		if(gui){
@@ -509,6 +524,13 @@ public class ClientModel implements Serializable {
 	public void actionNotApplicable() {
 		if(gui){
 			boardControllerGUI.actionNotApplicable();
+		}
+		
+	}
+
+	public void setNumberOfPlayer(Player player2) {
+		if(gui){
+			boardControllerGUI.setDisconnected(player2);
 		}
 		
 	}
