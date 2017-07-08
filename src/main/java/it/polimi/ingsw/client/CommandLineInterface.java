@@ -414,13 +414,44 @@ public class CommandLineInterface implements Serializable, Runnable {
 			break;
 		}
 		case "character": {
-			if (client.getBoard().getCharacterTower().getFloor(floor).getCard()!=null && client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()) {
-				Tower tower2 = chooseTower();
-				int floor2 = chooseFloor();
-				putRelative = new PutRelativeOnTowerDoubleCard(client.getPlayer(), tower, floor, relative, tower2,
-						floor2, client.getPlayer().getMatch());
-			} else {
-				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative, client.getPlayer().getMatch());
+			if (client.getBoard().getCharacterTower().getFloor(floor).getCard()!=null) {
+				if(client.getBoard().getCharacterTower().getFloor(floor).getCard().getGainPrivilegeCouncil()){
+					String bonus = choosePrivilegeCouncil();
+					if(client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()){
+						System.out.println("You can take another card");
+						Tower tower2 = chooseTower();
+						int floor2 = chooseFloor();
+						if(tower2.getFloor(floor2).getCard().getGainPrivilegeCouncil()){
+							String bonus2 = choosePrivilegeCouncil();
+							putRelative = new PutRelativeOnTowerDoublePrivilegeDoubleCard(client.getPlayer(), tower, floor, relative, tower2, floor2, bonus, bonus2,client.getPlayer().getMatch());
+							break;
+						}else{
+							putRelative = new PutRelativeOnTowerPrivilegeDoubleCard(client.getPlayer(), tower, floor, relative, tower2, floor2, bonus, client.getPlayer().getMatch());
+							break;
+						}
+						
+					}else{
+						putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative, bonus, client.getPlayer().getMatch());
+						break;
+					}
+				}else{
+					if(client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()){
+						System.out.println("You can take another card");
+						Tower tower2 = chooseTower();
+						int floor2 = chooseFloor();
+						if(tower2.getFloor(floor2).getCard().getGainPrivilegeCouncil()){
+							String bonus = choosePrivilegeCouncil();
+							putRelative = new PutRelativeOnTowerDoubleCardHasPrivilege(client.getPlayer(), tower, floor, relative, tower2, floor2, bonus, client.getPlayer().getMatch());
+							break;
+						}else{
+							putRelative = new PutRelativeOnTowerDoubleCard(client.getPlayer(), tower, floor, relative, tower2, floor2, client.getPlayer().getMatch());
+							break;
+						}
+					}else{
+						putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative, client.getPlayer().getMatch());
+						break;
+					}
+				}
 			}
 			break;
 		}
