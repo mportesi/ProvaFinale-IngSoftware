@@ -398,6 +398,13 @@ public class ClientModel implements Serializable {
 		
 	}
 
+	public void setNumberOfPlayer(Player player2) {
+		if(gui){
+			boardControllerGUI.setDisconnected(player2);
+		}
+		
+	}
+
 	
 
 }
