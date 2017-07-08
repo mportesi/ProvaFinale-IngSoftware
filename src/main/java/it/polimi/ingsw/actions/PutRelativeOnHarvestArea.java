@@ -19,6 +19,11 @@ import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainHarvestValue;
 import it.polimi.ingsw.effects.GainProductionValue;
 
+/**
+ * @author Chiara
+ * Action invoked when a player puts his relative on the Harvest Area.
+ *
+ */
 public class PutRelativeOnHarvestArea extends Observable<Change> implements PutRelative {
 
 	Relative relative;
@@ -36,6 +41,13 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 		this.match = match;
 	}
 
+	/**
+	 * @author Chiara
+	 * Checks if the action is applicable, in particular if the relative has enough value and, in case the choosen Area is the left one, verifies that this space is free. 
+	 * In the second case, if the choosen area is the right one, verifies that there are not other relatives that belong to the player (except the neutral one) with the function isAlreadyPresent().
+	 *
+	 */
+	
 	@Override
 	public boolean isApplicable() {
 
@@ -65,6 +77,12 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 		return false;
 	}
 
+	/**
+	 * @author Chiara
+	 * 
+	 *
+	 */
+	
 	@Override
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {

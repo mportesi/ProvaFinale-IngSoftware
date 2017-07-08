@@ -133,7 +133,7 @@ public class JsonCard {
 					VentureListOfEffect immediate= new VentureListOfEffect(immediateEffectMap);
 					Card c;
 					if (alternativeCostBoolean == 1) {
-						c = new VentureCard(type, name, period, victoryPoint, costMap, militaryRequirement, militaryCost, immediate);
+						c = new VentureCard(type, name, period, victoryPoint, militaryCost, militaryRequirement, costMap, immediate);
 					} else if (militaryRequirement == 0 && militaryCost == 0) {
 						c = new VentureCard(type, name, period, victoryPoint, costMap, immediate);
 					} else {

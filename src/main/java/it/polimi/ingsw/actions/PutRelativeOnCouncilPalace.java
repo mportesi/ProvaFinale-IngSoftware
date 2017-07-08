@@ -13,6 +13,13 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.components.Relative;
 
+
+/**
+ * @author Chiara
+ * Action invoked when a player puts one of his relatives on CouncilPalace
+ *
+ */
+
 public class PutRelativeOnCouncilPalace extends Observable<Change> implements PutRelative {
 
 	Relative relative;
@@ -28,7 +35,14 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		this.councilPalace = councilPalace;
 		this.match = match;
 	}
-
+	
+	/**
+	 * @author Chiara
+	 * Checks if the relative has enough value to do the action
+	 *  
+	 *
+	 */
+	
 	@Override
 	public boolean isApplicable() {
 		// the required value is 1 to put a relative on the CouncilPalace
@@ -38,7 +52,14 @@ public class PutRelativeOnCouncilPalace extends Observable<Change> implements Pu
 		return false;
 
 	}
-
+	
+	/**
+	 * @author Chiara
+	 * The action is applied. The relative occupies the area and the effect of it is activated. 
+	 * In particular, the player can choose a bonus. The observer are notified of the action.
+	 *
+	 */
+	
 	@Override
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {

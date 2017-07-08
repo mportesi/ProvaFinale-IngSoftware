@@ -45,6 +45,7 @@ public class ClientModel implements Serializable {
 	private boolean cli;
 	private BoardController boardControllerGUI;
 	private Timer timer = new Timer();
+	private ArrayList<Player> winners = new ArrayList <Player>();
 	
 	public ClientModel(ServerRMIConnectionViewRemote serverStub){
 		in = new BufferedReader(new InputStreamReader(System.in));
@@ -352,6 +353,7 @@ public class ClientModel implements Serializable {
 
 	public void setEndGame() {
 		endGame = true;
+		
 	}
 
 	public boolean getEndGame() {
@@ -402,6 +404,12 @@ public class ClientModel implements Serializable {
 		if(gui){
 			boardControllerGUI.setDisconnected(player2);
 		}
+		
+	}
+
+	public void setWinners(ArrayList<Player> winners) throws IOException {
+		this.winners = winners;
+		boardControllerGUI.ranking(winners);
 		
 	}
 

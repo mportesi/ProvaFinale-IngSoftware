@@ -38,20 +38,22 @@ public class VentureCard extends Card {
 		
 	};
 
-	public VentureCard(String type, String name, int period, Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
+	public VentureCard(String type, String name, int period, int victoryPoint, Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.cost = cost;
 		militaryRequirement = 0;
+		this.victoryPoint = victoryPoint;
 		militaryCost = 0;
 		this.effects = effects;
 		immediateEffects = effects.createListOfEffect();
 		setGainPrivilegeCouncil();
 	}
 
-	public VentureCard(String type, String name, int period, int militaryRequirement, Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
+	public VentureCard(String type, String name, int period, int victoryPoint, int militaryRequirement, Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.militaryRequirement = militaryRequirement;
 		this.militaryCost = militaryCost;
+		this.victoryPoint = victoryPoint;
 		this.cost = cost;
 		cost = null;
 		this.effects=effects;

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.changes;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_40.Player;
@@ -13,9 +14,10 @@ public class ChangeWinners implements Change {
 	}
 
 	@Override
-	public void applyChange(ClientModel client) {
+	public void applyChange(ClientModel client) throws IOException {
 		if(client.getPlayer().getMatch()==winners.get(0).getMatch()){
 		client.setEndGame();
+		client.setWinners(winners);
 		for (Player p : winners){
 			rank(p);
 		}

@@ -40,6 +40,7 @@ import it.polimi.ingsw.actions.PutRelativeOnTowerAltCost;
 import it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCard;
 import it.polimi.ingsw.actions.PutRelativeOnTowerPrivilege;
 import it.polimi.ingsw.actions.Quit;
+import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.areas.MarketBuilding;
@@ -330,6 +331,8 @@ public class BoardController {
 	@FXML
 	private Button reconnect;
 	
+	@FXML
+	private Text ranking;
 	
 	   
 	
@@ -361,11 +364,20 @@ public class BoardController {
 
 		String valueNew = valueWithServant.getText();
 		int value = Integer.parseInt(valueNew);
+
+		SetServant setServant = new SetServant(value, client.getPlayer(), relative, client.getMatch());
+		try {
+			serverStub.notifyObserver(setServant);
+		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setPlayer();
 		System.out.println(value);
 		System.out.println(this.relative);
 		System.out.println(this.client);
 		relative.setValueServant(value);
-		System.out.println(relative.getValue());
+		System.out.println("The new value is "+ relative.getValue());
 
 	}
 
@@ -468,7 +480,8 @@ public class BoardController {
 	}
 
 	@FXML
-	public void putRelativeOnTerritory3() {
+	public void putRelativeOnTerritory3() throws IOException {
+		
 		try {
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if(doubleCard){
@@ -2905,6 +2918,7 @@ public class BoardController {
 
 	public void setMarket(MarketBuilding market, Player player2, Relative relative2) {
 		String relativeColor;
+		if (relative2.getColor()!=null){
 		switch (relative2.getColor()) {
 		case ORANGE: {
 			relativeColor = "RelativeOrange";
@@ -2924,6 +2938,10 @@ public class BoardController {
 		}
 
 		}
+		}
+		else {
+			relativeColor = "RelativeNeutral";
+		}	
 		Image marketImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
 		switch (market.getType()) {
 		case "market1": {
@@ -2947,6 +2965,7 @@ public class BoardController {
 
 	public void setTower(Tower tower, int floor, Player player2, Relative relative2) {
 		String relativeColor;
+		if (relative2.getColor() != null){
 		switch (relative2.getColor()) {
 		case ORANGE: {
 			relativeColor = "RelativeOrange";
@@ -2964,8 +2983,13 @@ public class BoardController {
 			relativeColor = "RelativeNeutral";
 			break;
 		}
-
 		}
+		}
+		else {
+			relativeColor = "RelativeNeutral";
+		}
+
+		
 		Image towerImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
 		System.out.println(tower.getType());
 		switch (tower.getType()) {
@@ -3063,6 +3087,7 @@ public class BoardController {
 
 	public void setHarvestLeftArea(Relative relative2) {
 		String relativeColor;
+		if (relative2.getColor()!=null){
 		switch (relative2.getColor()) {
 		case ORANGE: {
 			relativeColor = "RelativeOrange";
@@ -3081,6 +3106,10 @@ public class BoardController {
 			break;
 		}
 
+		}
+		}
+		else {
+			relativeColor = "RelativeNeutral";
 		}
 		Image harvestLeftImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
 
@@ -3090,6 +3119,7 @@ public class BoardController {
 
 	public void setProductionRightArea(Relative relative2) {
 		String relativeColor;
+		if (relative2.getColor()!=null){
 		switch (relative2.getColor()) {
 		case ORANGE: {
 			relativeColor = "RelativeOrange";
@@ -3107,8 +3137,13 @@ public class BoardController {
 			relativeColor = "RelativeNeutral";
 			break;
 		}
-
 		}
+		}
+		else{
+			relativeColor = "RelativeNeutral";
+		}
+
+		
 		Image productionRightImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
 		while(productionRight.get(k).getImage()!=null){
 			k++;
@@ -3119,6 +3154,7 @@ public class BoardController {
 
 	public void setCouncilPalace(Player player2, Relative relative2) {
 		String relativeColor;
+		if (relative2.getColor()!=null){
 		switch (relative2.getColor()) {
 		case ORANGE: {
 			relativeColor = "RelativeOrange";
@@ -3137,6 +3173,10 @@ public class BoardController {
 			break;
 		}
 
+		}
+		}
+		else {
+			relativeColor = "RelativeNeutral";
 		}
 		Image councilPalaceImage = new Image("Images/" + player2 + relativeColor + "1.png");
 		councilPalace.get(i).setImage(councilPalaceImage);
@@ -3144,6 +3184,7 @@ public class BoardController {
 
 	public void setHarvestRightArea(Relative relative2) {
 		String relativeColor;
+		if (relative2.getColor()!=null){
 		switch (relative2.getColor()) {
 		case ORANGE: {
 			relativeColor = "RelativeOrange";
@@ -3157,11 +3198,16 @@ public class BoardController {
 			relativeColor = "RelativeBlack";
 			break;
 		}
+		
 		default: {
 			relativeColor = "RelativeNeutral";
 			break;
 		}
 
+		}
+		}
+		else{
+			relativeColor = "RelativeNeutral";
 		}
 		Image harvestRightImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
 		while(harvestRight.get(j).getImage()!=null){
@@ -3172,6 +3218,7 @@ public class BoardController {
 
 	public void setProductionLeftArea(Relative relative2) {
 		String relativeColor;
+		if (relative2.getColor()!=null){
 		switch (relative2.getColor()) {
 		case ORANGE: {
 			relativeColor = "RelativeOrange";
@@ -3190,6 +3237,10 @@ public class BoardController {
 			break;
 		}
 
+		}
+		}
+		else {
+			relativeColor = "RelativeNeutral";
 		}
 		Image productionLeftImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
 
@@ -3252,6 +3303,41 @@ public class BoardController {
 		
 		}
 	}
+	
+	public void openCommand(String string) throws IOException{
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Command.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
+		CommandController commandController = fxmlLoader.getController();
+		commandController.setBoardController(this);
+		commandController.setStage(stage);
+		commandController.set(string);
+	}
+	
+	public void ranking(ArrayList <Player> winners) throws IOException{
+	
+		String string = "The winners are " + printWinner(winners);
+		openCommand(string);
+
+	}
+	
+	
+
+	public ArrayList <String> printWinner(ArrayList <Player> winners){
+		ArrayList <String> name = new ArrayList <String>();
+		for (Player p : winners){
+			
+			name.add(p.getName());
+		}
+		return name;
+	}
+
+		
+		//openMessage("Ranking.fxml");
+		
+	
 
 	public void setDisconnected(Player player2) {
 		openMessage("PlayerDisconnected.fxml");

@@ -169,7 +169,7 @@
             <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <TextField fx:id="servantInserted" layoutX="1002.0" layoutY="138.0" prefHeight="31.0" prefWidth="28.0" />
+      <TextField fx:id="valueWithServant" layoutX="1002.0" layoutY="138.0" onAction="#setValueWithServant" prefHeight="31.0" prefWidth="28.0" />
       <Button fx:id="switchTurn" layoutX="1048.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#switchTurn" text="Switch" />
       <Text fx:id="servant" fill="#d70505" layoutX="865.0" layoutY="710.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.000008314847946">
          <font>
