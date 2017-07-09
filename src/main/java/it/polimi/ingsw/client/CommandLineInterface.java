@@ -181,7 +181,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 				socketOut.writeObject(shiftPlayer);
 				break;
 			}
-			case 4: {
+			case 3: {
 				timer.cancel();
 				Quit quit=new Quit(client.getPlayer(), client.getPlayer().getMatch());
 				socketOut.reset();
