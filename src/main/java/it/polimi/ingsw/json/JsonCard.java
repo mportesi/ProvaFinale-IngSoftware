@@ -15,6 +15,7 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.BuildingListOfEffect;
+import it.polimi.ingsw.cards.BuildingListOfPermanentEffect;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.CharacterListOfEffect;
@@ -63,9 +64,21 @@ public class JsonCard {
 						immediateEffectMap.put(typeImmediateEffect, amount);
 					}
 					
+					String permanentEffectType = (String)card.get("permanentEffectType");
+					JSONArray permanentEffect = (JSONArray) buildingParser.parse(card.get("permanentEffect").toString());
+					
+					Map<String, Integer> permanentEffectMap = new LinkedHashMap();
+					for (int i = 0; i < permanentEffect.size(); i++) {
+						JSONObject permanentEffectObject = (JSONObject) permanentEffect.get(i);
+						String typePermanentEffect = (String) permanentEffectObject.get("type");
+						int amount = ((Long) permanentEffectObject.get("amount")).intValue();
+						permanentEffectMap.put(typePermanentEffect, amount);
+					}
+					
 					
 					BuildingListOfEffect immediate= new BuildingListOfEffect(immediateEffectMap);
-					Card c = new BuildingCard(type, name, period, costMap, immediate);
+					BuildingListOfPermanentEffect permanent=new BuildingListOfPermanentEffect(permanentEffectMap, permanentEffectType);
+					Card c = new BuildingCard(type, name, period, costMap, immediate, permanent);
 
 					buildingDeck.add(c);
 				}

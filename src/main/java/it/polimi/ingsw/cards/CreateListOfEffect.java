@@ -16,7 +16,9 @@ public abstract class CreateListOfEffect implements Serializable{
 	public CreateListOfEffect(Map<String, Integer> immediateEffect){
 		this.immediateEffect=immediateEffect;
 	}
-	
+	public CreateListOfEffect(){
+		
+	}
 	public abstract ArrayList<Effect> createListOfEffect() throws FileNotFoundException, IOException, ParseException;
 
 }
