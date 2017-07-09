@@ -17,16 +17,19 @@ public class BuildingCard extends Card {
 
 	private Map<String, Integer> cost;
 	private BuildingListOfEffect effects;
+	private BuildingListOfPermanentEffect permanent;
 	private ArrayList<Effect> immediateEffects;
 	private ArrayList<Effect> permanentEffects;
 	private int permanentCost=0;
 	private boolean gainPrivilegeCouncil=false;
 	
-	public BuildingCard(String type, String name, int period, Map<String, Integer> cost, BuildingListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
+	public BuildingCard(String type, String name, int period, Map<String, Integer> cost, BuildingListOfEffect effects, BuildingListOfPermanentEffect permanent) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.cost=cost;
 		this.effects=effects;
+		this.permanent=permanent;
 		immediateEffects = effects.createListOfEffect();
+		permanentEffects= permanent.createListOfEffect();
 		setGainPrivilegeCouncil();
 	}
 	
