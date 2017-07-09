@@ -11,6 +11,12 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.json.JsonPrivilegeCouncil;
 
+/**
+ * @author Chiara
+ * This class represents the effect of gaining a privilege council.
+ *
+ */
+
 public class GainPrivilegeCouncil extends Effect {
 	private PrivilegeCouncil privilegeCouncil;
 	private int privilege;

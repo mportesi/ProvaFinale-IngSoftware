@@ -10,6 +10,12 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.BuildingCard;
 
+/**
+ * @author Chiara
+ * This class represents the effect of gaining victory point for the building cards that the player has.
+ *
+ */
+
 public class GainVictoryPointForBuildingCard extends Effect {
 	int victoryPoint;
 	
