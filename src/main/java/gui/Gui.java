@@ -39,8 +39,9 @@ public class Gui extends Application {
 			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
-			Scene scene = new Scene(rootLayout);
+			Scene scene = new Scene(rootLayout, 600, 300);
 			primaryStage.setScene(scene);
+			primaryStage.setMaximized(true);
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

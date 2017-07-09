@@ -74,9 +74,11 @@ public class PrivilegeController {
 	@FXML
 	public void woodAndStonePrivilege() {
 		choice = "woodAndStone";
-		switch ("type") {
+		switch (type) {
 		case "councilPalace": {
+			System.out.println("sono qui");
 			boardController.putRelativeOnCouncilPalace(choice);
+			stage.close();
 			break;
 		}
 		case "territory1": {
@@ -116,7 +118,6 @@ public class PrivilegeController {
 			break;
 		}
 		}
-
 		stage.close();
 	}
 
@@ -172,7 +173,7 @@ public class PrivilegeController {
 	@FXML
 	public void faithPointPrivilege() {
 		choice = "faithPoint";
-		switch ("type") {
+		switch (type) {
 		case "councilPalace": {
 			boardController.putRelativeOnCouncilPalace(choice);
 			break;
@@ -221,7 +222,7 @@ public class PrivilegeController {
 	@FXML
 	public void servantPrivilege() {
 		choice = "servant";
-		switch ("type") {
+		switch (type) {
 		case "councilPalace": {
 			boardController.putRelativeOnCouncilPalace(choice);
 			break;

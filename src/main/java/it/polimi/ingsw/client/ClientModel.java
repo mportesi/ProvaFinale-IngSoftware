@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -46,6 +47,9 @@ public class ClientModel implements Serializable {
 	private boolean cli;
 	private BoardController boardControllerGUI;
 	private Timer timer = new Timer();
+	private boolean socket=false;
+	private ObjectOutputStream socketOut;
+	private ArrayList<Player> winners = new ArrayList <Player>();
 	
 	public ClientModel(ServerRMIConnectionViewRemote serverStub){
 		in = new BufferedReader(new InputStreamReader(System.in));
@@ -54,9 +58,11 @@ public class ClientModel implements Serializable {
 	
 	}
 	
-	public ClientModel(){
+	public ClientModel(boolean socket, ObjectOutputStream socketOut){
 		in = new BufferedReader(new InputStreamReader(System.in));
 		this.gui=true;
+		this.socket=socket;
+		this.socketOut=socketOut;
 	}
 
 	public void setCouncilPalace(Player player, Relative relative)
@@ -65,56 +71,175 @@ public class ClientModel implements Serializable {
 		board.getCouncilPalace().getRelatives().add(relative);
 		if(gui){
 			boardControllerGUI.setCouncilPalace(player, relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
 	public void setPeriod(int period) {
 		this.period = period;
+		if(gui){
+			boardControllerGUI.setPeriod(period);
+			boardControllerGUI.setPlayerUpdate(this);
+		}
 	}
 
 	public void setCurrentPlayer(Player currentPlayer) {
+		
 		this.currentPlayer = currentPlayer;
-		// chiamo cli in un thread
-		// scatta timer thread a null
-		System.out.println("The EG is: " +endGame);
-		if (!endGame && currentPlayer.getName().equals(player.getName())) {
-			JsonTimeOut jsonTimeOut = null;
-			try {
-				jsonTimeOut = new JsonTimeOut();
-			} catch (IOException | ParseException e1) {
-				e1.printStackTrace();
-			}
-			int timeOutAction = jsonTimeOut.getTimeOutAction();
-			timer = new Timer();
-			
-			action = new Thread(() -> {
+		if(!gui){
+		if(!socket){
+			// chiamo cli in un thread
+			// scatta timer thread a null
+			System.out.println("The EG is: " +endGame);
+			if (!endGame && currentPlayer.getName().equals(player.getName())) {
+				JsonTimeOut jsonTimeOut = null;
 				try {
-
-					CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
-					
-						if (action != null) {
-							
-							commandLineInterface.input();
-						
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+					jsonTimeOut = new JsonTimeOut();
+				} catch (IOException | ParseException e1) {
+					e1.printStackTrace();
 				}
-
-			});
-			action.start();
-			timer.schedule(new TimerAction(serverStub) {
-				public void run() {
-					System.out.println("It ran out of time!");
-					
-							try {
+				int timeOutAction = jsonTimeOut.getTimeOutAction();
+				timer = new Timer();
+				
+				action = new Thread(() -> {
+					try {
+	
+						CommandLineInterface commandLineInterface = new CommandLineInterface(this, serverStub, timer);
+						
+							if (action != null) {
+								
+								commandLineInterface.input();
+							
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+	
+				});
+				action.start();
+				timer.schedule(new TimerAction(serverStub) {
+					public void run() {
+						System.out.println("It ran out of time!");
+						
 								try {
 									timer.cancel();
 									serverStub.notifyObserver(new Quit(player, player.getMatch()));
+									
 								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
+								} catch (NullPointerException e3) {
+									// TODO Auto-generated catch block
+									e3.printStackTrace();
+								} catch (RemoteException e3) {
+									// TODO Auto-generated catch block
+									e3.printStackTrace();
+								} catch (IOException e3) {
+									// TODO Auto-generated catch block
+									e3.printStackTrace();
+								} catch (ParseException e3) {
+									// TODO Auto-generated catch block
+									e3.printStackTrace();
 								}
+						
+							setQuit(true);
+							
+							
+							
+							
+							int input0;
+							try {
+								input0 = Integer.parseInt(in.readLine());
+								switch(input0){
+								case 0: 
+									System.out.println("reconnect");
+									try {
+										try {
+											serverStub.notifyObserver(new Reconnect(player, player.getMatch()));
+										} catch (InterruptedException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									} catch (FileNotFoundException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									} catch (NullPointerException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									} catch (RemoteException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									} catch (ParseException e1) {
+										e1.printStackTrace();
+									}
+									
+								break;
+								}
+							} catch (NumberFormatException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						
+						
+						ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
+						
+	
+						//action=null;
+						try {
+							serverStub.notifyObserver(shiftPlayer);
+							timer.cancel();
+							
+						} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+							e.printStackTrace();
+							
+						}
+						}
+					}, (long) (timeOutAction) * 1000);
+					
+			}
+		}
+		else if(socket){
+			// chiamo cli in un thread
+			// scatta timer thread a null
+			System.out.println("The EG is: " +endGame);
+			if (!endGame && currentPlayer.getName().equals(player.getName())) {
+				JsonTimeOut jsonTimeOut = null;
+				try {
+					jsonTimeOut = new JsonTimeOut();
+				} catch (IOException | ParseException e1) {
+					e1.printStackTrace();
+				}
+				int timeOutAction = jsonTimeOut.getTimeOutAction();
+				timer = new Timer();		
+				action = new Thread(() -> {
+					try {
+							CommandLineInterface commandLineInterface = new CommandLineInterface(this, socketOut, timer);
+										
+							if (action != null) {				
+									commandLineInterface.inputSocket();	
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+				
+				});
+				action.start();
+				timer.schedule(new TimerAction(serverStub) {
+					public void run() {
+						System.out.println("It ran out of time!");
+									
+						try {
+							timer.cancel();
+							Quit quit=new Quit(player, player.getMatch());
+							socketOut.reset();
+							socketOut.writeObject(quit);
 							} catch (FileNotFoundException e3) {
 								// TODO Auto-generated catch block
 								e3.printStackTrace();
@@ -125,9 +250,6 @@ public class ClientModel implements Serializable {
 								// TODO Auto-generated catch block
 								e3.printStackTrace();
 							} catch (IOException e3) {
-								// TODO Auto-generated catch block
-								e3.printStackTrace();
-							} catch (ParseException e3) {
 								// TODO Auto-generated catch block
 								e3.printStackTrace();
 							}
@@ -143,37 +265,50 @@ public class ClientModel implements Serializable {
 							switch(input0){
 							case 0: 
 								System.out.println("reconnect");
-								try {
 									try {
-										serverStub.notifyObserver(new Reconnect(player, player.getMatch()));
-									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
+										Reconnect reconnect=new Reconnect(player, player.getMatch());
+										socketOut.reset();
+										socketOut.writeObject(reconnect);
+										} catch (FileNotFoundException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										} catch (NullPointerException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										} catch (RemoteException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										} catch (IOException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										
+											break;
+											}
+										} catch (NumberFormatException e2) {
+											// TODO Auto-generated catch block
+											e2.printStackTrace();
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										
+									ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
+									
+				
+									//action=null;
+									try {
+										socketOut.reset();
+										socketOut.writeObject(shiftPlayer);
+										timer.cancel();
+										
+									} catch (NullPointerException | IOException e) {
 										e.printStackTrace();
+										
 									}
-								} catch (FileNotFoundException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								} catch (NullPointerException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								} catch (RemoteException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								} catch (IOException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								} catch (ParseException e1) {
-									e1.printStackTrace();
-								}
+									}
+								}, (long) (timeOutAction) * 1000);
 								
-							break;
-							}
-						} catch (NumberFormatException e2) {
-							// TODO Auto-generated catch block
-							e2.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
 						}
 						
 					
@@ -190,10 +325,9 @@ public class ClientModel implements Serializable {
 						e.printStackTrace();
 						
 					}
-					}
-				}, (long) (timeOutAction) * 1000);
-				
+					
 		}
+}
 		
 		if(gui){
 			boardControllerGUI.setCurrentPlayer();
@@ -204,6 +338,9 @@ public class ClientModel implements Serializable {
 
 	public void setRound(int round) {
 		this.round = round;
+		if(gui){
+			boardControllerGUI.setRound(round);
+		}
 	}
 
 	public void setCurrentTurnOrder(ArrayList<Player> currentTurnOrder) {
@@ -219,6 +356,7 @@ public class ClientModel implements Serializable {
 		board.getHarvestArea().setLeftRelativeOnHarvest(relative);
 		if(gui){
 			boardControllerGUI.setHarvestLeftArea(relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -227,6 +365,7 @@ public class ClientModel implements Serializable {
 		board.getProductionArea().setLeftRelativeOnProduction(relative);
 		if(gui){
 			boardControllerGUI.setProductionLeftArea(relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -235,6 +374,7 @@ public class ClientModel implements Serializable {
 		board.getProductionArea().setRightRelativeOnProduction(relative);
 		if(gui){
 			boardControllerGUI.setProductionRightArea(relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -244,6 +384,7 @@ public class ClientModel implements Serializable {
 		board.getHarvestArea().setRightRelativeOnHarvest(relative);
 		if(gui){
 			boardControllerGUI.setHarvestRightArea(relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 		
 	}
@@ -264,6 +405,7 @@ public class ClientModel implements Serializable {
 		}
 		if(gui){
 			boardControllerGUI.setTower(tower, floor, player, relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -276,6 +418,7 @@ public class ClientModel implements Serializable {
 		}
 		if(gui){
 			boardControllerGUI.setMarket(market, player, relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 		
 	}
@@ -311,6 +454,7 @@ public class ClientModel implements Serializable {
 		this.board=board;
 		if(gui){
 			boardControllerGUI.setBoard();
+			
 		}
 		
 	}
@@ -353,6 +497,14 @@ public class ClientModel implements Serializable {
 
 	public void setEndGame() {
 		endGame = true;
+		if(gui){
+			try {
+				boardControllerGUI.ranking(winners);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public boolean getEndGame() {
@@ -394,9 +546,21 @@ public class ClientModel implements Serializable {
 
 	public void actionNotApplicable() {
 		if(gui){
-			boardControllerGUI.actionNotApplicable();
+			boardControllerGUI.actionNotApplicable(this.player);
 		}
 		
+	}
+
+	public void setNumberOfPlayer(Player player2) {
+		if(gui){
+			boardControllerGUI.setDisconnected(player2);
+		}
+		
+	}
+
+	public void setWinners(ArrayList<Player> winners) throws IOException {
+		this.winners = winners;
+		boardControllerGUI.ranking(winners);
 	}
 
 	

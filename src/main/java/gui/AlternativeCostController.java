@@ -7,10 +7,9 @@ import javafx.stage.Stage;
 public class AlternativeCostController {
 	@FXML
 	private Button otherCost;
-	
-	private Button militaryCost;
 	@FXML
-	private Button servant;
+	private Button militaryCost;
+	
 	private BoardController boardController;
 	private Stage stage;
 	private String type;

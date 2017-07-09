@@ -1,9 +1,12 @@
 package gui;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.actions.RegisterClientSocket;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionView;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
@@ -34,6 +37,9 @@ public class RegisterClientController {
 	public ClientModel client;
 	public ServerRMIConnectionViewRemote serverStub;
 	public ClientRMIConnectionView rmiView;
+	public ObjectOutputStream socketOut;
+	public ObjectInputStream socketIn;
+	
 	
 	
 	@FXML
@@ -42,14 +48,18 @@ public class RegisterClientController {
 		client.setName(playerName);
 		try {
 			openNewScene();
-			serverStub.registerClient(rmiView, playerName);
-			
+			if(serverStub!=null){
+			serverStub.registerClient(rmiView, playerName);}
+			if(socketOut!=null && socketIn!=null){
+			RegisterClientSocket register=new RegisterClientSocket(playerName);
+			socketOut.writeObject(register);
+			socketOut.flush();}
 		} catch (NullPointerException | IOException | ParseException e) {
 			e.printStackTrace();
 		} 
 		
 	}
-
+// 2 uramaki hollor 1 uramaki philadelphia 1 hossomaki ebiten ebiyaky meshi tempura di verdure yaki udon
 	@FXML
 	public void openNewScene() {
 		Parent page = null;
@@ -59,8 +69,10 @@ public class RegisterClientController {
 			BoardController boardController=fxmlLoader.getController();
 			boardController.setClient(client);
 			boardController.setServerStub(serverStub);
+			boardController.setSocketOut(socketOut);
 			client.setBoardController(boardController);
 			text.getScene().setRoot(page);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -77,6 +89,12 @@ public class RegisterClientController {
 
 	public void setClientRMIConnectionView(ClientRMIConnectionView rmiView) {
 		this.rmiView=rmiView;
+	}
+	public void setSocketOut(ObjectOutputStream out) {
+		this.socketOut=out;
+	}
+	public void setSocketIn(ObjectInputStream in){
+		this.socketIn=in;
 	}
 
 }

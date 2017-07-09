@@ -18,15 +18,17 @@ public class VentureCard extends Card {
 	private Map<String, Integer> cost;
 	private int militaryRequirement;
 	private int militaryCost;
+	private int victoryPoint;
 	private VentureListOfEffect effects;
 	private ArrayList<Effect> immediateEffects;
 	private boolean payAlternativeCost= false;
 	private boolean gainPrivilegeCouncil=false;
 	
-	public VentureCard(String type, String name, int period, Map<String, Integer> costMap, int militaryRequirement,
-			int militaryCost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
+	public VentureCard(String type, String name, int period, int victoryPoint, int militaryCost, int militaryRequirement,
+			Map<String, Integer> costMap, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.cost = cost;
+		this.victoryPoint = victoryPoint;
 		this.militaryRequirement = militaryRequirement;
 		this.militaryCost = militaryCost;
 		this.effects=effects;
@@ -36,21 +38,22 @@ public class VentureCard extends Card {
 		
 	};
 
-	public VentureCard(String type, String name, int period, Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
+	public VentureCard(String type, String name, int period, int victoryPoint, Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.cost = cost;
 		militaryRequirement = 0;
+		this.victoryPoint = victoryPoint;
 		militaryCost = 0;
 		this.effects = effects;
 		immediateEffects = effects.createListOfEffect();
 		setGainPrivilegeCouncil();
 	}
 
-	public VentureCard(String type, String name, int period, int militaryRequirement, int militaryCost,
-			Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
+	public VentureCard(String type, String name, int period, int victoryPoint, int militaryRequirement, Map<String, Integer> cost, VentureListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.militaryRequirement = militaryRequirement;
 		this.militaryCost = militaryCost;
+		this.victoryPoint = victoryPoint;
 		this.cost = cost;
 		cost = null;
 		this.effects=effects;
@@ -184,5 +187,10 @@ public class VentureCard extends Card {
 	}
 	public boolean getGainPrivilegeCouncil() {
 		return gainPrivilegeCouncil;
+	}
+
+	public int getVictory() {
+		// TODO Auto-generated method stub
+		return victoryPoint;
 	}
 }

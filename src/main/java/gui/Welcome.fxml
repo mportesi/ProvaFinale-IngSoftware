@@ -24,7 +24,7 @@
             <Font name="Blackadder ITC" size="35.0" />
          </font>
       </Label>
-      <Button layoutX="150.0" layoutY="262.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="116.0" text="Socket" textAlignment="CENTER">
+      <Button fx:id="socketButton" layoutX="150.0" layoutY="262.0" mnemonicParsing="false" onMouseClicked="#socket" prefHeight="70.0" prefWidth="116.0" text="Socket" textAlignment="CENTER">
          <font>
             <Font name="Blackadder ITC" size="30.0" />
          </font>
