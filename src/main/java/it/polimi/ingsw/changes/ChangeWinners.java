@@ -5,7 +5,10 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * To notify the winners.
+ */
 public class ChangeWinners implements Change {
 	private ArrayList<Player> winners;
 	

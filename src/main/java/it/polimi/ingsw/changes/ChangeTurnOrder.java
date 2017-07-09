@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * To change the turn order on the client when the round change.
+ */
 public class ChangeTurnOrder implements Change {
 	ArrayList<Player> currentTurnOrder;
 	

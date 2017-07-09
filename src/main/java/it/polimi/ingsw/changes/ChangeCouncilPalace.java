@@ -10,7 +10,10 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.CouncilPalace;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To set the modified council palace on every client.
+ */
 public class ChangeCouncilPalace implements Change {
 	private Player player;
 	private Relative relative;

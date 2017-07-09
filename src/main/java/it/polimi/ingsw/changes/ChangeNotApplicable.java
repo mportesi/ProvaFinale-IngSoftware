@@ -8,6 +8,10 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 
+/**
+ * @author Sara
+ * To notify the client that the action is not applicable.
+ */
 public class ChangeNotApplicable implements Change {
 	private Player player;
 	private String string;

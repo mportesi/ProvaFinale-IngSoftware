@@ -10,7 +10,10 @@ import it.polimi.ingsw.areas.Floor;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To update the modified tower on the client.
+ */
 public class ChangeTower implements Change {
 	private Tower tower;
 	private int floor;

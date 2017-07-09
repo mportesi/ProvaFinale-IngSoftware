@@ -9,7 +9,10 @@ import it.polimi.ingsw.GC_40.Observable;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To set the modified left harvest area on every client.
+ */
 public class ChangeHarvestLeftArea implements Change {
 	private Relative relative;
 	

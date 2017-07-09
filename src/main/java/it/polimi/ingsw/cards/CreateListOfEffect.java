@@ -10,6 +10,10 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.effects.Effect;
 
+/**
+ * @author Sara
+ * This is the interface for auxiliary classes that creates the list of effects for the cards
+ */
 public abstract class CreateListOfEffect implements Serializable{
 	protected transient Map<String, Integer> immediateEffect;
 	

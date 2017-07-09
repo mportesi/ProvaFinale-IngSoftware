@@ -6,6 +6,10 @@ import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Dice;
 import javafx.event.Event;
 
+/**
+ * @author Sara
+ * To set the board on every client at the beginning of the game.
+ */
 public class ChangeInitializeBoard implements Change {
 	private Board board;
 	private Player currentPlayer;
@@ -18,7 +22,6 @@ public class ChangeInitializeBoard implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		System.out.println("CP: " + currentPlayer.getMatch() + client.getPlayer().getMatch());
 		if (currentPlayer.getMatch() == client.getPlayer().getMatch()){
 		client.initializeBoard(board);
 		client.setCurrentPlayer(currentPlayer);

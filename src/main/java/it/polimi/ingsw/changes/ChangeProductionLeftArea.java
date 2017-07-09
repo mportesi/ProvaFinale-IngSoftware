@@ -8,7 +8,10 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To modify the updated left production area on the client.
+ */
 public class ChangeProductionLeftArea implements Change {
 	
 	private Relative relative;

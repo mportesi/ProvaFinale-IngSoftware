@@ -8,7 +8,10 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To set the modified right harvest area on every client.
+ */
 public class ChangeHarvestRightArea implements Change {
 	private Relative relative;
 	

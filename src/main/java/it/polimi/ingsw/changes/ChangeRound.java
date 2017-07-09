@@ -9,7 +9,10 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * To notify the change of the round.
+ */
 public class ChangeRound implements Change {
 	private int round;
 	private Board board;

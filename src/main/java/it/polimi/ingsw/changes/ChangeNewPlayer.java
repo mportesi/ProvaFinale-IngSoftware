@@ -15,7 +15,7 @@ import it.polimi.ingsw.client.ClientModel;
 
 /**
  * @author Sara
- *
+ * To set the player at the beginning of the game.
  */
 
 public class ChangeNewPlayer extends Observable<Change> implements Change {
@@ -33,7 +33,6 @@ public class ChangeNewPlayer extends Observable<Change> implements Change {
 	public void applyChange(ClientModel client) {
 		if (client.getName().equals(player.getName())){
 		client.setPlayer(player);
-		System.out.println("ho registrato: " + player.getName());
 		}
 		
 	}

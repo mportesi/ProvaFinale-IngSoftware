@@ -18,7 +18,6 @@ import it.polimi.ingsw.actions.InitializeGame;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
-import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.server.Server;
