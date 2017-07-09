@@ -2,6 +2,12 @@ package it.polimi.ingsw.components;
 
 import java.util.Map;
 
+/**
+ * @author Chiara
+ * This class represents the final victory points to give to each player for each card/resource at the end of the game.
+ *
+ */
+
 public class FinalVictoryPoint {
 	private String type;
 	private int finalVictoryPointForOne;

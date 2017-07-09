@@ -14,6 +14,13 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.components.FinalVictoryPoint;
 
+
+/**
+ * @author Chiara
+ * In this class all the number of victory points necessary to take the territory cards are imported from json.
+ *
+ */
+
 public class JsonMilitaryPointForTerritory {
 	private int forTheFirstCard;
 	private int forTheSecondCard;

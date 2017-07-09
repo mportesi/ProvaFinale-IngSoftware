@@ -14,6 +14,12 @@ import it.polimi.ingsw.effects.GainStone;
 import it.polimi.ingsw.effects.GainVictoryPoint;
 import it.polimi.ingsw.effects.GainWood;
 
+/**
+ * @author Chiara
+ * In this class are created the production effects of the personal bonus tile.
+ *
+ */
+
 public class PersonalBonusTileListOfProductionEffect extends CreateListOfEffect{
 	
 	public PersonalBonusTileListOfProductionEffect(Map <String, Integer> immediateEffect){

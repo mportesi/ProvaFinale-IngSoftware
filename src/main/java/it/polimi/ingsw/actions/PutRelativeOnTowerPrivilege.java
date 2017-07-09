@@ -23,6 +23,12 @@ import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 
+/**
+ * @author Chiara
+ * Action invoked when a player puts one of his relatives on a floor of a tower with a card that has a privilege council.
+ *
+ */
+
 public class PutRelativeOnTowerPrivilege extends Observable<Change> implements PutRelative {
 	Tower tower;
 	Relative relative;

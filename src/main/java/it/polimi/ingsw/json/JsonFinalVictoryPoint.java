@@ -15,6 +15,12 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.components.FinalVictoryPoint;
 
+/**
+ * @author Chiara
+ * In this class all the victory point for the final ranking are imported from json.
+ *
+ */
+
 public class JsonFinalVictoryPoint {
 	private ArrayList <FinalVictoryPoint> finalVictoryPointList;
 

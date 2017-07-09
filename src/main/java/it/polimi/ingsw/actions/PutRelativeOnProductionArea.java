@@ -23,6 +23,11 @@ import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainProductionValue;
 
+/**
+ * @author Chiara
+ * Action invoked when a player puts his relative on the Production Area.
+ *
+ */
 
 public class PutRelativeOnProductionArea extends Observable<Change> implements PutRelative {
 	Relative relative;
@@ -40,6 +45,13 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 		this.match = match;
 		this.permanentEffect=permanentEffect;
 	}
+	
+	/**
+	 * @author Chiara
+	 * Checks if the action is applicable, in particular if the relative has enough value and, in case the chosen Area is the left one, verifies that this space is free. 
+	 * In the second case, if the chosen area is the right one, verifies that there are not other relatives that belong to the player (except the neutral one) with the function isAlreadyPresent().
+	 *
+	 */
 	
 	@Override
 	public boolean isApplicable() {
@@ -71,11 +83,18 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 		return false;
 	}
 
+	
+	/**
+	 * The player puts his/her relative on the left/right area. If the player has some building cards, he/she can activate the permanent effects associated to them.
+	 * @author Chiara
+	 * 
+	 *
+	 */
 
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
-			// If the left position is free, the player put the relative there.
+			
 			if (area.equals("left")) {
 				productionArea.setLeftRelativeOnProduction(relative);
 				play.notifyObserver(new ChangeProductionLeftArea(relative));
@@ -88,7 +107,7 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 				}
 				System.out.println(player);
 			}
-			// Else he put the relative on the other side with the penalty
+			
 			else {
 				productionArea.setRightRelativeOnProduction(relative);
 				play.notifyObserver(new ChangeProductionRightArea(relative));
@@ -118,7 +137,6 @@ public class PutRelativeOnProductionArea extends Observable<Change> implements P
 
 	@Override
 	public int getMatch() {
-		// TODO Auto-generated method stub
 		return match;
 	}
 

@@ -4,6 +4,12 @@ import java.io.Serializable;
 
 import it.polimi.ingsw.colors.ColorDice;
 
+/**
+ * @author Chiara
+ * This class represents the dice.
+ *
+ */
+
 public class Dice implements Serializable{
 	private ColorDice color;
 	private int value;

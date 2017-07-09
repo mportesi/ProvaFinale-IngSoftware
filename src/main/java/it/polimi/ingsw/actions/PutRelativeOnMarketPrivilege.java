@@ -19,6 +19,13 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+/**
+ *  Action invoked when a player puts his relative on a market with a bonus that consists in choosing a privilege council.
+ *
+ * @author Chiara
+ *
+ */
+
 public class PutRelativeOnMarketPrivilege extends Observable<Change> implements PutRelative {
 
 	Relative relative;
@@ -49,6 +56,16 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 			return false;
 	}
 
+
+/**
+ * If the relative of the player has enough value to do the action, it will occupy the area.
+ * All the observer will be notified and the player will receive the resources associated to the area, in this case he/she can choose one of the resources of privilege council.
+ * If the action is not applicable, the player will receive a message on the console.
+ * @author Chiara
+ * 
+ *
+ */
+	
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {

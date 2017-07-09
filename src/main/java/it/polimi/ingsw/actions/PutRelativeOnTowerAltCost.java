@@ -17,6 +17,12 @@ import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 
+/**
+ * @author Chiara
+ * Action invoked when a player puts one of his relatives on a floor of a tower with an alternative cost.
+ *
+ */
+
 public class PutRelativeOnTowerAltCost extends Observable<Change> implements PutRelative {
 	Tower tower;
 	Relative relative;
@@ -101,7 +107,7 @@ public class PutRelativeOnTowerAltCost extends Observable<Change> implements Put
 
 	@Override
 	public int getMatch() {
-		// TODO Auto-generated method stub
+	
 		return match;
 	}
 	

@@ -45,7 +45,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 	/**
 	 * @author Chiara
 	 * Checks if the action is applicable, in particular if the relative has enough value and, in case the choosen Area is the left one, verifies that this space is free. 
-	 * In the second case, if the choosen area is the right one, verifies that there are not other relatives that belong to the player (except the neutral one) with the function isAlreadyPresent().
+	 * In the second case, if the chosen area is the right one, verifies that there are not other relatives that belong to the player (except the neutral one) with the function isAlreadyPresent().
 	 *
 	 */
 	
@@ -79,6 +79,7 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 	}
 
 	/**
+	 * The player puts his/her relative on the left/right area. If the player has some territoryCards, he/she can activate the permanent effects associated to them.
 	 * @author Chiara
 	 * 
 	 *
@@ -88,20 +89,18 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
-			// If the left position is free, the player put the relative there.
+			
 			if (area.equals("left")) {
 				harvestArea.setLeftRelativeOnHarvest(relative);
 				play.notifyObserver(new ChangeHarvestLeftArea(relative));
 				player.setOccupiedRelative(relative);
 				play.notifyObserver(new ChangeOccupiedRelative(player, relative));
-				//apply the territory permanent effect
 				applyPermanentEffect(play);
 				GainHarvestValue gainHarvestValue = new GainHarvestValue(relative.getValue());
 				gainHarvestValue.apply(player, play);
 
 			}
-			// Else he put the relative on the other side with the penalty
-			else {
+						else {
 				harvestArea.setRightRelativeOnHarvest(relative);
 				play.notifyObserver(new ChangeHarvestRightArea(relative));
 				player.setOccupiedRelative(relative);
@@ -124,6 +123,8 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 		}
 	}
 	
+	
+	
 	private void applyPermanentEffect(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		for(TerritoryCard card:player.getTerritory()){
 			if(relative.getValue()>card.getPermanentCost()){
@@ -131,9 +132,9 @@ public class PutRelativeOnHarvestArea extends Observable<Change> implements PutR
 			}
 		}
 	}
+	
 	@Override
 	public int getMatch() {
-		// TODO Auto-generated method stub
 		return match;
 	}
 }

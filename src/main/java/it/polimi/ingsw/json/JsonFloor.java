@@ -16,6 +16,12 @@ import it.polimi.ingsw.effects.GainMilitaryPoint;
 import it.polimi.ingsw.effects.GainStone;
 import it.polimi.ingsw.effects.GainWood;
 
+/**
+ * @author Chiara
+ * In this class all the costs associated to the floors of the towers are imported from json.
+ *
+ */
+
 public class JsonFloor {
 	private ArrayList<Floor> territoryFloors;
 	private ArrayList<Floor> characterFloors; 

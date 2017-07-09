@@ -17,6 +17,14 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+
+/**
+ *  Action invoked when a player puts his relative on one market.
+ *
+ * @author Chiara
+ *
+ */
+
 public class PutRelativeOnMarket extends Observable<Change> implements PutRelative {
 
 	Relative relative;
@@ -45,6 +53,16 @@ public class PutRelativeOnMarket extends Observable<Change> implements PutRelati
 			return false;}
 	}
 
+
+/**
+ * If the relative of the player has enough value to do the action, it will occupy the area.
+ * All the observer will be notified and the player will receive the resources associated to the area.
+ * If the action is not applicable, the player will receive a message on the console.
+ * @author Chiara
+ * 
+ *
+ */
+	
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {

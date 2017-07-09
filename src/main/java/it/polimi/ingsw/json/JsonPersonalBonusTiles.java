@@ -16,6 +16,12 @@ import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.PersonalBonusTileListOfHarvestEffect;
 import it.polimi.ingsw.components.PersonalBonusTileListOfProductionEffect;
 
+/**
+ * @author Chiara
+ * In this class the personal bonus tiles are imported from json.
+ *
+ */
+
 public class JsonPersonalBonusTiles {
 	private ArrayList <PersonalBonusTile> personalBonusTiles;
 	

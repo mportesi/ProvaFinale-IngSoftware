@@ -11,6 +11,12 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.components.FinalVictoryPoint;
 
+/**
+ * @author Chiara
+ * In this class all the timeout's value are imported from json.
+ *
+ */
+
 public class JsonTimeOut {
 	private int timeOutAction;
 	private int timeOutStartPlay;

@@ -31,6 +31,12 @@ public class JsonCard {
 	private List<Card> ventureDeck ;
 	private List<Card> characterDeck ;
 	
+	/**
+	 * @author Chiara
+	 * In this class all the card are imported from json.
+	 *
+	 */
+	
 	public void importCards() throws FileNotFoundException, IOException, ParseException {
 		// BuildingCards
 				buildingDeck= new ArrayList<Card>();

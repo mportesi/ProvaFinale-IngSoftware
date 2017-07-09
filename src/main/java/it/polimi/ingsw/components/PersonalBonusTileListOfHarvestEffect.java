@@ -18,6 +18,12 @@ import it.polimi.ingsw.effects.GainStone;
 import it.polimi.ingsw.effects.GainVictoryPoint;
 import it.polimi.ingsw.effects.GainWood;
 
+/**
+ * @author Chiara
+ * In this class are created the harvest effects of the personal bonus tile.
+ *
+ */
+
 public class PersonalBonusTileListOfHarvestEffect extends CreateListOfEffect{
 	
 	public PersonalBonusTileListOfHarvestEffect(Map <String, Integer> immediateEffect){
