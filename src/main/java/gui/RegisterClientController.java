@@ -20,6 +20,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+/**
+ * @author Chiara
+ * This class represents the controller of the stage of the register client.
+ *
+ */
+
 public class RegisterClientController {
 	 private String playerName;
 	

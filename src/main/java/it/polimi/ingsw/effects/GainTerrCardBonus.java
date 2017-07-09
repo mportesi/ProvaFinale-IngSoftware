@@ -8,6 +8,12 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 
+/**
+ * @author Chiara
+ * This class represents the effect of gaining bonus associated to the permanent effect of the territory cards.
+ *
+ */
+
 public class GainTerrCardBonus extends Effect {
 	int terrBonus;
 	

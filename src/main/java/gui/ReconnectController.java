@@ -13,6 +13,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * @author Chiara
+ * This class represents the controller of the stage of the reconnection.
+ *
+ */
+
 public class ReconnectController {
 	@FXML
 	private Button reconnect;

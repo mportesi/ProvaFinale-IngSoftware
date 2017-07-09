@@ -10,6 +10,12 @@ import com.sun.tools.example.debug.expr.ParseException;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
+/**
+ * @author Chiara
+ * This class represents the timer for the action.
+ *
+ */
+
 public class TimerAction extends TimerTask {
 	private ServerRMIConnectionViewRemote serverStub;
 	
@@ -17,20 +23,10 @@ public class TimerAction extends TimerTask {
 		this.serverStub = serverStub;
 	}
 	
-	/*public void input(){
-		CommandLineInterface cli= new CommandLineInterface();
-		
-	}*/
 	
 	@Override
 	public void run() {
-		/*System.out.println("It ran out of time!");
-		ShiftPlayer shiftPlayer = new ShiftPlayer();
-		try {
-			serverStub.notifyObserver(shiftPlayer);
-		} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
-			e.printStackTrace();
-		}*/
+		
 	}
 
 }

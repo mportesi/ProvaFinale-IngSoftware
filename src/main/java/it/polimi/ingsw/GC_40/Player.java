@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_40;
 
-import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
@@ -20,9 +19,14 @@ import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.*;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.colors.ColorPlayer;
-import it.polimi.ingsw.components.LeaderTile;
 import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.Relative;
+
+/**
+ * @author Chiara
+ * This class represents the player with all his/her resources.
+ *
+ */
 
 public class Player extends Observable<Change> implements Serializable {
 	private UUID ID;
@@ -73,10 +77,6 @@ public class Player extends Observable<Change> implements Serializable {
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
 		neutralRelative= new Relative(null, this);
 		activeRelatives = new ArrayList <Relative>();
-	/*	activeRelatives.add(blackRelative);
-		activeRelatives.add(neutralRelative);
-		activeRelatives.add(orangeRelative);
-		activeRelatives.add(whiteRelative);*/
 		territoryCard= new ArrayList<>();
 		buildingCard= new ArrayList<>();
 		ventureCard= new ArrayList<>();
@@ -569,7 +569,6 @@ public class Player extends Observable<Change> implements Serializable {
 
 
 	public boolean getQuit() {
-		// TODO Auto-generated method stub
 		return quit;
 	}
 

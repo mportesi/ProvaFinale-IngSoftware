@@ -37,6 +37,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+/**
+ * @author Chiara
+ * This class represents the controller of the stage of the welcome.
+ *
+ */
+
 public class WelcomeController {
 	
 	@FXML

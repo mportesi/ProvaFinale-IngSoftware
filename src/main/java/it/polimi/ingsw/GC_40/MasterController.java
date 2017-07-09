@@ -14,11 +14,18 @@ import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
 import it.polimi.ingsw.serverSocket.ServerSocketView;
 
+/**
+ * @author Chiara
+ * This class represents the masterController, that has memorized all the controllers of all the matches.
+ * The masterController passes the actions to the right controller of the right match.
+ *
+ */
+
 public class MasterController implements Observer <Action>{
 	private HashMap <Integer, Controller> controllers;
 	private ArrayList <Play> matches;
 	private ArrayList <ClientRMIConnectionViewRemote> clients;
-	//private ServerRMIConnectionView serverRMIConnectionView;
+	
 	
 	public MasterController(){
 		
@@ -28,7 +35,11 @@ public class MasterController implements Observer <Action>{
 	}
 	
 	
-		
+	/**
+	 * @author Chiara
+	 * This method initializes all the controllers of all matches, and registers the clients on the right match.
+	 * All the plays (matches) are saved in an ArraList of plays.
+	 */
 	
 	public void checkMatches(ServerRMIConnectionView serverRMIConnectionView, String name) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		if (matches.size() == 0){
@@ -101,7 +112,6 @@ public class MasterController implements Observer <Action>{
 	@Override
 	public void update(Action action)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// TODO Auto-generated method stub
 		controllers.get(action.getMatch()).update(action);	
 	}
 

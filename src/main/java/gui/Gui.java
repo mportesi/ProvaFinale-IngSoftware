@@ -11,6 +11,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * @author Chiara
+ * This class represents tha main of the GUI.
+ *
+ */
+
 public class Gui extends Application {
 
 	private Stage primaryStage;
@@ -29,16 +35,16 @@ public class Gui extends Application {
 	}
 
 	/**
-	 * Initializes the root layout.
+	 * @author Chiara
+	 * This method initializes the root layout and show the scene containing it.
+	 *
 	 */
 	public void initRootLayout() {
 		try {
-			// Load root layout from fxml file.
+			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Gui.class.getResource("RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
-
-			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout, 600, 300);
 			primaryStage.setScene(scene);
 			primaryStage.setMaximized(true);
@@ -48,21 +54,11 @@ public class Gui extends Application {
 		}
 	}
 
-	/*public void showBoard() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Gui.class.getResource("GuiFinal.fxml"));
-			AnchorPane board = (AnchorPane) loader.load();
-			// imageView board=(ImageView) AnchorPane.getChildren().get(0)
-			ToolBar toolbar = new ToolBar();
-			rootLayout.setTop(toolbar);
-			rootLayout.setCenter(board);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}*/
-	
-	
+	/**
+	 * @author Chiara
+	 * This method initialized the welcome stage.
+	 *
+	 */
 	
 	public void welcome() {
 		try {
@@ -75,24 +71,12 @@ public class Gui extends Application {
 
 	}
 
-	/*public void register() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Gui.class.getResource("GuiLogin.fxml"));
-			AnchorPane login = (AnchorPane) loader.load();
-			// imageView board=(ImageView) AnchorPane.getChildren().get(0)
-
-			rootLayout.setCenter(login);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}*/
+	
 
 	/**
-	 * Returns the main stage.
-	 * 
-	 * @return
+	 * @author Chiara
+	 * This method return the main stage.
+	 *
 	 */
 	public Stage getPrimaryStage() {
 		return primaryStage;

@@ -9,6 +9,12 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 
+/**
+ * @author Chiara
+ * This class represents the effect of gaining resouces associated to a permanent effect.
+ *
+ */
+
 public class GainResourceForCost extends Effect{
 	
 	private ArrayList<Effect> payEffect;

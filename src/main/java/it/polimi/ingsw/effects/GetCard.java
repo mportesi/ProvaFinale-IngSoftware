@@ -8,6 +8,12 @@ import it.polimi.ingsw.areas.Floor;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.Card;
 
+/**
+ * @author Chiara
+ * This class represents the effect of getting a new card.
+ *
+ */
+
 public class GetCard extends Effect {
 	private String card;
 	private int value;

@@ -70,6 +70,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 
+/**
+ * @author Chiara
+ * This class represents the board controller.
+ * It contains all the methods associated to the managing of the main stage, with the board of the game.
+ * All the actions of a player on that stage are managed here. 
+ * The board controller notify the server of all the actions, and the action are applied on it.
+ *
+ */
+
 public class BoardController {
 	private BufferedReader in;
 	private ClientModel client;
@@ -422,6 +431,15 @@ public class BoardController {
 		neutral.setVisible(false);
 
 	}
+	
+	/**
+	 * @author Chiara
+	 * When a player clicks on an area of the board, he/she activates a correspondent action.
+	 * If it is not his/her turn, the action is not applicable, or he/she has not selected a relative, he/she will be noticed by a message.
+	 * 
+	 *
+	 */
+	
 
 	@FXML
 	public void putRelativeOnTerritory1() {
@@ -2909,6 +2927,12 @@ public class BoardController {
 		initializeBoard1();
 	}
 
+	/**
+	 * @author Chiara
+	 * This method initializes the board. All the cards are put on the towers, and all the components are initialized.
+	 *
+	 */
+	
 	@FXML
 	public void initializeBoard1() {
 		setPlayer();
@@ -3081,6 +3105,13 @@ public class BoardController {
 		this.serverStub = serverStub;
 	}
 
+	
+	/**
+	 * @author Chiara
+	 * This method opens all the messages.
+	 *
+	 */
+	
 	@FXML
 	public void openMessage(String string) {
 		try {
@@ -3217,6 +3248,12 @@ public class BoardController {
 		name.setText(client.getPlayer().getName());
 	}
 
+	/**
+	 * @author Chiara
+	 * This method sets the players with all the resources.
+	 *
+	 */
+	
 	@FXML
 	public void setPlayer() {
 		String value;
@@ -3237,6 +3274,12 @@ public class BoardController {
 		
 	}
 
+	/**
+	 * @author Chiara
+	 * This method sets the current turn order.
+	 *
+	 */
+	
 	public void setCurrentTurnOrder() {
 		Image image0 = new Image("Images/" + currentTurnOrder.get(0).getColor() + "Piece.png");
 		current1.setImage(image0);
@@ -3255,6 +3298,12 @@ public class BoardController {
 
 	}
 
+	/**
+	 * @author Chiara
+	 * This method sets the board.
+	 *
+	 */
+	
 	public void setBoard() {
 
 		// setCurrentTurnOrder();
@@ -3383,6 +3432,8 @@ public class BoardController {
 		characterTower1.setImage(characterImage1);
 	}
 
+	
+	
 	public void setMarket(MarketBuilding market, Player player2, Relative relative2) {
 		String relativeColor;
 		if (relative2.getColor()!=null){

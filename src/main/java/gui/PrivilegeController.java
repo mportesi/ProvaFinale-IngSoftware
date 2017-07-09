@@ -6,6 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * @author Chiara
+ * This class is associated to the stage of the privilege council, where you can choose which resource do you want.
+ *
+ */
+
 public class PrivilegeController {
 	private String choice;
 	@FXML
