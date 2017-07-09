@@ -309,8 +309,8 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 		for (Player p : players) {
 			for (VentureCard v : p.getVenture()) {
-				// TO DO:PERMANENT EFFECT SONO I VICTORY POINT, DA USARE POI PER
-				// LA CLASSIFICA
+				int victory = v.getVictory();
+				p.incrementVictoryPoint(victory, this);
 			}
 
 			for (FinalVictoryPoint f : list) {

@@ -6,6 +6,7 @@
     "alternativeCostBoolean":1,
     "militaryRequirement":4,
     "militaryCost":2,
+    "victoryPoint":1,
     "cost":[
       {"type":"coin", "amount":2},
       {"type":"wood", "amount":1},
@@ -21,6 +22,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"wood", "amount":2},
       {"type":"stone", "amount":2}],
@@ -35,6 +37,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":1},
       {"type":"wood", "amount":1},
@@ -50,6 +53,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"wood", "amount":3}],
     "immediateEffect":[
@@ -63,6 +67,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":5,
     "militaryCost":3,
+    "victoryPoint":5,
     "cost":[
       ],
     "immediateEffect":[
@@ -76,6 +81,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"coin", "amount":4}],
     "immediateEffect":[
@@ -89,6 +95,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":3,
     "cost":[
       {"type":"stone", "amount":3}],
     "immediateEffect":[
@@ -103,6 +110,7 @@
     "alternativeCostBoolean":1,
     "militaryRequirement":7,
     "militaryCost":4,
+    "victoryPoint":4,
     "cost":[
       {"type":"coin", "amount":3},
       {"type":"wood", "amount":2},
@@ -119,6 +127,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":3,
     "militaryCost":2,
+    "victoryPoint":5,
     "cost":[],
     "immediateEffect":[
       {"type":"GainCoin", "amount":3}
@@ -131,6 +140,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":2,
     "cost":[
       {"type":"stone", "amount":4}],
     "immediateEffect":[
@@ -145,6 +155,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":8,
     "militaryCost":4,
+    "victoryPoint":5,
     "cost":[
       ],
     "immediateEffect":[
@@ -159,6 +170,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":6}],
     "immediateEffect":[
@@ -172,6 +184,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"wood", "amount":4}],
     "immediateEffect":[
@@ -185,6 +198,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":3},
       {"type":"servant", "amount":2}],
@@ -199,6 +213,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":6,
     "militaryCost":3,
+    "victoryPoint":3,
     "cost":[
      ],
     "immediateEffect":[
@@ -213,6 +228,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":6,
     "cost":[
       {"type":"coin", "amount":2},
       {"type":"wood", "amount":2},
@@ -222,12 +238,13 @@
     ]
   },
   {
-    "name":"saintWar",
+    "name":"sacredWar",
     "type":"ventureCard",
     "period":3,
     "alternativeCostBoolean":0,
     "militaryRequirement":15,
     "militaryCost":8,
+    "victoryPoint":8,
     "cost":[
     ],
     "immediateEffect":[
@@ -241,6 +258,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":3,
     "cost":[
       {"type":"wood", "amount":6}
     ],
@@ -255,6 +273,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":3},
       {"type":"wood", "amount":3},
@@ -272,6 +291,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"stone", "amount":6}
     ],
@@ -287,6 +307,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":6,
     "cost":[
       {"type":"coin", "amount":8}
     ],
@@ -301,6 +322,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":4},
       {"type":"servant", "amount":3}
@@ -316,6 +338,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":12,
     "militaryCost":6,
+    "victoryPoint":7,
     "cost":[
     ],
     "immediateEffect":[
@@ -331,6 +354,7 @@
     "alternativeCostBoolean":1,
     "militaryRequirement":10,
     "militaryCost":5,
+    "victoryPoint":10,
     "cost":[
       {"type":"coin", "amount":4},
       {"type":"wood", "amount":3},
@@ -342,3 +366,4 @@
   }
   
 ]
+  

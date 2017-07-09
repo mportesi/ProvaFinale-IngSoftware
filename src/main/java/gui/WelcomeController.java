@@ -136,8 +136,11 @@ public class WelcomeController {
 				clientModel.setBoardController(boardController);*/
 			} catch (IOException e) {
 				e.printStackTrace();
+				
 				return null;
 			}
+			page.autosize();
+			page.relocate(370, 170);
 			rmi.getScene().setRoot(page);
 			return page;
 	}

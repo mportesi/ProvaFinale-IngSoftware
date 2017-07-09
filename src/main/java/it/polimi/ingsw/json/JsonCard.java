@@ -132,6 +132,7 @@ public class JsonCard {
 					String type = (String) card.get("type");
 					int period = ((Long) card.get("period")).intValue();
 					String name = (String) card.get("name");
+					int victoryPoint = ((Long) card.get("victoryPoint")).intValue();
 					int alternativeCostBoolean = ((Long) card.get("alternativeCostBoolean")).intValue();
 					int militaryRequirement = ((Long) card.get("militaryRequirement")).intValue();
 					int militaryCost = ((Long) card.get("militaryCost")).intValue();
@@ -157,11 +158,11 @@ public class JsonCard {
 					VentureListOfEffect immediate= new VentureListOfEffect(immediateEffectMap);
 					Card c;
 					if (alternativeCostBoolean == 1) {
-						c = new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost, immediate);
+						c = new VentureCard(type, name, period, victoryPoint, militaryCost, militaryRequirement, costMap, immediate);
 					} else if (militaryRequirement == 0 && militaryCost == 0) {
-						c = new VentureCard(type, name, period, costMap, immediate);
+						c = new VentureCard(type, name, period, victoryPoint, costMap, immediate);
 					} else {
-						c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap, immediate);
+						c = new VentureCard(type, name, period, victoryPoint, militaryRequirement, militaryCost, costMap, immediate);
 					}
 
 					ventureDeck.add(c);

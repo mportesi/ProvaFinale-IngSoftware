@@ -49,6 +49,7 @@ public class ClientModel implements Serializable {
 	private Timer timer = new Timer();
 	private boolean socket=false;
 	private ObjectOutputStream socketOut;
+	private ArrayList<Player> winners = new ArrayList <Player>();
 	
 	public ClientModel(ServerRMIConnectionViewRemote serverStub){
 		in = new BufferedReader(new InputStreamReader(System.in));
@@ -70,6 +71,7 @@ public class ClientModel implements Serializable {
 		board.getCouncilPalace().getRelatives().add(relative);
 		if(gui){
 			boardControllerGUI.setCouncilPalace(player, relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -77,13 +79,14 @@ public class ClientModel implements Serializable {
 		this.period = period;
 		if(gui){
 			boardControllerGUI.setPeriod(period);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
 	public void setCurrentPlayer(Player currentPlayer) {
 		
 		this.currentPlayer = currentPlayer;
-		
+		if(!gui){
 		if(!socket){
 			// chiamo cli in un thread
 			// scatta timer thread a null
@@ -323,7 +326,7 @@ public class ClientModel implements Serializable {
 						
 					}
 					
-				
+		}
 }
 		
 		if(gui){
@@ -335,6 +338,9 @@ public class ClientModel implements Serializable {
 
 	public void setRound(int round) {
 		this.round = round;
+		if(gui){
+			boardControllerGUI.setRound(round);
+		}
 	}
 
 	public void setCurrentTurnOrder(ArrayList<Player> currentTurnOrder) {
@@ -350,6 +356,7 @@ public class ClientModel implements Serializable {
 		board.getHarvestArea().setLeftRelativeOnHarvest(relative);
 		if(gui){
 			boardControllerGUI.setHarvestLeftArea(relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -358,6 +365,7 @@ public class ClientModel implements Serializable {
 		board.getProductionArea().setLeftRelativeOnProduction(relative);
 		if(gui){
 			boardControllerGUI.setProductionLeftArea(relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -366,6 +374,7 @@ public class ClientModel implements Serializable {
 		board.getProductionArea().setRightRelativeOnProduction(relative);
 		if(gui){
 			boardControllerGUI.setProductionRightArea(relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -375,6 +384,7 @@ public class ClientModel implements Serializable {
 		board.getHarvestArea().setRightRelativeOnHarvest(relative);
 		if(gui){
 			boardControllerGUI.setHarvestRightArea(relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 		
 	}
@@ -395,6 +405,7 @@ public class ClientModel implements Serializable {
 		}
 		if(gui){
 			boardControllerGUI.setTower(tower, floor, player, relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
 
@@ -407,6 +418,7 @@ public class ClientModel implements Serializable {
 		}
 		if(gui){
 			boardControllerGUI.setMarket(market, player, relative);
+			boardControllerGUI.setPlayerUpdate(this);
 		}
 		
 	}
@@ -442,6 +454,7 @@ public class ClientModel implements Serializable {
 		this.board=board;
 		if(gui){
 			boardControllerGUI.setBoard();
+			
 		}
 		
 	}
@@ -484,6 +497,14 @@ public class ClientModel implements Serializable {
 
 	public void setEndGame() {
 		endGame = true;
+		if(gui){
+			try {
+				boardControllerGUI.ranking(winners);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public boolean getEndGame() {
@@ -525,7 +546,7 @@ public class ClientModel implements Serializable {
 
 	public void actionNotApplicable() {
 		if(gui){
-			boardControllerGUI.actionNotApplicable();
+			boardControllerGUI.actionNotApplicable(this.player);
 		}
 		
 	}
@@ -535,6 +556,11 @@ public class ClientModel implements Serializable {
 			boardControllerGUI.setDisconnected(player2);
 		}
 		
+	}
+
+	public void setWinners(ArrayList<Player> winners) throws IOException {
+		this.winners = winners;
+		boardControllerGUI.ranking(winners);
 	}
 
 	
