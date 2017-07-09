@@ -15,7 +15,10 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.Floor;
 import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.effects.*;
-
+/**
+ * @author Sara
+ * This is the subclass of the character card
+ */
 public class CharacterCard extends Card {
 	private int costCoin;
 	private String card;
@@ -45,6 +48,10 @@ public class CharacterCard extends Card {
 		immediateEffects = effects.createListOfEffect();
 	}
 
+	/**
+	 * @author Sara
+	 * To pay the required resources when the card is taken by a player
+	 */
 	@Override
 	public void payCost(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		player.decrementCoin(costCoin, play);
@@ -55,7 +62,10 @@ public class CharacterCard extends Card {
 		return (name + ":\n" + "The cost is "+ costCoin +"\n"+ "The immediate effects are " + immediateEffects );
 	}
 	
-	// to apply immediate effects
+	/**
+	 * @author Sara
+	 * To apply immediate effects when a player takes the card
+	 */
 	@Override
 	public void applyEffect(Player player , Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
@@ -68,6 +78,10 @@ public class CharacterCard extends Card {
 		}
 	}
 	
+	/**
+	 * @author Sara
+	 * To apply the effect gain privilege is necessary to use another method that ask to the player what resource he wants.
+	 */
 	public void applyPrivilegeBonus(Play play, Player player, String resource) throws InterruptedException{
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);

@@ -12,9 +12,12 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.HasPrivilege;
 
+/**
+ * @author Sara
+ * This is the subclass of the building card
+ */
 public class BuildingCard extends Card {
 	
-
 	private Map<String, Integer> cost;
 	private BuildingListOfEffect effects;
 	private BuildingListOfPermanentEffect permanent;
@@ -33,7 +36,10 @@ public class BuildingCard extends Card {
 		setGainPrivilegeCouncil();
 	}
 	
-	
+	/**
+	 * @author Sara
+	 * To pay the required resources when the card is taken by a player
+	 */
 	@Override
 	public void payCost(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		for(String key: cost.keySet()){
@@ -51,7 +57,10 @@ public class BuildingCard extends Card {
 		}
 	}
 	
-	// to apply immediate effects
+	/**
+	 * @author Sara
+	 * To apply immediate effects when a player takes the card
+	 */
 	@Override
 		public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
@@ -93,6 +102,7 @@ public class BuildingCard extends Card {
 			}
 			return cost.get("servant");
 		}
+		
 		public boolean isGainPrivilegeCouncil() {
 			return gainPrivilegeCouncil;
 		}

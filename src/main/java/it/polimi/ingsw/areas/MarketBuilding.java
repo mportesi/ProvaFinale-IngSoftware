@@ -30,6 +30,11 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
+/**
+ * @author Sara
+ * The class for the different spaces of the market.
+ * There are 4 spaces that have different bonus.
+ */
 public class MarketBuilding extends Observable<Change> implements Serializable{
 
 	private String type;
@@ -68,7 +73,10 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	}
 
 	
-
+	/**
+	 * @author Sara
+	 * To apply the bonus of this specific market when a player decide to do the action put relative on market.
+	 */
 	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		for (Effect e : bonus) {
@@ -98,13 +106,20 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		return cost;
 	}
 
-
+	/**
+	 * @author Sara
+	 * To put the player when he does an action that involve the market.
+	 */
 	public void setOccupied(Player player, Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.isOccupied = true;
 		this.relative=relative;
 		this.player=player;
 	}
 
+	/**
+	 * @author Sara
+	 * To remove the player when the round finish.
+	 */
 	public void setFree() {
 		isOccupied = false;
 		player=null;

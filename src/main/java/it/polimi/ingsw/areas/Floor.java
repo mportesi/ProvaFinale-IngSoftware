@@ -16,6 +16,14 @@ import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.effects.Effect;
 
+/**
+ * @author Sara
+ * The class that implements all floors of the towers.
+ * Every floor has a type that corrisponds to the type of the tower,
+ * it has a card, some floors have some bonus.
+ * In every floor it is possible to put a relative and to take the card.
+ */
+
 public class Floor implements Serializable {
 	
 	private String type;
@@ -56,6 +64,10 @@ public class Floor implements Serializable {
 		return cost;
 	}
 
+	/**
+	 * @author Sara
+	 * This method is necessary to return the card that is on this floor of the tower.
+	 */
 	public Card giveCard() {
 		Card current = currentCard;
 		currentCard = null;
@@ -67,12 +79,21 @@ public class Floor implements Serializable {
 		return player;
 	}
 
+	/**
+	 * @author Sara
+	 * To set the player when it is done an action that implies this floor.
+	 */
+
 	public void setPlayer(Player player, Relative relative, Tower tower, int floor) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.player = player;
 		this.relative=relative;
 		isFree = false;
 	}
 
+	/**
+	 * @author Sara
+	 * To remove the player and the relative from the floor when the round is finish.
+	 */
 	public void setFree() {
 		this.player=null;
 		this.relative=null;

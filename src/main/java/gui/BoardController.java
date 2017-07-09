@@ -3647,11 +3647,11 @@ public class BoardController {
 		}
 		
 		Image councilPalaceImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
-		while(councilPalace.get(i).getImage()!=null && !player2.getName().equals(client.getPlayer().getName())){
+		while(councilPalace.get(i).getImage()!=null){
 			i++;
 		}
-		if(councilPalace.get(i).getImage()==null){
-		councilPalace.get(i).setImage(councilPalaceImage);}
+		
+		councilPalace.get(i).setImage(councilPalaceImage);
 	}
 
 	public void setHarvestRightArea(Relative relative2) {

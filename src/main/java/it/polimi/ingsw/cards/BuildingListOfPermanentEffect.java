@@ -29,7 +29,10 @@ import it.polimi.ingsw.effects.PayFaith;
 import it.polimi.ingsw.effects.PayServant;
 import it.polimi.ingsw.effects.PayStone;
 import it.polimi.ingsw.effects.PayWood;
-
+/**
+ * @author Sara
+ * This is an auxiliary class to build the permanent effects of the building cards based on external files json.
+ */
 public class BuildingListOfPermanentEffect extends CreateListOfEffect{
 	
 	protected transient Map<String, Integer> permanentEffect;
