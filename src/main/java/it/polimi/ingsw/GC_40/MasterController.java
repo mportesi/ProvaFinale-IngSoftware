@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_40;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -109,9 +110,28 @@ public class MasterController implements Observer <Action>{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
+
+
+
+
+	public void disconnect(ClientRMIConnectionViewRemote client) {
+		int numberMatch=0;
+		try {
+			numberMatch = client.getClientModel().getPlayer().getMatch();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		for(Play p: matches){
+			if(p.getMatch()==numberMatch){
+				try {
+					p.removePlayer(client.getClientModel().getPlayer());
+				} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+					e.printStackTrace();
+				}}
+			}
+		}
 	
 	
 	

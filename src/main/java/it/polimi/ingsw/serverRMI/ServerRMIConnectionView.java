@@ -2,6 +2,7 @@ package it.polimi.ingsw.serverRMI;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,6 +28,7 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 
 	private volatile ArrayList<ClientRMIConnectionViewRemote> clients;
 	private Server server;
+	private ClientRMIConnectionViewRemote clientDisconnected;
 
 	public ServerRMIConnectionView(Server server) {
 		this.server = server;
@@ -47,15 +49,36 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 	@Override
 	public void update(Change change)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		try {
+			boolean d=false;
 			for (ClientRMIConnectionViewRemote clientstub : this.clients) {
-				clientstub.updateClient(change);
-			}
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
+				try{clientstub.updateClient(change);}
+				catch(RemoteException e){
+					clientDisconnected=clientstub;
+					d=true;
+					break;
+			
+					}
+				}
+			/*if(d){
+				updateDisconnected(change);
+			}*/
+		} 
+	
 
+	/*public void updateDisconnected(Change change){
+		ArrayList<ClientRMIConnectionViewRemote> clients1= new ArrayList<>();
+		clients1=clients;
+		clients.remove(clientDisconnected);
+		for(ClientRMIConnectionViewRemote client: clients){
+			try {
+				client.updateClient(change);
+			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			server.getMasterController().disconnect(client);
+		}}*/
+	
 	@Override
 	public void update() {
 

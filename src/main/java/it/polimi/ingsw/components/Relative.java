@@ -36,6 +36,10 @@ public class Relative implements Serializable{
 		this.servantsUsed=n;
 	}
 	
+	public void addValue(int n){
+		this.value=value+n;
+	}
+	
 	public void setValue(int value){
 		this.value= value;
 	}

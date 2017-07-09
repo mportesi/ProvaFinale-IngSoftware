@@ -4,13 +4,18 @@
   "immediateEffect":[
     {"type":"GainCoin", "amount":2},
     {"type":"GainVictoryPoint", "amount":2}
+  ],
+  "permanentEffect":[
+    {"type":"GainMilitaryPoint","amount":3},
+    {"type":"GainServant","amount":1}
   ]
 },
 {"name":"village",
   "type":"territoryCard",
   "period":1,
   "immediateEffect":[
-  ]
+  ],
+  "permanentEffect":[]
 },
 {"name":"monastery",
   "type":"territoryCard",
@@ -18,12 +23,19 @@
   "immediateEffect":[
     {"type":"GainServant", "amount":1},
     {"type":"GainMilitaryPoint", "amount":2}
+  ],
+  "permanentEffect":[
+    {"type":"GainFaithPoint","amount":1},
+    {"type":"GainStone","amount":1}
   ]
 },
 {"name":"commercialHub",
   "type":"territoryCard",
   "period":1,
   "immediateEffect":[
+  ],
+  "permanentEffect":[
+    {"type":"GainCoin","amount":1}
   ]
 },
 {"name":"forest",
@@ -31,12 +43,19 @@
   "period":1,
   "immediateEffect":[
     {"type":"GainWood", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainWood","amount":3}
   ]
 },
 {"name":"citadel",
   "type":"territoryCard",
   "period":1,
   "immediateEffect":[
+  ],
+  "permanentEffect":[
+    {"type":"GainMilitaryPoint","amount":2},
+    {"type":"GainStone","amount":1}
   ]
 },
 {"name":"city",
@@ -44,6 +63,9 @@
   "period":1,
   "immediateEffect":[
     {"type":"GainCoin", "amount":3}
+  ],
+  "permanentEffect":[
+    {"type":"GainPrivilegeCouncil","amount":1}
   ]
 },
 {"name":"gravelPit",
@@ -51,6 +73,9 @@
   "period":1,
   "immediateEffect":[
     {"type":"GainStone", "amount":2}
+  ],
+  "permanentEffect":[
+    {"type":"GainStone","amount":2},
   ]
 },
 {"name":"miningVillage",
@@ -59,6 +84,10 @@
   "immediateEffect":[
     {"type":"GainStone", "amount":1},
     {"type":"GainServant", "amount":2}
+  ],
+  "permanentEffect":[
+    {"type":"GainStone","amount":2},
+    {"type":"GainServant","amount":1}
   ]
 },
 {"name":"hermitage",
@@ -66,6 +95,9 @@
   "period":2,
   "immediateEffect":[
     {"type":"GainFaithPoint", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainFaithPoint","amount":1}
   ]
 },
 {"name":"dukedom",
@@ -73,12 +105,21 @@
   "period":2,
   "immediateEffect":[
     {"type":"GainCoin", "amount":4}
+  ],
+  "permanentEffect":[
+    {"type":"GainCoin","amount":1},
+    {"type":"GainStone","amount":1},
+    {"type":"GainWood","amount":2}
   ]
 },
 {"name":"manorHouse",
   "type":"territoryCard",
   "period":2,
   "immediateEffect":[
+  ],
+  "permanentEffect":[
+    {"type":"GainMilitaryPoint","amount":2},
+    {"type":"GainServant","amount":2}
   ]
 },
 {"name":"estate",
@@ -87,6 +128,10 @@
   "immediateEffect":[
     {"type":"GainWood", "amount":1},
     {"type":"GainServant", "amount":2}
+  ],
+  "permanentEffect":[
+    {"type":"GainCoin","amount":1},
+    {"type":"GainWood","amount":2}
   ]
 },
 {"name":"mountainTown",
@@ -94,6 +139,10 @@
   "period":2,
   "immediateEffect":[
     {"type":"Gainservant", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainMilitaryPoint","amount":1},
+    {"type":"GainWood","amount":2}
   ]
 },
 {"name":"goldMine",
@@ -101,6 +150,9 @@
   "period":2,
   "immediateEffect":[
     {"type":"GainCoin", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainCoin","amount":2}
   ]
 },
 {"name":"rockPit",
@@ -108,6 +160,9 @@
   "period":2,
   "immediateEffect":[
     {"type":"GainWood", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainStone","amount":3}
   ]
 },
 {"name":"fortifiedTown",
@@ -116,6 +171,10 @@
   "immediateEffect":[
     {"type":"GainServant", "amount":1},
     {"type":"GainMilitaryPoint", "amount":2}
+  ],
+  "permanentEffect":[
+    {"type":"GainMilitaryPoint","amount":1},
+    {"type":"GainServant","amount":2}
   ]
 },
 {"name":"tradingTown",
@@ -124,6 +183,9 @@
   "immediateEffect":[
     {"type":"GainCoin", "amount":1},
     {"type":"Gainservant", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainCoin","amount":3}
   ]
 },
 {"name":"farm",
@@ -132,6 +194,10 @@
   "immediateEffect":[
     {"type":"GainWood", "amount":1},
     {"type":"GainVictoryPoint", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainVictoryPoint","amount":2},
+    {"type":"GainWood","amount":2}
   ]
 },
 {"name":"colony",
@@ -139,13 +205,18 @@
   "period":3,
   "immediateEffect":[
     {"type":"GainMilitaryPoint", "amount":2}
-  ]
+  ],
+"permanentEffect":[]
 },
 {"name":"sanctuary",
   "type":"territoryCard",
   "period":3,
   "immediateEffect":[
     {"type":"GainFaithPoint", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainVictoryPoint","amount":4},
+    {"type":"GainWood","amount":1}
   ]
 },
 {"name":"marblePit",
@@ -153,6 +224,10 @@
   "period":3,
   "immediateEffect":[
     {"type":"GainVictoryPoint", "amount":3}
+  ],
+  "permanentEffect":[
+    {"type":"GainVictoryPoint","amount":1},
+    {"type":"GainStone","amount":2}
   ]
 },
 {"name":"province",
@@ -161,6 +236,10 @@
   "immediateEffect":[
     {"type":"GainStone", "amount":1},
     {"type":"GainPrivilegeCouncil", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainVictoryPoint","amount":4},
+    {"type":"GainStone","amount":1}
   ]
 },
 {"name":"wood",
@@ -168,6 +247,9 @@
   "period":1,
   "immediateEffect":[
     {"type":"GainWood", "amount":1}
+  ],
+  "permanentEffect":[
+    {"type":"GainWood","amount":1}
   ]
 }
 ]
