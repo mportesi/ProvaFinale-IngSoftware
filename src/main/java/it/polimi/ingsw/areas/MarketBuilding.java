@@ -63,7 +63,7 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 
 	
 	
-	private ArrayList<Effect> getBonus() {
+	public ArrayList<Effect> getBonus() {
 		
 		return bonus;
 	}
