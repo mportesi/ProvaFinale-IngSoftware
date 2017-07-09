@@ -21,6 +21,13 @@ import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 
+
+/**
+ * @author Chiara
+ * Action invoked when a player puts one of his relatives on a floor of a tower.
+ *
+ */
+
 public class PutRelativeOnTower extends Observable<Change> implements PutRelative {
 	private Tower tower;
 	private Relative relative;
@@ -30,6 +37,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 	boolean payForOccupied = false;
 	int match;
 
+	
 	public PutRelativeOnTower(Player player, Tower tower, int floor, Relative relative, int match) {
 		this.relative = relative;
 		this.player = player;
@@ -38,6 +46,17 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		this.match = match;
 	}
 
+	
+
+/**
+ * The player can put his/her relative on the tower if the relative has a sufficient cost, and if the player has enough resources to get the card.
+ * If on the same tower there's another relative on the player, he/she can't put the relative on that tower (unless it is the white relative).
+ * If on the same tower there's a relative of another player, he/she can put the relative on that tower, after paying three coins.
+ * @author Chiara
+ * 
+ *
+ */
+	
 	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
@@ -58,6 +77,16 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 
 		return check;
 	}
+	
+	/**
+	 * If the action is applicable, the player takes the card on that floor, and immediately applies the immediate effects of it.
+	 * The player will pay the cost associated to the floor and to the card.
+	 * The floor will be occupied by the relative, and all the observers will be notified so that the resources of the player will be updated.
+	 * 
+	 * @author Chiara
+	 * 
+	 *
+	 */
 
 	@Override
 	public void apply(Play play)
@@ -65,7 +94,6 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		if (isApplicable()) {
 			if (payForOccupied == true){
 				player.decrementCoin(tower.getCost(), play);
-			
 			}
 			tower.floors.get(floor).setPlayer(player, relative, tower, floor);
 			player.setOccupiedRelative(relative);
@@ -89,6 +117,15 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 		return;
 	}
 
+	
+	/**
+	 * Checks if the player has enough resources to take the card. 
+	 * If the card is of type "territory", the player need to have enough military points to take it.
+	 * @author Chiara
+	 * 
+	 *
+	 */
+	
 	public boolean checkCardCost() throws FileNotFoundException, IOException, ParseException {
 		cardToGive = tower.floors.get(floor).getCard();
 		boolean check = false;
@@ -159,7 +196,7 @@ public class PutRelativeOnTower extends Observable<Change> implements PutRelativ
 
 	@Override
 	public int getMatch() {
-		// TODO Auto-generated method stub
+		
 		return match;
 	}
 	

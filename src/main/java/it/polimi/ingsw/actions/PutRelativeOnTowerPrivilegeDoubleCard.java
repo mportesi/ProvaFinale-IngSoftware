@@ -21,6 +21,14 @@ import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 
+/**This class represents the action made when a player puts one of his/her relatives on a tower with a card that has the effect "double Card".
+ * 
+ * 
+ * @author Chiara
+ * 
+ *
+ */
+
 public class PutRelativeOnTowerPrivilegeDoubleCard extends Observable<Change> implements PutRelative {
 	private Tower tower;
 	private Tower secondT;
@@ -46,6 +54,7 @@ public class PutRelativeOnTowerPrivilegeDoubleCard extends Observable<Change> im
 		this.bonus=bonus;
 	}
 
+	
 	public boolean isApplicable() throws FileNotFoundException, IOException, ParseException {
 		boolean check = false;
 		if (tower.floors.get(floor).isFree()) {
@@ -74,6 +83,15 @@ public class PutRelativeOnTowerPrivilegeDoubleCard extends Observable<Change> im
 		return check;
 	}
 
+	/**This method apply the effect "doubleCard". The player put a relative on the tower.
+	 * After that, he/she has the possibility to choose another card paying a certain cost without putting any relative on that space.
+	 * 
+	 * 
+	 * @author Chiara
+	 * 
+	 *
+	 */
+	
 	@Override
 	public void apply(Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {

@@ -9,6 +9,14 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.components.Relative;
 
+/**This class represents the action made when a player adds one or more servants to a relative.
+ * The resource "servant" of that player will be updated.
+ * 
+ * @author Chiara
+ * 
+ *
+ */
+
 public class SetServant implements Action {
 	private int servant;
 	private Player player;

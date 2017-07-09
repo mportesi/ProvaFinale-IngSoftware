@@ -21,6 +21,12 @@ import it.polimi.ingsw.changes.ChangeTower;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonMilitaryPointForTerritory;
 
+/**
+ * @author Chiara
+ * Action invoked when a player puts one of his relatives on a floor of a tower with a double cost, and the second card that the player can choose has a privilege council as resource.
+ *
+ */
+
 public class PutRelativeOnTowerDoubleCardHasPrivilege extends Observable<Change> implements PutRelative {
 	private Tower tower;
 	private Tower secondT;
