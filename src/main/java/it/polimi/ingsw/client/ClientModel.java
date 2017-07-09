@@ -560,7 +560,9 @@ public class ClientModel implements Serializable {
 
 	public void setWinners(ArrayList<Player> winners) throws IOException {
 		this.winners = winners;
+		if (gui){
 		boardControllerGUI.ranking(winners);
+	}
 	}
 
 	

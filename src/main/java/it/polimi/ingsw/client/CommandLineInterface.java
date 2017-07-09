@@ -121,7 +121,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			serverStub.notifyObserver(shiftPlayer);
 			break;
 		}
-		case 4: {
+		case 3: {
 			timer.cancel();
 			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
 			client.setQuit(true);
