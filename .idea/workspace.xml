@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd23f8aa-d629-49f7-b9cc-5a82f8eb1237" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/BoardController.java" afterPath="$PROJECT_DIR$/src/main/java/gui/BoardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/GC_40/Player.java" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/GC_40/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/clientRMI/ClientRMIConnection.java" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/clientRMI/ClientRMIConnection.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -965,8 +962,10 @@
                   <point x="3.883333333333212" y="37.0" />
                 </edge>
               </edges>
-              <settings layout="Hierarchic Group" zoom="0.5806882941776117" x="6188.099506161943" y="5467.958552374228" />
-              <SelectedNodes />
+              <settings layout="Hierarchic Group" zoom="0.5806882941776117" x="5304.099506161943" y="5247.958552374228" />
+              <SelectedNodes>
+                <node>it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard</node>
+              </SelectedNodes>
               <Categories>
                 <Category>Fields</Category>
                 <Category>Methods</Category>
@@ -1590,15 +1589,16 @@
       <updated>1499512517678</updated>
       <workItem from="1499512533616" duration="1529000" />
       <workItem from="1499639790220" duration="686000" />
-      <workItem from="1499640481870" duration="606000" />
+      <workItem from="1499640481870" duration="742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2821000" />
+    <option name="totallyTimeSpent" value="2957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="20" y="43" width="1400" height="772" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1615,7 +1615,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -2787,8 +2787,10 @@
               <point x="3.883333333333212" y="37.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.5806882941776117" x="6188.099506161943" y="5467.958552374228" />
-          <SelectedNodes />
+          <settings layout="Hierarchic Group" zoom="0.5806882941776117" x="5304.099506161943" y="5247.958552374228" />
+          <SelectedNodes>
+            <node>it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard</node>
+          </SelectedNodes>
           <Categories>
             <Category>Fields</Category>
             <Category>Methods</Category>
