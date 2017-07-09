@@ -446,6 +446,7 @@ public class BoardController {
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
+			
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (!doubleCard){
 				PutRelativeOnTower putRelativeOnTower = new PutRelativeOnTower(client.getPlayer(),

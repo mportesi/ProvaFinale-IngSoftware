@@ -313,7 +313,7 @@ public class ClientModel implements Serializable {
 						
 					
 					
-					ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
+					/*ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
 					
 
 					//action=null;
@@ -324,7 +324,7 @@ public class ClientModel implements Serializable {
 					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
 						e.printStackTrace();
 						
-					}
+					}*/
 					
 		}
 }
@@ -560,7 +560,9 @@ public class ClientModel implements Serializable {
 
 	public void setWinners(ArrayList<Player> winners) throws IOException {
 		this.winners = winners;
+		if (gui){
 		boardControllerGUI.ranking(winners);
+	}
 	}
 
 	
