@@ -34,6 +34,11 @@ import it.polimi.ingsw.effects.GainResourceForCostAlternative;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
+/**
+ * @author Sara
+ * It is the class that handle the command line.
+ * It has all the methods to do the different actions and it sends the actions to the server.
+ */
 public class CommandLineInterface implements Serializable, Runnable {
 
 	private BufferedReader in;
@@ -69,32 +74,17 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 		ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
 		serverStub.notifyObserver(shiftPlayer);
-		
-	//	scanner.close();
-		System.out.println("The scanner is closed!");
-		
 	
 	}
 	
-
+	/**
+	 * @author Sara
+	 * This method is the first method that is done when change the current player.
+	 * It asks if the player wants to do an action or prefer to see the board or quit or shift the turn.
+	 */
 	public void input()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
-		/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
-		JsonTimeOut jsonTimeOut = new JsonTimeOut();
-
-		int timeOutAction = jsonTimeOut.getTimeOutAction();
-		Timer timer = new Timer();
-		timer.schedule(new TimerAction(serverStub) { public void run() {
-			System.out.println("It ran out of time!");
-			//ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
-			try {
-				esci();
-			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
-				e.printStackTrace();
-			}
-
-		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
 		System.out.println("Your status is: "+client.getPlayer());
 		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit \nIf you want to shift your turn press 0.");
@@ -149,6 +139,11 @@ public class CommandLineInterface implements Serializable, Runnable {
 		client.getBoard();
 	}
 	
+	/**
+	 * @author Sara
+	 * This method is the first method (with socket) that is done when change the current player.
+	 * It asks if the player wants to do an action or prefer to see the board or quit or shift the turn.
+	 */
 	public void inputSocket() throws NumberFormatException, IOException, NullPointerException, ParseException, InterruptedException{
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
 			System.out.println("Your status is: "+client.getPlayer());
@@ -208,6 +203,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 		
 	}
 
+	/**
+	 * @author Sara
+	 * This is the method that asks what relative the player wants.
+	 */
 	public Relative chooseTheRelative()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
@@ -273,6 +272,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 		return relative;
 	}
 
+	/**
+	 * @author Sara
+	 * If the player wants to add value to his relatives, he can use servants.
+	 */
 	public int chooseServants(Relative relative) throws IOException {
 		System.out.println("\nHow many servants do you want to use?");
 		boolean legalServant = false; // loop until a legal servant numbers is
@@ -293,6 +296,11 @@ public class CommandLineInterface implements Serializable, Runnable {
 		return valueServant;
 	}
 
+	/**
+	 * @author Sara
+	 * This method is the main method to choose the action.
+	 * Based on the action spaces other methods are invoked.
+	 */
 	public PutRelative chooseTheAction(Relative relative)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
@@ -388,6 +396,11 @@ public class CommandLineInterface implements Serializable, Runnable {
 		return putRelative;
 	}
 
+	/**
+	 * @author Sara
+	 * This method is an auxiliary method that is used to understand what specific action has to be applied based on the card
+	 * on the chosen tower and the chosen floor 
+	 */
 	public PutRelative chooseThePutRelativeOnTower(Tower tower, int floor, Relative relative) throws IOException {
 		PutRelative putRelative = null;
 		switch (tower.getType()) {
@@ -471,12 +484,14 @@ public class CommandLineInterface implements Serializable, Runnable {
 		return putRelative;
 	}
 
+	/**
+	 * @author Sara
+	 * This method is necessary to choose the aletrnative cost of the venture cards
+	 */
 	private boolean chooseAlternativeCost() throws IOException {
 		boolean choice = false;
 		System.out.println("\nChoose if you prefer: \n 1)military cost \n 2)the other cost");
-		/* try{ */
-		//while (!scanner.hasNextInt())
-			//scanner.next();
+
 		int input = Integer.parseInt(in.readLine());
 		switch (input) {
 		
@@ -493,16 +508,14 @@ public class CommandLineInterface implements Serializable, Runnable {
 			choice = chooseAlternativeCost();
 		}
 		}
-		/*
-		 * } catch(InputMismatchException e){
-		 * System.out.println("\nError: insert again"); choice =
-		 * chooseAlternativeCost();
-		 * 
-		 * }
-		 */
+		
 		return choice;
 	}
 
+	/**
+	 * @author Sara
+	 * To choose the tower
+	 */
 	public Tower chooseTower() throws IOException {
 
 		System.out.println("\nChoose the tower:");
@@ -510,11 +523,9 @@ public class CommandLineInterface implements Serializable, Runnable {
 		System.out.println("2) Building tower");
 		System.out.println("3) Character tower");
 		System.out.println("4) Venture tower");
-	//	while (!scanner.hasNextInt())
-	//		scanner.next();
+	
 		int input = Integer.parseInt(in.readLine());
 		Tower tower;
-		/* try{ */
 		switch (input) {
 		
 		case 1: {
@@ -541,7 +552,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 		}
 		
 	}
-
+	/**
+	 * @author Sara
+	 * To choose the floor
+	 */
 	public int chooseFloor() throws IOException {
 		System.out.println("\nChoose the number of the floor:");
 		int floor;
@@ -552,14 +566,15 @@ public class CommandLineInterface implements Serializable, Runnable {
 			System.out.println("\nThat floor don't exist!");
 			floor = chooseFloor();
 		}
-		/*
-		 * } catch(InputMismatchException e){
-		 * System.out.println("\nError: insert again"); floor = chooseFloor(); }
-		 */
+	
 
 		return (floor);
 	}
 
+	/**
+	 * @author Sara
+	 * To choose the bonus when there is an effect of the type gain  privilege council
+	 */
 	public String choosePrivilegeCouncil() {
 
 		System.out.println("\nChoose the privilege Council:");
@@ -607,6 +622,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 		return resource;
 	}
 
+	/**
+	 * @author Sara
+	 * To choose if he wants to put a relative on the right or on the left of the harvest area
+	 */
 	public String chooseHarvestArea() {
 		String harvestArea = null;
 		int choice = 0;
@@ -643,6 +662,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 		}
 	}
 
+	/**
+	 * @author Sara
+	 * To choose if he wants to put a relative on the right or on the left of the production area
+	 */
 	public String chooseProductionArea() {
 		String productionArea = null;
 		int choice = 0;
@@ -684,7 +707,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 	}
 
 
-	
+	/**
+	 * @author Sara
+	 * To choose the permanent effect of the building cards.
+	 */
 	public ArrayList<Effect> chooseBuildingPermanentEff(Player player, Relative relative){
 		ArrayList<Effect> chosenEffect=new ArrayList<Effect>();
 		try {

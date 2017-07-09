@@ -10,7 +10,10 @@ import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * This is the class that starts the socket connection between a client and the server.
+ */
 public class ClientSocketConnection {
 
 	private final static int PORT = 29999;
@@ -20,6 +23,10 @@ public class ClientSocketConnection {
 	private ObjectInputStream in;
 	private Socket socket;
 
+	/**
+	 * @author Sara
+	 * This is the invoked method from the client that choose socket as connection
+	 */
 	public void startClient(boolean commandLine) throws UnknownHostException, IOException {
 		socket = new Socket(IP, PORT);
 

@@ -20,6 +20,10 @@ import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.components.Relative;
 
+/**
+ * @author Sara
+ * This is the class that handle the objects from the client to the server
+ */
 public class ClientOutHandler implements Runnable {
 
 	private ObjectOutputStream socketOut;
@@ -35,6 +39,11 @@ public class ClientOutHandler implements Runnable {
 		//cli = new CommandLineInterface(this.clientModel.getPlayer(), clientModel);
 	}
 
+	/**
+	 * @author Sara
+	 * When the execute is called, this method is invoked and it starts the connection asking the name to the player
+	 * and sending it to the server.
+	 */
 	@Override
 	public void run() {
 		// Handles output messages, from the client to the server

@@ -16,7 +16,10 @@ import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeBuildingCard;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.server.Server;
-
+/**
+ * @author Sara
+ * This is the server for the socket connection. It is the view that update the client of the changes that happened in the model.
+ */
 public class ServerSocketView extends ServerView implements Runnable {
 	
 	private Socket socket;
@@ -38,8 +41,6 @@ public class ServerSocketView extends ServerView implements Runnable {
 	
 	@Override
 	public void update(Change o) {
-		System.out.println("Sending to the client " + o);
-		
 		
 
 		// sending the info to the client

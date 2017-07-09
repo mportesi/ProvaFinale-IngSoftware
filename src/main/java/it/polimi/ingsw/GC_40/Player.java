@@ -92,7 +92,7 @@ public class Player extends Observable<Change> implements Serializable {
 	@Override
 	public String toString(){
 		return ("The player is\n " + "Name: " + name +  "\nColor: " + color + "\nCoin: " +coin + "\nWood: "+ wood +"\nStone: "+ stone + "\nServant: "+ servant + "\nFaithPoint: " + faithPoint + "\nMilitaryPoint: "+ militaryPoint + "\nVictoryPoint: "+ victoryPoint+ "\nTerritoryCard: " + territoryCard + "\nCharacterCard: "
-				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard  + "\nThe active relative are: " +activeRelatives);
+				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nThe active relative are: " +activeRelatives);
 	}
 	
 	public void removeRelative (Relative relative){
@@ -150,7 +150,7 @@ public class Player extends Observable<Change> implements Serializable {
 		return ventureCard;
 	}
 
-	
+
 
 	public void incrementCoin(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;

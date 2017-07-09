@@ -23,7 +23,13 @@ import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 import it.polimi.ingsw.serverSocket.ServerSocketView;
-
+/**
+ * @author Sara
+ * This is the main server.
+ * It contains the main method that allows to play to the game and to connect to it.
+ * It initialize the master controller that is necessary to handle more matches.
+ * It starts both the server socket and the server rmi.
+ */
 @SuppressWarnings("unused")
 public class Server {
 
@@ -41,10 +47,11 @@ public class Server {
 	public Server() throws FileNotFoundException, NullPointerException, IOException, ParseException {
 	//	this.play = new Play();
 		this.masterController = new MasterController();
-		
-
 	}
-	
+	/**
+	 * @author Sara
+	 * This is the method that starts the socket connection. It registers the observer of the view
+	 */
 	private void startSocket() throws IOException {
 
 		// creates the thread pool to handle clients
@@ -62,9 +69,6 @@ public class Server {
 			// creates the view (server side) associated with the new client
 			ServerSocketView view = new ServerSocketView(socket,this);
 
-			// the view observes the model
-			//this.play.registerObserver(view);
-
 			// the controller observes the view
 			view.registerObserver(this.masterController);
 
@@ -72,20 +76,21 @@ public class Server {
 			executor.submit(view);
 		}
 	} 
-	
+	/**
+	 * @author Sara
+	 * This is the method that starts the rmi connection. It registers the observer of the view, 
+	 * it binds the registry to the server connection view remote.
+	 */
 	public void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry =LocateRegistry.createRegistry(RMI_PORT);
 		System.out.println("constructing the rmi registry");
 		ServerRMIConnectionView serverRMIConnectionView= new ServerRMIConnectionView(this);
 		serverRMIConnectionView.registerObserver(this.masterController);
-		//this.play.registerObserver(serverRMIConnectionView);
 		ServerRMIConnectionViewRemote serverRMIConnectionViewRemote=(ServerRMIConnectionViewRemote) UnicastRemoteObject.exportObject(serverRMIConnectionView, 0);
 		System.out.println("binding the server implementation to the registry");
 		registry.bind(NAME, serverRMIConnectionView);
 		
-		//while(true){
-			
-		//}
+		
 	}
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException, NullPointerException, ParseException {

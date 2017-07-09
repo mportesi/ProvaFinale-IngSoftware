@@ -11,6 +11,10 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
 
+/**
+ * @author Sara
+ * This is the client view with the connection rmi that to the apply of the changes on the client
+ */
 public class ClientRMIConnectionView extends UnicastRemoteObject
 		implements ClientRMIConnectionViewRemote, Serializable {
 
@@ -19,12 +23,9 @@ public class ClientRMIConnectionView extends UnicastRemoteObject
 	public ClientRMIConnectionView(ClientModel client) throws RemoteException {
 		super();
 		this.client = client;
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 6111979881550001331L;
 
 	@Override

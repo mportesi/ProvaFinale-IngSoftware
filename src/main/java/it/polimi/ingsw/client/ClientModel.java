@@ -28,7 +28,12 @@ import it.polimi.ingsw.components.Dice;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
-
+/**
+ * @author Sara
+ * It is the model of the client that contains every method to modify the things that the client see.
+ * It has an associated player and a name. The board, the period, the round, the currentTurnOrder are in common
+ * with the other clients.
+ */
 public class ClientModel implements Serializable {
 	private Player player;
 	private BufferedReader in;
@@ -82,7 +87,12 @@ public class ClientModel implements Serializable {
 			boardControllerGUI.setPlayerUpdate(this);
 		}
 	}
-
+	/**
+	 * @author Sara
+	 * This method changes the current player, starts the command line,
+	 * starts the timeout that wait until a player do a move.
+	 * If it doesn't anyone, the player will be disconnected and he could reconnect, the current player will change.
+	 */
 	public void setCurrentPlayer(Player currentPlayer) {
 		
 		this.currentPlayer = currentPlayer;
@@ -126,19 +136,14 @@ public class ClientModel implements Serializable {
 									serverStub.notifyObserver(new Quit(player, player.getMatch()));
 									
 								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								} catch (NullPointerException e3) {
-									// TODO Auto-generated catch block
 									e3.printStackTrace();
 								} catch (RemoteException e3) {
-									// TODO Auto-generated catch block
 									e3.printStackTrace();
 								} catch (IOException e3) {
-									// TODO Auto-generated catch block
 									e3.printStackTrace();
 								} catch (ParseException e3) {
-									// TODO Auto-generated catch block
 									e3.printStackTrace();
 								}
 						
@@ -157,20 +162,15 @@ public class ClientModel implements Serializable {
 										try {
 											serverStub.notifyObserver(new Reconnect(player, player.getMatch()));
 										} catch (InterruptedException e) {
-											// TODO Auto-generated catch block
 											e.printStackTrace();
 										}
 									} catch (FileNotFoundException e1) {
-										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									} catch (NullPointerException e1) {
-										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									} catch (RemoteException e1) {
-										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									} catch (IOException e1) {
-										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									} catch (ParseException e1) {
 										e1.printStackTrace();
@@ -179,10 +179,8 @@ public class ClientModel implements Serializable {
 								break;
 								}
 							} catch (NumberFormatException e2) {
-								// TODO Auto-generated catch block
 								e2.printStackTrace();
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 							
@@ -190,8 +188,6 @@ public class ClientModel implements Serializable {
 						
 						ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
 						
-	
-						//action=null;
 						try {
 							serverStub.notifyObserver(shiftPlayer);
 							timer.cancel();
@@ -241,16 +237,12 @@ public class ClientModel implements Serializable {
 							socketOut.reset();
 							socketOut.writeObject(quit);
 							} catch (FileNotFoundException e3) {
-								// TODO Auto-generated catch block
 								e3.printStackTrace();
 							} catch (NullPointerException e3) {
-								// TODO Auto-generated catch block
 								e3.printStackTrace();
 							} catch (RemoteException e3) {
-								// TODO Auto-generated catch block
 								e3.printStackTrace();
 							} catch (IOException e3) {
-								// TODO Auto-generated catch block
 								e3.printStackTrace();
 							}
 					
@@ -269,62 +261,40 @@ public class ClientModel implements Serializable {
 										Reconnect reconnect=new Reconnect(player, player.getMatch());
 										socketOut.reset();
 										socketOut.writeObject(reconnect);
+										break;
 										} catch (FileNotFoundException e1) {
-											// TODO Auto-generated catch block
 											e1.printStackTrace();
 										} catch (NullPointerException e1) {
-											// TODO Auto-generated catch block
 											e1.printStackTrace();
 										} catch (RemoteException e1) {
-											// TODO Auto-generated catch block
 											e1.printStackTrace();
 										} catch (IOException e1) {
-											// TODO Auto-generated catch block
 											e1.printStackTrace();
 										}
-										
-											break;
-											}
-										} catch (NumberFormatException e2) {
-											// TODO Auto-generated catch block
+									
+								 catch (NumberFormatException e2) {
 											e2.printStackTrace();
-										} catch (IOException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
+										} 
 										
 									ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
 									
 				
 									//action=null;
-									try {
+									
 										socketOut.reset();
 										socketOut.writeObject(shiftPlayer);
 										timer.cancel();
 										
-									} catch (NullPointerException | IOException e) {
+									}} catch (NullPointerException | IOException e) {
 										e.printStackTrace();
 										
-									}
-									}
+									}}
+									
 								}, (long) (timeOutAction) * 1000);
 								
 						}
 						
-					
-					
-					/*ShiftPlayer shiftPlayer = new ShiftPlayer(player.getMatch());
-					
-
-					//action=null;
-					try {
-						serverStub.notifyObserver(shiftPlayer);
-						timer.cancel();
-						
-					} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-						e.printStackTrace();
-						
-					}*/
+		
 					
 		}
 }
