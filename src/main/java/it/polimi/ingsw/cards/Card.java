@@ -28,6 +28,11 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
+/**
+ * @author Sara
+ * It is the class for the cards that are put on towers.
+ * They has a name, a type, a period.
+ */
 public class Card implements Serializable {
 	protected String type;
 	protected String name;

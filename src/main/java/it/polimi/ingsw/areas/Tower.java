@@ -11,6 +11,12 @@ import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.components.Relative;
 
+/**
+ * @author Sara
+ * This is the class for the towers.
+ * There are 4 different towers: each tower has a type, three decks of card (one for period), a cost.
+ * The cost is applied only if there already is a player in the tower.
+ */
 public class Tower implements Serializable {
 	private String type;
 	public ArrayList<Floor> floors;
@@ -33,8 +39,10 @@ public class Tower implements Serializable {
 	}
 	
 	
-	// To empty the towers at the end of the round and to recharge them with new
-	// cards
+	/**
+	 * @author Sara
+	 * To empty the tower when the round is finished and to put a new card on every floor of the tower.
+	 */
 	public void refreshTower(int period) {
 	
 		ArrayList<Card> deck = new ArrayList<Card>();
@@ -54,7 +62,6 @@ public class Tower implements Serializable {
 			}
 		}
 				for(int i=3; i>=0; i--){
-					System.out.println("la dim di deck è " + deck.size());
 					floors.get(i).currentCard = deck.remove(i);
 					floors.get(i).setFree();
 				}
@@ -63,7 +70,10 @@ public class Tower implements Serializable {
 	}
 
 	
-	
+	/**
+	 * @author Sara
+	 * Check if there already is a relative of one player otherwise he cannot put any relative on this tower for the round.
+	 */
 	public boolean isPresent(Player p) {
 	
 		for (Floor f : floors) {
@@ -74,6 +84,10 @@ public class Tower implements Serializable {
 		return true;
 	}
 	
+	/**
+	 * @author Sara
+	 * Check if there already is a player on the tower because of the cost of the occupied tower.
+	 */
 	public boolean isPresentAnyone() {
 			for (Floor f : floors) {
 				if (f.getPlayer()!=null){

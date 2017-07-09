@@ -26,6 +26,10 @@ import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 import it.polimi.ingsw.effects.HasPrivilege;
 
+/**
+ * @author Sara
+ * This is an auxiliary class to build the different effects of the cards based on external files json.
+ */
 public class VentureListOfEffect extends CreateListOfEffect {
 	
 	public VentureListOfEffect(Map<String, Integer> immediateEffect) {

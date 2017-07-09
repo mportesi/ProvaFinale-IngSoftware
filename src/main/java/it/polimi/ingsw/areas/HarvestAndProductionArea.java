@@ -15,6 +15,13 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+/**
+ * @author Sara
+ * It is the class for the type of areas that are harvest and production. 
+ * Both have two different spaces: one on the left that hasn't cost and one on the right that has a malus
+ * on the value of the relative.
+ */
+
 public class HarvestAndProductionArea extends Observable<Change> implements Serializable {
 	// it is necessary to keep a a leftPlayer because when the first player use
 	// this area, there is a penalty for the others
@@ -50,6 +57,11 @@ public class HarvestAndProductionArea extends Observable<Change> implements Seri
 
 	}
 
+	/**
+	 * @author Sara
+	 * To know if a player has already a relative on this space, a part from the neutral relative.
+	 * If it returns true, the player cannot put another relative here for this round.
+	 */
 	public boolean isAlreadyPresent(Player player) {
 		if (rightRelatives.size() ==  0){
 			System.out.println("false");

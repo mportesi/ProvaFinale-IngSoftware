@@ -12,7 +12,10 @@ import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainFaithPoint;
 import it.polimi.ingsw.effects.GainVictoryPoint;
 
-
+/**
+ * @author Sara
+ * This is an auxiliary class to build the different effects of the cards based on external files json.
+ */
 public class BuildingListOfEffect extends CreateListOfEffect {
 
 	
@@ -20,6 +23,12 @@ public class BuildingListOfEffect extends CreateListOfEffect {
 		super(immediateEffect);
 	}
 
+	/**
+	 * @author Sara
+	 * This method create the effects for a building card when it is called.
+	 * It assign the different effect that a specific card has.
+	 * The building cards can have only two different types of effects that are gain faith points or victory points.
+	 */
 	public ArrayList<Effect> createListOfEffect() throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Effect> immediateEffects = new ArrayList<Effect>();
 		List<String> keys = new ArrayList<String>();
