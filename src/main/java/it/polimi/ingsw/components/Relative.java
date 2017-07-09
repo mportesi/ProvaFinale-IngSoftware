@@ -8,6 +8,11 @@ import it.polimi.ingsw.GC_40.Player;
 
 import it.polimi.ingsw.colors.ColorDice;
 
+/**
+ * @author Chiara
+ * This class represents the relative.
+ *
+ */
 
 public class Relative implements Serializable{
 	

@@ -10,6 +10,13 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.components.PrivilegeCouncil;
 
+
+/**
+ * @author Chiara
+ * In this class all the number of resources associated to the privilege council are imported from json.
+ *
+ */
+
 public class JsonPrivilegeCouncil {
 	private PrivilegeCouncil privilegeCouncil;
 	

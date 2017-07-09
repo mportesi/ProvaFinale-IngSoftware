@@ -11,6 +11,12 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.areas.HarvestAndProductionArea;
 
+/**
+ * @author Chiara
+ * In this class all the costs associated to the harvest and productiona areas are imported from json.
+ *
+ */
+
 public class JsonHarvestAndProduction {
 	private HarvestAndProductionArea harvest;
 	private HarvestAndProductionArea production;

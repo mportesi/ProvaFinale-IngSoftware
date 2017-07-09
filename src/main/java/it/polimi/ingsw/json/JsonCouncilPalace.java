@@ -10,6 +10,12 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.areas.CouncilPalace;
 
+/**
+ * @author Chiara
+ * In this class all costs and resources of council palace are imported from json.
+ *
+ */
+
 public class JsonCouncilPalace {
 	private CouncilPalace councilPalace;
 	

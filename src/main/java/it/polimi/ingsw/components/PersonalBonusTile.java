@@ -24,6 +24,11 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
+/**
+ * @author Chiara
+ * This class represents the personal bonus tile with its effects.
+ *
+ */
 
 public class PersonalBonusTile implements Serializable{
 	private String type;

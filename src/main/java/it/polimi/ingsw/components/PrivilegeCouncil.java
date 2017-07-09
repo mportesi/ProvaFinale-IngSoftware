@@ -18,7 +18,11 @@ import it.polimi.ingsw.effects.GainServant;
 import it.polimi.ingsw.effects.GainStone;
 import it.polimi.ingsw.effects.GainWood;
 
-// Quando devo attivare il privilege council, chiamo privilegeCuncil.applyEFfect(player, resource)
+/**
+ * @author Chiara
+ * In this class are created the effects of the privilege council.
+ *
+ */
 
 public class PrivilegeCouncil implements Serializable{
 	private int bonusWoodAndStone;

@@ -15,6 +15,12 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.MarketListOfEffect;
 
+/**
+ * @author Chiara
+ * In this class all the costs associated to the market's areas are imported from json.
+ *
+ */
+
 public class JsonMarket {
 	private ArrayList <MarketBuilding> marketBuilding;
 	
