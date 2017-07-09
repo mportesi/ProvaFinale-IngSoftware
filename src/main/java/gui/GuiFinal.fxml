@@ -115,8 +115,8 @@
       <ImageView fx:id="harvestRight3" fitHeight="27.0" fitWidth="16.0" layoutX="168.0" layoutY="647.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="harvestRight4" fitHeight="27.0" fitWidth="16.0" layoutX="186.0" layoutY="647.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="harvestRight5" fitHeight="27.0" fitWidth="16.0" layoutX="203.0" layoutY="647.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="110.0" layoutY="580.0" mnemonicParsing="false" onMouseClicked="#putRelativeOnProductionRight" opacity="0.0" prefHeight="43.0" prefWidth="117.0" />
-      <Button layoutX="110.0" layoutY="639.0" mnemonicParsing="false" onMouseClicked="#putRelativeOnHarvestRight" opacity="0.0" prefHeight="43.0" prefWidth="117.0" />
+      <Button fx:id="productionRightButton" layoutX="110.0" layoutY="580.0" mnemonicParsing="false" onMouseClicked="#putRelativeOnProductionRight" opacity="0.0" prefHeight="31.0" prefWidth="109.0" />
+      <Button fx:id="harvestRightButton" layoutX="110.0" layoutY="639.0" mnemonicParsing="false" onMouseClicked="#putRelativeOnHarvestRight" opacity="0.0" prefHeight="27.0" prefWidth="109.0" />
       <Text fx:id="addServant" layoutX="927.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add servant:" />
       <ImageView fx:id="current1" fitHeight="31.0" fitWidth="28.0" layoutX="415.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="current2" fitHeight="31.0" fitWidth="28.0" layoutX="415.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" />
@@ -154,17 +154,17 @@
             <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <Text fx:id="orangeDice" fill="#e10f0f" layoutX="387.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
+      <Text fx:id="orangeDice" fill="#e10f0f" layoutX="395.0" layoutY="654.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
          <font>
             <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <Text fx:id="whiteDice" fill="#ee0707" layoutX="344.0" layoutY="665.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.000006675720215">
+      <Text fx:id="whiteDice" fill="#ee0707" layoutX="347.0" layoutY="655.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="28.000006675720215">
          <font>
             <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <Text fx:id="blackDice" fill="#e40a0a" layoutX="292.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
+      <Text fx:id="blackDice" fill="#e40a0a" layoutX="296.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="36.00000619888306">
          <font>
             <Font name="Blackadder ITC" size="26.0" />
          </font>
@@ -192,5 +192,7 @@
             <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
+      <ImageView fx:id="productionFxml" fitHeight="36.0" fitWidth="94.0" layoutX="118.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="harvestFxml" fitHeight="36.0" fitWidth="94.0" layoutX="118.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

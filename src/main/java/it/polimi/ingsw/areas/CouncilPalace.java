@@ -80,6 +80,9 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 		councilPalaceEffect.add(gainPrivilegeCouncil);
 		
 	}
+	public List<Effect> getCouncilPalaceEffect(){
+		return councilPalaceEffect;
+	}
 	
 	/**
 	 * @author Sara
@@ -111,6 +114,7 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 	 */
 	public void addPlayer(Player player, Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		order.add(orderIndex, player);
+		this.relatives.add(relative);
 		orderIndex += 1;
 	}
 	
@@ -162,17 +166,22 @@ public class CouncilPalace extends Observable<Change> implements Serializable{
 
 	public void removePlayer(Player player) {
 		Player playerToRemove=null;
-		Relative relativeToRemove=null;
+		ArrayList<Relative> relativeToRemove=new ArrayList<Relative>();
+		relativeToRemove.addAll(relatives);
 		for(int i=0; i<order.size(); i++){
-			if(player.getID().equals(order.get(i))){
+			if(player.getID().equals(order.get(i).getID())){
 				playerToRemove=order.get(i);
 			}
-			if(relatives.get(i).getPlayer().getID().equals(player.getID())){
-				relativeToRemove=relatives.get(i);
+			for(Relative toRemove:relatives){
+				if(!(toRemove.getPlayer().getID().equals(player.getID()))){
+					relativeToRemove.add(toRemove);
+				}
 			}
+			
 		}
 		order.remove(playerToRemove);
-		relatives.remove(relativeToRemove);
+		relatives.clear();
+		relatives.addAll(relativeToRemove);
 	}
 		
 		
