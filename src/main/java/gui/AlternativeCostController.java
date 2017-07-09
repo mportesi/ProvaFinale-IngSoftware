@@ -3,6 +3,11 @@ package gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+/**
+ * @author Chiara
+ * This class represents the controller of the stage "alternative cost".
+ *
+ */
 
 public class AlternativeCostController {
 	@FXML

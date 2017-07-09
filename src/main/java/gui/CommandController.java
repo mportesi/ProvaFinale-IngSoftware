@@ -4,6 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+/**
+ * @author Chiara
+ * This class represents the controller of the stage "command".
+ *
+ */
 
 public class CommandController {
 	private BoardController boardController;
