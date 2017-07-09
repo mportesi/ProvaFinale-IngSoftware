@@ -138,6 +138,7 @@ public class WelcomeController {
 				e.printStackTrace();
 				return null;
 			}
+			page.autosize();
 			rmi.getScene().setRoot(page);
 			return page;
 	}
