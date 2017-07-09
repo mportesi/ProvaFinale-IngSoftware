@@ -3695,24 +3695,12 @@ public class BoardController {
 		}
 	}
 	
-	public void openCommand(String string){
-		try {
-			if(!client.getPlayer().equals(playerDisconnected)){
-			messageString=string;
-			openCommand2();}
-			else return;
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
 	
-	@FXML
-	public void openCommand2() throws IOException{
-		try{if(!client.getPlayer().equals(playerDisconnected)){
-	@FXML
-	public void openCommand(String string) throws IOException{
+	
+	
+	public void openCommand(String string){
+		try{
+		if(!client.getPlayer().equals(playerDisconnected)){
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Command.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 		Stage stage = new Stage();
@@ -3723,7 +3711,7 @@ public class BoardController {
 		commandController.setStage(stage);
 		commandController.set(messageString);}
 		else return;}
-		catch(IllegalStateException e){
+		catch(IllegalStateException | IOException e){
 			return;
 		}
 	}
