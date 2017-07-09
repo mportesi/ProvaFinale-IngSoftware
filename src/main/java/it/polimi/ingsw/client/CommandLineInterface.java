@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -21,20 +23,24 @@ import it.polimi.ingsw.GC_40.TimerAction;
 import it.polimi.ingsw.actions.*;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.Tower;
+import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.components.Relative;
+import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
+import it.polimi.ingsw.effects.GainResourceForCost;
+import it.polimi.ingsw.effects.GainResourceForCostAlternative;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
 
 public class CommandLineInterface implements Serializable, Runnable {
 
 	private BufferedReader in;
-//	private transient Scanner scanner;
 	private ClientModel client;
 	private ServerRMIConnectionViewRemote serverStub;
 	private Timer timer;
+	private ObjectOutputStream socketOut;
 	
 
 	public CommandLineInterface(ClientModel client, ServerRMIConnectionViewRemote serverStub, Timer timer) {
@@ -47,6 +53,13 @@ public class CommandLineInterface implements Serializable, Runnable {
 	public CommandLineInterface(ClientModel client) {
 		in = new BufferedReader(new InputStreamReader(System.in));
 		this.client = client;
+	}
+	
+	public CommandLineInterface(ClientModel client, ObjectOutputStream socketOut, Timer timer) {
+		in = new BufferedReader(new InputStreamReader(System.in));
+		this.client = client;
+		this.socketOut=socketOut;
+		this.timer=timer;
 	}
 	
 	public void esci() throws FileNotFoundException, NullPointerException, RemoteException, IOException, ParseException, InterruptedException{
@@ -84,7 +97,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
 		System.out.println("Your status is: "+client.getPlayer());
-		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit ");
+		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit \nIf you want to shift your turn press 0.");
 		int input = Integer.parseInt(in.readLine());
 	
 		switch (input) {
@@ -103,7 +116,12 @@ public class CommandLineInterface implements Serializable, Runnable {
 			
 			break;
 		}
-		case 3: {
+		case 0:{
+			ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+			serverStub.notifyObserver(shiftPlayer);
+			break;
+		}
+		case 4: {
 			timer.cancel();
 			serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
 			client.setQuit(true);
@@ -130,6 +148,65 @@ public class CommandLineInterface implements Serializable, Runnable {
 	public void printTheBoard() {
 		client.getBoard();
 	}
+	
+	public void inputSocket() throws NumberFormatException, IOException, NullPointerException, ParseException, InterruptedException{
+		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
+			System.out.println("Your status is: "+client.getPlayer());
+			System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit \nIf you want to shift your turn press 0.");
+			int input = Integer.parseInt(in.readLine());
+		
+			switch (input) {
+			case 1: {
+				timer.cancel();
+				Relative relative = chooseTheRelative();
+				int servant = chooseServants(relative);
+				SetServant setServant=new SetServant(servant, client.getPlayer(), relative, client.getPlayer().getMatch());
+				socketOut.reset();
+				socketOut.writeObject(setServant);
+				PutRelative putRelative = chooseTheAction(relative);
+				socketOut.reset();
+				socketOut.writeObject(putRelative);
+				
+				break;
+			}
+			case 2: {
+				timer.cancel();
+				printTheBoard();
+				
+				break;
+			}
+			case 0:{
+				ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
+				socketOut.reset();
+				socketOut.writeObject(shiftPlayer);
+				break;
+			}
+			case 4: {
+				timer.cancel();
+				Quit quit=new Quit(client.getPlayer(), client.getPlayer().getMatch());
+				socketOut.reset();
+				socketOut.writeObject(quit);
+				client.setQuit(true);
+			
+				int input0 = Integer.parseInt(in.readLine());
+				
+				switch(input0){
+				case 0: 
+					System.out.println("reconnect");
+					Reconnect reconnect =new Reconnect(client.getPlayer(), client.getPlayer().getMatch());
+					socketOut.reset();
+					socketOut.writeObject(reconnect);
+					
+				break;
+				}
+			}
+			
+			
+			}}
+
+		
+		
+	}
 
 	public Relative chooseTheRelative()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -140,6 +217,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		Relative relative = null;
 		int input = Integer.parseInt(in.readLine());
 		switch (input) {
+		
 		case 1: {
 			if (client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())) {
 				relative = client.getPlayer().getBlackRelative();
@@ -184,6 +262,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			}
 
 		}
+		
 		default: {
 			System.out.println("\nError: insert again");
 			relative = chooseTheRelative();
@@ -201,7 +280,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		int valueServant = 0;
 		while (!legalServant) {
 			valueServant = Integer.parseInt(in.readLine());
-			System.out.println(valueServant);
+			
 			if (valueServant <= client.getPlayer().getServant()) {
 				relative.setValueServant(valueServant);
 				legalServant = true;
@@ -227,9 +306,32 @@ public class CommandLineInterface implements Serializable, Runnable {
 		PutRelative putRelative = null;
 		int input = Integer.parseInt(in.readLine());
 		switch (input) {
+		
 		case 1: {
 			Tower tower = chooseTower();
 			int floor = chooseFloor();
+			//check and apply the bonus from the character card
+			switch(tower.getType()) {
+			case "territory" :{
+				relative.addValue(client.getPlayer().getTerrCardBonus());
+				break;
+			}
+			case "building" :{
+				relative.addValue(client.getPlayer().getBuildCardBonus());
+				break;
+			}
+			case "character" :{
+				relative.addValue(client.getPlayer().getCharCardBonus());
+				break;
+			}
+			case "venture" :{
+				relative.addValue(client.getPlayer().getVentCardBonus());
+				break;
+			}
+			default:{
+				break;
+			}
+			}
 			putRelative = chooseThePutRelativeOnTower(tower, floor, relative);
 			break;
 		}
@@ -261,6 +363,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		}
 		case 4: {
 			String harvestArea = chooseHarvestArea();
+			relative.addValue(client.getPlayer().getHarvestBonus());
 			putRelative = new PutRelativeOnHarvestArea(client.getPlayer(), relative, client.getBoard().getHarvestArea(),
 					harvestArea, client.getPlayer().getMatch());
 
@@ -268,8 +371,10 @@ public class CommandLineInterface implements Serializable, Runnable {
 		}
 		case 5: {
 			String productionArea = chooseProductionArea();
+			relative.addValue(client.getPlayer().getProductionBonus());
+			ArrayList<Effect> permanentEffect=chooseBuildingPermanentEff(client.getPlayer(), relative);
 			putRelative = new PutRelativeOnProductionArea(client.getPlayer(), relative,
-					client.getBoard().getProductionArea(), productionArea, client.getPlayer().getMatch());
+					client.getBoard().getProductionArea(), productionArea, client.getPlayer().getMatch(), permanentEffect);
 
 			break;
 		}
@@ -309,13 +414,44 @@ public class CommandLineInterface implements Serializable, Runnable {
 			break;
 		}
 		case "character": {
-			if (client.getBoard().getCharacterTower().getFloor(floor).getCard()!=null && client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()) {
-				Tower tower2 = chooseTower();
-				int floor2 = chooseFloor();
-				putRelative = new PutRelativeOnTowerDoubleCard(client.getPlayer(), tower, floor, relative, tower2,
-						floor2, client.getPlayer().getMatch());
-			} else {
-				putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative, client.getPlayer().getMatch());
+			if (client.getBoard().getCharacterTower().getFloor(floor).getCard()!=null) {
+				if(client.getBoard().getCharacterTower().getFloor(floor).getCard().getGainPrivilegeCouncil()){
+					String bonus = choosePrivilegeCouncil();
+					if(client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()){
+						System.out.println("You can take another card");
+						Tower tower2 = chooseTower();
+						int floor2 = chooseFloor();
+						if(tower2.getFloor(floor2).getCard().getGainPrivilegeCouncil()){
+							String bonus2 = choosePrivilegeCouncil();
+							putRelative = new PutRelativeOnTowerDoublePrivilegeDoubleCard(client.getPlayer(), tower, floor, relative, tower2, floor2, bonus, bonus2,client.getPlayer().getMatch());
+							break;
+						}else{
+							putRelative = new PutRelativeOnTowerPrivilegeDoubleCard(client.getPlayer(), tower, floor, relative, tower2, floor2, bonus, client.getPlayer().getMatch());
+							break;
+						}
+						
+					}else{
+						putRelative = new PutRelativeOnTowerPrivilege(client.getPlayer(), tower, floor, relative, bonus, client.getPlayer().getMatch());
+						break;
+					}
+				}else{
+					if(client.getBoard().getCharacterTower().getFloor(floor).getCard().getGetCard()){
+						System.out.println("You can take another card");
+						Tower tower2 = chooseTower();
+						int floor2 = chooseFloor();
+						if(tower2.getFloor(floor2).getCard().getGainPrivilegeCouncil()){
+							String bonus = choosePrivilegeCouncil();
+							putRelative = new PutRelativeOnTowerDoubleCardHasPrivilege(client.getPlayer(), tower, floor, relative, tower2, floor2, bonus, client.getPlayer().getMatch());
+							break;
+						}else{
+							putRelative = new PutRelativeOnTowerDoubleCard(client.getPlayer(), tower, floor, relative, tower2, floor2, client.getPlayer().getMatch());
+							break;
+						}
+					}else{
+						putRelative = new PutRelativeOnTower(client.getPlayer(), tower, floor, relative, client.getPlayer().getMatch());
+						break;
+					}
+				}
 			}
 			break;
 		}
@@ -343,6 +479,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			//scanner.next();
 		int input = Integer.parseInt(in.readLine());
 		switch (input) {
+		
 		case 1: {
 			choice = true;
 			return choice;
@@ -379,6 +516,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 		Tower tower;
 		/* try{ */
 		switch (input) {
+		
 		case 1: {
 			tower = this.client.getTerritoryTower();
 			return tower;
@@ -409,7 +547,8 @@ public class CommandLineInterface implements Serializable, Runnable {
 		int floor;
 		floor = Integer.parseInt(in.readLine());
 		floor -= 1;
-		if (floor < 0 || floor > 4) {
+		
+		if (floor < 0 || floor > 4){
 			System.out.println("\nThat floor don't exist!");
 			floor = chooseFloor();
 		}
@@ -438,6 +577,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 			e.printStackTrace();
 		}
 		switch (choice) {
+	
 		case 1: {
 			resource = "coin";
 			break;
@@ -543,6 +683,65 @@ public class CommandLineInterface implements Serializable, Runnable {
 		
 	}
 
+
+	
+	public ArrayList<Effect> chooseBuildingPermanentEff(Player player, Relative relative){
+		ArrayList<Effect> chosenEffect=new ArrayList<Effect>();
+		try {
+		for(BuildingCard card:player.getBuilding() ){
+			if(relative.getValue()>=card.getPermanentCost()){
+				for(Effect currentEffect:card.getPermanentEffect()){
+					System.out.println("Do you want to use this effect? ");
+					System.out.println(currentEffect.toString());
+					System.out.println("1) Yes\n 2) No");
+					int input;
+					
+						input = Integer.parseInt(in.readLine());
+					
+					if(input==1){
+						
+						if(currentEffect instanceof GainResourceForCostAlternative){
+							System.out.print("Do you want to use the 1)first or 2)second?");
+							int choice=Integer.parseInt(in.readLine());
+							if(choice==1){
+								((GainResourceForCostAlternative) currentEffect).chooseAlt(false);
+							}
+							else{
+								((GainResourceForCostAlternative) currentEffect).chooseAlt(true);
+							}
+							if(currentEffect.isApplicable(player)){
+								chosenEffect.add(currentEffect);
+							}
+							else{
+								System.out.println("You dont have enough resource!");
+							}
+						}
+						
+						else if(currentEffect instanceof GainResourceForCost){
+							if(currentEffect.isApplicable(player)){
+								chosenEffect.add(currentEffect);
+							}
+							else{
+								System.out.println("You dont have enough resource!");
+							}
+						}
+						
+						else{
+							chosenEffect.add(currentEffect);
+						}
+						
+					}
+				}
+			}
+		}
+		
+		} catch (NumberFormatException | IOException e) {
+			e.printStackTrace();
+		}
+		return chosenEffect;
+		
+	}
+	
 
 	
 	

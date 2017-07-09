@@ -38,5 +38,8 @@ public class ClientRMIConnectionView extends UnicastRemoteObject
 		c.applyChange(client);
 		//System.out.println("sono nel Client dopo updateClient(c)" + c);
 	}
-
+	
+	public ClientModel getClientModel(){
+		return client;
+	}
 }
