@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw</OriginalElement>
+  <nodes>
+    <node x="17283.06611341822" y="1592.0">it.polimi.ingsw.changes.ChangeInitializeBoard</node>
+    <node x="5917.0" y="5141.0">it.polimi.ingsw.colors</node>
+    <node x="6776.399432020809" y="3203.0">it.polimi.ingsw.actions.PutRelativeOnHarvestArea</node>
+    <node x="14509.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeCoin</node>
+    <node x="880.0" y="1614.5">it.polimi.ingsw.actions.PutRelative</node>
+    <node x="962.4999999999999" y="3576.0">it.polimi.ingsw.cards.Card</node>
+    <node x="3511.0" y="4944.0">it.polimi.ingsw.effects.PayServant</node>
+    <node x="6089.0" y="5141.0">it.polimi.ingsw.server</node>
+    <node x="14685.06611341822" y="1614.0">it.polimi.ingsw.changes.ChangeHarvestLeftArea</node>
+    <node x="1993.2499999999998" y="5141.0">it.polimi.ingsw.cards.CreateListOfEffect</node>
+    <node x="5728.0" y="5141.0">it.polimi.ingsw.clientRMI</node>
+    <node x="7569.816113418219" y="3126.0">it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCard</node>
+    <node x="16031.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeCouncilPalace</node>
+    <node x="3384.5" y="4635.0">it.polimi.ingsw.effects.Effect</node>
+    <node x="3950.0" y="5141.0">it.polimi.ingsw.areas.TowerTest</node>
+    <node x="6523.0" y="4944.0">it.polimi.ingsw.effects.PayWood</node>
+    <node x="1872.8994320208094" y="3170.0">it.polimi.ingsw.actions.PutRelativeOnTowerAltCost</node>
+    <node x="9722.81611341822" y="3203.0">it.polimi.ingsw.actions.PutRelativeOnMarketPrivilege</node>
+    <node x="1829.9999999999998" y="5308.5">it.polimi.ingsw.cards.VentureListOfEffect</node>
+    <node x="16853.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeVentureCard</node>
+    <node x="3169.0" y="5308.5">it.polimi.ingsw.cards.BuildingListOfEffect</node>
+    <node x="4683.0" y="5141.0">it.polimi.ingsw.GC_40.TimerAction</node>
+    <node x="18364.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeWood</node>
+    <node x="8523.81611341822" y="3181.0">it.polimi.ingsw.actions.PutRelativeOnTower</node>
+    <node x="12771.06611341822" y="1581.0">it.polimi.ingsw.changes.ChangeTower</node>
+    <node x="2825.0" y="4944.0">it.polimi.ingsw.effects.GainVictoryPointForBuildingCard</node>
+    <node x="5314.0" y="4944.0">it.polimi.ingsw.effects.GainVictoryPointForMilitaryPoint</node>
+    <node x="13369.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeFaithPoint</node>
+    <node x="18774.066113418223" y="1614.0">it.polimi.ingsw.changes.ChangeEndGame</node>
+    <node x="16636.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeVentBonus</node>
+    <node x="13018.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeTurnOrder</node>
+    <node x="2259.8994320208094" y="3104.0">it.polimi.ingsw.actions.PutRelativeOnTowerDoublePrivilegeDoubleCard</node>
+    <node x="0.0" y="4944.0">it.polimi.ingsw.effects.GainStone</node>
+    <node x="3518.0" y="5141.0">it.polimi.ingsw.components.PrivilegeCouncil</node>
+    <node x="0.0" y="4064.0">it.polimi.ingsw.cards.CharacterCard</node>
+    <node x="11489.370832293727" y="3302.5">it.polimi.ingsw.serverRMI</node>
+    <node x="6927.0" y="4944.0">it.polimi.ingsw.effects.GainHarvestValue</node>
+    <node x="19580.066113418223" y="1603.0">it.polimi.ingsw.changes.ChangeBuildingCard</node>
+    <node x="4348.0" y="4944.0">it.polimi.ingsw.effects.PayStone</node>
+    <node x="14272.06611341822" y="1614.0">it.polimi.ingsw.changes.ChangeProductionLeftArea</node>
+    <node x="1123.0" y="4944.0">it.polimi.ingsw.effects.GainVictoryPointForCharacterCard</node>
+    <node x="3315.0" y="4944.0">it.polimi.ingsw.effects.GainServant</node>
+    <node x="1807.9999999999998" y="4944.0">it.polimi.ingsw.effects.GainProductionValue</node>
+    <node x="19167.066113418223" y="1614.0">it.polimi.ingsw.changes.ChangeReconnect</node>
+    <node x="16239.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeColor</node>
+    <node x="1126.0" y="1592.0">it.polimi.ingsw.actions.RegisterClient</node>
+    <node x="15994.06611341822" y="33.5">it.polimi.ingsw.changes.Change</node>
+    <node x="6485.566113418219" y="1427.0">it.polimi.ingsw.areas.HarvestAndProductionArea</node>
+    <node x="1406.0" y="4944.0">it.polimi.ingsw.effects.GainMilitaryPoint</node>
+    <node x="19788.066113418223" y="1603.0">it.polimi.ingsw.changes.ChangeProductionBonus</node>
+    <node x="3098.0" y="4944.0">it.polimi.ingsw.effects.GainCharCardBonus</node>
+    <node x="13579.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeHarvestBonus</node>
+    <node x="2845.0" y="5308.5">it.polimi.ingsw.areas.MarketListOfEffect</node>
+    <node x="6169.0" y="4944.0">it.polimi.ingsw.effects.PayFaith</node>
+    <node x="12271.06611341822" y="1592.0">it.polimi.ingsw.changes.ChangeNumberOfPlayers</node>
+    <node x="15823.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeCharacterCard</node>
+    <node x="8890.81611341822" y="3203.0">it.polimi.ingsw.actions.PutRelativeOnProductionArea</node>
+    <node x="6707.0" y="4944.0">it.polimi.ingsw.effects.GainBuildCardBonus</node>
+    <node x="11274.06611341822" y="22.5">it.polimi.ingsw.GC_40.Observer</node>
+    <node x="17951.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeStone</node>
+    <node x="11132.06611341822" y="1548.0">it.polimi.ingsw.GC_40.MasterController</node>
+    <node x="14027.06611341822" y="1614.0">it.polimi.ingsw.changes.ChangeProductionRightArea</node>
+    <node x="6261.0" y="5141.0">it.polimi.ingsw.client</node>
+    <node x="14902.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeServant</node>
+    <node x="1350.0" y="1603.0">it.polimi.ingsw.actions.InitializeGame</node>
+    <node x="484.0" y="1592.0">it.polimi.ingsw.actions.Reconnect</node>
+    <node x="9977.06611341822" y="1229.0">it.polimi.ingsw.GC_40.Play</node>
+    <node x="18136.06611341822" y="1592.0">it.polimi.ingsw.changes.ChangeMarket</node>
+    <node x="607.0" y="4911.0">it.polimi.ingsw.effects.GetCard</node>
+    <node x="3091.8994320208094" y="3170.0">it.polimi.ingsw.actions.PutRelativeOnTowerPrivilege</node>
+    <node x="2277.0" y="4944.0">it.polimi.ingsw.effects.GainVictoryPointForVentureCard</node>
+    <node x="4757.0" y="4944.0">it.polimi.ingsw.effects.GainHarvestBonus</node>
+    <node x="15098.06611341822" y="1592.0">it.polimi.ingsw.changes.ChangeWinners</node>
+    <node x="453.0" y="5141.0">it.polimi.ingsw.components.PersonalBonusTile</node>
+    <node x="12547.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeVictoryPoint</node>
+    <node x="10943.06611341822" y="1636.5">it.polimi.ingsw.serverSocket</node>
+    <node x="1179.9999999999998" y="5308.5">it.polimi.ingsw.components.PersonalBonusTileListOfProductionEffect</node>
+    <node x="15408.06611341822" y="1592.0">it.polimi.ingsw.changes.ChangeRound</node>
+    <node x="2521.0" y="5308.5">it.polimi.ingsw.cards.CharacterListOfEffect</node>
+    <node x="6428.0" y="5141.0">it.polimi.ingsw.json</node>
+    <node x="185.0" y="4944.0">it.polimi.ingsw.effects.GainTerrCardBonus</node>
+    <node x="15615.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeNotApplicable</node>
+    <node x="3960.0" y="4911.0">it.polimi.ingsw.effects.GainPrivilegeCouncil</node>
+    <node x="1631.9999999999998" y="4944.0">it.polimi.ingsw.effects.GainCoin</node>
+    <node x="5519.0" y="5141.0">it.polimi.ingsw.clientSocket</node>
+    <node x="11846.06611341822" y="1592.0">it.polimi.ingsw.GC_40.Controller</node>
+    <node x="4354.0" y="5141.0">it.polimi.ingsw.components.Dice</node>
+    <node x="17510.06611341822" y="1614.0">it.polimi.ingsw.changes.ChangePlayer</node>
+    <node x="3021.0" y="3576.0">it.polimi.ingsw.components.FinalVictoryPoint</node>
+    <node x="1538.0" y="1416.0">it.polimi.ingsw.areas.MarketBuilding</node>
+    <node x="11618.06611341822" y="1592.0">it.polimi.ingsw.changes.ChangeNewPlayer</node>
+    <node x="1505.9999999999998" y="5308.5">it.polimi.ingsw.cards.TerritoryListOfEffect</node>
+    <node x="16447.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangePeriod</node>
+    <node x="256.0" y="1592.0">it.polimi.ingsw.actions.Quit</node>
+    <node x="17061.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeOccupiedRelative</node>
+    <node x="855.9999999999998" y="5308.5">it.polimi.ingsw.components.PersonalBonusTileListOfHarvestEffect</node>
+    <node x="12051.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeBuildBonus</node>
+    <node x="0.0" y="1570.0">it.polimi.ingsw.actions.SetServant</node>
+    <node x="0.0" y="5141.0">it.polimi.ingsw.components.Relative</node>
+    <node x="5096.0" y="5141.0">it.polimi.ingsw.actions.RegisterClientSocket</node>
+    <node x="6744.816113418219" y="0.0">it.polimi.ingsw.GC_40.Observable</node>
+    <node x="4533.0" y="4944.0">it.polimi.ingsw.effects.GainVictoryPoint</node>
+    <node x="5584.0" y="4889.0">it.polimi.ingsw.effects.GainResourceForCostAlternative</node>
+    <node x="1889.0" y="4141.0">it.polimi.ingsw.cards.TerritoryCard</node>
+    <node x="18950.066113418223" y="1603.0">it.polimi.ingsw.changes.ChangeCharBonus</node>
+    <node x="659.8637177350956" y="22.5">it.polimi.ingsw.actions.Action</node>
+    <node x="17743.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeTerritoryCard</node>
+    <node x="4993.0" y="4933.0">it.polimi.ingsw.effects.GainResourceForCost</node>
+    <node x="9235.81611341822" y="3115.0">it.polimi.ingsw.actions.PutRelativeOnTowerPrivilegeDoubleCard</node>
+    <node x="2438.0" y="3576.0">it.polimi.ingsw.areas.Floor</node>
+    <node x="19355.066113418223" y="1614.0">it.polimi.ingsw.changes.ChangeHarvestRightArea</node>
+    <node x="13815.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeTerrBonus</node>
+    <node x="2549.0" y="4944.0">it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard</node>
+    <node x="6347.0" y="4944.0">it.polimi.ingsw.effects.PayCoin</node>
+    <node x="1176.0" y="4031.0">it.polimi.ingsw.cards.VentureCard</node>
+    <node x="2154.0" y="5286.0">it.polimi.ingsw.cards.BuildingListOfPermanentEffect</node>
+    <node x="2060.0" y="4944.0">it.polimi.ingsw.effects.GainVentCardBonus</node>
+    <node x="2766.8994320208094" y="3214.0">it.polimi.ingsw.actions.PutRelativeOnMarket</node>
+    <node x="3707.0" y="4955.5">it.polimi.ingsw.effects.HasPrivilege</node>
+    <node x="7054.566113418219" y="1273.0">it.polimi.ingsw.GC_40.Board</node>
+    <node x="7182.0" y="4635.0">it.polimi.ingsw.areas.Tower</node>
+    <node x="5318.0" y="5141.0">it.polimi.ingsw.cards.BuildingCardTest</node>
+    <node x="8036.816113418219" y="3115.0">it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCardHasPrivilege</node>
+    <node x="865.0" y="4944.0">it.polimi.ingsw.effects.GainProductionBonus</node>
+    <node x="3401.566113418219" y="1416.0">it.polimi.ingsw.areas.CouncilPalace</node>
+    <node x="5985.0" y="4944.0">it.polimi.ingsw.effects.GainWood</node>
+    <node x="397.0" y="4944.0">it.polimi.ingsw.effects.GainFaithPoint</node>
+    <node x="1269.5791656270612" y="3214.0">it.polimi.ingsw.actions.PutRelativeOnCouncilPalace</node>
+    <node x="564.9999999999999" y="4086.0">it.polimi.ingsw.cards.BuildingCard</node>
+    <node x="692.0" y="1603.0">it.polimi.ingsw.actions.ShiftPlayer</node>
+    <node x="4027.566113418219" y="349.0">it.polimi.ingsw.GC_40.Player</node>
+    <node x="18548.06611341822" y="1603.0">it.polimi.ingsw.changes.ChangeMilitaryPoint</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.cards.BuildingCard" target="it.polimi.ingsw.cards.Card">
+      <point x="0.0" y="-224.5" />
+      <point x="860.4999999999999" y="4011.0" />
+      <point x="1134.25" y="4011.0" />
+      <point x="-57.25" y="202.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeCoin" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="14587.06611341822" y="269.0" />
+      <point x="16075.498545850653" y="269.0" />
+      <point x="-49.5675675675684" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainVictoryPointForCharacterCard" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="1254.5" y="4779.0" />
+      <point x="3427.2166666666662" y="4779.0" />
+      <point x="-73.7833333333333" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerAltCost" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-91.75" y="-147.5" />
+      <point x="1964.6494320208094" y="3074.0" />
+      <point x="908.25" y="3074.0" />
+      <point x="-84.75" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeVictoryPoint" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="12649.06611341822" y="189.0" />
+      <point x="16018.849897202002" y="189.0" />
+      <point x="-106.21621621621671" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeHarvestRightArea" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-37.5" />
+      <point x="19457.566113418223" y="179.0" />
+      <point x="16238.363410715516" y="179.0" />
+      <point x="113.29729729729661" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerPrivilege" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-91.75" y="-147.5" />
+      <point x="3183.6494320208094" y="3044.0" />
+      <point x="964.75" y="3044.0" />
+      <point x="-28.25" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerDoublePrivilegeDoubleCard" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="121.75" y="-213.5" />
+      <point x="2625.1494320208094" y="3084.0" />
+      <point x="2734.75" y="3084.0" />
+      <point x="2734.75" y="279.0" />
+      <point x="6823.316113418219" y="279.0" />
+      <point x="-78.5" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainVictoryPoint" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="4635.0" y="4829.0" />
+      <point x="3535.95" y="4829.0" />
+      <point x="34.94999999999982" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeServant" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="14990.06611341822" y="289.0" />
+      <point x="16089.660708012816" y="289.0" />
+      <point x="-35.40540540540496" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.cards.TerritoryCard" target="it.polimi.ingsw.cards.Card">
+      <point x="0.0" y="-169.5" />
+      <point x="2141.0" y="4001.0" />
+      <point x="1363.25" y="4001.0" />
+      <point x="171.75" y="202.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.PayServant" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="3599.0" y="4869.0" />
+      <point x="3504.883333333333" y="4869.0" />
+      <point x="3.883333333333212" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCard" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="111.75" y="-191.5" />
+      <point x="7905.066113418219" y="309.0" />
+      <point x="6937.497931600037" y="309.0" />
+      <point x="35.68181818181802" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainProductionValue" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="1923.9999999999998" y="4809.0" />
+      <point x="3450.5166666666664" y="4809.0" />
+      <point x="-50.48333333333312" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.serverRMI" target="it.polimi.ingsw.GC_40.Observer">
+      <point x="37.25" y="-15.0" />
+      <point x="11601.120832293727" y="3084.0" />
+      <point x="12040.56611341822" y="3084.0" />
+      <point x="12040.56611341822" y="139.0" />
+      <point x="11437.86611341822" y="139.0" />
+      <point x="72.80000000000018" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainTerrCardBonus" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="281.0" y="4739.0" />
+      <point x="3396.1499999999996" y="4739.0" />
+      <point x="-104.84999999999991" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeVentBonus" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="16734.56611341822" y="309.0" />
+      <point x="16146.309356661463" y="309.0" />
+      <point x="21.24324324324334" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.serverSocket" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="-42.25" y="-15.0" />
+      <point x="10985.31611341822" y="239.0" />
+      <point x="7037.407022509128" y="239.0" />
+      <point x="135.590909090909" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.serverSocket" target="it.polimi.ingsw.GC_40.Observer">
+      <point x="42.25" y="-15.0" />
+      <point x="11069.81611341822" y="329.0" />
+      <point x="11328.666113418221" y="329.0" />
+      <point x="-36.399999999999636" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.ShiftPlayer" target="it.polimi.ingsw.actions.Action">
+      <point x="0.0" y="-48.5" />
+      <point x="776.0" y="329.0" />
+      <point x="753.8637177350956" y="329.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.cards.VentureCard" target="it.polimi.ingsw.cards.Card">
+      <point x="0.0" y="-279.5" />
+      <point x="1522.5" y="4011.0" />
+      <point x="1248.75" y="4011.0" />
+      <point x="57.25" y="202.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.InitializeGame" target="it.polimi.ingsw.actions.Action">
+      <point x="-42.0" y="-48.5" />
+      <point x="1392.0" y="219.0" />
+      <point x="834.435146306525" y="219.0" />
+      <point x="80.57142857142856" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerPrivilegeDoubleCard" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="116.75" y="-202.5" />
+      <point x="9586.06611341822" y="269.0" />
+      <point x="6994.588840690947" y="269.0" />
+      <point x="92.77272727272748" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeProductionLeftArea" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-37.5" />
+      <point x="14380.56611341822" y="259.0" />
+      <point x="16068.417464769573" y="259.0" />
+      <point x="-56.648648648648305" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainMilitaryPoint" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="1509.0" y="4789.0" />
+      <point x="3434.9833333333327" y="4789.0" />
+      <point x="-66.01666666666688" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerPrivilegeDoubleCard" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-116.75" y="-202.5" />
+      <point x="9352.56611341822" y="2984.0" />
+      <point x="1077.75" y="2984.0" />
+      <point x="84.75" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_40.Play" target="it.polimi.ingsw.GC_40.Observer">
+      <point x="236.5" y="-422.5" />
+      <point x="10686.56611341822" y="319.0" />
+      <point x="11292.26611341822" y="319.0" />
+      <point x="-72.80000000000018" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.serverRMI" target="it.polimi.ingsw.serverSocket">
+      <point x="-37.25" y="-15.0" />
+      <point x="11526.620832293727" y="3084.0" />
+      <point x="11027.56611341822" y="3084.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeStone" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="18033.56611341822" y="249.0" />
+      <point x="16188.79584314795" y="249.0" />
+      <point x="63.729729729730025" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_40.Player" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="0.0" y="-1302.5" />
+      <point x="5246.566113418219" y="319.0" />
+      <point x="6880.407022509128" y="319.0" />
+      <point x="-21.40909090909099" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeReconnect" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-37.5" />
+      <point x="19251.066113418223" y="189.0" />
+      <point x="16231.282329634436" y="189.0" />
+      <point x="106.21621621621671" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeBuildingCard" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="19674.066113418223" y="169.0" />
+      <point x="16245.4444917966" y="169.0" />
+      <point x="120.37837837837833" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeTower" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-70.5" />
+      <point x="12884.56611341822" y="199.0" />
+      <point x="16025.930978283086" y="199.0" />
+      <point x="-99.13513513513499" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.RegisterClient" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="51.0" y="-59.5" />
+      <point x="1279.0" y="229.0" />
+      <point x="6751.952477054583" y="229.0" />
+      <point x="-149.8636363636365" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_40.Play" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="-236.5" y="-422.5" />
+      <point x="10213.56611341822" y="249.0" />
+      <point x="7023.134295236401" y="249.0" />
+      <point x="121.31818181818198" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnHarvestArea" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-81.25" y="-114.5" />
+      <point x="6857.649432020809" y="3034.0" />
+      <point x="983.5833333333339" y="3034.0" />
+      <point x="-9.416666666666742" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerPrivilege" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="91.75" y="-147.5" />
+      <point x="3367.1494320208094" y="3084.0" />
+      <point x="3391.066113418219" y="3084.0" />
+      <point x="3391.066113418219" y="299.0" />
+      <point x="6851.861567963673" y="299.0" />
+      <point x="-49.954545454545496" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerDoublePrivilegeDoubleCard" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-121.75" y="-213.5" />
+      <point x="2381.6494320208094" y="3064.0" />
+      <point x="927.0833333333339" y="3064.0" />
+      <point x="-65.91666666666663" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeProductionRightArea" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-37.5" />
+      <point x="14139.56611341822" y="249.0" />
+      <point x="16061.33638368849" y="249.0" />
+      <point x="-63.729729729730025" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerAltCost" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="91.75" y="-147.5" />
+      <point x="2148.1494320208094" y="3084.0" />
+      <point x="2257.75" y="3084.0" />
+      <point x="2257.75" y="269.0" />
+      <point x="6809.043386145491" y="269.0" />
+      <point x="-92.77272727272748" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.cards.TerritoryListOfEffect" target="it.polimi.ingsw.cards.CreateListOfEffect">
+      <point x="0.0" y="-26.0" />
+      <point x="1657.9999999999998" y="5256.0" />
+      <point x="2094.1874999999995" y="5256.0" />
+      <point x="-60.5625" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainVictoryPointForMilitaryPoint" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="5439.0" y="4799.0" />
+      <point x="3559.25" y="4799.0" />
+      <point x="58.25" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainHarvestBonus" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="4865.0" y="4819.0" />
+      <point x="3543.7166666666662" y="4819.0" />
+      <point x="42.7166666666667" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeBuildBonus" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="12151.06611341822" y="169.0" />
+      <point x="16004.687735039843" y="169.0" />
+      <point x="-120.37837837837833" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainBuildCardBonus" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="6807.0" y="4739.0" />
+      <point x="3605.8500000000004" y="4739.0" />
+      <point x="104.85000000000036" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeColor" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="16333.06611341822" y="329.0" />
+      <point x="16132.147194499303" y="329.0" />
+      <point x="7.08108108108172" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.cards.VentureListOfEffect" target="it.polimi.ingsw.cards.CreateListOfEffect">
+      <point x="-1.1368683772161603E-13" y="-26.0" />
+      <point x="1981.9999999999995" y="5266.0" />
+      <point x="2134.5624999999995" y="5266.0" />
+      <point x="-20.1875" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainFaithPoint" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="492.0" y="4749.0" />
+      <point x="3403.916666666666" y="4749.0" />
+      <point x="-97.08333333333348" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.RegisterClient" target="it.polimi.ingsw.actions.Action">
+      <point x="-51.0" y="-59.5" />
+      <point x="1177.0" y="309.0" />
+      <point x="807.5780034493819" y="309.0" />
+      <point x="53.714285714285666" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTower" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="86.75" y="-136.5" />
+      <point x="8784.06611341822" y="289.0" />
+      <point x="6966.043386145492" y="289.0" />
+      <point x="64.22727272727298" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCard" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-111.75" y="-191.5" />
+      <point x="7681.566113418219" y="3024.0" />
+      <point x="1002.4166666666661" y="3024.0" />
+      <point x="9.416666666666629" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainProductionBonus" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="984.0" y="4769.0" />
+      <point x="3419.45" y="4769.0" />
+      <point x="-81.55000000000018" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeCharBonus" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="19048.566113418223" y="199.0" />
+      <point x="16224.201248553356" y="199.0" />
+      <point x="99.13513513513499" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeHarvestLeftArea" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-37.5" />
+      <point x="14783.56611341822" y="279.0" />
+      <point x="16082.579626931732" y="279.0" />
+      <point x="-42.48648648648668" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangePeriod" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="16531.56611341822" y="319.0" />
+      <point x="16139.228275580383" y="319.0" />
+      <point x="14.162162162161621" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.PayFaith" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="6248.0" y="4769.0" />
+      <point x="3582.55" y="4769.0" />
+      <point x="81.55000000000018" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="2677.0" y="4839.0" />
+      <point x="3473.8166666666666" y="4839.0" />
+      <point x="-27.183333333333394" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnMarketPrivilege" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="81.25" y="-114.5" />
+      <point x="9966.56611341822" y="259.0" />
+      <point x="7008.861567963673" y="259.0" />
+      <point x="107.0454545454545" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.PayCoin" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="6425.0" y="4759.0" />
+      <point x="3590.3166666666666" y="4759.0" />
+      <point x="89.3166666666666" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.Quit" target="it.polimi.ingsw.actions.Action">
+      <point x="0.0" y="-59.5" />
+      <point x="360.0" y="319.0" />
+      <point x="700.1494320208094" y="319.0" />
+      <point x="-53.71428571428578" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.Reconnect" target="it.polimi.ingsw.actions.Action">
+      <point x="0.0" y="-59.5" />
+      <point x="578.0" y="329.0" />
+      <point x="727.0065748779525" y="329.0" />
+      <point x="-26.85714285714289" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainVictoryPointForBuildingCard" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="2951.5" y="4849.0" />
+      <point x="3481.583333333333" y="4849.0" />
+      <point x="-19.416666666666515" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainPrivilegeCouncil" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-81.5" />
+      <point x="4144.0" y="4849.0" />
+      <point x="3520.416666666666" y="4849.0" />
+      <point x="19.416666666666515" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainVictoryPointForVentureCard" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="2403.0" y="4829.0" />
+      <point x="3466.05" y="4829.0" />
+      <point x="-34.94999999999982" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangePlayer" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-37.5" />
+      <point x="17616.56611341822" y="269.0" />
+      <point x="16174.63368098579" y="269.0" />
+      <point x="49.5675675675684" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnMarketPrivilege" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-81.25" y="-114.5" />
+      <point x="9804.06611341822" y="2974.0" />
+      <point x="1096.583333333334" y="2974.0" />
+      <point x="103.58333333333326" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnHarvestArea" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="81.25" y="-114.5" />
+      <point x="7020.149432020809" y="3084.0" />
+      <point x="7044.066113418219" y="3084.0" />
+      <point x="7044.066113418219" y="329.0" />
+      <point x="6908.952477054583" y="329.0" />
+      <point x="7.136363636363512" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.components.PersonalBonusTileListOfProductionEffect" target="it.polimi.ingsw.cards.CreateListOfEffect">
+      <point x="0.0" y="-26.0" />
+      <point x="1332.9999999999998" y="5246.0" />
+      <point x="2053.8124999999995" y="5246.0" />
+      <point x="-100.9375" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTower" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-86.75" y="-136.5" />
+      <point x="8610.56611341822" y="3004.0" />
+      <point x="1040.083333333334" y="3004.0" />
+      <point x="47.08333333333326" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeOccupiedRelative" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="17162.06611341822" y="289.0" />
+      <point x="16160.471518823626" y="289.0" />
+      <point x="35.40540540540496" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.cards.BuildingListOfEffect" target="it.polimi.ingsw.cards.CreateListOfEffect">
+      <point x="0.0" y="-26.0" />
+      <point x="3321.0" y="5236.0" />
+      <point x="2296.0624999999995" y="5236.0" />
+      <point x="141.3125" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.SetServant" target="it.polimi.ingsw.actions.Action">
+      <point x="0.0" y="-81.5" />
+      <point x="118.0" y="309.0" />
+      <point x="673.2922891636663" y="309.0" />
+      <point x="-80.57142857142856" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeNumberOfPlayers" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-59.5" />
+      <point x="12399.06611341822" y="179.0" />
+      <point x="16011.768816120923" y="179.0" />
+      <point x="-113.29729729729661" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.cards.BuildingListOfPermanentEffect" target="it.polimi.ingsw.cards.CreateListOfEffect">
+      <point x="0.0" y="-48.5" />
+      <point x="2327.5" y="5266.0" />
+      <point x="2174.9374999999995" y="5266.0" />
+      <point x="20.1875" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.areas.CouncilPalace" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="0.0" y="-235.5" />
+      <point x="3704.566113418219" y="309.0" />
+      <point x="6866.134295236401" y="309.0" />
+      <point x="-35.68181818181802" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCardHasPrivilege" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-116.75" y="-202.5" />
+      <point x="8153.566113418219" y="3014.0" />
+      <point x="1021.25" y="3014.0" />
+      <point x="28.25" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.areas.MarketBuilding" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="0.0" y="-235.5" />
+      <point x="1797.0" y="249.0" />
+      <point x="6780.497931600037" y="249.0" />
+      <point x="-121.31818181818198" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_40.Board" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="0.0" y="-378.5" />
+      <point x="7474.566113418219" y="319.0" />
+      <point x="6923.22520432731" y="319.0" />
+      <point x="21.40909090909099" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainServant" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="3403.0" y="4869.0" />
+      <point x="3497.116666666667" y="4869.0" />
+      <point x="-3.883333333333212" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.cards.CharacterCard" target="it.polimi.ingsw.cards.Card">
+      <point x="0.0" y="-246.5" />
+      <point x="272.5" y="4001.0" />
+      <point x="1019.7499999999999" y="4001.0" />
+      <point x="-171.75" y="202.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeWinners" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-59.5" />
+      <point x="15243.06611341822" y="299.0" />
+      <point x="16096.741789093896" y="299.0" />
+      <point x="-28.32432432432506" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnProductionArea" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-81.25" y="-114.5" />
+      <point x="8972.06611341822" y="2994.0" />
+      <point x="1058.916666666666" y="2994.0" />
+      <point x="65.91666666666663" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainVentCardBonus" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="2158.5" y="4819.0" />
+      <point x="3458.283333333333" y="4819.0" />
+      <point x="-42.7166666666667" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.components.PersonalBonusTileListOfHarvestEffect" target="it.polimi.ingsw.cards.CreateListOfEffect">
+      <point x="0.0" y="-26.0" />
+      <point x="1007.9999999999998" y="5236.0" />
+      <point x="2013.4374999999998" y="5236.0" />
+      <point x="-141.3125" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeProductionBonus" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="19907.066113418223" y="159.0" />
+      <point x="16252.52557287768" y="159.0" />
+      <point x="127.45945945946005" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainCoin" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="1709.9999999999998" y="4799.0" />
+      <point x="3442.75" y="4799.0" />
+      <point x="-58.25" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeNewPlayer" target="it.polimi.ingsw.changes.Change">
+      <point x="52.0" y="-59.5" />
+      <point x="11774.06611341822" y="159.0" />
+      <point x="15997.60665395876" y="159.0" />
+      <point x="-127.45945945946005" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.cards.CharacterListOfEffect" target="it.polimi.ingsw.cards.CreateListOfEffect">
+      <point x="0.0" y="-26.0" />
+      <point x="2673.0" y="5256.0" />
+      <point x="2215.3124999999995" y="5256.0" />
+      <point x="60.5625" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_40.MasterController" target="it.polimi.ingsw.GC_40.Observer">
+      <point x="0.0" y="-103.5" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelative" target="it.polimi.ingsw.actions.Action">
+      <point x="0.0" y="-37.0" />
+      <point x="993.0" y="319.0" />
+      <point x="780.7208605922388" y="319.0" />
+      <point x="26.857142857142776" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnMarket" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="76.25" y="-103.5" />
+      <point x="2995.6494320208094" y="3084.0" />
+      <point x="3105.25" y="3084.0" />
+      <point x="3105.25" y="289.0" />
+      <point x="6837.588840690947" y="289.0" />
+      <point x="-64.22727272727252" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.InitializeGame" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="42.0" y="-48.5" />
+      <point x="1476.0" y="239.0" />
+      <point x="6766.22520432731" y="239.0" />
+      <point x="-135.590909090909" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_40.Controller" target="it.polimi.ingsw.GC_40.Observer">
+      <point x="0.0" y="-59.5" />
+      <point x="11938.06611341822" y="149.0" />
+      <point x="11401.46611341822" y="149.0" />
+      <point x="36.399999999999636" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeNewPlayer" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="-52.0" y="-59.5" />
+      <point x="11670.06611341822" y="229.0" />
+      <point x="7051.679749781855" y="229.0" />
+      <point x="149.8636363636365" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.PayStone" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="4430.5" y="4839.0" />
+      <point x="3528.1833333333334" y="4839.0" />
+      <point x="27.183333333333394" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeTerrBonus" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="13911.06611341822" y="239.0" />
+      <point x="16054.25530260741" y="239.0" />
+      <point x="-70.81081081080993" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainCharCardBonus" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="3196.5" y="4859.0" />
+      <point x="3489.3499999999995" y="4859.0" />
+      <point x="-11.650000000000091" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnMarket" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-76.25" y="-103.5" />
+      <point x="2843.1494320208094" y="3054.0" />
+      <point x="945.9166666666661" y="3054.0" />
+      <point x="-47.08333333333337" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeCouncilPalace" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeRound" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-59.5" />
+      <point x="15501.56611341822" y="309.0" />
+      <point x="16103.822870174976" y="309.0" />
+      <point x="-21.24324324324334" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeFaithPoint" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="13464.06611341822" y="219.0" />
+      <point x="16040.093140445246" y="219.0" />
+      <point x="-84.97297297297337" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeTerritoryCard" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="17837.06611341822" y="259.0" />
+      <point x="16181.71476206687" y="259.0" />
+      <point x="56.648648648648305" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.areas.HarvestAndProductionArea" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="0.0" y="-224.5" />
+      <point x="6759.566113418219" y="329.0" />
+      <point x="6894.679749781855" y="329.0" />
+      <point x="-7.136363636363512" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainResourceForCost" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-59.5" />
+      <point x="5143.5" y="4809.0" />
+      <point x="3551.4833333333336" y="4809.0" />
+      <point x="50.483333333333576" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnTowerDoubleCardHasPrivilege" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="116.75" y="-202.5" />
+      <point x="8387.06611341822" y="299.0" />
+      <point x="6951.770658872765" y="299.0" />
+      <point x="49.954545454545496" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeWood" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="18446.06611341822" y="229.0" />
+      <point x="16202.958005310113" y="229.0" />
+      <point x="77.89189189189165" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainWood" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="6067.0" y="4779.0" />
+      <point x="3574.783333333333" y="4779.0" />
+      <point x="73.7833333333333" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeNotApplicable" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="15709.06611341822" y="319.0" />
+      <point x="16110.90395125606" y="319.0" />
+      <point x="-14.162162162161621" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnProductionArea" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="81.25" y="-114.5" />
+      <point x="9134.56611341822" y="279.0" />
+      <point x="6980.316113418219" y="279.0" />
+      <point x="78.5" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeVentureCard" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="16947.06611341822" y="299.0" />
+      <point x="16153.390437742546" y="299.0" />
+      <point x="28.32432432432506" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnCouncilPalace" target="it.polimi.ingsw.GC_40.Observable">
+      <point x="76.25" y="-103.5" />
+      <point x="1498.3291656270612" y="3084.0" />
+      <point x="2066.5" y="3084.0" />
+      <point x="2066.5" y="259.0" />
+      <point x="6794.770658872765" y="259.0" />
+      <point x="-107.0454545454545" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeMilitaryPoint" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="18651.06611341822" y="219.0" />
+      <point x="16210.039086391193" y="219.0" />
+      <point x="84.97297297297337" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.HasPrivilege" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-37.0" />
+      <point x="3823.5" y="4859.0" />
+      <point x="3512.6499999999996" y="4859.0" />
+      <point x="11.650000000000091" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.areas.MarketListOfEffect" target="it.polimi.ingsw.cards.CreateListOfEffect">
+      <point x="0.0" y="-26.0" />
+      <point x="2997.0" y="5246.0" />
+      <point x="2255.6874999999995" y="5246.0" />
+      <point x="100.9375" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainHarvestValue" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="7032.0" y="4729.0" />
+      <point x="3613.616666666667" y="4729.0" />
+      <point x="112.61666666666679" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeEndGame" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-37.5" />
+      <point x="18852.066113418223" y="209.0" />
+      <point x="16217.120167472276" y="209.0" />
+      <point x="92.05405405405509" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeCharacterCard" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="15917.06611341822" y="329.0" />
+      <point x="16117.98503233714" y="329.0" />
+      <point x="-7.08108108108172" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeInitializeBoard" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-59.5" />
+      <point x="17386.56611341822" y="279.0" />
+      <point x="16167.552599904706" y="279.0" />
+      <point x="42.48648648648668" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.actions.PutRelativeOnCouncilPalace" target="it.polimi.ingsw.actions.PutRelative">
+      <point x="-76.25" y="-103.5" />
+      <point x="1345.8291656270612" y="3084.0" />
+      <point x="889.4166666666661" y="3084.0" />
+      <point x="-103.58333333333337" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.PayWood" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="6605.0" y="4749.0" />
+      <point x="3598.083333333333" y="4749.0" />
+      <point x="97.08333333333348" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GetCard" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-81.5" />
+      <point x="726.0" y="4759.0" />
+      <point x="3411.6833333333334" y="4759.0" />
+      <point x="-89.3166666666666" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeHarvestBonus" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="13687.06611341822" y="229.0" />
+      <point x="16047.17422152633" y="229.0" />
+      <point x="-77.89189189189165" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainResourceForCostAlternative" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-103.5" />
+      <point x="5774.5" y="4789.0" />
+      <point x="3567.0166666666664" y="4789.0" />
+      <point x="66.01666666666688" y="37.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeMarket" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-59.5" />
+      <point x="18240.06611341822" y="239.0" />
+      <point x="16195.876924229033" y="239.0" />
+      <point x="70.81081081081174" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.changes.ChangeTurnOrder" target="it.polimi.ingsw.changes.Change">
+      <point x="0.0" y="-48.5" />
+      <point x="13183.56611341822" y="209.0" />
+      <point x="16033.012059364166" y="209.0" />
+      <point x="-92.05405405405327" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.effects.GainStone" target="it.polimi.ingsw.effects.Effect">
+      <point x="0.0" y="-48.5" />
+      <point x="82.5" y="4729.0" />
+      <point x="3388.383333333333" y="4729.0" />
+      <point x="-112.61666666666679" y="37.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.43381598185290837" x="11079.847686850931" y="1510.1895831969882" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
