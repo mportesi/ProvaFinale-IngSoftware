@@ -28,7 +28,6 @@ import it.polimi.ingsw.changes.ChangeColor;
 import it.polimi.ingsw.changes.ChangeCouncilPalace;
 import it.polimi.ingsw.changes.ChangeEndGame;
 import it.polimi.ingsw.changes.ChangeInitializeBoard;
-import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
 import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeNumberOfPlayers;
