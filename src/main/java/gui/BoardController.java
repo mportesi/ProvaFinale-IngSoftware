@@ -3775,6 +3775,7 @@ public class BoardController {
 	public void setPlayerUpdate(ClientModel client2) {
 		if(client.getPlayer().getName().equals(client2.getPlayer().getName())){
 			this.client=client2;
+			setPlayer();
 		}
 			
 	}

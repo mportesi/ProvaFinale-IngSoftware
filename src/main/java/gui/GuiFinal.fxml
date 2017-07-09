@@ -187,7 +187,7 @@
             <Font name="Blackadder ITC" size="26.0" />
          </font>
       </Text>
-      <Text fill="#51210b" layoutX="1048.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.13671875">
+      <Text fx:id="periodFxml" fill="#51210b" layoutX="1048.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.13671875">
          <font>
             <Font name="Blackadder ITC" size="26.0" />
          </font>
