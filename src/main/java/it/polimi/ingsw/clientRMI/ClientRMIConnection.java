@@ -23,9 +23,7 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.GC_40.TimerAction;
-import it.polimi.ingsw.GC_40.TimerActionTry;
 import it.polimi.ingsw.actions.PutRelative;
-import it.polimi.ingsw.actions.ReconnectExit;
 import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.changes.Change;

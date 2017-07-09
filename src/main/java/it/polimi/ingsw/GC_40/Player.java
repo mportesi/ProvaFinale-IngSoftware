@@ -45,7 +45,6 @@ public class Player extends Observable<Change> implements Serializable {
 	private ArrayList<CharacterCard> characterCard;
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
-	private ArrayList<LeaderTile> leader;
 	private PersonalBonusTile personalBonusTileSimple;
 	private PersonalBonusTile personalBonusTileAdvcanced;
 	private Relative blackRelative;
@@ -93,7 +92,7 @@ public class Player extends Observable<Change> implements Serializable {
 	@Override
 	public String toString(){
 		return ("The player is\n " + "Name: " + name +  "\nColor: " + color + "\nCoin: " +coin + "\nWood: "+ wood +"\nStone: "+ stone + "\nServant: "+ servant + "\nFaithPoint: " + faithPoint + "\nMilitaryPoint: "+ militaryPoint + "\nVictoryPoint: "+ victoryPoint+ "\nTerritoryCard: " + territoryCard + "\nCharacterCard: "
-				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nLeaderTile: "+ leader + "\nThe active relative are: " +activeRelatives);
+				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard  + "\nThe active relative are: " +activeRelatives);
 	}
 	
 	public void removeRelative (Relative relative){
@@ -151,9 +150,7 @@ public class Player extends Observable<Change> implements Serializable {
 		return ventureCard;
 	}
 
-	public ArrayList<LeaderTile> getLeader() {
-		return leader;
-	}
+	
 
 	public void incrementCoin(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
