@@ -20,7 +20,10 @@ public class MarketBuildingTest {
 
 	@Test
 	public void testGetType() throws FileNotFoundException, IOException, ParseException {
-		MarketBuilding market=new MarketBuilding("market1", null, 0);
+		Map <String, Integer> bonusMap=new LinkedHashMap();
+		bonusMap.put("coin", 1);
+		MarketListOfEffect effect=new MarketListOfEffect(bonusMap);
+		MarketBuilding market=new MarketBuilding("market1", effect, 0);
 		assertEquals("market1", market.getType());
 	}
 
