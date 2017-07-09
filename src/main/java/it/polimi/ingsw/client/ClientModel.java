@@ -86,7 +86,7 @@ public class ClientModel implements Serializable {
 	public void setCurrentPlayer(Player currentPlayer) {
 		
 		this.currentPlayer = currentPlayer;
-		
+		if(!gui){
 		if(!socket){
 			// chiamo cli in un thread
 			// scatta timer thread a null
@@ -326,7 +326,7 @@ public class ClientModel implements Serializable {
 						
 					}
 					
-				
+		}
 }
 		
 		if(gui){
@@ -546,7 +546,7 @@ public class ClientModel implements Serializable {
 
 	public void actionNotApplicable() {
 		if(gui){
-			boardControllerGUI.actionNotApplicable();
+			boardControllerGUI.actionNotApplicable(this.player);
 		}
 		
 	}

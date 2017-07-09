@@ -357,7 +357,7 @@ public class BoardController {
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite1.png");
-
+		white.setVisible(false);
 	}
 
 	@FXML
@@ -403,7 +403,7 @@ public class BoardController {
 	public void chooseOrangeRelative() {
 		this.relative = client.getPlayer().getOrangeRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange1.png");
-		
+		orange.setVisible(false);
 	}
 
 	@FXML
@@ -411,7 +411,7 @@ public class BoardController {
 		relative = client.getPlayer().getBlackRelative();
 		System.out.println("The relative: " + relative);
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack1.png");
-	
+		black.setVisible(false);
 	}
 
 	@FXML
@@ -419,7 +419,7 @@ public class BoardController {
 		relative = client.getPlayer().getNeutralRelative();
 
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral1.png");
-	
+		neutral.setVisible(false);
 
 	}
 
@@ -1914,15 +1914,15 @@ public class BoardController {
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 						client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus, client.getMatch());
+				
+				//councilPalace.get(i).setImage(relativeImage);
+				setPlayer();
+				//i++;
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnCouncilPalace);}
 					else if(socketOut!=null){
 						socketOut.reset();
 						socketOut.writeObject(putRelativeOnCouncilPalace);}
-				councilPalace.get(i).setImage(relativeImage);
-				setPlayer();
-				i++;
-
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
@@ -2962,7 +2962,8 @@ public class BoardController {
 		characterTower1.setImage(characterImage1);
 
 	};
-
+	
+	@FXML
 	public void quit() {
 		try {
 			//serverStub.notifyObserver(new Quit(client.getPlayer(), client.getPlayer().getMatch()));
@@ -3005,6 +3006,7 @@ public class BoardController {
 		this.serverStub = serverStub;
 	}
 
+	@FXML
 	public void openMessage(String string) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(string));
@@ -3569,8 +3571,13 @@ public class BoardController {
 		else {
 			relativeColor = "RelativeNeutral";
 		}
-		Image councilPalaceImage = new Image("Images/" + player2 + relativeColor + "1.png");
-		councilPalace.get(i).setImage(councilPalaceImage);
+		
+		Image councilPalaceImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
+		while(councilPalace.get(i).getImage()!=null && !player2.getName().equals(client.getPlayer().getName())){
+			i++;
+		}
+		if(councilPalace.get(i).getImage()==null){
+		councilPalace.get(i).setImage(councilPalaceImage);}
 	}
 
 	public void setHarvestRightArea(Relative relative2) {
@@ -3601,7 +3608,7 @@ public class BoardController {
 			relativeColor = "RelativeNeutral";
 		}
 		Image harvestRightImage = new Image("Images/" + relative2.getPlayer().getColor() + relativeColor + "1.png");
-		while(harvestRight.get(j).getImage()!=null){
+		while(harvestRight.get(j).getImage()!=null && !(relative2.getPlayer().getName().equals(client.getPlayer().getName()))){
 			j++;
 		}
 		harvestRight.get(j).setImage(harvestRightImage);
@@ -3671,8 +3678,9 @@ public class BoardController {
 		}
 	}
 
-	public void actionNotApplicable() {
-		openMessage("ActionNotApplicable.fxml");
+	public void actionNotApplicable(Player player2) {
+		if(client.getPlayer().getName().equals(player2)){
+		openMessage("ActionNotApplicable.fxml");}
 	}
 	
 	
@@ -3744,8 +3752,13 @@ public class BoardController {
 	public void setDisconnected(Player player2) {
 		this.playerDisconnected = player2;
 		if(!client.getPlayer().equals(player2)){
-		openMessage("PlayerDisconnected.fxml");}
+		disconnect();}
 		else return;
+	}
+	
+	@FXML
+	public void disconnect(){
+		openMessage("PlayerDisconnected.fxml");
 	}
 
 	public void setSocketOut(ObjectOutputStream socketOut) {
