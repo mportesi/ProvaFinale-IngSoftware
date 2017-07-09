@@ -3304,6 +3304,7 @@ public class BoardController {
 		}
 	}
 	
+	@FXML
 	public void openCommand(String string) throws IOException{
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Command.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
