@@ -440,7 +440,9 @@ public class BoardController {
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage1);
 				territory++;
-				this.relative = null;}
+				this.relative = null;
+				doubleCard = false;
+				}
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
@@ -484,6 +486,7 @@ public class BoardController {
 				territoryCard.get(territory).setImage(territoryImage2);
 				territory++;
 				this.relative = null;
+				doubleCard = false;
 				}
 			} else {
 				openMessage("NotYorTurn.fxml");
@@ -531,6 +534,7 @@ public class BoardController {
 				territoryCard.get(territory).setImage(territoryImage3);
 				territory++;
 				this.relative = null;
+				doubleCard = false;
 				}
 			} else {
 				openMessage("NotYorTurn.fxml");
@@ -576,6 +580,7 @@ public class BoardController {
 				territoryCard.get(territory).setImage(territoryImage4);
 				territory++;
 				this.relative = null;
+				doubleCard = false;
 				}
 			} else {
 				openMessage("NotYorTurn.fxml");
@@ -620,7 +625,9 @@ public class BoardController {
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage1);
 				territory++;
-				this.relative = null;}
+				this.relative = null;
+				doubleCard = false;
+				}
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
@@ -663,7 +670,9 @@ public class BoardController {
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage2);
 				territory++;
-				this.relative = null;}
+				this.relative = null;
+				doubleCard = false;
+				}
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
@@ -705,7 +714,9 @@ public class BoardController {
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage3);
 				territory++;
-				this.relative = null;}
+				this.relative = null;
+				doubleCard = false;
+				}
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
@@ -746,7 +757,8 @@ public class BoardController {
 				setPlayer();
 				territoryCard.get(territory).setImage(territoryImage4);
 				territory++;
-				this.relative = null;}
+				this.relative = null;
+				doubleCard = false;}
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
@@ -797,8 +809,10 @@ public class BoardController {
 							buildingCard.get(building).setImage(buildingImage1);
 							building++;
 							this.relative = null;
-							}
+							doubleCard = false;
+						
 						}
+							
 
 						else {
 							openMessage("NotEnoughResourceMessage.fxml");
@@ -811,10 +825,12 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 
-			} else {
+			}
+				} else {
 				openMessage("NotYorTurn.fxml");
 
 			}
+			
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName()))
 
 			{
@@ -841,9 +857,9 @@ public class BoardController {
 									building++;
 									this.relative = null;
 								}
-								}
+								
 
-								else {
+						 else {
 									openMessage("NotEnoughResourceMessage.fxml");
 								}
 							} else {
@@ -859,16 +875,20 @@ public class BoardController {
 				} else {
 
 					openMessage("ChooseTheRelativeMessage.fxml");
-
+					
 				}
-
-			} else {
+				}
+			}
+			
+			
+			else {
 				openMessage("NotYorTurn.fxml");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	
+		}
 
 	@FXML
 	public void putRelativeOnBuilding2() {
@@ -895,7 +915,8 @@ public class BoardController {
 							buildingCard.get(building).setImage(buildingImage2);
 							building++;
 							this.relative = null;
-						}
+							doubleCard = false;
+						
 						}
 
 						else {
@@ -909,7 +930,8 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 
-			} else {
+			}
+			}else {
 				openMessage("NotYorTurn.fxml");
 
 			}
@@ -938,7 +960,7 @@ public class BoardController {
 									buildingCard.get(building).setImage(buildingImage2);
 									building++;
 									this.relative = null;
-								}
+								
 								}
 
 								else {
@@ -959,7 +981,9 @@ public class BoardController {
 					openMessage("ChooseTheRelativeMessage.fxml");
 
 				}
-			} else {
+			}
+			}
+			else {
 				openMessage("NotYorTurn.fxml");
 			}
 		} catch (Exception e) {
@@ -992,7 +1016,8 @@ public class BoardController {
 							buildingCard.get(building).setImage(buildingImage3);
 							building++;
 							this.relative = null;
-						}
+							doubleCard = false;
+						
 						}
 
 						else {
@@ -1006,7 +1031,9 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 
-			} else {
+			}
+			}
+			else {
 				openMessage("NotYorTurn.fxml");
 
 			}
@@ -1035,7 +1062,7 @@ public class BoardController {
 									buildingCard.get(building).setImage(buildingImage3);
 									building++;
 									this.relative = null;
-								}
+								
 								} else {
 									openMessage("NotEnoughtResourceMessage.fxml");
 								}
@@ -1054,7 +1081,9 @@ public class BoardController {
 					openMessage("ChooseTheRelativeMessage.fxml");
 
 				}
-			} else {
+			}
+			}
+			else {
 				openMessage("NotYorTurn.fxml");
 			}
 		} catch (Exception e) {
@@ -1087,7 +1116,8 @@ public class BoardController {
 							buildingCard.get(building).setImage(buildingImage4);
 							building++;
 							this.relative = null;
-						}
+							doubleCard = false;
+						
 						}
 
 						else {
@@ -1101,7 +1131,9 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 
-			} else {
+			}
+			}
+			else {
 				openMessage("NotYorTurn.fxml");
 
 			}
@@ -1130,7 +1162,7 @@ public class BoardController {
 									buildingCard.get(building).setImage(buildingImage4);
 									building++;
 									this.relative = null;
-								}
+								
 								} else {
 									openMessage("NotEnoughtResourceMessage.fxml");
 								}
@@ -1149,6 +1181,7 @@ public class BoardController {
 					openMessage("ChooseTheRelativeMessage.fxml");
 
 				}
+				}
 			} else {
 				openMessage("NotYorTurn.fxml");
 			}
@@ -1161,6 +1194,7 @@ public class BoardController {
 	public void putRelativeOnCharacter1() {
 		try {
 			boolean isPresentAnyone = false;
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 			if (doubleCard) {
 				if (client.getCharacterTower().getFloor(0).isFree()) {
 					if (client.getCharacterTower().isPresent(player) == false) {
@@ -1182,6 +1216,7 @@ public class BoardController {
 							characterCard.get(character).setImage(characterImage1);
 							character++;
 							this.relative = null;
+							doubleCard = false;
 						} else {
 							openMessage("NotEnoughtResourceMessage.fxml");
 						}
@@ -1193,6 +1228,11 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 			}
+			}
+				else {
+					openMessage("NotYorTurn.fxml");
+				}
+			
 
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (!doubleCard){
@@ -1254,6 +1294,7 @@ public class BoardController {
 	public void putRelativeOnCharacter2() {
 		try {
 			boolean isPresentAnyone = false;
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 			if (doubleCard) {
 				if (client.getCharacterTower().getFloor(1).isFree()) {
 
@@ -1276,6 +1317,7 @@ public class BoardController {
 							characterCard.get(character).setImage(characterImage2);
 							character++;
 							this.relative = null;
+							doubleCard = false;
 						} else {
 							openMessage("NotEnoughtResourceMessage.fxml");
 						}
@@ -1287,6 +1329,11 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 			}
+			}
+				else {
+					openMessage("NotYorTurn.fxml");
+				}
+			
 
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (!doubleCard){ 
@@ -1348,6 +1395,7 @@ public class BoardController {
 	public void putRelativeOnCharacter3() {
 		try {
 			boolean isPresentAnyone = false;
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 			if (doubleCard) {
 				if (client.getCharacterTower().getFloor(2).isFree()) {
 					if (client.getCharacterTower().isPresent(player) == false) {
@@ -1369,6 +1417,7 @@ public class BoardController {
 							characterCard.get(character).setImage(characterImage3);
 							character++;
 							this.relative = null;
+							doubleCard = false;
 						} else {
 							openMessage("NotEnoughtResourceMessage.fxml");
 						}
@@ -1380,6 +1429,11 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 			}
+			}
+			else {
+				openMessage("NotYorTurn.fxml");
+			}
+			
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (!doubleCard){
 				if (relative != null) {
@@ -1441,6 +1495,7 @@ public class BoardController {
 	public void putRelativeOnCharacter4() {
 		try {
 			boolean isPresentAnyone = false;
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 			if (doubleCard) {
 				if (client.getCharacterTower().getFloor(3).isFree()) {
 					if (client.getCharacterTower().isPresent(player) == false) {
@@ -1462,6 +1517,7 @@ public class BoardController {
 							characterCard.get(character).setImage(characterImage4);
 							character++;
 							this.relative = null;
+							doubleCard = false;
 						} else {
 							openMessage("NotEnoughtResourceMessage.fxml");
 						}
@@ -1473,6 +1529,11 @@ public class BoardController {
 					openMessage("SpaceOccupiedMessage.fxml");
 				}
 			}
+			}
+				else {
+					openMessage("NotYorTurn.fxml");
+				}
+			
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 				if (!doubleCard){
 				if (relative != null) {
@@ -1546,6 +1607,7 @@ public class BoardController {
 				ventureCard.get(venture).setImage(ventureImage1);
 				venture++;
 				this.relative = null;
+				doubleCard = false;
 				}
 			}
 
@@ -1595,6 +1657,7 @@ public class BoardController {
 				ventureCard.get(venture).setImage(ventureImage2);
 				venture++;
 				this.relative = null;
+				doubleCard = false;
 				}
 			}
 
@@ -1643,6 +1706,7 @@ public class BoardController {
 				ventureCard.get(venture).setImage(ventureImage3);
 				venture++;
 				this.relative = null;
+				doubleCard = false;
 				}
 			}
 
@@ -1688,6 +1752,7 @@ public class BoardController {
 				ventureCard.get(venture).setImage(ventureImage4);
 				venture++;
 				this.relative = null;
+				doubleCard = false;
 				}
 			}
 
@@ -2316,9 +2381,9 @@ public class BoardController {
 	public void openPrivilegeCouncilForTerritory1() {
 		try {
 			boolean isPresentAnyone = false;
-			if(!doubleCard){
+			
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
-				
+				if(!doubleCard){
 				if (relative != null) {
 					if (client.getTerritoryTower().getFloor(0).isFree()) {
 						if (relative.getValue() >= client.getTerritoryTower().getFloor(0).getCost()) {
@@ -2357,10 +2422,14 @@ public class BoardController {
 				} else {
 					openMessage("ChooseTheRelativeMessage.fxml");
 				}
-			} else {
+			}
+			}
+			else {
 				openMessage("NotYorTurn.fxml");
-			}}
-			else if(doubleCard){
+			}
+			
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			if(doubleCard){
 				if (client.getTerritoryTower().getFloor(0).isFree()) {
 					if (client.getTerritoryTower().isPresent(player) == false) {
 						if (client.getTerritoryTower().isPresentAnyone()) {
@@ -2383,9 +2452,14 @@ public class BoardController {
 							}
 				}
 			}
-		} }}catch (
-
-		Exception e) {
+				}
+		 }}
+			else {
+				openMessage("NotYorTurn.fxml");
+			}
+			}
+			
+			catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -3695,22 +3769,9 @@ public class BoardController {
 		}
 	}
 	
-	public void openCommand(String string){
-		try {
-			if(!client.getPlayer().equals(playerDisconnected)){
-			messageString=string;
-			openCommand2();}
-			else return;
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
 	
-	@FXML
-	public void openCommand2() throws IOException{
-		try{if(!client.getPlayer().equals(playerDisconnected)){
+	
+	
 	@FXML
 	public void openCommand(String string) throws IOException{
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Command.fxml"));
@@ -3721,11 +3782,8 @@ public class BoardController {
 		CommandController commandController = fxmlLoader.getController();
 		commandController.setBoardController(this);
 		commandController.setStage(stage);
-		commandController.set(messageString);}
-		else return;}
-		catch(IllegalStateException e){
-			return;
-		}
+		commandController.set(messageString);
+		
 	}
 	
 	public void ranking(ArrayList <Player> winners) throws IOException{
