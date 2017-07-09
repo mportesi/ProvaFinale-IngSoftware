@@ -50,7 +50,7 @@ public class MarketBuildingTest {
 	}
 
 	@Test
-	public void testGetCost() {
+	public void testGetCost() throws FileNotFoundException, IOException, ParseException {
 		Map <String, Integer> bonusMap=new LinkedHashMap();
 		bonusMap.put("coin", 1);
 		MarketListOfEffect effect=new MarketListOfEffect(bonusMap);
