@@ -123,7 +123,7 @@
   {
     "name":"militaryCampaign",
     "type":"ventureCard",
-    "period":2,
+    "period":1,
     "alternativeCostBoolean":0,
     "militaryRequirement":3,
     "militaryCost":2,
