@@ -366,7 +366,7 @@ public class BoardController {
 	public void chooseWhiteRelative() {
 		relative = client.getPlayer().getWhiteRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeWhite1.png");
-		white.setVisible(false);
+		
 	}
 
 	@FXML
@@ -396,7 +396,6 @@ public class BoardController {
 		try {
 			serverStub.notifyObserver(setServant);
 		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		setPlayer();
@@ -412,7 +411,6 @@ public class BoardController {
 	public void chooseOrangeRelative() {
 		this.relative = client.getPlayer().getOrangeRelative();
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeOrange1.png");
-		orange.setVisible(false);
 	}
 
 	@FXML
@@ -420,7 +418,7 @@ public class BoardController {
 		relative = client.getPlayer().getBlackRelative();
 		System.out.println("The relative: " + relative);
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeBlack1.png");
-		black.setVisible(false);
+
 	}
 
 	@FXML
@@ -428,7 +426,7 @@ public class BoardController {
 		relative = client.getPlayer().getNeutralRelative();
 
 		relativeImage = new Image("Images/" + client.getPlayer().getColor() + "RelativeNeutral1.png");
-		neutral.setVisible(false);
+	
 
 	}
 	
@@ -439,7 +437,6 @@ public class BoardController {
 	 * 
 	 *
 	 */
-	
 
 	@FXML
 	public void putRelativeOnTerritory1() {
@@ -3795,10 +3792,26 @@ public class BoardController {
 			addServant.setVisible(false);
 			switchTurn.setVisible(false);
 		} else {
-			black.setVisible(true);
-			white.setVisible(true);
-			orange.setVisible(true);
-			neutral.setVisible(true);
+			if(client.getPlayer().getBooleanRelative(client.getPlayer().getBlackRelative())){
+			black.setVisible(true);}
+			else{
+				black.setVisible(false);
+			}
+			if(client.getPlayer().getBooleanRelative(client.getPlayer().getWhiteRelative())){
+				white.setVisible(true);}
+				else{
+					white.setVisible(false);
+				}
+			if(client.getPlayer().getBooleanRelative(client.getPlayer().getOrangeRelative())){
+				orange.setVisible(true);}
+				else{
+					orange.setVisible(false);
+				}
+			if(client.getPlayer().getBooleanRelative(client.getPlayer().getNeutralRelative())){
+				neutral.setVisible(true);}
+				else{
+					neutral.setVisible(false);
+				}
 			addServant.setVisible(true);
 			switchTurn.setVisible(true);
 		}
@@ -3816,7 +3829,6 @@ public class BoardController {
 		try {
 			serverStub.notifyObserver(new Reconnect(client.getPlayer(), client.getMatch()));
 		} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -3870,10 +3882,6 @@ public class BoardController {
 		return name;
 	}
 
-		
-		//openMessage("Ranking.fxml");
-		
-	
 
 	public void setDisconnected(Player player2) {
 		this.playerDisconnected = player2;
@@ -3899,6 +3907,21 @@ public class BoardController {
 	public void setRound(int round) {
 		this.round=round;
 		roundFxml.setText("Round: " + round);
+		for(ImageView image: councilPalace){
+			image.setImage(null);
+		}
+		for(ImageView image: harvestRight){
+			image.setImage(null);
+		}
+		for(ImageView image: productionRight){
+			image.setImage(null);
+		}
+		market1.setImage(null);
+		market2.setImage(null);
+		market3.setImage(null);
+		market4.setImage(null);
+		harvestLeft.setImage(null);
+		productionLeft.setImage(null);
 	}
 
 	public void setPlayerUpdate(ClientModel client2) {
