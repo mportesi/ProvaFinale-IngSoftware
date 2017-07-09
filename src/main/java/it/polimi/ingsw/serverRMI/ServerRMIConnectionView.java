@@ -23,6 +23,11 @@ import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.server.Server;
 import it.polimi.ingsw.serverSocket.ServerView;
 
+/**
+ * @author Sara
+ * This is the server view for the rmi connection.
+ * It implements the observer because it receive the changes from the model.
+ */
 public class ServerRMIConnectionView extends ServerView implements ServerRMIConnectionViewRemote, Observer<Change> {
 
 	private volatile ArrayList<ClientRMIConnectionViewRemote> clients;
@@ -34,6 +39,10 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 		this.clients = new ArrayList<>();
 	}
 
+	/**
+	 * @author Sara
+	 * This method is necessary to register the client when he connects.
+	 */
 	@Override
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -44,7 +53,10 @@ public class ServerRMIConnectionView extends ServerView implements ServerRMIConn
 
 	}
 
-
+	/**
+	 * @author Sara
+	 *This method update every clients of the changes.
+	 */
 	@Override
 	public void update(Change change)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {

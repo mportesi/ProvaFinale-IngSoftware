@@ -19,6 +19,11 @@ import java.io.Serializable;
 import java.nio.channels.AlreadyBoundException;
 import java.rmi.NotBoundException;
 
+/**
+ * @author Sara
+ * It is the class that starts the client with the command line.
+ * It contains the method main that ask for the connection and start the chosen one.
+ */
 public class Client implements Serializable {
 	private Player player;
 	// private static ClientModel clientModel;

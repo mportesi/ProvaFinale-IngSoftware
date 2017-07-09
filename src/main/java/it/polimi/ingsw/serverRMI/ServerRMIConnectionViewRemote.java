@@ -13,6 +13,11 @@ import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 
+/**
+ * @author Sara
+ * This is the interface that is called when a client do an action.
+ * The class that implements this interface notify the observers what is the action to apply
+ */
 public interface ServerRMIConnectionViewRemote extends Remote {
 
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)

@@ -80,21 +80,6 @@ public class CommandLineInterface implements Serializable, Runnable {
 	public void input()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
-		/*JsonTimeOut jsonTimeOut = new JsonTimeOut();
-		JsonTimeOut jsonTimeOut = new JsonTimeOut();
-
-		int timeOutAction = jsonTimeOut.getTimeOutAction();
-		Timer timer = new Timer();
-		timer.schedule(new TimerAction(serverStub) { public void run() {
-			System.out.println("It ran out of time!");
-			//ShiftPlayer shiftPlayer = new ShiftPlayer(client.getPlayer().getMatch());
-			try {
-				esci();
-			} catch (NullPointerException | IOException | InterruptedException | org.json.simple.parser.ParseException e) {
-				e.printStackTrace();
-			}
-
-		}}, (long) timeOutAction); */
 		if(client.getCurrentPlayer().getName().equals(client.getPlayer().getName())){
 		System.out.println("Your status is: "+client.getPlayer());
 		System.out.println("\nChoose: 1)Do an action 2)Print the board 3)Quit \nIf you want to shift your turn press 0.");

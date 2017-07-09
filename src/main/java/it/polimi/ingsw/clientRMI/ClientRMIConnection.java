@@ -25,7 +25,6 @@ import it.polimi.ingsw.GC_40.Observer;
 import it.polimi.ingsw.GC_40.TimerAction;
 import it.polimi.ingsw.GC_40.TimerActionTry;
 import it.polimi.ingsw.actions.PutRelative;
-import it.polimi.ingsw.actions.ReconnectExit;
 import it.polimi.ingsw.actions.SetServant;
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.changes.Change;
@@ -34,7 +33,11 @@ import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.components.Relative;
 import it.polimi.ingsw.json.JsonTimeOut;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
-
+/**
+ * @author Sara
+ * It is the connection for RMI
+ * It starts the connection from client to server
+ */
 public class ClientRMIConnection implements Serializable {
 	private int RMI_PORT;
 	private String HOST;
@@ -49,7 +52,10 @@ public class ClientRMIConnection implements Serializable {
 		HOST = host;
 	}
 	
-
+	/**
+	 * @author Sara
+	 * When the client decide to use rmi this method is invoked
+	 */
 	public void startClient(boolean commandLine) throws RemoteException, NotBoundException, AlreadyBoundException, IOException,
 			NullPointerException, ParseException, InterruptedException {
 		
@@ -70,23 +76,7 @@ public class ClientRMIConnection implements Serializable {
 		rmiView = new ClientRMIConnectionView(clientModel);
 		String name;
 		if(commandLine){
-			/*System.out.println("If you want to reconnect press 1 else 0");{
-				switch(stdIn.nextInt()){
-				case(1):{
-					System.out.println("Insert number of your match");
-					int match= stdIn.nextInt();
-					System.out.println("\nTell me your name\n");
-					 name = stdIn.nextLine();
-					ReconnectExit reconnect= new ReconnectExit(match, name);
-					serverStub.notifyObserver(reconnect);
-					break;
-				}
-				default:{
-					System.out.println("\nTell me your name\n");
-					 name = stdIn.nextLine();
-				}
-				}
-			}*/
+		
 		clientModel.setCli(true);
 		clientModel.setGui(false);
 		System.out.println("\nTell me your name\n");
