@@ -6,7 +6,10 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * To set the end of the game on the client.
+ */
 public class ChangeEndGame implements Change {
 	private int match;
 	

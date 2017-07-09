@@ -5,7 +5,10 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
-
+/**
+ * @author Sara
+ * To modify the player's faith points on the client.
+ */
 public class ChangeFaithPoint implements Change {
 	private int faithPoint;
 	private Player player;

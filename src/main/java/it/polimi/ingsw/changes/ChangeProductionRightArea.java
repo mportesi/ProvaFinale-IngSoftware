@@ -8,7 +8,10 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To modify the updated right production area on the client.
+ */
 public class ChangeProductionRightArea implements Change {
 private Relative relative;
 	

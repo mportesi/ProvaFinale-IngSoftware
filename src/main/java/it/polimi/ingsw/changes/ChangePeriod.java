@@ -1,7 +1,10 @@
 package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * To set the period on the client.
+ */
 public class ChangePeriod implements Change {
 	private int period;
 	private int match;

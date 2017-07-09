@@ -12,7 +12,10 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 import it.polimi.ingsw.effects.HasPrivilege;
-
+/**
+ * @author Sara
+ * This is the subclass of the territory card
+ */
 public class TerritoryCard extends Card {
 	private TerritoryListOfEffect effects;
 	private TerritoryListOfEffect permanent;
@@ -30,7 +33,10 @@ public class TerritoryCard extends Card {
 		setGainPrivilegeCouncil();
 	}
 
-	// to apply immediate effects
+	/**
+	 * @author Sara
+	 * To apply immediate effects when a player takes the card
+	 */
 	@Override
 	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		for (Effect e : immediateEffects) {
@@ -41,6 +47,10 @@ public class TerritoryCard extends Card {
 		}
 	}
 	
+	/**
+	 * @author Sara
+	 * To apply the effect gain privilege is necessary to use another method that ask to the player what resource he wants.
+	 */
 	public void applyPrivilegeBonus(Play play,Player player, String resource) throws InterruptedException{
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);

@@ -2,7 +2,10 @@ package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * To set the current player on the client and to switch the turn.
+ */
 public class ChangePlayer implements Change {
 	private Player currentPlayer;
 	

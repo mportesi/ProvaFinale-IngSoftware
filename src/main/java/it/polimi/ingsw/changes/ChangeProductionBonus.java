@@ -10,7 +10,10 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
-
+/**
+ * @author Sara
+ * To modify the bonus due to the permanent effects on the client.
+ */
 public class ChangeProductionBonus implements Change {
 	
 	private int productionBonus;

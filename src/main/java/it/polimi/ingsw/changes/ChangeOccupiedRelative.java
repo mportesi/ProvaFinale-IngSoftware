@@ -8,7 +8,10 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To set on the player the relative that is already used.
+ */
 public class ChangeOccupiedRelative implements Change {
 	private Player player;
 	private Relative relative;

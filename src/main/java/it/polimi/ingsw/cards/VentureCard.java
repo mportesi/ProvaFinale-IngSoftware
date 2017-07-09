@@ -13,6 +13,11 @@ import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
 import it.polimi.ingsw.effects.HasPrivilege;
 
+/**
+ * @author Sara
+ * This is the subclass of the venture card.
+ * This has a difference from the other because it can have two different costs and the player can choose between the two.
+ */
 public class VentureCard extends Card {
 	private int alternativeCostBoolean;
 	private Map<String, Integer> cost;
@@ -61,6 +66,10 @@ public class VentureCard extends Card {
 		setGainPrivilegeCouncil();
 	};
 
+	/**
+	 * @author Sara
+	 * To pay the required resources when the card is taken by a player
+	 */
 	@Override
 	public void payCost(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (militaryRequirement == 0 && militaryCost == 0 || !payAlternativeCost) {
@@ -102,7 +111,10 @@ public class VentureCard extends Card {
 		else{ return (name + ":\n" + "The militaryRequirement is: " + militaryRequirement + " , the cost in military point is " + militaryCost+  " \nThe immediate effects are " + immediateEffects );}
 	}
 
-	// to apply immediate effects
+	/**
+	 * @author Sara
+	 * To apply immediate effects when a player takes the card
+	 */
 	@Override
 	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
@@ -114,6 +126,10 @@ public class VentureCard extends Card {
 		}
 	}
 	
+	/**
+	 * @author Sara
+	 * To apply the effect gain privilege is necessary to use another method that ask to the player what resource he wants.
+	 */
 	public void applyPrivilegeBonus(Play play, Player player, String resource) throws InterruptedException{
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
@@ -132,7 +148,10 @@ public class VentureCard extends Card {
 		}
 	}
 
-	
+	/**
+	 * @author Sara
+	 * To set if the player want to pay the military cost.
+	 */
 	public void chooseCost(boolean choice){
 		payAlternativeCost=choice;
 	}
@@ -190,7 +209,6 @@ public class VentureCard extends Card {
 	}
 
 	public int getVictory() {
-		// TODO Auto-generated method stub
 		return victoryPoint;
 	}
 }
