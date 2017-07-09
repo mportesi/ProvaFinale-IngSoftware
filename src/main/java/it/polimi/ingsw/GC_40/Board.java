@@ -31,6 +31,12 @@ import it.polimi.ingsw.json.JsonMarket;
 import it.polimi.ingsw.json.JsonPersonalBonusTiles;
 import it.polimi.ingsw.json.JsonPrivilegeCouncil;
 
+/**
+ * @author Chiara
+ * This class represents the board and its components.
+ *
+ */
+
 public class Board extends Observable<Change> implements Serializable {
 	private Tower territoryTower;
 	private Tower characterTower;
@@ -47,6 +53,11 @@ public class Board extends Observable<Change> implements Serializable {
 	private ArrayList<Card> deck;
 	private int numberOfPlayers;
 	
+	/**
+	 * @author Chiara
+	 * In the constructor allt the components are initialized.
+	 *
+	 */
 
 	public Board(Play play, int numberOfPlayers)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {

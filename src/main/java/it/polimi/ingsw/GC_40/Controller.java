@@ -10,6 +10,11 @@ import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.changes.*;
 
+/**
+ * @author Chiara
+ * This class represents the controller of the game. It is an observer, and when it is notified of an action it updates it.
+ *
+ */
 
 public class Controller implements Observer<Action> {
 	

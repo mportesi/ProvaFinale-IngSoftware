@@ -50,6 +50,12 @@ import it.polimi.ingsw.json.JsonFinalVictoryPoint;
 import it.polimi.ingsw.json.JsonPersonalBonusTiles;
 import it.polimi.ingsw.json.JsonTimeOut;
 
+/**
+ * @author Chiara
+ * This class represents the play and has all the methods to manage the game.
+ *
+ */
+
 public class Play extends Observable<Change> implements Observer<Change>, Serializable {
 	private ArrayList<Player> players;
 	private ArrayList <Player> disconnectedPlayers;
@@ -65,7 +71,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	private int match;
 	private boolean initializing;
 	
-	// costruttore
+	
 	public Play(int match) throws FileNotFoundException, NullPointerException, IOException, ParseException {
 		this.players = new ArrayList<Player>();
 		this.disconnectedPlayers = new ArrayList <Player>();
@@ -73,6 +79,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.initializing = true;
 	}
 
+	/**
+	 * @author Chiara
+	 * This method initializes the board when the game starts and when the turn or the period changes.
+	 * All the players will be notified that the board has changed.
+	 */
+	
 	public void initializeBoard(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.board = new Board(this, players.size());
@@ -89,6 +101,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		
 
 	}
+	
+	/**
+	 * @author Chiara
+	 * This method gives the starting coins to all players.
+	 *
+	 */
 
 	public void giveStartingCoin(ArrayList<Player> currentTurnOrder)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -102,6 +120,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
+	/**
+	 * @author Chiara
+	 * This method initializes all the players with a color and the resources, and create a currentTurnOrder.
+	 *
+	 */
+	
 	public void initializePlayer(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
@@ -132,12 +156,19 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		giveStartingCoin(currentTurnOrder);
 	}
 
+	
 	public static ArrayList<Player> createTurnOrder(ArrayList<Player> players) {
 		Collections.shuffle(players);
 		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder(players);
 		return players;
 	}
 
+	/**
+	 * @author Chiara
+	 * This method changes the turn order.
+	 *
+	 */
+	
 	public void changeTurnOrder()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 
@@ -162,37 +193,15 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder(currentTurnOrder);
 		this.notifyObserver(changeTurnOrder);
 		
-		/*for (Player player : currentTurnOrder){
-		currentTurnOrder2.add(player);
-		}
 		
-		
-		
-		for (Player checkedPlayer : councilPalaceOrder) {
-			nextTurnOrder.add(checkedPlayer);
-
-			for (Player nowPlayer : currentTurnOrder2) {
-				if (nowPlayer.equals(checkedPlayer)) {
-					currentTurnOrder.remove(nowPlayer);
-				}
-
-			}
-
-		}
-
-		for (Player p : currentTurnOrder) {
-			nextTurnOrder.add(p);
-		}
-		currentTurnOrder.clear();
-		currentTurnOrder.addAll(nextTurnOrder);
-		nextTurnOrder.clear();
-
-		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder(currentTurnOrder);
-
-		this.notifyObserver(changeTurnOrder);
-	}*/
 	}
 
+	/**
+	 * @author Chiara
+	 * This method changes the currentPlayer and invokes the change of the round.
+	 *
+	 */
+	
 	public synchronized void changeCurrentPlayer()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		int i = 0;
@@ -222,6 +231,13 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		this.notifyObserver(changePlayer);
 	}
 
+	
+	/**
+	 * @author Chiara
+	 * This method changes the round and the period.
+	 *
+	 */
+	
 	public synchronized void changeRound()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
@@ -286,6 +302,13 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
+	
+	/**
+	 * @author Chiara
+	 * This method sorted all players in base of their military points.
+	 *
+	 */
+	
 	public static ArrayList<Player> militaryPointRank(ArrayList<Player> players) {
 		ArrayList<Player> ordinata = new ArrayList<>();
 		ordinata.addAll(players);
@@ -300,6 +323,13 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		return ordinata;
 	}
 
+	
+	/**
+	 * @author Chiara
+	 * This method gives the final victory points to all the players.
+	 *
+	 */
+	
 	public void giveFinalPoint()
 			throws FileNotFoundException, IOException, ParseException, NullPointerException, InterruptedException {
 		JsonFinalVictoryPoint finalVictoryPoint = new JsonFinalVictoryPoint();
@@ -397,17 +427,26 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 	}
 
+	/**
+	 * @author Chiara
+	 * This method ends the game.
+	 *
+	 */
+	
 	public void endGame() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		ChangeEndGame changeEndGame= new ChangeEndGame(match);
-		// restituisce la classifica e il vincitore
 		notifyObserver(changeEndGame);
 	}
 
+	/**
+	 * @author Chiara
+	 * This method checks who is the winner.
+	 *
+	 */
+	
 	public void checkWinner()
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		System.out.println("Sono nel checkWinner()");
-	/*	ChangeEndGame changeEndGame = new ChangeEndGame(match);
-		notifyObserver(changeEndGame);*/
+	
 		ArrayList<Player> winners = new ArrayList<Player>();
 		int max = 0;
 		giveFinalPoint();
@@ -430,6 +469,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.notifyObserver(c);
 	}
+	
+	/**
+	 * @author Chiara
+	 * This method create a new player.
+	 *
+	 */
 
 	public void createNewPlayer(String name, int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -461,34 +506,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	}
 
-	/*
-	 * private void verifyNumberOfPlayer(String name) throws
-	 * FileNotFoundException, NullPointerException, IOException, ParseException,
-	 * InterruptedException { if (players.size() == 2 && players.size() < 4) {
-	 * 
-	 * 
-	 * /* Timer timer = new Timer(); timer.schedule(new TimerTask() {
-	 * 
-	 * @Override public void run() {
-	 * 
-	 * System.out.println("sono entrato nel run"); try {
-	 * 
-	 * initializePlay();
-	 * 
-	 * }
-	 * 
-	 * catch (NullPointerException | IOException | ParseException e) {
-	 * 
-	 * } catch (InterruptedException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * }
-	 * 
-	 * }, 10 * 1000); // TODO IMPORTARE DA JSON }}
+	/**
+	 * @author Chiara
+	 * This method initializes the play.
+	 *
 	 */
-
-	// else if(players.size()==4)
-
+	
 	private void initializePlay(int match)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		this.initializing = false;
@@ -496,8 +519,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		initializeBoard(match);
 		ChangeTurnOrder changeTurnOrder = new ChangeTurnOrder (currentTurnOrder);
 		this.notifyObserver(changeTurnOrder);
-		/*ChangeInitializePlay changeInitializePlay = new ChangeInitializePlay(players.size());
-		this.notifyObserver(changeInitializePlay);*/
+		
 	}
 
 	public Board getBoard() {
@@ -512,6 +534,12 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		return players;
 	}
 
+	/**
+	 * @author Chiara
+	 * This method manages the disconnection of a player.
+	 *
+	 */
+	
 	public void removePlayer(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		Player playerToRemove=null;
 		
@@ -549,15 +577,21 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 	}
 
 	public ArrayList <Player> getDisconnectedPlayers() {
-		// TODO Auto-generated method stub
+	
 		return disconnectedPlayers;
 	}
 
 	public ArrayList<Player> getCurrentTurnOrder() {
-		// TODO Auto-generated method stub
+		
 		return currentTurnOrder;
 	}
 
+	/**
+	 * @author Chiara
+	 * This method reconnects a player.
+	 *
+	 */
+	
 	public void reconnect(Player player) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		players.add(player);
 		disconnectedPlayers.remove(player);
@@ -566,13 +600,13 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		try {
 			notifyObserver(changeCurrentTurnOrder);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		
