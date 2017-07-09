@@ -175,7 +175,7 @@ public class BoardController {
 
 	@FXML
 	private Button councilPalaceButton;
-
+	
 	@FXML
 	private ImageView productionRight1;
 
@@ -234,7 +234,10 @@ public class BoardController {
 	private Button orange;
 	@FXML
 	private Button black;
-
+	@FXML
+	private Button harvestRightButton;
+	@FXML
+	private Button productionRightButton;
 	@FXML
 	private ImageView territory1;
 	@FXML
@@ -289,6 +292,10 @@ public class BoardController {
 
 	@FXML
 	private ImageView territoryTower1;
+	@FXML
+	private ImageView harvestFxml;
+	@FXML
+	private ImageView productionFxml;
 	@FXML
 	private ImageView territoryTower2;
 	@FXML
@@ -3056,6 +3063,17 @@ public class BoardController {
 		characterTower3.setImage(characterImage3);
 		characterTower2.setImage(characterImage2);
 		characterTower1.setImage(characterImage1);
+		
+		if(client.getBoard().getNumberOfPlayers()<4 && client.getBoard().getNumberOfPlayers()>=3){
+			Image marketCover= new Image("Images/marketCover.png");
+			market4.setImage(marketCover);
+			market3.setImage(marketCover);
+		}
+		if(client.getBoard().getNumberOfPlayers()>=3){
+			Image areaCover= new Image("Images/areaCover.png");
+			harvestFxml.setImage(areaCover);
+			productionFxml.setImage(areaCover);
+		}
 
 	};
 	
@@ -3910,16 +3928,18 @@ public class BoardController {
 		for(ImageView image: councilPalace){
 			image.setImage(null);
 		}
+		if(client.getBoard().getNumberOfPlayers()>=3){
 		for(ImageView image: harvestRight){
 			image.setImage(null);
 		}
 		for(ImageView image: productionRight){
 			image.setImage(null);
-		}
+		}}
 		market1.setImage(null);
 		market2.setImage(null);
+		if(client.getBoard().getNumberOfPlayers()==4){
 		market3.setImage(null);
-		market4.setImage(null);
+		market4.setImage(null);}
 		harvestLeft.setImage(null);
 		productionLeft.setImage(null);
 	}
