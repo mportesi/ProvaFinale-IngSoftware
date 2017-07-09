@@ -410,7 +410,6 @@ public class ClientModel implements Serializable {
 	public void setWinners(ArrayList<Player> winners) throws IOException {
 		this.winners = winners;
 		boardControllerGUI.ranking(winners);
-		
 	}
 
 	

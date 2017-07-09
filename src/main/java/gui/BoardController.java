@@ -105,6 +105,7 @@ public class BoardController {
 	private Image ventureImage4;
 	private boolean doubleCard;
 	private int firstTower;
+	private String messageString;
 	@FXML
 	private Button switchTurn;
 	@FXML
@@ -333,6 +334,7 @@ public class BoardController {
 	
 	@FXML
 	private Text ranking;
+	private Player playerDisconnected;
 	
 	   
 	
@@ -3304,7 +3306,22 @@ public class BoardController {
 		}
 	}
 	
-	public void openCommand(String string) throws IOException{
+	public void openCommand(String string){
+		try {
+			if(!client.getPlayer().equals(playerDisconnected)){
+			messageString=string;
+			openCommand2();}
+			else return;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	public void openCommand2() throws IOException{
+		try{if(!client.getPlayer().equals(playerDisconnected)){
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Command.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 		Stage stage = new Stage();
@@ -3313,13 +3330,19 @@ public class BoardController {
 		CommandController commandController = fxmlLoader.getController();
 		commandController.setBoardController(this);
 		commandController.setStage(stage);
-		commandController.set(string);
+		commandController.set(messageString);}
+		else return;}
+		catch(IllegalStateException e){
+			return;
+		}
 	}
 	
 	public void ranking(ArrayList <Player> winners) throws IOException{
 	
 		String string = "The winners are " + printWinner(winners);
-		openCommand(string);
+		if(!client.getPlayer().equals(playerDisconnected)){
+		openCommand(string);}
+		else return;
 
 	}
 	
@@ -3340,7 +3363,10 @@ public class BoardController {
 	
 
 	public void setDisconnected(Player player2) {
-		openMessage("PlayerDisconnected.fxml");
+		this.playerDisconnected = player2;
+		if(!client.getPlayer().equals(player2)){
+		openMessage("PlayerDisconnected.fxml");}
+		else return;
 	}
 	
 
