@@ -3142,7 +3142,6 @@ public class BoardController {
 
 	@FXML
 	public void setPlayer() {
-
 		String value;
 		value = String.valueOf(client.getPlayer().getCoin());
 		coin.setText(value);
@@ -3158,6 +3157,7 @@ public class BoardController {
 		militaryPoint.setText(value);
 		value = String.valueOf(client.getPlayer().getVictoryPoint());
 		victoryPoint.setText(value);
+		
 	}
 
 	public void setCurrentTurnOrder() {
@@ -3770,6 +3770,13 @@ public class BoardController {
 	public void setRound(int round) {
 		this.round=round;
 		roundFxml.setText("Round: " + round);
+	}
+
+	public void setPlayerUpdate(ClientModel client2) {
+		if(client.getPlayer().getName().equals(client2.getPlayer().getName())){
+			this.client=client2;
+		}
+			
 	}
 	
 
