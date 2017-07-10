@@ -43,7 +43,7 @@ public class CommandLineInterface implements Serializable, Runnable {
 
 	private BufferedReader in;
 	private ClientModel client;
-	private ServerRMIConnectionViewRemote serverStub;
+	private transient ServerRMIConnectionViewRemote serverStub;
 	private Timer timer;
 	private ObjectOutputStream socketOut;
 	
