@@ -46,12 +46,15 @@ public class BuildingCard extends Card {
 			switch(key){
 			case "coin":{
 				player.decrementCoin(cost.get(key), play);
+				break;
 			}
 			case "wood":{
 				player.decrementWood(cost.get(key), play);
+				break;
 			}
 			case "stone":{
 				player.decrementStone(cost.get(key), play);
+				break;
 			}
 			}
 		}

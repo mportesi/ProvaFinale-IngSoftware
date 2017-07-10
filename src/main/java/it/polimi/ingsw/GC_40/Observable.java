@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.changes.Change;
+
 public abstract class Observable<C> {
 	private List<Observer<C>> observers;
 	
@@ -33,6 +35,9 @@ public abstract class Observable<C> {
 		}
 	}
 	
-	
+	public List<Observer<C>> getObserver(){
+		return observers;
+		
+	}
 
 }

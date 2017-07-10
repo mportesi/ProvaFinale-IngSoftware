@@ -49,6 +49,7 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.json.JsonFinalVictoryPoint;
 import it.polimi.ingsw.json.JsonPersonalBonusTiles;
 import it.polimi.ingsw.json.JsonTimeOut;
+import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
 
 /**
  * @author Chiara
@@ -615,6 +616,15 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 
 	public int getMatch() {
 		return match;
+	}
+
+	public boolean isPresentObserver(ServerRMIConnectionView serverView){
+		for(Observer<Change> observer:getObserver()){
+			if(observer.equals(serverView)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 
