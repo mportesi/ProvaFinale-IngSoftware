@@ -499,7 +499,7 @@ public class Play extends Observable<Change> implements Observer<Change>, Serial
 		}
 		if (players.size() == 2) {
 			if(players.size()!=4){
-			Thread.sleep((long) timeOutStartPlay *1000);
+			Thread.sleep((long) timeOutStartPlay *100);
 			System.out.println("E' scaduto il timeout!");}
 			initializePlay(match);
 		}

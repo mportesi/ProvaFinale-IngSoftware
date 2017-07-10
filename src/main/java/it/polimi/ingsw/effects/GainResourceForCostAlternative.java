@@ -34,7 +34,22 @@ public class GainResourceForCostAlternative extends Effect{
 	@Override
 	public void apply(Player player, Play play)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// TODO Auto-generated method stub
+		if(alternative==false){
+			for(Effect pay:payEffect){
+				pay.apply(player, play);
+			}
+			for(Effect gain:gainEffect){
+				gain.apply(player, play);
+			}
+		}
+		else if(alternative==true){
+			for(Effect pay:payEffectAlt){
+				pay.apply(player, play);
+			}
+			for(Effect gain:gainEffectAlt){
+				gain.apply(player, play);
+			}
+		}
 		
 	}
 	
