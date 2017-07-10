@@ -16,137 +16,202 @@ public class PlayerTest {
 
 	@Test
 	public void testRemoveRelative() {
-		fail("Not yet implemented");
+		Player player=new Player(null, null, "test", 0);
+		Relative relativeB=new Relative(ColorDice.BLACK, player);
+		Relative relativeW=new Relative(ColorDice.WHITE, player);
+		Relative relativeO=new Relative(ColorDice.ORANGE, player);
+		Relative relativeN=new Relative(null, player);
+		player.removeRelative(relativeB);
+		player.removeRelative(relativeW);
+		player.removeRelative(relativeO);
+		player.removeRelative(relativeN);
+		assertEquals(0, player.getActiveRelatives().size());
 	}
 
 	@Test
-	public void testResourceCounter() {
-		fail("Not yet implemented");
+	public void testResourceCounter() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementCoin(1, play);
+		player.incrementWood(1, play);
+		player.incrementStone(1, play);
+		player.incrementServant(1, play);
+		assertEquals(4,player.resourceCounter());
 	}
 
 	@Test
-	public void testGetCoin() {
-		fail("Not yet implemented");
+	public void testGetCoin() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementCoin(1, play);
+		assertEquals(1,player.getCoin());
 	}
 
 	@Test
-	public void testGetWood() {
-		fail("Not yet implemented");
+	public void testGetWood() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementWood(1, play);
+		assertEquals(1,player.getWood());
 	}
 
 	@Test
-	public void testGetStone() {
-		fail("Not yet implemented");
+	public void testGetStone() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementStone(1, play);
+		assertEquals(1,player.getStone());
 	}
 
 	@Test
-	public void testGetServant() {
-		fail("Not yet implemented");
+	public void testGetServant() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementServant(1, play);
+		assertEquals(1,player.getServant());
 	}
 
 	@Test
 	public void testGetColor() {
-		fail("Not yet implemented");
+		Player player=new Player(null, null, "test", 0);
+		player.setColor(ColorPlayer.BLUE);
+		assertEquals(ColorPlayer.BLUE,player.getColor());
 	}
 
 	@Test
-	public void testGetFaithPoint() {
-		fail("Not yet implemented");
+	public void testGetFaithPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementFaithPoint(1, play);
+		assertEquals(1,player.getFaithPoint());
 	}
 
 	@Test
-	public void testGetVictoryPoint() {
-		fail("Not yet implemented");
+	public void testGetVictoryPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementVictoryPoint(1, play);
+		assertEquals(1,player.getVictoryPoint());
 	}
 
 	@Test
-	public void testGetMilitaryPoint() {
-		fail("Not yet implemented");
+	public void testGetMilitaryPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementMilitaryPoint(1, play);
+		player.decrementMilitaryPoint(1, play);
+		assertEquals(0,player.getMilitaryPoint());
 	}
 
 	@Test
-	public void testGetTerritory() {
-		fail("Not yet implemented");
+	public void testIncrementCoin() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementCoin(1, play);
+		assertEquals(1,player.getCoin());
 	}
 
 	@Test
-	public void testGetCharacter() {
-		fail("Not yet implemented");
+	public void testDecrementCoin() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementCoin(1, play);
+		player.decrementCoin(1, play);
+		assertEquals(0,player.getCoin());
 	}
 
 	@Test
-	public void testGetBuilding() {
-		fail("Not yet implemented");
+	public void testIncrementWood() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementWood(1, play);
+		assertEquals(1,player.getWood());
 	}
 
 	@Test
-	public void testGetVenture() {
-		fail("Not yet implemented");
+	public void testDecrementWood() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementWood(1, play);
+		player.decrementWood(1, play);
+		assertEquals(0,player.getWood());
 	}
 
 	@Test
-	public void testIncrementCoin() {
-		fail("Not yet implemented");
+	public void testIncrementStone() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementStone(1, play);
+		assertEquals(1,player.getStone());
 	}
 
 	@Test
-	public void testDecrementCoin() {
-		fail("Not yet implemented");
+	public void testDecrementStone() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementStone(1, play);
+		player.decrementStone(1, play);
+		assertEquals(0,player.getStone());
 	}
 
 	@Test
-	public void testIncrementWood() {
-		fail("Not yet implemented");
+	public void testIncrementServant() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementServant(1, play);
+		assertEquals(1,player.getServant());
 	}
 
 	@Test
-	public void testDecrementWood() {
-		fail("Not yet implemented");
+	public void testDecrementServant() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementServant(1, play);
+		player.decrementServant(1, play);
+		assertEquals(0,player.getServant());
 	}
 
 	@Test
-	public void testIncrementStone() {
-		fail("Not yet implemented");
+	public void testIncrementMilitaryPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementMilitaryPoint(1, play);
+		player.decrementMilitaryPoint(1, play);
+		assertEquals(0,player.getMilitaryPoint());
 	}
 
 	@Test
-	public void testDecrementStone() {
-		fail("Not yet implemented");
+	public void testDecrementMilitaryPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementMilitaryPoint(1, play);
+		player.decrementMilitaryPoint(1, play);
+		assertEquals(0,player.getMilitaryPoint());
 	}
 
 	@Test
-	public void testIncrementServant() {
-		fail("Not yet implemented");
+	public void testIncrementFaithPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementFaithPoint(1, play);
+		assertEquals(1,player.getFaithPoint());
 	}
 
 	@Test
-	public void testDecrementServant() {
-		fail("Not yet implemented");
+	public void testDecrementFaithPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementFaithPoint(1, play);
+		player.decrementFaithPoint(1, play);
+		assertEquals(0,player.getFaithPoint());
 	}
 
 	@Test
-	public void testIncrementMilitaryPoint() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDecrementMilitaryPoint() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIncrementFaithPoint() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDecrementFaithPoint() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIncrementVictoryPoint() {
-		fail("Not yet implemented");
+	public void testIncrementVictoryPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementVictoryPoint(1, play);
+		assertEquals(1,player.getVictoryPoint());
 	}
 
 	@Test
@@ -284,97 +349,146 @@ public class PlayerTest {
 
 	@Test
 	public void testGetRelative() {
-		fail("Not yet implemented");
+		Player player=new Player(null, null, "test",0);
+		assertEquals(ColorDice.BLACK,player.getBlackRelative().getColor());
 	}
 
 	@Test
-	public void testGetCharCardBonus() {
-		fail("Not yet implemented");
+	public void testGetCharCardBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addCharCardBonus(1,play);
+		assertEquals(1,player.getCharCardBonus());
 	}
 
 	@Test
-	public void testAddCharCardBonus() {
-		fail("Not yet implemented");
+	public void testAddCharCardBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addCharCardBonus(1,play);
+		assertEquals(1,player.getCharCardBonus());
 	}
 
 	@Test
 	public void testSetCharCardBonus() {
-		fail("Not yet implemented");
+		Player player=new Player(null, null, "test", 0);
+		player.setCharCardBonus(1);
+		assertEquals(1,player.getCharCardBonus());
 	}
 
 	@Test
-	public void testGetBuildCardBonus() {
-		fail("Not yet implemented");
+	public void testGetBuildCardBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addBuildCardBonus(1,play);
+		assertEquals(1,player.getBuildCardBonus());
 	}
 
 	@Test
-	public void testAddBuildCardBonus() {
-		fail("Not yet implemented");
+	public void testAddBuildCardBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addBuildCardBonus(1,play);
+		assertEquals(1,player.getBuildCardBonus());
 	}
 
 	@Test
 	public void testSetBuildCardBonus() {
-		fail("Not yet implemented");
+		Player player=new Player(null, null, "test", 0);
+		player.setBuildCardBonus(1);
+		assertEquals(1,player.getBuildCardBonus());
 	}
 
 	@Test
-	public void testGetVentCardBonus() {
-		fail("Not yet implemented");
+	public void testGetVentCardBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addVentCardBonus(1,play);
+		assertEquals(1,player.getVentCardBonus());
 	}
 
 	@Test
-	public void testAddVentCardBonus() {
-		fail("Not yet implemented");
+	public void testAddVentCardBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addVentCardBonus(1,play);
+		assertEquals(1,player.getVentCardBonus());
 	}
 
 	@Test
 	public void testSetVentCardBonus() {
-		fail("Not yet implemented");
+		Player player=new Player(null, null, "test", 0);
+		player.setVentCardBonus(1);
+		assertEquals(1,player.getVentCardBonus());
 	}
 
 	@Test
-	public void testGetTerrCardBonus() {
-		fail("Not yet implemented");
+	public void testGetTerrCardBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addTerrCardBonus(1,play);
+		assertEquals(1,player.getTerrCardBonus());
 	}
 
 	@Test
-	public void testAddTerrCardBonus() {
-		fail("Not yet implemented");
+	public void testAddTerrCardBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addTerrCardBonus(1,play);
+		assertEquals(1,player.getTerrCardBonus());
 	}
 
 	@Test
 	public void testSetTerrCardBonus() {
-		fail("Not yet implemented");
+		Player player=new Player(null, null, "test", 0);
+		player.setTerrCardBonus(1);
+		assertEquals(1,player.getTerrCardBonus());
 	}
 
 	@Test
-	public void testGetProductionBonus() {
-		fail("Not yet implemented");
+	public void testGetProductionBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addProductionBonus(1,play);
+		assertEquals(1,player.getProductionBonus());
 	}
 
 	@Test
-	public void testAddProductionBonus() {
-		fail("Not yet implemented");
+	public void testAddProductionBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addProductionBonus(1,play);
+		assertEquals(1,player.getProductionBonus());
 	}
 
 	@Test
 	public void testSetProductionBonus() {
-		fail("Not yet implemented");
+		Player player=new Player(null, null, "test", 0);
+		player.setProductionBonus(1);
+		assertEquals(1,player.getProductionBonus());
 	}
 
 	@Test
-	public void testGetHarvestBonus() {
-		fail("Not yet implemented");
+	public void testGetHarvestBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addHarvestBonus(1,play);
+		assertEquals(1,player.getHarvestBonus());
 	}
 
 	@Test
-	public void testAddHarvestBonus() {
-		fail("Not yet implemented");
+	public void testAddHarvestBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.addHarvestBonus(1,play);
+		assertEquals(1,player.getHarvestBonus());
 	}
 
 	@Test
-	public void testSetHarvestBonus() {
-		fail("Not yet implemented");
+	public void testSetHarvestBonus() throws FileNotFoundException, NullPointerException, IOException, ParseException {
+		Player player=new Player(null, null, "test", 0);
+		player.setHarvestBonus(1);
+		assertEquals(1,player.getHarvestBonus());
 	}
 
 }
