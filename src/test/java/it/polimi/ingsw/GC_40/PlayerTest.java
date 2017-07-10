@@ -183,8 +183,8 @@ public class PlayerTest {
 	@Test
 	public void testSetStone() {
 		Player player=new Player(null, null, "test", 0);
-		player.setStonePoint(1);
-		assertEquals(1,player.getStonePoint());
+		player.setStone(1);
+		assertEquals(1,player.getStone());
 	}
 
 	@Test
