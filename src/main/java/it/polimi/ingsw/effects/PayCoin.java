@@ -36,5 +36,9 @@ public class PayCoin extends Effect{
 			return false;
 		}
 	}
+	@Override
+	public String toString(){
+		return (" Pay " + coin + " coin"  );
+	}
 
 }

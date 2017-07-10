@@ -37,5 +37,9 @@ public class PayStone extends Effect{
 			return false;
 		}
 	}
+	@Override
+	public String toString(){
+		return (" Pay " + stone + " stone"  );
+	}
 
 }

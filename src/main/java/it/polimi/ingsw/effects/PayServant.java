@@ -38,4 +38,8 @@ public class PayServant extends Effect{
 			return false;
 		}
 	}
+	@Override
+	public String toString(){
+		return (" Pay " + servant + " servant"  );
+	}
 }

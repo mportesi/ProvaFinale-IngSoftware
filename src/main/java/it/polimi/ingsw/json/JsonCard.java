@@ -48,6 +48,7 @@ public class JsonCard {
 					String type = (String) card.get("type");
 					int period = ((Long) card.get("period")).intValue();
 					String name = (String) card.get("name");
+					int permanentCost = ((Long) card.get("permanentCost")).intValue();
 
 					JSONArray costOfBuilding = (JSONArray) buildingParser.parse(card.get("cost").toString());
 
@@ -84,7 +85,7 @@ public class JsonCard {
 					
 					BuildingListOfEffect immediate= new BuildingListOfEffect(immediateEffectMap);
 					BuildingListOfPermanentEffect permanent=new BuildingListOfPermanentEffect(permanentEffectMap, permanentEffectType);
-					Card c = new BuildingCard(type, name, period, costMap, immediate, permanent);
+					Card c = new BuildingCard(type, name, period, costMap, immediate, permanent,permanentCost);
 
 					buildingDeck.add(c);
 				}
@@ -99,6 +100,7 @@ public class JsonCard {
 					String type = (String) card.get("type");
 					int period = ((Long) card.get("period")).intValue();
 					String name = (String) card.get("name");
+					int permanentCost = ((Long) card.get("permanentCost")).intValue();
 
 					JSONArray immediateEffect = (JSONArray) territoryParser.parse(card.get("immediateEffect").toString());
 
@@ -123,7 +125,7 @@ public class JsonCard {
 					TerritoryListOfEffect immediate= new TerritoryListOfEffect(immediateEffectMap);
 					TerritoryListOfEffect permanent= new TerritoryListOfEffect(permanentEffectMap);
 					
-					Card c = new TerritoryCard(type, name, period, immediate, permanent);
+					Card c = new TerritoryCard(type, name, period, immediate, permanent,permanentCost);
 					
 					territoryDeck.add(c);
 				}

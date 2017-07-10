@@ -32,6 +32,16 @@ public class TerritoryCard extends Card {
 		permanentEffects = permanent.createListOfEffect();
 		setGainPrivilegeCouncil();
 	}
+	
+	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects, TerritoryListOfEffect permanent, int permanentCost) throws FileNotFoundException, IOException, ParseException {
+		super(type, name, period);
+		this.permanentCost=permanentCost;
+		this.effects=effects;
+		this.permanent=permanent;
+		immediateEffects = effects.createListOfEffect();
+		permanentEffects = permanent.createListOfEffect();
+		setGainPrivilegeCouncil();
+	}
 
 	/**
 	 * @author Sara

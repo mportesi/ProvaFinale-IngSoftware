@@ -10,6 +10,8 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainCoin;
+import it.polimi.ingsw.effects.GainCoinForBuildingCard;
+import it.polimi.ingsw.effects.GainCoinForTerritoryCard;
 import it.polimi.ingsw.effects.GainFaithPoint;
 import it.polimi.ingsw.effects.GainMilitaryPoint;
 import it.polimi.ingsw.effects.GainResourceForCost;
@@ -287,6 +289,16 @@ public class BuildingListOfPermanentEffect extends CreateListOfEffect{
 				case("GainVictoryPointForMilitaryPoint"):{
 					GainVictoryPointForMilitaryPoint gainVictoryPointForMilitaryPoint= new GainVictoryPointForMilitaryPoint(costImmediateEffect);
 					permanentEffects.add(gainVictoryPointForMilitaryPoint);
+					break;
+				}
+				case("GainCoinForBuildingCard"):{
+					GainCoinForBuildingCard gainCoinForBuildingCard=new GainCoinForBuildingCard(costImmediateEffect);
+					permanentEffects.add(gainCoinForBuildingCard);
+					break;
+				}
+				case("GainCoinForTerritoryCard"):{
+					GainCoinForTerritoryCard gainCoinForTerritoryCard=new GainCoinForTerritoryCard(costImmediateEffect);
+					permanentEffects.add(gainCoinForTerritoryCard);
 					break;
 				}
 				}

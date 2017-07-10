@@ -79,5 +79,10 @@ public class GainResourceForCostAlternative extends Effect{
 	public void chooseAlt(boolean choice){
 		alternative=choice;
 	}
+	
+	@Override
+	public String toString(){
+		return (payEffect + "to" + gainEffect + "or" + payEffectAlt + "to" + gainEffectAlt );
+	}
 
 }

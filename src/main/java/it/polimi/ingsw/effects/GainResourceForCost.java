@@ -47,5 +47,9 @@ public class GainResourceForCost extends Effect{
 		}
 		return check;
 	}
+	@Override
+	public String toString(){
+		return (payEffect + "to" + gainEffect );
+	}
 
 }
