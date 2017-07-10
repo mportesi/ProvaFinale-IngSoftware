@@ -2404,9 +2404,9 @@ public class BoardController {
 	public void openPrivilegeCouncilForTerritory1() {
 		try {
 			boolean isPresentAnyone = false;
-			
+			if(!doubleCard){
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
-				if(!doubleCard){
+				
 				if (relative != null) {
 					if (client.getTerritoryTower().getFloor(0).isFree()) {
 						if (relative.getValue() >= client.getTerritoryTower().getFloor(0).getCost()) {
@@ -2445,14 +2445,14 @@ public class BoardController {
 				} else {
 					openMessage("ChooseTheRelativeMessage.fxml");
 				}
-			}
-			}
-			else {
+			}else {
 				openMessage("NotYorTurn.fxml");
 			}
+			}
 			
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 			if(doubleCard){
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			
 				if (client.getTerritoryTower().getFloor(0).isFree()) {
 					if (client.getTerritoryTower().isPresent(player) == false) {
 						if (client.getTerritoryTower().isPresentAnyone()) {
@@ -2476,10 +2476,10 @@ public class BoardController {
 				}
 			}
 				}
-		 }}
-			else {
+		 }else {
 				openMessage("NotYorTurn.fxml");
-			}
+			}}
+			
 			}
 			
 			catch (Exception e) {
@@ -3925,21 +3925,28 @@ public class BoardController {
 	public void setRound(int round) {
 		this.round=round;
 		roundFxml.setText("Round: " + round);
-		for(ImageView image: councilPalace){
-			image.setImage(null);
-		}
-		if(client.getBoard().getNumberOfPlayers()>=3){
-		for(ImageView image: harvestRight){
-			image.setImage(null);
-		}
-		for(ImageView image: productionRight){
-			image.setImage(null);
+		if(councilPalace!=null){
+		for(int i=0; i<councilPalace.size(); i++){
+			if(councilPalace.get(i)!=null){
+			councilPalace.get(i).setImage(null);}
 		}}
+		if(harvestRight!=null){
+		if(client.getBoard().getNumberOfPlayers()>=3){
+		for(int i=0; i<harvestRight.size(); i++){
+			if(harvestRight.get(i)!=null){
+			harvestRight.get(i).setImage(null);}
+		}}
+		if(productionRight!=null){
+		for(int i=0; i<productionRight.size(); i++){
+			if(productionRight.get(i)!=null){
+			productionRight.get(i).setImage(null);}
+		}}}
 		market1.setImage(null);
 		market2.setImage(null);
+		if(client.getBoard()!=null){
 		if(client.getBoard().getNumberOfPlayers()==4){
 		market3.setImage(null);
-		market4.setImage(null);}
+		market4.setImage(null);}}
 		harvestLeft.setImage(null);
 		productionLeft.setImage(null);
 	}
