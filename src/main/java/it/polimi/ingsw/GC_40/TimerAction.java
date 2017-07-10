@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.TimerTask;
 
-import com.sun.tools.example.debug.expr.ParseException;
 
 import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionViewRemote;
