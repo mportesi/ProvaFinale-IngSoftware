@@ -27,7 +27,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.evosuite.shaded.antlr.debug.Event;
 import org.json.simple.parser.ParseException;
 
 import com.sun.javafx.tk.Toolkit;
@@ -3707,6 +3706,7 @@ public class BoardController {
 		Image councilPalaceImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
 		while(!client.getPlayer().getName().equals(player2.getName()) && councilPalace.get(i).getImage()!=null){
 			i++;
+			
 		}
 		if(!client.getPlayer().getName().equals(player2.getName())){
 		councilPalace.get(i).setImage(councilPalaceImage);}
