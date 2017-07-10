@@ -10,6 +10,12 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.BuildingCard;
 
+/**
+ * @author Chiara
+ * This class represents the effect of gaining victory point for the building cards that the player has.
+ *
+ */
+
 public class GainVictoryPointForBuildingCard extends Effect {
 	int victoryPoint;
 	
@@ -20,7 +26,6 @@ public class GainVictoryPointForBuildingCard extends Effect {
 
 	@Override
 	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// TODO Auto-generated method stub
 		BuildingCard buildingCard;
 		int counter= player.counter("buildingCard");
 		player.incrementVictoryPoint(victoryPoint*counter, play);

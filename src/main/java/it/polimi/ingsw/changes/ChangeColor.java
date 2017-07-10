@@ -3,7 +3,10 @@ package it.polimi.ingsw.changes;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
-
+/**
+ * @author Sara
+ * To set the player's color on the client.
+ */
 public class ChangeColor implements Change {
 	private Player player;
 	private ColorPlayer color;
@@ -15,9 +18,9 @@ public class ChangeColor implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		// TODO Auto-generated method stub
+		if (client.getPlayer().getName().equals(player.getName())){
 		client.getPlayer().setColor(color);
-		System.out.println("The color of the player " + player.getName() + "  is " + color);
+		}
 	}
 
 }

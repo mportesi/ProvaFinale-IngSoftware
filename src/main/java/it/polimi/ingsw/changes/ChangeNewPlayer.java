@@ -15,33 +15,26 @@ import it.polimi.ingsw.client.ClientModel;
 
 /**
  * @author Sara
- *
+ * To set the player at the beginning of the game.
  */
 
 public class ChangeNewPlayer extends Observable<Change> implements Change {
 	private Player player;
-	private Play play;
+	private int match;
 	
 
-	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.changes.Change#applyChange()
-	 */
 	
-	public ChangeNewPlayer(Player player, Play play){
+	public ChangeNewPlayer(Player player, int match){
 		this.player=player;
-		this.play=play;
+		this.match=match;
 	}
 	
 	@Override
 	public void applyChange(ClientModel client) {
 		if (client.getName().equals(player.getName())){
-		player.registerObserver(play);
 		client.setPlayer(player);
-		System.out.println("Ho inizializzato: "+ client.getPlayer().getName() + player.getName());
 		}
-		//System.out.println("new player " + player.getName());
-		//final Logger LOGGER = Logger.getLogger(ChangeNewPlayer.class.getName() );
-		//98LOGGER.log(Level.FINE, "ChangeNewPlayer arrivato");
+		
 	}
 
 	@Override

@@ -7,6 +7,11 @@
     ],
     "immediateEffect":[
       {"type":"GainVictoryPoint", "amount":1}
+    ],
+    "permanentEffectType":"GainResourceForCost",
+    "permanentEffect":[
+      {"type":"PayCoin", "amount":1},
+      {"type":"GainPrivilegeCouncil","amount":1}
     ]
   },
   { "name":"theatre",
@@ -18,9 +23,13 @@
     ],
     "immediateEffect":[
       {"type":"GainVictoryPoint", "amount":6}
+    ],
+    "permanentEffectType":"Gain",
+    "permanentEffect":[
+      {"type":"GainVictoryPointForCharacterCard","amount":1}
     ]
   },
-  { "name":"carpentry",
+  { "name":"carpenter'sShop",
     "type":"buildingCard",
     "period":1,
     "cost":[
@@ -29,6 +38,13 @@
     ],
     "immediateEffect":[
       {"type":"GainVictoryPoint", "amount":3}
+    ],
+    "permanentEffectType":"GainResourceForCostAlternative",
+    "permanentEffect":[
+      {"type":"PayWood","amount":1},
+      {"type":"GainCoin","amount":3},
+      {"type":"PayWoodAlt","amount":2}
+      {"type":"GainCoinAlt","amount":5}
     ]
   },
   { "name":"taxOffice",
@@ -40,9 +56,13 @@
     ],
     "immediateEffect":[
       {"type":"GainVictoryPoint", "amount":5}
+    ],
+    "permanentEffectType":"Gain",
+    "permanentEffect":[
+      {"type":"GainCoinForTerritoryCard","amount":1}
     ]
   },
-  {"name":"archOfTriumph",
+  {"name":"TriumphalArch",
    "type":"buildingCard",
    "period":1,
     "cost":[
@@ -51,6 +71,10 @@
     ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":6}
+    ],
+    "permanentEffectType":"Gain",
+    "permanentEffect":[
+      {"type":"GainVictoryPointForVentureCard","amount":1}
     ]
   },
   {"name":"mint",
@@ -62,6 +86,10 @@
     ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":5}
+    ],
+    "permanentEffectType":"Gain",
+    "permanentEffect":[
+      {"type":"GainCoinForBuildingCard","amount":1}
     ]
   },
   {"name":"chapel",
@@ -72,9 +100,14 @@
       ],
     "immediateEffect":[
         {"type":"GainFaithPoint", "amount":1}
+    ],
+    "permanentEffectType":"GainResourceForCost",
+    "permanentEffect":[
+      {"type":"PayCoin","amount":1},
+      {"type":"GainFaithPoint","amount":1}
     ]
   },
-  {"name":"stonecutter",
+  {"name":"stonemason'sShop",
     "type":"buildingCard",
     "period":1,
     "cost":[
@@ -83,9 +116,16 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":2}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayStone","amount":1},
+        {"type":"GainCoin","amount":3},
+        {"type":"PayStoneAlt","amount":2},
+        {"type":"GainCoinAlt","amount":5}
+      ]
   },
-  {"name":"guildOfSculptores",
+  {"name":"sculptors'Guild",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -93,9 +133,16 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":6}
-      ]  
+      ] ,
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayStone","amount":1},
+        {"type":"GainVictoryPoint","amount":3},
+        {"type":"PayStoneAlt","amount":3},
+        {"type":"GainVictoryPointAlt","amount":7}
+      ]
   },
-  {"name":"guildOfBuilders",
+  {"name":"stonemasons'Guild",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -104,9 +151,16 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":4}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCost",
+      "permanentEffect":[
+        {"type":"PayServant","amount":1},
+        {"type":"PayWood","amount":1},
+        {"type":"PayStone","amount":1},
+        {"type":"GainVictoryPoint","amount":6}
+      ]
   },
-  {"name":"guildOfPainters",
+  {"name":"painters'Guild",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -114,9 +168,16 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":5}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayWood","amount":1},
+        {"type":"GainVictoryPoint","amount":3},
+        {"type":"PayWoodAlt","amount":3},
+        {"type":"GainVictoryPointAlt","amount":7}
+      ]
   },
-  {"name":"market",
+  {"name":"marketplace",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -125,7 +186,14 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":3}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayCoin","amount":3},
+        {"type":"GainWood","amount":2},
+        {"type":"PayCoinAlt","amount":3},
+        {"type":"GainStone","amount":2}
+      ]
   },
   {"name":"baptistery",
     "type":"buildingCard",
@@ -136,7 +204,14 @@
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":2},
         {"type":"GainFaithPoint", "amount":1}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayFaith","amount":1},
+        {"type":"GainCoin","amount":2},
+        {"type":"PayFaithAlt","amount":1},
+        {"type":"GainVictoryPointAlt","amount":2}
+      ]
   },
    {"name":"fortress",
     "type":"buildingCard",
@@ -148,7 +223,12 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":8}
-      ]  
+      ],
+      "permanentEffectType":"Gain",
+      "permanentEffect":[
+        {"type":"GainMilitaryPoint","amount":2},
+        {"type":"GainVictoryPoint","amount":2}
+      ]
   },
   {"name":"treasury",
     "type":"buildingCard",
@@ -158,9 +238,16 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":4}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayCoin","amount":1},
+        {"type":"GainVictoryPoint","amount":3},
+        {"type":"PayCoinAlt","amount":2},
+        {"type":"GainVictoryPointAlt","amount":5}
+      ]
   },
-  {"name":"barrack",
+  {"name":"barracks",
     "type":"buildingCard",
     "period":2,
     "cost":[
@@ -169,7 +256,12 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":3}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCost",
+      "permanentEffect":[
+        {"type":"PayServant","amount":1},
+        {"type":"GainMilitaryPoint","amount":3}
+      ]
   },
   {"name":"garden",
     "type":"buildingCard",
@@ -181,7 +273,11 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":10}
-      ]  
+      ],
+      "permanentEffectType":"Gain",
+      "permanentEffect":[
+        {"type":"GainVictoryPoint","amount":3}
+      ]
   },
   {"name":"bank",
     "type":"buildingCard",
@@ -193,7 +289,11 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":7}
-      ]  
+      ],
+      "permanentEffectType":"Gain",
+      "permanentEffect":[
+        {"type":"GainCoin","amount":5}
+      ]
   },
   {"name":"cathedral",
     "type":"buildingCard",
@@ -205,7 +305,11 @@
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":7},
         {"type":"GainFaithPoint", "amount":3}
-      ]  
+      ],
+      "permanentEffectType":"Gain",
+      "permanentEffect":[
+        {"type":"GainVictoryPoint","amount":1}
+      ]
   },
   {"name":"fair",
     "type":"buildingCard",
@@ -216,7 +320,14 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":8}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayCoin","amount":4},
+        {"type":"GainWood","amount":3},
+        {"type":"PayCoinAlt","amount":4},
+        {"type":"GainStoneAlt","amount":3}
+      ]
   },
   {"name":"militaryAcademy",
     "type":"buildingCard",
@@ -228,21 +339,33 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":7}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayServant","amount":1},
+        {"type":"GainMilitaryPoint","amount":3},
+        {"type":"PayServantAlt","amount":1},
+        {"type":"GainVictoryPoint","amount":1}
+      ]
   },
-  {"name":"headframe",
+  {"name":"stronghold",
     "type":"buildingCard",
     "period":3,
     "cost":[
         {"type":"coin", "amount":2},
         {"type":"wood", "amount":2},
-        {"type":"stone", "amount":4}
+        {"type":"stone", "amount":2}
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":9}
-      ]  
+      ],
+      "permanentEffectType":"Gain",
+      "permanentEffect":[
+        {"type":"GainVictoryPoint","amount":2},
+        {"type":"GainPrivilegeCouncil","amount":1}
+      ]
   },
-  {"name":"basilica",
+  {"name":"church",
     "type":"buildingCard",
     "period":3,
     "cost":[
@@ -252,7 +375,14 @@
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":5},
         {"type":"GainFaithPoint", "amount":1}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayWood","amount":1},
+        {"type":"GainFaithPoint","amount":1},
+        {"type":"PayStoneAlt","amount":1},
+        {"type":"GainFaithPointAlt","amount":1}
+      ]
   },
   {"name":"palace",
     "type":"buildingCard",
@@ -264,7 +394,13 @@
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":9}
-      ]  
+      ],
+      "permanentEffectType":"GainResourceForCostAlternative",
+      "permanentEffect":[
+        {"type":"PayCoin","amount":1},
+        {"type":"GainServant","amount":2},
+        {"type":"PayCoinAlt","amount":1},
+        {"type":"GainVictoryPointAlt","amount":4}
+      ]
   }
 ]
-  

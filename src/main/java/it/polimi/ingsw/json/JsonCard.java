@@ -15,6 +15,7 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.BuildingListOfEffect;
+import it.polimi.ingsw.cards.BuildingListOfPermanentEffect;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.CharacterCard;
 import it.polimi.ingsw.cards.CharacterListOfEffect;
@@ -29,6 +30,12 @@ public class JsonCard {
 	private List<Card> territoryDeck ;
 	private List<Card> ventureDeck ;
 	private List<Card> characterDeck ;
+	
+	/**
+	 * @author Chiara
+	 * In this class all the card are imported from json.
+	 *
+	 */
 	
 	public void importCards() throws FileNotFoundException, IOException, ParseException {
 		// BuildingCards
@@ -63,9 +70,21 @@ public class JsonCard {
 						immediateEffectMap.put(typeImmediateEffect, amount);
 					}
 					
+					String permanentEffectType = (String)card.get("permanentEffectType");
+					JSONArray permanentEffect = (JSONArray) buildingParser.parse(card.get("permanentEffect").toString());
+					
+					Map<String, Integer> permanentEffectMap = new LinkedHashMap();
+					for (int i = 0; i < permanentEffect.size(); i++) {
+						JSONObject permanentEffectObject = (JSONObject) permanentEffect.get(i);
+						String typePermanentEffect = (String) permanentEffectObject.get("type");
+						int amount = ((Long) permanentEffectObject.get("amount")).intValue();
+						permanentEffectMap.put(typePermanentEffect, amount);
+					}
+					
 					
 					BuildingListOfEffect immediate= new BuildingListOfEffect(immediateEffectMap);
-					Card c = new BuildingCard(type, name, period, costMap, immediate);
+					BuildingListOfPermanentEffect permanent=new BuildingListOfPermanentEffect(permanentEffectMap, permanentEffectType);
+					Card c = new BuildingCard(type, name, period, costMap, immediate, permanent);
 
 					buildingDeck.add(c);
 				}
@@ -91,8 +110,20 @@ public class JsonCard {
 						immediateEffectMap.put(typeImmediateEffect, amount);
 					}
 					
+					JSONArray permanentEffect = (JSONArray) territoryParser.parse(card.get("permanentEffect").toString());
+					
+					Map<String, Integer> permanentEffectMap = new LinkedHashMap();
+					for (int i = 0; i < permanentEffect.size(); i++) {
+						JSONObject permanentEffectObject = (JSONObject) permanentEffect.get(i);
+						String typePermanentEffect = (String) permanentEffectObject.get("type");
+						int amount = ((Long) permanentEffectObject.get("amount")).intValue();
+						permanentEffectMap.put(typePermanentEffect, amount);
+					}
+					
 					TerritoryListOfEffect immediate= new TerritoryListOfEffect(immediateEffectMap);
-					Card c = new TerritoryCard(type, name, period, immediate);
+					TerritoryListOfEffect permanent= new TerritoryListOfEffect(permanentEffectMap);
+					
+					Card c = new TerritoryCard(type, name, period, immediate, permanent);
 					
 					territoryDeck.add(c);
 				}
@@ -107,6 +138,7 @@ public class JsonCard {
 					String type = (String) card.get("type");
 					int period = ((Long) card.get("period")).intValue();
 					String name = (String) card.get("name");
+					int victoryPoint = ((Long) card.get("victoryPoint")).intValue();
 					int alternativeCostBoolean = ((Long) card.get("alternativeCostBoolean")).intValue();
 					int militaryRequirement = ((Long) card.get("militaryRequirement")).intValue();
 					int militaryCost = ((Long) card.get("militaryCost")).intValue();
@@ -132,11 +164,11 @@ public class JsonCard {
 					VentureListOfEffect immediate= new VentureListOfEffect(immediateEffectMap);
 					Card c;
 					if (alternativeCostBoolean == 1) {
-						c = new VentureCard(type, name, period, costMap, militaryRequirement, militaryCost, immediate);
+						c = new VentureCard(type, name, period, victoryPoint, militaryCost, militaryRequirement, costMap, immediate);
 					} else if (militaryRequirement == 0 && militaryCost == 0) {
-						c = new VentureCard(type, name, period, costMap, immediate);
+						c = new VentureCard(type, name, period, victoryPoint, costMap, immediate);
 					} else {
-						c = new VentureCard(type, name, period, militaryRequirement, militaryCost, costMap, immediate);
+						c = new VentureCard(type, name, period, victoryPoint, militaryRequirement, militaryCost, costMap, immediate);
 					}
 
 					ventureDeck.add(c);
@@ -195,22 +227,18 @@ public class JsonCard {
 	}
 
 	public  List<Card> getCharacterDeck() {
-		// TODO Auto-generated method stub
 		return characterDeck;
 	}
 	
 	public  List<Card> getTerritoryDeck() {
-		// TODO Auto-generated method stub
 		return territoryDeck;
 	}
 	
 	public  List<Card> getVentureDeck() {
-		// TODO Auto-generated method stub
 		return ventureDeck;
 	}
 	
 	public  List<Card> getBuildingDeck() {
-		// TODO Auto-generated method stub
 		return buildingDeck;
 	}
 

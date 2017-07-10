@@ -8,7 +8,10 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To modify the updated right production area on the client.
+ */
 public class ChangeProductionRightArea implements Change {
 private Relative relative;
 	
@@ -19,8 +22,10 @@ private Relative relative;
 
 	@Override
 	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if(client.getPlayer().getMatch()==relative.getPlayer().getMatch()){
 		client.setProductionRightArea(relative);
-
+		System.out.println("\nThe board is changed!\n" + client.getBoard());
+		}
 	}
 
 }

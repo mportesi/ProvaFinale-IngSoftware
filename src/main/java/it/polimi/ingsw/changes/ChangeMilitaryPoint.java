@@ -3,7 +3,10 @@ package it.polimi.ingsw.changes;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
-
+/**
+ * @author Sara
+ * To modify the player's military points on the client.
+ */
 public class ChangeMilitaryPoint implements Change {
 	private int militaryPoint;
 	private Player player;
@@ -20,11 +23,6 @@ public class ChangeMilitaryPoint implements Change {
 		if(client.getName().equals(player.getName())){
 			client.getPlayer().setMilitaryPoint(militaryPoint);
 		}
-		/*for (Player p : client.getPlayers()) {
-			if (player.equals(p)) {
-				p.setMilitaryPoint(militaryPoint);
-			}
-		}*/
 
 	}
 

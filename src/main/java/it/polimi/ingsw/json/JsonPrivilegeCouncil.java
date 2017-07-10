@@ -10,6 +10,13 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.components.PrivilegeCouncil;
 
+
+/**
+ * @author Chiara
+ * In this class all the number of resources associated to the privilege council are imported from json.
+ *
+ */
+
 public class JsonPrivilegeCouncil {
 	private PrivilegeCouncil privilegeCouncil;
 	
@@ -25,6 +32,7 @@ public class JsonPrivilegeCouncil {
 		int bonusFaithPoint = ((Long) privilegeCouncilObj.get("bonusFaithPoint")).intValue();
 		
 		privilegeCouncil = new PrivilegeCouncil(bonusWoodAndStone, bonusServant, bonusCoinP, bonusMilitaryPoint, bonusFaithPoint);
+		
 }
 	public PrivilegeCouncil getPrivilegeCouncil(){
 		return privilegeCouncil;

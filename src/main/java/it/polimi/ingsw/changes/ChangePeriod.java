@@ -1,17 +1,24 @@
 package it.polimi.ingsw.changes;
 
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * To set the period on the client.
+ */
 public class ChangePeriod implements Change {
-	int period;
+	private int period;
+	private int match;
 	
-	public ChangePeriod(int period){
+	public ChangePeriod(int period, int match){
 		this.period=period;
+		this.match=match;
 	}
 
 	@Override
 	public void applyChange(ClientModel client) {
+		if(client.getPlayer().getMatch()==match){
 		client.setPeriod(period);
+		System.out.println("The period " + (period-1) + " is finished!");}
 	}
 
 }

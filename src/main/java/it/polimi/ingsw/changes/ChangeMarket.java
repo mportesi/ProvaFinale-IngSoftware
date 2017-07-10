@@ -10,7 +10,10 @@ import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
 import it.polimi.ingsw.components.Relative;
-
+/**
+ * @author Sara
+ * To modify the updated market on the client.
+ */
 public class ChangeMarket implements Change {
 	private Player player;
 	private Relative relative;
@@ -24,7 +27,9 @@ public class ChangeMarket implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		if(client.getPlayer().getMatch()==player.getMatch()){
 		client.setMarket(market, player, relative);
+		System.out.println("\nThe board is changed!\n" + client.getBoard());}
 	}
 
 }

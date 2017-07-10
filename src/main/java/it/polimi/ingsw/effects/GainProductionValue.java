@@ -8,6 +8,12 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 
+/**
+ * @author Chiara
+ * This class represents the effect of gaining the production value.
+ *
+ */
+
 public class GainProductionValue extends Effect {
 	int productionValue;
 
@@ -18,9 +24,8 @@ public class GainProductionValue extends Effect {
 
 	@Override
 	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// TODO Auto-generated method stub
-		if (productionValue >= player.getPersonalBonusTile().getCostProduction()){
-		player.getPersonalBonusTile().applyProductionEffect(player, play);		
+		if (productionValue >= player.getPersonalBonusTileSimple().getCostProduction()){
+		player.getPersonalBonusTileSimple().applyProductionEffect(player, play);		
 
 	}
 

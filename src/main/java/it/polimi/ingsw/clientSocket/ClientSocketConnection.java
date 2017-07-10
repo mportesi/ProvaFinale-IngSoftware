@@ -10,30 +10,58 @@ import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
-
+/**
+ * @author Sara
+ * This is the class that starts the socket connection between a client and the server.
+ */
 public class ClientSocketConnection {
 
 	private final static int PORT = 29999;
 	private final static String IP = "127.0.0.1";
 	private ClientModel clientModel;
+	private ObjectOutputStream out;
+	private ObjectInputStream in;
+	private Socket socket;
 
-	public void startClient() throws UnknownHostException, IOException {
-		clientModel = new ClientModel();
-		Socket socket = new Socket(IP, PORT);
+	/**
+	 * @author Sara
+	 * This is the invoked method from the client that choose socket as connection
+	 */
+	public void startClient(boolean commandLine) throws UnknownHostException, IOException {
+		socket = new Socket(IP, PORT);
 
 		System.out.println("Connection created");
 		
+		 out=new ObjectOutputStream(socket.getOutputStream());
+		in=new ObjectInputStream(socket.getInputStream());
 		
-
+		clientModel = new ClientModel(true,out);
+		
+		
+		if(commandLine){
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		//Creates one thread to send messages to the server
-		executor.submit(new ClientOutHandler(
-				new ObjectOutputStream(socket.getOutputStream()), clientModel));
+		executor.submit(new ClientOutHandler(out, clientModel, commandLine));
 
 		//Creates one thread to receive messages from the server
-		executor.submit(new ClientInHandler(
-				new ObjectInputStream(socket.getInputStream()), clientModel));
+		executor.submit(new ClientInHandler(in, clientModel));}
+	}
+	
+	public ClientModel getClientModel(){
+		return clientModel;
+	}
+	
+	public ObjectOutputStream getObjectOutput(){
+		return out;
+	}
+	
+	public ObjectInputStream getObjectInput(){
+		return in;
+	}
+	
+	public Socket getSocket(){
+		return socket;
 	}
 	
 

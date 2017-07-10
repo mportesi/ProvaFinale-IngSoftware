@@ -22,7 +22,12 @@ import it.polimi.ingsw.effects.GainVictoryPointForMilitaryPoint;
 import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
+import it.polimi.ingsw.effects.HasPrivilege;
 
+/**
+ * @author Sara
+ * This is an auxiliary class to build the different effects of the cards based on external files json.
+ */
 public class TerritoryListOfEffect extends CreateListOfEffect{
 
 	public TerritoryListOfEffect(Map<String, Integer> immediateEffect) {
@@ -60,9 +65,8 @@ public class TerritoryListOfEffect extends CreateListOfEffect{
 				immediateEffects.add(gainServant);
 			}
 			case "GainPrivilegeCouncil": {
-				String resource = "coin";// TODO
-				GainPrivilegeCouncil gainPrivilegeCouncil = new GainPrivilegeCouncil(costImmediateEffect, resource);
-				immediateEffects.add(gainPrivilegeCouncil);
+				HasPrivilege privilege = new HasPrivilege();
+				immediateEffects.add(privilege);
 				break;
 			}
 			case "GainVictoryPoint": {

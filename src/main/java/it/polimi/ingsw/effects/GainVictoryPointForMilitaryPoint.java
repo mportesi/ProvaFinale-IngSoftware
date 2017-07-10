@@ -9,6 +9,12 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 
+/**
+ * @author Chiara
+ * This class represents the effect of gaining victory points for the military points that the player has.
+ *
+ */
+
 public class GainVictoryPointForMilitaryPoint extends Effect {
 	int victoryPoint;
 	
@@ -19,7 +25,6 @@ public class GainVictoryPointForMilitaryPoint extends Effect {
 
 	@Override
 	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		// TODO Auto-generated method stub
 		int counter=player.getMilitaryPoint();
 		player.incrementVictoryPoint(victoryPoint*counter, play);
 

@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.changes.ChangeMarket;
+import it.polimi.ingsw.changes.ChangeNotApplicable;
 import it.polimi.ingsw.changes.ChangeOccupiedRelative;
 import it.polimi.ingsw.components.PrivilegeCouncil;
 import it.polimi.ingsw.components.Relative;
@@ -18,18 +19,27 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+/**
+ *  Action invoked when a player puts his relative on a market with a bonus that consists in choosing a privilege council.
+ *
+ * @author Chiara
+ *
+ */
+
 public class PutRelativeOnMarketPrivilege extends Observable<Change> implements PutRelative {
 
 	Relative relative;
 	MarketBuilding market;
 	Player player;
 	String bonus;
+	int match;
 	
-	public PutRelativeOnMarketPrivilege(Player player,Relative relative, MarketBuilding market,String bonus){
+	public PutRelativeOnMarketPrivilege(Player player,Relative relative, MarketBuilding market,String bonus, int match){
 		this.player=player;
 		this.relative=relative;
 		this.market=market;
 		this.bonus=bonus;
+		this.match = match;
 	}
 	
 	public void setMarket(MarketBuilding market){
@@ -38,7 +48,7 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 
 	@Override
 	public boolean isApplicable() {
-		if (market.IsOccupied()) {
+		if (market.isOccupied()) {
 			return false;
 		} else if (relative.getValue() >= market.getCost()) {
 			return true;
@@ -46,6 +56,16 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 			return false;
 	}
 
+
+/**
+ * If the relative of the player has enough value to do the action, it will occupy the area.
+ * All the observer will be notified and the player will receive the resources associated to the area, in this case he/she can choose one of the resources of privilege council.
+ * If the action is not applicable, the player will receive a message on the console.
+ * @author Chiara
+ * 
+ *
+ */
+	
 	@Override
 	public void apply(Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if (isApplicable()) {
@@ -56,16 +76,24 @@ public class PutRelativeOnMarketPrivilege extends Observable<Change> implements 
 			player.setOccupiedRelative(relative);
 			play.notifyObserver(new ChangeOccupiedRelative(player, relative));
 			// take the bonus
-			//market.giveBonus(player, market);
-			//market.applyEffect(player);
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(bonus);
 			gain.apply(player, play);
 			play.changeCurrentPlayer();
 			
 		}
 		else {
-			play.actionNotApplicable(player);
+			if (relative.getServantsUsed()!=0){
+				player.incrementServant(relative.getServantsUsed(), play);
+				relative.setValueServant(0);
+			}
+			play.notifyObserver( new ChangeNotApplicable(player, "you cannot put a relative on this market!"));
 		}
+	}
+
+	@Override
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
 	}
 
 }

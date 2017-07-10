@@ -2,6 +2,12 @@ package it.polimi.ingsw.components;
 
 import java.util.Map;
 
+/**
+ * @author Chiara
+ * This class represents the final victory points to give to each player for each card/resource at the end of the game.
+ *
+ */
+
 public class FinalVictoryPoint {
 	private String type;
 	private int finalVictoryPointForOne;
@@ -11,13 +17,14 @@ public class FinalVictoryPoint {
 	private int finalVictoryPointForFive;
 	private int finalVictoryPointForSix;
 	
-	public FinalVictoryPoint(int finalVictoryPointForOne, int finalVictoryPointForTwo, int finalVictoryPointForThree, int finalVictoryPointForFour, int finalVictoryPointForFive, int finalVictoryPointForSix){
+	public FinalVictoryPoint(String type, int finalVictoryPointForOne, int finalVictoryPointForTwo, int finalVictoryPointForThree, int finalVictoryPointForFour, int finalVictoryPointForFive, int finalVictoryPointForSix){
 		this.finalVictoryPointForOne = finalVictoryPointForOne;
 		this.finalVictoryPointForTwo = finalVictoryPointForTwo;
 		this.finalVictoryPointForThree = finalVictoryPointForThree;
 		this.finalVictoryPointForFour = finalVictoryPointForFour;
 		this.finalVictoryPointForFive = finalVictoryPointForFive;
 		this.finalVictoryPointForSix = finalVictoryPointForSix;
+		this.type = type;
 	}
 	
 	public String getType() {

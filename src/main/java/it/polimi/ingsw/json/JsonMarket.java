@@ -15,6 +15,12 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.areas.MarketBuilding;
 import it.polimi.ingsw.areas.MarketListOfEffect;
 
+/**
+ * @author Chiara
+ * In this class all the costs associated to the market's areas are imported from json.
+ *
+ */
+
 public class JsonMarket {
 	private ArrayList <MarketBuilding> marketBuilding;
 	
@@ -38,12 +44,9 @@ public class JsonMarket {
 			bonusMap.put(typeBonus, amount);
 		}
 		
-		System.out.println(bonusMap);
 		MarketListOfEffect marketEffect = new MarketListOfEffect(bonusMap);
 		MarketBuilding m = new MarketBuilding (type, marketEffect, costOfMarket);
 		marketBuilding.add(m);
-		
-		System.out.println("STAMPO I MARKET"+m);
 		
 	
 		
@@ -52,8 +55,6 @@ public class JsonMarket {
 	}
 
 	public MarketBuilding getMarketBuilding(int i) throws FileNotFoundException, IOException, ParseException {
-		
-		// TODO Auto-generated method stub
 		return marketBuilding.get(i);
 	}
 }

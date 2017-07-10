@@ -10,7 +10,10 @@ import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.colors.ColorPlayer;
-
+/**
+ * @author Sara
+ * To modify the player's building cards on the client.
+ */
 public class ChangeBuildingCard implements Change {
 	private Player player;
 	private ArrayList<BuildingCard> buildingCard;

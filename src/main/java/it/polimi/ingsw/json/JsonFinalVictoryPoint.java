@@ -15,13 +15,19 @@ import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.components.FinalVictoryPoint;
 
+/**
+ * @author Chiara
+ * In this class all the victory point for the final ranking are imported from json.
+ *
+ */
+
 public class JsonFinalVictoryPoint {
 	private ArrayList <FinalVictoryPoint> finalVictoryPointList;
 
 	public void importVictoryPoint() throws FileNotFoundException, IOException, ParseException {
-		
+		finalVictoryPointList = new ArrayList <FinalVictoryPoint>();
 		JSONParser finalVictoryPointParser = new JSONParser();
-		JSONArray finalVictoryPointArray = (JSONArray) finalVictoryPointParser.parse(new FileReader("json/finalVictoryPoints.json"));
+		JSONArray finalVictoryPointArray = (JSONArray) finalVictoryPointParser.parse(new FileReader("json/finalVictoryPoint.json"));
 		for (Object o : finalVictoryPointArray){
 			
 			JSONObject finalVictoryPoint = (JSONObject) o;
@@ -33,8 +39,9 @@ public class JsonFinalVictoryPoint {
 			int victoryPointForFive = ((Long) finalVictoryPoint.get("victoryPointForFive")).intValue();
 			int victoryPointForSix = ((Long) finalVictoryPoint.get("victoryPointForSix")).intValue();
 			
-			FinalVictoryPoint finalVictoryPoints = new FinalVictoryPoint (victoryPointForOne, victoryPointForTwo, victoryPointForThree, victoryPointForFour, victoryPointForFive, victoryPointForSix);
+			FinalVictoryPoint finalVictoryPoints = new FinalVictoryPoint (type, victoryPointForOne, victoryPointForTwo, victoryPointForThree, victoryPointForFour, victoryPointForFive, victoryPointForSix);
 			finalVictoryPointList.add(finalVictoryPoints);
+			
 			
 
 		}

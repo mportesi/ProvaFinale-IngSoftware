@@ -2,6 +2,7 @@ package it.polimi.ingsw.serverRMI;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,69 +18,80 @@ import it.polimi.ingsw.actions.InitializeGame;
 import it.polimi.ingsw.actions.PutRelative;
 import it.polimi.ingsw.actions.RegisterClient;
 import it.polimi.ingsw.changes.Change;
-import it.polimi.ingsw.changes.ChangeInitializePlay;
 import it.polimi.ingsw.changes.ChangeNewPlayer;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
+import it.polimi.ingsw.server.Server;
 import it.polimi.ingsw.serverSocket.ServerView;
 
+/**
+ * @author Sara
+ * This is the server view for the rmi connection.
+ * It implements the observer because it receive the changes from the model.
+ */
 public class ServerRMIConnectionView extends ServerView implements ServerRMIConnectionViewRemote, Observer<Change> {
 
 	private volatile ArrayList<ClientRMIConnectionViewRemote> clients;
-	
-	public ServerRMIConnectionView() {
+	private Server server;
+	private ClientRMIConnectionViewRemote clientDisconnected;
+
+	public ServerRMIConnectionView(Server server) {
+		this.server = server;
 		this.clients = new ArrayList<>();
 	}
 
+	/**
+	 * @author Sara
+	 * This method is necessary to register the client when he connects.
+	 */
 	@Override
 	public void registerClient(ClientRMIConnectionViewRemote clientStub, String name)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		//System.out.println("CLIENT REGISTRATO");
 		this.clients.add(clientStub);
-		//System.out.println(clients.get(0));
-		RegisterClient registerClient = new RegisterClient(name);
-		// System.out.println("notifico di registerClient() il controller");
-		this.notifyObserver(registerClient);
+		System.out.println("MC: " + server.getMasterController());
+		server.getMasterController().checkMatches(this, name);
 		
-		
+
 	}
 
-	
-	
-	
-
-	/*@Override
-	public void initializeGame(ClientRMIConnectionViewRemote clientStub)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		/*InitializeGame initializeGame = new InitializeGame();
-		this.notifyObserver(initializeGame);
-		// System.out.println("notifico di initializeGame() il controller");
-	}*/
-	
-	
-		
-
+	/**
+	 * @author Sara
+	 *This method update every clients of the changes.
+	 */
 	@Override
-	public void update(Change change) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		//System.out.println("SENDING THE CHANGE TO THE CLIENT");
-		try {
-			//System.out.println(change);
+	public void update(Change change)
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+			boolean d=false;
 			for (ClientRMIConnectionViewRemote clientstub : this.clients) {
-				// System.out.println("sono nel Server prima di fare
-				// updateClient(c)");
-				clientstub.updateClient(change);
-				System.out.println("ho fatto il change sul client " + change);
-				// System.out.println("sono nel Server dopo aver fatto
-				// updateClient(c)");
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+				try{clientstub.updateClient(change);}
+				catch(RemoteException e){
+					clientDisconnected=clientstub;
+					d=true;
+					break;
+			
+					}
+				}
+			/*if(d){
+				updateDisconnected(change);
+			}*/
+		} 
+	
 
+	/*public void updateDisconnected(Change change){
+		ArrayList<ClientRMIConnectionViewRemote> clients1= new ArrayList<>();
+		clients1=clients;
+		clients.remove(clientDisconnected);
+		for(ClientRMIConnectionViewRemote client: clients){
+			try {
+				client.updateClient(change);
+			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			server.getMasterController().disconnect(client);
+		}}*/
+	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 
 	}
 

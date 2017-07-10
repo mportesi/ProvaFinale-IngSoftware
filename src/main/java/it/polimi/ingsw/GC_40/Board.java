@@ -31,6 +31,12 @@ import it.polimi.ingsw.json.JsonMarket;
 import it.polimi.ingsw.json.JsonPersonalBonusTiles;
 import it.polimi.ingsw.json.JsonPrivilegeCouncil;
 
+/**
+ * @author Chiara
+ * This class represents the board and its components.
+ *
+ */
+
 public class Board extends Observable<Change> implements Serializable {
 	private Tower territoryTower;
 	private Tower characterTower;
@@ -46,6 +52,12 @@ public class Board extends Observable<Change> implements Serializable {
 	private Dice orangeDice;
 	private ArrayList<Card> deck;
 	private int numberOfPlayers;
+	
+	/**
+	 * @author Chiara
+	 * In the constructor allt the components are initialized.
+	 *
+	 */
 
 	public Board(Play play, int numberOfPlayers)
 			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
@@ -87,73 +99,28 @@ public class Board extends Observable<Change> implements Serializable {
 		for (int i = territoryFloorJson.size()-1; i>=0; i--){
 			territoryFloor.add(new Floor(territoryFloorJson.get(i), play));
 		}
-		/*for (Floor f : territoryFloorJson) {
-			territoryFloor.add(new Floor(f, play));
-		}*/
 		territoryTower = new Tower("territory", territory1, territory2, territory3, territoryFloor, play);
-		/*
-		 * for (int i =0; i< territory1.size(); i++){
-		 * System.out.println("carta territorio: " + territory1.get(i)); } for
-		 * (int i =0; i< jsonFloor.getTerritoryFloors().size(); i++){
-		 * System.out.println("Ho creato il piano territory: " +
-		 * jsonFloor.getTerritoryFloors().get(i));
-		 * System.out.println("Piano della torre: " +
-		 * territoryTower.floors.get(i));
-		 * 
-		 * }
-		 */
+		
 		ArrayList<Floor> buildingFloorJson = jsonFloor.getBuildingFloors();
 		ArrayList<Floor> buildingFloor = new ArrayList<>();
-		for (Floor f : buildingFloorJson) {
-			buildingFloor.add(new Floor(f, play));
+		for (int i = territoryFloorJson.size()-1; i>=0; i--){
+			buildingFloor.add(new Floor(buildingFloorJson.get(i), play));
 		}
 		buildingTower = new Tower("building", building1, building2, building3, buildingFloor, play);
-		/*
-		 * for (int i =0; i< building1.size(); i++){
-		 * System.out.println("carta building: " + building1.get(i)); } for (int
-		 * i =0; i< jsonFloor.getBuildingFloors().size(); i++){
-		 * System.out.println("Ho creato il piano building: " +
-		 * jsonFloor.getBuildingFloors().get(i));
-		 * System.out.println("Piano della torre: " +
-		 * buildingTower.floors.get(i));
-		 * 
-		 * }
-		 */
+		
 		ArrayList<Floor> characterFloorJson = jsonFloor.getCharacterFloors();
 		ArrayList<Floor> characterFloor = new ArrayList<>();
-		for (Floor f : characterFloorJson) {
-			characterFloor.add(new Floor(f, play));
+		for (int i = characterFloorJson.size()-1; i>=0; i--){
+			characterFloor.add(new Floor(characterFloorJson.get(i), play));
 		}
 		characterTower = new Tower("character", character1, character2, character3, characterFloor, play);
-		/*
-		 * for (int i =0; i< character1.size(); i++){
-		 * System.out.println("carta character: " + character1.get(i)); } for
-		 * (int i =0; i< jsonFloor.getCharacterFloors().size(); i++){
-		 * System.out.println("Ho creato il piano character: " +
-		 * jsonFloor.getCharacterFloors().get(i));
-		 * System.out.println("Piano della torre: " +
-		 * characterTower.floors.get(i));
-		 * 
-		 * }
-		 */
+	
 		ArrayList<Floor> ventureFloorJson = jsonFloor.getTerritoryFloors();
 		ArrayList<Floor> ventureFloor = new ArrayList<>();
-		for (Floor f : ventureFloorJson) {
-			ventureFloor.add(new Floor(f, play));
+		for (int i = ventureFloorJson.size()-1; i>=0; i--){
+			ventureFloor.add(new Floor(ventureFloorJson.get(i), play));
 		}
 		ventureTower = new Tower("venture", venture1, venture2, venture3, ventureFloor, play);
-		/*
-		 * for (int i =0; i< venture1.size(); i++){
-		 * System.out.println("carta venture: " + venture1.get(i)); } for (int i
-		 * =0; i< jsonFloor.getVentureFloors().size(); i++){
-		 * System.out.println("Ho creato il piano venture: " +
-		 * jsonFloor.getVentureFloors().get(i));
-		 * System.out.println("Piano della torre: " +
-		 * ventureTower.floors.get(i));
-		 * 
-		 * }
-		 */
-		// System.out.println(jsonFloor.getTerritoryFloors());
 
 		JsonCouncilPalace jsonCouncil = new JsonCouncilPalace();
 		jsonCouncil.importCouncilPalace();
@@ -179,23 +146,15 @@ public class Board extends Observable<Change> implements Serializable {
 			JsonMarket jsonMarket = new JsonMarket();
 			jsonMarket.importMarket();
 			
-			for (int i=0; i<4; i++){
-			System.out.println(jsonMarket.getMarketBuilding(i));
-			}
 			ArrayList<MarketBuilding> marketJson = new ArrayList<>();
 			for (int i = 0; i <= 1; i++) {
 				marketJson.add(i, jsonMarket.getMarketBuilding(i));
-				System.out.println("ho creato due market "+ marketJson.get(i).getCost());
 				market.add(i, new MarketBuilding(marketJson.get(i), play));
 			}
 
 		}
-		System.out.println("exit");
 
-		JsonPersonalBonusTiles jsonPersonalBonusTiles = new JsonPersonalBonusTiles();
-		jsonPersonalBonusTiles.importPersonalBonusTiles();
-		PersonalBonusTile personalBonusTileSimple = jsonPersonalBonusTiles.getPersonalBonusTiles(0);
-		PersonalBonusTile personalBonusTileAdvanced = jsonPersonalBonusTiles.getPersonalBonusTiles(1);
+		
 
 		if (numberOfPlayers >= 3) {
 			JsonHarvestAndProduction jsonHarvestAndProduction = new JsonHarvestAndProduction();
@@ -247,10 +206,7 @@ public class Board extends Observable<Change> implements Serializable {
 
 			}
 		}
-		/*
-		 * for(int i=0; i<newDeck.size(); i++){
-		 * System.out.println(newDeck.get(i)); }
-		 */
+		
 		return newDeck;
 
 	}
@@ -261,16 +217,15 @@ public class Board extends Observable<Change> implements Serializable {
 		return ("Board" + "\n" + territoryTower + "\n" + buildingTower + "\n" + characterTower + "\n" + ventureTower
 				+ "\n" + councilPalace + "\n" + market.get(0) + "\n" + market.get(1) + "\n" + market.get(2) + "\n"
 				+ market.get(3) + "\n" + harvestArea + "\n" + productionArea + "\n" + blackDice + "\n" + whiteDice
-				+ "\n" + orangeDice);}
+				+ "\n" + orangeDice + "\nNumber of players: "+ numberOfPlayers);}
 		else{
 			return("Board" + "\n" + territoryTower + "\n\n" + buildingTower + "\n\n" + characterTower + "\n\n" + ventureTower
 					+ "\n\n\n" + councilPalace + "\n\n\n" + market.get(0) + "\n\n" + market.get(1) + "\n\n\n" + harvestArea + "\n\n" + productionArea + "\n\n\n" + blackDice + "\n" + whiteDice
-					+ "\n" + orangeDice);
+					+ "\n" + orangeDice + "\nNumber of players: "+ numberOfPlayers);
 		}
 	}
 
 	public CouncilPalace getCouncilPalace() {
-		// TODO Auto-generated method stub
 		return councilPalace;
 	}
 
@@ -329,5 +284,73 @@ public class Board extends Observable<Change> implements Serializable {
 	public int getNumberOfPlayers() {
 		return numberOfPlayers;
 	}
+
+	public void remove(Player player) {
+		if(councilPalace.isAlreadyPresent(player)){
+			councilPalace.removePlayer(player);
+		}
+		for(MarketBuilding m: market){
+			if(m.isOccupied() && m.getPlayer().getID().equals(player.getID())){
+				m.setFree();
+			}
+		}
+		for(Floor f: buildingTower.getFloors()){
+			if(!f.isFree() && f.getPlayer().getID().equals(player.getID())){
+				f.setFree();
+			}
+		}
+		for(Floor f: territoryTower.getFloors()){
+			if(!f.isFree() && f.getPlayer().getID().equals(player.getID())){
+				f.setFree();
+			}
+		}
+		for(Floor f: characterTower.getFloors()){
+			if(!f.isFree() && f.getPlayer().getID().equals(player.getID())){
+				f.setFree();
+			}
+		}
+		for(Floor f: ventureTower.getFloors()){
+			if(!f.isFree() && f.getPlayer().getID().equals(player.getID())){
+				f.setFree();
+			}
+		}
+		if(harvestArea.isAlreadyPresent(player)){
+			if(harvestArea.getLeftRelative().getPlayer().getID().equals(player.getID())){
+				try {
+					harvestArea.setLeftRelativeOnHarvest(null);
+				} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			Relative relativeToRemove=null;
+			for(Relative r: harvestArea.getRightRelatives()){
+				if(r.getPlayer().getID().equals(player.getID())){
+					relativeToRemove=r;
+				}
+			}
+			harvestArea.getRightRelatives().remove(relativeToRemove);
+		}
+		if(productionArea.isAlreadyPresent(player)){
+			if(productionArea.getLeftRelative().getPlayer().getID().equals(player.getID())){
+				try {
+					harvestArea.setLeftRelativeOnProduction(null);
+				} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			Relative relativeToRemove=null;
+			for(Relative r: productionArea.getRightRelatives()){
+				if(r.getPlayer().getID().equals(player.getID())){
+					relativeToRemove=r;
+				}
+			}
+			productionArea.getRightRelatives().remove(relativeToRemove);
+		}
+		
+	}
+
+	
+
+	
 
 }

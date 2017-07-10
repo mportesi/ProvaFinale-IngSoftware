@@ -11,7 +11,13 @@ import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.components.Relative;
 
-public class Tower extends Observable<Change> implements Serializable {
+/**
+ * @author Sara
+ * This is the class for the towers.
+ * There are 4 different towers: each tower has a type, three decks of card (one for period), a cost.
+ * The cost is applied only if there already is a player in the tower.
+ */
+public class Tower implements Serializable {
 	private String type;
 	public ArrayList<Floor> floors;
 	private ArrayList<Card> deck1;
@@ -26,7 +32,6 @@ public class Tower extends Observable<Change> implements Serializable {
 		this.deck2 = deck2;
 		this.deck3 = deck3;
 		this.floors = floors;
-		registerObserver(play);
 	}
 
 	public String getType() {
@@ -34,15 +39,17 @@ public class Tower extends Observable<Change> implements Serializable {
 	}
 	
 	
-	// To empty the towers at the end of the round and to recharge them with new
-	// cards
+	/**
+	 * @author Sara
+	 * To empty the tower when the round is finished and to put a new card on every floor of the tower.
+	 */
 	public void refreshTower(int period) {
+	
 		ArrayList<Card> deck = new ArrayList<Card>();
 		switch (period) {
 		case 1:
 			{
 			deck = deck1;
-			
 			break;
 			}
 		case 2:
@@ -54,15 +61,21 @@ public class Tower extends Observable<Change> implements Serializable {
 			break;
 			}
 		}
-				for(int i=0; i<4; i++){
-				floors.get(i).currentCard = deck.remove(i);
 				
+				for(int i=3; i>=0; i--){
+					floors.get(i).currentCard = deck.remove(i);
+					floors.get(i).setFree();
 				}
+				
+				
 		
 	}
 
 	
-	
+	/**
+	 * @author Sara
+	 * Check if there already is a relative of one player otherwise he cannot put any relative on this tower for the round.
+	 */
 	public boolean isPresent(Player p) {
 	
 		for (Floor f : floors) {
@@ -73,6 +86,10 @@ public class Tower extends Observable<Change> implements Serializable {
 		return true;
 	}
 	
+	/**
+	 * @author Sara
+	 * Check if there already is a player on the tower because of the cost of the occupied tower.
+	 */
 	public boolean isPresentAnyone() {
 			for (Floor f : floors) {
 				if (f.getPlayer()!=null){
@@ -135,7 +152,11 @@ public class Tower extends Observable<Change> implements Serializable {
 	}
 
 	public int getCost() {
-		return cost;
+		return 3;
+	}
+
+	public ArrayList<Floor> getFloors() {
+		return floors;
 	}
 
 

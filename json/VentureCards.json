@@ -6,6 +6,7 @@
     "alternativeCostBoolean":1,
     "militaryRequirement":4,
     "militaryCost":2,
+    "victoryPoint":1,
     "cost":[
       {"type":"coin", "amount":2},
       {"type":"wood", "amount":1},
@@ -21,6 +22,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"wood", "amount":2},
       {"type":"stone", "amount":2}],
@@ -35,6 +37,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":1},
       {"type":"wood", "amount":1},
@@ -44,12 +47,13 @@
     ]
   },
   {
-    "name":"hostingBeggars",
+    "name":"hostingPanhandlers",
     "type":"ventureCard",
     "period":1,
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"wood", "amount":3}],
     "immediateEffect":[
@@ -57,12 +61,13 @@
     ]
   },
   {
-    "name":"fightingHeresy",
+    "name":"fightingHeresies",
     "type":"ventureCard",
     "period":1,
     "alternativeCostBoolean":0,
     "militaryRequirement":5,
     "militaryCost":3,
+    "victoryPoint":5,
     "cost":[
       ],
     "immediateEffect":[
@@ -76,23 +81,11 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"coin", "amount":4}],
     "immediateEffect":[
       {"type":"GainMilitaryPoint", "amount":5}
-    ]
-  },
-  {
-    "name":"militaryCampaign",
-    "type":"ventureCard",
-    "period":1,
-    "alternativeCostBoolean":0,
-    "militaryRequirement":3,
-    "militaryCost":2,
-    "cost":[
-      {"type":"wood", "amount":3}],
-    "immediateEffect":[
-      {"type":"GainCoin", "amount":3}
     ]
   },
   {
@@ -102,6 +95,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":3,
     "cost":[
       {"type":"stone", "amount":3}],
     "immediateEffect":[
@@ -116,35 +110,37 @@
     "alternativeCostBoolean":1,
     "militaryRequirement":7,
     "militaryCost":4,
+    "victoryPoint":4,
     "cost":[
       {"type":"coin", "amount":3},
       {"type":"wood", "amount":2},
       {"type":"stone", "amount":2}
     ],
     "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":4}
+      {"type":"GainFaithPoint", "amount":3}
     ]
   },
   {
     "name":"militaryCampaign",
     "type":"ventureCard",
-    "period":2,
+    "period":1,
     "alternativeCostBoolean":0,
     "militaryRequirement":3,
     "militaryCost":2,
-    "cost":[
-      {"type":"wood", "amount":3}],
+    "victoryPoint":5,
+    "cost":[],
     "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":4}
+      {"type":"GainCoin", "amount":3}
     ]
   },
   {
-    "name":"buildingTheRamparts",
+    "name":"buildingTheBastions",
     "type":"ventureCard",
     "period":2,
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":2,
     "cost":[
       {"type":"stone", "amount":4}],
     "immediateEffect":[
@@ -159,6 +155,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":8,
     "militaryCost":4,
+    "victoryPoint":5,
     "cost":[
       ],
     "immediateEffect":[
@@ -173,6 +170,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":6}],
     "immediateEffect":[
@@ -180,12 +178,13 @@
     ]
   },
   {
-    "name":"welcomingForeigners",
+    "name":"hostingForeigners",
     "type":"ventureCard",
     "period":2,
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"wood", "amount":4}],
     "immediateEffect":[
@@ -193,12 +192,13 @@
     ]
   },
   {
-    "name":"diggingFunnels",
+    "name":"improvingTheCanals",
     "type":"ventureCard",
     "period":2,
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":3},
       {"type":"servant", "amount":2}],
@@ -213,6 +213,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":6,
     "militaryCost":3,
+    "victoryPoint":3,
     "cost":[
      ],
     "immediateEffect":[
@@ -227,21 +228,23 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":6,
     "cost":[
       {"type":"coin", "amount":2},
       {"type":"wood", "amount":2},
-      {"type":"stone", "amount":4}],
+      {"type":"stone", "amount":2}],
     "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":3}
+      {"type":"GainFaithPoint", "amount":2}
     ]
   },
   {
-    "name":"saintWar",
+    "name":"sacredWar",
     "type":"ventureCard",
     "period":3,
     "alternativeCostBoolean":0,
     "militaryRequirement":15,
     "militaryCost":8,
+    "victoryPoint":8,
     "cost":[
     ],
     "immediateEffect":[
@@ -249,12 +252,13 @@
     ]
   },
   {
-    "name":"commissioningSacredArt",
+    "name":"promotingSacredArt",
     "type":"ventureCard",
     "period":3,
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":3,
     "cost":[
       {"type":"wood", "amount":6}
     ],
@@ -269,14 +273,15 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":3},
       {"type":"wood", "amount":3},
       {"type":"stone", "amount":3}
     ],
-    "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":1},
-      {"type":"GetCard", "amount":7}
+     "getCard":"anyone", "valueGetCard":7, "discount":[],
+      "immediateEffect":[
+      {"type":"GainFaithPoint", "amount":1}
     ]
   },
   {
@@ -286,6 +291,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":4,
     "cost":[
       {"type":"stone", "amount":6}
     ],
@@ -301,6 +307,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":6,
     "cost":[
       {"type":"coin", "amount":8}
     ],
@@ -315,6 +322,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":0,
     "militaryCost":0,
+    "victoryPoint":5,
     "cost":[
       {"type":"coin", "amount":4},
       {"type":"servant", "amount":3}
@@ -330,6 +338,7 @@
     "alternativeCostBoolean":0,
     "militaryRequirement":12,
     "militaryCost":6,
+    "victoryPoint":7,
     "cost":[
     ],
     "immediateEffect":[
@@ -345,14 +354,16 @@
     "alternativeCostBoolean":1,
     "militaryRequirement":10,
     "militaryCost":5,
+    "victoryPoint":10,
     "cost":[
       {"type":"coin", "amount":4},
       {"type":"wood", "amount":3},
       {"type":"stone", "amount":3}
     ],
     "immediateEffect":[
-      {"type":"GainFaithPoint", "amount":3}
+      {"type":"GainFaithPoint", "amount":2}
     ]
   }
   
 ]
+  

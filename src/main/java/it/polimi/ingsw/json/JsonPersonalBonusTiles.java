@@ -13,6 +13,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.components.PersonalBonusTile;
+import it.polimi.ingsw.components.PersonalBonusTileListOfHarvestEffect;
+import it.polimi.ingsw.components.PersonalBonusTileListOfProductionEffect;
+
+/**
+ * @author Chiara
+ * In this class the personal bonus tiles are imported from json.
+ *
+ */
 
 public class JsonPersonalBonusTiles {
 	private ArrayList <PersonalBonusTile> personalBonusTiles;
@@ -48,15 +56,19 @@ public class JsonPersonalBonusTiles {
 				bonusHarvestMap.put(typeBonus1, amount1);
 			
 			}
+		
 			
-			PersonalBonusTile personalBonusTile1 = new PersonalBonusTile (type, bonusProductionMap, bonusHarvestMap, costProduction, costHarvest);
+			PersonalBonusTileListOfProductionEffect personalBonusTileProductionListOfEffect = new PersonalBonusTileListOfProductionEffect (bonusProductionMap);
+			PersonalBonusTileListOfHarvestEffect personalBonusTileHarvestListOfEffect = new PersonalBonusTileListOfHarvestEffect (bonusHarvestMap);
+			
+			PersonalBonusTile personalBonusTile1 = new PersonalBonusTile (type, personalBonusTileProductionListOfEffect, personalBonusTileHarvestListOfEffect, costProduction, costHarvest);
 			personalBonusTiles.add(personalBonusTile1);
 			}
+			
+		
 	}
 
 	public PersonalBonusTile getPersonalBonusTiles(int i) {
-		
-		// TODO Auto-generated method stub
 		return personalBonusTiles.get(i);
 	}
 

@@ -9,6 +9,10 @@ import org.json.simple.parser.ParseException;
 import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.client.ClientModel;
 
+/**
+ * @author Sara
+ * This is the class that handle the objects from the server to the client.
+ */
 public class ClientInHandler implements Runnable {
 
 	private ObjectInputStream socketIn;
@@ -19,7 +23,11 @@ public class ClientInHandler implements Runnable {
 		this.clientModel=clientModel;
 		
 	}
-	
+	/**
+	 * @author Sara
+	 * When the execute is called, this method is invoked and it starts the connection asking the name to the player
+	 * and sending it to the server.
+	 */
 	@Override
 	public void run() {
 
@@ -29,30 +37,22 @@ public class ClientInHandler implements Runnable {
 			// handles input messages coming from the server
 			try {
 				Object object=socketIn.readObject();
-				System.out.println("ricevuto oggetto");
 				if (object instanceof Change){
-					System.out.println("ricevuto change");
 					((Change) object).applyChange(clientModel);
-					System.out.println(" change apply");
 
 				}
-				//TODO insert if for change, like if(object.getClass().equals(SomeChange.class)) --> modify the client model
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NullPointerException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				}
 			}
 		}
 	}
-}
+

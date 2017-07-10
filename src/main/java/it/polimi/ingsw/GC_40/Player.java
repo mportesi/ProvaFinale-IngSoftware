@@ -1,15 +1,16 @@
 package it.polimi.ingsw.GC_40;
 
-import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.rmi.AlreadyBoundException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 
 import org.json.simple.parser.ParseException;
 
+import it.polimi.ingsw.areas.Tower;
 import it.polimi.ingsw.cards.BuildingCard;
 import it.polimi.ingsw.cards.Card;
 import it.polimi.ingsw.cards.CharacterCard;
@@ -18,13 +19,19 @@ import it.polimi.ingsw.cards.VentureCard;
 import it.polimi.ingsw.changes.*;
 import it.polimi.ingsw.colors.ColorDice;
 import it.polimi.ingsw.colors.ColorPlayer;
-import it.polimi.ingsw.components.LeaderTile;
 import it.polimi.ingsw.components.PersonalBonusTile;
 import it.polimi.ingsw.components.Relative;
+
+/**
+ * @author Chiara
+ * This class represents the player with all his/her resources.
+ *
+ */
 
 public class Player extends Observable<Change> implements Serializable {
 	private UUID ID;
 	private String name;
+	private int match;
 	private ColorPlayer color;
 	private int coin;
 	private int wood;
@@ -33,12 +40,13 @@ public class Player extends Observable<Change> implements Serializable {
 	private int faithPoint;
 	private int victoryPoint;
 	private int militaryPoint;
+	private ArrayList <Relative> activeRelatives;
 	private ArrayList<TerritoryCard> territoryCard;
 	private ArrayList<CharacterCard> characterCard;
 	private ArrayList<BuildingCard> buildingCard;
 	private ArrayList<VentureCard> ventureCard;
-	private ArrayList<LeaderTile> leader;
-	private PersonalBonusTile personalBonusTile;
+	private PersonalBonusTile personalBonusTileSimple;
+	private PersonalBonusTile personalBonusTileAdvcanced;
 	private Relative blackRelative;
 	private Relative whiteRelative;
 	private Relative orangeRelative;
@@ -47,14 +55,27 @@ public class Player extends Observable<Change> implements Serializable {
 	private boolean hasWhiteRelative;
 	private boolean hasOrangeRelative;
 	private boolean hasNeutralRelative;
+	private boolean quit;
+	private int charCardBonus=0;
+	private int ventCardBonus=0;
+	private int buildCardBonus=0;
+	private int terrCardBonus=0;
+	private int harvestBonus=0;
+	private int productionBonus=0;
+	private int charCardGoldCost=0;
+	private int buildCardStoneCost=0;
+	private int buildCardWoodCost=0;
+	
 
-	public Player(UUID ID, Play play, String name) {
+	public Player(UUID ID, Play play, String name, int match) {
 		this.ID = ID;
 		this.name = name;
+		this.match = match;
 		blackRelative= new Relative(ColorDice.BLACK, this);
 		whiteRelative= new Relative(ColorDice.WHITE, this);
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
 		neutralRelative= new Relative(null, this);
+		activeRelatives = new ArrayList <Relative>();
 		territoryCard= new ArrayList<>();
 		buildingCard= new ArrayList<>();
 		ventureCard= new ArrayList<>();
@@ -71,9 +92,12 @@ public class Player extends Observable<Change> implements Serializable {
 	@Override
 	public String toString(){
 		return ("The player is\n " + "Name: " + name +  "\nColor: " + color + "\nCoin: " +coin + "\nWood: "+ wood +"\nStone: "+ stone + "\nServant: "+ servant + "\nFaithPoint: " + faithPoint + "\nMilitaryPoint: "+ militaryPoint + "\nVictoryPoint: "+ victoryPoint+ "\nTerritoryCard: " + territoryCard + "\nCharacterCard: "
-				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nLeaderTile: "+ leader);
+				+ characterCard + "\nVentureCard: " + ventureCard + "\nBuildingCard: "+ buildingCard + "\nThe active relative are: " +activeRelatives);
 	}
-
+	
+	public void removeRelative (Relative relative){
+		activeRelatives.remove(relative);
+	}
 	public int resourceCounter() {
 		return coin + wood + stone + servant;
 	}
@@ -126,9 +150,7 @@ public class Player extends Observable<Change> implements Serializable {
 		return ventureCard;
 	}
 
-	public ArrayList<LeaderTile> getLeader() {
-		return leader;
-	}
+
 
 	public void incrementCoin(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		coin += n;
@@ -149,27 +171,27 @@ public class Player extends Observable<Change> implements Serializable {
 		play.notifyObserver(changeWood);
 	}
 
-	public void decrementWood(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void decrementWood(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		wood -= n;
 		ChangeWood changeWood = new ChangeWood(this, wood);
 		play.notifyObserver(changeWood);
 
 	}
 
-	public void incrementStone(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void incrementStone(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		stone += n;
 		ChangeStone changeStone = new ChangeStone(this, stone);
 		play.notifyObserver(changeStone);
 	}
 
-	public void decrementStone(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void decrementStone(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		stone -= n;
 		ChangeStone changeStone = new ChangeStone(this, stone);
 		play.notifyObserver(changeStone);
 	}
 
 	public void incrementServant(int n, Play play)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		servant += n;
 		ChangeServant changeServant = new ChangeServant(this, servant);
 		play.notifyObserver(changeServant);
@@ -183,7 +205,7 @@ public class Player extends Observable<Change> implements Serializable {
 	}
 
 	public void incrementMilitaryPoint(int n, Play play)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		militaryPoint += n;
 		ChangeMilitaryPoint changeMilitaryPoint = new ChangeMilitaryPoint(this, militaryPoint);
 		play.notifyObserver(changeMilitaryPoint);
@@ -191,28 +213,28 @@ public class Player extends Observable<Change> implements Serializable {
 	}
 
 	public void decrementMilitaryPoint(int n, Play play)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		militaryPoint -= n;
 		ChangeMilitaryPoint changeMilitaryPoint = new ChangeMilitaryPoint(this, militaryPoint);
 		play.notifyObserver(changeMilitaryPoint);
 	}
 
 	public void incrementFaithPoint(int n, Play play)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		faithPoint += n;
 		ChangeFaithPoint changeFaithPoint = new ChangeFaithPoint(this, faithPoint);
 		play.notifyObserver(changeFaithPoint);
 	}
 
 	public void decrementFaithPoint(int n, Play play)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		faithPoint -= n;
 		ChangeFaithPoint changeFaithPoint = new ChangeFaithPoint(this, faithPoint);
 		play.notifyObserver(changeFaithPoint);
 	}
 
 	public void incrementVictoryPoint(int n, Play play)
-			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+			throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		victoryPoint += n;
 		ChangeVictoryPoint changeVictoryPoint = new ChangeVictoryPoint(this, victoryPoint);
 		play.notifyObserver(changeVictoryPoint);
@@ -258,7 +280,7 @@ public class Player extends Observable<Change> implements Serializable {
 		return i;
 	}
 
-	public void addCard(Card card, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+	public void addCard(Card card, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
 		String type = card.getType();
 		switch (type) {
 		case "territoryCard": {
@@ -266,6 +288,7 @@ public class Player extends Observable<Change> implements Serializable {
 			territoryCard.add((TerritoryCard) card);
 			ChangeTerritoryCard changeTerritoryCard = new ChangeTerritoryCard(this, territoryCard);
 			play.notifyObserver(changeTerritoryCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much territory cards!"));
 			break;
 		}
 		case "buildingCard": {
@@ -273,6 +296,7 @@ public class Player extends Observable<Change> implements Serializable {
 			buildingCard.add((BuildingCard) card);
 			ChangeBuildingCard changeBuildingCard = new ChangeBuildingCard(this, buildingCard);
 			play.notifyObserver(changeBuildingCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much building cards!"));
 			break;
 		}
 		case "characterCard": {
@@ -280,6 +304,7 @@ public class Player extends Observable<Change> implements Serializable {
 			characterCard.add((CharacterCard) card);
 			ChangeCharacterCard changeCharacterCard = new ChangeCharacterCard(this, characterCard);
 			play.notifyObserver(changeCharacterCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much character cards!"));
 			break;
 		}
 		case "ventureCard": {
@@ -287,6 +312,7 @@ public class Player extends Observable<Change> implements Serializable {
 			ventureCard.add((VentureCard) card);
 			ChangeVentureCard changeVentureCard = new ChangeVentureCard(this, ventureCard);
 			play.notifyObserver(changeVentureCard);}
+			else play.notifyObserver(new ChangeNotApplicable(this, "you have too much venture cards!"));
 			break;
 		}
 		}
@@ -397,14 +423,11 @@ public class Player extends Observable<Change> implements Serializable {
 		return neutralRelative;
 	}
 
-	public PersonalBonusTile getPersonalBonusTile() {
-	
-		return personalBonusTile;
-	}
 
 	public void setOccupiedRelative(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=false;
+			
 		}
 		if(relative.equals(whiteRelative)){
 			hasWhiteRelative=false;
@@ -412,7 +435,7 @@ public class Player extends Observable<Change> implements Serializable {
 		if(relative.equals(orangeRelative)){
 			hasOrangeRelative=false;
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			hasNeutralRelative=false;
 		}
 		
@@ -428,7 +451,7 @@ public class Player extends Observable<Change> implements Serializable {
 		if(relative.equals(orangeRelative)){
 			return hasOrangeRelative;
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			return hasNeutralRelative;
 		}
 		return false;
@@ -437,9 +460,6 @@ public class Player extends Observable<Change> implements Serializable {
 
 
 	public void setFreeRelative(Relative relative) {
-		// TODO Auto-generated method stub
-		System.out.println(relative);
-		System.out.println(blackRelative);
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=true;
 		}
@@ -450,11 +470,189 @@ public class Player extends Observable<Change> implements Serializable {
 			hasOrangeRelative=true;
 			
 		}
-		if(relative.equals(orangeRelative)){
+		if(relative.equals(neutralRelative)){
 			hasNeutralRelative=true;
 			
 		}
 	}
+
+
+
+	public void setPersonalBonusTile(PersonalBonusTile personalBonusTileSimple, PersonalBonusTile personalBonusTileAdvanced) {
+		this.personalBonusTileSimple = personalBonusTileSimple;
+		this.personalBonusTileAdvcanced = personalBonusTileAdvanced;
+		
+	}
+
+
+
+	public PersonalBonusTile getPersonalBonusTileSimple() {
+		return personalBonusTileSimple;
+	}
+
+
+
+	public void setFreeAllRelatives() {
+		hasBlackRelative=true;
+		hasOrangeRelative=true;
+		hasWhiteRelative=true;
+		hasNeutralRelative=true;
+		for (Relative r : activeRelatives){
+			if (!isPresent(blackRelative)){
+		activeRelatives.add(blackRelative);
+			}
+			if (!isPresent(neutralRelative)){
+		activeRelatives.add(neutralRelative);
+			}
+			if (!isPresent(orangeRelative)){
+		activeRelatives.add(orangeRelative);
+			}
+			if (!isPresent(whiteRelative)){
+		activeRelatives.add(whiteRelative);
+			}
+		
+	}
+	}
+
+
+
+	private boolean isPresent(Relative relative) {
+		for (Relative r : activeRelatives){
+			if (r == relative){
+				return true;
+			}
+		}
+			
+		return false;
+			
+	
+	
+	}
+
+
+
+	public Relative getRelative(Relative relative) {
+		if(relative.equals(blackRelative)){
+			return blackRelative;
+		}
+		if(relative.equals(whiteRelative)){
+			return whiteRelative;
+		}
+		if(relative.equals(orangeRelative)){
+			return orangeRelative;
+			
+		}
+		if(relative.equals(neutralRelative)){
+			return neutralRelative;
+			
+		}
+		return null;
+	}
+
+
+
+	public int getMatch() {
+		// TODO Auto-generated method stub
+		return match;
+	}
+
+
+
+	public void setQuit(boolean b) {
+		// TODO Auto-generated method stub
+		quit = b;
+	}
+
+
+
+	public boolean getQuit() {
+		return quit;
+	}
+
+	public int getCharCardBonus(){
+		return charCardBonus;
+	}
+	
+	public void addCharCardBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		charCardBonus += n;
+		ChangeCharBonus changeCharBonus= new ChangeCharBonus(this, charCardBonus);
+		play.notifyObserver(changeCharBonus);
+	}
+	
+	public void setCharCardBonus(int n){
+		charCardBonus = n;
+	}
+
+	public int getBuildCardBonus(){
+		return buildCardBonus;
+	}
+	
+	public void addBuildCardBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		buildCardBonus +=n;
+		ChangeBuildBonus changeBuildBonus=new ChangeBuildBonus(this, buildCardBonus);
+		play.notifyObserver(changeBuildBonus);
+	}
+	
+	public void setBuildCardBonus(int n){
+		buildCardBonus = n;
+	}
+	
+	public int getVentCardBonus(){
+		return ventCardBonus;
+	}
+	
+	public void addVentCardBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		ventCardBonus += n;
+		ChangeVentBonus changeVentBonus=new ChangeVentBonus(this, ventCardBonus);
+		play.notifyObserver(changeVentBonus);
+	}
+	
+	public void setVentCardBonus(int n){
+		ventCardBonus = n;
+	}
+	
+	public int getTerrCardBonus(){
+		return terrCardBonus;
+	}
+	
+	public void addTerrCardBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		terrCardBonus += n;
+		ChangeTerrBonus changeTerrBonus=new ChangeTerrBonus(this, terrCardBonus);
+		play.notifyObserver(changeTerrBonus);
+	}
+	
+	public void setTerrCardBonus(int n){
+		terrCardBonus = n;
+	}
+	
+	public int getProductionBonus(){
+		return productionBonus;
+	}
+	
+	public void addProductionBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		productionBonus += n;
+		ChangeProductionBonus changeProductionBonus=new ChangeProductionBonus(this, productionBonus);
+		play.notifyObserver(changeProductionBonus);
+	}
+	
+	public void setProductionBonus(int n){
+		productionBonus = n;
+	}
+	
+	public int getHarvestBonus(){
+		return harvestBonus;
+	}
+	
+	public void addHarvestBonus(int n, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		harvestBonus += n;
+		ChangeHarvestBonus changeHarvestBonus=new ChangeHarvestBonus(this, harvestBonus);
+		play.notifyObserver(changeHarvestBonus);
+	}
+	
+	public void setHarvestBonus(int n){
+		harvestBonus = n;
+	}
+	
 	
 
 

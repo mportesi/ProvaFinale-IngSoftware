@@ -11,22 +11,34 @@ import it.polimi.ingsw.GC_40.Play;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.effects.Effect;
 import it.polimi.ingsw.effects.GainPrivilegeCouncil;
-
+import it.polimi.ingsw.effects.HasPrivilege;
+/**
+ * @author Sara
+ * This is the subclass of the territory card
+ */
 public class TerritoryCard extends Card {
 	private TerritoryListOfEffect effects;
+	private TerritoryListOfEffect permanent;
 	private ArrayList<Effect> immediateEffects;
+	private ArrayList<Effect> permanentEffects;
+	private boolean gainPrivilegeCouncil=false;
+	private int permanentCost=0;
 
-	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects) throws FileNotFoundException, IOException, ParseException {
+	public TerritoryCard(String type, String name, int period, TerritoryListOfEffect effects, TerritoryListOfEffect permanent) throws FileNotFoundException, IOException, ParseException {
 		super(type, name, period);
 		this.effects=effects;
+		this.permanent=permanent;
 		immediateEffects = effects.createListOfEffect();
+		permanentEffects = permanent.createListOfEffect();
+		setGainPrivilegeCouncil();
 	}
 
-	// to apply immediate effects
+	/**
+	 * @author Sara
+	 * To apply immediate effects when a player takes the card
+	 */
 	@Override
 	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		
-		System.out.println("Gli effetti della carta sono: " + immediateEffects);
 		for (Effect e : immediateEffects) {
 			if (e != null) {
 				e.apply(player, play);
@@ -35,25 +47,25 @@ public class TerritoryCard extends Card {
 		}
 	}
 	
-	public void applyPrivilegeBonus(Play play,Player player, String resource){
+	/**
+	 * @author Sara
+	 * To apply the effect gain privilege is necessary to use another method that ask to the player what resource he wants.
+	 */
+	public void applyPrivilegeBonus(Play play,Player player, String resource) throws InterruptedException{
 		try {
 			GainPrivilegeCouncil gain= new GainPrivilegeCouncil(resource);
 			gain.apply(player, play);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	
@@ -66,7 +78,26 @@ public class TerritoryCard extends Card {
 		return gainPrivilegeCouncil;
 	}
 
-	public void setGainPrivilegeCouncil(boolean gainPrivilegeCouncil) {
-		this.gainPrivilegeCouncil = gainPrivilegeCouncil;
+	public void setGainPrivilegeCouncil() {
+		for (Effect e : this.immediateEffects) {
+			if (e instanceof HasPrivilege) {
+				this.gainPrivilegeCouncil = true;
+			}
+		}
+		
+	}
+	public boolean getGainPrivilegeCouncil() {
+		return gainPrivilegeCouncil;
+	}
+	
+	public void applyPermanentEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException{
+		for(Effect e : permanentEffects){
+			if(e!=null){
+				e.apply(player,play);
+			}
+		}
+	}
+	public int getPermanentCost(){
+		return permanentCost;
 	}
 }

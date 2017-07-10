@@ -4,7 +4,12 @@ import it.polimi.ingsw.GC_40.Board;
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.components.Dice;
+import javafx.event.Event;
 
+/**
+ * @author Sara
+ * To set the board on every client at the beginning of the game.
+ */
 public class ChangeInitializeBoard implements Change {
 	private Board board;
 	private Player currentPlayer;
@@ -17,16 +22,10 @@ public class ChangeInitializeBoard implements Change {
 
 	@Override
 	public void applyChange(ClientModel client) {
-		client.setBoard(board);
+		if (currentPlayer.getMatch() == client.getPlayer().getMatch()){
+		client.initializeBoard(board);
 		client.setCurrentPlayer(currentPlayer);
-		
-		System.out.println("It's " + client.getCurrentPlayer().getName() +"'s turn of "+ client.getPlayer().getName());
-		
-		//client.getPlayer().getBlackRelative().setValue(board.getBlackDice().getValue());
-		//client.getPlayer().getOrangeRelative().setValue(board.getOrangeDice().getValue());
-		//client.getPlayer().getWhiteRelative().setValue(board.getWhiteDice().getValue());
-		
-	
+	}
 	}
 
 	@Override

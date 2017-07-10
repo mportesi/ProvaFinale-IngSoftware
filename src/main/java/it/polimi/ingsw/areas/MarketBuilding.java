@@ -30,9 +30,14 @@ import it.polimi.ingsw.effects.GainVictoryPointForTerritoryCard;
 import it.polimi.ingsw.effects.GainVictoryPointForVentureCard;
 import it.polimi.ingsw.effects.GainWood;
 
+/**
+ * @author Sara
+ * The class for the different spaces of the market.
+ * There are 4 spaces that have different bonus.
+ */
 public class MarketBuilding extends Observable<Change> implements Serializable{
 
-	private String type; // A COSA SERVE??
+	private String type;
 	private boolean isOccupied;
 	private int cost;
 	private MarketListOfEffect marketEffect;
@@ -58,17 +63,20 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 
 	
 	
-	private ArrayList<Effect> getBonus() {
+	public ArrayList<Effect> getBonus() {
 		
 		return bonus;
 	}
 
-	private String getType() {
+	public String getType() {
 		return type;
 	}
 
 	
-
+	/**
+	 * @author Sara
+	 * To apply the bonus of this specific market when a player decide to do the action put relative on market.
+	 */
 	public void applyEffect(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		
 		for (Effect e : bonus) {
@@ -82,15 +90,15 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 	
 	@Override
 	public String toString() {
-		if(player!=null){
-			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\nWith bonus: " + bonus +"\nIs occupied by " +player+ " with the relative " + relative.getColor());
+		if(isOccupied){
+			return ("The market of type: " + type + "\n" + "With cost: " + cost + "\nWith bonus: " + bonus +"\nIs occupied by " +player.getName()+ " with the relative " + relative.getColor());
 		}
-		return ("The market of type: " + type + "\n" + "With cost: " + cost +"\nWithBonus: " + bonus + "\nIs free!");
+		else return ("The market of type: " + type + "\n" + "With cost: " + cost +"\nWithBonus: " + bonus + "\nIs free!");
 	}
 
 	
 
-	public boolean IsOccupied() {
+	public boolean isOccupied() {
 		return isOccupied;
 	}
 
@@ -98,15 +106,24 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		return cost;
 	}
 
-
+	/**
+	 * @author Sara
+	 * To put the player when he does an action that involve the market.
+	 */
 	public void setOccupied(Player player, Relative relative, MarketBuilding market) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		isOccupied = true;
+		this.isOccupied = true;
 		this.relative=relative;
 		this.player=player;
 	}
 
+	/**
+	 * @author Sara
+	 * To remove the player when the round finish.
+	 */
 	public void setFree() {
 		isOccupied = false;
+		player=null;
+		relative=null;
 	}
 
 	public void setPlayer(Player player) {
@@ -145,5 +162,13 @@ public class MarketBuilding extends Observable<Change> implements Serializable{
 		} else if (!marketEffect.equals(other.marketEffect))
 			return false;
 		return true;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public Relative getRelative() {
+		return relative;
 	}
 }

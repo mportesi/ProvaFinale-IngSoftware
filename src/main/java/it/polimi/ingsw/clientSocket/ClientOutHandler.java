@@ -3,97 +3,71 @@ package it.polimi.ingsw.clientSocket;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.GC_40.Player;
 import it.polimi.ingsw.actions.InitializeGame;
+import it.polimi.ingsw.actions.PutRelative;
+import it.polimi.ingsw.actions.Quit;
 import it.polimi.ingsw.actions.RegisterClient;
+import it.polimi.ingsw.actions.RegisterClientSocket;
+import it.polimi.ingsw.actions.SetServant;
+import it.polimi.ingsw.actions.ShiftPlayer;
 import it.polimi.ingsw.client.ClientModel;
 import it.polimi.ingsw.client.CommandLineInterface;
 import it.polimi.ingsw.components.Relative;
 
+/**
+ * @author Sara
+ * This is the class that handle the objects from the client to the server
+ */
 public class ClientOutHandler implements Runnable {
 
 	private ObjectOutputStream socketOut;
 	private ClientModel clientModel;
 	private CommandLineInterface cli;
 	private Player player;//= new Player();
-	public ClientOutHandler(ObjectOutputStream socketOut, ClientModel clientModel) {
+	private boolean commandLine;
+	public ClientOutHandler(ObjectOutputStream socketOut, ClientModel clientModel, boolean commandLine) {
 		this.socketOut = socketOut;
 		this.clientModel=clientModel;
+		this.commandLine=commandLine;
 		//this.player= clientModel.getPlayer();
 		//cli = new CommandLineInterface(this.clientModel.getPlayer(), clientModel);
 	}
 
+	/**
+	 * @author Sara
+	 * When the execute is called, this method is invoked and it starts the connection asking the name to the player
+	 * and sending it to the server.
+	 */
 	@Override
 	public void run() {
-
 		// Handles output messages, from the client to the server
-		System.out.println("RUNNING");
-		System.out.println("choose your name: ");
-		Scanner stdIn = new Scanner(System.in);
-		String name= stdIn.nextLine();
-		RegisterClient register = new RegisterClient(name);
-		//this.player= clientModel.getPlayer();
-		//cli = new CommandLineInterface(player, clientModel);
-		try {
-			socketOut.writeObject(register);
-			socketOut.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		InitializeGame init= new InitializeGame();
-		try {
-			socketOut.writeObject(init);
-			socketOut.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try
-        {Thread.sleep(5*1000);}
-    catch (Exception e)
-        {e.printStackTrace();
-	}
-		
-		while(clientModel.getPlayer()==null){
-		}
-		player = clientModel.getPlayer();
-		System.out.println(player.getName());
-		cli = new CommandLineInterface(clientModel);
-		while (true) {
-			try
-	        {Thread.sleep(0);}
-	    catch (Exception e)
-	        {e.printStackTrace();
-		}
-			
-			System.out.println("test the action");
-			//String input = stdIn.nextLine();
-			Object action= new Object();
-			
+		if(commandLine){
+			clientModel.setCli(true);
+			clientModel.setGui(false);
+			System.out.println("RUNNING");
+			System.out.println("choose your name: ");
+			Scanner stdIn = new Scanner(System.in);
+			String name= stdIn.nextLine();
+			clientModel.setName(name);
+			RegisterClientSocket register=new RegisterClientSocket(name);
+			//RegisterClient register = new RegisterClient(name);
+			//this.player= clientModel.getPlayer();
+			//cli = new CommandLineInterface(player, clientModel);
 			try {
-				Relative relative=cli.chooseTheRelative();
-				action=cli.chooseTheAction(relative);
-			} catch (NullPointerException | IOException | ParseException | InterruptedException e) {
-				// TODO Auto-generated catch block
+				socketOut.writeObject(register);
+				socketOut.flush();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			System.out.println("test the action");
-
-			try {
-				// Implements the communication protocol
-			//action=cli.chooseTheAction();
-			
-			socketOut.writeObject(action);
-			socketOut.flush();
-			}catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 		}
+		
+		
 
 	}
 }

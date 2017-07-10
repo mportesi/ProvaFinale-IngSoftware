@@ -16,6 +16,12 @@ import it.polimi.ingsw.effects.GainMilitaryPoint;
 import it.polimi.ingsw.effects.GainStone;
 import it.polimi.ingsw.effects.GainWood;
 
+/**
+ * @author Chiara
+ * In this class all the costs associated to the floors of the towers are imported from json.
+ *
+ */
+
 public class JsonFloor {
 	private ArrayList<Floor> territoryFloors;
 	private ArrayList<Floor> characterFloors; 
@@ -40,24 +46,36 @@ public class JsonFloor {
 			case "territory": {
 				GainWood e = new GainWood(amountBonus);
 				Floor f = new Floor(type, costOfFloor, e);
+				if(amountBonus==0){
+					 f = new Floor(type, costOfFloor, null);
+				}
 				territoryFloors.add(f);
 				break;
 			}
 			case "character": {
 				GainStone e = new GainStone(amountBonus);
 				Floor f = new Floor(type, costOfFloor, e);
+				if(amountBonus==0){
+					f = new Floor(type, costOfFloor, null);
+				}
 				characterFloors.add(f);
 				break;
 			}
 			case "building": {
 				GainMilitaryPoint e = new GainMilitaryPoint(amountBonus);
 				Floor f = new Floor(type, costOfFloor, e);
+				if(amountBonus==0){
+					 f = new Floor(type, costOfFloor, null);
+				}
 				buildingFloors.add(f);
 				break;
 			}
 			case "venture": {
 				GainCoin e = new GainCoin(amountBonus);
 				Floor f = new Floor(type, costOfFloor, e);
+				if(amountBonus==0){
+					 f = new Floor(type, costOfFloor, null);
+				}
 				ventureFloors.add(f);
 				break;
 			}
@@ -66,26 +84,18 @@ public class JsonFloor {
 	}
 
 	public ArrayList<Floor> getTerritoryFloors()  {
-		
-		// TODO Auto-generated method stub
 		return territoryFloors;
 	}
 	
 	public ArrayList<Floor> getBuildingFloors()  {
-	
-		// TODO Auto-generated method stub
 		return buildingFloors;
 	}
 	
 	public ArrayList<Floor> getVentureFloors()  {
-	
-		// TODO Auto-generated method stub
 		return ventureFloors;
 	}
 	
 	public ArrayList<Floor> getCharacterFloors() {
-		
-		// TODO Auto-generated method stub
 		return characterFloors;
 	}
 
