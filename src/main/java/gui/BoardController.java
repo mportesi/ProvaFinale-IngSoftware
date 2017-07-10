@@ -2404,9 +2404,9 @@ public class BoardController {
 	public void openPrivilegeCouncilForTerritory1() {
 		try {
 			boolean isPresentAnyone = false;
-			
+			if(!doubleCard){
 			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
-				if(!doubleCard){
+				
 				if (relative != null) {
 					if (client.getTerritoryTower().getFloor(0).isFree()) {
 						if (relative.getValue() >= client.getTerritoryTower().getFloor(0).getCost()) {
@@ -2445,14 +2445,14 @@ public class BoardController {
 				} else {
 					openMessage("ChooseTheRelativeMessage.fxml");
 				}
-			}
-			}
-			else {
+			}else {
 				openMessage("NotYorTurn.fxml");
 			}
+			}
 			
-			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
 			if(doubleCard){
+			if (client.getPlayer().getName().equals(client.getCurrentPlayer().getName())) {
+			
 				if (client.getTerritoryTower().getFloor(0).isFree()) {
 					if (client.getTerritoryTower().isPresent(player) == false) {
 						if (client.getTerritoryTower().isPresentAnyone()) {
@@ -2476,10 +2476,10 @@ public class BoardController {
 				}
 			}
 				}
-		 }}
-			else {
+		 }else {
 				openMessage("NotYorTurn.fxml");
-			}
+			}}
+			
 			}
 			
 			catch (Exception e) {
