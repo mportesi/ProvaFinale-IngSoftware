@@ -125,28 +125,46 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void testIncrementMilitaryPoint() {
-		fail("Not yet implemented");
+	public void testIncrementMilitaryPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementMilitaryPoint(1, play);
+		player.decrementMilitaryPoint(1, play);
+		assertEquals(0,player.getMilitaryPoint());
 	}
 
 	@Test
-	public void testDecrementMilitaryPoint() {
-		fail("Not yet implemented");
+	public void testDecrementMilitaryPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementMilitaryPoint(1, play);
+		player.decrementMilitaryPoint(1, play);
+		assertEquals(0,player.getMilitaryPoint());
 	}
 
 	@Test
-	public void testIncrementFaithPoint() {
-		fail("Not yet implemented");
+	public void testIncrementFaithPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementFaithPoint(1, play);
+		assertEquals(1,player.getFaithPoint());
 	}
 
 	@Test
-	public void testDecrementFaithPoint() {
-		fail("Not yet implemented");
+	public void testDecrementFaithPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementFaithPoint(1, play);
+		player.decrementFaithPoint(1, play);
+		assertEquals(0,player.getFaithPoint());
 	}
 
 	@Test
-	public void testIncrementVictoryPoint() {
-		fail("Not yet implemented");
+	public void testIncrementVictoryPoint() throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
+		Player player=new Player(null, null, "test", 0);
+		Play play=new Play(0);
+		player.incrementVictoryPoint(1, play);
+		assertEquals(1,player.getVictoryPoint());
 	}
 
 	@Test
@@ -183,8 +201,8 @@ public class PlayerTest {
 	@Test
 	public void testSetStone() {
 		Player player=new Player(null, null, "test", 0);
-		player.setStonePoint(1);
-		assertEquals(1,player.getStonePoint());
+		player.setStone(1);
+		assertEquals(1,player.getStone());
 	}
 
 	@Test
