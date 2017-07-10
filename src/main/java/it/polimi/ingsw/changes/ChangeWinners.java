@@ -24,7 +24,7 @@ public class ChangeWinners implements Change {
 		for (Player p : winners){
 			rank(p);
 		}
-		System.out.println("The winners are " + printWinner());}
+		System.out.println("The winner is " + printWinner());}
 
 	}
 	

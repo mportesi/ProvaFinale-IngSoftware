@@ -76,6 +76,10 @@ public class Player extends Observable<Change> implements Serializable {
 		orangeRelative= new Relative(ColorDice.ORANGE, this);
 		neutralRelative= new Relative(null, this);
 		activeRelatives = new ArrayList <Relative>();
+		activeRelatives.add(blackRelative);
+		activeRelatives.add(whiteRelative);
+		activeRelatives.add(orangeRelative);
+		activeRelatives.add(neutralRelative);
 		territoryCard= new ArrayList<>();
 		buildingCard= new ArrayList<>();
 		ventureCard= new ArrayList<>();
@@ -427,16 +431,20 @@ public class Player extends Observable<Change> implements Serializable {
 	public void setOccupiedRelative(Relative relative) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=false;
+			activeRelatives.remove(blackRelative);
 			
 		}
 		if(relative.equals(whiteRelative)){
 			hasWhiteRelative=false;
+			activeRelatives.remove(whiteRelative);
 		}
 		if(relative.equals(orangeRelative)){
 			hasOrangeRelative=false;
+			activeRelatives.remove(orangeRelative);
 		}
 		if(relative.equals(neutralRelative)){
 			hasNeutralRelative=false;
+			activeRelatives.remove(neutralRelative);
 		}
 		
 	}
@@ -462,16 +470,20 @@ public class Player extends Observable<Change> implements Serializable {
 	public void setFreeRelative(Relative relative) {
 		if(relative.equals(blackRelative)){
 			hasBlackRelative=true;
+			activeRelatives.add(blackRelative);
 		}
 		if(relative.equals(whiteRelative)){
 			hasWhiteRelative=true;
+			activeRelatives.add(whiteRelative);
 		}
 		if(relative.equals(orangeRelative)){
 			hasOrangeRelative=true;
+			activeRelatives.add(orangeRelative);
 			
 		}
 		if(relative.equals(neutralRelative)){
 			hasNeutralRelative=true;
+			activeRelatives.add(neutralRelative);
 			
 		}
 	}
@@ -497,21 +509,11 @@ public class Player extends Observable<Change> implements Serializable {
 		hasOrangeRelative=true;
 		hasWhiteRelative=true;
 		hasNeutralRelative=true;
-		for (Relative r : activeRelatives){
-			if (!isPresent(blackRelative)){
+		activeRelatives.clear();
 		activeRelatives.add(blackRelative);
-			}
-			if (!isPresent(neutralRelative)){
-		activeRelatives.add(neutralRelative);
-			}
-			if (!isPresent(orangeRelative)){
-		activeRelatives.add(orangeRelative);
-			}
-			if (!isPresent(whiteRelative)){
 		activeRelatives.add(whiteRelative);
-			}
-		
-	}
+		activeRelatives.add(orangeRelative);
+		activeRelatives.add(neutralRelative);
 	}
 
 
@@ -653,7 +655,9 @@ public class Player extends Observable<Change> implements Serializable {
 		harvestBonus = n;
 	}
 	
-	
+	public ArrayList <Relative> getActiveRelatives(){
+		return activeRelatives;
+	}
 
 
 
