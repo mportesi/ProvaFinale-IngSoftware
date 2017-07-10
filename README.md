@@ -1,6 +1,6 @@
 # Project Template - Prova Finale (Ingegneria del Software)
 
-Project of: Sara Pidò, Chiara Plizzari, Matteo Portesi
+Project of: Sara Pidò (Laureanda), Chiara Plizzari(Laureanda), Matteo Portesi
 To start the server: run class "Server"
 To start client from Command Line: run class "Client"
 To start client from GUI: run class "Gui"
