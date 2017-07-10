@@ -3064,16 +3064,7 @@ public class BoardController {
 		characterTower2.setImage(characterImage2);
 		characterTower1.setImage(characterImage1);
 		
-		if(client.getBoard().getNumberOfPlayers()<4 && client.getBoard().getNumberOfPlayers()>=3){
-			Image marketCover= new Image("Images/marketCover.png");
-			market4.setImage(marketCover);
-			market3.setImage(marketCover);
-		}
-		if(client.getBoard().getNumberOfPlayers()>=3){
-			Image areaCover= new Image("Images/areaCover.png");
-			harvestFxml.setImage(areaCover);
-			productionFxml.setImage(areaCover);
-		}
+
 
 	};
 	
