@@ -24,7 +24,7 @@ public class GainVentCardBonus extends Effect {
 
 	@Override
 	public void apply(Player player, Play play) throws FileNotFoundException, NullPointerException, IOException, ParseException, InterruptedException {
-		player.addTerrCardBonus(ventBonus, play);
+		player.addVentCardBonus(ventBonus, play);
 
 	}
 	
