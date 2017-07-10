@@ -93,9 +93,9 @@ public class BoardController {
 	private ArrayList<ImageView> harvestRight;
 	private ArrayList<ImageView> productionRight;
 	private ArrayList<Effect> permanentEffect;
-	private volatile  int i = 0;
-	private volatile   int j = 0;
-	private volatile int k = 0;
+	private   int i = 0;
+	private  int j = 0;
+	private int k = 0;
 	private ArrayList<ImageView> territoryCard;
 	private ArrayList<ImageView> buildingCard;
 	private ArrayList<ImageView> ventureCard;
@@ -2003,9 +2003,9 @@ public class BoardController {
 				PutRelativeOnCouncilPalace putRelativeOnCouncilPalace = new PutRelativeOnCouncilPalace(
 						client.getPlayer(), relative, client.getBoard().getCouncilPalace(), bonus, client.getMatch());
 				
-				//councilPalace.get(i).setImage(relativeImage);
+				councilPalace.get(i).setImage(relativeImage);
 				setPlayer();
-				//i++;
+				i++;
 				if(serverStub!=null){
 					serverStub.notifyObserver(putRelativeOnCouncilPalace);}
 					else if(socketOut!=null){
@@ -3705,11 +3705,11 @@ public class BoardController {
 		}
 		
 		Image councilPalaceImage = new Image("Images/" + player2.getColor() + relativeColor + "1.png");
-		while(councilPalace.get(i).getImage()!=null){
+		while(!client.getPlayer().getName().equals(player2.getName()) && councilPalace.get(i).getImage()!=null){
 			i++;
 		}
-		
-		councilPalace.get(i).setImage(councilPalaceImage);
+		if(!client.getPlayer().getName().equals(player2.getName())){
+		councilPalace.get(i).setImage(councilPalaceImage);}
 	}
 
 	public void setHarvestRightArea(Relative relative2) {
@@ -3922,7 +3922,7 @@ public class BoardController {
 			councilPalace.get(i).setImage(null);}
 		}}
 		if(harvestRight!=null){
-		if(client.getBoard().getNumberOfPlayers()>=3){
+		
 		for(int i=0; i<harvestRight.size(); i++){
 			if(harvestRight.get(i)!=null){
 			harvestRight.get(i).setImage(null);}
@@ -3931,13 +3931,11 @@ public class BoardController {
 		for(int i=0; i<productionRight.size(); i++){
 			if(productionRight.get(i)!=null){
 			productionRight.get(i).setImage(null);}
-		}}}
+		}}
 		market1.setImage(null);
 		market2.setImage(null);
-		if(client.getBoard()!=null){
-		if(client.getBoard().getNumberOfPlayers()==4){
 		market3.setImage(null);
-		market4.setImage(null);}}
+		market4.setImage(null);
 		harvestLeft.setImage(null);
 		productionLeft.setImage(null);
 	}
