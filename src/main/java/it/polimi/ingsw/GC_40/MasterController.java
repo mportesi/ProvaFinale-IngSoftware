@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
 import it.polimi.ingsw.actions.Action;
 import it.polimi.ingsw.actions.RegisterClient;
+import it.polimi.ingsw.changes.Change;
 import it.polimi.ingsw.clientRMI.ClientRMIConnectionViewRemote;
 import it.polimi.ingsw.serverRMI.ServerRMIConnectionView;
 import it.polimi.ingsw.serverSocket.ServerSocketView;
@@ -55,7 +57,9 @@ public class MasterController implements Observer <Action>{
 		else {
 			
 			if (matches.get(matches.size()-1).getInitializing()){
-				matches.get(matches.size()-1).registerObserver(serverRMIConnectionView);
+				if(!(matches.get(matches.size()-1).isPresentObserver(serverRMIConnectionView))){
+					matches.get(matches.size()-1).registerObserver(serverRMIConnectionView);
+				}
 				RegisterClient registerClient = new RegisterClient (name, matches.size()-1);
 				registerClient.apply(matches.get(matches.size()-1));
 			}
