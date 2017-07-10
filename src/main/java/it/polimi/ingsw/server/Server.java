@@ -61,7 +61,7 @@ public class Server {
 		ServerSocket serverSocket = new ServerSocket(PORT);
 
 		System.out.println("SERVER SOCKET READY ON PORT" + PORT);
-
+		
 		while (true) {
 			//Waits for a new client to connect
 			Socket socket = serverSocket.accept();
