@@ -38,5 +38,9 @@ public class PayWood extends Effect{
 			return false;
 		}
 	}
+	@Override
+	public String toString(){
+		return (" Pay " + wood + " wood"  );
+	}
 
 }

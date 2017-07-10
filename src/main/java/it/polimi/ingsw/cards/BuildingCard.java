@@ -36,6 +36,17 @@ public class BuildingCard extends Card {
 		setGainPrivilegeCouncil();
 	}
 	
+	public BuildingCard(String type, String name, int period, Map<String, Integer> cost, BuildingListOfEffect effects, BuildingListOfPermanentEffect permanent, int permanentCost) throws FileNotFoundException, IOException, ParseException {
+		super(type, name, period);
+		this.cost=cost;
+		this.permanentCost=permanentCost;
+		this.effects=effects;
+		this.permanent=permanent;
+		immediateEffects = effects.createListOfEffect();
+		permanentEffects= permanent.createListOfEffect();
+		setGainPrivilegeCouncil();
+	}
+	
 	/**
 	 * @author Sara
 	 * To pay the required resources when the card is taken by a player

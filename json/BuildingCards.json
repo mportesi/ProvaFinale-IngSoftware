@@ -2,6 +2,7 @@
   { "name":"residence",
     "type":"buildingCard",
     "period":1,
+    "permanentCost":1,
     "cost":[
       {"type":"stone", "amount":2}
     ],
@@ -17,6 +18,7 @@
   { "name":"theatre",
     "type":"buildingCard",
     "period":1,
+    "permanentCost":6,
     "cost":[
      {"type":"coin", "amount":2},
      {"type":"wood", "amount":2}
@@ -32,6 +34,7 @@
   { "name":"carpenter'sShop",
     "type":"buildingCard",
     "period":1,
+    "permanentCost":4,
     "cost":[
       {"type":"coin", "amount":1},
       {"type":"wood", "amount":2}
@@ -50,6 +53,7 @@
   { "name":"taxOffice",
     "type":"buildingCard",
     "period":1,
+    "permanentCost":5,
     "cost":[
       {"type":"wood", "amount":3},
       {"type":"stone", "amount":1}
@@ -65,6 +69,7 @@
   {"name":"TriumphalArch",
    "type":"buildingCard",
    "period":1,
+   "permanentCost":6,
     "cost":[
       {"type":"coin", "amount":2},
       {"type":"stone", "amount":2}
@@ -80,6 +85,7 @@
   {"name":"mint",
    "type":"buildingCard",
    "period":1,
+   "permanentCost":5,
    "cost":[
         {"type":"wood", "amount":1},
         {"type":"stone", "amount":3}
@@ -95,6 +101,7 @@
   {"name":"chapel",
     "type":"buildingCard",
     "period":1,
+    "permanentCost":2,
     "cost":[
       {"type":"wood", "amount":2}
       ],
@@ -110,6 +117,7 @@
   {"name":"stonemason'sShop",
     "type":"buildingCard",
     "period":1,
+    "permanentCost":3,
     "cost":[
         {"type":"coin", "amount":1},
         {"type":"stone", "amount":2}
@@ -128,6 +136,7 @@
   {"name":"sculptors'Guild",
     "type":"buildingCard",
     "period":2,
+    "permanentCost":5,
     "cost":[
         {"type":"stone", "amount":4}
       ],
@@ -145,6 +154,7 @@
   {"name":"stonemasons'Guild",
     "type":"buildingCard",
     "period":2,
+    "permanentCost":4,
     "cost":[
         {"type":"wood", "amount":1},
         {"type":"stone", "amount":2}
@@ -163,6 +173,7 @@
   {"name":"painters'Guild",
     "type":"buildingCard",
     "period":2,
+    "permanentCost":4,
     "cost":[
         {"type":"wood", "amount":4}
       ],
@@ -180,6 +191,7 @@
   {"name":"marketplace",
     "type":"buildingCard",
     "period":2,
+    "permanentCost":3,
     "cost":[
         {"type":"wood", "amount":2},
         {"type":"stone", "amount":1}
@@ -198,6 +210,7 @@
   {"name":"baptistery",
     "type":"buildingCard",
     "period":2,
+    "permanentCost":2,
     "cost":[
         {"type":"stone", "amount":3}
       ],
@@ -216,6 +229,7 @@
    {"name":"fortress",
     "type":"buildingCard",
     "period":2,
+    "permanentCost":6,
     "cost":[
         {"type":"coin", "amount":2},
         {"type":"wood", "amount":2},
@@ -233,6 +247,7 @@
   {"name":"treasury",
     "type":"buildingCard",
     "period":2,
+    "permanentCost":3,
     "cost":[
         {"type":"wood", "amount":3}
       ],
@@ -250,6 +265,7 @@
   {"name":"barracks",
     "type":"buildingCard",
     "period":2,
+    "permanentCost":1,
     "cost":[
         {"type":"wood", "amount":1},
         {"type":"stone", "amount":1}
@@ -266,6 +282,7 @@
   {"name":"garden",
     "type":"buildingCard",
     "period":3,
+    "permanentCost":1,
     "cost":[
         {"type":"wood", "amount":4},
         {"type":"stone", "amount":2},
@@ -282,6 +299,7 @@
   {"name":"bank",
     "type":"buildingCard",
     "period":3,
+    "permanentCost":2,
     "cost":[
         {"type":"coin", "amount":3},
         {"type":"wood", "amount":1},
@@ -298,6 +316,7 @@
   {"name":"cathedral",
     "type":"buildingCard",
     "period":3,
+    "permanentCost":2,
     "cost":[
         {"type":"wood", "amount":4},
         {"type":"stone", "amount":4}
@@ -314,6 +333,7 @@
   {"name":"fair",
     "type":"buildingCard",
     "period":3,
+    "permanentCost":4,
     "cost":[
         {"type":"coin", "amount":4},
         {"type":"wood", "amount":3}
@@ -332,6 +352,7 @@
   {"name":"militaryAcademy",
     "type":"buildingCard",
     "period":3,
+    "permanentCost":3,
     "cost":[
         {"type":"wood", "amount":2},
         {"type":"stone", "amount":2},
@@ -351,10 +372,11 @@
   {"name":"stronghold",
     "type":"buildingCard",
     "period":3,
+    "permanentCost":5,
     "cost":[
         {"type":"coin", "amount":2},
         {"type":"wood", "amount":2},
-        {"type":"stone", "amount":2}
+        {"type":"stone", "amount":4}
       ],
     "immediateEffect":[
         {"type":"GainVictoryPoint", "amount":9}
@@ -368,6 +390,7 @@
   {"name":"church",
     "type":"buildingCard",
     "period":3,
+    "permanentCost":1,
     "cost":[
         {"type":"wood", "amount":1},
         {"type":"stone", "amount":4}
@@ -387,6 +410,7 @@
   {"name":"palace",
     "type":"buildingCard",
     "period":3,
+    "permanentCost":6,
     "cost":[
         {"type":"coin", "amount":3},
         {"type":"wood", "amount":3},

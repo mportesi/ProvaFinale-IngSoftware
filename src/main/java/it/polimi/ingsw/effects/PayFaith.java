@@ -37,4 +37,8 @@ public class PayFaith extends Effect{
 			return false;
 		}
 	}
+	@Override
+	public String toString(){
+		return (" Pay " + faith + " faith"  );
+	}
 }

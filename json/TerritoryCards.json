@@ -1,6 +1,7 @@
 [{"name":"castle",
   "type":"territoryCard",
   "period":3,
+  "permanentCost":4,
   "immediateEffect":[
     {"type":"GainCoin", "amount":2},
     {"type":"GainVictoryPoint", "amount":2}
@@ -13,13 +14,18 @@
 {"name":"village",
   "type":"territoryCard",
   "period":1,
+  "permanentCost":3,
   "immediateEffect":[
   ],
-  "permanentEffect":[]
+  "permanentEffect":[
+    {"type":"GainCoin","amount":1},
+    {"type":"GainServant","amount":1}
+  ]
 },
 {"name":"monastery",
   "type":"territoryCard",
   "period":1,
+  "permanentCost":6,
   "immediateEffect":[
     {"type":"GainServant", "amount":1},
     {"type":"GainMilitaryPoint", "amount":2}
@@ -32,6 +38,7 @@
 {"name":"commercialHub",
   "type":"territoryCard",
   "period":1,
+  "permanentCost":1,
   "immediateEffect":[
   ],
   "permanentEffect":[
@@ -41,6 +48,7 @@
 {"name":"forest",
   "type":"territoryCard",
   "period":1,
+  "permanentCost":5,
   "immediateEffect":[
     {"type":"GainWood", "amount":1}
   ],
@@ -51,6 +59,7 @@
 {"name":"citadel",
   "type":"territoryCard",
   "period":1,
+  "permanentCost":5,
   "immediateEffect":[
   ],
   "permanentEffect":[
@@ -61,6 +70,7 @@
 {"name":"city",
   "type":"territoryCard",
   "period":1,
+  "permanentCost":6,
   "immediateEffect":[
     {"type":"GainCoin", "amount":3}
   ],
@@ -71,6 +81,7 @@
 {"name":"gravelPit",
   "type":"territoryCard",
   "period":1,
+  "permanentCost":4,
   "immediateEffect":[
     {"type":"GainStone", "amount":2}
   ],
@@ -81,6 +92,7 @@
 {"name":"miningVillage",
   "type":"territoryCard",
   "period":2,
+  "permanentCost":4,
   "immediateEffect":[
     {"type":"GainStone", "amount":1},
     {"type":"GainServant", "amount":2}
@@ -93,6 +105,7 @@
 {"name":"hermitage",
   "type":"territoryCard",
   "period":2,
+  "permanentCost":2,
   "immediateEffect":[
     {"type":"GainFaithPoint", "amount":1}
   ],
@@ -103,6 +116,7 @@
 {"name":"dukedom",
   "type":"territoryCard",
   "period":2,
+  "permanentCost":6,
   "immediateEffect":[
     {"type":"GainCoin", "amount":4}
   ],
@@ -115,6 +129,7 @@
 {"name":"manorHouse",
   "type":"territoryCard",
   "period":2,
+  "permanentCost":5,
   "immediateEffect":[
   ],
   "permanentEffect":[
@@ -125,6 +140,7 @@
 {"name":"estate",
   "type":"territoryCard",
   "period":2,
+  "permanentCost":4,
   "immediateEffect":[
     {"type":"GainWood", "amount":1},
     {"type":"GainServant", "amount":2}
@@ -137,6 +153,7 @@
 {"name":"mountainTown",
   "type":"territoryCard",
   "period":2,
+  "permanentCost":3,
   "immediateEffect":[
     {"type":"Gainservant", "amount":1}
   ],
@@ -148,6 +165,7 @@
 {"name":"goldMine",
   "type":"territoryCard",
   "period":2,
+  "permanentCost":1,
   "immediateEffect":[
     {"type":"GainCoin", "amount":1}
   ],
@@ -158,6 +176,7 @@
 {"name":"rockPit",
   "type":"territoryCard",
   "period":2,
+  "permanentCost":3,
   "immediateEffect":[
     {"type":"GainWood", "amount":1}
   ],
@@ -168,6 +187,7 @@
 {"name":"fortifiedTown",
   "type":"territoryCard",
   "period":3,
+  "permanentCost":2,
   "immediateEffect":[
     {"type":"GainServant", "amount":1},
     {"type":"GainMilitaryPoint", "amount":2}
@@ -180,6 +200,7 @@
 {"name":"tradingTown",
   "type":"territoryCard",
   "period":3,
+  "permanentCost":1,
   "immediateEffect":[
     {"type":"GainCoin", "amount":1},
     {"type":"Gainservant", "amount":1}
@@ -191,6 +212,7 @@
 {"name":"farm",
   "type":"territoryCard",
   "period":3,
+  "permanentCost":3,
   "immediateEffect":[
     {"type":"GainWood", "amount":1},
     {"type":"GainVictoryPoint", "amount":1}
@@ -203,6 +225,7 @@
 {"name":"colony",
   "type":"territoryCard",
   "period":3,
+  "permanentCost":5,
   "immediateEffect":[
     {"type":"GainMilitaryPoint", "amount":2}
   ],
@@ -211,6 +234,7 @@
 {"name":"sanctuary",
   "type":"territoryCard",
   "period":3,
+  "permanentCost":1,
   "immediateEffect":[
     {"type":"GainFaithPoint", "amount":1}
   ],
@@ -222,6 +246,7 @@
 {"name":"marblePit",
   "type":"territoryCard",
   "period":3,
+  "permanentCost":2,
   "immediateEffect":[
     {"type":"GainVictoryPoint", "amount":3}
   ],
@@ -233,6 +258,7 @@
 {"name":"province",
   "type":"territoryCard",
   "period":3,
+  "permanentCost":6,
   "immediateEffect":[
     {"type":"GainStone", "amount":1},
     {"type":"GainPrivilegeCouncil", "amount":1}
@@ -245,6 +271,7 @@
 {"name":"wood",
   "type":"territoryCard",
   "period":1,
+  "permanentCost":2,
   "immediateEffect":[
     {"type":"GainWood", "amount":1}
   ],
